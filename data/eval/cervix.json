@@ -3,7 +3,7 @@
  "nombre": "Cancer de cervix",
  "grupo": "Ginecologico",
  "version": "CERVIX-ESMO-2025.1",
- "fecha": "2026-09-27T14:47:20+00:00",
+ "fecha": "2026-09-27T18:58:38+00:00",
  "modelo": "jev-latest",
  "mock": false,
  "umbral_confianza": 0.6,
@@ -13,7 +13,10 @@
  "acierto_tratamiento": 1.0,
  "acierto_preferida": 0.875,
  "acierto_seguridad": 1.0,
- "confianza_aciertos": 0.78875,
+ "acierto_seguridad_robusta": 1.0,
+ "tratamiento_sin_revision": 0.125,
+ "pct_tratamiento_con_revision": 0.875,
+ "confianza_aciertos": 0.78625,
  "confianza_fallos": null,
  "n_multiopcion": 4,
  "acierto_multiopcion": 1.0,
@@ -31,7 +34,10 @@
    "obtenido": "conizacion_ia1",
    "obtenido_label": "Conizacion o histerectomia simple",
    "confianza": 1.0,
-   "revision": false,
+   "revision": true,
+   "motivos_revision": [
+    "datos_criticos_ausentes"
+   ],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
@@ -50,7 +56,10 @@
    "obtenido": "histerectomia_radical_ganglio",
    "obtenido_label": "Histerectomia radical/trachelectomia + estadiaje ganglionar",
    "confianza": 1.0,
-   "revision": false,
+   "revision": true,
+   "motivos_revision": [
+    "datos_criticos_ausentes"
+   ],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
@@ -68,8 +77,9 @@
    ],
    "obtenido": "adyuvante_qrt_postqx",
    "obtenido_label": "QRT adyuvante postoperatoria",
-   "confianza": 0.98,
+   "confianza": 0.97,
    "revision": false,
+   "motivos_revision": [],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
@@ -89,8 +99,11 @@
    ],
    "obtenido": "qrt_braquiterapia",
    "obtenido_label": "Quimiorradioterapia con cisplatino + braquiterapia",
-   "confianza": 0.69,
-   "revision": false,
+   "confianza": 0.68,
+   "revision": true,
+   "motivos_revision": [
+    "datos_criticos_ausentes"
+   ],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
@@ -109,8 +122,12 @@
    ],
    "obtenido": "pembro_qrt_alto_riesgo",
    "obtenido_label": "Pembrolizumab + QRT y mantenimiento",
-   "confianza": 0.48,
+   "confianza": 0.41,
    "revision": true,
+   "motivos_revision": [
+    "datos_criticos_ausentes",
+    "confianza_baja"
+   ],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
@@ -129,7 +146,10 @@
    "obtenido": "pembro_platino_taxol_bev_1l",
    "obtenido_label": "Pembrolizumab + platino-paclitaxel +- bevacizumab",
    "confianza": 1.0,
-   "revision": false,
+   "revision": true,
+   "motivos_revision": [
+    "datos_criticos_ausentes"
+   ],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
@@ -148,7 +168,10 @@
    "obtenido": "platino_taxol_bev_1l",
    "obtenido_label": "Platino-paclitaxel +- bevacizumab",
    "confianza": 1.0,
-   "revision": false,
+   "revision": true,
+   "motivos_revision": [
+    "datos_criticos_ausentes"
+   ],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
@@ -167,8 +190,12 @@
    ],
    "obtenido": "cemiplimab_2l",
    "obtenido_label": "Cemiplimab",
-   "confianza": 0.16,
+   "confianza": 0.23,
    "revision": true,
+   "motivos_revision": [
+    "datos_criticos_ausentes",
+    "confianza_baja"
+   ],
    "acierto": true,
    "acierto_preferida": false,
    "preguntas": [],
@@ -186,6 +213,7 @@
    "obtenido_label": null,
    "confianza": null,
    "revision": null,
+   "motivos_revision": [],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [
@@ -205,6 +233,10 @@
    "obtenido_label": "Soporte y radioterapia paliativa",
    "confianza": 1.0,
    "revision": true,
+   "motivos_revision": [
+    "datos_criticos_ausentes",
+    "no_candidato_activo"
+   ],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],

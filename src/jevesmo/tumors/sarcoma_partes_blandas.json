@@ -12,62 +12,889 @@
  ],
  "descripcion": "Sarcomas de partes blandas del adulto: tratamiento local y sistemico segun localizacion, histotipo, riesgo, linea y biomarcadores accionables.",
  "campos": [
-  {"id":"situacion","label":"Situacion clinica","tipo":"choice","opciones":["localizado_resecable","localizado_borderline","localizado_irresecable","metastasico"],"requerido":true,"pregunta":"¿La enfermedad es localizada resecable, localizada borderline, localmente irresecable o metastasica?"},
-  {"id":"localizacion","label":"Localizacion","tipo":"choice","opciones":["extremidad_pared","retroperitoneo","visceral","cabeza_cuello","otro"],"requerido":true,"pregunta":"¿Cual es la localizacion principal del sarcoma?"},
-  {"id":"histotipo","label":"Histotipo","tipo":"choice","opciones":["sts_no_especificado","leiomiosarcoma","liposarcoma","angiosarcoma","sinovial","dfsp","alveolar_soft_part","pecoma","otro"],"requerido":true,"pregunta":"¿Cual es el histotipo?"},
-  {"id":"grado","label":"Grado FNCLCC","tipo":"choice","opciones":["1","2","3"],"requerido_si":{"campo":"situacion","in":["localizado_resecable","localizado_borderline"]},"pregunta":"¿Cual es el grado FNCLCC (1-3)?"},
-  {"id":"tamano_cm","label":"Tamano tumoral","tipo":"number","min":0,"max":80,"unidad":"cm","requerido_si":{"campo":"situacion","in":["localizado_resecable","localizado_borderline"]},"pregunta":"¿Cual es el tamano maximo en cm?"},
-  {"id":"profundo","label":"Profundo/subfascial","tipo":"bool"},
-  {"id":"margen_quirurgico","label":"Margen quirurgico","tipo":"choice","opciones":["no_operado","R0","R1","R2"],"seccion":"Tratamiento local"},
-  {"id":"ntrk_fusion","label":"Fusion NTRK","tipo":"bool","seccion":"Biomarcadores"},
-  {"id":"antraciclina_contraindicada","label":"Contraindicacion a antraciclinas","tipo":"bool","seccion":"Seguridad"},
-  {"id":"fraccion_eyeccion_ventricular","label":"FEVI","tipo":"number","min":0,"max":100,"unidad":"%","seccion":"Seguridad"}
+  {
+   "id": "situacion",
+   "label": "Situacion clinica",
+   "tipo": "choice",
+   "opciones": [
+    "localizado_resecable",
+    "localizado_borderline",
+    "localizado_irresecable",
+    "metastasico"
+   ],
+   "requerido": true,
+   "pregunta": "¿La enfermedad es localizada resecable, localizada borderline, localmente irresecable o metastasica?"
+  },
+  {
+   "id": "localizacion",
+   "label": "Localizacion",
+   "tipo": "choice",
+   "opciones": [
+    "extremidad_pared",
+    "retroperitoneo",
+    "visceral",
+    "cabeza_cuello",
+    "otro"
+   ],
+   "requerido": true,
+   "pregunta": "¿Cual es la localizacion principal del sarcoma?"
+  },
+  {
+   "id": "histotipo",
+   "label": "Histotipo",
+   "tipo": "choice",
+   "opciones": [
+    "sts_no_especificado",
+    "leiomiosarcoma",
+    "liposarcoma",
+    "angiosarcoma",
+    "sinovial",
+    "dfsp",
+    "alveolar_soft_part",
+    "pecoma",
+    "otro"
+   ],
+   "requerido": true,
+   "pregunta": "¿Cual es el histotipo?"
+  },
+  {
+   "id": "grado",
+   "label": "Grado FNCLCC",
+   "tipo": "choice",
+   "opciones": [
+    "1",
+    "2",
+    "3"
+   ],
+   "requerido_si": {
+    "campo": "situacion",
+    "in": [
+     "localizado_resecable",
+     "localizado_borderline"
+    ]
+   },
+   "pregunta": "¿Cual es el grado FNCLCC (1-3)?"
+  },
+  {
+   "id": "tamano_cm",
+   "label": "Tamano tumoral",
+   "tipo": "number",
+   "min": 0,
+   "max": 80,
+   "unidad": "cm",
+   "requerido_si": {
+    "campo": "situacion",
+    "in": [
+     "localizado_resecable",
+     "localizado_borderline"
+    ]
+   },
+   "pregunta": "¿Cual es el tamano maximo en cm?"
+  },
+  {
+   "id": "profundo",
+   "label": "Profundo/subfascial",
+   "tipo": "bool"
+  },
+  {
+   "id": "margen_quirurgico",
+   "label": "Margen quirurgico",
+   "tipo": "choice",
+   "opciones": [
+    "no_operado",
+    "R0",
+    "R1",
+    "R2"
+   ],
+   "seccion": "Tratamiento local"
+  },
+  {
+   "id": "ntrk_fusion",
+   "label": "Fusion NTRK",
+   "tipo": "bool",
+   "seccion": "Biomarcadores"
+  },
+  {
+   "id": "antraciclina_contraindicada",
+   "label": "Contraindicacion a antraciclinas",
+   "tipo": "bool",
+   "seccion": "Seguridad"
+  },
+  {
+   "id": "fraccion_eyeccion_ventricular",
+   "label": "FEVI",
+   "tipo": "number",
+   "min": 0,
+   "max": 100,
+   "unidad": "%",
+   "seccion": "Seguridad"
+  }
  ],
  "derivados": [
-  {"id":"riesgo_local","label":"Riesgo localizado","defecto":"no_aplica","reglas":[
-   {"cuando":[{"campo":"situacion","in":["localizado_resecable","localizado_borderline"]},{"campo":"grado","in":["2","3"]},{"campo":"tamano_cm","gte":5}],"valor":"alto_riesgo"},
-   {"cuando":[{"campo":"situacion","in":["localizado_resecable","localizado_borderline"]},{"any":[{"campo":"grado","eq":"1"},{"campo":"tamano_cm","lt":5}]}],"valor":"bajo_riesgo"}
-  ]}
+  {
+   "id": "riesgo_local",
+   "label": "Riesgo localizado",
+   "defecto": "no_aplica",
+   "reglas": [
+    {
+     "cuando": [
+      {
+       "campo": "situacion",
+       "in": [
+        "localizado_resecable",
+        "localizado_borderline"
+       ]
+      },
+      {
+       "campo": "grado",
+       "in": [
+        "2",
+        "3"
+       ]
+      },
+      {
+       "campo": "tamano_cm",
+       "gte": 5
+      }
+     ],
+     "valor": "alto_riesgo"
+    },
+    {
+     "cuando": [
+      {
+       "campo": "situacion",
+       "in": [
+        "localizado_resecable",
+        "localizado_borderline"
+       ]
+      },
+      {
+       "any": [
+        {
+         "campo": "grado",
+         "eq": "1"
+        },
+        {
+         "campo": "tamano_cm",
+         "lt": 5
+        }
+       ]
+      }
+     ],
+     "valor": "bajo_riesgo"
+    }
+   ]
+  }
  ],
  "opciones": [
-  {"id":"cirugia_sola_bajo_riesgo","label":"Cirugia amplia R0 sola","nota":"ESMO STS: sarcoma localizado resecable superficial/pequeno o grado 1, con margen amplio factible, se trata con cirugia planificada en centro experto sin RT rutinaria.","cuando":[{"campo":"situacion","eq":"localizado_resecable"},{"campo":"riesgo_local","eq":"bajo_riesgo"}],"componentes":["cirugia"],"evidencia":"III, A"},
-  {"id":"cirugia_rt_preop","label":"Radioterapia preoperatoria seguida de cirugia","nota":"ESMO STS extremidad/pared: tumores profundos, >5 cm o grado 2-3 resecables con riesgo funcional; RT preoperatoria 50 Gy y cirugia experta es opcion estandar.","cuando":[{"campo":"situacion","in":["localizado_resecable","localizado_borderline"]},{"campo":"localizacion","eq":"extremidad_pared"},{"campo":"riesgo_local","eq":"alto_riesgo"}],"componentes":["radioterapia","cirugia"],"evidencia":"I, A"},
-  {"id":"cirugia_rt_postop","label":"Cirugia amplia + radioterapia postoperatoria","nota":"ESMO STS localizado alto riesgo: si no se hizo RT preoperatoria o hay margen estrecho/R1, RT postoperatoria mejora control local.","cuando":[{"campo":"situacion","eq":"localizado_resecable"},{"campo":"riesgo_local","eq":"alto_riesgo"},{"campo":"margen_quirurgico","in":["R1","R2"]}],"componentes":["cirugia","radioterapia"],"evidencia":"I, A"},
-  {"id":"rt_neoadyuvante_retroperitoneo_selectivo","label":"RT preoperatoria selectiva + reseccion retroperitoneal experta","nota":"ESMO retroperitoneo: cirugia macroscopica completa en centro experto; RT preoperatoria solo selectiva, sobre todo liposarcoma bien/dediferenciado, no rutinaria para leiomiosarcoma.","cuando":[{"campo":"situacion","in":["localizado_resecable","localizado_borderline"]},{"campo":"localizacion","eq":"retroperitoneo"},{"campo":"histotipo","eq":"liposarcoma"}],"componentes":["cirugia","radioterapia"],"evidencia":"III, B"},
-  {"id":"quimio_neoadyuvante_alto_riesgo","label":"Quimioterapia perioperatoria con doxorrubicina + ifosfamida","nota":"ESMO STS: en sarcoma extremidad/tronco de alto riesgo (G3, profundo, >5 cm) de histologia sensible puede considerarse QT perioperatoria con antraciclina-ifosfamida.","cuando":[{"campo":"situacion","in":["localizado_resecable","localizado_borderline"]},{"campo":"riesgo_local","eq":"alto_riesgo"},{"campo":"localizacion","in":["extremidad_pared","cabeza_cuello","otro"]}],"componentes":["quimioterapia","cirugia"],"evidencia":"II, B"},
-  {"id":"doxorrubicina_1l","label":"Doxorrubicina 1L","nota":"ESMO STS avanzado/metastasico: doxorrubicina es estandar de primera linea para la mayoria de sarcomas de partes blandas si no se requiere respuesta rapida.","cuando":[{"campo":"situacion","in":["localizado_irresecable","metastasico"]},{"any":[{"campo":"lineas_previas","missing":true},{"campo":"lineas_previas","eq":0}]}],"componentes":["quimioterapia"],"evidencia":"I, A"},
-  {"id":"doxo_ifosfamida_1l","label":"Doxorrubicina + ifosfamida 1L si se necesita respuesta","nota":"ESMO STS avanzado: doxorrubicina-ifosfamida se reserva para pacientes fit cuando la reduccion tumoral rapida puede permitir cirugia/paliacion; mayor toxicidad sin clara ventaja de SG.","cuando":[{"campo":"situacion","in":["localizado_irresecable","metastasico"]},{"any":[{"campo":"lineas_previas","missing":true},{"campo":"lineas_previas","eq":0}]}],"componentes":["quimioterapia"],"evidencia":"I, B"},
-  {"id":"trabectedina_lipo_lms","label":"Trabectedina (liposarcoma/leiomiosarcoma)","nota":"ESMO STS avanzado: trabectedina esta indicada tras antraciclina, especialmente en liposarcoma y leiomiosarcoma.","cuando":[{"campo":"situacion","in":["localizado_irresecable","metastasico"]},{"campo":"histotipo","in":["liposarcoma","leiomiosarcoma"]},{"campo":"lineas_previas","gte":1}],"componentes":["quimioterapia"],"evidencia":"I, B"},
-  {"id":"eribulina_liposarcoma","label":"Eribulina (liposarcoma)","nota":"ESMO STS avanzado: eribulina mejora supervivencia frente a dacarbazina en liposarcoma pretratado y es opcion tras antraciclina.","cuando":[{"campo":"situacion","in":["localizado_irresecable","metastasico"]},{"campo":"histotipo","eq":"liposarcoma"},{"campo":"lineas_previas","gte":1}],"componentes":["quimioterapia"],"evidencia":"I, B"},
-  {"id":"pazopanib_no_lipo","label":"Pazopanib (STS no adipocitico)","nota":"ESMO STS avanzado: pazopanib es opcion en sarcomas no adipociticos tras quimioterapia previa, si no hay contraindicacion vascular/hepatica.","cuando":[{"campo":"situacion","in":["localizado_irresecable","metastasico"]},{"campo":"histotipo","nin":["liposarcoma"]},{"campo":"lineas_previas","gte":1}],"componentes":["dirigida","antiangiogenico"],"evidencia":"I, B"},
-  {"id":"weekly_paclitaxel_angiosarcoma","label":"Paclitaxel semanal (angiosarcoma)","nota":"ESMO STS avanzado angiosarcoma: paclitaxel semanal es una opcion activa, especialmente cutaneo/cabeza-cuello.","cuando":[{"campo":"situacion","in":["localizado_irresecable","metastasico"]},{"campo":"histotipo","eq":"angiosarcoma"}],"componentes":["quimioterapia"],"evidencia":"III, B"},
-  {"id":"imatinib_dfsp","label":"Imatinib (DFSP irresecable/metastasico)","nota":"ESMO STS: dermatofibrosarcoma protuberans localmente avanzado/metastasico con fusion COL1A1-PDGFB se trata con imatinib para facilitar cirugia o control sistemico.","cuando":[{"campo":"situacion","in":["localizado_irresecable","metastasico"]},{"campo":"histotipo","eq":"dfsp"}],"componentes":["dirigida"],"evidencia":"III, A"},
-  {"id":"larotrectinib_entrectinib_ntrk","label":"Larotrectinib/entrectinib si fusion NTRK","nota":"ESMO: cualquier sarcoma avanzado con fusion NTRK accionable debe recibir inhibidor TRK preferentemente a quimioterapia no especifica cuando disponible.","cuando":[{"campo":"situacion","in":["localizado_irresecable","metastasico"]},{"campo":"ntrk_fusion","eq":true}],"componentes":["dirigida"],"evidencia":"III, A"},
-  {"id":"soporte_sts","label":"Mejor soporte exclusivo / cuidados paliativos","nota":"ESMO STS: ECOG 3-4, fragilidad marcada o toxicidad inaceptable -> priorizar soporte y control sintomatico en vez de tratamiento sistemico activo.","cuando":{"campo":"ecog","in":["3","4"]},"componentes":["soporte"],"evidencia":"V, A"}
+  {
+   "id": "cirugia_sola_bajo_riesgo",
+   "label": "Cirugia amplia R0 sola",
+   "nota": "ESMO STS: sarcoma localizado resecable superficial/pequeno o grado 1, con margen amplio factible, se trata con cirugia planificada en centro experto sin RT rutinaria.",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "localizado_resecable"
+    },
+    {
+     "campo": "riesgo_local",
+     "eq": "bajo_riesgo"
+    }
+   ],
+   "componentes": [
+    "cirugia"
+   ],
+   "evidencia": "III, A"
+  },
+  {
+   "id": "cirugia_rt_preop",
+   "label": "Radioterapia preoperatoria seguida de cirugia",
+   "nota": "ESMO STS extremidad/pared: tumores profundos, >5 cm o grado 2-3 resecables con riesgo funcional; RT preoperatoria 50 Gy y cirugia experta es opcion estandar.",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "in": [
+      "localizado_resecable",
+      "localizado_borderline"
+     ]
+    },
+    {
+     "campo": "localizacion",
+     "eq": "extremidad_pared"
+    },
+    {
+     "campo": "riesgo_local",
+     "eq": "alto_riesgo"
+    }
+   ],
+   "componentes": [
+    "radioterapia",
+    "cirugia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "cirugia_rt_postop",
+   "label": "Cirugia amplia + radioterapia postoperatoria",
+   "nota": "ESMO STS localizado alto riesgo: si no se hizo RT preoperatoria o hay margen estrecho/R1, RT postoperatoria mejora control local.",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "localizado_resecable"
+    },
+    {
+     "campo": "riesgo_local",
+     "eq": "alto_riesgo"
+    },
+    {
+     "campo": "margen_quirurgico",
+     "in": [
+      "R1",
+      "R2"
+     ]
+    }
+   ],
+   "componentes": [
+    "cirugia",
+    "radioterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "rt_neoadyuvante_retroperitoneo_selectivo",
+   "label": "RT preoperatoria selectiva + reseccion retroperitoneal experta",
+   "nota": "ESMO retroperitoneo: cirugia macroscopica completa en centro experto; RT preoperatoria solo selectiva, sobre todo liposarcoma bien/dediferenciado, no rutinaria para leiomiosarcoma.",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "in": [
+      "localizado_resecable",
+      "localizado_borderline"
+     ]
+    },
+    {
+     "campo": "localizacion",
+     "eq": "retroperitoneo"
+    },
+    {
+     "campo": "histotipo",
+     "eq": "liposarcoma"
+    }
+   ],
+   "componentes": [
+    "cirugia",
+    "radioterapia"
+   ],
+   "evidencia": "III, B"
+  },
+  {
+   "id": "quimio_neoadyuvante_alto_riesgo",
+   "label": "Quimioterapia perioperatoria con doxorrubicina + ifosfamida",
+   "nota": "ESMO STS: en sarcoma extremidad/tronco de alto riesgo (G3, profundo, >5 cm) de histologia sensible puede considerarse QT perioperatoria con antraciclina-ifosfamida.",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "in": [
+      "localizado_resecable",
+      "localizado_borderline"
+     ]
+    },
+    {
+     "campo": "riesgo_local",
+     "eq": "alto_riesgo"
+    },
+    {
+     "campo": "localizacion",
+     "in": [
+      "extremidad_pared",
+      "cabeza_cuello",
+      "otro"
+     ]
+    }
+   ],
+   "componentes": [
+    "quimioterapia",
+    "cirugia"
+   ],
+   "evidencia": "II, B"
+  },
+  {
+   "id": "doxorrubicina_1l",
+   "label": "Doxorrubicina 1L",
+   "nota": "ESMO STS avanzado/metastasico: doxorrubicina es estandar de primera linea para la mayoria de sarcomas de partes blandas si no se requiere respuesta rapida.",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "in": [
+      "localizado_irresecable",
+      "metastasico"
+     ]
+    },
+    {
+     "any": [
+      {
+       "campo": "lineas_previas",
+       "missing": true
+      },
+      {
+       "campo": "lineas_previas",
+       "eq": 0
+      }
+     ]
+    }
+   ],
+   "componentes": [
+    "quimioterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "doxo_ifosfamida_1l",
+   "label": "Doxorrubicina + ifosfamida 1L si se necesita respuesta",
+   "nota": "ESMO STS avanzado: doxorrubicina-ifosfamida se reserva para pacientes fit cuando la reduccion tumoral rapida puede permitir cirugia/paliacion; mayor toxicidad sin clara ventaja de SG.",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "in": [
+      "localizado_irresecable",
+      "metastasico"
+     ]
+    },
+    {
+     "any": [
+      {
+       "campo": "lineas_previas",
+       "missing": true
+      },
+      {
+       "campo": "lineas_previas",
+       "eq": 0
+      }
+     ]
+    }
+   ],
+   "componentes": [
+    "quimioterapia"
+   ],
+   "evidencia": "I, B"
+  },
+  {
+   "id": "trabectedina_lipo_lms",
+   "label": "Trabectedina (liposarcoma/leiomiosarcoma)",
+   "nota": "ESMO STS avanzado: trabectedina esta indicada tras antraciclina, especialmente en liposarcoma y leiomiosarcoma.",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "in": [
+      "localizado_irresecable",
+      "metastasico"
+     ]
+    },
+    {
+     "campo": "histotipo",
+     "in": [
+      "liposarcoma",
+      "leiomiosarcoma"
+     ]
+    },
+    {
+     "campo": "lineas_previas",
+     "gte": 1
+    }
+   ],
+   "componentes": [
+    "quimioterapia"
+   ],
+   "evidencia": "I, B"
+  },
+  {
+   "id": "eribulina_liposarcoma",
+   "label": "Eribulina (liposarcoma)",
+   "nota": "ESMO STS avanzado: eribulina mejora supervivencia frente a dacarbazina en liposarcoma pretratado y es opcion tras antraciclina.",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "in": [
+      "localizado_irresecable",
+      "metastasico"
+     ]
+    },
+    {
+     "campo": "histotipo",
+     "eq": "liposarcoma"
+    },
+    {
+     "campo": "lineas_previas",
+     "gte": 1
+    }
+   ],
+   "componentes": [
+    "quimioterapia"
+   ],
+   "evidencia": "I, B"
+  },
+  {
+   "id": "pazopanib_no_lipo",
+   "label": "Pazopanib (STS no adipocitico)",
+   "nota": "ESMO STS avanzado: pazopanib es opcion en sarcomas no adipociticos tras quimioterapia previa, si no hay contraindicacion vascular/hepatica.",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "in": [
+      "localizado_irresecable",
+      "metastasico"
+     ]
+    },
+    {
+     "not": {
+      "campo": "histotipo",
+      "in": [
+       "liposarcoma"
+      ]
+     }
+    },
+    {
+     "campo": "lineas_previas",
+     "gte": 1
+    }
+   ],
+   "componentes": [
+    "dirigida",
+    "antiangiogenico"
+   ],
+   "evidencia": "I, B"
+  },
+  {
+   "id": "weekly_paclitaxel_angiosarcoma",
+   "label": "Paclitaxel semanal (angiosarcoma)",
+   "nota": "ESMO STS avanzado angiosarcoma: paclitaxel semanal es una opcion activa, especialmente cutaneo/cabeza-cuello.",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "in": [
+      "localizado_irresecable",
+      "metastasico"
+     ]
+    },
+    {
+     "campo": "histotipo",
+     "eq": "angiosarcoma"
+    }
+   ],
+   "componentes": [
+    "quimioterapia"
+   ],
+   "evidencia": "III, B"
+  },
+  {
+   "id": "imatinib_dfsp",
+   "label": "Imatinib (DFSP irresecable/metastasico)",
+   "nota": "ESMO STS: dermatofibrosarcoma protuberans localmente avanzado/metastasico con fusion COL1A1-PDGFB se trata con imatinib para facilitar cirugia o control sistemico.",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "in": [
+      "localizado_irresecable",
+      "metastasico"
+     ]
+    },
+    {
+     "campo": "histotipo",
+     "eq": "dfsp"
+    }
+   ],
+   "componentes": [
+    "dirigida"
+   ],
+   "evidencia": "III, A"
+  },
+  {
+   "id": "larotrectinib_entrectinib_ntrk",
+   "label": "Larotrectinib/entrectinib si fusion NTRK",
+   "nota": "ESMO: cualquier sarcoma avanzado con fusion NTRK accionable debe recibir inhibidor TRK preferentemente a quimioterapia no especifica cuando disponible.",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "in": [
+      "localizado_irresecable",
+      "metastasico"
+     ]
+    },
+    {
+     "campo": "ntrk_fusion",
+     "eq": true
+    }
+   ],
+   "componentes": [
+    "dirigida"
+   ],
+   "evidencia": "III, A"
+  },
+  {
+   "id": "soporte_sts",
+   "label": "Mejor soporte exclusivo / cuidados paliativos",
+   "nota": "ESMO STS: ECOG 3-4, fragilidad marcada o toxicidad inaceptable -> priorizar soporte y control sintomatico en vez de tratamiento sistemico activo.",
+   "cuando": {
+    "campo": "ecog",
+    "in": [
+     "3",
+     "4"
+    ]
+   },
+   "componentes": [
+    "soporte"
+   ],
+   "evidencia": "V, A"
+  }
  ],
  "preguntas": [
-  {"key":"resecabilidad_funcional","tipo":"choice","capa":1,"cuando":{"campo":"situacion","eq":"localizado_borderline"},"instrucciones":"Valora en MDT si una reseccion R0 funcionalmente aceptable es probable tras tratamiento neoadyuvante.","criterios":{"resecable":"R0 funcional plausible","irresecable":"R0 funcional improbable"}},
-  {"key":"necesita_respuesta_rapida","tipo":"noul","capa":1,"cuando":{"campo":"situacion","in":["localizado_irresecable","metastasico"]},"instrucciones":"¿La situacion clinica requiere maxima respuesta tumoral rapida (dolor, compromiso organico o conversion a cirugia)?"},
-  {"key":"histologia_quimiosensible","tipo":"noul","capa":2,"cuando":{"campo":"riesgo_local","eq":"alto_riesgo"},"instrucciones":"Segun histotipo y riesgo de recaida, ¿es razonable esperar sensibilidad relevante a quimioterapia perioperatoria con antraciclina/ifosfamida?"}
+  {
+   "key": "resecabilidad_funcional",
+   "tipo": "choice",
+   "capa": 1,
+   "cuando": {
+    "campo": "situacion",
+    "eq": "localizado_borderline"
+   },
+   "instrucciones": "Valora en MDT si una reseccion R0 funcionalmente aceptable es probable tras tratamiento neoadyuvante.",
+   "criterios": {
+    "resecable": "R0 funcional plausible",
+    "irresecable": "R0 funcional improbable"
+   }
+  },
+  {
+   "key": "necesita_respuesta_rapida",
+   "tipo": "noul",
+   "capa": 1,
+   "cuando": {
+    "campo": "situacion",
+    "in": [
+     "localizado_irresecable",
+     "metastasico"
+    ]
+   },
+   "instrucciones": "¿La situacion clinica requiere maxima respuesta tumoral rapida (dolor, compromiso organico o conversion a cirugia)?"
+  },
+  {
+   "key": "histologia_quimiosensible",
+   "tipo": "noul",
+   "capa": 2,
+   "cuando": {
+    "campo": "riesgo_local",
+    "eq": "alto_riesgo"
+   },
+   "instrucciones": "Segun histotipo y riesgo de recaida, ¿es razonable esperar sensibilidad relevante a quimioterapia perioperatoria con antraciclina/ifosfamida?"
+  }
  ],
  "seguridad": [
-  {"key":"cardiotoxicidad_antraciclina","cuando":{"any":[{"campo":"antraciclina_contraindicada","eq":true},{"campo":"fraccion_eyeccion_ventricular","present":true}]},"bloquea":["doxorrubicina_1l","doxo_ifosfamida_1l","quimio_neoadyuvante_alto_riesgo"],"instrucciones":"Con la FEVI, comorbilidades y tratamientos previos, ¿la antraciclina supone riesgo cardiaco inaceptable?","umbral":0.55,"motivo":"Riesgo cardiaco/contraindicacion para antraciclina"},
-  {"key":"toxicidad_ifosfamida","cuando":{"any":[{"campo":"insuficiencia_renal","eq":true},{"campo":"edad","gte":75}]},"bloquea":["doxo_ifosfamida_1l","quimio_neoadyuvante_alto_riesgo"],"instrucciones":"¿El riesgo renal, neurologico o de fragilidad contraindica ifosfamida?","umbral":0.55,"motivo":"Riesgo inaceptable para ifosfamida"}
+  {
+   "key": "cardiotoxicidad_antraciclina",
+   "cuando": {
+    "any": [
+     {
+      "campo": "antraciclina_contraindicada",
+      "eq": true
+     },
+     {
+      "campo": "fraccion_eyeccion_ventricular",
+      "present": true
+     }
+    ]
+   },
+   "bloquea": [
+    "doxorrubicina_1l",
+    "doxo_ifosfamida_1l",
+    "quimio_neoadyuvante_alto_riesgo"
+   ],
+   "instrucciones": "Con la FEVI, comorbilidades y tratamientos previos, ¿la antraciclina supone riesgo cardiaco inaceptable?",
+   "umbral": 0.55,
+   "motivo": "Riesgo cardiaco/contraindicacion para antraciclina"
+  },
+  {
+   "key": "toxicidad_ifosfamida",
+   "cuando": {
+    "any": [
+     {
+      "campo": "insuficiencia_renal",
+      "eq": true
+     },
+     {
+      "campo": "edad",
+      "gte": 75
+     }
+    ]
+   },
+   "bloquea": [
+    "doxo_ifosfamida_1l",
+    "quimio_neoadyuvante_alto_riesgo"
+   ],
+   "instrucciones": "¿El riesgo renal, neurologico o de fragilidad contraindica ifosfamida?",
+   "umbral": 0.55,
+   "motivo": "Riesgo inaceptable para ifosfamida"
+  }
  ],
  "avisos": [
-  {"cuando":[{"campo":"situacion","in":["localizado_irresecable","metastasico"]},{"campo":"ntrk_fusion","missing":true}],"texto":"Fusion NTRK no testada: puede cambiar la decision hacia inhibidor TRK."},
-  {"cuando":[{"campo":"situacion","in":["localizado_resecable","localizado_borderline"]},{"campo":"margen_quirurgico","missing":true}],"texto":"El estado de margen planificado/obtenido modifica la indicacion de RT postoperatoria o re-reseccion."}
+  {
+   "cuando": [
+    {
+     "campo": "situacion",
+     "in": [
+      "localizado_irresecable",
+      "metastasico"
+     ]
+    },
+    {
+     "campo": "ntrk_fusion",
+     "missing": true
+    }
+   ],
+   "texto": "Fusion NTRK no testada: puede cambiar la decision hacia inhibidor TRK."
+  },
+  {
+   "cuando": [
+    {
+     "campo": "situacion",
+     "in": [
+      "localizado_resecable",
+      "localizado_borderline"
+     ]
+    },
+    {
+     "campo": "margen_quirurgico",
+     "missing": true
+    }
+   ],
+   "texto": "El estado de margen planificado/obtenido modifica la indicacion de RT postoperatoria o re-reseccion."
+  }
  ],
  "vinetas": [
-  {"id":"SARCOMA_PARTES_BLANDAS-V01","titulo":"STS pequeno grado 1 extremidad","fuente":"ESMO STS 2021: cirugia sola en bajo riesgo resecable","payload":{"edad":63,"ecog":"0","sexo":"hombre","situacion":"localizado_resecable","localizacion":"extremidad_pared","histotipo":"sts_no_especificado","grado":"1","tamano_cm":3.2,"profundo":false,"margen_quirurgico":"no_operado"},"esperado":{"tipo":"recomendacion","preferida":"cirugia_sola_bajo_riesgo","aceptables":["cirugia_sola_bajo_riesgo"]}},
-  {"id":"SARCOMA_PARTES_BLANDAS-V02","titulo":"STS alto riesgo extremidad","fuente":"ESMO STS 2021: RT preoperatoria/cirugia en alto riesgo","payload":{"edad":54,"ecog":"0","sexo":"mujer","situacion":"localizado_resecable","localizacion":"extremidad_pared","histotipo":"sinovial","grado":"3","tamano_cm":9,"profundo":true,"margen_quirurgico":"no_operado"},"esperado":{"tipo":"recomendacion","preferida":"cirugia_rt_preop","aceptables":["cirugia_rt_preop","quimio_neoadyuvante_alto_riesgo"]}},
-  {"id":"SARCOMA_PARTES_BLANDAS-V03","titulo":"Liposarcoma retroperitoneal localizado","fuente":"ESMO STS 2021: retroperitoneo, cirugia experta y RT selectiva","payload":{"edad":61,"ecog":"1","sexo":"hombre","situacion":"localizado_borderline","localizacion":"retroperitoneo","histotipo":"liposarcoma","grado":"2","tamano_cm":18,"profundo":true},"esperado":{"tipo":"recomendacion","preferida":"rt_neoadyuvante_retroperitoneo_selectivo","aceptables":["rt_neoadyuvante_retroperitoneo_selectivo"]}},
-  {"id":"SARCOMA_PARTES_BLANDAS-V04","titulo":"STS metastasico primera linea","fuente":"ESMO STS 2021: doxorrubicina 1L","payload":{"edad":58,"ecog":"1","sexo":"mujer","situacion":"metastasico","localizacion":"extremidad_pared","histotipo":"sts_no_especificado","lineas_previas":0,"fraccion_eyeccion_ventricular":60},"esperado":{"tipo":"recomendacion","preferida":"doxorrubicina_1l","aceptables":["doxorrubicina_1l","doxo_ifosfamida_1l"]}},
-  {"id":"SARCOMA_PARTES_BLANDAS-V05","titulo":"Leiomiomsarcoma tras antraciclina","fuente":"ESMO STS 2021: leiomiosarcoma pretratado","payload":{"edad":66,"ecog":"1","sexo":"mujer","situacion":"metastasico","localizacion":"visceral","histotipo":"leiomiosarcoma","lineas_previas":1,"tratamientos_previos":["doxorrubicina"]},"esperado":{"tipo":"recomendacion","preferida":"trabectedina_lipo_lms","aceptables":["trabectedina_lipo_lms"]}},
-  {"id":"SARCOMA_PARTES_BLANDAS-V06","titulo":"Liposarcoma pretratado","fuente":"ESMO STS 2021: eribulina/trabectedina en liposarcoma","payload":{"edad":59,"ecog":"1","sexo":"hombre","situacion":"metastasico","localizacion":"retroperitoneo","histotipo":"liposarcoma","lineas_previas":1,"tratamientos_previos":["doxorrubicina"]},"esperado":{"tipo":"recomendacion","preferida":"eribulina_liposarcoma","aceptables":["eribulina_liposarcoma","trabectedina_lipo_lms"]}},
-  {"id":"SARCOMA_PARTES_BLANDAS-V07","titulo":"STS no liposarcoma pretratado","fuente":"ESMO STS 2021: pazopanib no adipocitico tras QT","payload":{"edad":62,"ecog":"1","sexo":"hombre","situacion":"metastasico","localizacion":"extremidad_pared","histotipo":"sinovial","lineas_previas":1,"tratamientos_previos":["doxorrubicina+ifosfamida"]},"esperado":{"tipo":"recomendacion","preferida":"pazopanib_no_lipo","aceptables":["pazopanib_no_lipo"]}},
-  {"id":"SARCOMA_PARTES_BLANDAS-V08","titulo":"Sarcoma NTRK fusion","fuente":"ESMO STS/precision oncology: TRK inhibitors for NTRK fusion","payload":{"edad":42,"ecog":"0","sexo":"mujer","situacion":"metastasico","localizacion":"otro","histotipo":"sts_no_especificado","lineas_previas":1,"ntrk_fusion":true},"esperado":{"tipo":"recomendacion","preferida":"larotrectinib_entrectinib_ntrk","aceptables":["larotrectinib_entrectinib_ntrk"]}},
-  {"id":"SARCOMA_PARTES_BLANDAS-V09","titulo":"Falta histotipo","fuente":"ESMO STS 2021: diagnostico histologico experto obligatorio","payload":{"edad":50,"ecog":"0","sexo":"mujer","situacion":"metastasico","localizacion":"extremidad_pared","histotipo":null},"esperado":{"tipo":"necesita_datos"}},
-  {"id":"SARCOMA_PARTES_BLANDAS-V10","titulo":"STS metastasico ECOG 4 cardiopatia","fuente":"ESMO STS 2021: soporte si no candidato a tratamiento activo","payload":{"edad":82,"ecog":"4","sexo":"hombre","situacion":"metastasico","localizacion":"extremidad_pared","histotipo":"sts_no_especificado","lineas_previas":0,"fraccion_eyeccion_ventricular":25,"antraciclina_contraindicada":true,"comorbilidades_relevantes":["insuficiencia cardiaca avanzada"]},"esperado":{"tipo":"revision_humana"}}
+  {
+   "id": "SARCOMA_PARTES_BLANDAS-V01",
+   "titulo": "STS pequeno grado 1 extremidad",
+   "fuente": "ESMO STS 2021: cirugia sola en bajo riesgo resecable",
+   "payload": {
+    "edad": 63,
+    "ecog": "0",
+    "sexo": "hombre",
+    "situacion": "localizado_resecable",
+    "localizacion": "extremidad_pared",
+    "histotipo": "sts_no_especificado",
+    "grado": "1",
+    "tamano_cm": 3.2,
+    "profundo": false,
+    "margen_quirurgico": "no_operado"
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "cirugia_sola_bajo_riesgo",
+    "aceptables": [
+     "cirugia_sola_bajo_riesgo"
+    ]
+   }
+  },
+  {
+   "id": "SARCOMA_PARTES_BLANDAS-V02",
+   "titulo": "STS alto riesgo extremidad",
+   "fuente": "ESMO STS 2021: RT preoperatoria/cirugia en alto riesgo",
+   "payload": {
+    "edad": 54,
+    "ecog": "0",
+    "sexo": "mujer",
+    "situacion": "localizado_resecable",
+    "localizacion": "extremidad_pared",
+    "histotipo": "sinovial",
+    "grado": "3",
+    "tamano_cm": 9,
+    "profundo": true,
+    "margen_quirurgico": "no_operado"
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "cirugia_rt_preop",
+    "aceptables": [
+     "cirugia_rt_preop",
+     "quimio_neoadyuvante_alto_riesgo"
+    ]
+   }
+  },
+  {
+   "id": "SARCOMA_PARTES_BLANDAS-V03",
+   "titulo": "Liposarcoma retroperitoneal localizado",
+   "fuente": "ESMO STS 2021: retroperitoneo, cirugia experta y RT selectiva",
+   "payload": {
+    "edad": 61,
+    "ecog": "1",
+    "sexo": "hombre",
+    "situacion": "localizado_borderline",
+    "localizacion": "retroperitoneo",
+    "histotipo": "liposarcoma",
+    "grado": "2",
+    "tamano_cm": 18,
+    "profundo": true
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "rt_neoadyuvante_retroperitoneo_selectivo",
+    "aceptables": [
+     "rt_neoadyuvante_retroperitoneo_selectivo"
+    ]
+   }
+  },
+  {
+   "id": "SARCOMA_PARTES_BLANDAS-V04",
+   "titulo": "STS metastasico primera linea",
+   "fuente": "ESMO STS 2021: doxorrubicina 1L",
+   "payload": {
+    "edad": 58,
+    "ecog": "1",
+    "sexo": "mujer",
+    "situacion": "metastasico",
+    "localizacion": "extremidad_pared",
+    "histotipo": "sts_no_especificado",
+    "lineas_previas": 0,
+    "fraccion_eyeccion_ventricular": 60
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "doxorrubicina_1l",
+    "aceptables": [
+     "doxorrubicina_1l",
+     "doxo_ifosfamida_1l"
+    ]
+   }
+  },
+  {
+   "id": "SARCOMA_PARTES_BLANDAS-V05",
+   "titulo": "Leiomiomsarcoma tras antraciclina",
+   "fuente": "ESMO STS 2021: leiomiosarcoma pretratado",
+   "payload": {
+    "edad": 66,
+    "ecog": "1",
+    "sexo": "mujer",
+    "situacion": "metastasico",
+    "localizacion": "visceral",
+    "histotipo": "leiomiosarcoma",
+    "lineas_previas": 1,
+    "tratamientos_previos": [
+     "doxorrubicina"
+    ]
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "trabectedina_lipo_lms",
+    "aceptables": [
+     "trabectedina_lipo_lms"
+    ]
+   }
+  },
+  {
+   "id": "SARCOMA_PARTES_BLANDAS-V06",
+   "titulo": "Liposarcoma pretratado",
+   "fuente": "ESMO STS 2021: eribulina/trabectedina en liposarcoma",
+   "payload": {
+    "edad": 59,
+    "ecog": "1",
+    "sexo": "hombre",
+    "situacion": "metastasico",
+    "localizacion": "retroperitoneo",
+    "histotipo": "liposarcoma",
+    "lineas_previas": 1,
+    "tratamientos_previos": [
+     "doxorrubicina"
+    ]
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "eribulina_liposarcoma",
+    "aceptables": [
+     "eribulina_liposarcoma",
+     "trabectedina_lipo_lms"
+    ]
+   }
+  },
+  {
+   "id": "SARCOMA_PARTES_BLANDAS-V07",
+   "titulo": "STS no liposarcoma pretratado",
+   "fuente": "ESMO STS 2021: pazopanib no adipocitico tras QT",
+   "payload": {
+    "edad": 62,
+    "ecog": "1",
+    "sexo": "hombre",
+    "situacion": "metastasico",
+    "localizacion": "extremidad_pared",
+    "histotipo": "sinovial",
+    "lineas_previas": 1,
+    "tratamientos_previos": [
+     "doxorrubicina+ifosfamida"
+    ]
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "pazopanib_no_lipo",
+    "aceptables": [
+     "pazopanib_no_lipo"
+    ]
+   }
+  },
+  {
+   "id": "SARCOMA_PARTES_BLANDAS-V08",
+   "titulo": "Sarcoma NTRK fusion",
+   "fuente": "ESMO STS/precision oncology: TRK inhibitors for NTRK fusion",
+   "payload": {
+    "edad": 42,
+    "ecog": "0",
+    "sexo": "mujer",
+    "situacion": "metastasico",
+    "localizacion": "otro",
+    "histotipo": "sts_no_especificado",
+    "lineas_previas": 1,
+    "ntrk_fusion": true
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "larotrectinib_entrectinib_ntrk",
+    "aceptables": [
+     "larotrectinib_entrectinib_ntrk"
+    ]
+   }
+  },
+  {
+   "id": "SARCOMA_PARTES_BLANDAS-V09",
+   "titulo": "Falta histotipo",
+   "fuente": "ESMO STS 2021: diagnostico histologico experto obligatorio",
+   "payload": {
+    "edad": 50,
+    "ecog": "0",
+    "sexo": "mujer",
+    "situacion": "metastasico",
+    "localizacion": "extremidad_pared",
+    "histotipo": null
+   },
+   "esperado": {
+    "tipo": "necesita_datos"
+   }
+  },
+  {
+   "id": "SARCOMA_PARTES_BLANDAS-V10",
+   "titulo": "STS metastasico ECOG 4 cardiopatia",
+   "fuente": "ESMO STS 2021: soporte si no candidato a tratamiento activo",
+   "payload": {
+    "edad": 82,
+    "ecog": "4",
+    "sexo": "hombre",
+    "situacion": "metastasico",
+    "localizacion": "extremidad_pared",
+    "histotipo": "sts_no_especificado",
+    "lineas_previas": 0,
+    "fraccion_eyeccion_ventricular": 25,
+    "antraciclina_contraindicada": true,
+    "comorbilidades_relevantes": [
+     "insuficiencia cardiaca avanzada"
+    ]
+   },
+   "esperado": {
+    "tipo": "revision_humana"
+   }
+  }
  ]
 }

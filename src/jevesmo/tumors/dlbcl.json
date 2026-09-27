@@ -367,8 +367,10 @@
      ]
     },
     {
-     "campo": "candidato_taph",
-     "ne": true
+     "not": {
+      "campo": "candidato_taph",
+      "eq": true
+     }
     }
    ],
    "componentes": [

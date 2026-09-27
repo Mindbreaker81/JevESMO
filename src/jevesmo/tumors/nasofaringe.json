@@ -90,8 +90,10 @@
      "eq": "II"
     },
     {
-     "campo": "cisplatino_apto",
-     "ne": false
+     "not": {
+      "campo": "cisplatino_apto",
+      "eq": false
+     }
     }
    ],
    "componentes": [
@@ -136,8 +138,10 @@
      "eq": true
     },
     {
-     "campo": "cisplatino_apto",
-     "ne": false
+     "not": {
+      "campo": "cisplatino_apto",
+      "eq": false
+     }
     }
    ],
    "componentes": [
@@ -159,8 +163,10 @@
      ]
     },
     {
-     "campo": "cisplatino_apto",
-     "ne": false
+     "not": {
+      "campo": "cisplatino_apto",
+      "eq": false
+     }
     }
    ],
    "componentes": [
@@ -213,8 +219,10 @@
      ]
     },
     {
-     "campo": "cisplatino_apto",
-     "ne": false
+     "not": {
+      "campo": "cisplatino_apto",
+      "eq": false
+     }
     }
    ],
    "componentes": [
@@ -245,8 +253,10 @@
      ]
     },
     {
-     "campo": "cisplatino_apto",
-     "ne": false
+     "not": {
+      "campo": "cisplatino_apto",
+      "eq": false
+     }
     }
    ],
    "componentes": [

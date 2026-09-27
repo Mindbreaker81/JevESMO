@@ -305,8 +305,10 @@
      ]
     },
     {
-     "campo": "contra_bev",
-     "ne": true
+     "not": {
+      "campo": "contra_bev",
+      "eq": true
+     }
     },
     {
      "any": [
@@ -397,8 +399,10 @@
      ]
     },
     {
-     "campo": "brca",
-     "ne": "mutado"
+     "not": {
+      "campo": "brca",
+      "eq": "mutado"
+     }
     }
    ],
    "componentes": [
@@ -431,8 +435,10 @@
      "eq": "resistente"
     },
     {
-     "campo": "fralfa",
-     "ne": "alto"
+     "not": {
+      "campo": "fralfa",
+      "eq": "alto"
+     }
     }
    ],
    "componentes": [

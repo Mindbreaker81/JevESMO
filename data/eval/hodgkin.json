@@ -3,7 +3,7 @@
  "nombre": "Linfoma de Hodgkin clasico",
  "grupo": "Hematologia",
  "version": "HODGKIN-ESMO-2025.1",
- "fecha": "2026-09-27T14:47:32+00:00",
+ "fecha": "2026-09-27T18:58:52+00:00",
  "modelo": "jev-latest",
  "mock": false,
  "umbral_confianza": 0.6,
@@ -11,9 +11,12 @@
  "aciertos": 9,
  "acierto_global": 1.0,
  "acierto_tratamiento": 1.0,
- "acierto_preferida": 1.0,
+ "acierto_preferida": 0.8571428571428571,
  "acierto_seguridad": 1.0,
- "confianza_aciertos": 0.86,
+ "acierto_seguridad_robusta": 1.0,
+ "tratamiento_sin_revision": 0.0,
+ "pct_tratamiento_con_revision": 1.0,
+ "confianza_aciertos": 0.85,
  "confianza_fallos": null,
  "n_multiopcion": 2,
  "acierto_multiopcion": 1.0,
@@ -31,7 +34,10 @@
    "obtenido": "abvd2_rt",
    "obtenido_label": "ABVD x2 + radioterapia ISRT 20 Gy",
    "confianza": 1.0,
-   "revision": false,
+   "revision": true,
+   "motivos_revision": [
+    "datos_criticos_ausentes"
+   ],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
@@ -50,7 +56,10 @@
    "obtenido": "abvd4_rt",
    "obtenido_label": "ABVD x4 + radioterapia ISRT 30 Gy",
    "confianza": 1.0,
-   "revision": false,
+   "revision": true,
+   "motivos_revision": [
+    "datos_criticos_ausentes"
+   ],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
@@ -69,8 +78,11 @@
    ],
    "obtenido": "brecadd_escbeacopp",
    "obtenido_label": "BrECADD o escBEACOPP guiado por PET",
-   "confianza": 0.66,
-   "revision": false,
+   "confianza": 0.72,
+   "revision": true,
+   "motivos_revision": [
+    "datos_criticos_ausentes"
+   ],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
@@ -87,12 +99,17 @@
     "a_avd_avanzado",
     "avd_sin_bleomicina"
    ],
-   "obtenido": "a_avd_avanzado",
-   "obtenido_label": "A-AVD (brentuximab vedotina + AVD)",
-   "confianza": 0.36,
+   "obtenido": "avd_sin_bleomicina",
+   "obtenido_label": "AVD +/- brentuximab si bleomicina contraindicada",
+   "confianza": 0.23,
    "revision": true,
+   "motivos_revision": [
+    "datos_criticos_ausentes",
+    "confianza_baja",
+    "opciones_equilibradas"
+   ],
    "acierto": true,
-   "acierto_preferida": true,
+   "acierto_preferida": false,
    "preguntas": [],
    "n_candidatos": 3,
    "error": null
@@ -109,7 +126,10 @@
    "obtenido": "anciano_bv_dacarbazina",
    "obtenido_label": "Regimen adaptado en ancianos (AVD reducido o brentuximab+dacarbazina)",
    "confianza": 1.0,
-   "revision": false,
+   "revision": true,
+   "motivos_revision": [
+    "datos_criticos_ausentes"
+   ],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
@@ -128,7 +148,10 @@
    "obtenido": "rescate_taph",
    "obtenido_label": "Quimioterapia de rescate + TAPH",
    "confianza": 1.0,
-   "revision": false,
+   "revision": true,
+   "motivos_revision": [
+    "datos_criticos_ausentes"
+   ],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
@@ -147,7 +170,10 @@
    "obtenido": "anti_pd1",
    "obtenido_label": "Anti-PD1 (nivolumab o pembrolizumab)",
    "confianza": 1.0,
-   "revision": false,
+   "revision": true,
+   "motivos_revision": [
+    "datos_criticos_ausentes"
+   ],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
@@ -165,6 +191,7 @@
    "obtenido_label": null,
    "confianza": null,
    "revision": null,
+   "motivos_revision": [],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [
@@ -182,8 +209,12 @@
    "aceptables": [],
    "obtenido": "revision (paliativo_hl)",
    "obtenido_label": "Tratamiento paliativo/soporte o radioterapia sintomatica",
-   "confianza": 0.75,
+   "confianza": 0.85,
    "revision": true,
+   "motivos_revision": [
+    "datos_criticos_ausentes",
+    "no_candidato_activo"
+   ],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],

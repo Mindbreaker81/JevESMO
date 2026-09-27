@@ -146,9 +146,13 @@ solo se pregunta lo pertinente:
                "urgente": "Sintomas o amenaza organica; priorizar tasa de respuesta"}}
 ```
 
-Las respuestas quedan disponibles para las reglas como `jev.urgencia_respuesta`, y
-también se añaden al estado de las capas siguientes como "Valoraciones clínicas
-previas". Es aquí donde Jev aporta el **juicio que las reglas no capturan bien**:
+Las respuestas se añaden al estado de las capas siguientes como "Valoraciones
+clínicas previas". Técnicamente una regla podría leerlas como `jev.urgencia_respuesta`,
+pero **hoy ninguna opción ni regla de seguridad las usa**: son solo contexto para la
+elección de la capa 3 (la UI las marca como "solo contexto"). El texto libre se envía
+delimitado como *datos del caso, no instrucciones*, para reducir la inyección de
+órdenes, pero **no activa reglas de seguridad**: un dato crítico escrito solo en texto
+libre (p. ej. "FEVI 35%") debe introducirse también en su campo estructurado. Es aquí donde Jev aporta el **juicio que las reglas no capturan bien**:
 leer el texto libre, valorar la carga tumoral o estimar el riesgo de recaída (por
 ejemplo, la indicación de quimioterapia en mama luminal precoz).
 
@@ -167,8 +171,15 @@ ESMO y su nivel de evidencia:
 
 Las condiciones las evalúa `engine/conditions.py`. Los operadores disponibles son
 `eq, ne, in, nin, gt, gte, lt, lte, missing, present, contains, ncontains`, y se
-combinan con `all`, `any` y `not`. Si **ninguna** opción aplica, el caso queda
-"fuera del árbol" y exige revisión.
+combinan con `all`, `any` y `not`. La lógica es **trivalente**: cualquier comparación
+sobre un dato ausente es falsa (también `ne`/`nin`); solo `missing`/`present` detectan la
+ausencia. Si **ninguna** opción aplica, el caso queda "fuera del árbol" y exige revisión.
+
+**Comprobación contrafactual de datos ausentes.** Después de calcular las candidatas,
+para cada campo opcional vacío que aparece en alguna regla se prueban sus valores
+posibles (p. ej. `lineas_previas` = 0 / 1 / 2). Si alguno cambiaría el conjunto de
+opciones, el caso se marca con `datos_criticos_ausentes` y se indica qué dato falta.
+Los valores fuera de rango (edad 400, ECOG 7…) no se aceptan: se piden de nuevo.
 
 ### Paso 3b · Capa 3 · Jev elige entre las candidatas
 
@@ -185,40 +196,48 @@ preferencia según el contexto completo.
 
 ### Capa 4 · Seguridad
 
-Hay dos fuentes de seguridad:
+Cada regla de `seguridad` tiene un **tipo**:
 
-1. **Reglas del spec** (`seguridad`). Solo se activan si su condición se cumple
-   **y** afectan a alguna candidata. Cada regla genera una pregunta `Noul` a Jev:
+| Tipo | Quién decide | Ejemplo (mama) |
+|---|---|---|
+| `duro` | Regla determinista, sin Jev: si se cumple, bloquea | FEVI < 50% → bloquea anti-HER2 |
+| `jev` | Jev (`Noul`): bloquea si la probabilidad ≥ `umbral` | FEVI 50-54% → ¿riesgo cardíaco inaceptable? |
+| `revision` | Siempre escala al especialista, no bloquea | Cardiopatía en comorbilidades con anti-HER2 |
 
-   ```json
-   {"key": "autoinmune_ici", "cuando": {"campo": "enfermedad_autoinmune_activa", "eq": true},
-    "bloquea_componentes": ["inmunoterapia"],
-    "instrucciones": "¿La enfermedad autoinmune activa contraindica inmunoterapia en este caso?",
-    "motivo": "Autoinmunidad activa con riesgo de toxicidad inmunomediada grave."}
-   ```
+Las reglas `jev` **fallan cerradas**: si Jev no responde, la opción se bloquea y se
+añade el motivo `seguridad_sin_respuesta`. Si la probabilidad cae cerca del umbral
+(±0,2) se añade `seguridad_dudosa`.
 
-   Si la probabilidad es mayor o igual que el `umbral`, se **bloquean** las
-   opciones indicadas o las que contienen ese componente (p. ej. cualquier régimen
-   con inmunoterapia).
-2. **Reglas comunes a todos los tumores:**
-   - Insuficiencia renal o hepática → `ajuste_dosis`.
-   - ECOG 3-4 → `candidato_tratamiento_activo`. Si sale menor que 0,5, se avisa de
-     valorar solo tratamiento de soporte y la revisión pasa a ser obligatoria.
+Reglas comunes a todos los tumores:
 
-Si la opción que eligió Jev queda bloqueada, se pasa a la siguiente no bloqueada.
-En ese caso la confianza se limita a un máximo de 0,3, lo que obliga a revisión.
+- Insuficiencia renal o hepática → `ajuste_dosis`. Si Jev indica ajuste (≥ 0,5) o no
+  responde, se exige revisión (`funcion_organica`).
+- ECOG 3-4 → `candidato_tratamiento_activo`. Si sale < 0,5 o falta la respuesta,
+  revisión obligatoria.
 
-### Paso 5 · Gate de confianza y revisión humana
+Si la opción que eligió Jev queda bloqueada, se ofrece la siguiente no bloqueada
+**sin confianza** (Jev no la eligió) y con revisión obligatoria.
 
-Se exige `requiere_revision_humana = true` en cualquiera de estos casos:
+### Paso 5 · Motivos de revisión humana
 
-- No hay recomendación (caso fuera del árbol o todas las opciones bloqueadas).
-- La confianza de `mejor_opcion` es menor que **0,6** (`CONFIDENCE_THRESHOLD`).
-- La preferida de Jev se descartó por seguridad.
-- Jev considera que el paciente no es candidato a tratamiento activo.
+`requiere_revision_humana` es verdadero si hay **al menos un motivo**, y la salida
+`motivos_revision` los enumera:
 
-Este es el origen del mensaje *"Confianza insuficiente o sin recomendación segura
-— se requiere revisión obligatoria por oncólogo"*.
+| Código | Cuándo |
+|---|---|
+| `fuera_del_arbol` | Ninguna opción ESMO aplica |
+| `sin_opcion_segura` | Todas las candidatas bloqueadas |
+| `contraindicacion` / `bloqueo_seguridad` | La preferida de Jev u otra candidata se bloqueó por seguridad |
+| `seguridad_sin_respuesta` / `seguridad_dudosa` | Regla `jev` sin respuesta o cerca del umbral |
+| `revision_especialista` | Se activó una regla `revision` |
+| `funcion_organica` / `no_candidato_activo` | Reglas comunes |
+| `datos_criticos_ausentes` | Un dato vacío podría cambiar las opciones |
+| `confianza_baja` | Confianza de `mejor_opcion` < 0,6 (umbral **no calibrado** clínicamente) |
+| `opciones_equilibradas` | Diferencia de probabilidad entre las dos primeras < 0,15 |
+| `modo_simulado` | Sin API key: las respuestas no son de Jev y nunca son una recomendación válida |
+
+La UI muestra estos motivos literalmente, junto a una tabla con cada regla de
+seguridad evaluada, y oculta el resultado si el formulario cambia tras calcular.
 
 ---
 

@@ -203,8 +203,10 @@
    "nota": "ESMO: RAS mutado o primario derecho/MSS -> doblete de quimioterapia + bevacizumab estandar 1L.",
    "cuando": [
     {
-     "campo": "msi",
-     "ne": "si"
+     "not": {
+      "campo": "msi",
+      "eq": "si"
+     }
     },
     {
      "any": [

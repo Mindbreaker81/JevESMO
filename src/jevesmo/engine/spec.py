@@ -100,8 +100,18 @@ class PreguntaJev(BaseModel):
 
 
 class Seguridad(BaseModel):
+    """Regla de seguridad (capa 4).
+
+    tipo:
+      - "duro": contraindicacion explicita -> bloqueo determinista, sin preguntar a Jev.
+      - "jev" (defecto): contraindicacion relativa. Jev estima si aplica al caso; bloquea si
+        noul >= umbral. Falla cerrado: sin respuesta valida o en zona dudosa -> revision obligatoria.
+      - "revision": nunca bloquea, pero obliga a revision por especialista si se activa.
+    """
+
     key: str
-    instrucciones: str
+    instrucciones: str = ""
+    tipo: Literal["jev", "duro", "revision"] = "jev"
     cuando: Cond = None
     bloquea: list[str] = Field(default_factory=list, description="ids de opcion")
     bloquea_componentes: list[str] = Field(default_factory=list)
@@ -158,7 +168,7 @@ class TumorSpec(BaseModel):
 
 # Campos comunes a todos los tumores. Los specs NO deben redefinirlos.
 COMMON_FIELDS: list[Campo] = [
-    Campo(id="edad", label="Edad", tipo="number", seccion="Paciente", min=0, max=110, unidad="anios",
+    Campo(id="edad", label="Edad", tipo="number", seccion="Paciente", min=0, max=120, unidad="anios",
           requerido=True, pregunta="¿Cual es la edad del paciente?"),
     Campo(id="sexo", label="Sexo", tipo="choice", seccion="Paciente",
           opciones=[ChoiceOption(id="mujer", label="mujer"), ChoiceOption(id="hombre", label="hombre")]),
@@ -213,8 +223,20 @@ def validate_spec(spec: TumorSpec) -> list[str]:
         for b in s.bloquea:
             if b not in opt_ids:
                 errs.append(f"seguridad {s.key}: bloquea opcion inexistente '{b}'")
+        if s.tipo == "jev" and not s.instrucciones:
+            errs.append(f"seguridad {s.key}: tipo 'jev' sin instrucciones")
     for a in spec.avisos:
         chk("aviso", a.cuando)
+
+    # Coherencia texto <-> regla: si la etiqueta/nota exige linea previa, la regla debe comprobarlo.
+    import re
+    linea_re = re.compile(r"(\b[2-9]\s?[aª]?\s?l(inea|ínea)?\b|\b[2-9]L\b|segunda l|tercera l|tras progres|post-?progres|>=\s?1 l)", re.I)
+    for o in spec.opciones:
+        refs = set(referenced_fields(o.cuando))
+        if linea_re.search(o.label) and not any(
+                r in ("lineas_previas", "tratamientos_previos") or "situacion" in r or "linea" in r or "recaida" in r
+                for r in refs):
+            errs.append(f"opcion {o.id}: la etiqueta indica linea >=2 pero 'cuando' no comprueba lineas_previas/tratamientos_previos")
 
     vids = [v.id for v in spec.vinetas]
     if dup := {i for i in vids if vids.count(i) > 1}:

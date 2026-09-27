@@ -113,8 +113,10 @@
      "eq": "resecable"
     },
     {
-     "campo": "post_reseccion",
-     "ne": true
+     "not": {
+      "campo": "post_reseccion",
+      "eq": true
+     }
     }
    ],
    "componentes": [
@@ -163,8 +165,10 @@
      ]
     },
     {
-     "campo": "cisplatino_apto",
-     "ne": false
+     "not": {
+      "campo": "cisplatino_apto",
+      "eq": false
+     }
     }
    ],
    "componentes": [
@@ -195,8 +199,10 @@
      ]
     },
     {
-     "campo": "cisplatino_apto",
-     "ne": false
+     "not": {
+      "campo": "cisplatino_apto",
+      "eq": false
+     }
     }
    ],
    "componentes": [

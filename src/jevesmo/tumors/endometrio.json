@@ -347,8 +347,10 @@
      "gte": 1
     },
     {
-     "campo": "molecular",
-     "ne": "dMMR"
+     "not": {
+      "campo": "molecular",
+      "eq": "dMMR"
+     }
     }
    ],
    "componentes": [

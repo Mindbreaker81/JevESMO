@@ -212,8 +212,10 @@
      ]
     },
     {
-     "campo": "ganglios_positivos",
-     "ne": true
+     "not": {
+      "campo": "ganglios_positivos",
+      "eq": true
+     }
     }
    ],
    "componentes": [

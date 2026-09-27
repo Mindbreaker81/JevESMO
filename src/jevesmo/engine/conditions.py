@@ -10,9 +10,10 @@ Una condicion es un dict (o una lista, equivalente a "all"):
   {"campo": "jev.alto_riesgo", "gte": 0.5}    # respuesta de Jev de capas 1-2
   {"all": [...]}, {"any": [...]}, {"not": {...}}
 
-Comparaciones sobre un valor desconocido (None) son siempre falsas, salvo
-`missing`/`present`/`ne`/`nin`, para que una regla nunca se active por
-accidente con datos ausentes.
+Logica de tres valores: cualquier comparacion sobre un valor desconocido
+(None, "", "desconocido", []) es FALSA, incluidas `ne`/`nin`/`ncontains`
+("desconocido" no equivale a "sabemos que no es X"). Solo `missing`/`present`
+se activan con datos ausentes, de forma explicita.
 """
 
 from __future__ import annotations
@@ -53,16 +54,16 @@ def evaluate(cond: Any, ctx: dict[str, Any]) -> bool:
             ok &= missing == bool(ref)
         elif op == "present":
             ok &= (not missing) == bool(ref)
-        elif op == "ne":
-            ok &= missing or v != ref
-        elif op == "nin":
-            ok &= missing or v not in ref
         elif missing:
             return False
         elif op == "eq":
             ok &= v == ref
+        elif op == "ne":
+            ok &= v != ref
         elif op == "in":
             ok &= v in ref
+        elif op == "nin":
+            ok &= v not in ref
         elif op in ("gt", "gte", "lt", "lte"):
             try:
                 fv, fr = float(v), float(ref)

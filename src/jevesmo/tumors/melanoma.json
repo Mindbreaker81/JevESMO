@@ -186,8 +186,10 @@
      ]
     },
     {
-     "campo": "autoinmune_activa",
-     "ne": true
+     "not": {
+      "campo": "autoinmune_activa",
+      "eq": true
+     }
     }
    ],
    "componentes": [
@@ -217,12 +219,16 @@
      ]
     },
     {
-     "campo": "autoinmune_activa",
-     "ne": true
+     "not": {
+      "campo": "autoinmune_activa",
+      "eq": true
+     }
     },
     {
-     "campo": "enfermedad_sintomatica_rapida",
-     "ne": true
+     "not": {
+      "campo": "enfermedad_sintomatica_rapida",
+      "eq": true
+     }
     }
    ],
    "componentes": [
@@ -252,12 +258,16 @@
      ]
     },
     {
-     "campo": "autoinmune_activa",
-     "ne": true
+     "not": {
+      "campo": "autoinmune_activa",
+      "eq": true
+     }
     },
     {
-     "campo": "enfermedad_sintomatica_rapida",
-     "ne": true
+     "not": {
+      "campo": "enfermedad_sintomatica_rapida",
+      "eq": true
+     }
     }
    ],
    "componentes": [

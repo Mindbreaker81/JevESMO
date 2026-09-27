@@ -63,8 +63,10 @@
      "eq": "I_II"
     },
     {
-     "campo": "resecable",
-     "ne": false
+     "not": {
+      "campo": "resecable",
+      "eq": false
+     }
     }
    ],
    "componentes": [
@@ -105,8 +107,10 @@
      "eq": "III_ganglionar"
     },
     {
-     "campo": "resecable",
-     "ne": false
+     "not": {
+      "campo": "resecable",
+      "eq": false
+     }
     }
    ],
    "componentes": [
@@ -128,8 +132,10 @@
      ]
     },
     {
-     "campo": "candidato_ici",
-     "ne": false
+     "not": {
+      "campo": "candidato_ici",
+      "eq": false
+     }
     }
    ],
    "componentes": [
@@ -150,8 +156,10 @@
      ]
     },
     {
-     "campo": "candidato_ici",
-     "ne": false
+     "not": {
+      "campo": "candidato_ici",
+      "eq": false
+     }
     }
    ],
    "componentes": [

@@ -133,8 +133,10 @@
      ]
     },
     {
-     "campo": "candidato_ici",
-     "ne": false
+     "not": {
+      "campo": "candidato_ici",
+      "eq": false
+     }
     }
    ],
    "componentes": [
@@ -155,8 +157,10 @@
      ]
     },
     {
-     "campo": "candidato_ici",
-     "ne": false
+     "not": {
+      "campo": "candidato_ici",
+      "eq": false
+     }
     }
    ],
    "componentes": [

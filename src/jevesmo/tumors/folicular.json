@@ -156,8 +156,10 @@
      "eq": "baja"
     },
     {
-     "campo": "sintomatico",
-     "ne": true
+     "not": {
+      "campo": "sintomatico",
+      "eq": true
+     }
     }
    ],
    "componentes": [
@@ -205,8 +207,10 @@
      ]
     },
     {
-     "campo": "candidato_inmunoquimio",
-     "ne": false
+     "not": {
+      "campo": "candidato_inmunoquimio",
+      "eq": false
+     }
     }
    ],
    "componentes": [
@@ -229,8 +233,10 @@
      "eq": "alta"
     },
     {
-     "campo": "candidato_inmunoquimio",
-     "ne": false
+     "not": {
+      "campo": "candidato_inmunoquimio",
+      "eq": false
+     }
     }
    ],
    "componentes": [

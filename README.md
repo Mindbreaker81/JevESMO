@@ -28,7 +28,7 @@ Ficha del paciente (formulario generado desde el spec)
 Derivados deterministas (subtipo, grupo de riesgo...)            ← spec.derivados
    ▼
 Capas 1-2 Jev: juicio clinico en zonas grises (Choice/Score/Noul) ← spec.preguntas
-   (sus respuestas alimentan las reglas como `jev.<key>`)
+   (sus respuestas son contexto para la capa 3; hoy no activan reglas)
    ▼
 Opciones permitidas por ESMO (reglas deterministas)               ← spec.opciones[].cuando
    ▼
@@ -142,14 +142,14 @@ La pestaña **📊 Evaluacion** muestra (y permite relanzar) tres pruebas:
    que elegir entre 2 o mas opciones validas).
 2. **METABRIC** (cBioPortal `brca_metabric`, Curtis 2012 / Pereira 2016), solo
    mama: cohorte real. Compara con el tratamiento recibido y calcula el AUC, la
-   calibracion y el valor pronostico (Kaplan-Meier).
+   concordancia por nivel de confianza (no es una calibracion clinica) y el valor pronostico (Kaplan-Meier).
 3. **MSK-CHORD** (cBioPortal `msk_chord_2024`, Jee et al., *Nature* 2024):
    cohorte real de Memorial Sloan Kettering (~25.000 pacientes, 2014-2022) con
    linea temporal de tratamientos, ECOG y genomica MSK-IMPACT. Se reconstruye la
    1ª linea de pacientes metastasicos de novo de **CPNM, colorrectal, pancreas y
    mama** (60 por tumor), se construye el caso (edad, ECOG, histologia, EGFR/ALK/
    ROS1/BRAF/MET/RET/NTRK/KRAS G12C/HER2, RAS/BRAF/MSI y lateralidad, BRCA, HR/HER2)
-   y se compara la recomendacion con el tratamiento recibido (concordancia exacta y
+   y se compara la recomendacion con el tratamiento recibido (*misma clase terapeutica* y
    *compatible*: mismo escalon ESMO) y con la supervivencia global.
 
 ```powershell
@@ -158,19 +158,27 @@ La pestaña **📊 Evaluacion** muestra (y permite relanzar) tres pruebas:
 .\.venv\Scripts\python.exe scripts\run_evaluation.py --solo-msk    # solo MSK-CHORD
 ```
 
-Ultimos resultados (Jev real): viñetas **404/404**, opcion preferida 96,5%, 132
-casos con eleccion real entre 2 o mas opciones: 100%. METABRIC luminal precoz:
-AUC 0,92, sensibilidad 93%.
+Ultimos resultados (Jev real, tras la revision adversaria): viñetas **404/404**,
+opcion preferida 95,6%, 130 casos con eleccion real entre 2 o mas opciones: 100%,
+seguridad robusta (escala por un motivo de seguridad/datos, no solo baja confianza)
+100%. **El 48% de los casos de tratamiento acertados se marcan igualmente para
+revision** (sobre todo por datos opcionales ausentes que podrian cambiar la opcion):
+es el precio de fallar en modo seguro. METABRIC luminal precoz: AUC 0,92,
+sensibilidad 93%.
 
-MSK-CHORD (n=240, 237 evaluables):
+MSK-CHORD (n=240, 226 evaluables, cobertura 94%):
 
-| Tumor | Evaluables | Concordancia exacta | Concordancia compatible |
+| Tumor | Evaluables | Misma clase terapeutica | Compatible |
 |---|---|---|---|
-| CPNM metastasico | 60/60 | 55% | 55% |
+| CPNM metastasico | 60/60 | 72% | 72% |
 | CCR metastasico | 57/60 | 16% | 88% |
-| Pancreas metastasico | 60/60 | 47% | 97% |
-| Mama metastasica | 60/60 | 65% | 72% |
-| **Global** | 237/240 | 46% | 78% |
+| Pancreas metastasico | 60/60 | 45% | 97% |
+| Mama metastasica | 49/60 | 59% | 67% |
+| **Global** | 226/240 | 48% | 81% (ITT 77%) |
+
+En mama, los 11 casos HER2+ piden ahora la FEVI (no consta en MSK-CHORD) antes de
+recomendar anti-HER2. La muestra esta **enriquecida** (CPNM alterna con/sin driver)
+y el global no refleja la prevalencia real.
 
 En CPNM con driver accionable en 1ª linea, Jev recomienda terapia dirigida en el
 100% de los casos (SG a 24 m: 65% con dirigida vs 57% sin ella). En CCR, MSK suele
@@ -190,6 +198,9 @@ pancreas y resecabilidad del CCR cuando no constan), y la comparacion de
 supervivencia es observacional. Licencia CC BY-NC-ND 4.0: el repositorio solo
 contiene metricas agregadas; los datos por paciente se descargan en local
 (`data/msk_chord/`, ignorado por git).
+
+Ver [docs/REVISION_ADVERSARIA.md](docs/REVISION_ADVERSARIA.md) para los problemas de
+diseño encontrados, lo corregido y lo que sigue siendo una limitacion.
 
 ## Siguientes pasos
 

@@ -9,69 +9,70 @@
    "evaluables": 60,
    "necesita_datos": 0,
    "sin_opcion": 0,
-   "exacta": 0.55,
-   "compatible": 0.55,
+   "exacta": 0.7166666666666667,
+   "compatible": 0.7166666666666667,
+   "cobertura": 1.0,
+   "compatible_itt": 0.7166666666666667,
    "compatible_nota": "sin compatibilidades parciales",
    "revision_pct": 0.0,
-   "confianza_media": 0.9954999999999999,
+   "confianza_media": 0.9961666666666668,
    "por_subgrupo": {
     "Con driver accionable": {
-     "n": 24,
-     "evaluables": 24,
-     "exacta": 0.7083333333333334,
-     "compatible": 0.7083333333333334
+     "n": 22,
+     "evaluables": 22,
+     "exacta": 0.7272727272727273,
+     "compatible": 0.7272727272727273
     },
     "KRAS G12C / HER2 mut (dirigida en 2L)": {
-     "n": 7,
-     "evaluables": 7,
-     "exacta": 0.42857142857142855,
-     "compatible": 0.42857142857142855
+     "n": 9,
+     "evaluables": 9,
+     "exacta": 0.6666666666666666,
+     "compatible": 0.6666666666666666
     },
     "Sin driver": {
      "n": 29,
      "evaluables": 29,
-     "exacta": 0.4482758620689655,
-     "compatible": 0.4482758620689655
+     "exacta": 0.7241379310344828,
+     "compatible": 0.7241379310344828
     }
    },
    "matriz": {
     "dirigida": {
-     "dirigida": 17,
+     "dirigida": 16,
      "quimio": 5,
-     "inmunoterapia": 2
+     "inmunoterapia": 1
     },
     "inmunoterapia": {
-     "quimio": 19,
-     "inmunoterapia": 16,
-     "dirigida": 1
+     "quimio": 11,
+     "inmunoterapia": 27
     }
    },
    "os_concordante": {
-    "n": 33,
-    "os_12m": 0.6923076923076925,
-    "os_24m": 0.45933014354067003,
-    "mediana_meses": 22.91504338
+    "n": 43,
+    "os_12m": 0.6004811547714515,
+    "os_24m": 0.32809094768621155,
+    "mediana_meses": 14.86025769
    },
    "os_discordante": {
-    "n": 27,
-    "os_12m": 0.6666666666666669,
-    "os_24m": 0.5185185185185186,
-    "mediana_meses": 24.03285037
+    "n": 17,
+    "os_12m": 0.8823529411764706,
+    "os_24m": 0.6302521008403361,
+    "mediana_meses": 33.13968971
    },
    "preguntas_frecuentes": [],
    "driver_dirigida": {
     "jev_recomienda_dirigida": 1.0,
     "os_recibio_dirigida": {
-     "n": 17,
-     "os_12m": 0.7058823529411765,
-     "os_24m": 0.6470588235294118,
-     "mediana_meses": 28.9972285
+     "n": 16,
+     "os_12m": 0.5,
+     "os_24m": 0.4375,
+     "mediana_meses": 11.73697344
     },
     "os_no_recibio_dirigida": {
-     "n": 7,
-     "os_12m": 0.7142857142857144,
-     "os_24m": 0.5714285714285715,
-     "mediana_meses": 63.51773861
+     "n": 6,
+     "os_12m": 0.8333333333333334,
+     "os_24m": 0.625,
+     "mediana_meses": 43.72597948
     }
    }
   },
@@ -84,6 +85,8 @@
    "sin_opcion": 0,
    "exacta": 0.15789473684210525,
    "compatible": 0.8771929824561403,
+   "cobertura": 0.95,
+   "compatible_itt": 0.8333333333333334,
    "compatible_nota": "misma quimio doblete sin (o con retraso >90 d del) biologico",
    "revision_pct": 0.0,
    "confianza_media": 1.0,
@@ -169,16 +172,18 @@
    "evaluables": 60,
    "necesita_datos": 0,
    "sin_opcion": 0,
-   "exacta": 0.48333333333333334,
+   "exacta": 0.45,
    "compatible": 0.9666666666666667,
+   "cobertura": 1.0,
+   "compatible_itt": 0.9666666666666667,
    "compatible_nota": "FOLFIRINOX y gemcitabina-nab-paclitaxel son ambas opciones ESMO en ECOG 0-1",
-   "revision_pct": 0.48333333333333334,
-   "confianza_media": 0.5976666666666667,
+   "revision_pct": 0.45,
+   "confianza_media": 0.6048333333333333,
    "por_subgrupo": {
     "ECOG 0": {
      "n": 16,
      "evaluables": 16,
-     "exacta": 0.875,
+     "exacta": 0.75,
      "compatible": 1.0
     },
     "ECOG 1": {
@@ -196,14 +201,14 @@
    },
    "matriz": {
     "gem_nab": {
-     "gem_nab": 16,
-     "folfirinox": 27,
+     "gem_nab": 15,
+     "folfirinox": 28,
      "otra_quimio": 2,
      "gemcitabina_sola": 1
     },
     "folfirinox": {
-     "folfirinox": 13,
-     "gem_nab": 1
+     "folfirinox": 12,
+     "gem_nab": 2
     }
    },
    "os_concordante": {
@@ -224,26 +229,28 @@
    "tumor": "mama",
    "nombre": "Cancer de mama",
    "n": 60,
-   "evaluables": 60,
-   "necesita_datos": 0,
+   "evaluables": 49,
+   "necesita_datos": 11,
    "sin_opcion": 0,
-   "exacta": 0.65,
-   "compatible": 0.7166666666666667,
+   "exacta": 0.5918367346938775,
+   "compatible": 0.673469387755102,
+   "cobertura": 0.8166666666666667,
+   "compatible_itt": 0.55,
    "compatible_nota": "endocrino sin iCDK4/6 (mismo eje terapeutico)",
-   "revision_pct": 0.016666666666666666,
-   "confianza_media": 0.9693333333333333,
+   "revision_pct": 0.40816326530612246,
+   "confianza_media": 0.9957142857142857,
    "por_subgrupo": {
     "HER2+": {
      "n": 3,
-     "evaluables": 3,
-     "exacta": 1.0,
-     "compatible": 1.0
+     "evaluables": 0,
+     "exacta": null,
+     "compatible": null
     },
     "HR+/HER2+": {
      "n": 8,
-     "evaluables": 8,
-     "exacta": 0.875,
-     "compatible": 0.875
+     "evaluables": 0,
+     "exacta": null,
+     "compatible": null
     },
     "HR+/HER2-": {
      "n": 30,
@@ -259,10 +266,6 @@
     }
    },
    "matriz": {
-    "anti_her2": {
-     "anti_her2": 10,
-     "quimio": 1
-    },
     "quimio": {
      "quimio": 9,
      "quimio_ici": 1,
@@ -281,39 +284,43 @@
     }
    },
    "os_concordante": {
-    "n": 43,
-    "os_12m": 0.9302325581395348,
-    "os_24m": 0.7863443693435674,
-    "mediana_meses": 52.66843543
+    "n": 33,
+    "os_12m": 0.9090909090909092,
+    "os_24m": 0.7945454545454546,
+    "mediana_meses": 41.45748881
    },
    "os_discordante": {
-    "n": 17,
-    "os_12m": 0.6470588235294118,
-    "os_24m": 0.6470588235294118,
+    "n": 16,
+    "os_12m": 0.625,
+    "os_24m": 0.625,
     "mediana_meses": 53.98350248
    },
-   "preguntas_frecuentes": []
+   "preguntas_frecuentes": [
+    "¿Cual es la FEVI (fraccion de eyeccion del ventriculo izquierdo, %)? Es imprescindible antes de indicar terapia anti-HER2."
+   ]
   }
  },
  "global": {
   "n": 240,
-  "evaluables": 237,
-  "exacta": 0.4641350210970464,
-  "compatible": 0.7763713080168776,
+  "evaluables": 226,
+  "exacta": 0.4778761061946903,
+  "compatible": 0.8141592920353983,
+  "cobertura": 0.9416666666666667,
+  "compatible_itt": 0.7666666666666667,
   "os_concordante": {
    "n": 184,
-   "os_12m": 0.6986093831148382,
-   "os_24m": 0.5137483497640218,
-   "mediana_meses": 25.74243754
+   "os_12m": 0.6594288437937272,
+   "os_24m": 0.4651696462244558,
+   "mediana_meses": 22.55339994
   },
   "os_discordante": {
-   "n": 53,
-   "os_12m": 0.6415094339622642,
-   "os_24m": 0.5283018867924529,
-   "mediana_meses": 30.67393899
+   "n": 42,
+   "os_12m": 0.7134920634920634,
+   "os_24m": 0.5658730158730159,
+   "mediana_meses": 33.13968971
   }
  },
- "fecha": "2026-09-27T16:02:21+00:00",
+ "fecha": "2026-09-27T18:59:56+00:00",
  "modelo": "jev-latest",
  "mock": false
 }

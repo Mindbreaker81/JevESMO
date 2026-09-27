@@ -102,8 +102,10 @@
      "eq": true
     },
     {
-     "campo": "bleomicina_contraindicada",
-     "ne": true
+     "not": {
+      "campo": "bleomicina_contraindicada",
+      "eq": true
+     }
     }
    ],
    "componentes": [
@@ -130,8 +132,10 @@
      "eq": true
     },
     {
-     "campo": "bleomicina_contraindicada",
-     "ne": true
+     "not": {
+      "campo": "bleomicina_contraindicada",
+      "eq": true
+     }
     }
    ],
    "componentes": [

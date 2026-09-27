@@ -181,8 +181,10 @@
      "eq": "metastasico_rai_refractario"
     },
     {
-     "campo": "progresion_sintomatica",
-     "ne": true
+     "not": {
+      "campo": "progresion_sintomatica",
+      "eq": true
+     }
     }
    ],
    "componentes": [
@@ -208,8 +210,10 @@
      "eq": true
     },
     {
-     "campo": "antiangiogenico_apto",
-     "ne": false
+     "not": {
+      "campo": "antiangiogenico_apto",
+      "eq": false
+     }
     }
    ],
    "componentes": [
@@ -302,12 +306,16 @@
      "eq": true
     },
     {
-     "campo": "ret_alterado",
-     "ne": true
+     "not": {
+      "campo": "ret_alterado",
+      "eq": true
+     }
     },
     {
-     "campo": "antiangiogenico_apto",
-     "ne": false
+     "not": {
+      "campo": "antiangiogenico_apto",
+      "eq": false
+     }
     }
    ],
    "componentes": [
@@ -368,8 +376,10 @@
      "eq": "anaplasico"
     },
     {
-     "campo": "braf_v600e",
-     "ne": true
+     "not": {
+      "campo": "braf_v600e",
+      "eq": true
+     }
     }
    ],
    "componentes": [

@@ -142,8 +142,10 @@
      "eq": true
     },
     {
-     "campo": "tp53_alterado",
-     "ne": true
+     "not": {
+      "campo": "tp53_alterado",
+      "eq": true
+     }
     }
    ],
    "componentes": [
@@ -172,8 +174,10 @@
      "eq": false
     },
     {
-     "campo": "tp53_alterado",
-     "ne": true
+     "not": {
+      "campo": "tp53_alterado",
+      "eq": true
+     }
     }
    ],
    "componentes": [
@@ -248,12 +252,16 @@
      "eq": "primera_recaida"
     },
     {
-     "campo": "btk_previo",
-     "ne": true
+     "not": {
+      "campo": "btk_previo",
+      "eq": true
+     }
     },
     {
-     "campo": "cardiopatia_anticoagulacion",
-     "ne": true
+     "not": {
+      "campo": "cardiopatia_anticoagulacion",
+      "eq": true
+     }
     }
    ],
    "componentes": [

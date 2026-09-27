@@ -132,11 +132,13 @@
     },
     {
      "cuando": {
-      "campo": "driver",
-      "nin": [
-       "ninguno",
-       "desconocido"
-      ]
+      "not": {
+       "campo": "driver",
+       "in": [
+        "ninguno",
+        "desconocido"
+       ]
+      }
      },
      "valor": "driver accionable"
     }

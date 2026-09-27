@@ -158,8 +158,10 @@
      ]
     },
     {
-     "campo": "dmmr_msi",
-     "ne": "si"
+     "not": {
+      "campo": "dmmr_msi",
+      "eq": "si"
+     }
     },
     {
      "campo": "candidato_cirugia_tme",
@@ -187,8 +189,10 @@
      ]
     },
     {
-     "campo": "dmmr_msi",
-     "ne": "si"
+     "not": {
+      "campo": "dmmr_msi",
+      "eq": "si"
+     }
     },
     {
      "campo": "candidato_cirugia_tme",
@@ -215,8 +219,10 @@
      ]
     },
     {
-     "campo": "dmmr_msi",
-     "ne": "si"
+     "not": {
+      "campo": "dmmr_msi",
+      "eq": "si"
+     }
     },
     {
      "campo": "candidato_cirugia_tme",

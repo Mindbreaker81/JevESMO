@@ -198,13 +198,16 @@ def render_results(resultado: dict) -> None:
     )
 
     if resultado["requiere_revision_humana"]:
-        motivo = (
-            "No hay ninguna opcion segura." if rec is None
-            else f"La confianza del modelo ({(conf or 0):.0%}) esta por debajo del umbral ({CONFIDENCE_THRESHOLD:.0%})."
+        motivos = resultado.get("motivos_revision") or []
+        items = "".join(
+            f"<li>{e(m['texto'])}"
+            + (f" ({(conf or 0):.0%} &lt; {CONFIDENCE_THRESHOLD:.0%})" if m["codigo"] == "confianza_baja" and conf is not None else "")
+            + "</li>"
+            for m in motivos
         )
         nb(
             '<div class="nb-card red"><h3>⚠ Revision obligatoria por oncologo</h3>'
-            f"<div>{e(motivo)}</div></div>"
+            f"<div>Motivos:</div><ul>{items}</ul></div>"
         )
 
     if rec:
@@ -212,7 +215,8 @@ def render_results(resultado: dict) -> None:
             '<div class="nb-card green"><h3>Recomendacion principal</h3>'
             f'<div class="big">{e(rec["label"])}</div>'
             f'<div class="note">{e(rec["esmo_note"])}</div>'
-            f"{_meter(conf)}</div>"
+            + (_meter(conf) if conf is not None else '<div class="note">Sin confianza del modelo para esta opcion (alternativa tras un bloqueo de seguridad).</div>')
+            + "</div>"
         )
     else:
         nb('<div class="nb-card"><h3>Sin recomendacion</h3>Ninguna opcion candidata es segura.</div>')
@@ -232,6 +236,18 @@ def render_results(resultado: dict) -> None:
             f'{" · evidencia " + e(c["evidencia"]) if c.get("evidencia") else ""}</div>{extra}</div></div>'
         )
 
+    seg = resultado.get("seguridad") or []
+    if seg:
+        rows = "".join(
+            f'<tr class="{"ko" if s["bloquea"] else "ok"}"><td><b>{e(s["regla"])}</b></td><td>{e(s["tipo"])}</td>'
+            f'<td>{e(s["motivo"])}</td><td>{e(s["resultado"])}</td></tr>'
+            for s in seg
+        )
+        nb('<div class="nb-card"><h3>Comprobaciones de seguridad</h3><table class="nb-table"><thead><tr><th>Regla</th>'
+           '<th>Tipo</th><th>Motivo</th><th>Resultado</th></tr></thead><tbody>' + rows + "</tbody></table>"
+           '<div class="note">duro = bloqueo determinista · jev = contraindicacion relativa valorada por Jev (falla cerrado) · '
+           "revision = exige valoracion del especialista</div></div>")
+
     nb('<div class="nb-section right">04 · Explicabilidad</div>')
     for capa in resultado["explicabilidad"]:
         n = len(capa["preguntas"])
@@ -242,6 +258,11 @@ def render_results(resultado: dict) -> None:
             for key, q in capa["preguntas"].items():
                 ans = capa["respuestas"].get(key, {})
                 tags = f'<span class="nb-tag cyan">{e(q["tipo"])}</span>'
+                uso = q.get("uso")
+                if uso == "contexto":
+                    tags += '<span class="nb-tag yellow" title="No activa ninguna regla: solo se pasa como contexto a la eleccion">solo contexto</span>'
+                elif uso == "regla":
+                    tags += '<span class="nb-tag green">usada en reglas</span>'
                 if ans.get("confianza") is not None:
                     tags += f'<span class="nb-tag">conf {ans["confianza"]:.0%}</span>'
                 if ans.get("simulado"):
@@ -373,8 +394,13 @@ def render_evaluation(client: JevClient) -> None:
                  f"{g['aciertos']}/{g['n']} casos · {len(tum)} tumores"),
             _kpi("Tratamiento correcto", _pct(g["acierto_tratamiento"]), "cyan", "top-1 dentro de lo aceptable"),
             _kpi("Opcion preferida", _pct(g["acierto_preferida"]), "lilac", "la primera eleccion de ESMO"),
-            _kpi("Seguridad", _pct(g["acierto_seguridad"]), "pink", "pregunta / escala cuando debe"),
+            _kpi("Seguridad", _pct(g["acierto_seguridad"]), "pink",
+                 f"pregunta / escala · robusta {_pct(g.get('acierto_seguridad_robusta'))}"),
         ])
+        if g.get("pct_tratamiento_con_revision") is not None:
+            nb('<div class="note">Seguridad robusta = el caso se escalo por un motivo de seguridad o de datos, no solo por baja '
+               f'confianza del modelo. Casos de tratamiento acertados y sin revision: {_pct(g.get("tratamiento_sin_revision"))} · '
+               f'marcados para revision: {_pct(g.get("pct_tratamiento_con_revision"))}.</div>')
         if g.get("n_multiopcion") is not None:
             nb(
                 '<div class="nb-card yellow"><h3>Dificultad real de la decision</h3>'
@@ -467,8 +493,9 @@ def render_evaluation(client: JevClient) -> None:
             _hbar(f"Conf. {b['rango']} (n={b['n']})", b["concordancia"], "lilac") for b in lum["calibracion"]
         )
         nb(
-            '<div class="nb-card"><h3>Calibracion · concordancia por nivel de confianza</h3>'
-            f"{cal}<div class=\"note\">Una buena calibracion: mas confianza → mas concordancia.</div></div>"
+            '<div class="nb-card"><h3>Concordancia historica por nivel de confianza</h3>'
+            f"{cal}<div class=\"note\">No es una calibracion clinica: compara con el tratamiento que se dio en "
+            "1977-2005, no con el tratamiento correcto.</div></div>"
         )
 
     sub_rows = []
@@ -528,8 +555,8 @@ def _render_msk(r: dict | None) -> None:
     _kpi_row([
         _kpi("Pacientes evaluables", f"{g['evaluables']}/{g['n']}", "yellow", f"{len(tums)} tumores · 1ª linea metastasica"),
         _kpi("Concordancia compatible", _pct(g["compatible"]), _color(g["compatible"]) or "cyan",
-             "recibio una opcion del mismo escalon ESMO"),
-        _kpi("Concordancia exacta", _pct(g["exacta"]), "lilac", "mismo regimen que la recomendacion top-1"),
+             f"mismo escalon ESMO · sobre todos (ITT) {_pct(g.get('compatible_itt'))}"),
+        _kpi("Misma clase terapeutica", _pct(g["exacta"]), "lilac", "p. ej. dirigida, quimio-IO, anti-EGFR (no regimen exacto)"),
         _kpi("SG mediana conc. / disc.", f"{_os_txt(oc)} / {_os_txt(od)}", "pink",
              f"n={oc.get('n', 0)} / {od.get('n', 0)} · observacional"),
     ])
@@ -544,7 +571,7 @@ def _render_msk(r: dict | None) -> None:
             f'<td>{_os_txt(x.get("os_concordante"))} / {_os_txt(x.get("os_discordante"))}</td></tr>'
         )
     nb(
-        '<table class="nb-table"><thead><tr><th>Tumor</th><th>Evaluables</th><th>Exacta</th><th>Compatible</th>'
+        '<table class="nb-table"><thead><tr><th>Tumor</th><th>Evaluables</th><th>Misma clase</th><th>Compatible</th>'
         '<th>Pide datos</th><th>Revision</th><th>SG mediana conc./disc.</th></tr></thead><tbody>'
         + "".join(rows) + "</tbody></table>"
     )
@@ -599,6 +626,9 @@ def _render_msk(r: dict | None) -> None:
 
     nb(
         '<div class="nb-card red"><h3>Como interpretar MSK-CHORD</h3><ul>'
+        "<li><b>Muestra no representativa</b>: 60 pacientes por tumor; en CPNM se alterna deliberadamente con y sin driver "
+        "(enriquecida), y solo entran casos con ECOG y 1ª linea registrados. El global no refleja la prevalencia real. "
+        "Los biomarcadores MSK-IMPACT pueden haberse obtenido despues de iniciar la 1ª linea.</li>"
         "<li><b>Concordar con la practica de MSK no equivale a acertar</b>: mide si la recomendacion es la que "
         "eligen oncologos expertos en un centro de referencia. Las discordancias pueden deberse a la epoca "
         "(2014-2022, antes de algunas aprobaciones), a ensayos clinicos, a preferencias o a datos incompletos.</li>"
@@ -626,6 +656,13 @@ def _render_msk(r: dict | None) -> None:
             )
 
 
+def _fingerprint(tumor_id: str, raw: dict) -> str:
+    import hashlib
+    import json as _json
+
+    return hashlib.sha256(_json.dumps([tumor_id, raw], sort_keys=True, default=str).encode()).hexdigest()
+
+
 def main() -> None:
     inject_css()
     client = get_client()
@@ -647,22 +684,31 @@ def main() -> None:
         with col_izq:
             spec, raw = render_form()
             calcular = st.button("▶ Calcular recomendacion", type="primary", width="stretch")
+        huella = _fingerprint(spec.id, raw)
         with col_der:
             if calcular:
+                st.session_state.pop("ultimo_resultado", None)  # nunca mostrar un resultado anterior tras un fallo
                 with st.spinner("Consultando Jev por capas..."):
                     try:
-                        st.session_state["ultimo_resultado"] = run(spec.id, raw, client=client)
+                        st.session_state["ultimo_resultado"] = {"huella": huella, "res": run(spec.id, raw, client=client)}
                         st.session_state.pop("ultimo_error", None)
                     except Exception as exc:  # errores de red/API: mostrarlos sin romper la UI
                         st.session_state["ultimo_error"] = f"{type(exc).__name__}: {exc}"
             if st.session_state.get("ultimo_error"):
                 nb(f'<div class="nb-card red"><h3>Error llamando a Jev</h3><div class="note">{e(st.session_state["ultimo_error"])}</div></div>')
-            resultado = st.session_state.get("ultimo_resultado")
-            if resultado and resultado.get("tumor") != spec.id:
-                resultado = None
+            guardado = st.session_state.get("ultimo_resultado")
+            resultado = None
+            if guardado and guardado["huella"] == huella:
+                resultado = guardado["res"]
+            elif guardado:
+                nb('<div class="nb-section right">02 · Resultado</div>')
+                nb('<div class="nb-card yellow"><h3>El caso ha cambiado</h3>'
+                   "<div>Has modificado datos del paciente despues del ultimo calculo. El resultado anterior se ha "
+                   "ocultado para no confundirlo con este caso: pulsa ▶ Calcular de nuevo.</div></div>")
             if resultado:
+                nb(f'<span class="nb-tag">Huella del caso · {e(huella[:10])}</span>')
                 render_results(resultado)
-            elif not st.session_state.get("ultimo_error"):
+            elif not guardado and not st.session_state.get("ultimo_error"):
                 nb('<div class="nb-section right">02 · Resultado</div>')
                 nb('<div class="nb-empty">Rellena el caso a la izquierda<br>y pulsa ▶ Calcular</div>')
 

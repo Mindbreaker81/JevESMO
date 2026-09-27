@@ -3,7 +3,7 @@
  "nombre": "Timoma y carcinoma timico",
  "grupo": "Toracico",
  "version": "TIMO-ESMO-2025.1",
- "fecha": "2026-09-27T14:47:48+00:00",
+ "fecha": "2026-09-27T18:59:09+00:00",
  "modelo": "jev-latest",
  "mock": false,
  "umbral_confianza": 0.6,
@@ -13,7 +13,10 @@
  "acierto_tratamiento": 1.0,
  "acierto_preferida": 0.5,
  "acierto_seguridad": 1.0,
- "confianza_aciertos": 0.7316666666666666,
+ "acierto_seguridad_robusta": 1.0,
+ "tratamiento_sin_revision": 0.16666666666666666,
+ "pct_tratamiento_con_revision": 0.8333333333333334,
+ "confianza_aciertos": 0.7433333333333333,
  "confianza_fallos": null,
  "n_multiopcion": 5,
  "acierto_multiopcion": 1.0,
@@ -31,8 +34,12 @@
    ],
    "obtenido": "reseccion_primaria",
    "obtenido_label": "Reseccion completa (timectomia) en centro experto",
-   "confianza": 0.53,
+   "confianza": 0.55,
    "revision": true,
+   "motivos_revision": [
+    "datos_criticos_ausentes",
+    "confianza_baja"
+   ],
    "acierto": true,
    "acierto_preferida": false,
    "preguntas": [],
@@ -51,8 +58,11 @@
    ],
    "obtenido": "reseccion_primaria",
    "obtenido_label": "Reseccion completa (timectomia) en centro experto",
-   "confianza": 0.92,
-   "revision": false,
+   "confianza": 0.88,
+   "revision": true,
+   "motivos_revision": [
+    "datos_criticos_ausentes"
+   ],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
@@ -72,7 +82,10 @@
    "obtenido": "reseccion_primaria",
    "obtenido_label": "Reseccion completa (timectomia) en centro experto",
    "confianza": 0.73,
-   "revision": false,
+   "revision": true,
+   "motivos_revision": [
+    "datos_criticos_ausentes"
+   ],
    "acierto": true,
    "acierto_preferida": false,
    "preguntas": [],
@@ -92,8 +105,11 @@
    ],
    "obtenido": "quimiorradioterapia_definitiva",
    "obtenido_label": "Quimiorradioterapia definitiva",
-   "confianza": 0.34,
+   "confianza": 0.45,
    "revision": true,
+   "motivos_revision": [
+    "confianza_baja"
+   ],
    "acierto": true,
    "acierto_preferida": false,
    "preguntas": [],
@@ -113,6 +129,7 @@
    "obtenido_label": "Quimioterapia basada en platino",
    "confianza": 1.0,
    "revision": false,
+   "motivos_revision": [],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
@@ -131,8 +148,11 @@
    ],
    "obtenido": "sunitinib_lenvatinib_carcinoma",
    "obtenido_label": "Sunitinib o lenvatinib en carcinoma timico",
-   "confianza": 0.87,
-   "revision": false,
+   "confianza": 0.85,
+   "revision": true,
+   "motivos_revision": [
+    "datos_criticos_ausentes"
+   ],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
@@ -150,6 +170,7 @@
    "obtenido_label": null,
    "confianza": null,
    "revision": null,
+   "motivos_revision": [],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [
@@ -169,6 +190,9 @@
    "obtenido_label": "Sunitinib o lenvatinib en carcinoma timico",
    "confianza": 1.0,
    "revision": true,
+   "motivos_revision": [
+    "no_candidato_activo"
+   ],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],

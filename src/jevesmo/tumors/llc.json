@@ -120,8 +120,10 @@
      "eq": true
     },
     {
-     "campo": "cardiopatia_anticoagulacion",
-     "ne": true
+     "not": {
+      "campo": "cardiopatia_anticoagulacion",
+      "eq": true
+     }
     }
    ],
    "componentes": [
@@ -143,8 +145,10 @@
      "eq": true
     },
     {
-     "campo": "tp53_del17p",
-     "ne": "alterado"
+     "not": {
+      "campo": "tp53_del17p",
+      "eq": "alterado"
+     }
     }
    ],
    "componentes": [
@@ -199,8 +203,10 @@
      "eq": true
     },
     {
-     "campo": "cardiopatia_anticoagulacion",
-     "ne": true
+     "not": {
+      "campo": "cardiopatia_anticoagulacion",
+      "eq": true
+     }
     }
    ],
    "componentes": [

@@ -114,12 +114,16 @@
      ]
     },
     {
-     "campo": "hhi_previo",
-     "ne": true
+     "not": {
+      "campo": "hhi_previo",
+      "eq": true
+     }
     },
     {
-     "campo": "hhi_apto",
-     "ne": false
+     "not": {
+      "campo": "hhi_apto",
+      "eq": false
+     }
     }
    ],
    "componentes": [
@@ -144,8 +148,10 @@
      "eq": true
     },
     {
-     "campo": "candidato_ici",
-     "ne": false
+     "not": {
+      "campo": "candidato_ici",
+      "eq": false
+     }
     }
    ],
    "componentes": [

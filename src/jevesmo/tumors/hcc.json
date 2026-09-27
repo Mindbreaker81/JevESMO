@@ -107,8 +107,10 @@
      "eq": true
     },
     {
-     "campo": "portal_hipertension",
-     "ne": true
+     "not": {
+      "campo": "portal_hipertension",
+      "eq": true
+     }
     }
    ],
    "componentes": [
@@ -211,8 +213,10 @@
      ]
     },
     {
-     "campo": "varices_no_tratadas",
-     "ne": true
+     "not": {
+      "campo": "varices_no_tratadas",
+      "eq": true
+     }
     }
    ],
    "componentes": [
@@ -418,8 +422,10 @@
      ]
     },
     {
-     "campo": "trasplante_candidato",
-     "ne": true
+     "not": {
+      "campo": "trasplante_candidato",
+      "eq": true
+     }
     }
    ],
    "componentes": [

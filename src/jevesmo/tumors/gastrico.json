@@ -217,8 +217,10 @@
      "eq": "irresecable_metastasico"
     },
     {
-     "campo": "her2",
-     "ne": "positivo"
+     "not": {
+      "campo": "her2",
+      "eq": "positivo"
+     }
     },
     {
      "campo": "pdl1_cps",
@@ -253,8 +255,10 @@
      "eq": "irresecable_metastasico"
     },
     {
-     "campo": "her2",
-     "ne": "positivo"
+     "not": {
+      "campo": "her2",
+      "eq": "positivo"
+     }
     },
     {
      "campo": "claudin182",

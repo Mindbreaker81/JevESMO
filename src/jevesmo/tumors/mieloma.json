@@ -208,12 +208,16 @@
      "eq": "recaida"
     },
     {
-     "campo": "lenalidomida_refractario",
-     "ne": true
+     "not": {
+      "campo": "lenalidomida_refractario",
+      "eq": true
+     }
     },
     {
-     "campo": "triple_clase_refractario",
-     "ne": true
+     "not": {
+      "campo": "triple_clase_refractario",
+      "eq": true
+     }
     }
    ],
    "componentes": [
@@ -236,8 +240,10 @@
      "eq": true
     },
     {
-     "campo": "triple_clase_refractario",
-     "ne": true
+     "not": {
+      "campo": "triple_clase_refractario",
+      "eq": true
+     }
     }
    ],
    "componentes": [

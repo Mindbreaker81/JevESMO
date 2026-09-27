@@ -3,7 +3,7 @@
  "nombre": "Cancer de origen primario desconocido",
  "grupo": "Origen desconocido",
  "version": "COD-ESMO-2023.1",
- "fecha": "2026-09-27T14:47:21+00:00",
+ "fecha": "2026-09-27T18:58:39+00:00",
  "modelo": "jev-latest",
  "mock": false,
  "umbral_confianza": 0.6,
@@ -13,6 +13,9 @@
  "acierto_tratamiento": 1.0,
  "acierto_preferida": 1.0,
  "acierto_seguridad": 1.0,
+ "acierto_seguridad_robusta": 1.0,
+ "tratamiento_sin_revision": 0.0,
+ "pct_tratamiento_con_revision": 1.0,
  "confianza_aciertos": 0.9924999999999999,
  "confianza_fallos": null,
  "n_multiopcion": 3,
@@ -31,7 +34,10 @@
    "obtenido": "axilar_mujer_mama_like",
    "obtenido_label": "Tratamiento como cancer de mama oculto",
    "confianza": 1.0,
-   "revision": false,
+   "revision": true,
+   "motivos_revision": [
+    "datos_criticos_ausentes"
+   ],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
@@ -50,7 +56,10 @@
    "obtenido": "peritoneal_seroso_ovario_like",
    "obtenido_label": "Carboplatino-paclitaxel + cirugia citorreductora como ovario/peritoneal",
    "confianza": 1.0,
-   "revision": false,
+   "revision": true,
+   "motivos_revision": [
+    "datos_criticos_ausentes"
+   ],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
@@ -69,7 +78,10 @@
    "obtenido": "escamoso_cervical_hn_like",
    "obtenido_label": "Quimiorradioterapia/cirugia como carcinoma escamoso cervical de cabeza y cuello",
    "confianza": 1.0,
-   "revision": false,
+   "revision": true,
+   "motivos_revision": [
+    "datos_criticos_ausentes"
+   ],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
@@ -88,7 +100,10 @@
    "obtenido": "germinal_linea_media",
    "obtenido_label": "Quimioterapia basada en cisplatino tipo tumor germinal",
    "confianza": 1.0,
-   "revision": false,
+   "revision": true,
+   "motivos_revision": [
+    "datos_criticos_ausentes"
+   ],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
@@ -107,7 +122,10 @@
    "obtenido": "prostata_like_adt",
    "obtenido_label": "Terapia de deprivacion androgenica +- intensificacion como prostata",
    "confianza": 1.0,
-   "revision": false,
+   "revision": true,
+   "motivos_revision": [
+    "datos_criticos_ausentes"
+   ],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
@@ -127,7 +145,10 @@
    "obtenido": "platino_taxano_desfavorable_1l",
    "obtenido_label": "Carboplatino/cisplatino + paclitaxel (CUP desfavorable 1L)",
    "confianza": 1.0,
-   "revision": false,
+   "revision": true,
+   "motivos_revision": [
+    "datos_criticos_ausentes"
+   ],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
@@ -146,7 +167,10 @@
    "obtenido": "inmunoterapia_msi_tmb",
    "obtenido_label": "Pembrolizumab/dostarlimab si MSI-H/dMMR o TMB alto",
    "confianza": 0.98,
-   "revision": false,
+   "revision": true,
+   "motivos_revision": [
+    "datos_criticos_ausentes"
+   ],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
@@ -165,7 +189,10 @@
    "obtenido": "trk_inhibidor_cod",
    "obtenido_label": "Larotrectinib/entrectinib si fusion NTRK",
    "confianza": 0.96,
-   "revision": false,
+   "revision": true,
+   "motivos_revision": [
+    "datos_criticos_ausentes"
+   ],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
@@ -183,6 +210,7 @@
    "obtenido_label": null,
    "confianza": null,
    "revision": null,
+   "motivos_revision": [],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [
@@ -202,6 +230,12 @@
    "obtenido_label": "Mejor soporte exclusivo",
    "confianza": 1.0,
    "revision": true,
+   "motivos_revision": [
+    "datos_criticos_ausentes",
+    "bloqueo_seguridad",
+    "funcion_organica",
+    "no_candidato_activo"
+   ],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],

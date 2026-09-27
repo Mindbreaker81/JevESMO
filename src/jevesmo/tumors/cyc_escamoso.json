@@ -141,12 +141,16 @@
      "eq": true
     },
     {
-     "campo": "factores_alto_riesgo_postop",
-     "ne": true
+     "not": {
+      "campo": "factores_alto_riesgo_postop",
+      "eq": true
+     }
     },
     {
-     "campo": "factores_intermedios_postop",
-     "ne": true
+     "not": {
+      "campo": "factores_intermedios_postop",
+      "eq": true
+     }
     }
    ],
    "componentes": [
@@ -176,8 +180,10 @@
      "eq": true
     },
     {
-     "campo": "factores_alto_riesgo_postop",
-     "ne": true
+     "not": {
+      "campo": "factores_alto_riesgo_postop",
+      "eq": true
+     }
     }
    ],
    "componentes": [
@@ -206,8 +212,10 @@
      "eq": true
     },
     {
-     "campo": "cisplatino_apto",
-     "ne": false
+     "not": {
+      "campo": "cisplatino_apto",
+      "eq": false
+     }
     }
    ],
    "componentes": [
@@ -271,8 +279,10 @@
      ]
     },
     {
-     "campo": "cisplatino_apto",
-     "ne": false
+     "not": {
+      "campo": "cisplatino_apto",
+      "eq": false
+     }
     }
    ],
    "componentes": [
@@ -361,8 +371,10 @@
      "gte": 1
     },
     {
-     "campo": "cisplatino_apto",
-     "ne": false
+     "not": {
+      "campo": "cisplatino_apto",
+      "eq": false
+     }
     }
    ],
    "componentes": [

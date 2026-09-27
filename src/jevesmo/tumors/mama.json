@@ -199,13 +199,25 @@
    "seccion": "Biomarcadores"
   },
   {
+   "id": "enfermedad_residual",
+   "label": "Enfermedad invasiva residual tras neoadyuvancia (cirugia ya realizada)",
+   "tipo": "bool",
+   "seccion": "Tratamiento previo",
+   "ayuda": "Solo si ya se hizo neoadyuvancia + cirugia. Dejar vacio si aun no se ha tratado."
+  },
+  {
    "id": "fraccion_eyeccion_ventricular",
    "label": "FEVI",
    "tipo": "number",
    "min": 0,
    "max": 100,
    "unidad": "%",
-   "seccion": "Seguridad"
+   "seccion": "Seguridad",
+   "requerido_si": {
+    "campo": "her2",
+    "eq": "positivo"
+   },
+   "pregunta": "¿Cual es la FEVI (fraccion de eyeccion del ventriculo izquierdo, %)? Es imprescindible antes de indicar terapia anti-HER2."
   },
   {
    "id": "progreso_bajo_endocrino",
@@ -463,6 +475,12 @@
       "II",
       "III"
      ]
+    },
+    {
+     "not": {
+      "campo": "enfermedad_residual",
+      "present": true
+     }
     }
    ],
    "componentes": [
@@ -490,6 +508,10 @@
       "II",
       "III"
      ]
+    },
+    {
+     "campo": "enfermedad_residual",
+     "eq": true
     }
    ],
    "componentes": [
@@ -587,16 +609,31 @@
   },
   {
    "id": "endocrino_add_on",
-   "label": "Anadir terapia endocrina de mantenimiento",
-   "nota": "ESMO: HR+/HER2+ -> combinar bloqueo HER2 con endocrino tras QT",
-   "cuando": {
-    "campo": "subtipo",
-    "in": [
-     "HR+/HER2+"
-    ]
-   },
+   "label": "Mantenimiento anti-HER2 + terapia endocrina tras induccion con QT",
+   "nota": "ESMO Advanced BC: HR+/HER2+ metastasico -> tras la induccion con taxano + doble bloqueo HER2, mantenimiento con anti-HER2 + endocrino",
+   "cuando": [
+    {
+     "campo": "subtipo",
+     "in": [
+      "HR+/HER2+"
+     ]
+    },
+    {
+     "campo": "estadio",
+     "eq": "IV"
+    },
+    {
+     "campo": "lineas_previas",
+     "eq": 0
+    },
+    {
+     "campo": "tratamientos_previos",
+     "contains": "trastuzumab"
+    }
+   ],
    "componentes": [
-    "endocrino"
+    "endocrino",
+    "anti_her2"
    ],
    "evidencia": "II, B"
   },
@@ -732,6 +769,10 @@
     {
      "campo": "estadio",
      "eq": "IV"
+    },
+    {
+     "campo": "lineas_previas",
+     "gte": 1
     }
    ],
    "componentes": [
@@ -826,16 +867,50 @@
  ],
  "seguridad": [
   {
-   "key": "riesgo_cardiaco_anti_her2",
+   "key": "fevi_contraindica_anti_her2",
+   "tipo": "duro",
    "cuando": {
     "campo": "fraccion_eyeccion_ventricular",
-    "present": true
+    "lt": 50
    },
    "bloquea_componentes": [
     "anti_her2"
    ],
-   "instrucciones": "Segun la FEVI y la historia cardiaca del paciente, ¿supone la terapia anti-HER2 (trastuzumab, pertuzumab, T-DM1, T-DXd) un riesgo cardiaco inaceptable?",
-   "motivo": "Riesgo cardiaco inaceptable para anti-HER2 segun FEVI"
+   "motivo": "FEVI < 50%: contraindicacion para iniciar terapia anti-HER2 (ficha tecnica / ESMO). Requiere valoracion por cardio-oncologia."
+  },
+  {
+   "key": "riesgo_cardiaco_anti_her2",
+   "tipo": "jev",
+   "cuando": {
+    "all": [
+     {
+      "campo": "fraccion_eyeccion_ventricular",
+      "gte": 50
+     },
+     {
+      "campo": "fraccion_eyeccion_ventricular",
+      "lt": 55
+     }
+    ]
+   },
+   "bloquea_componentes": [
+    "anti_her2"
+   ],
+   "umbral": 0.5,
+   "instrucciones": "FEVI en el limite bajo de la normalidad (50-54%). Segun la historia cardiaca del paciente, ¿supone la terapia anti-HER2 un riesgo cardiaco inaceptable?",
+   "motivo": "Riesgo cardiaco inaceptable para anti-HER2 (FEVI limite + historia cardiaca)"
+  },
+  {
+   "key": "cardiopatia_anti_her2",
+   "tipo": "revision",
+   "cuando": {
+    "campo": "comorbilidades_relevantes",
+    "contains": "cardi"
+   },
+   "bloquea_componentes": [
+    "anti_her2"
+   ],
+   "motivo": "Cardiopatia documentada: valoracion por cardio-oncologia antes de anti-HER2."
   }
  ],
  "avisos": [
@@ -880,22 +955,6 @@
     }
    ],
    "texto": "PD-L1 no disponible: no se puede valorar inmunoterapia en 1a linea metastasica."
-  },
-  {
-   "cuando": [
-    {
-     "campo": "subtipo",
-     "in": [
-      "HER2+",
-      "HR+/HER2+"
-     ]
-    },
-    {
-     "campo": "fraccion_eyeccion_ventricular",
-     "missing": true
-    }
-   ],
-   "texto": "FEVI no disponible: imprescindible antes de indicar terapia anti-HER2 (riesgo cardiaco)."
   }
  ],
  "vinetas": [
@@ -1150,7 +1209,8 @@
      "docetaxel+carboplatino+trastuzumab+pertuzumab neoadyuvante"
     ],
     "descripcion_libre": "Cirugia completada tras neoadyuvancia: enfermedad invasiva residual en mama (ypT1c) y axila (ypN1). No pCR.",
-    "sexo": "mujer"
+    "sexo": "mujer",
+    "enfermedad_residual": true
    },
    "esperado": {
     "tipo": "recomendacion",

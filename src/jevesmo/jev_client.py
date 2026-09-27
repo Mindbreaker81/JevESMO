@@ -62,9 +62,13 @@ class JevClient:
                 from typesafe_sdk import TypeSafeClient  # type: ignore
 
                 self._sdk_client = TypeSafeClient(api_key=self.api_key)
-            except ImportError:
-                # SDK no instalado: degradamos a mock en lugar de fallar duro.
-                self._mock_mode = True
+            except ImportError as exc:
+                # Hay clave pero no SDK: fallar explicitamente. Degradar en silencio a respuestas
+                # simuladas cambiaria el comportamiento clinico sin que el usuario lo sepa.
+                raise RuntimeError(
+                    "TYPESAFE_API_KEY configurada pero el paquete 'typesafe-sdk' no esta instalado. "
+                    "Instalalo (pip install typesafe-sdk) o elimina la clave para usar el modo simulado."
+                ) from exc
 
     @property
     def is_mock(self) -> bool:

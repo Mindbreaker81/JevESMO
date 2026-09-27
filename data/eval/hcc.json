@@ -3,7 +3,7 @@
  "nombre": "Carcinoma hepatocelular",
  "grupo": "Digestivo",
  "version": "HCC-ESMO-2025.1",
- "fecha": "2026-09-27T14:47:31+00:00",
+ "fecha": "2026-09-27T18:58:50+00:00",
  "modelo": "jev-latest",
  "mock": false,
  "umbral_confianza": 0.6,
@@ -13,7 +13,10 @@
  "acierto_tratamiento": 1.0,
  "acierto_preferida": 1.0,
  "acierto_seguridad": 1.0,
- "confianza_aciertos": 0.9528571428571428,
+ "acierto_seguridad_robusta": 1.0,
+ "tratamiento_sin_revision": 0.2857142857142857,
+ "pct_tratamiento_con_revision": 0.7142857142857143,
+ "confianza_aciertos": 0.9585714285714285,
  "confianza_fallos": null,
  "n_multiopcion": 5,
  "acierto_multiopcion": 1.0,
@@ -32,7 +35,10 @@
    "obtenido": "reseccion_hcc",
    "obtenido_label": "Reseccion hepatica",
    "confianza": 1.0,
-   "revision": false,
+   "revision": true,
+   "motivos_revision": [
+    "datos_criticos_ausentes"
+   ],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
@@ -52,7 +58,10 @@
    "obtenido": "ablacion_hcc",
    "obtenido_label": "Ablacion percutanea",
    "confianza": 1.0,
-   "revision": false,
+   "revision": true,
+   "motivos_revision": [
+    "datos_criticos_ausentes"
+   ],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
@@ -72,6 +81,7 @@
    "obtenido_label": "Trasplante hepatico",
    "confianza": 1.0,
    "revision": false,
+   "motivos_revision": [],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
@@ -89,8 +99,11 @@
    ],
    "obtenido": "tace_hcc",
    "obtenido_label": "TACE",
-   "confianza": 0.89,
-   "revision": false,
+   "confianza": 0.92,
+   "revision": true,
+   "motivos_revision": [
+    "datos_criticos_ausentes"
+   ],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
@@ -110,8 +123,11 @@
    ],
    "obtenido": "atezo_bev_1l",
    "obtenido_label": "Atezolizumab + bevacizumab",
-   "confianza": 0.9,
-   "revision": false,
+   "confianza": 0.89,
+   "revision": true,
+   "motivos_revision": [
+    "datos_criticos_ausentes"
+   ],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
@@ -131,8 +147,11 @@
    ],
    "obtenido": "durva_treme_1l",
    "obtenido_label": "Durvalumab + tremelimumab (STRIDE)",
-   "confianza": 0.98,
-   "revision": false,
+   "confianza": 0.99,
+   "revision": true,
+   "motivos_revision": [
+    "datos_criticos_ausentes"
+   ],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
@@ -152,8 +171,9 @@
    ],
    "obtenido": "ramucirumab_afp_2l",
    "obtenido_label": "Ramucirumab si AFP >=400",
-   "confianza": 0.9,
+   "confianza": 0.91,
    "revision": false,
+   "motivos_revision": [],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
@@ -171,6 +191,7 @@
    "obtenido_label": null,
    "confianza": null,
    "revision": null,
+   "motivos_revision": [],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [
@@ -190,6 +211,9 @@
    "obtenido_label": "Cuidados de soporte exclusivo",
    "confianza": 1.0,
    "revision": true,
+   "motivos_revision": [
+    "no_candidato_activo"
+   ],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],

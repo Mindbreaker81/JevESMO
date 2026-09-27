@@ -289,6 +289,8 @@ def evaluate_msk_chord(client: JevClient, n_per_tumor: int = 60, seed: int = 42,
             "necesita_datos": sum(x["status"] == "necesita_datos" for x in rows),
             "sin_opcion": sum(x["status"] == "ok" and not x["clase_jev"] for x in rows),
             "exacta": frac(ev, "exacta"), "compatible": frac(ev, "compatible"),
+            "cobertura": len(ev) / len(rows) if rows else None,
+            "compatible_itt": sum(bool(x["compatible"]) for x in rows) / len(rows) if rows else None,
             "compatible_nota": msk_chord.COMPATIBLE_NOTE[tumor],
             "revision_pct": frac([x for x in rows if x["status"] == "ok"], "revision"),
             "confianza_media": _mean([x["confianza"] for x in ev]),
@@ -312,6 +314,9 @@ def evaluate_msk_chord(client: JevClient, n_per_tumor: int = 60, seed: int = 42,
         "n": sum(len(v) for v in all_cases.values()), "evaluables": len(ev_all),
         "exacta": sum(x["exacta"] for x in ev_all) / len(ev_all) if ev_all else None,
         "compatible": sum(x["compatible"] for x in ev_all) / len(ev_all) if ev_all else None,
+        "cobertura": len(ev_all) / max(1, sum(len(v) for v in all_cases.values())),
+        "compatible_itt": sum(bool(x["compatible"]) for v in all_cases.values() for x in v)
+        / max(1, sum(len(v) for v in all_cases.values())),
         "os_concordante": _km_os([x["os_months"] for x in ev_all if x["compatible"]], [x["os_event"] for x in ev_all if x["compatible"]]),
         "os_discordante": _km_os([x["os_months"] for x in ev_all if not x["compatible"]], [x["os_event"] for x in ev_all if not x["compatible"]]),
     }
@@ -324,6 +329,11 @@ def evaluate_msk_chord(client: JevClient, n_per_tumor: int = 60, seed: int = 42,
 
 
 # ---------------------------------------------------------------- Vinetas ESMO
+# Motivos de revision que no demuestran que la logica de seguridad haya funcionado: una viñeta de
+# seguridad que solo se escala por ellos "acierta por casualidad".
+SOFT_REASONS = {"modo_simulado", "confianza_baja", "opciones_equilibradas"}
+
+
 def _score_vignette(tumor_id: str, v, client: JevClient) -> dict:
     try:
         r = run(tumor_id, v.payload, client=client)
@@ -331,13 +341,14 @@ def _score_vignette(tumor_id: str, v, client: JevClient) -> dict:
         r = {"status": "error", "error": str(exc)}
     exp = v.esperado
     rec = (r.get("recomendacion_principal") or {}) if r["status"] == "ok" else {}
+    motivos = [m["codigo"] for m in r.get("motivos_revision") or []]
     if exp.tipo == "necesita_datos":
         ok = r["status"] == "necesita_datos"
         pref = ok
         obtenido = "necesita_datos" if ok else (rec.get("id") or r["status"])
     elif exp.tipo == "revision_humana":
         ok = r["status"] == "ok" and bool(r.get("requiere_revision_humana"))
-        pref = ok
+        pref = ok and bool(set(motivos) - SOFT_REASONS)
         obtenido = f"revision ({rec.get('id') or 'sin opcion segura'})" if ok else (rec.get("id") or r["status"])
     else:
         obtenido = rec.get("id") if r["status"] == "ok" else r["status"]
@@ -352,6 +363,7 @@ def _score_vignette(tumor_id: str, v, client: JevClient) -> dict:
         "obtenido_label": rec.get("label"),
         "confianza": r.get("confianza"),
         "revision": r.get("requiere_revision_humana"),
+        "motivos_revision": motivos,
         "acierto": ok,
         "acierto_preferida": pref,
         "preguntas": r.get("preguntas", []),
@@ -371,6 +383,11 @@ def _summary(rows: list[dict]) -> dict:
         "acierto_tratamiento": frac(tto),
         "acierto_preferida": frac(tto, "acierto_preferida"),
         "acierto_seguridad": frac(seg),
+        # Seguridad robusta: casos de revision escalados por un motivo determinista/de seguridad,
+        # no solo por baja confianza del modelo.
+        "acierto_seguridad_robusta": frac(seg, "acierto_preferida"),
+        "tratamiento_sin_revision": (sum(bool(x["acierto"]) and not x["revision"] for x in tto) / len(tto)) if tto else None,
+        "pct_tratamiento_con_revision": frac(tto, "revision"),
         "confianza_aciertos": _mean([x["confianza"] for x in tto if x["acierto"]]),
         "confianza_fallos": _mean([x["confianza"] for x in tto if not x["acierto"]]),
         # Dificultad: casos de tratamiento en los que Jev tuvo que elegir entre >=2 opciones ESMO.

@@ -3,7 +3,7 @@
  "nombre": "Carcinoma escamoso de vulva",
  "grupo": "Ginecologico",
  "version": "VULVA-ESMO-2023.1",
- "fecha": "2026-09-27T14:47:53+00:00",
+ "fecha": "2026-09-27T18:59:19+00:00",
  "modelo": "jev-latest",
  "mock": false,
  "umbral_confianza": 0.6,
@@ -13,7 +13,10 @@
  "acierto_tratamiento": 1.0,
  "acierto_preferida": 0.875,
  "acierto_seguridad": 1.0,
- "confianza_aciertos": 0.7787499999999999,
+ "acierto_seguridad_robusta": 1.0,
+ "tratamiento_sin_revision": 0.0,
+ "pct_tratamiento_con_revision": 1.0,
+ "confianza_aciertos": 0.7525,
  "confianza_fallos": null,
  "n_multiopcion": 3,
  "acierto_multiopcion": 1.0,
@@ -31,7 +34,10 @@
    "obtenido": "escision_local_ia",
    "obtenido_label": "Escision local amplia sin estadiaje ganglionar",
    "confianza": 1.0,
-   "revision": false,
+   "revision": true,
+   "motivos_revision": [
+    "datos_criticos_ausentes"
+   ],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
@@ -50,7 +56,10 @@
    "obtenido": "escision_ganglio_centinela",
    "obtenido_label": "Escision radical local + ganglio centinela",
    "confianza": 1.0,
-   "revision": false,
+   "revision": true,
+   "motivos_revision": [
+    "datos_criticos_ausentes"
+   ],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
@@ -69,7 +78,10 @@
    "obtenido": "escision_linfadenectomia",
    "obtenido_label": "Escision radical local + linfadenectomia inguinofemoral",
    "confianza": 1.0,
-   "revision": false,
+   "revision": true,
+   "motivos_revision": [
+    "datos_criticos_ausentes"
+   ],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
@@ -88,8 +100,12 @@
    ],
    "obtenido": "escision_ganglio_centinela",
    "obtenido_label": "Escision radical local + ganglio centinela",
-   "confianza": 0.47,
+   "confianza": 0.48,
    "revision": true,
+   "motivos_revision": [
+    "datos_criticos_ausentes",
+    "confianza_baja"
+   ],
    "acierto": true,
    "acierto_preferida": false,
    "preguntas": [],
@@ -108,8 +124,11 @@
    ],
    "obtenido": "rt_inguinal_adyuvante",
    "obtenido_label": "Radioterapia inguinofemoral/pelvica adyuvante",
-   "confianza": 0.29,
+   "confianza": 0.18,
    "revision": true,
+   "motivos_revision": [
+    "confianza_baja"
+   ],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
@@ -127,8 +146,11 @@
    ],
    "obtenido": "qrt_adyuvante_extranodal",
    "obtenido_label": "Quimiorradioterapia adyuvante",
-   "confianza": 0.47,
+   "confianza": 0.36,
    "revision": true,
+   "motivos_revision": [
+    "confianza_baja"
+   ],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
@@ -147,7 +169,10 @@
    "obtenido": "qrt_definitiva_avanzada",
    "obtenido_label": "Quimiorradioterapia definitiva/neoadyuvante",
    "confianza": 1.0,
-   "revision": false,
+   "revision": true,
+   "motivos_revision": [
+    "datos_criticos_ausentes"
+   ],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
@@ -166,7 +191,10 @@
    "obtenido": "sistemico_paliativo",
    "obtenido_label": "Tratamiento sistemico paliativo/ensayo clinico",
    "confianza": 1.0,
-   "revision": false,
+   "revision": true,
+   "motivos_revision": [
+    "datos_criticos_ausentes"
+   ],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
@@ -184,6 +212,7 @@
    "obtenido_label": null,
    "confianza": null,
    "revision": null,
+   "motivos_revision": [],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [
@@ -203,6 +232,10 @@
    "obtenido_label": "Soporte, control local de sintomas y cuidados paliativos",
    "confianza": 0.99,
    "revision": true,
+   "motivos_revision": [
+    "datos_criticos_ausentes",
+    "no_candidato_activo"
+   ],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],

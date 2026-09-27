@@ -3,7 +3,7 @@
  "nombre": "Cancer de vejiga / urotelial",
  "grupo": "Genitourinario",
  "version": "VEJIGA-ESMO-2024.1",
- "fecha": "2026-09-27T14:47:52+00:00",
+ "fecha": "2026-09-27T18:59:13+00:00",
  "modelo": "jev-latest",
  "mock": false,
  "umbral_confianza": 0.6,
@@ -13,6 +13,9 @@
  "acierto_tratamiento": 1.0,
  "acierto_preferida": 1.0,
  "acierto_seguridad": 1.0,
+ "acierto_seguridad_robusta": 1.0,
+ "tratamiento_sin_revision": 0.25,
+ "pct_tratamiento_con_revision": 0.75,
  "confianza_aciertos": 1.0,
  "confianza_fallos": null,
  "n_multiopcion": 0,
@@ -32,6 +35,7 @@
    "obtenido_label": "TURBT completa +- instilacion unica intravesical",
    "confianza": 1.0,
    "revision": false,
+   "motivos_revision": [],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
@@ -51,6 +55,7 @@
    "obtenido_label": "TURBT + BCG induccion y mantenimiento 1-3 anios",
    "confianza": 1.0,
    "revision": false,
+   "motivos_revision": [],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
@@ -69,7 +74,10 @@
    "obtenido": "nac_cis_cistectomia",
    "obtenido_label": "Neoadyuvancia cisplatino + cistectomia radical",
    "confianza": 1.0,
-   "revision": false,
+   "revision": true,
+   "motivos_revision": [
+    "datos_criticos_ausentes"
+   ],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
@@ -88,7 +96,10 @@
    "obtenido": "trimodal_vejiga",
    "obtenido_label": "Tratamiento trimodal",
    "confianza": 1.0,
-   "revision": false,
+   "revision": true,
+   "motivos_revision": [
+    "datos_criticos_ausentes"
+   ],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
@@ -107,7 +118,10 @@
    "obtenido": "ev_pembro_1l",
    "obtenido_label": "Enfortumab vedotina + pembrolizumab 1L",
    "confianza": 1.0,
-   "revision": false,
+   "revision": true,
+   "motivos_revision": [
+    "datos_criticos_ausentes"
+   ],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
@@ -126,7 +140,10 @@
    "obtenido": "gem_cis_nivo_1l",
    "obtenido_label": "Gemcitabina-cisplatino + nivolumab 1L",
    "confianza": 1.0,
-   "revision": false,
+   "revision": true,
+   "motivos_revision": [
+    "datos_criticos_ausentes"
+   ],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
@@ -145,7 +162,10 @@
    "obtenido": "avelumab_mantenimiento",
    "obtenido_label": "Avelumab mantenimiento",
    "confianza": 1.0,
-   "revision": false,
+   "revision": true,
+   "motivos_revision": [
+    "datos_criticos_ausentes"
+   ],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
@@ -164,7 +184,10 @@
    "obtenido": "erdafitinib_fgfr",
    "obtenido_label": "Erdafitinib",
    "confianza": 1.0,
-   "revision": false,
+   "revision": true,
+   "motivos_revision": [
+    "datos_criticos_ausentes"
+   ],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
@@ -182,6 +205,7 @@
    "obtenido_label": null,
    "confianza": null,
    "revision": null,
+   "motivos_revision": [],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [
@@ -199,8 +223,14 @@
    "aceptables": [],
    "obtenido": "revision (sin opcion segura)",
    "obtenido_label": null,
-   "confianza": 0.0,
+   "confianza": null,
    "revision": true,
+   "motivos_revision": [
+    "datos_criticos_ausentes",
+    "bloqueo_seguridad",
+    "contraindicacion",
+    "sin_opcion_segura"
+   ],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
