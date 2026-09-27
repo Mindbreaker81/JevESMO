@@ -1,0 +1,180 @@
+{
+ "tumor": "mesotelioma",
+ "nombre": "Mesotelioma pleural maligno",
+ "grupo": "Toracico",
+ "version": "MESOTELIOMA-ESMO-2024.1",
+ "fecha": "2026-09-27T14:47:38+00:00",
+ "modelo": "jev-latest",
+ "mock": false,
+ "umbral_confianza": 0.6,
+ "n": 8,
+ "aciertos": 8,
+ "acierto_global": 1.0,
+ "acierto_tratamiento": 1.0,
+ "acierto_preferida": 1.0,
+ "acierto_seguridad": 1.0,
+ "confianza_aciertos": 0.8666666666666667,
+ "confianza_fallos": null,
+ "n_multiopcion": 5,
+ "acierto_multiopcion": 1.0,
+ "candidatos_medios": 3.5,
+ "casos": [
+  {
+   "id": "MESOTELIOMA-V01",
+   "titulo": "No epitelioide metastasico 1L",
+   "fuente": "CheckMate 743: mayor beneficio en no epitelioide",
+   "esperado_tipo": "recomendacion",
+   "esperado": "nivo_ipi_1l",
+   "aceptables": [
+    "nivo_ipi_1l",
+    "quimio_pembro_1l"
+   ],
+   "obtenido": "nivo_ipi_1l",
+   "obtenido_label": "Nivolumab + ipilimumab 1L",
+   "confianza": 0.95,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 3,
+   "error": null
+  },
+  {
+   "id": "MESOTELIOMA-V02",
+   "titulo": "Epitelioide metastasico bev apto",
+   "fuente": "MAPS: bevacizumab con cis/pem",
+   "esperado_tipo": "recomendacion",
+   "esperado": "platino_pem_bev",
+   "aceptables": [
+    "platino_pem_bev",
+    "platino_pemetrexed",
+    "nivo_ipi_1l"
+   ],
+   "obtenido": "platino_pem_bev",
+   "obtenido_label": "Platino + pemetrexed + bevacizumab",
+   "confianza": 0.94,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 4,
+   "error": null
+  },
+  {
+   "id": "MESOTELIOMA-V03",
+   "titulo": "Epitelioide irresecable bev no apto",
+   "fuente": "ESMO: cis/carboplatino+pemetrexed",
+   "esperado_tipo": "recomendacion",
+   "esperado": "platino_pemetrexed",
+   "aceptables": [
+    "platino_pemetrexed",
+    "nivo_ipi_1l",
+    "quimio_pembro_1l"
+   ],
+   "obtenido": "platino_pemetrexed",
+   "obtenido_label": "Platino + pemetrexed",
+   "confianza": 0.96,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 3,
+   "error": null
+  },
+  {
+   "id": "MESOTELIOMA-V04",
+   "titulo": "Localizado epitelioide seleccionado",
+   "fuente": "ESMO: cirugia solo seleccionados",
+   "esperado_tipo": "recomendacion",
+   "esperado": "cirugia_multimodal",
+   "aceptables": [
+    "cirugia_multimodal"
+   ],
+   "obtenido": "cirugia_multimodal",
+   "obtenido_label": "Cirugia en centro experto + tratamiento multimodal",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "MESOTELIOMA-V05",
+   "titulo": "Segunda linea tras quimioterapia",
+   "fuente": "ESMO: nivolumab/pembrolizumab o quimio rescate",
+   "esperado_tipo": "recomendacion",
+   "esperado": "segunda_linea_nivo_pembro",
+   "aceptables": [
+    "segunda_linea_nivo_pembro",
+    "segunda_linea_quimio",
+    "mantenimiento_pemetrexed"
+   ],
+   "obtenido": "segunda_linea_nivo_pembro",
+   "obtenido_label": "Inmunoterapia en segunda linea",
+   "confianza": 0.44,
+   "revision": true,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 6,
+   "error": null
+  },
+  {
+   "id": "MESOTELIOMA-V06",
+   "titulo": "Histologia desconocida",
+   "fuente": "ESMO: histologia define ICI vs quimio",
+   "esperado_tipo": "necesita_datos",
+   "esperado": "necesita_datos",
+   "aceptables": [],
+   "obtenido": "necesita_datos",
+   "obtenido_label": null,
+   "confianza": null,
+   "revision": null,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [
+    "¿La histologia es epitelioide o no epitelioide?"
+   ],
+   "n_candidatos": 0,
+   "error": null
+  },
+  {
+   "id": "MESOTELIOMA-V07",
+   "titulo": "ICI contraindicada en no epitelioide",
+   "fuente": "Seguridad ICI autoinmunidad",
+   "esperado_tipo": "revision_humana",
+   "esperado": "revision_humana",
+   "aceptables": [],
+   "obtenido": "revision (platino_pemetrexed)",
+   "obtenido_label": "Platino + pemetrexed",
+   "confianza": 0.13,
+   "revision": true,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 3,
+   "error": null
+  },
+  {
+   "id": "MESOTELIOMA-V08",
+   "titulo": "ECOG 3 sintomatico",
+   "fuente": "ESMO: soporte si no candidato activo",
+   "esperado_tipo": "recomendacion",
+   "esperado": "soporte_exclusivo",
+   "aceptables": [
+    "soporte_exclusivo"
+   ],
+   "obtenido": "soporte_exclusivo",
+   "obtenido_label": "Cuidados paliativos y control sintomatico",
+   "confianza": 0.91,
+   "revision": true,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 4,
+   "error": null
+  }
+ ]
+}

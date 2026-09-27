@@ -1,0 +1,418 @@
+{
+ "id": "merkel",
+ "nombre": "Carcinoma de celulas de Merkel",
+ "grupo": "Piel",
+ "version": "MERKEL-ESMO-2024.1",
+ "guias": [
+  {
+   "titulo": "ESMO Clinical Practice Guideline: Merkel-Cell Carcinoma",
+   "anio": 2024,
+   "url": "https://www.esmo.org/guidelines/esmo-clinical-practice-guideline-merkel-cell-carcinoma"
+  }
+ ],
+ "descripcion": "Carcinoma de celulas de Merkel localizado, ganglionar y avanzado: cirugia + radioterapia y anti-PD-(L)1 en enfermedad avanzada.",
+ "campos": [
+  {
+   "id": "estadio",
+   "label": "Estadio/situacion",
+   "tipo": "choice",
+   "seccion": "Tumor",
+   "opciones": [
+    "I_II",
+    "III_ganglionar",
+    "localmente_avanzado_irresecable",
+    "IV"
+   ],
+   "requerido": true,
+   "pregunta": "¿Cual es el estadio/situacion del carcinoma de Merkel?"
+  },
+  {
+   "id": "resecable",
+   "label": "Resecable",
+   "tipo": "bool",
+   "seccion": "Cirugia"
+  },
+  {
+   "id": "margenes_afectos",
+   "label": "Margenes afectos/alto riesgo local",
+   "tipo": "bool",
+   "seccion": "Postoperatorio"
+  },
+  {
+   "id": "candidato_ici",
+   "label": "Candidato a inmunoterapia",
+   "tipo": "bool",
+   "seccion": "Seguridad"
+  },
+  {
+   "id": "inmunosupresion",
+   "label": "Inmunosupresion relevante",
+   "tipo": "bool",
+   "seccion": "Seguridad"
+  }
+ ],
+ "derivados": [],
+ "opciones": [
+  {
+   "id": "cirugia_rt_local_merkel",
+   "label": "Escision amplia + radioterapia adyuvante",
+   "nota": "MCC localizado resecable: excision amplia, estadificacion ganglio centinela y RT adyuvante al lecho en la mayoria.",
+   "cuando": [
+    {
+     "campo": "estadio",
+     "eq": "I_II"
+    },
+    {
+     "campo": "resecable",
+     "ne": false
+    }
+   ],
+   "componentes": [
+    "cirugia",
+    "radioterapia"
+   ],
+   "evidencia": "III, A"
+  },
+  {
+   "id": "rt_definitiva_merkel",
+   "label": "Radioterapia definitiva",
+   "nota": "Si no candidato a cirugia, RT definitiva puede lograr control locorregional en enfermedad localizada.",
+   "cuando": [
+    {
+     "campo": "estadio",
+     "in": [
+      "I_II",
+      "III_ganglionar"
+     ]
+    },
+    {
+     "campo": "resecable",
+     "eq": false
+    }
+   ],
+   "componentes": [
+    "radioterapia"
+   ],
+   "evidencia": "III, B"
+  },
+  {
+   "id": "manejo_ganglionar_rt_merkel",
+   "label": "Diseccion/RT ganglionar + RT adyuvante",
+   "nota": "Estadio III ganglionar resecable: tratamiento locorregional con cirugia ganglionar y/o RT adyuvante.",
+   "cuando": [
+    {
+     "campo": "estadio",
+     "eq": "III_ganglionar"
+    },
+    {
+     "campo": "resecable",
+     "ne": false
+    }
+   ],
+   "componentes": [
+    "cirugia",
+    "radioterapia"
+   ],
+   "evidencia": "III, A"
+  },
+  {
+   "id": "avelumab_merkel_1l",
+   "label": "Avelumab 1L avanzado",
+   "nota": "MCC avanzado: avelumab anti-PD-L1 es estandar en enfermedad metastasica o irresecable (JAVELIN Merkel 200).",
+   "cuando": [
+    {
+     "campo": "estadio",
+     "in": [
+      "localmente_avanzado_irresecable",
+      "IV"
+     ]
+    },
+    {
+     "campo": "candidato_ici",
+     "ne": false
+    }
+   ],
+   "componentes": [
+    "inmunoterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "pembro_retifanlimab_merkel",
+   "label": "Pembrolizumab o retifanlimab",
+   "nota": "Anti-PD-1 (pembrolizumab/retifanlimab) son opciones activas en MCC avanzado.",
+   "cuando": [
+    {
+     "campo": "estadio",
+     "in": [
+      "localmente_avanzado_irresecable",
+      "IV"
+     ]
+    },
+    {
+     "campo": "candidato_ici",
+     "ne": false
+    }
+   ],
+   "componentes": [
+    "inmunoterapia"
+   ],
+   "evidencia": "II, A"
+  },
+  {
+   "id": "quimio_merkel_no_ici",
+   "label": "Quimioterapia paliativa basada en platino/etoposido",
+   "nota": "Si inmunoterapia esta contraindicada o tras progresion, quimioterapia puede inducir respuestas cortas.",
+   "cuando": [
+    {
+     "campo": "estadio",
+     "in": [
+      "localmente_avanzado_irresecable",
+      "IV"
+     ]
+    },
+    {
+     "campo": "candidato_ici",
+     "eq": false
+    }
+   ],
+   "componentes": [
+    "quimioterapia"
+   ],
+   "evidencia": "III, B"
+  },
+  {
+   "id": "soporte_merkel",
+   "label": "Soporte exclusivo",
+   "nota": "Fragilidad extrema/ECOG 3-4: soporte y control sintomatico.",
+   "cuando": {
+    "campo": "ecog",
+    "in": [
+     "3",
+     "4"
+    ]
+   },
+   "componentes": [
+    "soporte"
+   ],
+   "evidencia": "V, A"
+  }
+ ],
+ "preguntas": [
+  {
+   "key": "beneficio_rt_merkel",
+   "tipo": "score",
+   "capa": 1,
+   "cuando": {
+    "campo": "estadio",
+    "in": [
+     "I_II",
+     "III_ganglionar"
+    ]
+   },
+   "instrucciones": "Valora beneficio de RT adyuvante segun margenes, inmunosupresion, tamano y localizacion.",
+   "criterios": [
+    "Bajo",
+    "Intermedio",
+    "Alto"
+   ]
+  },
+  {
+   "key": "fit_ici_merkel",
+   "tipo": "noul",
+   "capa": 2,
+   "cuando": {
+    "campo": "estadio",
+    "in": [
+     "localmente_avanzado_irresecable",
+     "IV"
+    ]
+   },
+   "instrucciones": "¿El paciente es candidato clinico a anti-PD-(L)1 considerando autoinmunidad, trasplante y corticoides?"
+  }
+ ],
+ "seguridad": [
+  {
+   "key": "contra_ici_merkel",
+   "cuando": {
+    "campo": "comorbilidades_relevantes",
+    "present": true
+   },
+   "bloquea_componentes": [
+    "inmunoterapia"
+   ],
+   "instrucciones": "¿Existe contraindicacion mayor para anti-PD-(L)1 (trasplante, autoinmunidad activa grave)?",
+   "motivo": "Contraindicacion mayor para inmunoterapia."
+  }
+ ],
+ "avisos": [
+  {
+   "cuando": {
+    "campo": "inmunosupresion",
+    "eq": true
+   },
+   "texto": "Inmunosupresion empeora pronostico y complica inmunoterapia; requiere discusion multidisciplinar."
+  }
+ ],
+ "vinetas": [
+  {
+   "id": "MERKEL-V01",
+   "titulo": "Localizado resecable",
+   "fuente": "MCC localizado",
+   "payload": {
+    "edad": 60,
+    "ecog": "0",
+    "estadio": "I_II",
+    "resecable": true
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "cirugia_rt_local_merkel",
+    "aceptables": [
+     "cirugia_rt_local_merkel"
+    ]
+   }
+  },
+  {
+   "id": "MERKEL-V02",
+   "titulo": "Localizado no quirurgico",
+   "fuente": "RT definitiva",
+   "payload": {
+    "edad": 60,
+    "ecog": "1",
+    "estadio": "I_II",
+    "resecable": false
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "rt_definitiva_merkel",
+    "aceptables": [
+     "rt_definitiva_merkel"
+    ]
+   }
+  },
+  {
+   "id": "MERKEL-V03",
+   "titulo": "Ganglionar resecable",
+   "fuente": "Manejo ganglionar",
+   "payload": {
+    "edad": 60,
+    "ecog": "1",
+    "estadio": "III_ganglionar",
+    "resecable": true
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "manejo_ganglionar_rt_merkel",
+    "aceptables": [
+     "manejo_ganglionar_rt_merkel"
+    ]
+   }
+  },
+  {
+   "id": "MERKEL-V04",
+   "titulo": "Ganglionar no resecable",
+   "fuente": "RT",
+   "payload": {
+    "edad": 60,
+    "ecog": "1",
+    "estadio": "III_ganglionar",
+    "resecable": false
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "rt_definitiva_merkel",
+    "aceptables": [
+     "rt_definitiva_merkel"
+    ]
+   }
+  },
+  {
+   "id": "MERKEL-V05",
+   "titulo": "Irresecable avanzado",
+   "fuente": "Avelumab",
+   "payload": {
+    "edad": 60,
+    "ecog": "1",
+    "estadio": "localmente_avanzado_irresecable",
+    "candidato_ici": true
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "avelumab_merkel_1l",
+    "aceptables": [
+     "avelumab_merkel_1l",
+     "pembro_retifanlimab_merkel"
+    ]
+   }
+  },
+  {
+   "id": "MERKEL-V06",
+   "titulo": "Metastasico primera linea",
+   "fuente": "Avelumab",
+   "payload": {
+    "edad": 60,
+    "ecog": "1",
+    "estadio": "IV",
+    "candidato_ici": true
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "avelumab_merkel_1l",
+    "aceptables": [
+     "avelumab_merkel_1l",
+     "pembro_retifanlimab_merkel"
+    ]
+   }
+  },
+  {
+   "id": "MERKEL-V07",
+   "titulo": "Metastasico no ICI",
+   "fuente": "Quimioterapia",
+   "payload": {
+    "edad": 60,
+    "ecog": "1",
+    "estadio": "IV",
+    "candidato_ici": false,
+    "inmunosupresion": true
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "quimio_merkel_no_ici",
+    "aceptables": [
+     "quimio_merkel_no_ici"
+    ]
+   }
+  },
+  {
+   "id": "MERKEL-V08",
+   "titulo": "Falta estadio",
+   "fuente": "Dato imprescindible",
+   "payload": {
+    "edad": 60,
+    "ecog": "0",
+    "estadio": null
+   },
+   "esperado": {
+    "tipo": "necesita_datos"
+   }
+  },
+  {
+   "id": "MERKEL-V09",
+   "titulo": "Metastasico autoinmune",
+   "fuente": "Seguridad ICI",
+   "payload": {
+    "edad": 60,
+    "ecog": "1",
+    "estadio": "IV",
+    "candidato_ici": true,
+    "comorbilidades_relevantes": [
+     "artritis reumatoide activa grave con biologico"
+    ]
+   },
+   "esperado": {
+    "tipo": "revision_humana"
+   }
+  }
+ ]
+}

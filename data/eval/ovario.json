@@ -1,0 +1,196 @@
+{
+ "tumor": "ovario",
+ "nombre": "Cancer epitelial de ovario",
+ "grupo": "Ginecologico",
+ "version": "OVARIO-ESMO-2025.1",
+ "fecha": "2026-09-27T14:47:40+00:00",
+ "modelo": "jev-latest",
+ "mock": false,
+ "umbral_confianza": 0.6,
+ "n": 9,
+ "aciertos": 9,
+ "acierto_global": 1.0,
+ "acierto_tratamiento": 1.0,
+ "acierto_preferida": 1.0,
+ "acierto_seguridad": 1.0,
+ "confianza_aciertos": 0.812857142857143,
+ "confianza_fallos": null,
+ "n_multiopcion": 3,
+ "acierto_multiopcion": 1.0,
+ "candidatos_medios": 1.8571428571428572,
+ "casos": [
+  {
+   "id": "OVARIO-V01",
+   "titulo": "Estadio IA bajo grado",
+   "fuente": "ESMO early low risk",
+   "esperado_tipo": "recomendacion",
+   "esperado": "cirugia_estadiaje_precoz",
+   "aceptables": [
+    "cirugia_estadiaje_precoz"
+   ],
+   "obtenido": "cirugia_estadiaje_precoz",
+   "obtenido_label": "Cirugia de estadiaje completa y vigilancia",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "OVARIO-V02",
+   "titulo": "Estadio IC seroso alto grado",
+   "fuente": "ESMO early high risk",
+   "esperado_tipo": "recomendacion",
+   "esperado": "quimio_adyuvante_precoz",
+   "aceptables": [
+    "quimio_adyuvante_precoz"
+   ],
+   "obtenido": "quimio_adyuvante_precoz",
+   "obtenido_label": "Carboplatino-paclitaxel adyuvante",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "OVARIO-V03",
+   "titulo": "Avanzado resecable BRCA mutado",
+   "fuente": "SOLO-1",
+   "esperado_tipo": "recomendacion",
+   "esperado": "mantenimiento_olaparib",
+   "aceptables": [
+    "debulking_primario_qt",
+    "mantenimiento_olaparib"
+   ],
+   "obtenido": "mantenimiento_olaparib",
+   "obtenido_label": "Mantenimiento olaparib",
+   "confianza": 0.07,
+   "revision": true,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  },
+  {
+   "id": "OVARIO-V04",
+   "titulo": "Estadio IV no resecable",
+   "fuente": "ESMO neoadjuvant",
+   "esperado_tipo": "recomendacion",
+   "esperado": "neoadyuvancia_ids",
+   "aceptables": [
+    "neoadyuvancia_ids",
+    "mantenimiento_niraparib",
+    "qt_bev_1l"
+   ],
+   "obtenido": "neoadyuvancia_ids",
+   "obtenido_label": "Carboplatino-paclitaxel neoadyuvante + cirugia de intervalo",
+   "confianza": 0.79,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 3,
+   "error": null
+  },
+  {
+   "id": "OVARIO-V05",
+   "titulo": "Alto riesgo HRD positivo con bev",
+   "fuente": "PAOLA-1",
+   "esperado_tipo": "recomendacion",
+   "esperado": "mantenimiento_olaparib_bev",
+   "aceptables": [
+    "qt_bev_1l",
+    "mantenimiento_olaparib_bev"
+   ],
+   "obtenido": "mantenimiento_olaparib_bev",
+   "obtenido_label": "Mantenimiento olaparib + bevacizumab",
+   "confianza": 0.83,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 4,
+   "error": null
+  },
+  {
+   "id": "OVARIO-V06",
+   "titulo": "Recaida platino sensible",
+   "fuente": "ESMO recurrent platinum-sensitive",
+   "esperado_tipo": "recomendacion",
+   "esperado": "recaida_platino_sensible",
+   "aceptables": [
+    "recaida_platino_sensible"
+   ],
+   "obtenido": "recaida_platino_sensible",
+   "obtenido_label": "Doblete basado en platino +- bevacizumab/PARP",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "OVARIO-V07",
+   "titulo": "Recaida resistente FRalfa alto",
+   "fuente": "MIRASOL",
+   "esperado_tipo": "recomendacion",
+   "esperado": "mirvetuximab_fralfa",
+   "aceptables": [
+    "mirvetuximab_fralfa"
+   ],
+   "obtenido": "mirvetuximab_fralfa",
+   "obtenido_label": "Mirvetuximab soravtansina",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "OVARIO-V08",
+   "titulo": "Falta BRCA en avanzado",
+   "fuente": "ESMO BRCA testing",
+   "esperado_tipo": "necesita_datos",
+   "esperado": "necesita_datos",
+   "aceptables": [],
+   "obtenido": "necesita_datos",
+   "obtenido_label": null,
+   "confianza": null,
+   "revision": null,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [
+    "¿Cual es el estado BRCA1/2?"
+   ],
+   "n_candidatos": 0,
+   "error": null
+  },
+  {
+   "id": "OVARIO-V09",
+   "titulo": "ECOG 4 avanzado",
+   "fuente": "ESMO supportive care",
+   "esperado_tipo": "revision_humana",
+   "esperado": "revision_humana",
+   "aceptables": [],
+   "obtenido": "revision (soporte_ensayo)",
+   "obtenido_label": "Mejor soporte/ensayo clinico",
+   "confianza": 0.99,
+   "revision": true,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 4,
+   "error": null
+  }
+ ]
+}

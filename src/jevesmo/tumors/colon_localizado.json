@@ -1,0 +1,650 @@
+{
+ "id": "colon_localizado",
+ "nombre": "Cancer de colon localizado",
+ "grupo": "Digestivo",
+ "version": "colon_localizado-ESMO-2023.1",
+ "guias": [
+  {
+   "titulo": "ESMO Clinical Practice Guideline: Localised colon cancer",
+   "anio": 2020,
+   "url": "https://www.esmo.org/guidelines/gastrointestinal-cancers/colon-cancer"
+  }
+ ],
+ "descripcion": "Cancer de colon localizado: estadio II bajo/alto riesgo, estadio III bajo/alto riesgo, duracion IDEA, dMMR y neoadyuvancia en dMMR localmente avanzado.",
+ "campos": [
+  {
+   "id": "estadio_colon",
+   "label": "Estadio/riesgo patologico",
+   "tipo": "choice",
+   "seccion": "Tumor",
+   "opciones": [
+    "II_bajo",
+    "II_alto",
+    "III_bajo",
+    "III_alto",
+    "localmente_avanzado"
+   ],
+   "requerido": true,
+   "pregunta": "¿Cual es el estadio/riesgo (II bajo/alto, III bajo/alto o localmente avanzado)?"
+  },
+  {
+   "id": "dmmr_msi",
+   "label": "dMMR / MSI-H",
+   "tipo": "choice",
+   "seccion": "Biomarcadores",
+   "opciones": [
+    "si",
+    "no",
+    "desconocido"
+   ],
+   "requerido": true,
+   "pregunta": "¿El tumor es dMMR/MSI-H, pMMR/MSS o desconocido?"
+  },
+  {
+   "id": "resecado_r0",
+   "label": "Reseccion R0 realizada",
+   "tipo": "bool",
+   "seccion": "Tumor",
+   "pregunta": "¿Se ha realizado reseccion R0 del primario?",
+   "requerido_si": {
+    "campo": "estadio_colon",
+    "in": [
+     "II_bajo",
+     "II_alto",
+     "III_bajo",
+     "III_alto"
+    ]
+   }
+  },
+  {
+   "id": "riesgo_oxaliplatino",
+   "label": "Riesgo alto de toxicidad por oxaliplatino",
+   "tipo": "bool",
+   "seccion": "Seguridad"
+  },
+  {
+   "id": "neuropatia",
+   "label": "Neuropatia periferica clinicamente relevante",
+   "tipo": "bool",
+   "seccion": "Seguridad"
+  },
+  {
+   "id": "alto_riesgo_clinico",
+   "label": "T4/N2/obstruccion/perforacion/margen dudoso",
+   "tipo": "bool",
+   "seccion": "Tumor"
+  },
+  {
+   "id": "preferencia_corta",
+   "label": "Preferencia fuerte por duracion corta si es aceptable",
+   "tipo": "bool",
+   "seccion": "Tumor"
+  }
+ ],
+ "derivados": [
+  {
+   "id": "grupo_riesgo",
+   "label": "Grupo de riesgo",
+   "defecto": "no definido",
+   "reglas": [
+    {
+     "cuando": {
+      "campo": "estadio_colon",
+      "in": [
+       "II_bajo",
+       "III_bajo"
+      ]
+     },
+     "valor": "bajo"
+    },
+    {
+     "cuando": {
+      "campo": "estadio_colon",
+      "in": [
+       "II_alto",
+       "III_alto",
+       "localmente_avanzado"
+      ]
+     },
+     "valor": "alto"
+    }
+   ]
+  }
+ ],
+ "opciones": [
+  {
+   "id": "cirugia_reseccion_oncologica",
+   "label": "Colectomia oncologica con linfadenectomia",
+   "nota": "ESMO: enfermedad resecable no operada -> cirugia radical con evaluacion ganglionar adecuada.",
+   "cuando": [
+    {
+     "campo": "estadio_colon",
+     "in": [
+      "II_bajo",
+      "II_alto",
+      "III_bajo",
+      "III_alto"
+     ]
+    },
+    {
+     "campo": "resecado_r0",
+     "eq": false
+    }
+   ],
+   "componentes": [
+    "cirugia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "observacion_ii_dmmr",
+   "label": "Observacion tras R0 en estadio II dMMR",
+   "nota": "ESMO: estadio II dMMR/MSI-H resecado, incluso con algunos factores de riesgo, no debe recibir fluoropirimidina adyuvante; vigilancia.",
+   "cuando": [
+    {
+     "campo": "estadio_colon",
+     "in": [
+      "II_bajo",
+      "II_alto"
+     ]
+    },
+    {
+     "campo": "resecado_r0",
+     "eq": true
+    },
+    {
+     "campo": "dmmr_msi",
+     "eq": "si"
+    }
+   ],
+   "componentes": [
+    "vigilancia"
+   ],
+   "evidencia": "II, A"
+  },
+  {
+   "id": "observacion_ii_bajo_pmmr",
+   "label": "Observacion en estadio II bajo riesgo pMMR",
+   "nota": "ESMO: estadio II pMMR bajo riesgo tras R0 -> vigilancia sin quimioterapia adyuvante rutinaria.",
+   "cuando": [
+    {
+     "campo": "estadio_colon",
+     "eq": "II_bajo"
+    },
+    {
+     "campo": "resecado_r0",
+     "eq": true
+    },
+    {
+     "campo": "dmmr_msi",
+     "eq": "no"
+    }
+   ],
+   "componentes": [
+    "vigilancia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "fluoropirimidina_ii_alto",
+   "label": "Fluoropirimidina adyuvante 6 meses",
+   "nota": "ESMO: estadio II pMMR con factores de alto riesgo -> discutir fluoropirimidina adyuvante; beneficio absoluto modesto.",
+   "cuando": [
+    {
+     "campo": "estadio_colon",
+     "eq": "II_alto"
+    },
+    {
+     "campo": "resecado_r0",
+     "eq": true
+    },
+    {
+     "campo": "dmmr_msi",
+     "eq": "no"
+    }
+   ],
+   "componentes": [
+    "quimioterapia"
+   ],
+   "evidencia": "II, B"
+  },
+  {
+   "id": "capox_ii_alto",
+   "label": "CAPOX adyuvante si riesgo muy alto",
+   "nota": "ESMO: estadio II pMMR con T4/varios factores de riesgo puede considerar oxaliplatino (CAPOX), individualizando toxicidad.",
+   "cuando": [
+    {
+     "campo": "estadio_colon",
+     "eq": "II_alto"
+    },
+    {
+     "campo": "resecado_r0",
+     "eq": true
+    },
+    {
+     "campo": "dmmr_msi",
+     "eq": "no"
+    },
+    {
+     "campo": "alto_riesgo_clinico",
+     "eq": true
+    }
+   ],
+   "componentes": [
+    "quimioterapia"
+   ],
+   "evidencia": "II, C"
+  },
+  {
+   "id": "capox_3m_iii_bajo",
+   "label": "CAPOX 3 meses (IDEA) en estadio III bajo riesgo",
+   "nota": "ESMO/IDEA: T1-3 N1 (III bajo riesgo) -> CAPOX 3 meses preferido por menor neurotoxicidad con eficacia similar.",
+   "cuando": [
+    {
+     "campo": "estadio_colon",
+     "eq": "III_bajo"
+    },
+    {
+     "campo": "resecado_r0",
+     "eq": true
+    }
+   ],
+   "componentes": [
+    "quimioterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "folfox_6m_iii_bajo",
+   "label": "FOLFOX/CAPOX 6 meses si maxima intensidad",
+   "nota": "ESMO/IDEA: estadio III bajo riesgo puede recibir 6 meses, sobre todo si FOLFOX o dudas de riesgo.",
+   "cuando": [
+    {
+     "campo": "estadio_colon",
+     "eq": "III_bajo"
+    },
+    {
+     "campo": "resecado_r0",
+     "eq": true
+    },
+    {
+     "campo": "preferencia_corta",
+     "eq": false
+    }
+   ],
+   "componentes": [
+    "quimioterapia"
+   ],
+   "evidencia": "I, B"
+  },
+  {
+   "id": "folfox_capox_6m_iii_alto",
+   "label": "FOLFOX o CAPOX 6 meses en estadio III alto riesgo",
+   "nota": "ESMO/IDEA: T4 y/o N2 -> oxaliplatino + fluoropirimidina durante 6 meses.",
+   "cuando": [
+    {
+     "campo": "estadio_colon",
+     "eq": "III_alto"
+    },
+    {
+     "campo": "resecado_r0",
+     "eq": true
+    }
+   ],
+   "componentes": [
+    "quimioterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "capox_3m_iii_alto_no_apto",
+   "label": "CAPOX 3 meses si toxicidad impide 6 meses",
+   "nota": "ESMO/IDEA: III alto riesgo, CAPOX 3 meses puede ser compromiso si neuropatia/comorbilidad hacen inaceptable 6 meses.",
+   "cuando": [
+    {
+     "campo": "estadio_colon",
+     "eq": "III_alto"
+    },
+    {
+     "campo": "resecado_r0",
+     "eq": true
+    },
+    {
+     "campo": "riesgo_oxaliplatino",
+     "eq": true
+    }
+   ],
+   "componentes": [
+    "quimioterapia"
+   ],
+   "evidencia": "I, B"
+  },
+  {
+   "id": "fluoropirimidina_sola_no_apto",
+   "label": "Fluoropirimidina sola si no apto a oxaliplatino",
+   "nota": "ESMO: si oxaliplatino contraindicado/no tolerable, fluoropirimidina sola es opcion menos eficaz pero aceptable.",
+   "cuando": [
+    {
+     "campo": "resecado_r0",
+     "eq": true
+    },
+    {
+     "campo": "estadio_colon",
+     "in": [
+      "II_alto",
+      "III_bajo",
+      "III_alto"
+     ]
+    },
+    {
+     "campo": "riesgo_oxaliplatino",
+     "eq": true
+    }
+   ],
+   "componentes": [
+    "quimioterapia"
+   ],
+   "evidencia": "I, B"
+  },
+  {
+   "id": "inmunoterapia_neoadyuvante_dmmr",
+   "label": "Inmunoterapia neoadyuvante para colon dMMR localmente avanzado",
+   "nota": "ESMO actual/NICHE: tumores dMMR localmente avanzados pueden considerarse para inmunoterapia neoadyuvante en MDT/ensayo antes de cirugia.",
+   "cuando": [
+    {
+     "campo": "estadio_colon",
+     "eq": "localmente_avanzado"
+    },
+    {
+     "campo": "dmmr_msi",
+     "eq": "si"
+    }
+   ],
+   "componentes": [
+    "inmunoterapia"
+   ],
+   "evidencia": "III, B"
+  },
+  {
+   "id": "tnt_quimio_neoadyuvante_pmmr",
+   "label": "Quimioterapia neoadyuvante en colon localmente avanzado pMMR",
+   "nota": "ESMO: T4b/amenaza de margen o localmente avanzado pMMR -> valorar quimioterapia preoperatoria y cirugia en MDT.",
+   "cuando": [
+    {
+     "campo": "estadio_colon",
+     "eq": "localmente_avanzado"
+    },
+    {
+     "campo": "dmmr_msi",
+     "eq": "no"
+    }
+   ],
+   "componentes": [
+    "quimioterapia",
+    "cirugia"
+   ],
+   "evidencia": "II, B"
+  }
+ ],
+ "preguntas": [
+  {
+   "key": "riesgo_ii_real",
+   "tipo": "choice",
+   "capa": 1,
+   "cuando": {
+    "campo": "estadio_colon",
+    "eq": "II_alto"
+   },
+   "instrucciones": "En estadio II integra T4, perforacion/obstruccion, <12 ganglios, LVI/PNI y margen para categorizar riesgo.",
+   "criterios": {
+    "alto": "Alto riesgo claro",
+    "intermedio": "Beneficio incierto",
+    "bajo": "Poco beneficio"
+   }
+  },
+  {
+   "key": "apto_oxaliplatino",
+   "tipo": "noul",
+   "capa": 1,
+   "cuando": {
+    "campo": "estadio_colon",
+    "in": [
+     "III_bajo",
+     "III_alto",
+     "II_alto"
+    ]
+   },
+   "instrucciones": "Con edad, ECOG, neuropatia y comorbilidades, ¿es apto para oxaliplatino adyuvante?"
+  },
+  {
+   "key": "colon_dmmr_neoady",
+   "tipo": "noul",
+   "capa": 2,
+   "cuando": {
+    "campo": "estadio_colon",
+    "eq": "localmente_avanzado"
+   },
+   "instrucciones": "¿El caso dMMR localmente avanzado es apropiado para inmunoterapia neoadyuvante dentro de MDT/experiencia?"
+  }
+ ],
+ "seguridad": [
+  {
+   "key": "neuro_oxaliplatino",
+   "cuando": {
+    "campo": "neuropatia",
+    "present": true
+   },
+   "bloquea_componentes": [
+    "quimioterapia"
+   ],
+   "instrucciones": "Si hay neuropatia significativa u otra comorbilidad, ¿oxaliplatino/CAPOX/FOLFOX supone riesgo inaceptable?",
+   "umbral": 0.65,
+   "motivo": "Neuropatia/comorbilidad limita oxaliplatino; requiere individualizacion"
+  }
+ ],
+ "avisos": [
+  {
+   "cuando": {
+    "campo": "dmmr_msi",
+    "eq": "desconocido"
+   },
+   "texto": "dMMR/MSI no disponible: cambia adyuvancia en estadio II y neoadyuvancia."
+  },
+  {
+   "cuando": {
+    "campo": "alto_riesgo_clinico",
+    "missing": true
+   },
+   "texto": "Faltan factores de alto riesgo patologico que modifican intensidad adyuvante."
+  }
+ ],
+ "vinetas": [
+  {
+   "id": "COLON_LOCALIZADO-V01",
+   "titulo": "Estadio II bajo riesgo pMMR resecado",
+   "fuente": "ESMO colon: vigilancia",
+   "payload": {
+    "edad": 67,
+    "ecog": "0",
+    "sexo": "hombre",
+    "estadio_colon": "II_bajo",
+    "dmmr_msi": "no",
+    "resecado_r0": true,
+    "alto_riesgo_clinico": false
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "observacion_ii_bajo_pmmr",
+    "aceptables": [
+     "observacion_ii_bajo_pmmr"
+    ]
+   }
+  },
+  {
+   "id": "COLON_LOCALIZADO-V02",
+   "titulo": "Estadio II dMMR",
+   "fuente": "ESMO colon: dMMR estadio II sin adyuvancia",
+   "payload": {
+    "edad": 72,
+    "ecog": "1",
+    "sexo": "mujer",
+    "estadio_colon": "II_alto",
+    "dmmr_msi": "si",
+    "resecado_r0": true,
+    "alto_riesgo_clinico": true
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "observacion_ii_dmmr",
+    "aceptables": [
+     "observacion_ii_dmmr"
+    ]
+   }
+  },
+  {
+   "id": "COLON_LOCALIZADO-V03",
+   "titulo": "Estadio II alto riesgo pMMR",
+   "fuente": "ESMO colon: fluoropirimidina",
+   "payload": {
+    "edad": 58,
+    "ecog": "0",
+    "sexo": "hombre",
+    "estadio_colon": "II_alto",
+    "dmmr_msi": "no",
+    "resecado_r0": true,
+    "alto_riesgo_clinico": false
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "fluoropirimidina_ii_alto",
+    "aceptables": [
+     "fluoropirimidina_ii_alto",
+     "capox_ii_alto"
+    ]
+   }
+  },
+  {
+   "id": "COLON_LOCALIZADO-V04",
+   "titulo": "Estadio III bajo riesgo",
+   "fuente": "IDEA: CAPOX 3 meses",
+   "payload": {
+    "edad": 61,
+    "ecog": "0",
+    "sexo": "mujer",
+    "estadio_colon": "III_bajo",
+    "dmmr_msi": "no",
+    "resecado_r0": true,
+    "preferencia_corta": true
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "capox_3m_iii_bajo",
+    "aceptables": [
+     "capox_3m_iii_bajo"
+    ]
+   }
+  },
+  {
+   "id": "COLON_LOCALIZADO-V05",
+   "titulo": "Estadio III alto riesgo",
+   "fuente": "ESMO/IDEA: 6 meses",
+   "payload": {
+    "edad": 54,
+    "ecog": "0",
+    "sexo": "hombre",
+    "estadio_colon": "III_alto",
+    "dmmr_msi": "no",
+    "resecado_r0": true,
+    "alto_riesgo_clinico": true
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "folfox_capox_6m_iii_alto",
+    "aceptables": [
+     "folfox_capox_6m_iii_alto"
+    ]
+   }
+  },
+  {
+   "id": "COLON_LOCALIZADO-V06",
+   "titulo": "III alto no apto a oxaliplatino",
+   "fuente": "ESMO: fluoropirimidina si no apto",
+   "payload": {
+    "edad": 80,
+    "ecog": "1",
+    "sexo": "mujer",
+    "estadio_colon": "III_alto",
+    "dmmr_msi": "no",
+    "resecado_r0": true,
+    "riesgo_oxaliplatino": true,
+    "comorbilidades_relevantes": [
+     "fragilidad"
+    ]
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "fluoropirimidina_sola_no_apto",
+    "aceptables": [
+     "fluoropirimidina_sola_no_apto",
+     "capox_3m_iii_alto_no_apto"
+    ]
+   }
+  },
+  {
+   "id": "COLON_LOCALIZADO-V07",
+   "titulo": "Colon dMMR localmente avanzado",
+   "fuente": "NICHE/ESMO",
+   "payload": {
+    "edad": 49,
+    "ecog": "0",
+    "sexo": "mujer",
+    "estadio_colon": "localmente_avanzado",
+    "dmmr_msi": "si",
+    "resecado_r0": false,
+    "descripcion_libre": "T4b voluminoso"
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "inmunoterapia_neoadyuvante_dmmr",
+    "aceptables": [
+     "inmunoterapia_neoadyuvante_dmmr"
+    ]
+   }
+  },
+  {
+   "id": "COLON_LOCALIZADO-V08",
+   "titulo": "Falta estadio",
+   "fuente": "Dato imprescindible",
+   "payload": {
+    "edad": 66,
+    "ecog": "0",
+    "sexo": "hombre",
+    "estadio_colon": null,
+    "dmmr_msi": "no"
+   },
+   "esperado": {
+    "tipo": "necesita_datos"
+   }
+  },
+  {
+   "id": "COLON_LOCALIZADO-V09",
+   "titulo": "Neuropatia grave en III",
+   "fuente": "Seguridad oxaliplatino",
+   "payload": {
+    "edad": 70,
+    "ecog": "2",
+    "sexo": "hombre",
+    "estadio_colon": "III_alto",
+    "dmmr_msi": "no",
+    "resecado_r0": true,
+    "neuropatia": true,
+    "comorbilidades_relevantes": [
+     "neuropatia periferica grado 3"
+    ]
+   },
+   "esperado": {
+    "tipo": "revision_humana"
+   }
+  }
+ ]
+}

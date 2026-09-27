@@ -1,0 +1,737 @@
+{
+ "id": "endometrio",
+ "nombre": "Cancer de endometrio",
+ "grupo": "Ginecologico",
+ "version": "ENDOMETRIO-ESMO-2025.1",
+ "guias": [
+  {
+   "titulo": "ESMO Clinical Practice Guideline: Endometrial cancer",
+   "anio": 2024,
+   "url": "https://www.esmo.org/guidelines/esmo-clinical-practice-guideline-endometrial-cancer"
+  },
+  {
+   "titulo": "ESGO-ESTRO-ESP guidelines for endometrial carcinoma integrated molecular risk groups",
+   "anio": 2021,
+   "url": "https://www.esmo.org/guidelines/gynaecological-cancers/endometrial-cancer"
+  }
+ ],
+ "descripcion": "Cancer de endometrio con clasificacion molecular POLE/dMMR/p53abn/NSMP, grupos de riesgo y tratamiento avanzado con quimio-inmunoterapia, lenvatinib-pembrolizumab y hormonoterapia.",
+ "campos": [
+  {
+   "id": "estadio",
+   "label": "Estadio FIGO",
+   "tipo": "choice",
+   "opciones": [
+    "I",
+    "II",
+    "III",
+    "IV",
+    "recurrente"
+   ],
+   "requerido": true,
+   "pregunta": "¿Cual es el estadio FIGO o si es enfermedad recurrente?"
+  },
+  {
+   "id": "histologia",
+   "label": "Histologia",
+   "tipo": "choice",
+   "opciones": [
+    "endometrioide",
+    "seroso",
+    "celulas_claras",
+    "carcinosarcoma",
+    "otro"
+   ],
+   "requerido": true,
+   "pregunta": "¿Cual es la histologia?"
+  },
+  {
+   "id": "grado",
+   "label": "Grado",
+   "tipo": "choice",
+   "opciones": [
+    "1",
+    "2",
+    "3"
+   ]
+  },
+  {
+   "id": "molecular",
+   "label": "Subtipo molecular",
+   "tipo": "choice",
+   "opciones": [
+    "POLEmut",
+    "dMMR",
+    "p53abn",
+    "NSMP",
+    "desconocido"
+   ],
+   "requerido": true,
+   "pregunta": "¿Cual es el subtipo molecular integrado?"
+  },
+  {
+   "id": "riesgo",
+   "label": "Grupo de riesgo adyuvante",
+   "tipo": "choice",
+   "opciones": [
+    "bajo",
+    "intermedio",
+    "alto_intermedio",
+    "alto"
+   ],
+   "requerido_si": {
+    "campo": "estadio",
+    "in": [
+     "I",
+     "II",
+     "III"
+    ]
+   },
+   "pregunta": "En enfermedad no metastasica, ¿cual es el grupo de riesgo integrado?"
+  },
+  {
+   "id": "er_pr_positivo",
+   "label": "Receptores hormonales positivos",
+   "tipo": "bool"
+  },
+  {
+   "id": "candidato_platino",
+   "label": "Candidata a carboplatino-paclitaxel",
+   "tipo": "bool"
+  },
+  {
+   "id": "hipertension_no_controlada",
+   "label": "Hipertension no controlada",
+   "tipo": "bool"
+  }
+ ],
+ "derivados": [
+  {
+   "id": "ici_subtipo",
+   "label": "Sensibilidad esperada a inmunoterapia",
+   "defecto": "pMMR_o_desconocido",
+   "reglas": [
+    {
+     "cuando": {
+      "campo": "molecular",
+      "eq": "dMMR"
+     },
+     "valor": "dMMR"
+    },
+    {
+     "cuando": {
+      "campo": "molecular",
+      "eq": "POLEmut"
+     },
+     "valor": "ultramutado_POLE"
+    }
+   ]
+  }
+ ],
+ "opciones": [
+  {
+   "id": "observacion_bajo_riesgo",
+   "label": "Observacion tras cirugia",
+   "nota": "ESMO/ESGO: riesgo bajo, incluido POLEmut temprano o endometrioide IA bajo grado sin factores, no precisa adyuvancia.",
+   "cuando": [
+    {
+     "campo": "estadio",
+     "in": [
+      "I",
+      "II"
+     ]
+    },
+    {
+     "campo": "riesgo",
+     "eq": "bajo"
+    }
+   ],
+   "componentes": [
+    "vigilancia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "braquiterapia_vaginal",
+   "label": "Braquiterapia vaginal adyuvante",
+   "nota": "ESMO: riesgo intermedio o alto-intermedio seleccionado tras histerectomia -> braquiterapia vaginal.",
+   "cuando": [
+    {
+     "campo": "estadio",
+     "in": [
+      "I",
+      "II"
+     ]
+    },
+    {
+     "campo": "riesgo",
+     "in": [
+      "intermedio",
+      "alto_intermedio"
+     ]
+    }
+   ],
+   "componentes": [
+    "radioterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "rt_pelvica",
+   "label": "Radioterapia pelvica adyuvante",
+   "nota": "ESMO: alto-intermedio con factores sustanciales o estadio II-III puede requerir radioterapia pelvica externa.",
+   "cuando": [
+    {
+     "campo": "estadio",
+     "in": [
+      "I",
+      "II",
+      "III"
+     ]
+    },
+    {
+     "campo": "riesgo",
+     "in": [
+      "alto_intermedio",
+      "alto"
+     ]
+    }
+   ],
+   "componentes": [
+    "radioterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "quimio_rt_alto_riesgo",
+   "label": "Quimioterapia carboplatino-paclitaxel +- radioterapia adyuvante",
+   "nota": "ESMO: alto riesgo, estadio III o histologias serosa/celulas claras/carcinosarcoma/p53abn -> quimioterapia con o sin radioterapia.",
+   "cuando": [
+    {
+     "campo": "estadio",
+     "eq": "III"
+    },
+    {
+     "campo": "riesgo",
+     "eq": "alto"
+    }
+   ],
+   "componentes": [
+    "quimioterapia",
+    "radioterapia"
+   ],
+   "evidencia": "I, B"
+  },
+  {
+   "id": "carbo_taxol_ici_dmmr_1l",
+   "label": "Carboplatino-paclitaxel + dostarlimab/pembrolizumab (dMMR)",
+   "nota": "RUBY/NRG-GY018: enfermedad avanzada o recurrente dMMR/MSI-H candidata a platino -> carboplatino-paclitaxel + anti-PD-1 y mantenimiento.",
+   "cuando": [
+    {
+     "campo": "estadio",
+     "in": [
+      "IV",
+      "recurrente"
+     ]
+    },
+    {
+     "campo": "molecular",
+     "eq": "dMMR"
+    },
+    {
+     "any": [
+      {
+       "campo": "lineas_previas",
+       "missing": true
+      },
+      {
+       "campo": "lineas_previas",
+       "eq": 0
+      }
+     ]
+    }
+   ],
+   "componentes": [
+    "quimioterapia",
+    "inmunoterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "carbo_taxol_ici_pmmr_1l",
+   "label": "Carboplatino-paclitaxel + pembrolizumab/dostarlimab/durvalumab",
+   "nota": "ESMO: enfermedad avanzada/recurrente pMMR/NSMP/p53abn puede recibir quimioterapia con anti-PD-1/PD-L1 y mantenimiento.",
+   "cuando": [
+    {
+     "campo": "estadio",
+     "in": [
+      "IV",
+      "recurrente"
+     ]
+    },
+    {
+     "campo": "molecular",
+     "in": [
+      "NSMP",
+      "p53abn",
+      "desconocido"
+     ]
+    },
+    {
+     "any": [
+      {
+       "campo": "lineas_previas",
+       "missing": true
+      },
+      {
+       "campo": "lineas_previas",
+       "eq": 0
+      }
+     ]
+    }
+   ],
+   "componentes": [
+    "quimioterapia",
+    "inmunoterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "carbo_taxol_solo",
+   "label": "Carboplatino-paclitaxel",
+   "nota": "ESMO: si no puede usarse inmunoterapia, carboplatino-paclitaxel es el backbone de primera linea avanzada.",
+   "cuando": [
+    {
+     "campo": "estadio",
+     "in": [
+      "IV",
+      "recurrente"
+     ]
+    },
+    {
+     "any": [
+      {
+       "campo": "lineas_previas",
+       "missing": true
+      },
+      {
+       "campo": "lineas_previas",
+       "eq": 0
+      }
+     ]
+    },
+    {
+     "campo": "comorbilidades_relevantes",
+     "present": true
+    }
+   ],
+   "componentes": [
+    "quimioterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "lenvatinib_pembro_2l",
+   "label": "Lenvatinib + pembrolizumab",
+   "nota": "KEYNOTE-775/ESMO: tras platino en cancer endometrial pMMR/no dMMR, lenvatinib + pembrolizumab es estandar si tolerable.",
+   "cuando": [
+    {
+     "campo": "estadio",
+     "in": [
+      "IV",
+      "recurrente"
+     ]
+    },
+    {
+     "campo": "lineas_previas",
+     "gte": 1
+    },
+    {
+     "campo": "molecular",
+     "ne": "dMMR"
+    }
+   ],
+   "componentes": [
+    "dirigida",
+    "inmunoterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "anti_pd1_dmmr_2l",
+   "label": "Anti-PD-1 monoterapia",
+   "nota": "ESMO: dMMR/MSI-H recurrente tras platino puede tratarse con anti-PD-1 si no recibido previamente.",
+   "cuando": [
+    {
+     "campo": "estadio",
+     "in": [
+      "IV",
+      "recurrente"
+     ]
+    },
+    {
+     "campo": "lineas_previas",
+     "gte": 1
+    },
+    {
+     "campo": "molecular",
+     "eq": "dMMR"
+    }
+   ],
+   "componentes": [
+    "inmunoterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "hormonoterapia",
+   "label": "Hormonoterapia",
+   "nota": "ESMO: endometrioide bajo grado, ER/PR positivo, bajo volumen/indolente -> hormonoterapia preferente si no precisa respuesta rapida.",
+   "cuando": [
+    {
+     "campo": "estadio",
+     "in": [
+      "IV",
+      "recurrente"
+     ]
+    },
+    {
+     "campo": "histologia",
+     "eq": "endometrioide"
+    },
+    {
+     "campo": "er_pr_positivo",
+     "eq": true
+    }
+   ],
+   "componentes": [
+    "hormonal"
+   ],
+   "evidencia": "III, A"
+  },
+  {
+   "id": "quimio_2l",
+   "label": "Quimioterapia paliativa de linea posterior",
+   "nota": "ESMO: tras progresion a platino e inmunoterapia/lenvatinib, quimioterapia secuencial o ensayo clinico.",
+   "cuando": [
+    {
+     "campo": "estadio",
+     "in": [
+      "IV",
+      "recurrente"
+     ]
+    },
+    {
+     "campo": "lineas_previas",
+     "gte": 2
+    }
+   ],
+   "componentes": [
+    "quimioterapia"
+   ],
+   "evidencia": "III, C"
+  },
+  {
+   "id": "soporte_endometrio",
+   "label": "Soporte exclusivo/valoracion geriatrica",
+   "nota": "ESMO: ECOG 3-4 o fragilidad marcada exige individualizar y puede hacer preferible tratamiento sintomatico.",
+   "cuando": {
+    "campo": "ecog",
+    "in": [
+     "3",
+     "4"
+    ]
+   },
+   "componentes": [
+    "soporte"
+   ],
+   "evidencia": "V, A"
+  }
+ ],
+ "preguntas": [
+  {
+   "key": "riesgo_integrado_dudoso",
+   "tipo": "choice",
+   "capa": 1,
+   "cuando": {
+    "campo": "riesgo",
+    "eq": "alto_intermedio"
+   },
+   "instrucciones": "Con riesgo alto-intermedio, decide si predomina riesgo local o sistemico.",
+   "criterios": {
+    "local": "Braquiterapia/RT suficiente",
+    "sistemico": "Considerar QT/RT"
+   }
+  },
+  {
+   "key": "curso_indolente",
+   "tipo": "noul",
+   "capa": 1,
+   "cuando": {
+    "campo": "er_pr_positivo",
+    "eq": true
+   },
+   "instrucciones": "¿La enfermedad avanzada es indolente y favorece hormonoterapia?"
+  },
+  {
+   "key": "apto_lenva",
+   "tipo": "noul",
+   "capa": 2,
+   "cuando": {
+    "campo": "lineas_previas",
+    "gte": 1
+   },
+   "instrucciones": "¿La paciente parece apta para toxicidad de lenvatinib-pembrolizumab?"
+  }
+ ],
+ "seguridad": [
+  {
+   "key": "contra_ici",
+   "cuando": {
+    "campo": "comorbilidades_relevantes",
+    "present": true
+   },
+   "bloquea_componentes": [
+    "inmunoterapia"
+   ],
+   "instrucciones": "¿Existe contraindicacion mayor para inmunoterapia?",
+   "motivo": "Riesgo inaceptable para inmunoterapia"
+  },
+  {
+   "key": "contra_lenva",
+   "cuando": {
+    "campo": "hipertension_no_controlada",
+    "eq": true
+   },
+   "bloquea": [
+    "lenvatinib_pembro_2l"
+   ],
+   "instrucciones": "¿La hipertension contraindica lenvatinib?",
+   "motivo": "Hipertension no controlada contraindica lenvatinib"
+  }
+ ],
+ "avisos": [
+  {
+   "cuando": {
+    "campo": "molecular",
+    "eq": "desconocido"
+   },
+   "texto": "Clasificacion molecular desconocida: modifica riesgo y tratamiento."
+  },
+  {
+   "cuando": [
+    {
+     "campo": "histologia",
+     "eq": "endometrioide"
+    },
+    {
+     "campo": "er_pr_positivo",
+     "missing": true
+    }
+   ],
+   "texto": "ER/PR no disponible: puede cambiar hormonoterapia."
+  }
+ ],
+ "vinetas": [
+  {
+   "id": "ENDOMETRIO-V01",
+   "titulo": "POLEmut bajo riesgo",
+   "fuente": "ESMO/ESGO POLE low risk",
+   "payload": {
+    "edad": 57,
+    "sexo": "mujer",
+    "ecog": "0",
+    "estadio": "I",
+    "histologia": "endometrioide",
+    "grado": "3",
+    "molecular": "POLEmut",
+    "riesgo": "bajo"
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "observacion_bajo_riesgo",
+    "aceptables": [
+     "observacion_bajo_riesgo"
+    ]
+   }
+  },
+  {
+   "id": "ENDOMETRIO-V02",
+   "titulo": "Intermedio postoperatorio",
+   "fuente": "ESMO brachy intermediate risk",
+   "payload": {
+    "edad": 68,
+    "sexo": "mujer",
+    "ecog": "1",
+    "estadio": "I",
+    "histologia": "endometrioide",
+    "grado": "2",
+    "molecular": "NSMP",
+    "riesgo": "intermedio"
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "braquiterapia_vaginal",
+    "aceptables": [
+     "braquiterapia_vaginal"
+    ]
+   }
+  },
+  {
+   "id": "ENDOMETRIO-V03",
+   "titulo": "Estadio III p53abn alto riesgo",
+   "fuente": "ESMO high risk adjuvant",
+   "payload": {
+    "edad": 62,
+    "sexo": "mujer",
+    "ecog": "0",
+    "estadio": "III",
+    "histologia": "seroso",
+    "grado": "3",
+    "molecular": "p53abn",
+    "riesgo": "alto"
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "quimio_rt_alto_riesgo",
+    "aceptables": [
+     "quimio_rt_alto_riesgo",
+     "rt_pelvica"
+    ]
+   }
+  },
+  {
+   "id": "ENDOMETRIO-V04",
+   "titulo": "Avanzado dMMR 1L",
+   "fuente": "RUBY/NRG-GY018 dMMR",
+   "payload": {
+    "edad": 61,
+    "sexo": "mujer",
+    "ecog": "1",
+    "estadio": "IV",
+    "histologia": "endometrioide",
+    "grado": "2",
+    "molecular": "dMMR",
+    "lineas_previas": 0,
+    "candidato_platino": true
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "carbo_taxol_ici_dmmr_1l",
+    "aceptables": [
+     "carbo_taxol_ici_dmmr_1l"
+    ]
+   }
+  },
+  {
+   "id": "ENDOMETRIO-V05",
+   "titulo": "Avanzado pMMR 1L",
+   "fuente": "RUBY/DUO-E pMMR",
+   "payload": {
+    "edad": 66,
+    "sexo": "mujer",
+    "ecog": "1",
+    "estadio": "IV",
+    "histologia": "seroso",
+    "grado": "3",
+    "molecular": "p53abn",
+    "lineas_previas": 0
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "carbo_taxol_ici_pmmr_1l",
+    "aceptables": [
+     "carbo_taxol_ici_pmmr_1l",
+     "carbo_taxol_solo"
+    ]
+   }
+  },
+  {
+   "id": "ENDOMETRIO-V06",
+   "titulo": "pMMR segunda linea",
+   "fuente": "KEYNOTE-775",
+   "payload": {
+    "edad": 59,
+    "sexo": "mujer",
+    "ecog": "1",
+    "estadio": "recurrente",
+    "histologia": "endometrioide",
+    "grado": "3",
+    "molecular": "NSMP",
+    "lineas_previas": 1,
+    "tratamientos_previos": [
+     "carboplatino-paclitaxel"
+    ],
+    "hipertension_no_controlada": false
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "lenvatinib_pembro_2l",
+    "aceptables": [
+     "lenvatinib_pembro_2l"
+    ]
+   }
+  },
+  {
+   "id": "ENDOMETRIO-V07",
+   "titulo": "ER positivo indolente",
+   "fuente": "ESMO hormonal therapy",
+   "payload": {
+    "edad": 72,
+    "sexo": "mujer",
+    "ecog": "1",
+    "estadio": "recurrente",
+    "histologia": "endometrioide",
+    "grado": "1",
+    "molecular": "NSMP",
+    "er_pr_positivo": true,
+    "lineas_previas": 0,
+    "descripcion_libre": "Recidiva pulmonar milimetrica asintomatica, crecimiento lento."
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "hormonoterapia",
+    "aceptables": [
+     "hormonoterapia",
+     "carbo_taxol_ici_pmmr_1l",
+     "carbo_taxol_solo"
+    ]
+   }
+  },
+  {
+   "id": "ENDOMETRIO-V08",
+   "titulo": "Falta subtipo molecular",
+   "fuente": "ESMO molecular classification required",
+   "payload": {
+    "edad": 64,
+    "sexo": "mujer",
+    "ecog": "0",
+    "estadio": "I",
+    "histologia": "endometrioide",
+    "grado": "2",
+    "riesgo": "intermedio"
+   },
+   "esperado": {
+    "tipo": "necesita_datos"
+   }
+  },
+  {
+   "id": "ENDOMETRIO-V09",
+   "titulo": "ECOG 4 recurrente",
+   "fuente": "ESMO poor PS",
+   "payload": {
+    "edad": 85,
+    "sexo": "mujer",
+    "ecog": "4",
+    "estadio": "recurrente",
+    "histologia": "seroso",
+    "molecular": "p53abn",
+    "lineas_previas": 1,
+    "descripcion_libre": "Deterioro funcional severo y delirium por sepsis reciente."
+   },
+   "esperado": {
+    "tipo": "revision_humana"
+   }
+  }
+ ]
+}

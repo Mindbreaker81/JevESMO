@@ -1,0 +1,194 @@
+{
+ "tumor": "esofago",
+ "nombre": "Cancer de esofago y union esofagogastrica",
+ "grupo": "Digestivo",
+ "version": "ESOFAGO-ESMO-2025.1",
+ "fecha": "2026-09-27T14:47:28+00:00",
+ "modelo": "jev-latest",
+ "mock": false,
+ "umbral_confianza": 0.6,
+ "n": 9,
+ "aciertos": 9,
+ "acierto_global": 1.0,
+ "acierto_tratamiento": 1.0,
+ "acierto_preferida": 1.0,
+ "acierto_seguridad": 1.0,
+ "confianza_aciertos": 0.9257142857142858,
+ "confianza_fallos": null,
+ "n_multiopcion": 5,
+ "acierto_multiopcion": 1.0,
+ "candidatos_medios": 2.0,
+ "casos": [
+  {
+   "id": "ESOFAGO-V01",
+   "titulo": "Escamoso toracico T3N1 resecable",
+   "fuente": "ESMO - CROSS resecable localmente avanzado",
+   "esperado_tipo": "recomendacion",
+   "esperado": "cross_trimodal",
+   "aceptables": [
+    "cross_trimodal"
+   ],
+   "obtenido": "cross_trimodal",
+   "obtenido_label": "QRT neoadyuvante CROSS seguida de cirugia",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "ESOFAGO-V02",
+   "titulo": "Adenocarcinoma union EG cT3N+",
+   "fuente": "ESMO - FLOT perioperatorio EGJ",
+   "esperado_tipo": "recomendacion",
+   "esperado": "flot_perioperatorio",
+   "aceptables": [
+    "flot_perioperatorio",
+    "cross_trimodal"
+   ],
+   "obtenido": "flot_perioperatorio",
+   "obtenido_label": "FLOT perioperatorio",
+   "confianza": 0.81,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  },
+  {
+   "id": "ESOFAGO-V03",
+   "titulo": "Escamoso cervical",
+   "fuente": "ESMO - QRT definitiva cervical",
+   "esperado_tipo": "recomendacion",
+   "esperado": "qrt_definitiva",
+   "aceptables": [
+    "qrt_definitiva"
+   ],
+   "obtenido": "qrt_definitiva",
+   "obtenido_label": "Quimiorradioterapia definitiva",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "ESOFAGO-V04",
+   "titulo": "Residual tras CROSS y cirugia",
+   "fuente": "CheckMate 577",
+   "esperado_tipo": "recomendacion",
+   "esperado": "nivolumab_adyuvante",
+   "aceptables": [
+    "nivolumab_adyuvante"
+   ],
+   "obtenido": "nivolumab_adyuvante",
+   "obtenido_label": "Nivolumab adyuvante",
+   "confianza": 0.92,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 3,
+   "error": null
+  },
+  {
+   "id": "ESOFAGO-V05",
+   "titulo": "Adenocarcinoma metastasico HER2+",
+   "fuente": "ESMO - HER2+ 1L",
+   "esperado_tipo": "recomendacion",
+   "esperado": "pembro_trastu_quimio_1l",
+   "aceptables": [
+    "pembro_trastu_quimio_1l"
+   ],
+   "obtenido": "pembro_trastu_quimio_1l",
+   "obtenido_label": "Pembrolizumab + trastuzumab + quimioterapia",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 3,
+   "error": null
+  },
+  {
+   "id": "ESOFAGO-V06",
+   "titulo": "Escamoso metastasico CPS alto",
+   "fuente": "KEYNOTE-590 / CheckMate 648",
+   "esperado_tipo": "recomendacion",
+   "esperado": "ici_quimio_cps_alto",
+   "aceptables": [
+    "ici_quimio_cps_alto"
+   ],
+   "obtenido": "ici_quimio_cps_alto",
+   "obtenido_label": "Inmunoterapia + quimioterapia por PD-L1 alto",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  },
+  {
+   "id": "ESOFAGO-V07",
+   "titulo": "Adenocarcinoma 2a linea",
+   "fuente": "RAINBOW",
+   "esperado_tipo": "recomendacion",
+   "esperado": "ram_paclitaxel_2l",
+   "aceptables": [
+    "ram_paclitaxel_2l",
+    "taxano_irinotecan_2l"
+   ],
+   "obtenido": "ram_paclitaxel_2l",
+   "obtenido_label": "Ramucirumab + paclitaxel 2a linea",
+   "confianza": 0.75,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  },
+  {
+   "id": "ESOFAGO-V08",
+   "titulo": "Falta histologia",
+   "fuente": "ESMO - histologia imprescindible",
+   "esperado_tipo": "necesita_datos",
+   "esperado": "necesita_datos",
+   "aceptables": [],
+   "obtenido": "necesita_datos",
+   "obtenido_label": null,
+   "confianza": null,
+   "revision": null,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [
+    "¿La histologia es escamosa o adenocarcinoma?"
+   ],
+   "n_candidatos": 0,
+   "error": null
+  },
+  {
+   "id": "ESOFAGO-V09",
+   "titulo": "ICI indicado pero autoinmunidad grave",
+   "fuente": "Seguridad inmunoterapia",
+   "esperado_tipo": "revision_humana",
+   "esperado": "revision_humana",
+   "aceptables": [],
+   "obtenido": "revision (quimio_doblete_1l)",
+   "obtenido_label": "Quimioterapia doblete platino-fluoropirimidina",
+   "confianza": 0.01,
+   "revision": true,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  }
+ ]
+}

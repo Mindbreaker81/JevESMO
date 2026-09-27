@@ -1,0 +1,178 @@
+{
+ "tumor": "cpm",
+ "nombre": "Cancer de pulmon microcitico",
+ "grupo": "Toracico",
+ "version": "CPM-ESMO-2025.1",
+ "fecha": "2026-09-27T14:47:23+00:00",
+ "modelo": "jev-latest",
+ "mock": false,
+ "umbral_confianza": 0.6,
+ "n": 8,
+ "aciertos": 8,
+ "acierto_global": 1.0,
+ "acierto_tratamiento": 1.0,
+ "acierto_preferida": 1.0,
+ "acierto_seguridad": 1.0,
+ "confianza_aciertos": 0.7233333333333333,
+ "confianza_fallos": null,
+ "n_multiopcion": 5,
+ "acierto_multiopcion": 1.0,
+ "candidatos_medios": 2.8333333333333335,
+ "casos": [
+  {
+   "id": "CPM-V01",
+   "titulo": "Limitado apto QRT",
+   "fuente": "ESMO SCLC: QRT concurrente",
+   "esperado_tipo": "recomendacion",
+   "esperado": "qrt_concurrente_limitado",
+   "aceptables": [
+    "qrt_concurrente_limitado"
+   ],
+   "obtenido": "qrt_concurrente_limitado",
+   "obtenido_label": "Cisplatino/etoposido + RT toracica concurrente",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "CPM-V02",
+   "titulo": "Limitado tras QRT sin progresion",
+   "fuente": "ADRIATIC: durvalumab consolidacion",
+   "esperado_tipo": "recomendacion",
+   "esperado": "durvalumab_adriatic",
+   "aceptables": [
+    "durvalumab_adriatic",
+    "pci_o_rm"
+   ],
+   "obtenido": "durvalumab_adriatic",
+   "obtenido_label": "Durvalumab consolidacion tras QRT",
+   "confianza": 0.81,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 3,
+   "error": null
+  },
+  {
+   "id": "CPM-V03",
+   "titulo": "Extenso primera linea",
+   "fuente": "IMpower133/CASPIAN",
+   "esperado_tipo": "recomendacion",
+   "esperado": "platino_etoposido_ici_extenso",
+   "aceptables": [
+    "platino_etoposido_ici_extenso",
+    "platino_etoposido_solo"
+   ],
+   "obtenido": "platino_etoposido_ici_extenso",
+   "obtenido_label": "Platino-etoposido + atezolizumab/durvalumab",
+   "confianza": 0.91,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 3,
+   "error": null
+  },
+  {
+   "id": "CPM-V04",
+   "titulo": "Recaida sensible",
+   "fuente": "ESMO SCLC recaida sensible",
+   "esperado_tipo": "recomendacion",
+   "esperado": "reinduccion_platino",
+   "aceptables": [
+    "reinduccion_platino",
+    "lurbinectedina_topotecan"
+   ],
+   "obtenido": "reinduccion_platino",
+   "obtenido_label": "Reinduccion con platino-etoposido",
+   "confianza": 0.48,
+   "revision": true,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 4,
+   "error": null
+  },
+  {
+   "id": "CPM-V05",
+   "titulo": "Refractario segunda linea",
+   "fuente": "ESMO: topotecan/lurbinectedina",
+   "esperado_tipo": "recomendacion",
+   "esperado": "lurbinectedina_topotecan",
+   "aceptables": [
+    "lurbinectedina_topotecan",
+    "tarlatamab"
+   ],
+   "obtenido": "lurbinectedina_topotecan",
+   "obtenido_label": "Lurbinectedina o topotecan",
+   "confianza": 0.41,
+   "revision": true,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 3,
+   "error": null
+  },
+  {
+   "id": "CPM-V06",
+   "titulo": "Tercera linea tarlatamab",
+   "fuente": "DeLLphi-301/tarlatamab",
+   "esperado_tipo": "recomendacion",
+   "esperado": "tarlatamab",
+   "aceptables": [
+    "tarlatamab",
+    "lurbinectedina_topotecan"
+   ],
+   "obtenido": "tarlatamab",
+   "obtenido_label": "Tarlatamab (DLL3) tras platino",
+   "confianza": 0.73,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 3,
+   "error": null
+  },
+  {
+   "id": "CPM-V07",
+   "titulo": "Extension desconocida",
+   "fuente": "ESMO: limitado vs extenso define tratamiento",
+   "esperado_tipo": "necesita_datos",
+   "esperado": "necesita_datos",
+   "aceptables": [],
+   "obtenido": "necesita_datos",
+   "obtenido_label": null,
+   "confianza": null,
+   "revision": null,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [
+    "¿Es enfermedad limitada o extensa?"
+   ],
+   "n_candidatos": 0,
+   "error": null
+  },
+  {
+   "id": "CPM-V08",
+   "titulo": "Extenso con autoinmunidad activa",
+   "fuente": "Seguridad anti-PD-L1",
+   "esperado_tipo": "revision_humana",
+   "esperado": "revision_humana",
+   "aceptables": [],
+   "obtenido": "revision (platino_etoposido_solo)",
+   "obtenido_label": "Platino-etoposido sin inmunoterapia",
+   "confianza": 0.51,
+   "revision": true,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 3,
+   "error": null
+  }
+ ]
+}

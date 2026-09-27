@@ -1,0 +1,192 @@
+{
+ "tumor": "carcinoma_basocelular",
+ "nombre": "Carcinoma basocelular",
+ "grupo": "Piel",
+ "version": "CARCINOMA_BASOCELULAR-ESMO-2024.1",
+ "fecha": "2026-09-27T14:47:17+00:00",
+ "modelo": "jev-latest",
+ "mock": false,
+ "umbral_confianza": 0.6,
+ "n": 9,
+ "aciertos": 9,
+ "acierto_global": 1.0,
+ "acierto_tratamiento": 1.0,
+ "acierto_preferida": 1.0,
+ "acierto_seguridad": 1.0,
+ "confianza_aciertos": 0.9971428571428572,
+ "confianza_fallos": null,
+ "n_multiopcion": 1,
+ "acierto_multiopcion": 1.0,
+ "candidatos_medios": 1.1428571428571428,
+ "casos": [
+  {
+   "id": "CARCINOMA_BASOCELULAR-V01",
+   "titulo": "BCC bajo riesgo",
+   "fuente": "Escision",
+   "esperado_tipo": "recomendacion",
+   "esperado": "escision_bcc",
+   "aceptables": [
+    "escision_bcc"
+   ],
+   "obtenido": "escision_bcc",
+   "obtenido_label": "Escision quirurgica estandar",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "CARCINOMA_BASOCELULAR-V02",
+   "titulo": "BCC alto riesgo facial",
+   "fuente": "Mohs",
+   "esperado_tipo": "recomendacion",
+   "esperado": "mohs_bcc_alto_riesgo",
+   "aceptables": [
+    "mohs_bcc_alto_riesgo"
+   ],
+   "obtenido": "mohs_bcc_alto_riesgo",
+   "obtenido_label": "Cirugia micrografica de Mohs",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "CARCINOMA_BASOCELULAR-V03",
+   "titulo": "No operable",
+   "fuente": "RT",
+   "esperado_tipo": "recomendacion",
+   "esperado": "rt_bcc_no_cirugia",
+   "aceptables": [
+    "rt_bcc_no_cirugia"
+   ],
+   "obtenido": "rt_bcc_no_cirugia",
+   "obtenido_label": "Radioterapia definitiva",
+   "confianza": 0.98,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  },
+  {
+   "id": "CARCINOMA_BASOCELULAR-V04",
+   "titulo": "Localmente avanzado",
+   "fuente": "HHI",
+   "esperado_tipo": "recomendacion",
+   "esperado": "vismo_soni_bcc",
+   "aceptables": [
+    "vismo_soni_bcc"
+   ],
+   "obtenido": "vismo_soni_bcc",
+   "obtenido_label": "Vismodegib o sonidegib",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "CARCINOMA_BASOCELULAR-V05",
+   "titulo": "Metastasico 1L",
+   "fuente": "HHI",
+   "esperado_tipo": "recomendacion",
+   "esperado": "vismo_soni_bcc",
+   "aceptables": [
+    "vismo_soni_bcc"
+   ],
+   "obtenido": "vismo_soni_bcc",
+   "obtenido_label": "Vismodegib o sonidegib",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "CARCINOMA_BASOCELULAR-V06",
+   "titulo": "Tras HHI",
+   "fuente": "Cemiplimab",
+   "esperado_tipo": "recomendacion",
+   "esperado": "cemiplimab_bcc_2l",
+   "aceptables": [
+    "cemiplimab_bcc_2l"
+   ],
+   "obtenido": "cemiplimab_bcc_2l",
+   "obtenido_label": "Cemiplimab tras HHI",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "CARCINOMA_BASOCELULAR-V07",
+   "titulo": "No sistemico",
+   "fuente": "RT paliativa",
+   "esperado_tipo": "recomendacion",
+   "esperado": "rt_paliativa_bcc",
+   "aceptables": [
+    "rt_paliativa_bcc"
+   ],
+   "obtenido": "rt_paliativa_bcc",
+   "obtenido_label": "Radioterapia/cirugia paliativa local",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "CARCINOMA_BASOCELULAR-V08",
+   "titulo": "Falta situacion",
+   "fuente": "Dato imprescindible",
+   "esperado_tipo": "necesita_datos",
+   "esperado": "necesita_datos",
+   "aceptables": [],
+   "obtenido": "necesita_datos",
+   "obtenido_label": null,
+   "confianza": null,
+   "revision": null,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [
+    "¿Cual es la situacion del carcinoma basocelular?"
+   ],
+   "n_candidatos": 0,
+   "error": null
+  },
+  {
+   "id": "CARCINOMA_BASOCELULAR-V09",
+   "titulo": "Post-HHI autoinmune",
+   "fuente": "Seguridad",
+   "esperado_tipo": "revision_humana",
+   "esperado": "revision_humana",
+   "aceptables": [],
+   "obtenido": "revision (sin opcion segura)",
+   "obtenido_label": null,
+   "confianza": 0.0,
+   "revision": true,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  }
+ ]
+}

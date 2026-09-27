@@ -1,0 +1,744 @@
+{
+ "id": "hcc",
+ "nombre": "Carcinoma hepatocelular",
+ "grupo": "Digestivo",
+ "version": "HCC-ESMO-2025.1",
+ "guias": [
+  {
+   "titulo": "Hepatocellular carcinoma: ESMO Clinical Practice Guideline for diagnosis, treatment and follow-up",
+   "anio": 2025,
+   "url": "https://www.esmo.org/guidelines/guidelines-by-topic/gastrointestinal-cancers/hepatocellular-carcinoma"
+  },
+  {
+   "titulo": "ESMO Interactive Guideline: Hepatocellular carcinoma",
+   "anio": 2025,
+   "url": "https://interactiveguidelines.esmo.org/esmo-web-app/gl_toc/index.php?GL_id=61"
+  }
+ ],
+ "descripcion": "HCC segun BCLC y funcion hepatica: reseccion, ablacion, trasplante, TACE, inmunoterapia combinada, TKI y segunda linea; seguridad de bevacizumab con varices.",
+ "campos": [
+  {
+   "id": "bclc",
+   "label": "BCLC",
+   "tipo": "choice",
+   "seccion": "Tumor",
+   "opciones": [
+    "0",
+    "A",
+    "B",
+    "C",
+    "D"
+   ],
+   "requerido": true,
+   "pregunta": "¿Cual es el estadio BCLC (0, A, B, C o D)?"
+  },
+  {
+   "id": "child_pugh",
+   "label": "Child-Pugh",
+   "tipo": "choice",
+   "seccion": "Tumor",
+   "opciones": [
+    "A",
+    "B",
+    "C"
+   ],
+   "requerido": true,
+   "pregunta": "¿Cual es la clase Child-Pugh?"
+  },
+  {
+   "id": "resecable",
+   "label": "Resecable tecnicamente y funcion hepatica adecuada",
+   "tipo": "bool",
+   "seccion": "Tumor"
+  },
+  {
+   "id": "portal_hipertension",
+   "label": "Hipertension portal clinicamente significativa",
+   "tipo": "bool",
+   "seccion": "Tumor"
+  },
+  {
+   "id": "ablacion_posible",
+   "label": "Ablacion posible",
+   "tipo": "bool",
+   "seccion": "Tumor"
+  },
+  {
+   "id": "trasplante_candidato",
+   "label": "Candidato a trasplante",
+   "tipo": "bool",
+   "seccion": "Tumor"
+  },
+  {
+   "id": "varices_no_tratadas",
+   "label": "Varices no tratadas o alto riesgo sangrado",
+   "tipo": "bool",
+   "seccion": "Seguridad"
+  },
+  {
+   "id": "afp",
+   "label": "AFP",
+   "tipo": "number",
+   "seccion": "Biomarcadores",
+   "min": 0,
+   "unidad": "ng/mL"
+  }
+ ],
+ "derivados": [],
+ "opciones": [
+  {
+   "id": "reseccion_hcc",
+   "label": "Reseccion hepatica",
+   "nota": "ESMO: BCLC 0/A con lesion resecable, Child-Pugh A, sin hipertension portal significativa -> reseccion",
+   "cuando": [
+    {
+     "campo": "bclc",
+     "in": [
+      "0",
+      "A"
+     ]
+    },
+    {
+     "campo": "child_pugh",
+     "eq": "A"
+    },
+    {
+     "campo": "resecable",
+     "eq": true
+    },
+    {
+     "campo": "portal_hipertension",
+     "ne": true
+    }
+   ],
+   "componentes": [
+    "cirugia"
+   ],
+   "evidencia": "III, A"
+  },
+  {
+   "id": "ablacion_hcc",
+   "label": "Ablacion percutanea",
+   "nota": "ESMO: BCLC 0/A no resecable, tumor pequeno accesible -> ablacion termica como alternativa curativa",
+   "cuando": [
+    {
+     "campo": "bclc",
+     "in": [
+      "0",
+      "A"
+     ]
+    },
+    {
+     "campo": "ablacion_posible",
+     "eq": true
+    }
+   ],
+   "componentes": [
+    "local_ablativo"
+   ],
+   "evidencia": "II, A"
+  },
+  {
+   "id": "trasplante_hcc",
+   "label": "Trasplante hepatico",
+   "nota": "ESMO: BCLC 0/A dentro de Milan/downstaging, cirrosis o portal HTA y candidato -> trasplante",
+   "cuando": [
+    {
+     "campo": "bclc",
+     "in": [
+      "0",
+      "A"
+     ]
+    },
+    {
+     "campo": "trasplante_candidato",
+     "eq": true
+    }
+   ],
+   "componentes": [
+    "trasplante"
+   ],
+   "evidencia": "II, A"
+  },
+  {
+   "id": "tace_hcc",
+   "label": "TACE",
+   "nota": "ESMO: BCLC B intermedio, Child-Pugh A/B seleccionado, sin invasion vascular/extrahepatica -> TACE",
+   "cuando": [
+    {
+     "campo": "bclc",
+     "eq": "B"
+    },
+    {
+     "campo": "child_pugh",
+     "in": [
+      "A",
+      "B"
+     ]
+    }
+   ],
+   "componentes": [
+    "local_ablativo"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "atezo_bev_1l",
+   "label": "Atezolizumab + bevacizumab",
+   "nota": "ESMO: BCLC C o B no candidato a TACE, Child-Pugh A, sin varices no tratadas/alto riesgo -> atezo-bev 1L (IMbrave150)",
+   "cuando": [
+    {
+     "campo": "bclc",
+     "in": [
+      "B",
+      "C"
+     ]
+    },
+    {
+     "campo": "child_pugh",
+     "eq": "A"
+    },
+    {
+     "any": [
+      {
+       "campo": "lineas_previas",
+       "missing": true
+      },
+      {
+       "campo": "lineas_previas",
+       "eq": 0
+      }
+     ]
+    },
+    {
+     "campo": "varices_no_tratadas",
+     "ne": true
+    }
+   ],
+   "componentes": [
+    "inmunoterapia",
+    "antiangiogenico"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "durva_treme_1l",
+   "label": "Durvalumab + tremelimumab (STRIDE)",
+   "nota": "ESMO: HCC avanzado Child-Pugh A 1L, alternativa preferente especialmente si bevacizumab contraindicado -> STRIDE (HIMALAYA)",
+   "cuando": [
+    {
+     "campo": "bclc",
+     "in": [
+      "B",
+      "C"
+     ]
+    },
+    {
+     "campo": "child_pugh",
+     "eq": "A"
+    },
+    {
+     "any": [
+      {
+       "campo": "lineas_previas",
+       "missing": true
+      },
+      {
+       "campo": "lineas_previas",
+       "eq": 0
+      }
+     ]
+    }
+   ],
+   "componentes": [
+    "inmunoterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "tki_1l",
+   "label": "Lenvatinib o sorafenib",
+   "nota": "ESMO: HCC avanzado Child-Pugh A cuando no se usa inmunoterapia combinada -> lenvatinib o sorafenib 1L",
+   "cuando": [
+    {
+     "campo": "bclc",
+     "in": [
+      "B",
+      "C"
+     ]
+    },
+    {
+     "campo": "child_pugh",
+     "eq": "A"
+    },
+    {
+     "any": [
+      {
+       "campo": "lineas_previas",
+       "missing": true
+      },
+      {
+       "campo": "lineas_previas",
+       "eq": 0
+      }
+     ]
+    }
+   ],
+   "componentes": [
+    "dirigida"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "durvalumab_mono",
+   "label": "Durvalumab monoterapia",
+   "nota": "ESMO: opcion 1L si no candidato a tremelimumab/bevacizumab y se desea ICI con menor toxicidad",
+   "cuando": [
+    {
+     "campo": "bclc",
+     "in": [
+      "B",
+      "C"
+     ]
+    },
+    {
+     "campo": "child_pugh",
+     "eq": "A"
+    },
+    {
+     "any": [
+      {
+       "campo": "lineas_previas",
+       "missing": true
+      },
+      {
+       "campo": "lineas_previas",
+       "eq": 0
+      }
+     ]
+    }
+   ],
+   "componentes": [
+    "inmunoterapia"
+   ],
+   "evidencia": "I, B"
+  },
+  {
+   "id": "regorafenib_2l",
+   "label": "Regorafenib 2a linea",
+   "nota": "ESMO: tras tolerar sorafenib y progresion, Child-Pugh A -> regorafenib (RESORCE)",
+   "cuando": [
+    {
+     "campo": "bclc",
+     "eq": "C"
+    },
+    {
+     "campo": "child_pugh",
+     "eq": "A"
+    },
+    {
+     "campo": "lineas_previas",
+     "gte": 1
+    },
+    {
+     "campo": "tratamientos_previos",
+     "contains": "sorafenib"
+    }
+   ],
+   "componentes": [
+    "dirigida"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "cabozantinib_2l",
+   "label": "Cabozantinib 2a linea",
+   "nota": "ESMO: HCC avanzado tras sorafenib/otra terapia sistemica, Child-Pugh A -> cabozantinib (CELESTIAL)",
+   "cuando": [
+    {
+     "campo": "bclc",
+     "eq": "C"
+    },
+    {
+     "campo": "child_pugh",
+     "eq": "A"
+    },
+    {
+     "campo": "lineas_previas",
+     "gte": 1
+    }
+   ],
+   "componentes": [
+    "dirigida"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "ramucirumab_afp_2l",
+   "label": "Ramucirumab si AFP >=400",
+   "nota": "ESMO: HCC avanzado con AFP >=400 tras sorafenib -> ramucirumab (REACH-2)",
+   "cuando": [
+    {
+     "campo": "bclc",
+     "eq": "C"
+    },
+    {
+     "campo": "child_pugh",
+     "eq": "A"
+    },
+    {
+     "campo": "lineas_previas",
+     "gte": 1
+    },
+    {
+     "campo": "afp",
+     "gte": 400
+    }
+   ],
+   "componentes": [
+    "antiangiogenico"
+   ],
+   "evidencia": "I, B"
+  },
+  {
+   "id": "soporte_hcc",
+   "label": "Cuidados de soporte exclusivo",
+   "nota": "ESMO: BCLC D o Child-Pugh C no candidato a trasplante -> soporte, no tratamiento antitumoral activo",
+   "cuando": [
+    {
+     "any": [
+      {
+       "campo": "bclc",
+       "eq": "D"
+      },
+      {
+       "campo": "child_pugh",
+       "eq": "C"
+      }
+     ]
+    },
+    {
+     "campo": "trasplante_candidato",
+     "ne": true
+    }
+   ],
+   "componentes": [
+    "soporte"
+   ],
+   "evidencia": "III, A"
+  }
+ ],
+ "preguntas": [
+  {
+   "key": "elegibilidad_curativa",
+   "tipo": "choice",
+   "capa": 1,
+   "cuando": {
+    "campo": "bclc",
+    "in": [
+     "0",
+     "A"
+    ]
+   },
+   "instrucciones": "Para HCC temprano, elige estrategia curativa mas plausible segun funcion hepatica, portal HTA y localizacion",
+   "criterios": {
+    "reseccion": "mejor candidato a reseccion",
+    "ablacion": "tumor pequeno accesible no resecable",
+    "trasplante": "cirrosis/portal HTA dentro de criterios de trasplante"
+   }
+  },
+  {
+   "key": "tace_refractario",
+   "tipo": "noul",
+   "capa": 1,
+   "cuando": {
+    "campo": "bclc",
+    "eq": "B"
+   },
+   "instrucciones": "¿Hay criterios de TACE refractario/no candidato a TACE que favorezcan sistemico?"
+  },
+  {
+   "key": "riesgo_bev",
+   "tipo": "noul",
+   "capa": 2,
+   "cuando": {
+    "campo": "bclc",
+    "in": [
+     "B",
+     "C"
+    ]
+   },
+   "instrucciones": "¿Existe riesgo clinico relevante de sangrado que haga preferible evitar bevacizumab?"
+  }
+ ],
+ "seguridad": [
+  {
+   "key": "varices_bev",
+   "cuando": {
+    "campo": "varices_no_tratadas",
+    "eq": true
+   },
+   "bloquea": [
+    "atezo_bev_1l",
+    "ramucirumab_afp_2l"
+   ],
+   "instrucciones": "Con varices esofagogastricas no tratadas o alto riesgo de sangrado, ¿bevacizumab/ramucirumab es inaceptable hasta cribado y tratamiento?",
+   "motivo": "Varices no tratadas/alto riesgo: antiangiogenico contraindicado"
+  },
+  {
+   "key": "autoinmune_ici",
+   "cuando": {
+    "campo": "comorbilidades_relevantes",
+    "contains": "autoinmune"
+   },
+   "bloquea_componentes": [
+    "inmunoterapia"
+   ],
+   "instrucciones": "¿Autoinmunidad activa contraindica inmunoterapia?",
+   "motivo": "Autoinmunidad activa"
+  },
+  {
+   "key": "descomp_hepatica",
+   "cuando": {
+    "campo": "child_pugh",
+    "eq": "C"
+   },
+   "bloquea_componentes": [
+    "inmunoterapia",
+    "dirigida",
+    "antiangiogenico"
+   ],
+   "instrucciones": "Con Child-Pugh C/descompensacion, ¿tratamiento sistemico activo tiene toxicidad inaceptable?",
+   "motivo": "Funcion hepatica Child-Pugh C"
+  }
+ ],
+ "avisos": [
+  {
+   "cuando": [
+    {
+     "campo": "bclc",
+     "in": [
+      "B",
+      "C"
+     ]
+    },
+    {
+     "campo": "varices_no_tratadas",
+     "missing": true
+    }
+   ],
+   "texto": "No consta endoscopia/estado de varices: imprescindible antes de atezolizumab-bevacizumab."
+  },
+  {
+   "cuando": [
+    {
+     "campo": "bclc",
+     "eq": "C"
+    },
+    {
+     "campo": "afp",
+     "missing": true
+    },
+    {
+     "campo": "lineas_previas",
+     "gte": 1
+    }
+   ],
+   "texto": "AFP no disponible: puede condicionar ramucirumab en 2a linea."
+  }
+ ],
+ "vinetas": [
+  {
+   "id": "HCC-V01",
+   "titulo": "BCLC A resecable sin portal HTA",
+   "fuente": "ESMO HCC - reseccion",
+   "payload": {
+    "edad": 58,
+    "ecog": "0",
+    "sexo": "hombre",
+    "bclc": "A",
+    "child_pugh": "A",
+    "resecable": true,
+    "portal_hipertension": false,
+    "ablacion_posible": true
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "reseccion_hcc",
+    "aceptables": [
+     "reseccion_hcc",
+     "ablacion_hcc"
+    ]
+   }
+  },
+  {
+   "id": "HCC-V02",
+   "titulo": "HCC pequeño no resecable",
+   "fuente": "ESMO HCC - ablacion",
+   "payload": {
+    "edad": 71,
+    "ecog": "1",
+    "sexo": "mujer",
+    "bclc": "0",
+    "child_pugh": "A",
+    "resecable": false,
+    "portal_hipertension": true,
+    "ablacion_posible": true
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "ablacion_hcc",
+    "aceptables": [
+     "ablacion_hcc",
+     "trasplante_hcc"
+    ]
+   }
+  },
+  {
+   "id": "HCC-V03",
+   "titulo": "BCLC A candidato trasplante",
+   "fuente": "ESMO HCC - trasplante",
+   "payload": {
+    "edad": 62,
+    "ecog": "0",
+    "sexo": "hombre",
+    "bclc": "A",
+    "child_pugh": "B",
+    "resecable": false,
+    "portal_hipertension": true,
+    "ablacion_posible": false,
+    "trasplante_candidato": true
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "trasplante_hcc",
+    "aceptables": [
+     "trasplante_hcc"
+    ]
+   }
+  },
+  {
+   "id": "HCC-V04",
+   "titulo": "BCLC B multinodular",
+   "fuente": "ESMO HCC - TACE",
+   "payload": {
+    "edad": 67,
+    "ecog": "0",
+    "sexo": "hombre",
+    "bclc": "B",
+    "child_pugh": "A",
+    "varices_no_tratadas": false
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "tace_hcc",
+    "aceptables": [
+     "tace_hcc"
+    ]
+   }
+  },
+  {
+   "id": "HCC-V05",
+   "titulo": "BCLC C Child A sin varices",
+   "fuente": "IMbrave150",
+   "payload": {
+    "edad": 64,
+    "ecog": "1",
+    "sexo": "hombre",
+    "bclc": "C",
+    "child_pugh": "A",
+    "varices_no_tratadas": false
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "atezo_bev_1l",
+    "aceptables": [
+     "atezo_bev_1l",
+     "durva_treme_1l",
+     "tki_1l"
+    ]
+   }
+  },
+  {
+   "id": "HCC-V06",
+   "titulo": "BCLC C con varices no tratadas",
+   "fuente": "HIMALAYA / seguridad bevacizumab",
+   "payload": {
+    "edad": 69,
+    "ecog": "1",
+    "sexo": "hombre",
+    "bclc": "C",
+    "child_pugh": "A",
+    "varices_no_tratadas": true,
+    "descripcion_libre": "varices esofagicas grandes pendientes de ligadura"
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "durva_treme_1l",
+    "aceptables": [
+     "durva_treme_1l",
+     "tki_1l",
+     "durvalumab_mono"
+    ]
+   }
+  },
+  {
+   "id": "HCC-V07",
+   "titulo": "Segunda linea AFP alta",
+   "fuente": "REACH-2 / RESORCE",
+   "payload": {
+    "edad": 60,
+    "ecog": "1",
+    "sexo": "mujer",
+    "bclc": "C",
+    "child_pugh": "A",
+    "lineas_previas": 1,
+    "tratamientos_previos": [
+     "sorafenib"
+    ],
+    "afp": 1200
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "ramucirumab_afp_2l",
+    "aceptables": [
+     "ramucirumab_afp_2l",
+     "regorafenib_2l",
+     "cabozantinib_2l"
+    ]
+   }
+  },
+  {
+   "id": "HCC-V08",
+   "titulo": "Falta Child-Pugh",
+   "fuente": "ESMO HCC - funcion hepatica imprescindible",
+   "payload": {
+    "edad": 63,
+    "ecog": "1",
+    "sexo": "hombre",
+    "bclc": "C",
+    "child_pugh": null
+   },
+   "esperado": {
+    "tipo": "necesita_datos"
+   }
+  },
+  {
+   "id": "HCC-V09",
+   "titulo": "Child C BCLC D",
+   "fuente": "ESMO HCC - BCLC D soporte",
+   "payload": {
+    "edad": 74,
+    "ecog": "3",
+    "sexo": "mujer",
+    "bclc": "D",
+    "child_pugh": "C",
+    "trasplante_candidato": false,
+    "descripcion_libre": "ascitis refractaria y encefalopatia"
+   },
+   "esperado": {
+    "tipo": "revision_humana"
+   }
+  }
+ ]
+}

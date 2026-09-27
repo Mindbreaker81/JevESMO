@@ -1,0 +1,212 @@
+{
+ "tumor": "glioma",
+ "nombre": "Gliomas del adulto",
+ "grupo": "Neurooncologia",
+ "version": "GLIOMA-ESMO-2024.1",
+ "fecha": "2026-09-27T14:47:31+00:00",
+ "modelo": "jev-latest",
+ "mock": false,
+ "umbral_confianza": 0.6,
+ "n": 10,
+ "aciertos": 10,
+ "acierto_global": 1.0,
+ "acierto_tratamiento": 1.0,
+ "acierto_preferida": 1.0,
+ "acierto_seguridad": 1.0,
+ "confianza_aciertos": 0.99375,
+ "confianza_fallos": null,
+ "n_multiopcion": 1,
+ "acierto_multiopcion": 1.0,
+ "candidatos_medios": 1.125,
+ "casos": [
+  {
+   "id": "GLIOMA-V01",
+   "titulo": "GBM IDH-wt MGMT metilado adulto fit",
+   "fuente": "ESMO high-grade glioma: regimen Stupp",
+   "esperado_tipo": "recomendacion",
+   "esperado": "stupp_mgmt_metilado",
+   "aceptables": [
+    "stupp_mgmt_metilado"
+   ],
+   "obtenido": "stupp_mgmt_metilado",
+   "obtenido_label": "RT 60 Gy + temozolomida concomitante/adyuvante (Stupp)",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "GLIOMA-V02",
+   "titulo": "GBM MGMT no metilado adulto fit",
+   "fuente": "ESMO high-grade glioma: RT sola razonable si MGMT no metilado",
+   "esperado_tipo": "recomendacion",
+   "esperado": "rt_sola_gbm_mgmt_no",
+   "aceptables": [
+    "rt_sola_gbm_mgmt_no"
+   ],
+   "obtenido": "rt_sola_gbm_mgmt_no",
+   "obtenido_label": "Radioterapia 60 Gy sola (MGMT no metilado)",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "GLIOMA-V03",
+   "titulo": "GBM anciano MGMT metilado",
+   "fuente": "ESMO: RT hipofraccionada + TMZ en anciano MGMT metilado",
+   "esperado_tipo": "recomendacion",
+   "esperado": "hipofx_tmz_anciano_mgmt_met",
+   "aceptables": [
+    "hipofx_tmz_anciano_mgmt_met"
+   ],
+   "obtenido": "hipofx_tmz_anciano_mgmt_met",
+   "obtenido_label": "RT hipofraccionada + temozolomida en anciano MGMT metilado",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "GLIOMA-V04",
+   "titulo": "GBM anciano MGMT no metilado",
+   "fuente": "ESMO: RT hipofraccionada sola si MGMT no metilado",
+   "esperado_tipo": "recomendacion",
+   "esperado": "hipofx_rt_anciano_mgmt_no",
+   "aceptables": [
+    "hipofx_rt_anciano_mgmt_no"
+   ],
+   "obtenido": "hipofx_rt_anciano_mgmt_no",
+   "obtenido_label": "RT hipofraccionada sola en anciano MGMT no metilado/desconocido",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "GLIOMA-V05",
+   "titulo": "Astrocitoma IDH-mut grado 3",
+   "fuente": "CATNON/ESMO-EANO: RT + temozolomida adyuvante",
+   "esperado_tipo": "recomendacion",
+   "esperado": "rt_tmz_astrocitoma_g3_4",
+   "aceptables": [
+    "rt_tmz_astrocitoma_g3_4"
+   ],
+   "obtenido": "rt_tmz_astrocitoma_g3_4",
+   "obtenido_label": "RT seguida de temozolomida para astrocitoma IDH-mut grado 3/4",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "GLIOMA-V06",
+   "titulo": "Oligodendroglioma grado 3",
+   "fuente": "ESMO/EANO: RT + PCV en oligodendroglioma 1p/19q",
+   "esperado_tipo": "recomendacion",
+   "esperado": "rt_pcv_oligodendroglioma",
+   "aceptables": [
+    "rt_pcv_oligodendroglioma"
+   ],
+   "obtenido": "rt_pcv_oligodendroglioma",
+   "obtenido_label": "RT + PCV para oligodendroglioma IDH-mut 1p/19q codelecionado",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "GLIOMA-V07",
+   "titulo": "Glioma bajo grado residual IDH-mut",
+   "fuente": "INDIGO: vorasidenib bajo grado residual IDH-mut",
+   "esperado_tipo": "recomendacion",
+   "esperado": "vorasidenib_bajo_grado_residual",
+   "aceptables": [
+    "vorasidenib_bajo_grado_residual",
+    "rt_pcv_bajo_grado_alto_riesgo"
+   ],
+   "obtenido": "vorasidenib_bajo_grado_residual",
+   "obtenido_label": "Vorasidenib en glioma IDH-mut grado 2 residual/progresivo",
+   "confianza": 0.95,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  },
+  {
+   "id": "GLIOMA-V08",
+   "titulo": "Bajo grado resecado joven",
+   "fuente": "ESMO/EANO: vigilancia en bajo riesgo tras reseccion completa",
+   "esperado_tipo": "recomendacion",
+   "esperado": "observacion_bajo_grado_resecado",
+   "aceptables": [
+    "observacion_bajo_grado_resecado"
+   ],
+   "obtenido": "observacion_bajo_grado_resecado",
+   "obtenido_label": "Vigilancia tras reseccion completa de bajo grado IDH-mut",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "GLIOMA-V09",
+   "titulo": "Falta MGMT en GBM",
+   "fuente": "ESMO: MGMT imprescindible para rama anciano/temozolomida",
+   "esperado_tipo": "necesita_datos",
+   "esperado": "necesita_datos",
+   "aceptables": [],
+   "obtenido": "necesita_datos",
+   "obtenido_label": null,
+   "confianza": null,
+   "revision": null,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [
+    "En glioblastoma IDH-wt, ¿el promotor MGMT esta metilado, no metilado o desconocido?"
+   ],
+   "n_candidatos": 0,
+   "error": null
+  },
+  {
+   "id": "GLIOMA-V10",
+   "titulo": "GBM recaida ECOG 4 hemorragia",
+   "fuente": "ESMO: soporte/revision si no candidato a rescate",
+   "esperado_tipo": "revision_humana",
+   "esperado": "revision_humana",
+   "aceptables": [],
+   "obtenido": "revision (soporte_glioma)",
+   "obtenido_label": "Soporte, corticoides, antiepilepticos y cuidados paliativos",
+   "confianza": 0.98,
+   "revision": true,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  }
+ ]
+}

@@ -1,0 +1,691 @@
+{
+ "id": "biliar",
+ "nombre": "Cancer de vias biliares",
+ "grupo": "Digestivo",
+ "version": "BILIAR-ESMO-2024.1",
+ "guias": [
+  {
+   "titulo": "Biliary tract cancer: ESMO Clinical Practice Guideline for diagnosis, treatment and follow-up",
+   "anio": 2023,
+   "url": "https://www.esmo.org/guidelines/guidelines-by-topic/esmo-clinical-practice-guidelines-gastrointestinal-cancers/clinical-practice-guideline-biliary-tract-cancer"
+  },
+  {
+   "titulo": "ESMO Clinical Practice Guideline interim update on the management of biliary tract cancer",
+   "anio": 2024,
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11846563/"
+  }
+ ],
+ "descripcion": "Colangiocarcinoma intra/extrahepatico y vesicula: cirugia/adjuvancia capecitabina, gem-cis + durvalumab/pembrolizumab y dianas FGFR2, IDH1, HER2, BRAF, NTRK/MSI.",
+ "campos": [
+  {
+   "id": "situacion",
+   "label": "Situacion clinica",
+   "tipo": "choice",
+   "seccion": "Tumor",
+   "opciones": [
+    "resecable",
+    "irresecable_metastasico"
+   ],
+   "requerido": true,
+   "pregunta": "¿El tumor biliar es resecable o irresecable/metastasico?"
+  },
+  {
+   "id": "subtipo",
+   "label": "Subtipo anatomico",
+   "tipo": "choice",
+   "seccion": "Tumor",
+   "opciones": [
+    "colangio_intrahepatico",
+    "colangio_extrahepatico",
+    "vesicula"
+   ],
+   "requerido": true,
+   "pregunta": "¿Es colangiocarcinoma intrahepatico, extrahepatico o cancer de vesicula?"
+  },
+  {
+   "id": "post_reseccion",
+   "label": "Tras reseccion R0/R1",
+   "tipo": "bool",
+   "seccion": "Historial"
+  },
+  {
+   "id": "fgfr2_fusion",
+   "label": "Fusion/reordenamiento FGFR2",
+   "tipo": "bool",
+   "seccion": "Biomarcadores"
+  },
+  {
+   "id": "idh1_mutado",
+   "label": "IDH1 mutado",
+   "tipo": "bool",
+   "seccion": "Biomarcadores"
+  },
+  {
+   "id": "her2",
+   "label": "HER2 amplificado/sobreexpresado",
+   "tipo": "choice",
+   "seccion": "Biomarcadores",
+   "opciones": [
+    "positivo",
+    "negativo",
+    "desconocido"
+   ]
+  },
+  {
+   "id": "braf_v600e",
+   "label": "BRAF V600E",
+   "tipo": "bool",
+   "seccion": "Biomarcadores"
+  },
+  {
+   "id": "ntrk_fusion",
+   "label": "Fusion NTRK",
+   "tipo": "bool",
+   "seccion": "Biomarcadores"
+  },
+  {
+   "id": "msi",
+   "label": "MSI/MMR",
+   "tipo": "choice",
+   "seccion": "Biomarcadores",
+   "opciones": [
+    "msi_h",
+    "pmmr",
+    "desconocido"
+   ]
+  },
+  {
+   "id": "cisplatino_apto",
+   "label": "Apto para cisplatino",
+   "tipo": "bool",
+   "seccion": "Seguridad"
+  }
+ ],
+ "derivados": [],
+ "opciones": [
+  {
+   "id": "cirugia_reseccion",
+   "label": "Reseccion quirurgica con linfadenectomia",
+   "nota": "ESMO: enfermedad localizada resecable -> cirugia radical si posible en centro hepatobiliar",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "resecable"
+    },
+    {
+     "campo": "post_reseccion",
+     "ne": true
+    }
+   ],
+   "componentes": [
+    "cirugia"
+   ],
+   "evidencia": "III, A"
+  },
+  {
+   "id": "capecitabina_adyuvante",
+   "label": "Capecitabina adyuvante 6 meses",
+   "nota": "ESMO: tras reseccion de vias biliares -> capecitabina adyuvante 6 meses (BILCAP)",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "resecable"
+    },
+    {
+     "campo": "post_reseccion",
+     "eq": true
+    }
+   ],
+   "componentes": [
+    "quimioterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "gemcis_durva_1l",
+   "label": "Gemcitabina-cisplatino + durvalumab",
+   "nota": "ESMO: irresecable/metastasico 1L apto cisplatino -> gem-cis + durvalumab (TOPAZ-1)",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "irresecable_metastasico"
+    },
+    {
+     "any": [
+      {
+       "campo": "lineas_previas",
+       "missing": true
+      },
+      {
+       "campo": "lineas_previas",
+       "eq": 0
+      }
+     ]
+    },
+    {
+     "campo": "cisplatino_apto",
+     "ne": false
+    }
+   ],
+   "componentes": [
+    "quimioterapia",
+    "inmunoterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "gemcis_pembro_1l",
+   "label": "Gemcitabina-cisplatino + pembrolizumab",
+   "nota": "ESMO interim: alternativa 1L gem-cis + pembrolizumab (KEYNOTE-966)",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "irresecable_metastasico"
+    },
+    {
+     "any": [
+      {
+       "campo": "lineas_previas",
+       "missing": true
+      },
+      {
+       "campo": "lineas_previas",
+       "eq": 0
+      }
+     ]
+    },
+    {
+     "campo": "cisplatino_apto",
+     "ne": false
+    }
+   ],
+   "componentes": [
+    "quimioterapia",
+    "inmunoterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "gemox_1l_cis_no",
+   "label": "Gemcitabina-oxaliplatino/carboplatino si no cisplatino",
+   "nota": "ESMO: si no apto para cisplatino, regimen alternativo basado en gemcitabina (GEMOX/carboplatino)",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "irresecable_metastasico"
+    },
+    {
+     "any": [
+      {
+       "campo": "lineas_previas",
+       "missing": true
+      },
+      {
+       "campo": "lineas_previas",
+       "eq": 0
+      }
+     ]
+    },
+    {
+     "campo": "cisplatino_apto",
+     "eq": false
+    }
+   ],
+   "componentes": [
+    "quimioterapia"
+   ],
+   "evidencia": "II, B"
+  },
+  {
+   "id": "folfox_2l",
+   "label": "FOLFOX 2a linea",
+   "nota": "ESMO: tras gem-cis, FOLFOX es estandar de 2a linea si no hay diana accionable (ABC-06)",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "irresecable_metastasico"
+    },
+    {
+     "campo": "lineas_previas",
+     "gte": 1
+    }
+   ],
+   "componentes": [
+    "quimioterapia"
+   ],
+   "evidencia": "I, B"
+  },
+  {
+   "id": "fgfr_inhibidor",
+   "label": "Pemigatinib/futibatinib para FGFR2",
+   "nota": "ESMO: colangiocarcinoma intrahepatico con fusion/reordenamiento FGFR2 tras progresion -> pemigatinib o futibatinib",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "irresecable_metastasico"
+    },
+    {
+     "campo": "subtipo",
+     "eq": "colangio_intrahepatico"
+    },
+    {
+     "campo": "fgfr2_fusion",
+     "eq": true
+    },
+    {
+     "campo": "lineas_previas",
+     "gte": 1
+    }
+   ],
+   "componentes": [
+    "dirigida"
+   ],
+   "evidencia": "III, A"
+  },
+  {
+   "id": "ivosidenib_idh1",
+   "label": "Ivosidenib para IDH1",
+   "nota": "ESMO: colangiocarcinoma IDH1 mutado tras progresion -> ivosidenib (ClarIDHy)",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "irresecable_metastasico"
+    },
+    {
+     "campo": "idh1_mutado",
+     "eq": true
+    },
+    {
+     "campo": "lineas_previas",
+     "gte": 1
+    }
+   ],
+   "componentes": [
+    "dirigida"
+   ],
+   "evidencia": "II, B"
+  },
+  {
+   "id": "antiher2_biliar",
+   "label": "Terapia anti-HER2",
+   "nota": "ESMO: HER2 amplificado/sobreexpresado tras linea previa -> trastuzumab-pertuzumab, zanidatamab o T-DXd si disponible",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "irresecable_metastasico"
+    },
+    {
+     "campo": "her2",
+     "eq": "positivo"
+    },
+    {
+     "campo": "lineas_previas",
+     "gte": 1
+    }
+   ],
+   "componentes": [
+    "anti_her2",
+    "dirigida"
+   ],
+   "evidencia": "III, B"
+  },
+  {
+   "id": "braf_mek",
+   "label": "Dabrafenib + trametinib",
+   "nota": "ESMO: BRAF V600E avanzado tras tratamiento previo -> dabrafenib + trametinib",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "irresecable_metastasico"
+    },
+    {
+     "campo": "braf_v600e",
+     "eq": true
+    },
+    {
+     "campo": "lineas_previas",
+     "gte": 1
+    }
+   ],
+   "componentes": [
+    "dirigida"
+   ],
+   "evidencia": "III, B"
+  },
+  {
+   "id": "ntrk_inhibidor",
+   "label": "Larotrectinib/entrectinib",
+   "nota": "ESMO: fusion NTRK -> inhibidor TRK agnostico",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "irresecable_metastasico"
+    },
+    {
+     "campo": "ntrk_fusion",
+     "eq": true
+    }
+   ],
+   "componentes": [
+    "dirigida"
+   ],
+   "evidencia": "III, A"
+  },
+  {
+   "id": "ici_msi_h",
+   "label": "Inmunoterapia MSI-H/dMMR",
+   "nota": "ESMO: MSI-H/dMMR avanzado -> inhibidor PD-1 segun disponibilidad",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "irresecable_metastasico"
+    },
+    {
+     "campo": "msi",
+     "eq": "msi_h"
+    }
+   ],
+   "componentes": [
+    "inmunoterapia"
+   ],
+   "evidencia": "III, B"
+  }
+ ],
+ "preguntas": [
+  {
+   "key": "apto_cisplatino",
+   "tipo": "noul",
+   "capa": 1,
+   "cuando": {
+    "campo": "situacion",
+    "eq": "irresecable_metastasico"
+   },
+   "instrucciones": "Segun funcion renal, audicion, neuropatia y ECOG, ¿es candidato a cisplatino?"
+  },
+  {
+   "key": "prioridad_diana",
+   "tipo": "choice",
+   "capa": 2,
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "irresecable_metastasico"
+    },
+    {
+     "campo": "lineas_previas",
+     "gte": 1
+    }
+   ],
+   "instrucciones": "Si hay varias alteraciones accionables, prioriza la diana con mas respaldo clinico",
+   "criterios": {
+    "fgfr2_idh1": "FGFR2/IDH1 en intrahepatico",
+    "her2": "HER2 en vesicula/extrahepatico",
+    "agnostica": "MSI-H/NTRK/BRAF agnostica"
+   }
+  }
+ ],
+ "seguridad": [
+  {
+   "key": "cis_renal",
+   "cuando": {
+    "campo": "insuficiencia_renal",
+    "eq": true
+   },
+   "bloquea": [
+    "gemcis_durva_1l",
+    "gemcis_pembro_1l"
+   ],
+   "instrucciones": "Con insuficiencia renal, ¿cisplatino es inaceptable?",
+   "motivo": "Insuficiencia renal: evitar cisplatino"
+  },
+  {
+   "key": "autoinmune_ici",
+   "cuando": {
+    "campo": "comorbilidades_relevantes",
+    "contains": "autoinmune"
+   },
+   "bloquea_componentes": [
+    "inmunoterapia"
+   ],
+   "instrucciones": "¿Autoinmunidad activa contraindica inmunoterapia?",
+   "motivo": "Autoinmunidad activa"
+  }
+ ],
+ "avisos": [
+  {
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "irresecable_metastasico"
+    },
+    {
+     "campo": "fgfr2_fusion",
+     "missing": true
+    },
+    {
+     "campo": "subtipo",
+     "eq": "colangio_intrahepatico"
+    }
+   ],
+   "texto": "FGFR2 no testado: puede cambiar 2a linea intrahepatica."
+  },
+  {
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "irresecable_metastasico"
+    },
+    {
+     "campo": "idh1_mutado",
+     "missing": true
+    }
+   ],
+   "texto": "IDH1 no testado: puede habilitar ivosidenib."
+  },
+  {
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "irresecable_metastasico"
+    },
+    {
+     "campo": "her2",
+     "missing": true
+    }
+   ],
+   "texto": "HER2 no testado: relevante en vesicula/extrahepatico."
+  }
+ ],
+ "vinetas": [
+  {
+   "id": "BILIAR-V01",
+   "titulo": "Postreseccion",
+   "fuente": "BILCAP",
+   "payload": {
+    "edad": 64,
+    "ecog": "0",
+    "sexo": "mujer",
+    "situacion": "resecable",
+    "subtipo": "colangio_extrahepatico",
+    "post_reseccion": true
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "capecitabina_adyuvante",
+    "aceptables": [
+     "capecitabina_adyuvante"
+    ]
+   }
+  },
+  {
+   "id": "BILIAR-V02",
+   "titulo": "Avanzado 1L apto cisplatino",
+   "fuente": "TOPAZ-1",
+   "payload": {
+    "edad": 61,
+    "ecog": "1",
+    "sexo": "hombre",
+    "situacion": "irresecable_metastasico",
+    "subtipo": "colangio_intrahepatico",
+    "cisplatino_apto": true,
+    "msi": "pmmr"
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "gemcis_durva_1l",
+    "aceptables": [
+     "gemcis_durva_1l",
+     "gemcis_pembro_1l"
+    ]
+   }
+  },
+  {
+   "id": "BILIAR-V03",
+   "titulo": "No apto cisplatino",
+   "fuente": "ESMO - alternativas cisplatino",
+   "payload": {
+    "edad": 75,
+    "ecog": "2",
+    "sexo": "mujer",
+    "situacion": "irresecable_metastasico",
+    "subtipo": "vesicula",
+    "cisplatino_apto": false,
+    "insuficiencia_renal": true
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "gemox_1l_cis_no",
+    "aceptables": [
+     "gemox_1l_cis_no"
+    ]
+   }
+  },
+  {
+   "id": "BILIAR-V04",
+   "titulo": "FGFR2 fusion post gemcis",
+   "fuente": "FIGHT-202/FOENIX",
+   "payload": {
+    "edad": 55,
+    "ecog": "1",
+    "sexo": "mujer",
+    "situacion": "irresecable_metastasico",
+    "subtipo": "colangio_intrahepatico",
+    "lineas_previas": 1,
+    "tratamientos_previos": [
+     "gem-cis+durvalumab"
+    ],
+    "fgfr2_fusion": true
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "fgfr_inhibidor",
+    "aceptables": [
+     "fgfr_inhibidor"
+    ]
+   }
+  },
+  {
+   "id": "BILIAR-V05",
+   "titulo": "IDH1 mutado 2L",
+   "fuente": "ClarIDHy",
+   "payload": {
+    "edad": 66,
+    "ecog": "1",
+    "sexo": "hombre",
+    "situacion": "irresecable_metastasico",
+    "subtipo": "colangio_intrahepatico",
+    "lineas_previas": 1,
+    "idh1_mutado": true,
+    "fgfr2_fusion": false
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "ivosidenib_idh1",
+    "aceptables": [
+     "ivosidenib_idh1",
+     "folfox_2l"
+    ]
+   }
+  },
+  {
+   "id": "BILIAR-V06",
+   "titulo": "HER2 positivo vesicula 2L",
+   "fuente": "ESMO - anti-HER2 BTC",
+   "payload": {
+    "edad": 58,
+    "ecog": "1",
+    "sexo": "mujer",
+    "situacion": "irresecable_metastasico",
+    "subtipo": "vesicula",
+    "lineas_previas": 1,
+    "her2": "positivo"
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "antiher2_biliar",
+    "aceptables": [
+     "antiher2_biliar",
+     "folfox_2l"
+    ]
+   }
+  },
+  {
+   "id": "BILIAR-V07",
+   "titulo": "Sin diana 2L",
+   "fuente": "ABC-06",
+   "payload": {
+    "edad": 69,
+    "ecog": "1",
+    "sexo": "hombre",
+    "situacion": "irresecable_metastasico",
+    "subtipo": "colangio_extrahepatico",
+    "lineas_previas": 1,
+    "fgfr2_fusion": false,
+    "idh1_mutado": false,
+    "her2": "negativo",
+    "msi": "pmmr"
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "folfox_2l",
+    "aceptables": [
+     "folfox_2l"
+    ]
+   }
+  },
+  {
+   "id": "BILIAR-V08",
+   "titulo": "Falta subtipo",
+   "fuente": "ESMO - subtipo condiciona dianas",
+   "payload": {
+    "edad": 60,
+    "ecog": "1",
+    "sexo": "mujer",
+    "situacion": "irresecable_metastasico",
+    "subtipo": null
+   },
+   "esperado": {
+    "tipo": "necesita_datos"
+   }
+  },
+  {
+   "id": "BILIAR-V09",
+   "titulo": "1L con autoinmunidad grave",
+   "fuente": "Seguridad ICI",
+   "payload": {
+    "edad": 63,
+    "ecog": "1",
+    "sexo": "hombre",
+    "situacion": "irresecable_metastasico",
+    "subtipo": "colangio_intrahepatico",
+    "cisplatino_apto": true,
+    "comorbilidades_relevantes": [
+     "hepatitis autoinmune activa con inmunosupresion"
+    ]
+   },
+   "esperado": {
+    "tipo": "revision_humana"
+   }
+  }
+ ]
+}

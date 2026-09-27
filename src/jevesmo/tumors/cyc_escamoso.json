@@ -1,0 +1,728 @@
+{
+ "id": "cyc_escamoso",
+ "nombre": "Carcinoma escamoso de cabeza y cuello",
+ "grupo": "Cabeza y cuello / Endocrino",
+ "version": "CYC_ESCAMOSO-ESMO-2024.1",
+ "guias": [
+  {
+   "titulo": "ESMO Clinical Practice Guidelines: Head and Neck Cancers",
+   "anio": 2024,
+   "url": "https://www.esmo.org/guidelines/esmo-clinical-practice-guideline-head-and-neck-cancers"
+  }
+ ],
+ "descripcion": "Carcinoma escamoso de cavidad oral, orofaringe VPH+/-, laringe/hipofaringe: tratamiento curativo, preservacion de organo y enfermedad recurrente/metastasica.",
+ "campos": [
+  {
+   "id": "estadio",
+   "label": "Estadio / situacion",
+   "tipo": "choice",
+   "seccion": "Tumor",
+   "opciones": [
+    "I",
+    "II",
+    "III",
+    "IVA",
+    "recurrente_metastasico"
+   ],
+   "requerido": true,
+   "pregunta": "¿Cual es el estadio o situacion clinica (I, II, III, IVA o recurrente_metastasico)?"
+  },
+  {
+   "id": "subsitio",
+   "label": "Subsitio primario",
+   "tipo": "choice",
+   "seccion": "Tumor",
+   "opciones": [
+    {
+     "id": "cavidad_oral",
+     "label": "cavidad oral"
+    },
+    {
+     "id": "orofaringe",
+     "label": "orofaringe"
+    },
+    {
+     "id": "laringe_hipofaringe",
+     "label": "laringe/hipofaringe"
+    },
+    {
+     "id": "otro",
+     "label": "otro"
+    }
+   ],
+   "requerido": true,
+   "pregunta": "¿Cual es el subsitio primario?"
+  },
+  {
+   "id": "vph_p16",
+   "label": "VPH/p16 en orofaringe",
+   "tipo": "choice",
+   "seccion": "Biomarcadores",
+   "opciones": [
+    "positivo",
+    "negativo",
+    "desconocido"
+   ]
+  },
+  {
+   "id": "resecable",
+   "label": "Resecable con intencion curativa",
+   "tipo": "bool",
+   "seccion": "Tumor",
+   "requerido_si": {
+    "campo": "estadio",
+    "in": [
+     "III",
+     "IVA"
+    ]
+   },
+   "pregunta": "¿El tumor es resecable con intencion curativa?"
+  },
+  {
+   "id": "factores_alto_riesgo_postop",
+   "label": "Margen positivo o extension extranodal",
+   "tipo": "bool",
+   "seccion": "Postoperatorio"
+  },
+  {
+   "id": "factores_intermedios_postop",
+   "label": "pT3-4, pN2-3, invasion perineural/vascular u otros factores intermedios",
+   "tipo": "bool",
+   "seccion": "Postoperatorio"
+  },
+  {
+   "id": "cisplatino_apto",
+   "label": "Apto para cisplatino",
+   "tipo": "bool",
+   "seccion": "Seguridad"
+  },
+  {
+   "id": "pdl1_cps",
+   "label": "PD-L1 CPS",
+   "tipo": "number",
+   "seccion": "Biomarcadores",
+   "min": 0,
+   "max": 100
+  }
+ ],
+ "derivados": [],
+ "opciones": [
+  {
+   "id": "cirugia_o_rt_precoz",
+   "label": "Cirugia o radioterapia radical monomodal",
+   "nota": "Estadios I-II: cirugia conservadora o RT radical segun subsitio, funcion y morbilidad.",
+   "cuando": {
+    "campo": "estadio",
+    "in": [
+     "I",
+     "II"
+    ]
+   },
+   "componentes": [
+    "cirugia",
+    "radioterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "cirugia_adyuvante_observacion",
+   "label": "Cirugia completa y observacion/RT selectiva",
+   "nota": "Tras reseccion R0 sin factores de riesgo mayores puede observarse o usar RT adyuvante segun riesgo anatomopatologico.",
+   "cuando": [
+    {
+     "campo": "estadio",
+     "in": [
+      "III",
+      "IVA"
+     ]
+    },
+    {
+     "campo": "resecable",
+     "eq": true
+    },
+    {
+     "campo": "factores_alto_riesgo_postop",
+     "ne": true
+    },
+    {
+     "campo": "factores_intermedios_postop",
+     "ne": true
+    }
+   ],
+   "componentes": [
+    "cirugia",
+    "vigilancia"
+   ],
+   "evidencia": "II, B"
+  },
+  {
+   "id": "rt_adyuvante",
+   "label": "Radioterapia adyuvante postoperatoria",
+   "nota": "Factores intermedios (pT3-4, pN2-3, invasion perineural/vascular) tras cirugia -> RT adyuvante.",
+   "cuando": [
+    {
+     "campo": "estadio",
+     "in": [
+      "III",
+      "IVA"
+     ]
+    },
+    {
+     "campo": "resecable",
+     "eq": true
+    },
+    {
+     "campo": "factores_intermedios_postop",
+     "eq": true
+    },
+    {
+     "campo": "factores_alto_riesgo_postop",
+     "ne": true
+    }
+   ],
+   "componentes": [
+    "radioterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "qrt_adyuvante_cisplatino",
+   "label": "Quimiorradioterapia adyuvante con cisplatino",
+   "nota": "Margen positivo y/o extension extranodal tras cirugia -> QRT adyuvante con cisplatino si candidato.",
+   "cuando": [
+    {
+     "campo": "estadio",
+     "in": [
+      "III",
+      "IVA"
+     ]
+    },
+    {
+     "campo": "resecable",
+     "eq": true
+    },
+    {
+     "campo": "factores_alto_riesgo_postop",
+     "eq": true
+    },
+    {
+     "campo": "cisplatino_apto",
+     "ne": false
+    }
+   ],
+   "componentes": [
+    "quimiorradioterapia",
+    "quimioterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "rt_adyuvante_no_cisplatino",
+   "label": "RT adyuvante si no candidato a cisplatino",
+   "nota": "Alto riesgo postoperatorio con cisplatino contraindicado: individualizar RT adyuvante y alternativas no cisplatino.",
+   "cuando": [
+    {
+     "campo": "estadio",
+     "in": [
+      "III",
+      "IVA"
+     ]
+    },
+    {
+     "campo": "resecable",
+     "eq": true
+    },
+    {
+     "campo": "factores_alto_riesgo_postop",
+     "eq": true
+    },
+    {
+     "campo": "cisplatino_apto",
+     "eq": false
+    }
+   ],
+   "componentes": [
+    "radioterapia"
+   ],
+   "evidencia": "III, B"
+  },
+  {
+   "id": "qrt_definitiva_cisplatino",
+   "label": "Quimiorradioterapia definitiva con cisplatino",
+   "nota": "Enfermedad localmente avanzada no resecable o preservacion de organo en laringe/hipofaringe -> RT + cisplatino concomitante si apto.",
+   "cuando": [
+    {
+     "campo": "estadio",
+     "in": [
+      "III",
+      "IVA"
+     ]
+    },
+    {
+     "any": [
+      {
+       "campo": "resecable",
+       "eq": false
+      },
+      {
+       "campo": "subsitio",
+       "eq": "laringe_hipofaringe"
+      }
+     ]
+    },
+    {
+     "campo": "cisplatino_apto",
+     "ne": false
+    }
+   ],
+   "componentes": [
+    "quimiorradioterapia",
+    "quimioterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "cetuximab_rt_no_cisplatino",
+   "label": "Cetuximab + radioterapia si no cisplatino",
+   "nota": "Si se precisa RT radical y cisplatino no es posible, cetuximab-RT es alternativa seleccionada.",
+   "cuando": [
+    {
+     "campo": "estadio",
+     "in": [
+      "III",
+      "IVA"
+     ]
+    },
+    {
+     "campo": "cisplatino_apto",
+     "eq": false
+    }
+   ],
+   "componentes": [
+    "radioterapia",
+    "dirigida"
+   ],
+   "evidencia": "II, B"
+  },
+  {
+   "id": "pembro_monoterapia_1l",
+   "label": "Pembrolizumab monoterapia 1L",
+   "nota": "R/M: pembrolizumab 1L para PD-L1 CPS>=1, especialmente CPS>=20 o enfermedad poco sintomatica (KEYNOTE-048).",
+   "cuando": [
+    {
+     "campo": "estadio",
+     "eq": "recurrente_metastasico"
+    },
+    {
+     "any": [
+      {
+       "campo": "lineas_previas",
+       "missing": true
+      },
+      {
+       "campo": "lineas_previas",
+       "eq": 0
+      }
+     ]
+    },
+    {
+     "campo": "pdl1_cps",
+     "gte": 1
+    }
+   ],
+   "componentes": [
+    "inmunoterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "pembro_platino_5fu_1l",
+   "label": "Pembrolizumab + platino + 5-FU 1L",
+   "nota": "R/M: pembrolizumab + platino/5-FU si necesidad de respuesta rapida o CPS positivo (KEYNOTE-048).",
+   "cuando": [
+    {
+     "campo": "estadio",
+     "eq": "recurrente_metastasico"
+    },
+    {
+     "any": [
+      {
+       "campo": "lineas_previas",
+       "missing": true
+      },
+      {
+       "campo": "lineas_previas",
+       "eq": 0
+      }
+     ]
+    },
+    {
+     "campo": "pdl1_cps",
+     "gte": 1
+    },
+    {
+     "campo": "cisplatino_apto",
+     "ne": false
+    }
+   ],
+   "componentes": [
+    "inmunoterapia",
+    "quimioterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "extreme_1l",
+   "label": "EXTREME (platino + 5-FU + cetuximab)",
+   "nota": "R/M: EXTREME es opcion 1L cuando inmunoterapia no es adecuada o PD-L1 CPS bajo/negativo.",
+   "cuando": [
+    {
+     "campo": "estadio",
+     "eq": "recurrente_metastasico"
+    },
+    {
+     "any": [
+      {
+       "campo": "lineas_previas",
+       "missing": true
+      },
+      {
+       "campo": "lineas_previas",
+       "eq": 0
+      }
+     ]
+    },
+    {
+     "any": [
+      {
+       "campo": "pdl1_cps",
+       "lt": 1
+      },
+      {
+       "campo": "pdl1_cps",
+       "missing": true
+      }
+     ]
+    }
+   ],
+   "componentes": [
+    "quimioterapia",
+    "dirigida"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "nivolumab_2l",
+   "label": "Nivolumab 2L tras platino",
+   "nota": "R/M: progresion tras platino -> nivolumab mejora supervivencia (CheckMate 141).",
+   "cuando": [
+    {
+     "campo": "estadio",
+     "eq": "recurrente_metastasico"
+    },
+    {
+     "campo": "lineas_previas",
+     "gte": 1
+    }
+   ],
+   "componentes": [
+    "inmunoterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "tratamiento_soporte",
+   "label": "Soporte exclusivo / cuidados paliativos",
+   "nota": "ECOG 3-4, fragilidad o comorbilidad grave pueden hacer preferible soporte exclusivo.",
+   "cuando": {
+    "campo": "ecog",
+    "in": [
+     "3",
+     "4"
+    ]
+   },
+   "componentes": [
+    "soporte"
+   ],
+   "evidencia": "V, A"
+  }
+ ],
+ "preguntas": [
+  {
+   "key": "preservacion_organo",
+   "tipo": "choice",
+   "capa": 1,
+   "cuando": {
+    "campo": "subsitio",
+    "eq": "laringe_hipofaringe"
+   },
+   "instrucciones": "Valora si el objetivo clinico prioritario es preservacion de laringe sin comprometer control oncologico.",
+   "criterios": {
+    "preservar": "Preservacion con QRT razonable",
+    "cirugia": "Cirugia primaria preferible"
+   }
+  },
+  {
+   "key": "necesidad_respuesta_rapida",
+   "tipo": "noul",
+   "capa": 1,
+   "cuando": {
+    "campo": "estadio",
+    "eq": "recurrente_metastasico"
+   },
+   "instrucciones": "Por carga tumoral, sintomas o riesgo vital, ¿se necesita respuesta rapida que favorezca combinacion con quimioterapia?"
+  },
+  {
+   "key": "resecabilidad_borde",
+   "tipo": "noul",
+   "capa": 2,
+   "cuando": {
+    "campo": "estadio",
+    "in": [
+     "III",
+     "IVA"
+    ]
+   },
+   "instrucciones": "Si la resecabilidad es borderline, ¿parece factible una reseccion R0 con morbilidad aceptable?"
+  }
+ ],
+ "seguridad": [
+  {
+   "key": "contra_cisplatino",
+   "cuando": {
+    "campo": "cisplatino_apto",
+    "present": true
+   },
+   "bloquea_componentes": [
+    "quimiorradioterapia"
+   ],
+   "instrucciones": "Con funcion renal, audicion, neuropatia y comorbilidades descritas, ¿esta contraindicado cisplatino de forma clinicamente relevante?",
+   "umbral": 0.7,
+   "motivo": "Contraindicacion o fragilidad incompatible con cisplatino concurrente."
+  },
+  {
+   "key": "contra_ici_autoimmune",
+   "cuando": {
+    "campo": "comorbilidades_relevantes",
+    "present": true
+   },
+   "bloquea_componentes": [
+    "inmunoterapia"
+   ],
+   "instrucciones": "¿Existe enfermedad autoinmune activa, trasplante u otra contraindicacion mayor para anti-PD-1?",
+   "motivo": "Riesgo inaceptable para inmunoterapia anti-PD-1."
+  }
+ ],
+ "avisos": [
+  {
+   "cuando": [
+    {
+     "campo": "estadio",
+     "eq": "recurrente_metastasico"
+    },
+    {
+     "campo": "pdl1_cps",
+     "missing": true
+    }
+   ],
+   "texto": "PD-L1 CPS no disponible: cambia la eleccion de pembrolizumab frente a EXTREME."
+  },
+  {
+   "cuando": [
+    {
+     "campo": "subsitio",
+     "eq": "orofaringe"
+    },
+    {
+     "campo": "vph_p16",
+     "missing": true
+    }
+   ],
+   "texto": "p16/VPH no informado: relevante para pronostico."
+  }
+ ],
+ "vinetas": [
+  {
+   "id": "CYC_ESCAMOSO-V01",
+   "titulo": "Cavidad oral T1N0",
+   "fuente": "ESMO Head and Neck CPG",
+   "payload": {
+    "edad": 60,
+    "ecog": "0",
+    "estadio": "I",
+    "subsitio": "cavidad_oral",
+    "sexo": "hombre"
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "cirugia_o_rt_precoz",
+    "aceptables": [
+     "cirugia_o_rt_precoz"
+    ]
+   }
+  },
+  {
+   "id": "CYC_ESCAMOSO-V02",
+   "titulo": "Postoperatorio margen positivo",
+   "fuente": "ESMO Head and Neck CPG",
+   "payload": {
+    "edad": 60,
+    "ecog": "0",
+    "estadio": "IVA",
+    "subsitio": "cavidad_oral",
+    "resecable": true,
+    "factores_alto_riesgo_postop": true,
+    "cisplatino_apto": true
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "qrt_adyuvante_cisplatino",
+    "aceptables": [
+     "qrt_adyuvante_cisplatino"
+    ]
+   }
+  },
+  {
+   "id": "CYC_ESCAMOSO-V03",
+   "titulo": "Factores intermedios",
+   "fuente": "ESMO Head and Neck CPG",
+   "payload": {
+    "edad": 60,
+    "ecog": "0",
+    "estadio": "III",
+    "subsitio": "orofaringe",
+    "vph_p16": "positivo",
+    "resecable": true,
+    "factores_intermedios_postop": true,
+    "factores_alto_riesgo_postop": false
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "rt_adyuvante",
+    "aceptables": [
+     "rt_adyuvante"
+    ]
+   }
+  },
+  {
+   "id": "CYC_ESCAMOSO-V04",
+   "titulo": "Laringe preservacion",
+   "fuente": "ESMO Head and Neck CPG",
+   "payload": {
+    "edad": 60,
+    "ecog": "0",
+    "estadio": "III",
+    "subsitio": "laringe_hipofaringe",
+    "resecable": true,
+    "cisplatino_apto": true
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "qrt_definitiva_cisplatino",
+    "aceptables": [
+     "qrt_definitiva_cisplatino"
+    ]
+   }
+  },
+  {
+   "id": "CYC_ESCAMOSO-V05",
+   "titulo": "No cisplatino",
+   "fuente": "ESMO Head and Neck CPG",
+   "payload": {
+    "edad": 60,
+    "ecog": "1",
+    "estadio": "IVA",
+    "subsitio": "orofaringe",
+    "vph_p16": "negativo",
+    "resecable": false,
+    "cisplatino_apto": false,
+    "insuficiencia_renal": true
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "cetuximab_rt_no_cisplatino",
+    "aceptables": [
+     "cetuximab_rt_no_cisplatino",
+     "rt_adyuvante_no_cisplatino"
+    ]
+   }
+  },
+  {
+   "id": "CYC_ESCAMOSO-V06",
+   "titulo": "R/M CPS alto 1L",
+   "fuente": "ESMO Head and Neck CPG",
+   "payload": {
+    "edad": 60,
+    "ecog": "1",
+    "estadio": "recurrente_metastasico",
+    "subsitio": "orofaringe",
+    "pdl1_cps": 35,
+    "cisplatino_apto": true
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "pembro_monoterapia_1l",
+    "aceptables": [
+     "pembro_monoterapia_1l",
+     "pembro_platino_5fu_1l"
+    ]
+   }
+  },
+  {
+   "id": "CYC_ESCAMOSO-V07",
+   "titulo": "R/M segunda linea",
+   "fuente": "ESMO Head and Neck CPG",
+   "payload": {
+    "edad": 60,
+    "ecog": "1",
+    "estadio": "recurrente_metastasico",
+    "subsitio": "cavidad_oral",
+    "pdl1_cps": 0,
+    "lineas_previas": 1,
+    "tratamientos_previos": [
+     "cisplatino+5FU+cetuximab"
+    ]
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "nivolumab_2l",
+    "aceptables": [
+     "nivolumab_2l"
+    ]
+   }
+  },
+  {
+   "id": "CYC_ESCAMOSO-V08",
+   "titulo": "Falta estadio",
+   "fuente": "ESMO Head and Neck CPG",
+   "payload": {
+    "edad": 60,
+    "ecog": "0",
+    "estadio": null,
+    "subsitio": "cavidad_oral"
+   },
+   "esperado": {
+    "tipo": "necesita_datos"
+   }
+  },
+  {
+   "id": "CYC_ESCAMOSO-V09",
+   "titulo": "Autoinmune activa",
+   "fuente": "ESMO Head and Neck CPG",
+   "payload": {
+    "edad": 60,
+    "ecog": "1",
+    "estadio": "recurrente_metastasico",
+    "subsitio": "orofaringe",
+    "pdl1_cps": 80,
+    "lineas_previas": 2,
+    "comorbilidades_relevantes": [
+     "colitis ulcerosa activa grave con corticoides"
+    ]
+   },
+   "esperado": {
+    "tipo": "revision_humana"
+   }
+  }
+ ]
+}

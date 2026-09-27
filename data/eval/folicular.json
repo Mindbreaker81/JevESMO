@@ -1,0 +1,197 @@
+{
+ "tumor": "folicular",
+ "nombre": "Linfoma folicular",
+ "grupo": "Hematologia",
+ "version": "FOLLICULAR-ESMO-2025.1",
+ "fecha": "2026-09-27T14:47:28+00:00",
+ "modelo": "jev-latest",
+ "mock": false,
+ "umbral_confianza": 0.6,
+ "n": 9,
+ "aciertos": 9,
+ "acierto_global": 1.0,
+ "acierto_tratamiento": 1.0,
+ "acierto_preferida": 1.0,
+ "acierto_seguridad": 1.0,
+ "confianza_aciertos": 0.9342857142857143,
+ "confianza_fallos": null,
+ "n_multiopcion": 4,
+ "acierto_multiopcion": 1.0,
+ "candidatos_medios": 1.7142857142857142,
+ "casos": [
+  {
+   "id": "FOLICULAR-V01",
+   "titulo": "FL localizado",
+   "fuente": "ESMO FL estadio I",
+   "esperado_tipo": "recomendacion",
+   "esperado": "rt_limitado",
+   "aceptables": [
+    "rt_limitado"
+   ],
+   "obtenido": "rt_limitado",
+   "obtenido_label": "Radioterapia local ISRT 24 Gy",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "FOLICULAR-V02",
+   "titulo": "Avanzado baja carga",
+   "fuente": "ESMO watch and wait",
+   "esperado_tipo": "recomendacion",
+   "esperado": "watch_wait",
+   "aceptables": [
+    "watch_wait",
+    "rituximab_mono"
+   ],
+   "obtenido": "watch_wait",
+   "obtenido_label": "Observacion activa (watch and wait)",
+   "confianza": 0.97,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  },
+  {
+   "id": "FOLICULAR-V03",
+   "titulo": "Baja carga con preferencia tratamiento",
+   "fuente": "ESMO rituximab monoterapia",
+   "esperado_tipo": "recomendacion",
+   "esperado": "rituximab_mono",
+   "aceptables": [
+    "rituximab_mono",
+    "watch_wait"
+   ],
+   "obtenido": "rituximab_mono",
+   "obtenido_label": "Rituximab monoterapia",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "FOLICULAR-V04",
+   "titulo": "Alta carga GELF",
+   "fuente": "ESMO inmunoquimioterapia",
+   "esperado_tipo": "recomendacion",
+   "esperado": "r_quimio_mantenimiento",
+   "aceptables": [
+    "r_quimio_mantenimiento",
+    "obinutuzumab_quimio"
+   ],
+   "obtenido": "r_quimio_mantenimiento",
+   "obtenido_label": "R-quimioterapia (R-CHOP/R-CVP/BR) + mantenimiento rituximab",
+   "confianza": 0.75,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  },
+  {
+   "id": "FOLICULAR-V05",
+   "titulo": "Grado 3B",
+   "fuente": "ESMO tratar como agresivo",
+   "esperado_tipo": "recomendacion",
+   "esperado": "tratar_como_dlbcl",
+   "aceptables": [
+    "tratar_como_dlbcl"
+   ],
+   "obtenido": "tratar_como_dlbcl",
+   "obtenido_label": "Tratar como DLBCL (R-CHOP/Pola-R-CHP)",
+   "confianza": 0.92,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  },
+  {
+   "id": "FOLICULAR-V06",
+   "titulo": "Primera recaida",
+   "fuente": "AUGMENT",
+   "esperado_tipo": "recomendacion",
+   "esperado": "r2_recaida",
+   "aceptables": [
+    "r2_recaida"
+   ],
+   "obtenido": "r2_recaida",
+   "obtenido_label": "Lenalidomida + rituximab (R2)",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "FOLICULAR-V07",
+   "titulo": "Tercera linea candidato CAR-T",
+   "fuente": "ESMO FL recaida multiple",
+   "esperado_tipo": "recomendacion",
+   "esperado": "car_t_fl",
+   "aceptables": [
+    "car_t_fl",
+    "mosunetuzumab",
+    "ensayo_pod24"
+   ],
+   "obtenido": "car_t_fl",
+   "obtenido_label": "CAR-T axi-cel/tisa-cel",
+   "confianza": 0.9,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 3,
+   "error": null
+  },
+  {
+   "id": "FOLICULAR-V08",
+   "titulo": "Falta GELF en avanzado",
+   "fuente": "Dato requerido",
+   "esperado_tipo": "necesita_datos",
+   "esperado": "necesita_datos",
+   "aceptables": [],
+   "obtenido": "necesita_datos",
+   "obtenido_label": null,
+   "confianza": null,
+   "revision": null,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [
+    "¿La carga tumoral cumple criterios GELF de alta carga/sintomas?"
+   ],
+   "n_candidatos": 0,
+   "error": null
+  },
+  {
+   "id": "FOLICULAR-V09",
+   "titulo": "Infeccion activa y necesidad de anti-CD20",
+   "fuente": "Seguridad",
+   "esperado_tipo": "revision_humana",
+   "esperado": "revision_humana",
+   "aceptables": [],
+   "obtenido": "revision (sin opcion segura)",
+   "obtenido_label": null,
+   "confianza": 0.0,
+   "revision": true,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  }
+ ]
+}

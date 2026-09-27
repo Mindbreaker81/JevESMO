@@ -1,0 +1,175 @@
+{
+ "tumor": "cpnm_metastasico",
+ "nombre": "CPNM metastasico",
+ "grupo": "Toracico",
+ "version": "CPNM_METASTASICO-ESMO-2025.1",
+ "fecha": "2026-09-27T14:47:24+00:00",
+ "modelo": "jev-latest",
+ "mock": false,
+ "umbral_confianza": 0.6,
+ "n": 8,
+ "aciertos": 8,
+ "acierto_global": 1.0,
+ "acierto_tratamiento": 1.0,
+ "acierto_preferida": 1.0,
+ "acierto_seguridad": 1.0,
+ "confianza_aciertos": 0.9816666666666666,
+ "confianza_fallos": null,
+ "n_multiopcion": 2,
+ "acierto_multiopcion": 1.0,
+ "candidatos_medios": 1.3333333333333333,
+ "casos": [
+  {
+   "id": "CPNM_METASTASICO-V01",
+   "titulo": "EGFR comun 1L",
+   "fuente": "ESMO mNSCLC: EGFR 1L osimertinib",
+   "esperado_tipo": "recomendacion",
+   "esperado": "osimertinib_1l",
+   "aceptables": [
+    "osimertinib_1l",
+    "amivantamab_lazertinib_1l"
+   ],
+   "obtenido": "osimertinib_1l",
+   "obtenido_label": "Osimertinib 1L",
+   "confianza": 0.98,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  },
+  {
+   "id": "CPNM_METASTASICO-V02",
+   "titulo": "ALK 1L con CNS",
+   "fuente": "ESMO: ALK TKI CNS activo",
+   "esperado_tipo": "recomendacion",
+   "esperado": "alectinib_alk",
+   "aceptables": [
+    "alectinib_alk"
+   ],
+   "obtenido": "alectinib_alk",
+   "obtenido_label": "Alectinib/brigatinib/lorlatinib 1L",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "CPNM_METASTASICO-V03",
+   "titulo": "No escamoso sin driver PD-L1 alto",
+   "fuente": "ESMO KEYNOTE-024/189",
+   "esperado_tipo": "recomendacion",
+   "esperado": "pembro_monoterapia",
+   "aceptables": [
+    "pembro_monoterapia",
+    "quimio_ici_noescamoso"
+   ],
+   "obtenido": "pembro_monoterapia",
+   "obtenido_label": "Pembrolizumab monoterapia",
+   "confianza": 0.91,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  },
+  {
+   "id": "CPNM_METASTASICO-V04",
+   "titulo": "Escamoso PD-L1 bajo 1L",
+   "fuente": "KEYNOTE-407",
+   "esperado_tipo": "recomendacion",
+   "esperado": "quimio_ici_escamoso",
+   "aceptables": [
+    "quimio_ici_escamoso"
+   ],
+   "obtenido": "quimio_ici_escamoso",
+   "obtenido_label": "Carboplatino+taxano+pembrolizumab",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "CPNM_METASTASICO-V05",
+   "titulo": "KRAS G12C segunda linea",
+   "fuente": "ESMO: KRAS G12C tras progresion",
+   "esperado_tipo": "recomendacion",
+   "esperado": "kras_g12c_2l",
+   "aceptables": [
+    "kras_g12c_2l"
+   ],
+   "obtenido": "kras_g12c_2l",
+   "obtenido_label": "Sotorasib/adagrasib",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "CPNM_METASTASICO-V06",
+   "titulo": "HER2 mutado segunda linea",
+   "fuente": "ESMO/DESTINY-Lung: T-DXd",
+   "esperado_tipo": "recomendacion",
+   "esperado": "tdxd_her2_2l",
+   "aceptables": [
+    "tdxd_her2_2l"
+   ],
+   "obtenido": "tdxd_her2_2l",
+   "obtenido_label": "Trastuzumab deruxtecan",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "CPNM_METASTASICO-V07",
+   "titulo": "PD-L1 faltante sin driver",
+   "fuente": "ESMO: PD-L1 requerido para rama sin driver",
+   "esperado_tipo": "necesita_datos",
+   "esperado": "necesita_datos",
+   "aceptables": [],
+   "obtenido": "necesita_datos",
+   "obtenido_label": null,
+   "confianza": null,
+   "revision": null,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [
+    "¿Cual es el PD-L1 TPS?"
+   ],
+   "n_candidatos": 0,
+   "error": null
+  },
+  {
+   "id": "CPNM_METASTASICO-V08",
+   "titulo": "ICI contraindicado por autoinmunidad",
+   "fuente": "Seguridad inmunoterapia",
+   "esperado_tipo": "revision_humana",
+   "esperado": "revision_humana",
+   "aceptables": [],
+   "obtenido": "revision (sin opcion segura)",
+   "obtenido_label": null,
+   "confianza": 0.0,
+   "revision": true,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  }
+ ]
+}

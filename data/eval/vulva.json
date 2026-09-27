@@ -1,0 +1,213 @@
+{
+ "tumor": "vulva",
+ "nombre": "Carcinoma escamoso de vulva",
+ "grupo": "Ginecologico",
+ "version": "VULVA-ESMO-2023.1",
+ "fecha": "2026-09-27T14:47:53+00:00",
+ "modelo": "jev-latest",
+ "mock": false,
+ "umbral_confianza": 0.6,
+ "n": 10,
+ "aciertos": 10,
+ "acierto_global": 1.0,
+ "acierto_tratamiento": 1.0,
+ "acierto_preferida": 0.875,
+ "acierto_seguridad": 1.0,
+ "confianza_aciertos": 0.7787499999999999,
+ "confianza_fallos": null,
+ "n_multiopcion": 3,
+ "acierto_multiopcion": 1.0,
+ "candidatos_medios": 1.375,
+ "casos": [
+  {
+   "id": "VULVA-V01",
+   "titulo": "IA superficial",
+   "fuente": "ESGO IA invasion <=1 mm",
+   "esperado_tipo": "recomendacion",
+   "esperado": "escision_local_ia",
+   "aceptables": [
+    "escision_local_ia"
+   ],
+   "obtenido": "escision_local_ia",
+   "obtenido_label": "Escision local amplia sin estadiaje ganglionar",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "VULVA-V02",
+   "titulo": "Unifocal pequena candidata a centinela",
+   "fuente": "ESGO sentinel node",
+   "esperado_tipo": "recomendacion",
+   "esperado": "escision_ganglio_centinela",
+   "aceptables": [
+    "escision_ganglio_centinela"
+   ],
+   "obtenido": "escision_ganglio_centinela",
+   "obtenido_label": "Escision radical local + ganglio centinela",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "VULVA-V03",
+   "titulo": "Tumor 5 cm",
+   "fuente": "ESGO >=4 cm lymphadenectomy",
+   "esperado_tipo": "recomendacion",
+   "esperado": "escision_linfadenectomia",
+   "aceptables": [
+    "escision_linfadenectomia"
+   ],
+   "obtenido": "escision_linfadenectomia",
+   "obtenido_label": "Escision radical local + linfadenectomia inguinofemoral",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "VULVA-V04",
+   "titulo": "Margen positivo",
+   "fuente": "ESGO positive margins RT",
+   "esperado_tipo": "recomendacion",
+   "esperado": "rt_adyuvante_margenes",
+   "aceptables": [
+    "rt_adyuvante_margenes",
+    "escision_ganglio_centinela"
+   ],
+   "obtenido": "escision_ganglio_centinela",
+   "obtenido_label": "Escision radical local + ganglio centinela",
+   "confianza": 0.47,
+   "revision": true,
+   "acierto": true,
+   "acierto_preferida": false,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  },
+  {
+   "id": "VULVA-V05",
+   "titulo": "Ganglios multiples",
+   "fuente": "ESGO nodal RT",
+   "esperado_tipo": "recomendacion",
+   "esperado": "rt_inguinal_adyuvante",
+   "aceptables": [
+    "rt_inguinal_adyuvante",
+    "escision_linfadenectomia"
+   ],
+   "obtenido": "rt_inguinal_adyuvante",
+   "obtenido_label": "Radioterapia inguinofemoral/pelvica adyuvante",
+   "confianza": 0.29,
+   "revision": true,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  },
+  {
+   "id": "VULVA-V06",
+   "titulo": "Extension extranodal",
+   "fuente": "ESGO extranodal QRT",
+   "esperado_tipo": "recomendacion",
+   "esperado": "qrt_adyuvante_extranodal",
+   "aceptables": [
+    "qrt_adyuvante_extranodal"
+   ],
+   "obtenido": "qrt_adyuvante_extranodal",
+   "obtenido_label": "Quimiorradioterapia adyuvante",
+   "confianza": 0.47,
+   "revision": true,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  },
+  {
+   "id": "VULVA-V07",
+   "titulo": "IVA no resecable",
+   "fuente": "ESGO definitive CRT",
+   "esperado_tipo": "recomendacion",
+   "esperado": "qrt_definitiva_avanzada",
+   "aceptables": [
+    "qrt_definitiva_avanzada"
+   ],
+   "obtenido": "qrt_definitiva_avanzada",
+   "obtenido_label": "Quimiorradioterapia definitiva/neoadyuvante",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "VULVA-V08",
+   "titulo": "Metastasico recurrente",
+   "fuente": "ESGO palliative systemic",
+   "esperado_tipo": "recomendacion",
+   "esperado": "sistemico_paliativo",
+   "aceptables": [
+    "sistemico_paliativo"
+   ],
+   "obtenido": "sistemico_paliativo",
+   "obtenido_label": "Tratamiento sistemico paliativo/ensayo clinico",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "VULVA-V09",
+   "titulo": "Falta estadio",
+   "fuente": "ESGO staging required",
+   "esperado_tipo": "necesita_datos",
+   "esperado": "necesita_datos",
+   "aceptables": [],
+   "obtenido": "necesita_datos",
+   "obtenido_label": null,
+   "confianza": null,
+   "revision": null,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [
+    "¿Cual es el estadio FIGO?"
+   ],
+   "n_candidatos": 0,
+   "error": null
+  },
+  {
+   "id": "VULVA-V10",
+   "titulo": "ECOG 4 avanzado",
+   "fuente": "ESGO supportive care",
+   "esperado_tipo": "revision_humana",
+   "esperado": "revision_humana",
+   "aceptables": [],
+   "obtenido": "revision (soporte_vulva)",
+   "obtenido_label": "Soporte, control local de sintomas y cuidados paliativos",
+   "confianza": 0.99,
+   "revision": true,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  }
+ ]
+}

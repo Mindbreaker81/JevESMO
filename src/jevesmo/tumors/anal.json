@@ -1,0 +1,490 @@
+{
+ "id": "anal",
+ "nombre": "Carcinoma escamoso de canal anal",
+ "grupo": "Digestivo",
+ "version": "anal-ESMO-2022.1",
+ "guias": [
+  {
+   "titulo": "ESMO Clinical Practice Guideline: Anal cancer",
+   "anio": 2022,
+   "url": "https://www.esmo.org/guidelines/gastrointestinal-cancers/anal-cancer"
+  }
+ ],
+ "descripcion": "Carcinoma escamoso anal localizado y avanzado: QRT mitomicina/5FU, rescate quirurgico, carboplatino-paclitaxel e inmunoterapia 2L.",
+ "campos": [
+  {
+   "id": "estadio_anal",
+   "label": "Estadio/setting",
+   "tipo": "choice",
+   "seccion": "Tumor",
+   "opciones": [
+    "localizado_temprano",
+    "localmente_avanzado",
+    "persistente_recaida_local",
+    "metastasico"
+   ],
+   "requerido": true,
+   "pregunta": "¿El carcinoma anal es localizado temprano, localmente avanzado, recaida local/persistente o metastasico?"
+  },
+  {
+   "id": "histologia_escamosa",
+   "label": "Histologia escamosa",
+   "tipo": "bool",
+   "seccion": "Tumor",
+   "requerido": true,
+   "pregunta": "¿La histologia es carcinoma escamoso de canal anal?"
+  },
+  {
+   "id": "candidato_qrt",
+   "label": "Candidato a quimiorradioterapia",
+   "tipo": "bool",
+   "seccion": "Tumor",
+   "requerido": true,
+   "pregunta": "¿Es candidato a QRT con mitomicina/5-FU o capecitabina?"
+  },
+  {
+   "id": "candidato_cirugia_rescate",
+   "label": "Candidato a cirugia de rescate APR",
+   "tipo": "bool",
+   "seccion": "Tumor"
+  },
+  {
+   "id": "vih_controlado",
+   "label": "VIH controlado",
+   "tipo": "bool",
+   "seccion": "Paciente"
+  },
+  {
+   "id": "citopenias_graves",
+   "label": "Citopenias o infeccion no controlada",
+   "tipo": "bool",
+   "seccion": "Seguridad"
+  },
+  {
+   "id": "enfermedad_autoinmune_activa",
+   "label": "Enfermedad autoinmune activa",
+   "tipo": "bool",
+   "seccion": "Seguridad"
+  }
+ ],
+ "opciones": [
+  {
+   "id": "qrt_mmc_5fu",
+   "label": "QRT definitiva con mitomicina + 5-FU/capecitabina",
+   "nota": "ESMO: carcinoma escamoso anal no metastasico -> quimiorradioterapia definitiva con mitomicina y fluoropirimidina, preservacion de esfinter.",
+   "cuando": [
+    {
+     "campo": "estadio_anal",
+     "in": [
+      "localizado_temprano",
+      "localmente_avanzado"
+     ]
+    },
+    {
+     "campo": "histologia_escamosa",
+     "eq": true
+    },
+    {
+     "campo": "candidato_qrt",
+     "eq": true
+    }
+   ],
+   "componentes": [
+    "quimiorradioterapia",
+    "radioterapia",
+    "quimioterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "rt_sola_no_apto",
+   "label": "Radioterapia sola si no apto a quimioterapia",
+   "nota": "ESMO: si no tolera quimioterapia concurrente, radioterapia radical puede considerarse con menor eficacia.",
+   "cuando": [
+    {
+     "campo": "estadio_anal",
+     "in": [
+      "localizado_temprano",
+      "localmente_avanzado"
+     ]
+    },
+    {
+     "campo": "candidato_qrt",
+     "eq": false
+    }
+   ],
+   "componentes": [
+    "radioterapia"
+   ],
+   "evidencia": "III, B"
+  },
+  {
+   "id": "escision_local_selectiva",
+   "label": "Escision local selectiva",
+   "nota": "ESMO: lesiones muy iniciales del margen anal/perianal bien diferenciadas pueden manejarse con escision local si margenes adecuados.",
+   "cuando": [
+    {
+     "campo": "estadio_anal",
+     "eq": "localizado_temprano"
+    },
+    {
+     "campo": "descripcion_libre",
+     "contains": "margen anal"
+    }
+   ],
+   "componentes": [
+    "cirugia"
+   ],
+   "evidencia": "III, B"
+  },
+  {
+   "id": "apr_rescate",
+   "label": "Amputacion abdominoperineal de rescate",
+   "nota": "ESMO: enfermedad persistente o recaida local tras QRT sin metastasis -> cirugia de rescate APR si resecable.",
+   "cuando": [
+    {
+     "campo": "estadio_anal",
+     "eq": "persistente_recaida_local"
+    },
+    {
+     "campo": "candidato_cirugia_rescate",
+     "eq": true
+    }
+   ],
+   "componentes": [
+    "cirugia"
+   ],
+   "evidencia": "III, B"
+  },
+  {
+   "id": "carbo_paclitaxel_1l",
+   "label": "Carboplatino + paclitaxel 1L avanzado",
+   "nota": "ESMO/InterAACT: metastasica/irresecable avanzada -> carboplatino-paclitaxel preferido por tolerabilidad/supervivencia.",
+   "cuando": [
+    {
+     "campo": "estadio_anal",
+     "eq": "metastasico"
+    },
+    {
+     "any": [
+      {
+       "campo": "lineas_previas",
+       "missing": true
+      },
+      {
+       "campo": "lineas_previas",
+       "eq": 0
+      }
+     ]
+    }
+   ],
+   "componentes": [
+    "quimioterapia"
+   ],
+   "evidencia": "II, B"
+  },
+  {
+   "id": "cisplatino_5fu_1l",
+   "label": "Cisplatino + 5-FU 1L avanzado",
+   "nota": "ESMO: alternativa historica en avanzado si carboplatino-paclitaxel no apropiado.",
+   "cuando": [
+    {
+     "campo": "estadio_anal",
+     "eq": "metastasico"
+    },
+    {
+     "any": [
+      {
+       "campo": "lineas_previas",
+       "missing": true
+      },
+      {
+       "campo": "lineas_previas",
+       "eq": 0
+      }
+     ]
+    }
+   ],
+   "componentes": [
+    "quimioterapia"
+   ],
+   "evidencia": "II, B"
+  },
+  {
+   "id": "retifanlimab_2l",
+   "label": "Retifanlimab/nivolumab/pembrolizumab 2L",
+   "nota": "ESMO actual: progresion tras platino en carcinoma anal avanzado -> anti-PD-1.",
+   "cuando": [
+    {
+     "campo": "estadio_anal",
+     "eq": "metastasico"
+    },
+    {
+     "campo": "lineas_previas",
+     "gte": 1
+    }
+   ],
+   "componentes": [
+    "inmunoterapia"
+   ],
+   "evidencia": "II, B"
+  },
+  {
+   "id": "ensayo_soporte_anal",
+   "label": "Ensayo clinico o soporte",
+   "nota": "ESMO: tras multiples lineas o ECOG pobre -> ensayo clinico/cuidados de soporte.",
+   "cuando": [
+    {
+     "campo": "estadio_anal",
+     "eq": "metastasico"
+    },
+    {
+     "campo": "lineas_previas",
+     "gte": 2
+    }
+   ],
+   "componentes": [
+    "soporte"
+   ],
+   "evidencia": "V, A"
+  }
+ ],
+ "preguntas": [
+  {
+   "key": "es_temprano_escision",
+   "tipo": "noul",
+   "capa": 1,
+   "cuando": {
+    "campo": "estadio_anal",
+    "eq": "localizado_temprano"
+   },
+   "instrucciones": "¿Es lesion del margen anal/perianal muy inicial que permita escision local en vez de QRT?"
+  },
+  {
+   "key": "fit_mitomicina",
+   "tipo": "noul",
+   "capa": 1,
+   "cuando": {
+    "campo": "candidato_qrt",
+    "eq": true
+   },
+   "instrucciones": "¿Puede recibir mitomicina con seguridad junto a RT?"
+  },
+  {
+   "key": "inmuno_2l",
+   "tipo": "noul",
+   "capa": 2,
+   "cuando": {
+    "campo": "lineas_previas",
+    "gte": 1
+   },
+   "instrucciones": "Tras platino, ¿el perfil clinico favorece anti-PD-1 frente a mas quimioterapia/soporte?"
+  }
+ ],
+ "seguridad": [
+  {
+   "key": "citopenias_qrt",
+   "cuando": {
+    "campo": "citopenias_graves",
+    "present": true
+   },
+   "bloquea_componentes": [
+    "quimioterapia",
+    "quimiorradioterapia"
+   ],
+   "instrucciones": "Con citopenias/infeccion no controlada, ¿mitomicina/5-FU o quimioterapia supone riesgo inaceptable?",
+   "motivo": "Citopenias o infeccion grave impiden quimioterapia"
+  },
+  {
+   "key": "autoinmune_ici",
+   "cuando": {
+    "campo": "enfermedad_autoinmune_activa",
+    "present": true
+   },
+   "bloquea_componentes": [
+    "inmunoterapia"
+   ],
+   "instrucciones": "¿Anti-PD-1 tiene riesgo inaceptable por autoinmunidad activa?",
+   "motivo": "Autoinmunidad activa"
+  }
+ ],
+ "avisos": [
+  {
+   "cuando": {
+    "campo": "vih_controlado",
+    "missing": true
+   },
+   "texto": "Estado VIH/CD4 no consignado: relevante para tolerancia, aunque no excluye QRT si controlado."
+  }
+ ],
+ "vinetas": [
+  {
+   "id": "ANAL-V01",
+   "titulo": "Localizado escamoso",
+   "fuente": "ESMO: QRT definitiva",
+   "payload": {
+    "edad": 56,
+    "ecog": "0",
+    "sexo": "mujer",
+    "estadio_anal": "localmente_avanzado",
+    "histologia_escamosa": true,
+    "candidato_qrt": true,
+    "vih_controlado": true
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "qrt_mmc_5fu",
+    "aceptables": [
+     "qrt_mmc_5fu"
+    ]
+   }
+  },
+  {
+   "id": "ANAL-V02",
+   "titulo": "Temprano margen anal",
+   "fuente": "Escision selectiva",
+   "payload": {
+    "edad": 68,
+    "ecog": "0",
+    "sexo": "hombre",
+    "estadio_anal": "localizado_temprano",
+    "histologia_escamosa": true,
+    "candidato_qrt": true,
+    "descripcion_libre": "lesion pequena del margen anal, bien diferenciada"
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "escision_local_selectiva",
+    "aceptables": [
+     "escision_local_selectiva",
+     "qrt_mmc_5fu"
+    ]
+   }
+  },
+  {
+   "id": "ANAL-V03",
+   "titulo": "No apto QRT",
+   "fuente": "RT sola",
+   "payload": {
+    "edad": 83,
+    "ecog": "2",
+    "sexo": "mujer",
+    "estadio_anal": "localmente_avanzado",
+    "histologia_escamosa": true,
+    "candidato_qrt": false
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "rt_sola_no_apto",
+    "aceptables": [
+     "rt_sola_no_apto"
+    ]
+   }
+  },
+  {
+   "id": "ANAL-V04",
+   "titulo": "Recaida local tras QRT",
+   "fuente": "APR rescate",
+   "payload": {
+    "edad": 60,
+    "ecog": "1",
+    "sexo": "hombre",
+    "estadio_anal": "persistente_recaida_local",
+    "histologia_escamosa": true,
+    "candidato_qrt": false,
+    "candidato_cirugia_rescate": true,
+    "tratamientos_previos": [
+     "QRT mitomicina 5FU"
+    ]
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "apr_rescate",
+    "aceptables": [
+     "apr_rescate"
+    ]
+   }
+  },
+  {
+   "id": "ANAL-V05",
+   "titulo": "Metastasico 1L",
+   "fuente": "InterAACT",
+   "payload": {
+    "edad": 62,
+    "ecog": "1",
+    "sexo": "mujer",
+    "estadio_anal": "metastasico",
+    "histologia_escamosa": true,
+    "candidato_qrt": false
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "carbo_paclitaxel_1l",
+    "aceptables": [
+     "carbo_paclitaxel_1l",
+     "cisplatino_5fu_1l"
+    ]
+   }
+  },
+  {
+   "id": "ANAL-V06",
+   "titulo": "Metastasico 2L",
+   "fuente": "Retifanlimab",
+   "payload": {
+    "edad": 58,
+    "ecog": "1",
+    "sexo": "hombre",
+    "estadio_anal": "metastasico",
+    "histologia_escamosa": true,
+    "candidato_qrt": false,
+    "lineas_previas": 1,
+    "tratamientos_previos": [
+     "carboplatino-paclitaxel"
+    ]
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "retifanlimab_2l",
+    "aceptables": [
+     "retifanlimab_2l"
+    ]
+   }
+  },
+  {
+   "id": "ANAL-V07",
+   "titulo": "Falta histologia",
+   "fuente": "Dato imprescindible",
+   "payload": {
+    "edad": 55,
+    "ecog": "0",
+    "sexo": "mujer",
+    "estadio_anal": "localmente_avanzado",
+    "histologia_escamosa": null,
+    "candidato_qrt": true
+   },
+   "esperado": {
+    "tipo": "necesita_datos"
+   }
+  },
+  {
+   "id": "ANAL-V08",
+   "titulo": "QRT con citopenias graves",
+   "fuente": "Seguridad",
+   "payload": {
+    "edad": 70,
+    "ecog": "2",
+    "sexo": "hombre",
+    "estadio_anal": "localmente_avanzado",
+    "histologia_escamosa": true,
+    "candidato_qrt": true,
+    "citopenias_graves": true,
+    "comorbilidades_relevantes": [
+     "neutropenia febril activa"
+    ]
+   },
+   "esperado": {
+    "tipo": "revision_humana"
+   }
+  }
+ ]
+}

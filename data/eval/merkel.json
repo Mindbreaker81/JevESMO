@@ -1,0 +1,194 @@
+{
+ "tumor": "merkel",
+ "nombre": "Carcinoma de celulas de Merkel",
+ "grupo": "Piel",
+ "version": "MERKEL-ESMO-2024.1",
+ "fecha": "2026-09-27T14:47:37+00:00",
+ "modelo": "jev-latest",
+ "mock": false,
+ "umbral_confianza": 0.6,
+ "n": 9,
+ "aciertos": 9,
+ "acierto_global": 1.0,
+ "acierto_tratamiento": 1.0,
+ "acierto_preferida": 1.0,
+ "acierto_seguridad": 1.0,
+ "confianza_aciertos": 0.972857142857143,
+ "confianza_fallos": null,
+ "n_multiopcion": 2,
+ "acierto_multiopcion": 1.0,
+ "candidatos_medios": 1.2857142857142858,
+ "casos": [
+  {
+   "id": "MERKEL-V01",
+   "titulo": "Localizado resecable",
+   "fuente": "MCC localizado",
+   "esperado_tipo": "recomendacion",
+   "esperado": "cirugia_rt_local_merkel",
+   "aceptables": [
+    "cirugia_rt_local_merkel"
+   ],
+   "obtenido": "cirugia_rt_local_merkel",
+   "obtenido_label": "Escision amplia + radioterapia adyuvante",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "MERKEL-V02",
+   "titulo": "Localizado no quirurgico",
+   "fuente": "RT definitiva",
+   "esperado_tipo": "recomendacion",
+   "esperado": "rt_definitiva_merkel",
+   "aceptables": [
+    "rt_definitiva_merkel"
+   ],
+   "obtenido": "rt_definitiva_merkel",
+   "obtenido_label": "Radioterapia definitiva",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "MERKEL-V03",
+   "titulo": "Ganglionar resecable",
+   "fuente": "Manejo ganglionar",
+   "esperado_tipo": "recomendacion",
+   "esperado": "manejo_ganglionar_rt_merkel",
+   "aceptables": [
+    "manejo_ganglionar_rt_merkel"
+   ],
+   "obtenido": "manejo_ganglionar_rt_merkel",
+   "obtenido_label": "Diseccion/RT ganglionar + RT adyuvante",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "MERKEL-V04",
+   "titulo": "Ganglionar no resecable",
+   "fuente": "RT",
+   "esperado_tipo": "recomendacion",
+   "esperado": "rt_definitiva_merkel",
+   "aceptables": [
+    "rt_definitiva_merkel"
+   ],
+   "obtenido": "rt_definitiva_merkel",
+   "obtenido_label": "Radioterapia definitiva",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "MERKEL-V05",
+   "titulo": "Irresecable avanzado",
+   "fuente": "Avelumab",
+   "esperado_tipo": "recomendacion",
+   "esperado": "avelumab_merkel_1l",
+   "aceptables": [
+    "avelumab_merkel_1l",
+    "pembro_retifanlimab_merkel"
+   ],
+   "obtenido": "avelumab_merkel_1l",
+   "obtenido_label": "Avelumab 1L avanzado",
+   "confianza": 0.92,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  },
+  {
+   "id": "MERKEL-V06",
+   "titulo": "Metastasico primera linea",
+   "fuente": "Avelumab",
+   "esperado_tipo": "recomendacion",
+   "esperado": "avelumab_merkel_1l",
+   "aceptables": [
+    "avelumab_merkel_1l",
+    "pembro_retifanlimab_merkel"
+   ],
+   "obtenido": "avelumab_merkel_1l",
+   "obtenido_label": "Avelumab 1L avanzado",
+   "confianza": 0.89,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  },
+  {
+   "id": "MERKEL-V07",
+   "titulo": "Metastasico no ICI",
+   "fuente": "Quimioterapia",
+   "esperado_tipo": "recomendacion",
+   "esperado": "quimio_merkel_no_ici",
+   "aceptables": [
+    "quimio_merkel_no_ici"
+   ],
+   "obtenido": "quimio_merkel_no_ici",
+   "obtenido_label": "Quimioterapia paliativa basada en platino/etoposido",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "MERKEL-V08",
+   "titulo": "Falta estadio",
+   "fuente": "Dato imprescindible",
+   "esperado_tipo": "necesita_datos",
+   "esperado": "necesita_datos",
+   "aceptables": [],
+   "obtenido": "necesita_datos",
+   "obtenido_label": null,
+   "confianza": null,
+   "revision": null,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [
+    "¿Cual es el estadio/situacion del carcinoma de Merkel?"
+   ],
+   "n_candidatos": 0,
+   "error": null
+  },
+  {
+   "id": "MERKEL-V09",
+   "titulo": "Metastasico autoinmune",
+   "fuente": "Seguridad ICI",
+   "esperado_tipo": "revision_humana",
+   "esperado": "revision_humana",
+   "aceptables": [],
+   "obtenido": "revision (sin opcion segura)",
+   "obtenido_label": null,
+   "confianza": 0.0,
+   "revision": true,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  }
+ ]
+}

@@ -1,0 +1,195 @@
+{
+ "tumor": "biliar",
+ "nombre": "Cancer de vias biliares",
+ "grupo": "Digestivo",
+ "version": "BILIAR-ESMO-2024.1",
+ "fecha": "2026-09-27T14:47:16+00:00",
+ "modelo": "jev-latest",
+ "mock": false,
+ "umbral_confianza": 0.6,
+ "n": 9,
+ "aciertos": 9,
+ "acierto_global": 1.0,
+ "acierto_tratamiento": 1.0,
+ "acierto_preferida": 1.0,
+ "acierto_seguridad": 1.0,
+ "confianza_aciertos": 0.9742857142857143,
+ "confianza_fallos": null,
+ "n_multiopcion": 4,
+ "acierto_multiopcion": 1.0,
+ "candidatos_medios": 1.5714285714285714,
+ "casos": [
+  {
+   "id": "BILIAR-V01",
+   "titulo": "Postreseccion",
+   "fuente": "BILCAP",
+   "esperado_tipo": "recomendacion",
+   "esperado": "capecitabina_adyuvante",
+   "aceptables": [
+    "capecitabina_adyuvante"
+   ],
+   "obtenido": "capecitabina_adyuvante",
+   "obtenido_label": "Capecitabina adyuvante 6 meses",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "BILIAR-V02",
+   "titulo": "Avanzado 1L apto cisplatino",
+   "fuente": "TOPAZ-1",
+   "esperado_tipo": "recomendacion",
+   "esperado": "gemcis_durva_1l",
+   "aceptables": [
+    "gemcis_durva_1l",
+    "gemcis_pembro_1l"
+   ],
+   "obtenido": "gemcis_durva_1l",
+   "obtenido_label": "Gemcitabina-cisplatino + durvalumab",
+   "confianza": 0.97,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  },
+  {
+   "id": "BILIAR-V03",
+   "titulo": "No apto cisplatino",
+   "fuente": "ESMO - alternativas cisplatino",
+   "esperado_tipo": "recomendacion",
+   "esperado": "gemox_1l_cis_no",
+   "aceptables": [
+    "gemox_1l_cis_no"
+   ],
+   "obtenido": "gemox_1l_cis_no",
+   "obtenido_label": "Gemcitabina-oxaliplatino/carboplatino si no cisplatino",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "BILIAR-V04",
+   "titulo": "FGFR2 fusion post gemcis",
+   "fuente": "FIGHT-202/FOENIX",
+   "esperado_tipo": "recomendacion",
+   "esperado": "fgfr_inhibidor",
+   "aceptables": [
+    "fgfr_inhibidor"
+   ],
+   "obtenido": "fgfr_inhibidor",
+   "obtenido_label": "Pemigatinib/futibatinib para FGFR2",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  },
+  {
+   "id": "BILIAR-V05",
+   "titulo": "IDH1 mutado 2L",
+   "fuente": "ClarIDHy",
+   "esperado_tipo": "recomendacion",
+   "esperado": "ivosidenib_idh1",
+   "aceptables": [
+    "ivosidenib_idh1",
+    "folfox_2l"
+   ],
+   "obtenido": "ivosidenib_idh1",
+   "obtenido_label": "Ivosidenib para IDH1",
+   "confianza": 0.87,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  },
+  {
+   "id": "BILIAR-V06",
+   "titulo": "HER2 positivo vesicula 2L",
+   "fuente": "ESMO - anti-HER2 BTC",
+   "esperado_tipo": "recomendacion",
+   "esperado": "antiher2_biliar",
+   "aceptables": [
+    "antiher2_biliar",
+    "folfox_2l"
+   ],
+   "obtenido": "antiher2_biliar",
+   "obtenido_label": "Terapia anti-HER2",
+   "confianza": 0.98,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  },
+  {
+   "id": "BILIAR-V07",
+   "titulo": "Sin diana 2L",
+   "fuente": "ABC-06",
+   "esperado_tipo": "recomendacion",
+   "esperado": "folfox_2l",
+   "aceptables": [
+    "folfox_2l"
+   ],
+   "obtenido": "folfox_2l",
+   "obtenido_label": "FOLFOX 2a linea",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "BILIAR-V08",
+   "titulo": "Falta subtipo",
+   "fuente": "ESMO - subtipo condiciona dianas",
+   "esperado_tipo": "necesita_datos",
+   "esperado": "necesita_datos",
+   "aceptables": [],
+   "obtenido": "necesita_datos",
+   "obtenido_label": null,
+   "confianza": null,
+   "revision": null,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [
+    "¿Es colangiocarcinoma intrahepatico, extrahepatico o cancer de vesicula?"
+   ],
+   "n_candidatos": 0,
+   "error": null
+  },
+  {
+   "id": "BILIAR-V09",
+   "titulo": "1L con autoinmunidad grave",
+   "fuente": "Seguridad ICI",
+   "esperado_tipo": "revision_humana",
+   "esperado": "revision_humana",
+   "aceptables": [],
+   "obtenido": "revision (sin opcion segura)",
+   "obtenido_label": null,
+   "confianza": 0.0,
+   "revision": true,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  }
+ ]
+}

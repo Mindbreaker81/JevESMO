@@ -1,0 +1,810 @@
+{
+ "id": "esofago",
+ "nombre": "Cancer de esofago y union esofagogastrica",
+ "grupo": "Digestivo",
+ "version": "ESOFAGO-ESMO-2025.1",
+ "guias": [
+  {
+   "titulo": "Oesophageal cancer: ESMO Clinical Practice Guideline for diagnosis, treatment and follow-up",
+   "anio": 2022,
+   "url": "https://www.esmo.org/guidelines/guidelines-by-topic/esmo-clinical-practice-guidelines-gastrointestinal-cancers/clinical-practice-guideline-oesophageal-cancer"
+  },
+  {
+   "titulo": "ESMO Clinical Practice Guideline interim update on the treatment of oesophageal and oesophagogastric junction cancer",
+   "anio": 2025,
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11889489/"
+  }
+ ],
+ "descripcion": "Escamoso y adenocarcinoma de esofago/union EG: CROSS, FLOT, QRT definitiva, nivolumab adyuvante y avanzado segun HER2, PD-L1, MSI y Claudin 18.2.",
+ "campos": [
+  {
+   "id": "situacion",
+   "label": "Situacion clinica",
+   "tipo": "choice",
+   "seccion": "Tumor",
+   "opciones": [
+    "mucosa_temprana",
+    "localizado_resecable",
+    "localmente_avanzado_irresecable",
+    "metastasico"
+   ],
+   "requerido": true,
+   "pregunta": "¿Cual es la situacion: mucosa temprana, localizado resecable, localmente avanzado irresecable o metastasico?"
+  },
+  {
+   "id": "histologia",
+   "label": "Histologia",
+   "tipo": "choice",
+   "seccion": "Tumor",
+   "opciones": [
+    "escamoso",
+    "adenocarcinoma"
+   ],
+   "requerido": true,
+   "pregunta": "¿La histologia es escamosa o adenocarcinoma?"
+  },
+  {
+   "id": "localizacion",
+   "label": "Localizacion",
+   "tipo": "choice",
+   "seccion": "Tumor",
+   "opciones": [
+    "cervical",
+    "toracico",
+    "union_eg",
+    "gastrico_cardias"
+   ],
+   "requerido": true,
+   "pregunta": "¿Localizacion dominante: cervical, toracico, union EG o cardias gastrico?"
+  },
+  {
+   "id": "t_nm",
+   "label": "T clinico",
+   "tipo": "choice",
+   "seccion": "Tumor",
+   "opciones": [
+    "T1a",
+    "T1b",
+    "T2",
+    "T3",
+    "T4a",
+    "T4b"
+   ]
+  },
+  {
+   "id": "n_positivo",
+   "label": "Ganglios clinicamente positivos",
+   "tipo": "bool",
+   "seccion": "Tumor"
+  },
+  {
+   "id": "residual_post_neoadyuvancia",
+   "label": "Enfermedad residual tras neoadyuvancia y cirugia R0",
+   "tipo": "bool",
+   "seccion": "Tumor"
+  },
+  {
+   "id": "her2",
+   "label": "HER2",
+   "tipo": "choice",
+   "seccion": "Biomarcadores",
+   "opciones": [
+    "positivo",
+    "negativo",
+    "desconocido"
+   ]
+  },
+  {
+   "id": "pdl1_cps",
+   "label": "PD-L1 CPS",
+   "tipo": "number",
+   "seccion": "Biomarcadores",
+   "min": 0,
+   "max": 100
+  },
+  {
+   "id": "msi",
+   "label": "MSI/MMR",
+   "tipo": "choice",
+   "seccion": "Biomarcadores",
+   "opciones": [
+    "msi_h",
+    "pmmr",
+    "desconocido"
+   ]
+  },
+  {
+   "id": "claudin182",
+   "label": "Claudin 18.2",
+   "tipo": "choice",
+   "seccion": "Biomarcadores",
+   "opciones": [
+    "positivo",
+    "negativo",
+    "desconocido"
+   ]
+  },
+  {
+   "id": "fevi",
+   "label": "FEVI",
+   "tipo": "number",
+   "seccion": "Seguridad",
+   "min": 0,
+   "max": 100,
+   "unidad": "%"
+  }
+ ],
+ "derivados": [
+  {
+   "id": "enfoque",
+   "label": "Enfoque terapeutico",
+   "defecto": "sistemico",
+   "reglas": [
+    {
+     "cuando": {
+      "campo": "situacion",
+      "in": [
+       "mucosa_temprana",
+       "localizado_resecable"
+      ]
+     },
+     "valor": "curativo"
+    },
+    {
+     "cuando": {
+      "campo": "situacion",
+      "eq": "localmente_avanzado_irresecable"
+     },
+     "valor": "definitivo_no_quirurgico"
+    }
+   ]
+  }
+ ],
+ "opciones": [
+  {
+   "id": "reseccion_endoscopica",
+   "label": "Reseccion endoscopica",
+   "nota": "ESMO: T1a superficial sin alto riesgo puede tratarse con reseccion endoscopica en centro experto",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "mucosa_temprana"
+    }
+   ],
+   "componentes": [
+    "cirugia"
+   ],
+   "evidencia": "III, B"
+  },
+  {
+   "id": "cirugia_primaria",
+   "label": "Cirugia primaria con linfadenectomia",
+   "nota": "ESMO: T1b/T2 N0 de bajo riesgo puede ir a cirugia primaria",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "localizado_resecable"
+    },
+    {
+     "campo": "t_nm",
+     "in": [
+      "T1b",
+      "T2"
+     ]
+    },
+    {
+     "campo": "n_positivo",
+     "eq": false
+    }
+   ],
+   "componentes": [
+    "cirugia"
+   ],
+   "evidencia": "III, B"
+  },
+  {
+   "id": "cross_trimodal",
+   "label": "QRT neoadyuvante CROSS seguida de cirugia",
+   "nota": "ESMO: enfermedad resecable localmente avanzada de esofago/union EG, especialmente escamoso o adenocarcinoma esofagico: carboplatino-paclitaxel y RT preoperatoria seguida de cirugia",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "localizado_resecable"
+    },
+    {
+     "campo": "histologia",
+     "in": [
+      "escamoso",
+      "adenocarcinoma"
+     ]
+    }
+   ],
+   "componentes": [
+    "quimiorradioterapia",
+    "cirugia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "flot_perioperatorio",
+   "label": "FLOT perioperatorio",
+   "nota": "ESMO: adenocarcinoma resecable de union EG/cardias gastrico cT2 o N+ -> quimioterapia perioperatoria FLOT",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "localizado_resecable"
+    },
+    {
+     "campo": "histologia",
+     "eq": "adenocarcinoma"
+    },
+    {
+     "campo": "localizacion",
+     "in": [
+      "union_eg",
+      "gastrico_cardias"
+     ]
+    }
+   ],
+   "componentes": [
+    "quimioterapia",
+    "cirugia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "qrt_definitiva",
+   "label": "Quimiorradioterapia definitiva",
+   "nota": "ESMO: escamoso cervical/toracico no quirurgico, irresecable o no candidato a cirugia -> QRT definitiva",
+   "cuando": [
+    {
+     "any": [
+      {
+       "campo": "situacion",
+       "eq": "localmente_avanzado_irresecable"
+      },
+      {
+       "campo": "localizacion",
+       "eq": "cervical"
+      }
+     ]
+    },
+    {
+     "campo": "histologia",
+     "eq": "escamoso"
+    }
+   ],
+   "componentes": [
+    "quimiorradioterapia"
+   ],
+   "evidencia": "I, B"
+  },
+  {
+   "id": "nivolumab_adyuvante",
+   "label": "Nivolumab adyuvante",
+   "nota": "ESMO: tras QRT neoadyuvante y cirugia R0 con enfermedad residual -> nivolumab adyuvante (CheckMate 577)",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "localizado_resecable"
+    },
+    {
+     "campo": "residual_post_neoadyuvancia",
+     "eq": true
+    }
+   ],
+   "componentes": [
+    "inmunoterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "pembro_trastu_quimio_1l",
+   "label": "Pembrolizumab + trastuzumab + quimioterapia",
+   "nota": "ESMO: adenocarcinoma avanzado HER2 positivo 1L -> trastuzumab y pembrolizumab con platino-fluoropirimidina",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "metastasico"
+    },
+    {
+     "campo": "histologia",
+     "eq": "adenocarcinoma"
+    },
+    {
+     "campo": "her2",
+     "eq": "positivo"
+    },
+    {
+     "any": [
+      {
+       "campo": "lineas_previas",
+       "missing": true
+      },
+      {
+       "campo": "lineas_previas",
+       "eq": 0
+      }
+     ]
+    }
+   ],
+   "componentes": [
+    "quimioterapia",
+    "inmunoterapia",
+    "anti_her2"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "ici_quimio_cps_alto",
+   "label": "Inmunoterapia + quimioterapia por PD-L1 alto",
+   "nota": "ESMO: enfermedad avanzada con PD-L1 CPS alto (CPS>=10) -> pembrolizumab/nivolumab + quimioterapia",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "metastasico"
+    },
+    {
+     "campo": "pdl1_cps",
+     "gte": 10
+    },
+    {
+     "any": [
+      {
+       "campo": "lineas_previas",
+       "missing": true
+      },
+      {
+       "campo": "lineas_previas",
+       "eq": 0
+      }
+     ]
+    }
+   ],
+   "componentes": [
+    "quimioterapia",
+    "inmunoterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "zolbetuximab_quimio",
+   "label": "Zolbetuximab + quimioterapia",
+   "nota": "ESMO/Living: adenocarcinoma avanzado HER2 negativo, CLDN18.2 positivo, 1L -> zolbetuximab + CAPOX/FOLFOX",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "metastasico"
+    },
+    {
+     "campo": "histologia",
+     "eq": "adenocarcinoma"
+    },
+    {
+     "campo": "her2",
+     "ne": "positivo"
+    },
+    {
+     "campo": "claudin182",
+     "eq": "positivo"
+    },
+    {
+     "any": [
+      {
+       "campo": "lineas_previas",
+       "missing": true
+      },
+      {
+       "campo": "lineas_previas",
+       "eq": 0
+      }
+     ]
+    }
+   ],
+   "componentes": [
+    "quimioterapia",
+    "dirigida"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "ici_msi_h",
+   "label": "Inmunoterapia para MSI-H/dMMR",
+   "nota": "ESMO: tumor avanzado MSI-H/dMMR puede recibir inhibidor PD-1",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "metastasico"
+    },
+    {
+     "campo": "msi",
+     "eq": "msi_h"
+    }
+   ],
+   "componentes": [
+    "inmunoterapia"
+   ],
+   "evidencia": "II, B"
+  },
+  {
+   "id": "quimio_doblete_1l",
+   "label": "Quimioterapia doblete platino-fluoropirimidina",
+   "nota": "ESMO: enfermedad avanzada sin biomarcador accionable o PD-L1 bajo -> doblete platino-fluoropirimidina",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "metastasico"
+    },
+    {
+     "any": [
+      {
+       "campo": "lineas_previas",
+       "missing": true
+      },
+      {
+       "campo": "lineas_previas",
+       "eq": 0
+      }
+     ]
+    }
+   ],
+   "componentes": [
+    "quimioterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "ram_paclitaxel_2l",
+   "label": "Ramucirumab + paclitaxel 2a linea",
+   "nota": "ESMO: adenocarcinoma esofagogastrico avanzado tras 1L -> ramucirumab + paclitaxel (RAINBOW)",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "metastasico"
+    },
+    {
+     "campo": "histologia",
+     "eq": "adenocarcinoma"
+    },
+    {
+     "campo": "lineas_previas",
+     "gte": 1
+    }
+   ],
+   "componentes": [
+    "antiangiogenico",
+    "quimioterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "taxano_irinotecan_2l",
+   "label": "Taxano o irinotecan 2a linea",
+   "nota": "ESMO: enfermedad avanzada tras platino-fluoropirimidina si no candidato a ramucirumab o escamoso -> taxano o irinotecan",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "metastasico"
+    },
+    {
+     "campo": "lineas_previas",
+     "gte": 1
+    }
+   ],
+   "componentes": [
+    "quimioterapia"
+   ],
+   "evidencia": "I, B"
+  }
+ ],
+ "preguntas": [
+  {
+   "key": "fit_trimodal",
+   "tipo": "noul",
+   "capa": 1,
+   "cuando": {
+    "campo": "situacion",
+    "eq": "localizado_resecable"
+   },
+   "instrucciones": "¿El paciente es suficientemente fit para tratamiento trimodal o FLOT perioperatorio y cirugia?"
+  },
+  {
+   "key": "pd_l1_util",
+   "tipo": "score",
+   "capa": 2,
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "metastasico"
+    },
+    {
+     "campo": "pdl1_cps",
+     "gte": 1
+    },
+    {
+     "campo": "pdl1_cps",
+     "lt": 10
+    }
+   ],
+   "instrucciones": "PD-L1 CPS intermedio/bajo: estima beneficio de inmunoterapia",
+   "criterios": [
+    "baja",
+    "incierta",
+    "alta"
+   ]
+  }
+ ],
+ "seguridad": [
+  {
+   "key": "autoinmune_ici",
+   "cuando": {
+    "campo": "comorbilidades_relevantes",
+    "contains": "autoinmune"
+   },
+   "bloquea_componentes": [
+    "inmunoterapia"
+   ],
+   "instrucciones": "Con enfermedad autoinmune activa o inmunosupresion relevante, ¿es inaceptable el riesgo de PD-1/PD-L1?",
+   "motivo": "Riesgo autoinmune inaceptable para inmunoterapia"
+  },
+  {
+   "key": "cardiaco_her2",
+   "cuando": {
+    "campo": "fevi",
+    "present": true
+   },
+   "bloquea_componentes": [
+    "anti_her2"
+   ],
+   "instrucciones": "Segun FEVI e historia cardiaca, ¿trastuzumab supone riesgo cardiaco inaceptable?",
+   "motivo": "Riesgo cardiaco para anti-HER2"
+  }
+ ],
+ "avisos": [
+  {
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "metastasico"
+    },
+    {
+     "campo": "her2",
+     "missing": true
+    }
+   ],
+   "texto": "HER2 no disponible en adenocarcinoma avanzado: puede cambiar la 1a linea."
+  },
+  {
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "metastasico"
+    },
+    {
+     "campo": "pdl1_cps",
+     "missing": true
+    }
+   ],
+   "texto": "PD-L1 CPS no disponible: condiciona inmunoterapia."
+  },
+  {
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "metastasico"
+    },
+    {
+     "campo": "claudin182",
+     "missing": true
+    },
+    {
+     "campo": "histologia",
+     "eq": "adenocarcinoma"
+    }
+   ],
+   "texto": "Claudin 18.2 no testado: puede abrir zolbetuximab."
+  }
+ ],
+ "vinetas": [
+  {
+   "id": "ESOFAGO-V01",
+   "titulo": "Escamoso toracico T3N1 resecable",
+   "fuente": "ESMO - CROSS resecable localmente avanzado",
+   "payload": {
+    "edad": 59,
+    "ecog": "0",
+    "sexo": "hombre",
+    "situacion": "localizado_resecable",
+    "histologia": "escamoso",
+    "localizacion": "toracico",
+    "t_nm": "T3",
+    "n_positivo": true
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "cross_trimodal",
+    "aceptables": [
+     "cross_trimodal"
+    ]
+   }
+  },
+  {
+   "id": "ESOFAGO-V02",
+   "titulo": "Adenocarcinoma union EG cT3N+",
+   "fuente": "ESMO - FLOT perioperatorio EGJ",
+   "payload": {
+    "edad": 63,
+    "ecog": "1",
+    "sexo": "hombre",
+    "situacion": "localizado_resecable",
+    "histologia": "adenocarcinoma",
+    "localizacion": "union_eg",
+    "t_nm": "T3",
+    "n_positivo": true
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "flot_perioperatorio",
+    "aceptables": [
+     "flot_perioperatorio",
+     "cross_trimodal"
+    ]
+   }
+  },
+  {
+   "id": "ESOFAGO-V03",
+   "titulo": "Escamoso cervical",
+   "fuente": "ESMO - QRT definitiva cervical",
+   "payload": {
+    "edad": 70,
+    "ecog": "1",
+    "sexo": "mujer",
+    "situacion": "localmente_avanzado_irresecable",
+    "histologia": "escamoso",
+    "localizacion": "cervical",
+    "t_nm": "T3",
+    "n_positivo": true
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "qrt_definitiva",
+    "aceptables": [
+     "qrt_definitiva"
+    ]
+   }
+  },
+  {
+   "id": "ESOFAGO-V04",
+   "titulo": "Residual tras CROSS y cirugia",
+   "fuente": "CheckMate 577",
+   "payload": {
+    "edad": 55,
+    "ecog": "0",
+    "sexo": "hombre",
+    "situacion": "localizado_resecable",
+    "histologia": "adenocarcinoma",
+    "localizacion": "union_eg",
+    "residual_post_neoadyuvancia": true,
+    "tratamientos_previos": [
+     "CROSS",
+     "esofagectomia R0"
+    ]
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "nivolumab_adyuvante",
+    "aceptables": [
+     "nivolumab_adyuvante"
+    ]
+   }
+  },
+  {
+   "id": "ESOFAGO-V05",
+   "titulo": "Adenocarcinoma metastasico HER2+",
+   "fuente": "ESMO - HER2+ 1L",
+   "payload": {
+    "edad": 61,
+    "ecog": "1",
+    "sexo": "hombre",
+    "situacion": "metastasico",
+    "histologia": "adenocarcinoma",
+    "localizacion": "union_eg",
+    "her2": "positivo",
+    "pdl1_cps": 15,
+    "msi": "pmmr",
+    "fevi": 60
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "pembro_trastu_quimio_1l",
+    "aceptables": [
+     "pembro_trastu_quimio_1l"
+    ]
+   }
+  },
+  {
+   "id": "ESOFAGO-V06",
+   "titulo": "Escamoso metastasico CPS alto",
+   "fuente": "KEYNOTE-590 / CheckMate 648",
+   "payload": {
+    "edad": 66,
+    "ecog": "1",
+    "sexo": "hombre",
+    "situacion": "metastasico",
+    "histologia": "escamoso",
+    "localizacion": "toracico",
+    "pdl1_cps": 20,
+    "msi": "pmmr"
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "ici_quimio_cps_alto",
+    "aceptables": [
+     "ici_quimio_cps_alto"
+    ]
+   }
+  },
+  {
+   "id": "ESOFAGO-V07",
+   "titulo": "Adenocarcinoma 2a linea",
+   "fuente": "RAINBOW",
+   "payload": {
+    "edad": 64,
+    "ecog": "1",
+    "sexo": "hombre",
+    "situacion": "metastasico",
+    "histologia": "adenocarcinoma",
+    "localizacion": "union_eg",
+    "her2": "negativo",
+    "lineas_previas": 1,
+    "tratamientos_previos": [
+     "FOLFOX+nivolumab"
+    ]
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "ram_paclitaxel_2l",
+    "aceptables": [
+     "ram_paclitaxel_2l",
+     "taxano_irinotecan_2l"
+    ]
+   }
+  },
+  {
+   "id": "ESOFAGO-V08",
+   "titulo": "Falta histologia",
+   "fuente": "ESMO - histologia imprescindible",
+   "payload": {
+    "edad": 58,
+    "ecog": "0",
+    "sexo": "hombre",
+    "situacion": "metastasico",
+    "histologia": null,
+    "localizacion": "toracico"
+   },
+   "esperado": {
+    "tipo": "necesita_datos"
+   }
+  },
+  {
+   "id": "ESOFAGO-V09",
+   "titulo": "ICI indicado pero autoinmunidad grave",
+   "fuente": "Seguridad inmunoterapia",
+   "payload": {
+    "edad": 62,
+    "ecog": "1",
+    "sexo": "mujer",
+    "situacion": "metastasico",
+    "histologia": "escamoso",
+    "localizacion": "toracico",
+    "pdl1_cps": 30,
+    "comorbilidades_relevantes": [
+     "colitis autoinmune activa con corticoides"
+    ]
+   },
+   "esperado": {
+    "tipo": "revision_humana"
+   }
+  }
+ ]
+}

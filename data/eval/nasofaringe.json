@@ -1,0 +1,194 @@
+{
+ "tumor": "nasofaringe",
+ "nombre": "Carcinoma nasofaringeo",
+ "grupo": "Cabeza y cuello / Endocrino",
+ "version": "NASOFARINGE-ESMO-2023.1",
+ "fecha": "2026-09-27T14:47:39+00:00",
+ "modelo": "jev-latest",
+ "mock": false,
+ "umbral_confianza": 0.6,
+ "n": 9,
+ "aciertos": 9,
+ "acierto_global": 1.0,
+ "acierto_tratamiento": 1.0,
+ "acierto_preferida": 1.0,
+ "acierto_seguridad": 1.0,
+ "confianza_aciertos": 0.97,
+ "confianza_fallos": null,
+ "n_multiopcion": 2,
+ "acierto_multiopcion": 1.0,
+ "candidatos_medios": 1.2857142857142858,
+ "casos": [
+  {
+   "id": "NASOFARINGE-V01",
+   "titulo": "Estadio I",
+   "fuente": "ESMO NPC RT sola",
+   "esperado_tipo": "recomendacion",
+   "esperado": "rt_sola_estadio_i",
+   "aceptables": [
+    "rt_sola_estadio_i"
+   ],
+   "obtenido": "rt_sola_estadio_i",
+   "obtenido_label": "Radioterapia radical sola",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "NASOFARINGE-V02",
+   "titulo": "Estadio II apto platino",
+   "fuente": "ESMO NPC QRT II",
+   "esperado_tipo": "recomendacion",
+   "esperado": "qrt_estadio_ii",
+   "aceptables": [
+    "qrt_estadio_ii"
+   ],
+   "obtenido": "qrt_estadio_ii",
+   "obtenido_label": "Quimiorradioterapia concomitante (estadio II)",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "NASOFARINGE-V03",
+   "titulo": "III voluminoso",
+   "fuente": "GP induccion + QRT",
+   "esperado_tipo": "recomendacion",
+   "esperado": "induccion_gp_mas_qrt",
+   "aceptables": [
+    "induccion_gp_mas_qrt",
+    "qrt_definitiva_npc"
+   ],
+   "obtenido": "induccion_gp_mas_qrt",
+   "obtenido_label": "Induccion gemcitabina-cisplatino seguida de QRT",
+   "confianza": 0.82,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  },
+  {
+   "id": "NASOFARINGE-V04",
+   "titulo": "IVA no voluminoso",
+   "fuente": "QRT definitiva",
+   "esperado_tipo": "recomendacion",
+   "esperado": "qrt_definitiva_npc",
+   "aceptables": [
+    "qrt_definitiva_npc"
+   ],
+   "obtenido": "qrt_definitiva_npc",
+   "obtenido_label": "Quimiorradioterapia definitiva con cisplatino",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "NASOFARINGE-V05",
+   "titulo": "No cisplatino",
+   "fuente": "RT si no cisplatino",
+   "esperado_tipo": "recomendacion",
+   "esperado": "rt_definitiva_no_cis_npc",
+   "aceptables": [
+    "rt_definitiva_no_cis_npc"
+   ],
+   "obtenido": "rt_definitiva_no_cis_npc",
+   "obtenido_label": "RT definitiva si no cisplatino",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "NASOFARINGE-V06",
+   "titulo": "R/M primera linea",
+   "fuente": "JUPITER/CAPTAIN",
+   "esperado_tipo": "recomendacion",
+   "esperado": "gem_cis_ici_1l",
+   "aceptables": [
+    "gem_cis_ici_1l",
+    "gem_cis_1l"
+   ],
+   "obtenido": "gem_cis_ici_1l",
+   "obtenido_label": "Gemcitabina-cisplatino + anti-PD-1 1L",
+   "confianza": 0.97,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  },
+  {
+   "id": "NASOFARINGE-V07",
+   "titulo": "R/M post platino",
+   "fuente": "anti-PD-1 2L",
+   "esperado_tipo": "recomendacion",
+   "esperado": "inmunoterapia_2l_npc",
+   "aceptables": [
+    "inmunoterapia_2l_npc"
+   ],
+   "obtenido": "inmunoterapia_2l_npc",
+   "obtenido_label": "Inmunoterapia anti-PD-1 tras platino",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "NASOFARINGE-V08",
+   "titulo": "Falta histologia",
+   "fuente": "Dato imprescindible",
+   "esperado_tipo": "necesita_datos",
+   "esperado": "necesita_datos",
+   "aceptables": [],
+   "obtenido": "necesita_datos",
+   "obtenido_label": null,
+   "confianza": null,
+   "revision": null,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [
+    "¿Cual es la histologia del carcinoma nasofaringeo?"
+   ],
+   "n_candidatos": 0,
+   "error": null
+  },
+  {
+   "id": "NASOFARINGE-V09",
+   "titulo": "Autoinmunidad activa en 2L",
+   "fuente": "Seguridad anti-PD-1",
+   "esperado_tipo": "revision_humana",
+   "esperado": "revision_humana",
+   "aceptables": [],
+   "obtenido": "revision (sin opcion segura)",
+   "obtenido_label": null,
+   "confianza": 0.0,
+   "revision": true,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  }
+ ]
+}

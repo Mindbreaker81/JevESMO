@@ -1,0 +1,211 @@
+{
+ "tumor": "sarcoma_oseo",
+ "nombre": "Sarcomas oseos",
+ "grupo": "Sarcomas",
+ "version": "SARCOMA_OSEO-ESMO-2021.1",
+ "fecha": "2026-09-27T14:47:45+00:00",
+ "modelo": "jev-latest",
+ "mock": false,
+ "umbral_confianza": 0.6,
+ "n": 10,
+ "aciertos": 10,
+ "acierto_global": 1.0,
+ "acierto_tratamiento": 1.0,
+ "acierto_preferida": 1.0,
+ "acierto_seguridad": 1.0,
+ "confianza_aciertos": 1.0,
+ "confianza_fallos": null,
+ "n_multiopcion": 0,
+ "acierto_multiopcion": null,
+ "candidatos_medios": 1.0,
+ "casos": [
+  {
+   "id": "SARCOMA_OSEO-V01",
+   "titulo": "Osteosarcoma femur adolescente",
+   "fuente": "ESMO bone sarcoma: MAP perioperatorio",
+   "esperado_tipo": "recomendacion",
+   "esperado": "map_osteosarcoma",
+   "aceptables": [
+    "map_osteosarcoma"
+   ],
+   "obtenido": "map_osteosarcoma",
+   "obtenido_label": "MAP neoadyuvante/adyuvante + cirugia",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "SARCOMA_OSEO-V02",
+   "titulo": "Osteosarcoma adulto",
+   "fuente": "ESMO bone sarcoma: AP perioperatorio adulto",
+   "esperado_tipo": "recomendacion",
+   "esperado": "ap_osteosarcoma_adulto",
+   "aceptables": [
+    "ap_osteosarcoma_adulto"
+   ],
+   "obtenido": "ap_osteosarcoma_adulto",
+   "obtenido_label": "Doxorrubicina + cisplatino perioperatorio + cirugia",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "SARCOMA_OSEO-V03",
+   "titulo": "Osteosarcoma pulmonar resecable",
+   "fuente": "ESMO bone sarcoma: reseccion completa metastasis",
+   "esperado_tipo": "recomendacion",
+   "esperado": "metastasectomia_osteo",
+   "aceptables": [
+    "metastasectomia_osteo"
+   ],
+   "obtenido": "metastasectomia_osteo",
+   "obtenido_label": "QT tipo osteosarcoma + cirugia primaria y metastasectomia completa",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "SARCOMA_OSEO-V04",
+   "titulo": "Ewing localizado pelvis",
+   "fuente": "ESMO bone sarcoma: VDC/IE + control local",
+   "esperado_tipo": "recomendacion",
+   "esperado": "vdc_ie_ewing",
+   "aceptables": [
+    "vdc_ie_ewing"
+   ],
+   "obtenido": "vdc_ie_ewing",
+   "obtenido_label": "VDC/IE intensivo + control local",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "SARCOMA_OSEO-V05",
+   "titulo": "Ewing metastasico",
+   "fuente": "ESMO bone sarcoma: Ewing metastasico QT intensiva",
+   "esperado_tipo": "recomendacion",
+   "esperado": "ewing_metastasico",
+   "aceptables": [
+    "ewing_metastasico"
+   ],
+   "obtenido": "ewing_metastasico",
+   "obtenido_label": "VDC/IE + tratamiento local de primario y metastasis si factible",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "SARCOMA_OSEO-V06",
+   "titulo": "Condrosarcoma convencional localizado",
+   "fuente": "ESMO bone sarcoma: cirugia condrosarcoma",
+   "esperado_tipo": "recomendacion",
+   "esperado": "cirugia_condrosarcoma",
+   "aceptables": [
+    "cirugia_condrosarcoma"
+   ],
+   "obtenido": "cirugia_condrosarcoma",
+   "obtenido_label": "Cirugia amplia del condrosarcoma convencional",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "SARCOMA_OSEO-V07",
+   "titulo": "Condrosarcoma mesenquimal",
+   "fuente": "ESMO bone sarcoma: quimiosensibilidad condrosarcoma mesenquimal",
+   "esperado_tipo": "recomendacion",
+   "esperado": "quimio_condro_mesenquimal",
+   "aceptables": [
+    "quimio_condro_mesenquimal"
+   ],
+   "obtenido": "quimio_condro_mesenquimal",
+   "obtenido_label": "Quimioterapia tipo Ewing para condrosarcoma mesenquimal",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "SARCOMA_OSEO-V08",
+   "titulo": "Recaida pulmonar osteosarcoma resecable",
+   "fuente": "ESMO bone sarcoma: metastasectomia en recaida resecable",
+   "esperado_tipo": "recomendacion",
+   "esperado": "cirugia_recaida_resecable",
+   "aceptables": [
+    "cirugia_recaida_resecable"
+   ],
+   "obtenido": "cirugia_recaida_resecable",
+   "obtenido_label": "Reseccion completa de recaida/metastasis si factible",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "SARCOMA_OSEO-V09",
+   "titulo": "Falta histologia",
+   "fuente": "ESMO bone sarcoma: diagnostico histologico obligatorio",
+   "esperado_tipo": "necesita_datos",
+   "esperado": "necesita_datos",
+   "aceptables": [],
+   "obtenido": "necesita_datos",
+   "obtenido_label": null,
+   "confianza": null,
+   "revision": null,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [
+    "¿Cual es la histologia del sarcoma oseo?"
+   ],
+   "n_candidatos": 0,
+   "error": null
+  },
+  {
+   "id": "SARCOMA_OSEO-V10",
+   "titulo": "Osteosarcoma anciano insuficiencia renal ECOG4",
+   "fuente": "ESMO bone sarcoma: no candidato a QT intensiva",
+   "esperado_tipo": "revision_humana",
+   "esperado": "revision_humana",
+   "aceptables": [],
+   "obtenido": "revision (soporte_oseo)",
+   "obtenido_label": "Soporte exclusivo / paliativos",
+   "confianza": 1.0,
+   "revision": true,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  }
+ ]
+}

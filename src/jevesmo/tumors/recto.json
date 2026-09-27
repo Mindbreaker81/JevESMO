@@ -1,0 +1,589 @@
+{
+ "id": "recto",
+ "nombre": "Cancer de recto localizado",
+ "grupo": "Digestivo",
+ "version": "recto-ESMO-2024.1",
+ "guias": [
+  {
+   "titulo": "ESMO Clinical Practice Guideline: Rectal cancer",
+   "anio": 2017,
+   "url": "https://www.esmo.org/guidelines/gastrointestinal-cancers/rectal-cancer"
+  },
+  {
+   "titulo": "ESMO Living Guideline: Rectal cancer updates",
+   "anio": 2024,
+   "url": "https://www.esmo.org/guidelines/gastrointestinal-cancers/rectal-cancer"
+  }
+ ],
+ "descripcion": "Recto localizado por riesgo MRI: cirugia directa, RT corta, QRT larga, TNT, watch and wait y dMMR con dostarlimab/anti-PD-1.",
+ "campos": [
+  {
+   "id": "riesgo_recto",
+   "label": "Riesgo MRI/clinico",
+   "tipo": "choice",
+   "seccion": "Tumor",
+   "opciones": [
+    "bajo",
+    "intermedio",
+    "alto",
+    "muy_alto",
+    "respuesta_clinica_completa"
+   ],
+   "requerido": true,
+   "pregunta": "¿Cual es el grupo de riesgo local por RM o respuesta completa?"
+  },
+  {
+   "id": "dmmr_msi",
+   "label": "dMMR / MSI-H",
+   "tipo": "choice",
+   "seccion": "Biomarcadores",
+   "opciones": [
+    "si",
+    "no",
+    "desconocido"
+   ],
+   "requerido": true,
+   "pregunta": "¿El tumor de recto es dMMR/MSI-H?"
+  },
+  {
+   "id": "amenaza_mrc",
+   "label": "Fascia mesorrectal amenazada/CRM+",
+   "tipo": "bool",
+   "seccion": "Tumor"
+  },
+  {
+   "id": "metastasis_lateral",
+   "label": "Ganglios laterales sospechosos",
+   "tipo": "bool",
+   "seccion": "Tumor"
+  },
+  {
+   "id": "respuesta_clinica_completa",
+   "label": "Respuesta clinica completa tras neoadyuvancia",
+   "tipo": "bool",
+   "seccion": "Tumor"
+  },
+  {
+   "id": "candidato_cirugia_tme",
+   "label": "Candidato a TME",
+   "tipo": "bool",
+   "seccion": "Tumor",
+   "requerido": true,
+   "pregunta": "¿El paciente es candidato a cirugia TME si esta indicada?"
+  },
+  {
+   "id": "desea_preservacion_organo",
+   "label": "Prioridad de preservacion de organo",
+   "tipo": "bool",
+   "seccion": "Tumor"
+  },
+  {
+   "id": "enfermedad_autoinmune_activa",
+   "label": "Enfermedad autoinmune activa",
+   "tipo": "bool",
+   "seccion": "Seguridad"
+  }
+ ],
+ "opciones": [
+  {
+   "id": "cirugia_directa_tme",
+   "label": "Cirugia directa con TME",
+   "nota": "ESMO: recto bajo riesgo (cT1-2/N0 o cT3a-b sin amenazas) -> escision/TME primaria sin neoadyuvancia.",
+   "cuando": [
+    {
+     "campo": "riesgo_recto",
+     "eq": "bajo"
+    },
+    {
+     "campo": "candidato_cirugia_tme",
+     "eq": true
+    }
+   ],
+   "componentes": [
+    "cirugia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "qrt_larga_intermedio",
+   "label": "Quimiorradioterapia larga preoperatoria",
+   "nota": "ESMO: riesgo intermedio con necesidad de downstaging o recto bajo -> QRT larga con fluoropirimidina seguida de TME.",
+   "cuando": [
+    {
+     "campo": "riesgo_recto",
+     "eq": "intermedio"
+    },
+    {
+     "campo": "candidato_cirugia_tme",
+     "eq": true
+    }
+   ],
+   "componentes": [
+    "quimiorradioterapia",
+    "radioterapia",
+    "quimioterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "rt_corta_intermedio",
+   "label": "Radioterapia corta 5x5 Gy seguida de TME",
+   "nota": "ESMO: riesgo intermedio resecable sin necesidad de gran downstaging -> RT corta preoperatoria y cirugia temprana/diferida.",
+   "cuando": [
+    {
+     "campo": "riesgo_recto",
+     "eq": "intermedio"
+    },
+    {
+     "campo": "candidato_cirugia_tme",
+     "eq": true
+    }
+   ],
+   "componentes": [
+    "radioterapia",
+    "cirugia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "tnt_alto",
+   "label": "Tratamiento neoadyuvante total (TNT)",
+   "nota": "ESMO: alto riesgo (cT3c-d/T4, N2, EMVI+, MRF amenazada) -> TNT con quimioterapia sistemica + QRT/RT antes de TME.",
+   "cuando": [
+    {
+     "campo": "riesgo_recto",
+     "in": [
+      "alto",
+      "muy_alto"
+     ]
+    },
+    {
+     "campo": "dmmr_msi",
+     "ne": "si"
+    },
+    {
+     "campo": "candidato_cirugia_tme",
+     "eq": true
+    }
+   ],
+   "componentes": [
+    "quimioterapia",
+    "radioterapia",
+    "quimiorradioterapia",
+    "cirugia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "rt_corta_tnt",
+   "label": "RT corta seguida de quimioterapia de consolidacion",
+   "nota": "ESMO/RAPIDO: alto riesgo MRI -> 5x5 Gy seguido de CAPOX/FOLFOX antes de TME es estrategia TNT valida.",
+   "cuando": [
+    {
+     "campo": "riesgo_recto",
+     "in": [
+      "alto",
+      "muy_alto"
+     ]
+    },
+    {
+     "campo": "dmmr_msi",
+     "ne": "si"
+    },
+    {
+     "campo": "candidato_cirugia_tme",
+     "eq": true
+    }
+   ],
+   "componentes": [
+    "radioterapia",
+    "quimioterapia",
+    "cirugia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "qrt_larga_tnt",
+   "label": "QRT larga seguida de quimioterapia de consolidacion",
+   "nota": "ESMO/OPRA: TNT con QRT larga es preferible si se busca downstaging/preservacion esfinteriana.",
+   "cuando": [
+    {
+     "campo": "riesgo_recto",
+     "in": [
+      "alto",
+      "muy_alto"
+     ]
+    },
+    {
+     "campo": "dmmr_msi",
+     "ne": "si"
+    },
+    {
+     "campo": "candidato_cirugia_tme",
+     "eq": true
+    }
+   ],
+   "componentes": [
+    "quimiorradioterapia",
+    "quimioterapia",
+    "cirugia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "dostarlimab_dmmr",
+   "label": "Dostarlimab/anti-PD-1 neoadyuvante en dMMR",
+   "nota": "ESMO actual: recto localmente avanzado dMMR/MSI-H -> anti-PD-1 neoadyuvante con intencion de respuesta completa y preservacion.",
+   "cuando": [
+    {
+     "campo": "dmmr_msi",
+     "eq": "si"
+    },
+    {
+     "campo": "riesgo_recto",
+     "in": [
+      "intermedio",
+      "alto",
+      "muy_alto"
+     ]
+    }
+   ],
+   "componentes": [
+    "inmunoterapia"
+   ],
+   "evidencia": "III, B"
+  },
+  {
+   "id": "watch_wait",
+   "label": "Watch and wait con vigilancia intensiva",
+   "nota": "ESMO: tras respuesta clinica completa documentada tras neoadyuvancia, vigilancia no operatoria puede considerarse en centros expertos.",
+   "cuando": [
+    {
+     "any": [
+      {
+       "campo": "respuesta_clinica_completa",
+       "eq": true
+      },
+      {
+       "campo": "riesgo_recto",
+       "eq": "respuesta_clinica_completa"
+      }
+     ]
+    },
+    {
+     "campo": "desea_preservacion_organo",
+     "eq": true
+    }
+   ],
+   "componentes": [
+    "vigilancia"
+   ],
+   "evidencia": "III, B"
+  },
+  {
+   "id": "tme_post_respuesta",
+   "label": "TME tras neoadyuvancia si no respuesta completa",
+   "nota": "ESMO: TME sigue estandar tras neoadyuvancia si no se elige watch and wait o respuesta no es completa.",
+   "cuando": [
+    {
+     "campo": "respuesta_clinica_completa",
+     "eq": false
+    },
+    {
+     "campo": "candidato_cirugia_tme",
+     "eq": true
+    },
+    {
+     "campo": "riesgo_recto",
+     "in": [
+      "intermedio",
+      "alto",
+      "muy_alto"
+     ]
+    }
+   ],
+   "componentes": [
+    "cirugia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "soporte_no_cirugia",
+   "label": "Tratamiento no quirurgico individualizado/soporte",
+   "nota": "ESMO: si no candidato a TME, manejo paliativo/local individualizado en MDT.",
+   "cuando": [
+    {
+     "campo": "candidato_cirugia_tme",
+     "eq": false
+    }
+   ],
+   "componentes": [
+    "soporte"
+   ],
+   "evidencia": "V, A"
+  }
+ ],
+ "preguntas": [
+  {
+   "key": "necesita_downstaging",
+   "tipo": "noul",
+   "capa": 1,
+   "cuando": {
+    "campo": "riesgo_recto",
+    "eq": "intermedio"
+   },
+   "instrucciones": "¿La localizacion, margen o necesidad de preservar esfinter justifican QRT larga frente a RT corta/cirugia?"
+  },
+  {
+   "key": "prioridad_preservacion",
+   "tipo": "choice",
+   "capa": 1,
+   "cuando": {
+    "campo": "riesgo_recto",
+    "in": [
+     "alto",
+     "muy_alto",
+     "respuesta_clinica_completa"
+    ]
+   },
+   "instrucciones": "Valora el objetivo principal.",
+   "criterios": {
+    "control_local": "Maximo control local con TME",
+    "preservacion": "Preservacion de organo/esfinter",
+    "sistemico": "Reducir recaida sistemica con TNT"
+   }
+  },
+  {
+   "key": "candidato_watch_wait",
+   "tipo": "noul",
+   "capa": 2,
+   "cuando": {
+    "campo": "respuesta_clinica_completa",
+    "eq": true
+   },
+   "instrucciones": "¿La respuesta completa esta suficientemente documentada y acepta vigilancia estricta?"
+  }
+ ],
+ "seguridad": [
+  {
+   "key": "autoinmune_ici",
+   "cuando": {
+    "campo": "enfermedad_autoinmune_activa",
+    "present": true
+   },
+   "bloquea_componentes": [
+    "inmunoterapia"
+   ],
+   "instrucciones": "Con enfermedad autoinmune activa, ¿anti-PD-1 supone riesgo inaceptable?",
+   "motivo": "Riesgo autoinmune alto con inmunoterapia"
+  }
+ ],
+ "avisos": [
+  {
+   "cuando": {
+    "campo": "dmmr_msi",
+    "eq": "desconocido"
+   },
+   "texto": "dMMR/MSI no testado: puede cambiar radicalmente el tratamiento."
+  },
+  {
+   "cuando": {
+    "campo": "amenaza_mrc",
+    "missing": true
+   },
+   "texto": "La RM de pelvis con MRF/EMVI/N es clave para elegir RT corta, QRT larga o TNT."
+  }
+ ],
+ "vinetas": [
+  {
+   "id": "RECTO-V01",
+   "titulo": "Bajo riesgo",
+   "fuente": "ESMO recto: cirugia directa",
+   "payload": {
+    "edad": 63,
+    "ecog": "0",
+    "sexo": "hombre",
+    "riesgo_recto": "bajo",
+    "dmmr_msi": "no",
+    "candidato_cirugia_tme": true,
+    "amenaza_mrc": false
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "cirugia_directa_tme",
+    "aceptables": [
+     "cirugia_directa_tme"
+    ]
+   }
+  },
+  {
+   "id": "RECTO-V02",
+   "titulo": "Intermedio requiere downstaging",
+   "fuente": "ESMO recto: QRT larga",
+   "payload": {
+    "edad": 56,
+    "ecog": "0",
+    "sexo": "mujer",
+    "riesgo_recto": "intermedio",
+    "dmmr_msi": "no",
+    "candidato_cirugia_tme": true,
+    "descripcion_libre": "tumor bajo, se busca preservacion esfinteriana"
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "qrt_larga_intermedio",
+    "aceptables": [
+     "qrt_larga_intermedio",
+     "rt_corta_intermedio"
+    ]
+   }
+  },
+  {
+   "id": "RECTO-V03",
+   "titulo": "Intermedio resecable",
+   "fuente": "ESMO: RT corta alternativa",
+   "payload": {
+    "edad": 74,
+    "ecog": "1",
+    "sexo": "hombre",
+    "riesgo_recto": "intermedio",
+    "dmmr_msi": "no",
+    "candidato_cirugia_tme": true,
+    "amenaza_mrc": false
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "rt_corta_intermedio",
+    "aceptables": [
+     "rt_corta_intermedio",
+     "qrt_larga_intermedio"
+    ]
+   }
+  },
+  {
+   "id": "RECTO-V04",
+   "titulo": "Alto riesgo MRI",
+   "fuente": "RAPIDO/PRODIGE: TNT",
+   "payload": {
+    "edad": 59,
+    "ecog": "0",
+    "sexo": "mujer",
+    "riesgo_recto": "alto",
+    "dmmr_msi": "no",
+    "candidato_cirugia_tme": true,
+    "amenaza_mrc": true
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "tnt_alto",
+    "aceptables": [
+     "tnt_alto",
+     "rt_corta_tnt",
+     "qrt_larga_tnt"
+    ]
+   }
+  },
+  {
+   "id": "RECTO-V05",
+   "titulo": "Muy alto riesgo MRF+",
+   "fuente": "ESMO: TNT",
+   "payload": {
+    "edad": 48,
+    "ecog": "0",
+    "sexo": "hombre",
+    "riesgo_recto": "muy_alto",
+    "dmmr_msi": "no",
+    "candidato_cirugia_tme": true,
+    "amenaza_mrc": true
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "rt_corta_tnt",
+    "aceptables": [
+     "tnt_alto",
+     "rt_corta_tnt",
+     "qrt_larga_tnt"
+    ]
+   }
+  },
+  {
+   "id": "RECTO-V06",
+   "titulo": "Recto dMMR localmente avanzado",
+   "fuente": "Dostarlimab dMMR",
+   "payload": {
+    "edad": 42,
+    "ecog": "0",
+    "sexo": "mujer",
+    "riesgo_recto": "alto",
+    "dmmr_msi": "si",
+    "candidato_cirugia_tme": true,
+    "desea_preservacion_organo": true
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "dostarlimab_dmmr",
+    "aceptables": [
+     "dostarlimab_dmmr"
+    ]
+   }
+  },
+  {
+   "id": "RECTO-V07",
+   "titulo": "Respuesta completa y preservacion",
+   "fuente": "Watch and wait",
+   "payload": {
+    "edad": 51,
+    "ecog": "0",
+    "sexo": "hombre",
+    "riesgo_recto": "respuesta_clinica_completa",
+    "dmmr_msi": "no",
+    "candidato_cirugia_tme": true,
+    "respuesta_clinica_completa": true,
+    "desea_preservacion_organo": true
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "watch_wait",
+    "aceptables": [
+     "watch_wait"
+    ]
+   }
+  },
+  {
+   "id": "RECTO-V08",
+   "titulo": "Falta riesgo MRI",
+   "fuente": "Dato imprescindible",
+   "payload": {
+    "edad": 60,
+    "ecog": "0",
+    "sexo": "mujer",
+    "riesgo_recto": null,
+    "dmmr_msi": "no",
+    "candidato_cirugia_tme": true
+   },
+   "esperado": {
+    "tipo": "necesita_datos"
+   }
+  },
+  {
+   "id": "RECTO-V09",
+   "titulo": "dMMR con autoinmunidad grave",
+   "fuente": "Seguridad ICI",
+   "payload": {
+    "edad": 45,
+    "ecog": "1",
+    "sexo": "mujer",
+    "riesgo_recto": "alto",
+    "dmmr_msi": "si",
+    "candidato_cirugia_tme": true,
+    "enfermedad_autoinmune_activa": true,
+    "comorbilidades_relevantes": [
+     "colitis ulcerosa activa grave"
+    ]
+   },
+   "esperado": {
+    "tipo": "revision_humana"
+   }
+  }
+ ]
+}

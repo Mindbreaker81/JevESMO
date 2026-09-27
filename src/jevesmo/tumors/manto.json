@@ -1,0 +1,603 @@
+{
+ "id": "manto",
+ "nombre": "Linfoma de celulas del manto",
+ "grupo": "Hematologia",
+ "version": "MCL-ESMO-2025.1",
+ "guias": [
+  {
+   "titulo": "ESMO Clinical Practice Guideline: Lymphomas",
+   "anio": 2025,
+   "url": "https://www.esmo.org/guidelines/esmo-clinical-practice-guideline-lymphomas"
+  }
+ ],
+ "descripcion": "Linfoma del manto: estadio, fitness, TP53, induccion con citarabina/ibrutinib (TRIANGLE), BR/R-BAC, mantenimiento, BTKi, pirtobrutinib y brexu-cel.",
+ "campos": [
+  {
+   "id": "estadio",
+   "label": "Estadio Ann Arbor/Lugano",
+   "tipo": "choice",
+   "opciones": [
+    "I_II_localizado",
+    "III_IV"
+   ],
+   "requerido": true,
+   "pregunta": "¿Cual es el estadio Ann Arbor/Lugano (localizado I-II o avanzado III-IV)?"
+  },
+  {
+   "id": "mipi",
+   "label": "MIPI",
+   "tipo": "choice",
+   "opciones": [
+    "bajo",
+    "intermedio",
+    "alto"
+   ],
+   "requerido": true,
+   "pregunta": "¿Cual es el MIPI?"
+  },
+  {
+   "id": "tp53_alterado",
+   "label": "TP53 mutado/delecion o cariotipo complejo",
+   "tipo": "bool",
+   "seccion": "Biologia"
+  },
+  {
+   "id": "blastoid_pleomorphic",
+   "label": "Variante blastoide/pleomorfica",
+   "tipo": "bool",
+   "seccion": "Biologia"
+  },
+  {
+   "id": "candidato_intensivo",
+   "label": "Joven/fit para citarabina intensiva",
+   "tipo": "bool",
+   "requerido": true,
+   "pregunta": "¿Es joven/fit para induccion intensiva con citarabina y TAPH?"
+  },
+  {
+   "id": "candidato_taph",
+   "label": "Candidato a TAPH",
+   "tipo": "bool",
+   "seccion": "Fitness"
+  },
+  {
+   "id": "candidato_car_t",
+   "label": "Candidato a CAR-T",
+   "tipo": "bool",
+   "seccion": "Recaida"
+  },
+  {
+   "id": "btk_previo",
+   "label": "Exposicion previa a BTKi",
+   "tipo": "bool",
+   "seccion": "Recaida"
+  },
+  {
+   "id": "cardiopatia_anticoagulacion",
+   "label": "Cardiopatia/anticoagulacion",
+   "tipo": "bool",
+   "seccion": "Seguridad"
+  }
+ ],
+ "derivados": [
+  {
+   "id": "situacion",
+   "label": "Situacion clinica",
+   "defecto": "primera_linea",
+   "reglas": [
+    {
+     "cuando": {
+      "campo": "lineas_previas",
+      "gte": 2
+     },
+     "valor": "segunda_recaida_o_mas"
+    },
+    {
+     "cuando": {
+      "campo": "lineas_previas",
+      "eq": 1
+     },
+     "valor": "primera_recaida"
+    }
+   ]
+  }
+ ],
+ "opciones": [
+  {
+   "id": "rt_localizado",
+   "label": "Radioterapia local +/- inmunoquimioterapia breve",
+   "nota": "ESMO MCL: estadio I/II localizado raro -> RT involucrada con/sin R-CHOP/BR segun riesgo",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "primera_linea"
+    },
+    {
+     "campo": "estadio",
+     "eq": "I_II_localizado"
+    }
+   ],
+   "componentes": [
+    "radioterapia",
+    "quimioterapia",
+    "inmunoterapia"
+   ],
+   "evidencia": "III, B"
+  },
+  {
+   "id": "triangle_intensivo",
+   "label": "Induccion intensiva con citarabina + rituximab +/- ibrutinib (TRIANGLE) + TAPH/mantenimiento",
+   "nota": "ESMO MCL: joven/fit avanzado, TP53 no alterado -> citarabina/rituximab, considerar ibrutinib segun TRIANGLE, TAPH y mantenimiento",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "primera_linea"
+    },
+    {
+     "campo": "estadio",
+     "eq": "III_IV"
+    },
+    {
+     "campo": "candidato_intensivo",
+     "eq": true
+    },
+    {
+     "campo": "tp53_alterado",
+     "ne": true
+    }
+   ],
+   "componentes": [
+    "quimioterapia",
+    "inmunoterapia",
+    "dirigida",
+    "trasplante"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "br_mantenimiento",
+   "label": "Bendamustina-rituximab + mantenimiento rituximab",
+   "nota": "ESMO MCL: no candidato a intensivo/TAPH -> BR seguido de mantenimiento si responde",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "primera_linea"
+    },
+    {
+     "campo": "estadio",
+     "eq": "III_IV"
+    },
+    {
+     "campo": "candidato_intensivo",
+     "eq": false
+    },
+    {
+     "campo": "tp53_alterado",
+     "ne": true
+    }
+   ],
+   "componentes": [
+    "quimioterapia",
+    "inmunoterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "r_bac",
+   "label": "R-BAC (rituximab-bendamustina-citarabina) adaptado",
+   "nota": "ESMO MCL: pacientes mayores fit seleccionados pueden beneficiarse de citarabina atenuada R-BAC",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "primera_linea"
+    },
+    {
+     "campo": "estadio",
+     "eq": "III_IV"
+    },
+    {
+     "campo": "candidato_intensivo",
+     "eq": false
+    },
+    {
+     "campo": "edad",
+     "lt": 75
+    }
+   ],
+   "componentes": [
+    "quimioterapia",
+    "inmunoterapia"
+   ],
+   "evidencia": "II, B"
+  },
+  {
+   "id": "tp53_ensayo_btk",
+   "label": "Ensayo clinico / BTKi-combinacion en TP53 alterado",
+   "nota": "ESMO MCL: TP53 alterado/blastoide responde mal a quimio; priorizar ensayo, BTKi-combinaciones o estrategias no quimioterapicas",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "primera_linea"
+    },
+    {
+     "any": [
+      {
+       "campo": "tp53_alterado",
+       "eq": true
+      },
+      {
+       "campo": "blastoid_pleomorphic",
+       "eq": true
+      }
+     ]
+    }
+   ],
+   "componentes": [
+    "dirigida",
+    "inmunoterapia"
+   ],
+   "evidencia": "III, B"
+  },
+  {
+   "id": "btki_recaida",
+   "label": "BTKi covalente (acalabrutinib/zanubrutinib/ibrutinib)",
+   "nota": "ESMO MCL: primera recaida tras inmunoquimioterapia y sin BTKi previo -> BTKi es estandar",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "primera_recaida"
+    },
+    {
+     "campo": "btk_previo",
+     "ne": true
+    },
+    {
+     "campo": "cardiopatia_anticoagulacion",
+     "ne": true
+    }
+   ],
+   "componentes": [
+    "dirigida"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "pirtobrutinib",
+   "label": "Pirtobrutinib tras BTKi covalente",
+   "nota": "ESMO/actualizacion MCL: progresion tras BTKi covalente -> pirtobrutinib si disponible o ensayo",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "in": [
+      "primera_recaida",
+      "segunda_recaida_o_mas"
+     ]
+    },
+    {
+     "campo": "btk_previo",
+     "eq": true
+    }
+   ],
+   "componentes": [
+    "dirigida"
+   ],
+   "evidencia": "II, B"
+  },
+  {
+   "id": "brexu_cel",
+   "label": "Brexucabtagene autoleucel CAR-T",
+   "nota": "ESMO MCL: recaida/refractario tras BTKi y candidato -> brexu-cel (ZUMA-2)",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "in": [
+      "primera_recaida",
+      "segunda_recaida_o_mas"
+     ]
+    },
+    {
+     "campo": "btk_previo",
+     "eq": true
+    },
+    {
+     "campo": "candidato_car_t",
+     "eq": true
+    }
+   ],
+   "componentes": [
+    "celular"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "lenalidomida_rituximab",
+   "label": "Lenalidomida-rituximab / temsirolimus paliativo",
+   "nota": "ESMO MCL: recaida no candidata a BTKi/CAR-T o lineas tardias -> inmunomodulador u otra terapia paliativa",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "segunda_recaida_o_mas"
+    }
+   ],
+   "componentes": [
+    "dirigida",
+    "inmunoterapia"
+   ],
+   "evidencia": "III, B"
+  },
+  {
+   "id": "soporte_manto",
+   "label": "Soporte exclusivo o tratamiento muy atenuado",
+   "nota": "ESMO MCL: fragilidad extrema/no candidato a terapia activa -> soporte y control sintomatico",
+   "cuando": [
+    {
+     "campo": "ecog",
+     "in": [
+      "3",
+      "4"
+     ]
+    },
+    {
+     "campo": "candidato_intensivo",
+     "eq": false
+    }
+   ],
+   "componentes": [
+    "soporte"
+   ],
+   "evidencia": "V, B"
+  }
+ ],
+ "preguntas": [
+  {
+   "key": "fit_intensivo_limite",
+   "tipo": "noul",
+   "capa": 1,
+   "cuando": {
+    "campo": "candidato_intensivo",
+    "eq": true
+   },
+   "instrucciones": "¿La edad biologica y comorbilidades hacen realmente seguro citarabina intensiva/TAPH?"
+  },
+  {
+   "key": "tp53_impacto",
+   "tipo": "noul",
+   "capa": 2,
+   "cuando": {
+    "campo": "tp53_alterado",
+    "eq": true
+   },
+   "instrucciones": "¿La alteracion TP53/blastoide domina la decision y justifica evitar quimioterapia estandar?"
+  }
+ ],
+ "seguridad": [
+  {
+   "key": "riesgo_btki_mcl",
+   "cuando": {
+    "campo": "cardiopatia_anticoagulacion",
+    "eq": true
+   },
+   "bloquea": [
+    "triangle_intensivo",
+    "btki_recaida"
+   ],
+   "instrucciones": "¿El riesgo de fibrilacion auricular/hemorragia con ibrutinib u otros BTKi es inaceptable?",
+   "umbral": 0.55,
+   "motivo": "Riesgo cardiovascular/hemorragico alto con BTKi"
+  }
+ ],
+ "avisos": [
+  {
+   "cuando": {
+    "campo": "tp53_alterado",
+    "missing": true
+   },
+   "texto": "TP53/cariotipo no informado: en MCL cambia de forma critica el beneficio de quimio y la preferencia por ensayo/BTKi."
+  }
+ ],
+ "vinetas": [
+  {
+   "id": "MANTO-V01",
+   "titulo": "Localizado",
+   "fuente": "ESMO MCL localizado",
+   "payload": {
+    "edad": 62,
+    "ecog": "0",
+    "estadio": "I_II_localizado",
+    "mipi": "bajo",
+    "candidato_intensivo": true,
+    "candidato_taph": true,
+    "tp53_alterado": false
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "rt_localizado",
+    "aceptables": [
+     "rt_localizado"
+    ]
+   }
+  },
+  {
+   "id": "MANTO-V02",
+   "titulo": "Joven fit avanzado",
+   "fuente": "TRIANGLE",
+   "payload": {
+    "edad": 57,
+    "ecog": "0",
+    "estadio": "III_IV",
+    "mipi": "intermedio",
+    "candidato_intensivo": true,
+    "candidato_taph": true,
+    "tp53_alterado": false
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "triangle_intensivo",
+    "aceptables": [
+     "triangle_intensivo"
+    ]
+   }
+  },
+  {
+   "id": "MANTO-V03",
+   "titulo": "Mayor no intensivo",
+   "fuente": "ESMO BR mantenimiento",
+   "payload": {
+    "edad": 76,
+    "ecog": "1",
+    "estadio": "III_IV",
+    "mipi": "intermedio",
+    "candidato_intensivo": false,
+    "candidato_taph": false,
+    "tp53_alterado": false
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "br_mantenimiento",
+    "aceptables": [
+     "br_mantenimiento",
+     "r_bac"
+    ]
+   }
+  },
+  {
+   "id": "MANTO-V04",
+   "titulo": "TP53 alterado",
+   "fuente": "ESMO alto riesgo",
+   "payload": {
+    "edad": 66,
+    "ecog": "1",
+    "estadio": "III_IV",
+    "mipi": "alto",
+    "candidato_intensivo": true,
+    "candidato_taph": true,
+    "tp53_alterado": true,
+    "blastoid_pleomorphic": true
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "tp53_ensayo_btk",
+    "aceptables": [
+     "tp53_ensayo_btk"
+    ]
+   }
+  },
+  {
+   "id": "MANTO-V05",
+   "titulo": "Primera recaida sin BTKi",
+   "fuente": "ESMO BTKi",
+   "payload": {
+    "edad": 69,
+    "ecog": "1",
+    "estadio": "III_IV",
+    "mipi": "intermedio",
+    "candidato_intensivo": false,
+    "lineas_previas": 1,
+    "btk_previo": false,
+    "cardiopatia_anticoagulacion": false,
+    "tratamientos_previos": [
+     "BR"
+    ]
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "btki_recaida",
+    "aceptables": [
+     "btki_recaida"
+    ]
+   }
+  },
+  {
+   "id": "MANTO-V06",
+   "titulo": "Post-BTK candidato CAR-T",
+   "fuente": "ZUMA-2",
+   "payload": {
+    "edad": 61,
+    "ecog": "1",
+    "estadio": "III_IV",
+    "mipi": "alto",
+    "candidato_intensivo": true,
+    "lineas_previas": 2,
+    "btk_previo": true,
+    "candidato_car_t": true,
+    "tratamientos_previos": [
+     "BR",
+     "ibrutinib"
+    ]
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "brexu_cel",
+    "aceptables": [
+     "brexu_cel",
+     "pirtobrutinib"
+    ]
+   }
+  },
+  {
+   "id": "MANTO-V07",
+   "titulo": "Post-BTK no CAR-T",
+   "fuente": "BRUIN",
+   "payload": {
+    "edad": 79,
+    "ecog": "2",
+    "estadio": "III_IV",
+    "mipi": "alto",
+    "candidato_intensivo": false,
+    "lineas_previas": 2,
+    "btk_previo": true,
+    "candidato_car_t": false,
+    "tratamientos_previos": [
+     "BR",
+     "acalabrutinib"
+    ]
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "pirtobrutinib",
+    "aceptables": [
+     "pirtobrutinib",
+     "lenalidomida_rituximab"
+    ]
+   }
+  },
+  {
+   "id": "MANTO-V08",
+   "titulo": "Falta MIPI",
+   "fuente": "Dato requerido",
+   "payload": {
+    "edad": 65,
+    "ecog": "1",
+    "estadio": "III_IV",
+    "mipi": null,
+    "candidato_intensivo": true
+   },
+   "esperado": {
+    "tipo": "necesita_datos"
+   }
+  },
+  {
+   "id": "MANTO-V09",
+   "titulo": "ECOG 4 anticoagulado",
+   "fuente": "Seguridad",
+   "payload": {
+    "edad": 83,
+    "ecog": "4",
+    "estadio": "III_IV",
+    "mipi": "alto",
+    "candidato_intensivo": false,
+    "tp53_alterado": true,
+    "cardiopatia_anticoagulacion": true,
+    "comorbilidades_relevantes": [
+     "fibrilacion auricular anticoagulada",
+     "hemorragia digestiva reciente",
+     "fragilidad extrema"
+    ],
+    "descripcion_libre": "Dependiente para todas las actividades basicas."
+   },
+   "esperado": {
+    "tipo": "revision_humana"
+   }
+  }
+ ]
+}

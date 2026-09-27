@@ -1,0 +1,198 @@
+{
+ "tumor": "llc",
+ "nombre": "Leucemia linfocitica cronica",
+ "grupo": "Hematologia",
+ "version": "CLL-ESMO-2024.1",
+ "fecha": "2026-09-27T14:47:33+00:00",
+ "modelo": "jev-latest",
+ "mock": false,
+ "umbral_confianza": 0.6,
+ "n": 9,
+ "aciertos": 9,
+ "acierto_global": 1.0,
+ "acierto_tratamiento": 1.0,
+ "acierto_preferida": 1.0,
+ "acierto_seguridad": 1.0,
+ "confianza_aciertos": 0.9671428571428571,
+ "confianza_fallos": null,
+ "n_multiopcion": 3,
+ "acierto_multiopcion": 1.0,
+ "candidatos_medios": 1.8571428571428572,
+ "casos": [
+  {
+   "id": "LLC-V01",
+   "titulo": "Binet A sin iwCLL",
+   "fuente": "ESMO watch and wait",
+   "esperado_tipo": "recomendacion",
+   "esperado": "observacion",
+   "aceptables": [
+    "observacion"
+   ],
+   "obtenido": "observacion",
+   "obtenido_label": "Observacion activa",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "LLC-V02",
+   "titulo": "TP53 alterado primera linea",
+   "fuente": "ESMO TP53/del17p",
+   "esperado_tipo": "recomendacion",
+   "esperado": "btki_1l",
+   "aceptables": [
+    "btki_1l"
+   ],
+   "obtenido": "btki_1l",
+   "obtenido_label": "Inhibidor BTK covalente continuo (acalabrutinib/zanubrutinib/ibrutinib)",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "LLC-V03",
+   "titulo": "Tiempo fijo TP53 normal",
+   "fuente": "CLL14",
+   "esperado_tipo": "recomendacion",
+   "esperado": "ven_obinu_1l",
+   "aceptables": [
+    "ven_obinu_1l",
+    "ven_ibrutinib_1l",
+    "btki_1l"
+   ],
+   "obtenido": "ven_obinu_1l",
+   "obtenido_label": "Venetoclax + obinutuzumab tiempo fijo",
+   "confianza": 0.89,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 3,
+   "error": null
+  },
+  {
+   "id": "LLC-V04",
+   "titulo": "Joven IGHV mutado",
+   "fuente": "ESMO seleccionado FCR",
+   "esperado_tipo": "recomendacion",
+   "esperado": "ven_obinu_1l",
+   "aceptables": [
+    "ven_obinu_1l",
+    "fitcr_ighv_mutado",
+    "btki_1l"
+   ],
+   "obtenido": "ven_obinu_1l",
+   "obtenido_label": "Venetoclax + obinutuzumab tiempo fijo",
+   "confianza": 0.95,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 3,
+   "error": null
+  },
+  {
+   "id": "LLC-V05",
+   "titulo": "Cardiopatia anticoagulacion",
+   "fuente": "Seguridad BTKi",
+   "esperado_tipo": "recomendacion",
+   "esperado": "ven_obinu_1l",
+   "aceptables": [
+    "ven_obinu_1l"
+   ],
+   "obtenido": "ven_obinu_1l",
+   "obtenido_label": "Venetoclax + obinutuzumab tiempo fijo",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "LLC-V06",
+   "titulo": "Recaida post-BTKi",
+   "fuente": "ESMO secuencia",
+   "esperado_tipo": "recomendacion",
+   "esperado": "venetoclax_recaida_post_btki",
+   "aceptables": [
+    "venetoclax_recaida_post_btki"
+   ],
+   "obtenido": "venetoclax_recaida_post_btki",
+   "obtenido_label": "Venetoclax + rituximab/obinutuzumab tras BTKi",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "LLC-V07",
+   "titulo": "Doble expuesto",
+   "fuente": "ESMO pirtobrutinib/ensayo",
+   "esperado_tipo": "recomendacion",
+   "esperado": "pirtobrutinib_ensayo",
+   "aceptables": [
+    "pirtobrutinib_ensayo",
+    "btki_recaida_post_ven",
+    "venetoclax_recaida_post_btki"
+   ],
+   "obtenido": "pirtobrutinib_ensayo",
+   "obtenido_label": "Pirtobrutinib/ensayo clinico en doble expuesto",
+   "confianza": 0.93,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 3,
+   "error": null
+  },
+  {
+   "id": "LLC-V08",
+   "titulo": "Falta TP53 con iwCLL",
+   "fuente": "Dato requerido",
+   "esperado_tipo": "necesita_datos",
+   "esperado": "necesita_datos",
+   "aceptables": [],
+   "obtenido": "necesita_datos",
+   "obtenido_label": null,
+   "confianza": null,
+   "revision": null,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [
+    "¿Hay mutacion TP53 o delecion 17p?"
+   ],
+   "n_candidatos": 0,
+   "error": null
+  },
+  {
+   "id": "LLC-V09",
+   "titulo": "ECOG 4 sepsis",
+   "fuente": "Seguridad",
+   "esperado_tipo": "revision_humana",
+   "esperado": "revision_humana",
+   "aceptables": [],
+   "obtenido": "revision (ven_obinu_tp53)",
+   "obtenido_label": "Venetoclax + obinutuzumab si BTKi no adecuado",
+   "confianza": 1.0,
+   "revision": true,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  }
+ ]
+}

@@ -1,0 +1,197 @@
+{
+ "tumor": "mieloma",
+ "nombre": "Mieloma multiple",
+ "grupo": "Hematologia",
+ "version": "MYELOMA-ESMO-2025.1",
+ "fecha": "2026-09-27T14:47:39+00:00",
+ "modelo": "jev-latest",
+ "mock": false,
+ "umbral_confianza": 0.6,
+ "n": 9,
+ "aciertos": 9,
+ "acierto_global": 1.0,
+ "acierto_tratamiento": 1.0,
+ "acierto_preferida": 1.0,
+ "acierto_seguridad": 1.0,
+ "confianza_aciertos": 0.79,
+ "confianza_fallos": null,
+ "n_multiopcion": 5,
+ "acierto_multiopcion": 1.0,
+ "candidatos_medios": 1.7142857142857142,
+ "casos": [
+  {
+   "id": "MIELOMA-V01",
+   "titulo": "Candidato a trasplante primera linea",
+   "fuente": "PERSEUS/GRIFFIN",
+   "esperado_tipo": "recomendacion",
+   "esperado": "d_vrd_taph",
+   "aceptables": [
+    "d_vrd_taph",
+    "vrd_taph"
+   ],
+   "obtenido": "d_vrd_taph",
+   "obtenido_label": "D-VRd induccion + TAPH + consolidacion/mantenimiento lenalidomida",
+   "confianza": 0.68,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  },
+  {
+   "id": "MIELOMA-V02",
+   "titulo": "Alto riesgo candidato TAPH",
+   "fuente": "ESMO alto riesgo",
+   "esperado_tipo": "recomendacion",
+   "esperado": "d_vrd_taph",
+   "aceptables": [
+    "d_vrd_taph",
+    "vrd_taph"
+   ],
+   "obtenido": "d_vrd_taph",
+   "obtenido_label": "D-VRd induccion + TAPH + consolidacion/mantenimiento lenalidomida",
+   "confianza": 0.74,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  },
+  {
+   "id": "MIELOMA-V03",
+   "titulo": "No candidato DRd",
+   "fuente": "MAIA",
+   "esperado_tipo": "recomendacion",
+   "esperado": "drd_no_taph",
+   "aceptables": [
+    "drd_no_taph",
+    "d_vmp_no_taph"
+   ],
+   "obtenido": "drd_no_taph",
+   "obtenido_label": "Daratumumab-lenalidomida-dexametasona (DRd)",
+   "confianza": 0.65,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  },
+  {
+   "id": "MIELOMA-V04",
+   "titulo": "No candidato renal/bortezomib",
+   "fuente": "ALCYONE",
+   "esperado_tipo": "recomendacion",
+   "esperado": "d_vmp_no_taph",
+   "aceptables": [
+    "d_vmp_no_taph",
+    "drd_no_taph"
+   ],
+   "obtenido": "d_vmp_no_taph",
+   "obtenido_label": "Daratumumab-VMP",
+   "confianza": 0.54,
+   "revision": true,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  },
+  {
+   "id": "MIELOMA-V05",
+   "titulo": "Recaida len sensible",
+   "fuente": "ESMO recaida",
+   "esperado_tipo": "recomendacion",
+   "esperado": "recaida_len_sensible",
+   "aceptables": [
+    "recaida_len_sensible"
+   ],
+   "obtenido": "recaida_len_sensible",
+   "obtenido_label": "DRd/KRd/Isa-Kd segun exposicion previa",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "MIELOMA-V06",
+   "titulo": "Recaida len refractario",
+   "fuente": "ESMO recaida len refractaria",
+   "esperado_tipo": "recomendacion",
+   "esperado": "recaida_len_refractario",
+   "aceptables": [
+    "recaida_len_refractario"
+   ],
+   "obtenido": "recaida_len_refractario",
+   "obtenido_label": "PVd, KdD o Isa-Kd para lenalidomida-refractario",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "MIELOMA-V07",
+   "titulo": "Triple clase candidato CAR-T",
+   "fuente": "CARTITUDE/KarMMa",
+   "esperado_tipo": "recomendacion",
+   "esperado": "car_t_bcma",
+   "aceptables": [
+    "car_t_bcma",
+    "biespecifico_bcma_gprc5d"
+   ],
+   "obtenido": "car_t_bcma",
+   "obtenido_label": "CAR-T BCMA (cilta-cel o ide-cel)",
+   "confianza": 0.92,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  },
+  {
+   "id": "MIELOMA-V08",
+   "titulo": "Falta elegibilidad TAPH",
+   "fuente": "Dato requerido",
+   "esperado_tipo": "necesita_datos",
+   "esperado": "necesita_datos",
+   "aceptables": [],
+   "obtenido": "necesita_datos",
+   "obtenido_label": null,
+   "confianza": null,
+   "revision": null,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [
+    "¿Es candidato a trasplante autologo?"
+   ],
+   "n_candidatos": 0,
+   "error": null
+  },
+  {
+   "id": "MIELOMA-V09",
+   "titulo": "ECOG 4 sepsis y renal",
+   "fuente": "Seguridad",
+   "esperado_tipo": "revision_humana",
+   "esperado": "revision_humana",
+   "aceptables": [],
+   "obtenido": "revision (paliativo_mieloma)",
+   "obtenido_label": "Soporte, radioterapia antialgica y tratamiento atenuado",
+   "confianza": 0.99,
+   "revision": true,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 3,
+   "error": null
+  }
+ ]
+}

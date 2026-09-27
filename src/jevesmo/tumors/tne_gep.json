@@ -1,0 +1,667 @@
+{
+ "id": "tne_gep",
+ "nombre": "Tumores neuroendocrinos gastroenteropancreaticos",
+ "grupo": "Digestivo",
+ "version": "tne_gep-ESMO-2024.1",
+ "guias": [
+  {
+   "titulo": "ESMO Clinical Practice Guideline: Neuroendocrine tumours",
+   "anio": 2024,
+   "url": "https://www.esmo.org/guidelines/gastrointestinal-cancers/neuroendocrine-tumours"
+  }
+ ],
+ "descripcion": "NET G1/G2/G3 y NEC GEP: SSTR, analogos somatostatina, PRRT Lu-177, everolimus, sunitinib pancreatico, CAPTEM y platino-etoposido.",
+ "campos": [
+  {
+   "id": "categoria",
+   "label": "Categoria",
+   "tipo": "choice",
+   "seccion": "Tumor",
+   "opciones": [
+    "NET_G1_G2",
+    "NET_G3_bien_dif",
+    "NEC_pobre_dif"
+   ],
+   "requerido": true,
+   "pregunta": "¿Es NET G1/G2, NET G3 bien diferenciado o NEC pobremente diferenciado?"
+  },
+  {
+   "id": "origen",
+   "label": "Origen",
+   "tipo": "choice",
+   "seccion": "Tumor",
+   "opciones": [
+    "pancreatico",
+    "intestino_medio",
+    "rectal",
+    "gastrico_duodenal",
+    "desconocido"
+   ],
+   "requerido": true,
+   "pregunta": "¿Cual es el origen primario GEP?"
+  },
+  {
+   "id": "setting",
+   "label": "Setting",
+   "tipo": "choice",
+   "seccion": "Tumor",
+   "opciones": [
+    "localizado_resecable",
+    "avanzado_estable_bajo_volumen",
+    "avanzado_progresivo",
+    "crisis_funcional"
+   ],
+   "requerido": true,
+   "pregunta": "¿Es localizado resecable, avanzado estable bajo volumen, avanzado progresivo o crisis funcional?"
+  },
+  {
+   "id": "sstr",
+   "label": "SSTR positivo en imagen",
+   "tipo": "choice",
+   "seccion": "Biomarcadores",
+   "opciones": [
+    "positivo",
+    "negativo",
+    "desconocido"
+   ],
+   "requerido": true,
+   "pregunta": "¿La imagen funcional SSTR es positiva?"
+  },
+  {
+   "id": "ki67",
+   "label": "Ki-67",
+   "tipo": "number",
+   "seccion": "Anatomia patologica",
+   "min": 0,
+   "max": 100,
+   "unidad": "%"
+  },
+  {
+   "id": "funcionante",
+   "label": "Sindromico/funcionante",
+   "tipo": "bool",
+   "seccion": "Tumor"
+  },
+  {
+   "id": "volumen_tumoral_alto",
+   "label": "Volumen tumoral alto o progresion rapida",
+   "tipo": "bool",
+   "seccion": "Tumor"
+  },
+  {
+   "id": "funcion_renal_prrt_apta",
+   "label": "Funcion renal/medular apta para PRRT",
+   "tipo": "bool",
+   "seccion": "Seguridad"
+  },
+  {
+   "id": "diabetes_mal_controlada",
+   "label": "Diabetes mal controlada",
+   "tipo": "bool",
+   "seccion": "Seguridad"
+  }
+ ],
+ "opciones": [
+  {
+   "id": "cirugia_net_localizado",
+   "label": "Reseccion quirurgica del NET localizado",
+   "nota": "ESMO: NET GEP localizado resecable -> cirugia con intencion curativa y linfadenectomia segun localizacion.",
+   "cuando": [
+    {
+     "campo": "setting",
+     "eq": "localizado_resecable"
+    },
+    {
+     "campo": "categoria",
+     "in": [
+      "NET_G1_G2",
+      "NET_G3_bien_dif"
+     ]
+    }
+   ],
+   "componentes": [
+    "cirugia"
+   ],
+   "evidencia": "III, A"
+  },
+  {
+   "id": "cirugia_nec_localizado",
+   "label": "Cirugia + quimioterapia perioperatoria en NEC localizado",
+   "nota": "ESMO: NEC GEP localizado resecable -> tratamiento multimodal con platino-etoposido perioperatorio y cirugia seleccionada.",
+   "cuando": [
+    {
+     "campo": "setting",
+     "eq": "localizado_resecable"
+    },
+    {
+     "campo": "categoria",
+     "eq": "NEC_pobre_dif"
+    }
+   ],
+   "componentes": [
+    "cirugia",
+    "quimioterapia"
+   ],
+   "evidencia": "IV, B"
+  },
+  {
+   "id": "ssa_control",
+   "label": "Analogo de somatostatina",
+   "nota": "ESMO/PROMID-CLARINET: NET G1/G2 SSTR+ avanzado, funcionante o bajo volumen -> octreotida/lanreotida.",
+   "cuando": [
+    {
+     "campo": "categoria",
+     "eq": "NET_G1_G2"
+    },
+    {
+     "campo": "sstr",
+     "eq": "positivo"
+    },
+    {
+     "campo": "setting",
+     "in": [
+      "avanzado_estable_bajo_volumen",
+      "crisis_funcional"
+     ]
+    }
+   ],
+   "componentes": [
+    "dirigida"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "prrt_lu177",
+   "label": "PRRT Lu-177 DOTATATE",
+   "nota": "ESMO/NETTER-1/2: NET SSTR+ progresivo tras SSA o necesidad de control -> Lu-177 DOTATATE si renal/medular apto.",
+   "cuando": [
+    {
+     "campo": "sstr",
+     "eq": "positivo"
+    },
+    {
+     "campo": "setting",
+     "eq": "avanzado_progresivo"
+    },
+    {
+     "campo": "categoria",
+     "in": [
+      "NET_G1_G2",
+      "NET_G3_bien_dif"
+     ]
+    }
+   ],
+   "componentes": [
+    "radionuclido"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "everolimus_net",
+   "label": "Everolimus",
+   "nota": "ESMO: NET pancreatico o gastrointestinal no funcionante progresivo -> everolimus.",
+   "cuando": {
+    "all": [
+     {
+      "campo": "categoria",
+      "in": [
+       "NET_G1_G2",
+       "NET_G3_bien_dif"
+      ]
+     },
+     {
+      "campo": "setting",
+      "eq": "avanzado_progresivo"
+     },
+     {
+      "not": {
+       "all": [
+        {
+         "campo": "origen",
+         "eq": "intestino_medio"
+        },
+        {
+         "campo": "sstr",
+         "eq": "positivo"
+        }
+       ]
+      }
+     }
+    ]
+   },
+   "componentes": [
+    "dirigida"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "sunitinib_pnet",
+   "label": "Sunitinib en NET pancreatico",
+   "nota": "ESMO: NET pancreatico progresivo bien diferenciado -> sunitinib.",
+   "cuando": [
+    {
+     "campo": "origen",
+     "eq": "pancreatico"
+    },
+    {
+     "campo": "categoria",
+     "eq": "NET_G1_G2"
+    },
+    {
+     "campo": "setting",
+     "eq": "avanzado_progresivo"
+    }
+   ],
+   "componentes": [
+    "dirigida",
+    "antiangiogenico"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "captem_pnet",
+   "label": "CAPTEM/quimioterapia temozolomida",
+   "nota": "ESMO: NET pancreatico o NET G3 bien diferenciado con Ki-67 alto/volumen alto -> capecitabina-temozolomida.",
+   "cuando": [
+    {
+     "campo": "categoria",
+     "in": [
+      "NET_G1_G2",
+      "NET_G3_bien_dif"
+     ]
+    },
+    {
+     "campo": "setting",
+     "eq": "avanzado_progresivo"
+    },
+    {
+     "any": [
+      {
+       "campo": "origen",
+       "eq": "pancreatico"
+      },
+      {
+       "campo": "volumen_tumoral_alto",
+       "eq": true
+      },
+      {
+       "campo": "ki67",
+       "gte": 10
+      }
+     ]
+    }
+   ],
+   "componentes": [
+    "quimioterapia"
+   ],
+   "evidencia": "III, B"
+  },
+  {
+   "id": "platino_etoposido_nec",
+   "label": "Platino + etoposido",
+   "nota": "ESMO: NEC GEP pobremente diferenciado avanzado -> cis/carboplatino + etoposido 1L.",
+   "cuando": [
+    {
+     "campo": "categoria",
+     "eq": "NEC_pobre_dif"
+    },
+    {
+     "campo": "setting",
+     "in": [
+      "avanzado_progresivo",
+      "crisis_funcional"
+     ]
+    },
+    {
+     "any": [
+      {
+       "campo": "lineas_previas",
+       "missing": true
+      },
+      {
+       "campo": "lineas_previas",
+       "eq": 0
+      }
+     ]
+    }
+   ],
+   "componentes": [
+    "quimioterapia"
+   ],
+   "evidencia": "III, A"
+  },
+  {
+   "id": "folfox_folfiri_nec_2l",
+   "label": "FOLFOX/FOLFIRI 2L NEC",
+   "nota": "ESMO: NEC progresivo tras platino -> FOLFOX/FOLFIRI o ensayo clinico.",
+   "cuando": [
+    {
+     "campo": "categoria",
+     "eq": "NEC_pobre_dif"
+    },
+    {
+     "campo": "lineas_previas",
+     "gte": 1
+    }
+   ],
+   "componentes": [
+    "quimioterapia"
+   ],
+   "evidencia": "IV, B"
+  },
+  {
+   "id": "vigilancia_net_bajo_volumen",
+   "label": "Vigilancia activa estrecha",
+   "nota": "ESMO: NET G1/G2 no funcionante, bajo volumen y estable puede observarse con seguimiento estrecho.",
+   "cuando": [
+    {
+     "campo": "categoria",
+     "eq": "NET_G1_G2"
+    },
+    {
+     "campo": "setting",
+     "eq": "avanzado_estable_bajo_volumen"
+    },
+    {
+     "campo": "funcionante",
+     "eq": false
+    }
+   ],
+   "componentes": [
+    "vigilancia"
+   ],
+   "evidencia": "III, B"
+  }
+ ],
+ "preguntas": [
+  {
+   "key": "ritmo_progresion",
+   "tipo": "choice",
+   "capa": 1,
+   "cuando": {
+    "campo": "setting",
+    "eq": "avanzado_progresivo"
+   },
+   "instrucciones": "Clasifica ritmo de progresion y carga tumoral.",
+   "criterios": {
+    "lento": "Lento/bajo volumen",
+    "intermedio": "Progresion clara, PRRT/dirigida",
+    "rapido": "Rapido/volumen alto, quimioterapia"
+   }
+  },
+  {
+   "key": "apto_prrt",
+   "tipo": "noul",
+   "capa": 2,
+   "cuando": {
+    "campo": "sstr",
+    "eq": "positivo"
+   },
+   "instrucciones": "¿La captacion SSTR, funcion renal/medular y distribucion tumoral hacen apropiado PRRT?"
+  },
+  {
+   "key": "diferenciacion_incierta",
+   "tipo": "noul",
+   "capa": 1,
+   "cuando": {
+    "campo": "categoria",
+    "eq": "NET_G3_bien_dif"
+   },
+   "instrucciones": "¿La morfologia y Ki-67 apoyan NET G3 bien diferenciado frente a NEC?"
+  }
+ ],
+ "seguridad": [
+  {
+   "key": "prrt_renal_medula",
+   "cuando": {
+    "campo": "funcion_renal_prrt_apta",
+    "present": true
+   },
+   "bloquea_componentes": [
+    "radionuclido"
+   ],
+   "instrucciones": "¿La funcion renal/medular hace inseguro Lu-177 DOTATATE?",
+   "motivo": "Riesgo renal/medular para PRRT"
+  },
+  {
+   "key": "everolimus_diabetes",
+   "cuando": {
+    "campo": "diabetes_mal_controlada",
+    "present": true
+   },
+   "bloquea": [
+    "everolimus_net"
+   ],
+   "instrucciones": "¿La diabetes mal controlada/infecciones hacen inaceptable everolimus?",
+   "motivo": "Riesgo metabolico/infeccioso con everolimus"
+  }
+ ],
+ "avisos": [
+  {
+   "cuando": {
+    "campo": "sstr",
+    "eq": "desconocido"
+   },
+   "texto": "Imagen SSTR no disponible: necesaria para SSA/PRRT."
+  },
+  {
+   "cuando": {
+    "campo": "ki67",
+    "missing": true
+   },
+   "texto": "Ki-67 no disponible: clave para NET G1/G2/G3 frente a NEC."
+  }
+ ],
+ "vinetas": [
+  {
+   "id": "TNE_GEP-V01",
+   "titulo": "NET ileal SSTR+ estable",
+   "fuente": "CLARINET/PROMID",
+   "payload": {
+    "edad": 66,
+    "ecog": "0",
+    "sexo": "mujer",
+    "categoria": "NET_G1_G2",
+    "origen": "intestino_medio",
+    "setting": "avanzado_estable_bajo_volumen",
+    "sstr": "positivo",
+    "ki67": 3,
+    "funcionante": false
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "ssa_control",
+    "aceptables": [
+     "ssa_control",
+     "vigilancia_net_bajo_volumen"
+    ]
+   }
+  },
+  {
+   "id": "TNE_GEP-V02",
+   "titulo": "NET bajo volumen no funcionante",
+   "fuente": "Vigilancia",
+   "payload": {
+    "edad": 72,
+    "ecog": "0",
+    "sexo": "hombre",
+    "categoria": "NET_G1_G2",
+    "origen": "rectal",
+    "setting": "avanzado_estable_bajo_volumen",
+    "sstr": "positivo",
+    "ki67": 2,
+    "funcionante": false
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "vigilancia_net_bajo_volumen",
+    "aceptables": [
+     "vigilancia_net_bajo_volumen",
+     "ssa_control"
+    ]
+   }
+  },
+  {
+   "id": "TNE_GEP-V03",
+   "titulo": "NET midgut progresivo SSTR+",
+   "fuente": "NETTER-1",
+   "payload": {
+    "edad": 61,
+    "ecog": "1",
+    "sexo": "mujer",
+    "categoria": "NET_G1_G2",
+    "origen": "intestino_medio",
+    "setting": "avanzado_progresivo",
+    "sstr": "positivo",
+    "ki67": 8,
+    "funcionante": true,
+    "funcion_renal_prrt_apta": true,
+    "lineas_previas": 1
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "prrt_lu177",
+    "aceptables": [
+     "prrt_lu177"
+    ]
+   }
+  },
+  {
+   "id": "TNE_GEP-V04",
+   "titulo": "pNET progresivo",
+   "fuente": "Sunitinib/everolimus",
+   "payload": {
+    "edad": 58,
+    "ecog": "1",
+    "sexo": "hombre",
+    "categoria": "NET_G1_G2",
+    "origen": "pancreatico",
+    "setting": "avanzado_progresivo",
+    "sstr": "positivo",
+    "ki67": 12,
+    "volumen_tumoral_alto": false
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "sunitinib_pnet",
+    "aceptables": [
+     "sunitinib_pnet",
+     "everolimus_net",
+     "captem_pnet"
+    ]
+   }
+  },
+  {
+   "id": "TNE_GEP-V05",
+   "titulo": "pNET volumen alto",
+   "fuente": "CAPTEM",
+   "payload": {
+    "edad": 50,
+    "ecog": "0",
+    "sexo": "mujer",
+    "categoria": "NET_G1_G2",
+    "origen": "pancreatico",
+    "setting": "avanzado_progresivo",
+    "sstr": "negativo",
+    "ki67": 18,
+    "volumen_tumoral_alto": true
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "captem_pnet",
+    "aceptables": [
+     "captem_pnet"
+    ]
+   }
+  },
+  {
+   "id": "TNE_GEP-V06",
+   "titulo": "NEC avanzado",
+   "fuente": "Platino etoposido",
+   "payload": {
+    "edad": 64,
+    "ecog": "1",
+    "sexo": "hombre",
+    "categoria": "NEC_pobre_dif",
+    "origen": "gastrico_duodenal",
+    "setting": "avanzado_progresivo",
+    "sstr": "negativo",
+    "ki67": 80,
+    "volumen_tumoral_alto": true
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "platino_etoposido_nec",
+    "aceptables": [
+     "platino_etoposido_nec"
+    ]
+   }
+  },
+  {
+   "id": "TNE_GEP-V07",
+   "titulo": "NEC 2L",
+   "fuente": "FOLFOX/FOLFIRI",
+   "payload": {
+    "edad": 60,
+    "ecog": "1",
+    "sexo": "mujer",
+    "categoria": "NEC_pobre_dif",
+    "origen": "pancreatico",
+    "setting": "avanzado_progresivo",
+    "sstr": "negativo",
+    "ki67": 70,
+    "lineas_previas": 1
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "folfox_folfiri_nec_2l",
+    "aceptables": [
+     "folfox_folfiri_nec_2l"
+    ]
+   }
+  },
+  {
+   "id": "TNE_GEP-V08",
+   "titulo": "Falta categoria",
+   "fuente": "Dato imprescindible",
+   "payload": {
+    "edad": 55,
+    "ecog": "0",
+    "sexo": "hombre",
+    "categoria": null,
+    "origen": "pancreatico",
+    "setting": "avanzado_progresivo",
+    "sstr": "positivo",
+    "ki67": 20
+   },
+   "esperado": {
+    "tipo": "necesita_datos"
+   }
+  },
+  {
+   "id": "TNE_GEP-V09",
+   "titulo": "PRRT con insuficiencia renal",
+   "fuente": "Seguridad PRRT",
+   "payload": {
+    "edad": 73,
+    "ecog": "1",
+    "sexo": "mujer",
+    "categoria": "NET_G1_G2",
+    "origen": "intestino_medio",
+    "setting": "avanzado_progresivo",
+    "sstr": "positivo",
+    "ki67": 6,
+    "funcion_renal_prrt_apta": false,
+    "insuficiencia_renal": true,
+    "comorbilidades_relevantes": [
+     "FG 22 ml/min",
+     "diabetes mal controlada con infecciones recurrentes"
+    ],
+    "diabetes_mal_controlada": true
+   },
+   "esperado": {
+    "tipo": "revision_humana"
+   }
+  }
+ ]
+}

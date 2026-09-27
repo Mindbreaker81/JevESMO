@@ -1,0 +1,192 @@
+{
+ "tumor": "gist",
+ "nombre": "GIST",
+ "grupo": "Digestivo",
+ "version": "gist-ESMO-2022.1",
+ "fecha": "2026-09-27T14:47:30+00:00",
+ "modelo": "jev-latest",
+ "mock": false,
+ "umbral_confianza": 0.6,
+ "n": 9,
+ "aciertos": 9,
+ "acierto_global": 1.0,
+ "acierto_tratamiento": 1.0,
+ "acierto_preferida": 1.0,
+ "acierto_seguridad": 1.0,
+ "confianza_aciertos": 0.9971428571428572,
+ "confianza_fallos": null,
+ "n_multiopcion": 1,
+ "acierto_multiopcion": 1.0,
+ "candidatos_medios": 1.2857142857142858,
+ "casos": [
+  {
+   "id": "GIST-V01",
+   "titulo": "Bajo riesgo resecable",
+   "fuente": "ESMO vigilancia",
+   "esperado_tipo": "recomendacion",
+   "esperado": "cirugia_observacion_bajo",
+   "aceptables": [
+    "cirugia_observacion_bajo"
+   ],
+   "obtenido": "cirugia_observacion_bajo",
+   "obtenido_label": "Cirugia R0 y observacion",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "GIST-V02",
+   "titulo": "Alto riesgo resecado KIT exon11",
+   "fuente": "Adyuvancia 3 anos",
+   "esperado_tipo": "recomendacion",
+   "esperado": "imatinib_ady_3y",
+   "aceptables": [
+    "imatinib_ady_3y"
+   ],
+   "obtenido": "imatinib_ady_3y",
+   "obtenido_label": "Imatinib adyuvante 3 anos",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "GIST-V03",
+   "titulo": "Localmente avanzado sensible",
+   "fuente": "Neoadyuvancia",
+   "esperado_tipo": "recomendacion",
+   "esperado": "imatinib_neoadyuvante",
+   "aceptables": [
+    "imatinib_neoadyuvante"
+   ],
+   "obtenido": "imatinib_neoadyuvante",
+   "obtenido_label": "Imatinib neoadyuvante",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "GIST-V04",
+   "titulo": "Metastasico exon9",
+   "fuente": "Dosis 800",
+   "esperado_tipo": "recomendacion",
+   "esperado": "imatinib_800_exon9",
+   "aceptables": [
+    "imatinib_800_exon9"
+   ],
+   "obtenido": "imatinib_800_exon9",
+   "obtenido_label": "Imatinib 800 mg en KIT exon 9",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "GIST-V05",
+   "titulo": "PDGFRA D842V",
+   "fuente": "Avapritinib",
+   "esperado_tipo": "recomendacion",
+   "esperado": "avapritinib_d842v",
+   "aceptables": [
+    "avapritinib_d842v"
+   ],
+   "obtenido": "avapritinib_d842v",
+   "obtenido_label": "Avapritinib PDGFRA D842V",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "GIST-V06",
+   "titulo": "2L tras imatinib",
+   "fuente": "Sunitinib",
+   "esperado_tipo": "recomendacion",
+   "esperado": "sunitinib_2l",
+   "aceptables": [
+    "sunitinib_2l"
+   ],
+   "obtenido": "sunitinib_2l",
+   "obtenido_label": "Sunitinib 2L",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "GIST-V07",
+   "titulo": "4L",
+   "fuente": "Ripretinib",
+   "esperado_tipo": "recomendacion",
+   "esperado": "ripretinib_4l",
+   "aceptables": [
+    "ripretinib_4l"
+   ],
+   "obtenido": "ripretinib_4l",
+   "obtenido_label": "Ripretinib 4L",
+   "confianza": 0.98,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 3,
+   "error": null
+  },
+  {
+   "id": "GIST-V08",
+   "titulo": "Falta mutacion",
+   "fuente": "Dato imprescindible",
+   "esperado_tipo": "necesita_datos",
+   "esperado": "necesita_datos",
+   "aceptables": [],
+   "obtenido": "necesita_datos",
+   "obtenido_label": null,
+   "confianza": null,
+   "revision": null,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [
+    "¿Cual es la mutacion principal?"
+   ],
+   "n_candidatos": 0,
+   "error": null
+  },
+  {
+   "id": "GIST-V09",
+   "titulo": "D842V con toxicidad avapritinib",
+   "fuente": "Seguridad",
+   "esperado_tipo": "revision_humana",
+   "esperado": "revision_humana",
+   "aceptables": [],
+   "obtenido": "revision (sin opcion segura)",
+   "obtenido_label": null,
+   "confianza": 0.0,
+   "revision": true,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  }
+ ]
+}

@@ -1,0 +1,572 @@
+{
+ "id": "folicular",
+ "nombre": "Linfoma folicular",
+ "grupo": "Hematologia",
+ "version": "FOLLICULAR-ESMO-2025.1",
+ "guias": [
+  {
+   "titulo": "ESMO Clinical Practice Guideline: Lymphomas",
+   "anio": 2025,
+   "url": "https://www.esmo.org/guidelines/esmo-clinical-practice-guideline-lymphomas"
+  }
+ ],
+ "descripcion": "Linfoma folicular: estadio limitado, carga tumoral GELF, POD24 y opciones de recaida con R2, biespecificos y CAR-T.",
+ "campos": [
+  {
+   "id": "estadio",
+   "label": "Estadio Ann Arbor/Lugano",
+   "tipo": "choice",
+   "opciones": [
+    "I",
+    "II_contiguo",
+    "II_no_contiguo",
+    "III",
+    "IV"
+   ],
+   "requerido": true,
+   "pregunta": "¿Cual es el estadio Ann Arbor/Lugano?"
+  },
+  {
+   "id": "grado",
+   "label": "Grado histologico",
+   "tipo": "choice",
+   "opciones": [
+    "1_2",
+    "3A",
+    "3B"
+   ],
+   "requerido": true,
+   "pregunta": "¿Cual es el grado histologico (1-2, 3A o 3B)?"
+  },
+  {
+   "id": "carga_gelf",
+   "label": "Carga tumoral GELF",
+   "tipo": "choice",
+   "opciones": [
+    "baja",
+    "alta"
+   ],
+   "requerido_si": {
+    "campo": "estadio",
+    "in": [
+     "II_no_contiguo",
+     "III",
+     "IV"
+    ]
+   },
+   "pregunta": "¿La carga tumoral cumple criterios GELF de alta carga/sintomas?"
+  },
+  {
+   "id": "sintomatico",
+   "label": "Sintomatico o compromiso organico",
+   "tipo": "bool",
+   "seccion": "Clinica"
+  },
+  {
+   "id": "pod24",
+   "label": "POD24 (progresion <24 meses)",
+   "tipo": "bool",
+   "seccion": "Recaida"
+  },
+  {
+   "id": "candidato_inmunoquimio",
+   "label": "Candidato a inmunoquimioterapia",
+   "tipo": "bool",
+   "seccion": "Fitness"
+  },
+  {
+   "id": "candidato_car_t",
+   "label": "Candidato a CAR-T",
+   "tipo": "bool",
+   "seccion": "Recaida"
+  }
+ ],
+ "derivados": [
+  {
+   "id": "situacion",
+   "label": "Situacion clinica",
+   "defecto": "primera_linea",
+   "reglas": [
+    {
+     "cuando": {
+      "campo": "lineas_previas",
+      "gte": 2
+     },
+     "valor": "tercera_o_posterior"
+    },
+    {
+     "cuando": {
+      "campo": "lineas_previas",
+      "eq": 1
+     },
+     "valor": "primera_recaida"
+    }
+   ]
+  }
+ ],
+ "opciones": [
+  {
+   "id": "rt_limitado",
+   "label": "Radioterapia local ISRT 24 Gy",
+   "nota": "ESMO FL: estadio I/II contiguo localizado -> radioterapia con intencion potencialmente curativa",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "primera_linea"
+    },
+    {
+     "campo": "estadio",
+     "in": [
+      "I",
+      "II_contiguo"
+     ]
+    },
+    {
+     "campo": "grado",
+     "in": [
+      "1_2",
+      "3A"
+     ]
+    }
+   ],
+   "componentes": [
+    "radioterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "watch_wait",
+   "label": "Observacion activa (watch and wait)",
+   "nota": "ESMO FL: avanzado asintomatico de baja carga GELF -> vigilancia sin tratamiento inicial",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "primera_linea"
+    },
+    {
+     "campo": "estadio",
+     "in": [
+      "II_no_contiguo",
+      "III",
+      "IV"
+     ]
+    },
+    {
+     "campo": "carga_gelf",
+     "eq": "baja"
+    },
+    {
+     "campo": "sintomatico",
+     "ne": true
+    }
+   ],
+   "componentes": [
+    "vigilancia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "rituximab_mono",
+   "label": "Rituximab monoterapia",
+   "nota": "ESMO FL: baja carga pero se desea tratamiento o sintomas leves -> rituximab puede retrasar nueva terapia",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "primera_linea"
+    },
+    {
+     "campo": "carga_gelf",
+     "eq": "baja"
+    }
+   ],
+   "componentes": [
+    "inmunoterapia"
+   ],
+   "evidencia": "II, B"
+  },
+  {
+   "id": "r_quimio_mantenimiento",
+   "label": "R-quimioterapia (R-CHOP/R-CVP/BR) + mantenimiento rituximab",
+   "nota": "ESMO FL: avanzado alta carga GELF/sintomatico -> inmunoquimioterapia seguida de mantenimiento anti-CD20",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "primera_linea"
+    },
+    {
+     "campo": "carga_gelf",
+     "eq": "alta"
+    },
+    {
+     "campo": "grado",
+     "in": [
+      "1_2",
+      "3A"
+     ]
+    },
+    {
+     "campo": "candidato_inmunoquimio",
+     "ne": false
+    }
+   ],
+   "componentes": [
+    "quimioterapia",
+    "inmunoterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "obinutuzumab_quimio",
+   "label": "Obinutuzumab-quimioterapia + mantenimiento",
+   "nota": "ESMO FL: alternativa anti-CD20 en primera linea alta carga; GALLIUM reduce PFS frente a rituximab",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "primera_linea"
+    },
+    {
+     "campo": "carga_gelf",
+     "eq": "alta"
+    },
+    {
+     "campo": "candidato_inmunoquimio",
+     "ne": false
+    }
+   ],
+   "componentes": [
+    "quimioterapia",
+    "inmunoterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "tratar_como_dlbcl",
+   "label": "Tratar como DLBCL (R-CHOP/Pola-R-CHP)",
+   "nota": "ESMO: FL grado 3B o transformacion se maneja como linfoma agresivo",
+   "cuando": [
+    {
+     "campo": "grado",
+     "eq": "3B"
+    }
+   ],
+   "componentes": [
+    "quimioterapia",
+    "inmunoterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "r2_recaida",
+   "label": "Lenalidomida + rituximab (R2)",
+   "nota": "ESMO FL: recaida tras inmunoquimioterapia, especialmente no refractario inmediato -> lenalidomida-rituximab (AUGMENT)",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "primera_recaida"
+    }
+   ],
+   "componentes": [
+    "dirigida",
+    "inmunoterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "mosunetuzumab",
+   "label": "Mosunetuzumab biespecifico",
+   "nota": "ESMO FL: tras >=2 lineas, opcion preferente sin quimioterapia con respuestas duraderas",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "tercera_o_posterior"
+    }
+   ],
+   "componentes": [
+    "celular",
+    "inmunoterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "car_t_fl",
+   "label": "CAR-T axi-cel/tisa-cel",
+   "nota": "ESMO FL: recaida multiple/POD24 tras >=2 lineas y candidato -> CAR-T",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "tercera_o_posterior"
+    },
+    {
+     "campo": "candidato_car_t",
+     "eq": true
+    }
+   ],
+   "componentes": [
+    "celular"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "ensayo_pod24",
+   "label": "Ensayo clinico / estrategia intensificada por POD24",
+   "nota": "ESMO FL: POD24 identifica alto riesgo; valorar rebiopsia, transformacion y terapias innovadoras/ensayo",
+   "cuando": [
+    {
+     "campo": "pod24",
+     "eq": true
+    },
+    {
+     "campo": "situacion",
+     "in": [
+      "primera_recaida",
+      "tercera_o_posterior"
+     ]
+    }
+   ],
+   "componentes": [
+    "soporte"
+   ],
+   "evidencia": "III, B"
+  }
+ ],
+ "preguntas": [
+  {
+   "key": "sospecha_transformacion",
+   "tipo": "noul",
+   "capa": 1,
+   "cuando": {
+    "campo": "pod24",
+    "eq": true
+   },
+   "instrucciones": "Por clinica, LDH, crecimiento rapido o PET, ¿hay alta sospecha de transformacion a linfoma agresivo que requiera biopsia antes de decidir?"
+  },
+  {
+   "key": "necesita_tratar_baja_carga",
+   "tipo": "noul",
+   "capa": 1,
+   "cuando": {
+    "campo": "carga_gelf",
+    "eq": "baja"
+   },
+   "instrucciones": "Aunque la carga sea baja, ¿los sintomas/preferencias justifican tratamiento inmediato frente a watch and wait?"
+  }
+ ],
+ "seguridad": [
+  {
+   "key": "infeccion_anti_cd20",
+   "cuando": {
+    "campo": "comorbilidades_relevantes",
+    "present": true
+   },
+   "bloquea_componentes": [
+    "inmunoterapia"
+   ],
+   "instrucciones": "¿Existe infeccion activa grave o inmunodeficiencia que haga inaceptable rituximab/obinutuzumab/mosunetuzumab ahora?",
+   "umbral": 0.75,
+   "motivo": "Riesgo infeccioso inaceptable para anti-CD20/biespecifico"
+  }
+ ],
+ "avisos": [
+  {
+   "cuando": {
+    "campo": "pod24",
+    "missing": true
+   },
+   "texto": "POD24 no informado: importante en recaida por riesgo de transformacion y pronostico."
+  }
+ ],
+ "vinetas": [
+  {
+   "id": "FOLICULAR-V01",
+   "titulo": "FL localizado",
+   "fuente": "ESMO FL estadio I",
+   "payload": {
+    "edad": 58,
+    "ecog": "0",
+    "estadio": "I",
+    "grado": "1_2",
+    "sintomatico": false
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "rt_limitado",
+    "aceptables": [
+     "rt_limitado"
+    ]
+   }
+  },
+  {
+   "id": "FOLICULAR-V02",
+   "titulo": "Avanzado baja carga",
+   "fuente": "ESMO watch and wait",
+   "payload": {
+    "edad": 67,
+    "ecog": "0",
+    "estadio": "IV",
+    "grado": "1_2",
+    "carga_gelf": "baja",
+    "sintomatico": false
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "watch_wait",
+    "aceptables": [
+     "watch_wait",
+     "rituximab_mono"
+    ]
+   }
+  },
+  {
+   "id": "FOLICULAR-V03",
+   "titulo": "Baja carga con preferencia tratamiento",
+   "fuente": "ESMO rituximab monoterapia",
+   "payload": {
+    "edad": 70,
+    "ecog": "1",
+    "estadio": "III",
+    "grado": "1_2",
+    "carga_gelf": "baja",
+    "sintomatico": true,
+    "descripcion_libre": "Adenopatias pequenas pero sudoracion y ansiedad por observacion."
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "rituximab_mono",
+    "aceptables": [
+     "rituximab_mono",
+     "watch_wait"
+    ]
+   }
+  },
+  {
+   "id": "FOLICULAR-V04",
+   "titulo": "Alta carga GELF",
+   "fuente": "ESMO inmunoquimioterapia",
+   "payload": {
+    "edad": 62,
+    "ecog": "1",
+    "estadio": "IV",
+    "grado": "1_2",
+    "carga_gelf": "alta",
+    "sintomatico": true,
+    "candidato_inmunoquimio": true
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "r_quimio_mantenimiento",
+    "aceptables": [
+     "r_quimio_mantenimiento",
+     "obinutuzumab_quimio"
+    ]
+   }
+  },
+  {
+   "id": "FOLICULAR-V05",
+   "titulo": "Grado 3B",
+   "fuente": "ESMO tratar como agresivo",
+   "payload": {
+    "edad": 55,
+    "ecog": "1",
+    "estadio": "III",
+    "grado": "3B",
+    "carga_gelf": "alta",
+    "sintomatico": true
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "tratar_como_dlbcl",
+    "aceptables": [
+     "tratar_como_dlbcl"
+    ]
+   }
+  },
+  {
+   "id": "FOLICULAR-V06",
+   "titulo": "Primera recaida",
+   "fuente": "AUGMENT",
+   "payload": {
+    "edad": 64,
+    "ecog": "1",
+    "estadio": "IV",
+    "grado": "1_2",
+    "carga_gelf": "alta",
+    "lineas_previas": 1,
+    "pod24": false,
+    "tratamientos_previos": [
+     "BR+rituximab mantenimiento"
+    ]
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "r2_recaida",
+    "aceptables": [
+     "r2_recaida"
+    ]
+   }
+  },
+  {
+   "id": "FOLICULAR-V07",
+   "titulo": "Tercera linea candidato CAR-T",
+   "fuente": "ESMO FL recaida multiple",
+   "payload": {
+    "edad": 57,
+    "ecog": "0",
+    "estadio": "IV",
+    "grado": "1_2",
+    "carga_gelf": "alta",
+    "lineas_previas": 2,
+    "pod24": true,
+    "candidato_car_t": true,
+    "tratamientos_previos": [
+     "R-CHOP",
+     "R2"
+    ]
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "car_t_fl",
+    "aceptables": [
+     "car_t_fl",
+     "mosunetuzumab",
+     "ensayo_pod24"
+    ]
+   }
+  },
+  {
+   "id": "FOLICULAR-V08",
+   "titulo": "Falta GELF en avanzado",
+   "fuente": "Dato requerido",
+   "payload": {
+    "edad": 69,
+    "ecog": "1",
+    "estadio": "IV",
+    "grado": "1_2",
+    "carga_gelf": null
+   },
+   "esperado": {
+    "tipo": "necesita_datos"
+   }
+  },
+  {
+   "id": "FOLICULAR-V09",
+   "titulo": "Infeccion activa y necesidad de anti-CD20",
+   "fuente": "Seguridad",
+   "payload": {
+    "edad": 73,
+    "ecog": "3",
+    "estadio": "IV",
+    "grado": "1_2",
+    "carga_gelf": "alta",
+    "sintomatico": true,
+    "candidato_inmunoquimio": true,
+    "comorbilidades_relevantes": [
+     "neumonia bacteriana con sepsis activa"
+    ],
+    "descripcion_libre": "Ingreso por sepsis, hipoxemia y neutropenia."
+   },
+   "esperado": {
+    "tipo": "revision_humana"
+   }
+  }
+ ]
+}

@@ -1,0 +1,211 @@
+{
+ "tumor": "testiculo",
+ "nombre": "Tumores germinales testiculares",
+ "grupo": "Genitourinario",
+ "version": "TESTICULO-ESMO-2023.1",
+ "fecha": "2026-09-27T14:47:47+00:00",
+ "modelo": "jev-latest",
+ "mock": false,
+ "umbral_confianza": 0.6,
+ "n": 10,
+ "aciertos": 10,
+ "acierto_global": 1.0,
+ "acierto_tratamiento": 1.0,
+ "acierto_preferida": 1.0,
+ "acierto_seguridad": 1.0,
+ "confianza_aciertos": 1.0,
+ "confianza_fallos": null,
+ "n_multiopcion": 0,
+ "acierto_multiopcion": null,
+ "candidatos_medios": 1.0,
+ "casos": [
+  {
+   "id": "TESTICULO-V01",
+   "titulo": "Seminoma I vigilancia",
+   "fuente": "ESMO testicular cancer - seminoma I surveillance",
+   "esperado_tipo": "recomendacion",
+   "esperado": "seminoma_I_vigilancia",
+   "aceptables": [
+    "seminoma_I_vigilancia"
+   ],
+   "obtenido": "seminoma_I_vigilancia",
+   "obtenido_label": "Seminoma I: vigilancia",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "TESTICULO-V02",
+   "titulo": "No seminoma I bajo riesgo",
+   "fuente": "ESMO testicular cancer - NSGCT I surveillance",
+   "esperado_tipo": "recomendacion",
+   "esperado": "nsgct_I_vigilancia",
+   "aceptables": [
+    "nsgct_I_vigilancia"
+   ],
+   "obtenido": "nsgct_I_vigilancia",
+   "obtenido_label": "No seminoma I: vigilancia",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "TESTICULO-V03",
+   "titulo": "No seminoma I LVI positivo",
+   "fuente": "ESMO testicular cancer - BEP x1 high risk stage I",
+   "esperado_tipo": "recomendacion",
+   "esperado": "nsgct_I_bep1",
+   "aceptables": [
+    "nsgct_I_bep1"
+   ],
+   "obtenido": "nsgct_I_bep1",
+   "obtenido_label": "No seminoma I alto riesgo: BEP x1",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "TESTICULO-V04",
+   "titulo": "Buen riesgo metastasico",
+   "fuente": "ESMO testicular cancer - BEP x3 good risk",
+   "esperado_tipo": "recomendacion",
+   "esperado": "bep3_buen_riesgo",
+   "aceptables": [
+    "bep3_buen_riesgo"
+   ],
+   "obtenido": "bep3_buen_riesgo",
+   "obtenido_label": "BEP x3",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "TESTICULO-V05",
+   "titulo": "Buen riesgo sin bleomicina",
+   "fuente": "ESMO testicular cancer - EP x4 if bleomycin contraindicated",
+   "esperado_tipo": "recomendacion",
+   "esperado": "ep4_buen_riesgo",
+   "aceptables": [
+    "ep4_buen_riesgo"
+   ],
+   "obtenido": "ep4_buen_riesgo",
+   "obtenido_label": "EP x4",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "TESTICULO-V06",
+   "titulo": "Pobre riesgo",
+   "fuente": "ESMO testicular cancer - BEP x4 poor risk",
+   "esperado_tipo": "recomendacion",
+   "esperado": "bep4_inter_pobre",
+   "aceptables": [
+    "bep4_inter_pobre"
+   ],
+   "obtenido": "bep4_inter_pobre",
+   "obtenido_label": "BEP x4",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "TESTICULO-V07",
+   "titulo": "Masa residual NSGCT",
+   "fuente": "ESMO testicular cancer - residual mass resection NSGCT",
+   "esperado_tipo": "recomendacion",
+   "esperado": "reseccion_masa_residual_nsgct",
+   "aceptables": [
+    "reseccion_masa_residual_nsgct"
+   ],
+   "obtenido": "reseccion_masa_residual_nsgct",
+   "obtenido_label": "Reseccion de masa residual postquimioterapia",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "TESTICULO-V08",
+   "titulo": "Recaida post cisplatino",
+   "fuente": "ESMO testicular cancer - salvage TIP/high dose",
+   "esperado_tipo": "recomendacion",
+   "esperado": "rescate_tip_altadosis",
+   "aceptables": [
+    "rescate_tip_altadosis"
+   ],
+   "obtenido": "rescate_tip_altadosis",
+   "obtenido_label": "Quimioterapia de rescate TIP o altas dosis + rescate hematopoyetico",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "TESTICULO-V09",
+   "titulo": "Falta histologia",
+   "fuente": "Dato imprescindible - histologia germinal",
+   "esperado_tipo": "necesita_datos",
+   "esperado": "necesita_datos",
+   "aceptables": [],
+   "obtenido": "necesita_datos",
+   "obtenido_label": null,
+   "confianza": null,
+   "revision": null,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [
+    "¿La histologia es seminoma, no seminoma o mixta?"
+   ],
+   "n_candidatos": 0,
+   "error": null
+  },
+  {
+   "id": "TESTICULO-V10",
+   "titulo": "BEP con enfermedad pulmonar grave",
+   "fuente": "Seguridad - bleomicina pulmonary toxicity",
+   "esperado_tipo": "revision_humana",
+   "esperado": "revision_humana",
+   "aceptables": [],
+   "obtenido": "revision (sin opcion segura)",
+   "obtenido_label": null,
+   "confianza": 0.0,
+   "revision": true,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  }
+ ]
+}

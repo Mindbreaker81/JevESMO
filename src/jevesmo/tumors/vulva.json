@@ -1,0 +1,631 @@
+{
+ "id": "vulva",
+ "nombre": "Carcinoma escamoso de vulva",
+ "grupo": "Ginecologico",
+ "version": "VULVA-ESMO-2023.1",
+ "guias": [
+  {
+   "titulo": "ESGO Guidelines for the Management of Patients with Vulvar Cancer - Update 2023",
+   "anio": 2023,
+   "url": "https://www.esmo.org/guidelines/gynaecological-cancers"
+  },
+  {
+   "titulo": "Vulvar cancer: ESMO Clinical Practice Guidelines for diagnosis, treatment and follow-up",
+   "anio": 2017,
+   "url": "https://www.esmo.org/guidelines/gynaecological-cancers/vulvar-cancer"
+  }
+ ],
+ "descripcion": "Carcinoma escamoso de vulva: cirugia local, ganglio centinela, linfadenectomia, RT/QRT adyuvante y avanzado.",
+ "campos": [
+  {
+   "id": "estadio",
+   "label": "Estadio FIGO",
+   "tipo": "choice",
+   "opciones": [
+    "I",
+    "II",
+    "III",
+    "IVA",
+    "IVB_recurrente"
+   ],
+   "requerido": true,
+   "pregunta": "¿Cual es el estadio FIGO?"
+  },
+  {
+   "id": "histologia",
+   "label": "Histologia",
+   "tipo": "choice",
+   "opciones": [
+    "escamoso",
+    "melanoma",
+    "paget",
+    "otro"
+   ],
+   "requerido": true,
+   "pregunta": "¿Cual es la histologia?"
+  },
+  {
+   "id": "tamano_cm",
+   "label": "Tamano tumoral",
+   "tipo": "number",
+   "min": 0,
+   "max": 20,
+   "unidad": "cm"
+  },
+  {
+   "id": "profundidad_mm",
+   "label": "Profundidad de invasion",
+   "tipo": "number",
+   "min": 0,
+   "max": 50,
+   "unidad": "mm"
+  },
+  {
+   "id": "unifocal",
+   "label": "Tumor unifocal",
+   "tipo": "bool"
+  },
+  {
+   "id": "ganglios_clinicos",
+   "label": "Ganglios inguinales sospechosos",
+   "tipo": "bool"
+  },
+  {
+   "id": "ganglios_positivos",
+   "label": "Ganglios positivos patologicos",
+   "tipo": "choice",
+   "opciones": [
+    "ninguno",
+    "uno",
+    "multiples",
+    "extranodal",
+    "desconocido"
+   ]
+  },
+  {
+   "id": "margenes",
+   "label": "Margenes quirurgicos",
+   "tipo": "choice",
+   "opciones": [
+    "negativos",
+    "proximos",
+    "positivos",
+    "no_operada"
+   ]
+  },
+  {
+   "id": "resecable",
+   "label": "Resecable sin exenteracion mutilante",
+   "tipo": "bool",
+   "requerido_si": {
+    "campo": "estadio",
+    "in": [
+     "IVA",
+     "IVB_recurrente"
+    ]
+   },
+   "pregunta": "En enfermedad avanzada/recurrente, ¿es resecable sin exenteracion mutilante?"
+  }
+ ],
+ "derivados": [
+  {
+   "id": "candidata_gcentinela",
+   "label": "Candidata a ganglio centinela",
+   "defecto": false,
+   "reglas": [
+    {
+     "cuando": [
+      {
+       "campo": "estadio",
+       "eq": "I"
+      },
+      {
+       "campo": "histologia",
+       "eq": "escamoso"
+      },
+      {
+       "campo": "tamano_cm",
+       "lt": 4
+      },
+      {
+       "campo": "unifocal",
+       "eq": true
+      },
+      {
+       "campo": "ganglios_clinicos",
+       "eq": false
+      },
+      {
+       "campo": "profundidad_mm",
+       "gt": 1
+      }
+     ],
+     "valor": true
+    }
+   ]
+  }
+ ],
+ "opciones": [
+  {
+   "id": "escision_local_ia",
+   "label": "Escision local amplia sin estadiaje ganglionar",
+   "nota": "ESGO/ESMO: lesion escamosa IA con invasion <=1 mm tiene riesgo ganglionar despreciable; escision local con margenes adecuados.",
+   "cuando": [
+    {
+     "campo": "estadio",
+     "eq": "I"
+    },
+    {
+     "campo": "profundidad_mm",
+     "lte": 1
+    }
+   ],
+   "componentes": [
+    "cirugia"
+   ],
+   "evidencia": "III, B"
+  },
+  {
+   "id": "escision_ganglio_centinela",
+   "label": "Escision radical local + ganglio centinela",
+   "nota": "ESGO/ESMO: tumor unifocal <4 cm, invasion >1 mm, ganglios clinicamente negativos -> biopsia de ganglio centinela.",
+   "cuando": {
+    "campo": "candidata_gcentinela",
+    "eq": true
+   },
+   "componentes": [
+    "cirugia"
+   ],
+   "evidencia": "III, B"
+  },
+  {
+   "id": "escision_linfadenectomia",
+   "label": "Escision radical local + linfadenectomia inguinofemoral",
+   "nota": "ESGO/ESMO: tumor >=4 cm, multifocal o ganglios sospechosos/no candidato a centinela -> linfadenectomia inguinofemoral.",
+   "cuando": [
+    {
+     "campo": "estadio",
+     "in": [
+      "I",
+      "II",
+      "III"
+     ]
+    },
+    {
+     "any": [
+      {
+       "campo": "tamano_cm",
+       "gte": 4
+      },
+      {
+       "campo": "unifocal",
+       "eq": false
+      },
+      {
+       "campo": "ganglios_clinicos",
+       "eq": true
+      }
+     ]
+    }
+   ],
+   "componentes": [
+    "cirugia"
+   ],
+   "evidencia": "III, B"
+  },
+  {
+   "id": "rt_adyuvante_margenes",
+   "label": "Radioterapia adyuvante al lecho vulvar",
+   "nota": "ESGO/ESMO: margenes positivos o muy proximos si no es posible re-escision -> radioterapia adyuvante al lecho tumoral.",
+   "cuando": {
+    "campo": "margenes",
+    "in": [
+     "positivos",
+     "proximos"
+    ]
+   },
+   "componentes": [
+    "radioterapia"
+   ],
+   "evidencia": "III, B"
+  },
+  {
+   "id": "rt_inguinal_adyuvante",
+   "label": "Radioterapia inguinofemoral/pelvica adyuvante",
+   "nota": "ESGO/ESMO: ganglio centinela macrometastasico, multiples ganglios o factores de alto riesgo -> radioterapia nodal adyuvante.",
+   "cuando": {
+    "campo": "ganglios_positivos",
+    "in": [
+     "uno",
+     "multiples"
+    ]
+   },
+   "componentes": [
+    "radioterapia"
+   ],
+   "evidencia": "II, B"
+  },
+  {
+   "id": "qrt_adyuvante_extranodal",
+   "label": "Quimiorradioterapia adyuvante",
+   "nota": "ESGO/ESMO: extension extranodal o enfermedad ganglionar voluminosa/alto riesgo -> considerar quimiorradioterapia adyuvante.",
+   "cuando": {
+    "campo": "ganglios_positivos",
+    "eq": "extranodal"
+   },
+   "componentes": [
+    "quimiorradioterapia"
+   ],
+   "evidencia": "III, B"
+  },
+  {
+   "id": "qrt_definitiva_avanzada",
+   "label": "Quimiorradioterapia definitiva/neoadyuvante",
+   "nota": "ESGO/ESMO: enfermedad localmente avanzada no resecable sin gran mutilacion -> QRT definitiva o neoadyuvante para preservar organos.",
+   "cuando": [
+    {
+     "campo": "estadio",
+     "eq": "IVA"
+    },
+    {
+     "campo": "resecable",
+     "eq": false
+    }
+   ],
+   "componentes": [
+    "quimiorradioterapia"
+   ],
+   "evidencia": "III, B"
+  },
+  {
+   "id": "cirugia_avanzada_resecable",
+   "label": "Cirugia radical individualizada +- reconstruccion",
+   "nota": "ESGO/ESMO: enfermedad localmente avanzada resecable con morbilidad aceptable -> cirugia radical en centro experto, adyuvancia segun patologia.",
+   "cuando": [
+    {
+     "campo": "estadio",
+     "eq": "IVA"
+    },
+    {
+     "campo": "resecable",
+     "eq": true
+    }
+   ],
+   "componentes": [
+    "cirugia"
+   ],
+   "evidencia": "IV, B"
+  },
+  {
+   "id": "sistemico_paliativo",
+   "label": "Tratamiento sistemico paliativo/ensayo clinico",
+   "nota": "ESGO/ESMO: metastasico o recurrente no curable -> quimioterapia basada en platino/taxano, inmunoterapia si biomarcadores, ensayo clinico y objetivos paliativos.",
+   "cuando": {
+    "campo": "estadio",
+    "eq": "IVB_recurrente"
+   },
+   "componentes": [
+    "quimioterapia",
+    "inmunoterapia",
+    "soporte"
+   ],
+   "evidencia": "IV, C"
+  },
+  {
+   "id": "soporte_vulva",
+   "label": "Soporte, control local de sintomas y cuidados paliativos",
+   "nota": "ESGO/ESMO: ECOG 3-4 o enfermedad no candidata a tratamiento activo -> control de dolor, sangrado, infeccion y soporte integral.",
+   "cuando": {
+    "campo": "ecog",
+    "in": [
+     "3",
+     "4"
+    ]
+   },
+   "componentes": [
+    "soporte",
+    "radioterapia"
+   ],
+   "evidencia": "V, A"
+  }
+ ],
+ "preguntas": [
+  {
+   "key": "margenes_reescision",
+   "tipo": "noul",
+   "capa": 1,
+   "cuando": {
+    "campo": "margenes",
+    "in": [
+     "positivos",
+     "proximos"
+    ]
+   },
+   "instrucciones": "¿Es factible re-escision para obtener margenes adecuados antes de radioterapia?"
+  },
+  {
+   "key": "organ_preservation",
+   "tipo": "choice",
+   "capa": 1,
+   "cuando": {
+    "campo": "estadio",
+    "eq": "IVA"
+   },
+   "instrucciones": "Valora preservacion de organos y morbilidad quirurgica.",
+   "criterios": {
+    "quirurgica": "Reseccion factible",
+    "qrt": "Cirugia mutilante; preferir QRT"
+   }
+  },
+  {
+   "key": "fragilidad",
+   "tipo": "noul",
+   "capa": 2,
+   "cuando": {
+    "campo": "ecog",
+    "in": [
+     "2",
+     "3",
+     "4"
+    ]
+   },
+   "instrucciones": "¿La fragilidad limita un tratamiento radical de vulva?"
+  }
+ ],
+ "seguridad": [
+  {
+   "key": "no_cisplatino_vulva",
+   "cuando": {
+    "campo": "insuficiencia_renal",
+    "eq": true
+   },
+   "bloquea_componentes": [
+    "quimiorradioterapia"
+   ],
+   "instrucciones": "¿La insuficiencia renal contraindica cisplatino/radiosensibilizacion estandar?",
+   "motivo": "Insuficiencia renal limita QRT con cisplatino"
+  }
+ ],
+ "avisos": [
+  {
+   "cuando": {
+    "campo": "ganglios_positivos",
+    "eq": "desconocido"
+   },
+   "texto": "Estado ganglionar desconocido: cambia indicacion de RT/QRT."
+  },
+  {
+   "cuando": {
+    "campo": "margenes",
+    "missing": true
+   },
+   "texto": "Margenes no informados: pueden modificar indicacion de re-escision/RT."
+  }
+ ],
+ "vinetas": [
+  {
+   "id": "VULVA-V01",
+   "titulo": "IA superficial",
+   "fuente": "ESGO IA invasion <=1 mm",
+   "payload": {
+    "edad": 67,
+    "sexo": "mujer",
+    "ecog": "0",
+    "estadio": "I",
+    "histologia": "escamoso",
+    "tamano_cm": 1.2,
+    "profundidad_mm": 0.8,
+    "unifocal": true,
+    "ganglios_clinicos": false
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "escision_local_ia",
+    "aceptables": [
+     "escision_local_ia"
+    ]
+   }
+  },
+  {
+   "id": "VULVA-V02",
+   "titulo": "Unifocal pequena candidata a centinela",
+   "fuente": "ESGO sentinel node",
+   "payload": {
+    "edad": 59,
+    "sexo": "mujer",
+    "ecog": "0",
+    "estadio": "I",
+    "histologia": "escamoso",
+    "tamano_cm": 2.5,
+    "profundidad_mm": 3,
+    "unifocal": true,
+    "ganglios_clinicos": false,
+    "margenes": "negativos"
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "escision_ganglio_centinela",
+    "aceptables": [
+     "escision_ganglio_centinela"
+    ]
+   }
+  },
+  {
+   "id": "VULVA-V03",
+   "titulo": "Tumor 5 cm",
+   "fuente": "ESGO >=4 cm lymphadenectomy",
+   "payload": {
+    "edad": 71,
+    "sexo": "mujer",
+    "ecog": "1",
+    "estadio": "II",
+    "histologia": "escamoso",
+    "tamano_cm": 5,
+    "profundidad_mm": 5,
+    "unifocal": true,
+    "ganglios_clinicos": false
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "escision_linfadenectomia",
+    "aceptables": [
+     "escision_linfadenectomia"
+    ]
+   }
+  },
+  {
+   "id": "VULVA-V04",
+   "titulo": "Margen positivo",
+   "fuente": "ESGO positive margins RT",
+   "payload": {
+    "edad": 64,
+    "sexo": "mujer",
+    "ecog": "0",
+    "estadio": "I",
+    "histologia": "escamoso",
+    "tamano_cm": 2.8,
+    "profundidad_mm": 4,
+    "unifocal": true,
+    "ganglios_clinicos": false,
+    "margenes": "positivos"
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "rt_adyuvante_margenes",
+    "aceptables": [
+     "rt_adyuvante_margenes",
+     "escision_ganglio_centinela"
+    ]
+   }
+  },
+  {
+   "id": "VULVA-V05",
+   "titulo": "Ganglios multiples",
+   "fuente": "ESGO nodal RT",
+   "payload": {
+    "edad": 69,
+    "sexo": "mujer",
+    "ecog": "1",
+    "estadio": "III",
+    "histologia": "escamoso",
+    "tamano_cm": 3.5,
+    "profundidad_mm": 6,
+    "unifocal": true,
+    "ganglios_clinicos": true,
+    "ganglios_positivos": "multiples",
+    "margenes": "negativos"
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "rt_inguinal_adyuvante",
+    "aceptables": [
+     "rt_inguinal_adyuvante",
+     "escision_linfadenectomia"
+    ]
+   }
+  },
+  {
+   "id": "VULVA-V06",
+   "titulo": "Extension extranodal",
+   "fuente": "ESGO extranodal QRT",
+   "payload": {
+    "edad": 63,
+    "sexo": "mujer",
+    "ecog": "1",
+    "estadio": "III",
+    "histologia": "escamoso",
+    "tamano_cm": 4.2,
+    "profundidad_mm": 7,
+    "ganglios_clinicos": true,
+    "ganglios_positivos": "extranodal",
+    "margenes": "negativos"
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "qrt_adyuvante_extranodal",
+    "aceptables": [
+     "qrt_adyuvante_extranodal"
+    ]
+   }
+  },
+  {
+   "id": "VULVA-V07",
+   "titulo": "IVA no resecable",
+   "fuente": "ESGO definitive CRT",
+   "payload": {
+    "edad": 74,
+    "sexo": "mujer",
+    "ecog": "1",
+    "estadio": "IVA",
+    "histologia": "escamoso",
+    "tamano_cm": 8,
+    "profundidad_mm": 10,
+    "ganglios_clinicos": true,
+    "resecable": false,
+    "margenes": "no_operada"
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "qrt_definitiva_avanzada",
+    "aceptables": [
+     "qrt_definitiva_avanzada"
+    ]
+   }
+  },
+  {
+   "id": "VULVA-V08",
+   "titulo": "Metastasico recurrente",
+   "fuente": "ESGO palliative systemic",
+   "payload": {
+    "edad": 70,
+    "sexo": "mujer",
+    "ecog": "1",
+    "estadio": "IVB_recurrente",
+    "histologia": "escamoso",
+    "tamano_cm": 6,
+    "resecable": false,
+    "lineas_previas": 0
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "sistemico_paliativo",
+    "aceptables": [
+     "sistemico_paliativo"
+    ]
+   }
+  },
+  {
+   "id": "VULVA-V09",
+   "titulo": "Falta estadio",
+   "fuente": "ESGO staging required",
+   "payload": {
+    "edad": 66,
+    "sexo": "mujer",
+    "ecog": "0",
+    "histologia": "escamoso",
+    "tamano_cm": 2.4,
+    "profundidad_mm": 3
+   },
+   "esperado": {
+    "tipo": "necesita_datos"
+   }
+  },
+  {
+   "id": "VULVA-V10",
+   "titulo": "ECOG 4 avanzado",
+   "fuente": "ESGO supportive care",
+   "payload": {
+    "edad": 88,
+    "sexo": "mujer",
+    "ecog": "4",
+    "estadio": "IVB_recurrente",
+    "histologia": "escamoso",
+    "resecable": false,
+    "descripcion_libre": "Ulcera vulvar infectada, metastasis pulmonares y paciente encamada."
+   },
+   "esperado": {
+    "tipo": "revision_humana"
+   }
+  }
+ ]
+}

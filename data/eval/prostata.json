@@ -1,0 +1,193 @@
+{
+ "tumor": "prostata",
+ "nombre": "Cancer de prostata",
+ "grupo": "Genitourinario",
+ "version": "PROSTATA-ESMO-2026.1",
+ "fecha": "2026-09-27T14:47:43+00:00",
+ "modelo": "jev-latest",
+ "mock": false,
+ "umbral_confianza": 0.6,
+ "n": 9,
+ "aciertos": 9,
+ "acierto_global": 1.0,
+ "acierto_tratamiento": 1.0,
+ "acierto_preferida": 1.0,
+ "acierto_seguridad": 1.0,
+ "confianza_aciertos": 0.9614285714285715,
+ "confianza_fallos": null,
+ "n_multiopcion": 1,
+ "acierto_multiopcion": 1.0,
+ "candidatos_medios": 1.1428571428571428,
+ "casos": [
+  {
+   "id": "PROSTATA-V01",
+   "titulo": "Riesgo bajo candidato a vigilancia",
+   "fuente": "ESMO local prostate cancer - low risk active surveillance",
+   "esperado_tipo": "recomendacion",
+   "esperado": "vigilancia_activa",
+   "aceptables": [
+    "vigilancia_activa"
+   ],
+   "obtenido": "vigilancia_activa",
+   "obtenido_label": "Vigilancia activa",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "PROSTATA-V02",
+   "titulo": "Alto riesgo localizado operable",
+   "fuente": "ESMO local prostate cancer - radical prostatectomy or RT+ADT",
+   "esperado_tipo": "recomendacion",
+   "esperado": "prostatectomia_radical",
+   "aceptables": [
+    "prostatectomia_radical"
+   ],
+   "obtenido": "prostatectomia_radical",
+   "obtenido_label": "Prostatectomia radical + linfadenectomia segun riesgo",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "PROSTATA-V03",
+   "titulo": "mHSPC bajo volumen",
+   "fuente": "ESMO advanced prostate cancer - ADT plus ARPI low volume",
+   "esperado_tipo": "recomendacion",
+   "esperado": "adt_arpi_mhspc_bajo",
+   "aceptables": [
+    "adt_arpi_mhspc_bajo"
+   ],
+   "obtenido": "adt_arpi_mhspc_bajo",
+   "obtenido_label": "ADT + ARPI",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "PROSTATA-V04",
+   "titulo": "mHSPC alto volumen fit",
+   "fuente": "ESMO advanced prostate cancer - triplet therapy",
+   "esperado_tipo": "recomendacion",
+   "esperado": "triplete_mhspc_alto",
+   "aceptables": [
+    "triplete_mhspc_alto"
+   ],
+   "obtenido": "triplete_mhspc_alto",
+   "obtenido_label": "ADT + docetaxel + ARPI",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "PROSTATA-V05",
+   "titulo": "nmCRPC alto riesgo",
+   "fuente": "ESMO advanced prostate cancer - nmCRPC PSA-DT <=10 months",
+   "esperado_tipo": "recomendacion",
+   "esperado": "arpi_nmcrpc",
+   "aceptables": [
+    "arpi_nmcrpc"
+   ],
+   "obtenido": "arpi_nmcrpc",
+   "obtenido_label": "Enzalutamida/apalutamida/darolutamida + ADT",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "PROSTATA-V06",
+   "titulo": "mCRPC BRCA tras ARPI",
+   "fuente": "ESMO advanced prostate cancer - PARP inhibitor HRR/BRCA",
+   "esperado_tipo": "recomendacion",
+   "esperado": "parp_hrr_mcrpc",
+   "aceptables": [
+    "parp_hrr_mcrpc"
+   ],
+   "obtenido": "parp_hrr_mcrpc",
+   "obtenido_label": "Olaparib/talazoparib (PARP) para HRR/BRCA",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "PROSTATA-V07",
+   "titulo": "mCRPC post taxano PSMA positivo",
+   "fuente": "ESMO advanced prostate cancer - Lu-PSMA after ARPI and taxane",
+   "esperado_tipo": "recomendacion",
+   "esperado": "lu_psma_mcrpc",
+   "aceptables": [
+    "lu_psma_mcrpc",
+    "cabazitaxel_post_doc_arpi"
+   ],
+   "obtenido": "lu_psma_mcrpc",
+   "obtenido_label": "177Lu-PSMA-617",
+   "confianza": 0.73,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  },
+  {
+   "id": "PROSTATA-V08",
+   "titulo": "Falta escenario",
+   "fuente": "Dato imprescindible - escenario clinico",
+   "esperado_tipo": "necesita_datos",
+   "esperado": "necesita_datos",
+   "aceptables": [],
+   "obtenido": "necesita_datos",
+   "obtenido_label": null,
+   "confianza": null,
+   "revision": null,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [
+    "¿Cual es el escenario clinico (localizado, recidiva bioquimica, mHSPC, nmCRPC o mCRPC)?"
+   ],
+   "n_candidatos": 0,
+   "error": null
+  },
+  {
+   "id": "PROSTATA-V09",
+   "titulo": "mHSPC alto volumen ECOG 4",
+   "fuente": "Seguridad - ECOG 3-4 requiere revision humana",
+   "esperado_tipo": "revision_humana",
+   "esperado": "revision_humana",
+   "aceptables": [],
+   "obtenido": "revision (soporte_prostata)",
+   "obtenido_label": "Soporte exclusivo/cuidados paliativos",
+   "confianza": 0.67,
+   "revision": true,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  }
+ ]
+}

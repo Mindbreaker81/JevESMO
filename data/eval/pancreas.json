@@ -1,0 +1,196 @@
+{
+ "tumor": "pancreas",
+ "nombre": "Adenocarcinoma de pancreas",
+ "grupo": "Digestivo",
+ "version": "PANCREAS-ESMO-2023.1",
+ "fecha": "2026-09-27T14:47:41+00:00",
+ "modelo": "jev-latest",
+ "mock": false,
+ "umbral_confianza": 0.6,
+ "n": 9,
+ "aciertos": 9,
+ "acierto_global": 1.0,
+ "acierto_tratamiento": 1.0,
+ "acierto_preferida": 1.0,
+ "acierto_seguridad": 1.0,
+ "confianza_aciertos": 0.78,
+ "confianza_fallos": null,
+ "n_multiopcion": 5,
+ "acierto_multiopcion": 1.0,
+ "candidatos_medios": 1.8571428571428572,
+ "casos": [
+  {
+   "id": "PANCREAS-V01",
+   "titulo": "Resecable fit",
+   "fuente": "ESMO pancreas - mFOLFIRINOX adyuvante",
+   "esperado_tipo": "recomendacion",
+   "esperado": "cirugia_ady_mfolfirinox",
+   "aceptables": [
+    "cirugia_ady_mfolfirinox"
+   ],
+   "obtenido": "cirugia_ady_mfolfirinox",
+   "obtenido_label": "Cirugia seguida de mFOLFIRINOX adyuvante",
+   "confianza": 0.73,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  },
+  {
+   "id": "PANCREAS-V02",
+   "titulo": "Resecable anciano ECOG2",
+   "fuente": "ESMO - gemcap si no fit",
+   "esperado_tipo": "recomendacion",
+   "esperado": "ady_gem_cap",
+   "aceptables": [
+    "ady_gem_cap"
+   ],
+   "obtenido": "ady_gem_cap",
+   "obtenido_label": "Cirugia + gemcitabina-capecitabina/gemcitabina adyuvante",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "PANCREAS-V03",
+   "titulo": "Borderline fit",
+   "fuente": "ESMO - neoadyuvancia borderline",
+   "esperado_tipo": "recomendacion",
+   "esperado": "neoady_mfolfirinox_borderline",
+   "aceptables": [
+    "neoady_mfolfirinox_borderline",
+    "gemnab_neoady_borderline"
+   ],
+   "obtenido": "neoady_mfolfirinox_borderline",
+   "obtenido_label": "mFOLFIRINOX neoadyuvante en borderline",
+   "confianza": 0.79,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  },
+  {
+   "id": "PANCREAS-V04",
+   "titulo": "Localmente avanzado",
+   "fuente": "ESMO - induccion sistemica",
+   "esperado_tipo": "recomendacion",
+   "esperado": "induccion_local_avanzado",
+   "aceptables": [
+    "induccion_local_avanzado"
+   ],
+   "obtenido": "induccion_local_avanzado",
+   "obtenido_label": "Quimioterapia de induccion para localmente avanzado",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "PANCREAS-V05",
+   "titulo": "Metastasico fit 1L",
+   "fuente": "ESMO - FOLFIRINOX/gem-nab/NALIRIFOX",
+   "esperado_tipo": "recomendacion",
+   "esperado": "mfolfirinox_1l",
+   "aceptables": [
+    "mfolfirinox_1l",
+    "nalirifox_1l",
+    "gemnab_1l"
+   ],
+   "obtenido": "mfolfirinox_1l",
+   "obtenido_label": "mFOLFIRINOX 1a linea metastasico",
+   "confianza": 0.4,
+   "revision": true,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 3,
+   "error": null
+  },
+  {
+   "id": "PANCREAS-V06",
+   "titulo": "gBRCA con respuesta a platino",
+   "fuente": "POLO",
+   "esperado_tipo": "recomendacion",
+   "esperado": "olaparib_mantenimiento",
+   "aceptables": [
+    "olaparib_mantenimiento"
+   ],
+   "obtenido": "olaparib_mantenimiento",
+   "obtenido_label": "Olaparib mantenimiento",
+   "confianza": 0.99,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  },
+  {
+   "id": "PANCREAS-V07",
+   "titulo": "2L tras gemcitabina-nab",
+   "fuente": "NAPOLI-1",
+   "esperado_tipo": "recomendacion",
+   "esperado": "naliri_5fu_2l",
+   "aceptables": [
+    "naliri_5fu_2l",
+    "folfox_2l"
+   ],
+   "obtenido": "naliri_5fu_2l",
+   "obtenido_label": "Nal-IRI + 5-FU/LV 2a linea",
+   "confianza": 0.55,
+   "revision": true,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  },
+  {
+   "id": "PANCREAS-V08",
+   "titulo": "Falta situacion",
+   "fuente": "ESMO - resecabilidad imprescindible",
+   "esperado_tipo": "necesita_datos",
+   "esperado": "necesita_datos",
+   "aceptables": [],
+   "obtenido": "necesita_datos",
+   "obtenido_label": null,
+   "confianza": null,
+   "revision": null,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [
+    "¿El adenocarcinoma pancreatico es resecable, borderline, localmente avanzado o metastasico?"
+   ],
+   "n_candidatos": 0,
+   "error": null
+  },
+  {
+   "id": "PANCREAS-V09",
+   "titulo": "Metastasico ECOG4",
+   "fuente": "ESMO - ECOG 3-4 soporte/revision",
+   "esperado_tipo": "revision_humana",
+   "esperado": "revision_humana",
+   "aceptables": [],
+   "obtenido": "revision (gemnab_1l)",
+   "obtenido_label": "Gemcitabina + nab-paclitaxel 1a linea",
+   "confianza": 1.0,
+   "revision": true,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  }
+ ]
+}

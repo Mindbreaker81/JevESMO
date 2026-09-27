@@ -1,0 +1,195 @@
+{
+ "tumor": "manto",
+ "nombre": "Linfoma de celulas del manto",
+ "grupo": "Hematologia",
+ "version": "MCL-ESMO-2025.1",
+ "fecha": "2026-09-27T14:47:35+00:00",
+ "modelo": "jev-latest",
+ "mock": false,
+ "umbral_confianza": 0.6,
+ "n": 9,
+ "aciertos": 9,
+ "acierto_global": 1.0,
+ "acierto_tratamiento": 1.0,
+ "acierto_preferida": 1.0,
+ "acierto_seguridad": 1.0,
+ "confianza_aciertos": 0.9814285714285714,
+ "confianza_fallos": null,
+ "n_multiopcion": 2,
+ "acierto_multiopcion": 1.0,
+ "candidatos_medios": 1.4285714285714286,
+ "casos": [
+  {
+   "id": "MANTO-V01",
+   "titulo": "Localizado",
+   "fuente": "ESMO MCL localizado",
+   "esperado_tipo": "recomendacion",
+   "esperado": "rt_localizado",
+   "aceptables": [
+    "rt_localizado"
+   ],
+   "obtenido": "rt_localizado",
+   "obtenido_label": "Radioterapia local +/- inmunoquimioterapia breve",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "MANTO-V02",
+   "titulo": "Joven fit avanzado",
+   "fuente": "TRIANGLE",
+   "esperado_tipo": "recomendacion",
+   "esperado": "triangle_intensivo",
+   "aceptables": [
+    "triangle_intensivo"
+   ],
+   "obtenido": "triangle_intensivo",
+   "obtenido_label": "Induccion intensiva con citarabina + rituximab +/- ibrutinib (TRIANGLE) + TAPH/mantenimiento",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "MANTO-V03",
+   "titulo": "Mayor no intensivo",
+   "fuente": "ESMO BR mantenimiento",
+   "esperado_tipo": "recomendacion",
+   "esperado": "br_mantenimiento",
+   "aceptables": [
+    "br_mantenimiento",
+    "r_bac"
+   ],
+   "obtenido": "br_mantenimiento",
+   "obtenido_label": "Bendamustina-rituximab + mantenimiento rituximab",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "MANTO-V04",
+   "titulo": "TP53 alterado",
+   "fuente": "ESMO alto riesgo",
+   "esperado_tipo": "recomendacion",
+   "esperado": "tp53_ensayo_btk",
+   "aceptables": [
+    "tp53_ensayo_btk"
+   ],
+   "obtenido": "tp53_ensayo_btk",
+   "obtenido_label": "Ensayo clinico / BTKi-combinacion en TP53 alterado",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "MANTO-V05",
+   "titulo": "Primera recaida sin BTKi",
+   "fuente": "ESMO BTKi",
+   "esperado_tipo": "recomendacion",
+   "esperado": "btki_recaida",
+   "aceptables": [
+    "btki_recaida"
+   ],
+   "obtenido": "btki_recaida",
+   "obtenido_label": "BTKi covalente (acalabrutinib/zanubrutinib/ibrutinib)",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "MANTO-V06",
+   "titulo": "Post-BTK candidato CAR-T",
+   "fuente": "ZUMA-2",
+   "esperado_tipo": "recomendacion",
+   "esperado": "brexu_cel",
+   "aceptables": [
+    "brexu_cel",
+    "pirtobrutinib"
+   ],
+   "obtenido": "brexu_cel",
+   "obtenido_label": "Brexucabtagene autoleucel CAR-T",
+   "confianza": 0.96,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 3,
+   "error": null
+  },
+  {
+   "id": "MANTO-V07",
+   "titulo": "Post-BTK no CAR-T",
+   "fuente": "BRUIN",
+   "esperado_tipo": "recomendacion",
+   "esperado": "pirtobrutinib",
+   "aceptables": [
+    "pirtobrutinib",
+    "lenalidomida_rituximab"
+   ],
+   "obtenido": "pirtobrutinib",
+   "obtenido_label": "Pirtobrutinib tras BTKi covalente",
+   "confianza": 0.91,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  },
+  {
+   "id": "MANTO-V08",
+   "titulo": "Falta MIPI",
+   "fuente": "Dato requerido",
+   "esperado_tipo": "necesita_datos",
+   "esperado": "necesita_datos",
+   "aceptables": [],
+   "obtenido": "necesita_datos",
+   "obtenido_label": null,
+   "confianza": null,
+   "revision": null,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [
+    "¿Cual es el MIPI?"
+   ],
+   "n_candidatos": 0,
+   "error": null
+  },
+  {
+   "id": "MANTO-V09",
+   "titulo": "ECOG 4 anticoagulado",
+   "fuente": "Seguridad",
+   "esperado_tipo": "revision_humana",
+   "esperado": "revision_humana",
+   "aceptables": [],
+   "obtenido": "revision (soporte_manto)",
+   "obtenido_label": "Soporte exclusivo o tratamiento muy atenuado",
+   "confianza": 0.95,
+   "revision": true,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  }
+ ]
+}

@@ -1,0 +1,615 @@
+{
+ "id": "melanoma",
+ "nombre": "Melanoma cutaneo",
+ "grupo": "Piel",
+ "version": "MELANOMA-ESMO-2025.1",
+ "guias": [
+  {
+   "titulo": "Cutaneous melanoma: ESMO Clinical Practice Guideline for diagnosis, treatment and follow-up",
+   "anio": 2025,
+   "url": "https://www.esmo.org/guidelines/esmo-clinical-practice-guideline-cutaneous-melanoma"
+  }
+ ],
+ "descripcion": "Melanoma cutaneo resecable, adyuvancia, neoadyuvancia y enfermedad metastasica con BRAF, inmunoterapia combinada, anti-LAG3, BRAF/MEK, metastasis cerebrales y TIL.",
+ "campos": [
+  {
+   "id": "estadio",
+   "label": "Estadio/situacion",
+   "tipo": "choice",
+   "seccion": "Tumor",
+   "opciones": [
+    "0",
+    "IA",
+    "IB",
+    "IIA",
+    "IIB",
+    "IIC",
+    "III_resecado",
+    "III_macroscopico",
+    "IV"
+   ],
+   "requerido": true,
+   "pregunta": "¿Cual es el estadio/situacion del melanoma?"
+  },
+  {
+   "id": "braf_v600",
+   "label": "BRAF V600",
+   "tipo": "choice",
+   "seccion": "Biomarcadores",
+   "opciones": [
+    "mutado",
+    "wt",
+    "desconocido"
+   ],
+   "requerido_si": {
+    "campo": "estadio",
+    "in": [
+     "III_resecado",
+     "III_macroscopico",
+     "IV"
+    ]
+   },
+   "pregunta": "¿Cual es el estado de BRAF V600 (mutado/wt/desconocido)?"
+  },
+  {
+   "id": "metastasis_cerebrales",
+   "label": "Metastasis cerebrales",
+   "tipo": "choice",
+   "seccion": "Metastasis",
+   "opciones": [
+    "ninguna",
+    "asintomaticas",
+    "sintomaticas"
+   ]
+  },
+  {
+   "id": "enfermedad_sintomatica_rapida",
+   "label": "Enfermedad sintomatica o progresion rapida",
+   "tipo": "bool",
+   "seccion": "Avanzada"
+  },
+  {
+   "id": "ldh_elevada",
+   "label": "LDH elevada",
+   "tipo": "bool",
+   "seccion": "Riesgo"
+  },
+  {
+   "id": "autoinmune_activa",
+   "label": "Enfermedad autoinmune activa",
+   "tipo": "bool",
+   "seccion": "Seguridad"
+  }
+ ],
+ "derivados": [],
+ "opciones": [
+  {
+   "id": "escision_vigilancia_i_iiA",
+   "label": "Escision amplia y vigilancia",
+   "nota": "Estadio 0-IIA resecado: escision amplia, ganglio centinela segun Breslow y vigilancia; no adyuvancia sistemica rutinaria.",
+   "cuando": {
+    "campo": "estadio",
+    "in": [
+     "0",
+     "IA",
+     "IB",
+     "IIA"
+    ]
+   },
+   "componentes": [
+    "cirugia",
+    "vigilancia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "ady_pembro_iib_iic",
+   "label": "Pembrolizumab adyuvante en IIB/IIC",
+   "nota": "Estadio IIB/IIC resecado: discutir pembrolizumab adyuvante por mejora RFS (KEYNOTE-716).",
+   "cuando": {
+    "campo": "estadio",
+    "in": [
+     "IIB",
+     "IIC"
+    ]
+   },
+   "componentes": [
+    "inmunoterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "ady_anti_pd1_iii",
+   "label": "Nivolumab o pembrolizumab adyuvante en III",
+   "nota": "Estadio III resecado: anti-PD-1 adyuvante independientemente de BRAF.",
+   "cuando": {
+    "campo": "estadio",
+    "eq": "III_resecado"
+   },
+   "componentes": [
+    "inmunoterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "ady_dab_tram_iii_braf",
+   "label": "Dabrafenib + trametinib adyuvante",
+   "nota": "Estadio III BRAF V600 mutado resecado: dabrafenib + trametinib es alternativa a anti-PD-1 (COMBI-AD).",
+   "cuando": [
+    {
+     "campo": "estadio",
+     "eq": "III_resecado"
+    },
+    {
+     "campo": "braf_v600",
+     "eq": "mutado"
+    }
+   ],
+   "componentes": [
+    "dirigida"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "neoady_pembro_iii_macro",
+   "label": "Pembrolizumab neoadyuvante y adyuvante",
+   "nota": "Estadio III macroscopico resecable: pembrolizumab perioperatorio/neoadyuvante mejora EFS (SWOG S1801).",
+   "cuando": {
+    "campo": "estadio",
+    "eq": "III_macroscopico"
+   },
+   "componentes": [
+    "inmunoterapia",
+    "cirugia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "ipi_nivo_iv",
+   "label": "Nivolumab + ipilimumab 1L",
+   "nota": "Metastasico 1L: nivolumab+ipilimumab ofrece maxima probabilidad de respuesta duradera, preferible en alto riesgo/LDH alta/metastasis cerebrales si fit.",
+   "cuando": [
+    {
+     "campo": "estadio",
+     "eq": "IV"
+    },
+    {
+     "any": [
+      {
+       "campo": "lineas_previas",
+       "missing": true
+      },
+      {
+       "campo": "lineas_previas",
+       "eq": 0
+      }
+     ]
+    },
+    {
+     "campo": "autoinmune_activa",
+     "ne": true
+    }
+   ],
+   "componentes": [
+    "inmunoterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "nivo_relatlimab_iv",
+   "label": "Nivolumab + relatlimab 1L",
+   "nota": "Metastasico 1L: nivolumab+relatlimab es opcion con menor toxicidad que ipi+nivo en pacientes seleccionados.",
+   "cuando": [
+    {
+     "campo": "estadio",
+     "eq": "IV"
+    },
+    {
+     "any": [
+      {
+       "campo": "lineas_previas",
+       "missing": true
+      },
+      {
+       "campo": "lineas_previas",
+       "eq": 0
+      }
+     ]
+    },
+    {
+     "campo": "autoinmune_activa",
+     "ne": true
+    },
+    {
+     "campo": "enfermedad_sintomatica_rapida",
+     "ne": true
+    }
+   ],
+   "componentes": [
+    "inmunoterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "anti_pd1_mono_iv",
+   "label": "Anti-PD-1 monoterapia",
+   "nota": "Metastasico 1L: pembrolizumab o nivolumab monoterapia si bajo volumen o no candidato a combinacion.",
+   "cuando": [
+    {
+     "campo": "estadio",
+     "eq": "IV"
+    },
+    {
+     "any": [
+      {
+       "campo": "lineas_previas",
+       "missing": true
+      },
+      {
+       "campo": "lineas_previas",
+       "eq": 0
+      }
+     ]
+    },
+    {
+     "campo": "autoinmune_activa",
+     "ne": true
+    },
+    {
+     "campo": "enfermedad_sintomatica_rapida",
+     "ne": true
+    }
+   ],
+   "componentes": [
+    "inmunoterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "braf_mek_iv",
+   "label": "BRAF/MEK inhibidor",
+   "nota": "Melanoma metastasico BRAF V600 mutado: BRAF/MEK, especialmente si necesidad de respuesta rapida.",
+   "cuando": [
+    {
+     "campo": "estadio",
+     "eq": "IV"
+    },
+    {
+     "campo": "braf_v600",
+     "eq": "mutado"
+    }
+   ],
+   "componentes": [
+    "dirigida"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "local_cerebral_srs",
+   "label": "Tratamiento local de metastasis cerebrales + sistemico",
+   "nota": "Metastasis cerebrales sintomaticas: SRS/cirugia/corticoides y seleccionar terapia sistemica.",
+   "cuando": [
+    {
+     "campo": "estadio",
+     "eq": "IV"
+    },
+    {
+     "campo": "metastasis_cerebrales",
+     "eq": "sintomaticas"
+    }
+   ],
+   "componentes": [
+    "radioterapia",
+    "cirugia",
+    "inmunoterapia",
+    "dirigida"
+   ],
+   "evidencia": "III, A"
+  },
+  {
+   "id": "til_post_ici",
+   "label": "TIL/lifileucel o ensayo tras anti-PD-1",
+   "nota": "Tras progresion a anti-PD-1, considerar TIL en centros expertos/ensayo.",
+   "cuando": [
+    {
+     "campo": "estadio",
+     "eq": "IV"
+    },
+    {
+     "campo": "lineas_previas",
+     "gte": 1
+    },
+    {
+     "campo": "tratamientos_previos",
+     "contains": "anti-PD-1"
+    }
+   ],
+   "componentes": [
+    "celular"
+   ],
+   "evidencia": "III, B"
+  },
+  {
+   "id": "soporte_melanoma_fragil",
+   "label": "Soporte exclusivo",
+   "nota": "ECOG 3-4 o fragilidad extrema: soporte y control sintomatico.",
+   "cuando": {
+    "campo": "ecog",
+    "in": [
+     "3",
+     "4"
+    ]
+   },
+   "componentes": [
+    "soporte"
+   ],
+   "evidencia": "V, A"
+  }
+ ],
+ "preguntas": [
+  {
+   "key": "toxicidad_combo_ici",
+   "tipo": "noul",
+   "capa": 1,
+   "cuando": {
+    "campo": "estadio",
+    "eq": "IV"
+   },
+   "instrucciones": "¿El paciente es suficientemente fit para inmunoterapia combinada (ipi+nivo)?"
+  },
+  {
+   "key": "necesidad_respuesta_braf",
+   "tipo": "noul",
+   "capa": 1,
+   "cuando": [
+    {
+     "campo": "estadio",
+     "eq": "IV"
+    },
+    {
+     "campo": "braf_v600",
+     "eq": "mutado"
+    }
+   ],
+   "instrucciones": "¿Existe necesidad de respuesta rapida que favorezca iniciar BRAF/MEK frente a inmunoterapia?"
+  },
+  {
+   "key": "cerebral_control_local",
+   "tipo": "choice",
+   "capa": 2,
+   "cuando": {
+    "campo": "metastasis_cerebrales",
+    "in": [
+     "asintomaticas",
+     "sintomaticas"
+    ]
+   },
+   "instrucciones": "Valora manejo inicial de metastasis cerebrales.",
+   "criterios": {
+    "sistemico": "Asintomaticas pequenas: tratamiento sistemico primero",
+    "local": "Sintomaticas/voluminosas: SRS/cirugia/corticoides"
+   }
+  }
+ ],
+ "seguridad": [
+  {
+   "key": "contra_ici_mel",
+   "cuando": {
+    "campo": "autoinmune_activa",
+    "present": true
+   },
+   "bloquea_componentes": [
+    "inmunoterapia"
+   ],
+   "instrucciones": "¿La enfermedad autoinmune activa o inmunosupresion hace inaceptable la inmunoterapia?",
+   "motivo": "Contraindicacion mayor para inmunoterapia."
+  }
+ ],
+ "avisos": [
+  {
+   "cuando": [
+    {
+     "campo": "estadio",
+     "in": [
+      "III_resecado",
+      "III_macroscopico",
+      "IV"
+     ]
+    },
+    {
+     "campo": "braf_v600",
+     "eq": "desconocido"
+    }
+   ],
+   "texto": "BRAF V600 desconocido: debe testarse porque cambia adyuvancia y tratamiento metastasico."
+  }
+ ],
+ "vinetas": [
+  {
+   "id": "MELANOMA-V01",
+   "titulo": "IA resecado",
+   "fuente": "ESMO melanoma precoz",
+   "payload": {
+    "edad": 60,
+    "ecog": "0",
+    "estadio": "IA"
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "escision_vigilancia_i_iiA",
+    "aceptables": [
+     "escision_vigilancia_i_iiA"
+    ]
+   }
+  },
+  {
+   "id": "MELANOMA-V02",
+   "titulo": "IIB resecado",
+   "fuente": "KEYNOTE-716",
+   "payload": {
+    "edad": 60,
+    "ecog": "0",
+    "estadio": "IIB"
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "ady_pembro_iib_iic",
+    "aceptables": [
+     "ady_pembro_iib_iic"
+    ]
+   }
+  },
+  {
+   "id": "MELANOMA-V03",
+   "titulo": "III resecado BRAF wt",
+   "fuente": "anti-PD-1 adyuvante",
+   "payload": {
+    "edad": 60,
+    "ecog": "0",
+    "estadio": "III_resecado",
+    "braf_v600": "wt"
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "ady_anti_pd1_iii",
+    "aceptables": [
+     "ady_anti_pd1_iii"
+    ]
+   }
+  },
+  {
+   "id": "MELANOMA-V04",
+   "titulo": "III BRAF mutado",
+   "fuente": "COMBI-AD",
+   "payload": {
+    "edad": 60,
+    "ecog": "0",
+    "estadio": "III_resecado",
+    "braf_v600": "mutado"
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "ady_anti_pd1_iii",
+    "aceptables": [
+     "ady_anti_pd1_iii",
+     "ady_dab_tram_iii_braf"
+    ]
+   }
+  },
+  {
+   "id": "MELANOMA-V05",
+   "titulo": "III macroscopico",
+   "fuente": "SWOG S1801",
+   "payload": {
+    "edad": 60,
+    "ecog": "0",
+    "estadio": "III_macroscopico",
+    "braf_v600": "wt"
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "neoady_pembro_iii_macro",
+    "aceptables": [
+     "neoady_pembro_iii_macro"
+    ]
+   }
+  },
+  {
+   "id": "MELANOMA-V06",
+   "titulo": "IV BRAF wt LDH alta",
+   "fuente": "ipi+nivo",
+   "payload": {
+    "edad": 60,
+    "ecog": "1",
+    "estadio": "IV",
+    "braf_v600": "wt",
+    "ldh_elevada": true,
+    "enfermedad_sintomatica_rapida": true,
+    "metastasis_cerebrales": "ninguna"
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "ipi_nivo_iv",
+    "aceptables": [
+     "ipi_nivo_iv"
+    ]
+   }
+  },
+  {
+   "id": "MELANOMA-V07",
+   "titulo": "IV BRAF mutado respuesta rapida",
+   "fuente": "BRAF/MEK",
+   "payload": {
+    "edad": 60,
+    "ecog": "1",
+    "estadio": "IV",
+    "braf_v600": "mutado",
+    "enfermedad_sintomatica_rapida": true,
+    "ldh_elevada": true,
+    "descripcion_libre": "Metastasis hepaticas sintomaticas, LDH alta; necesita respuesta rapida."
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "braf_mek_iv",
+    "aceptables": [
+     "braf_mek_iv",
+     "ipi_nivo_iv"
+    ]
+   }
+  },
+  {
+   "id": "MELANOMA-V08",
+   "titulo": "IV post anti-PD-1",
+   "fuente": "TIL",
+   "payload": {
+    "edad": 60,
+    "ecog": "1",
+    "estadio": "IV",
+    "braf_v600": "wt",
+    "lineas_previas": 1,
+    "tratamientos_previos": [
+     "anti-PD-1"
+    ]
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "til_post_ici",
+    "aceptables": [
+     "til_post_ici"
+    ]
+   }
+  },
+  {
+   "id": "MELANOMA-V09",
+   "titulo": "Falta BRAF",
+   "fuente": "Dato imprescindible",
+   "payload": {
+    "edad": 60,
+    "ecog": "0",
+    "estadio": "III_resecado",
+    "braf_v600": null
+   },
+   "esperado": {
+    "tipo": "necesita_datos"
+   }
+  },
+  {
+   "id": "MELANOMA-V10",
+   "titulo": "Autoinmune activa",
+   "fuente": "Seguridad ICI",
+   "payload": {
+    "edad": 60,
+    "ecog": "1",
+    "estadio": "IV",
+    "braf_v600": "wt",
+    "autoinmune_activa": true,
+    "comorbilidades_relevantes": [
+     "lupus activo con nefritis"
+    ]
+   },
+   "esperado": {
+    "tipo": "revision_humana"
+   }
+  }
+ ]
+}

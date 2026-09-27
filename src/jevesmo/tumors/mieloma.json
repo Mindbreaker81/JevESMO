@@ -1,0 +1,581 @@
+{
+ "id": "mieloma",
+ "nombre": "Mieloma multiple",
+ "grupo": "Hematologia",
+ "version": "MYELOMA-ESMO-2025.1",
+ "guias": [
+  {
+   "titulo": "ESMO Clinical Practice Guideline: Multiple myeloma",
+   "anio": 2021,
+   "url": "https://www.esmo.org/guidelines/haematological-malignancies/multiple-myeloma"
+  }
+ ],
+ "descripcion": "Mieloma multiple: elegibilidad a trasplante, D-VRd, no candidatos, citogenetica de alto riesgo y recaidas por refractariedad.",
+ "campos": [
+  {
+   "id": "estadio_r_iss",
+   "label": "Estadio ISS/R-ISS",
+   "tipo": "choice",
+   "opciones": [
+    "I",
+    "II",
+    "III"
+   ],
+   "requerido": true,
+   "pregunta": "¿Cual es el ISS/R-ISS?"
+  },
+  {
+   "id": "candidato_trasplante",
+   "label": "Candidato a trasplante autologo",
+   "tipo": "bool",
+   "requerido": true,
+   "pregunta": "¿Es candidato a trasplante autologo?"
+  },
+  {
+   "id": "citogenetica_alto_riesgo",
+   "label": "Citogenetica alto riesgo",
+   "tipo": "bool",
+   "seccion": "Biologia"
+  },
+  {
+   "id": "lenalidomida_refractario",
+   "label": "Refractario a lenalidomida",
+   "tipo": "bool",
+   "seccion": "Recaida"
+  },
+  {
+   "id": "anti_cd38_refractario",
+   "label": "Refractario a anti-CD38",
+   "tipo": "bool",
+   "seccion": "Recaida"
+  },
+  {
+   "id": "triple_clase_refractario",
+   "label": "Triple-clase refractario",
+   "tipo": "bool",
+   "seccion": "Recaida"
+  },
+  {
+   "id": "candidato_car_t",
+   "label": "Candidato a CAR-T/biespecifico",
+   "tipo": "bool",
+   "seccion": "Recaida"
+  },
+  {
+   "id": "neuropatia_significativa",
+   "label": "Neuropatia significativa",
+   "tipo": "bool",
+   "seccion": "Seguridad"
+  },
+  {
+   "id": "cardiopatia_carfilzomib",
+   "label": "Cardiopatia relevante",
+   "tipo": "bool",
+   "seccion": "Seguridad"
+  }
+ ],
+ "derivados": [
+  {
+   "id": "situacion",
+   "label": "Situacion clinica",
+   "defecto": "primera_linea",
+   "reglas": [
+    {
+     "cuando": {
+      "campo": "lineas_previas",
+      "gte": 1
+     },
+     "valor": "recaida"
+    }
+   ]
+  }
+ ],
+ "opciones": [
+  {
+   "id": "d_vrd_taph",
+   "label": "D-VRd induccion + TAPH + consolidacion/mantenimiento lenalidomida",
+   "nota": "ESMO/actualizacion: candidato a trasplante -> daratumumab-VRd, TAPH y mantenimiento; PERSEUS/GRIFFIN",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "primera_linea"
+    },
+    {
+     "campo": "candidato_trasplante",
+     "eq": true
+    }
+   ],
+   "componentes": [
+    "quimioterapia",
+    "dirigida",
+    "inmunoterapia",
+    "trasplante"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "vrd_taph",
+   "label": "VRd/VTd induccion + TAPH",
+   "nota": "ESMO: si D-VRd no disponible, triplete con bortezomib-lenalidomida-dexametasona o VTd + TAPH",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "primera_linea"
+    },
+    {
+     "campo": "candidato_trasplante",
+     "eq": true
+    }
+   ],
+   "componentes": [
+    "quimioterapia",
+    "dirigida",
+    "trasplante"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "drd_no_taph",
+   "label": "Daratumumab-lenalidomida-dexametasona (DRd)",
+   "nota": "ESMO MAIA: no candidato a trasplante -> DRd hasta progresion si tolerable",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "primera_linea"
+    },
+    {
+     "campo": "candidato_trasplante",
+     "eq": false
+    }
+   ],
+   "componentes": [
+    "dirigida",
+    "inmunoterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "d_vmp_no_taph",
+   "label": "Daratumumab-VMP",
+   "nota": "ESMO ALCYONE: no candidato a trasplante, especialmente si se prefiere bortezomib/melfalan frente a lenalidomida continua",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "primera_linea"
+    },
+    {
+     "campo": "candidato_trasplante",
+     "eq": false
+    }
+   ],
+   "componentes": [
+    "quimioterapia",
+    "dirigida",
+    "inmunoterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "mantenimiento_len",
+   "label": "Mantenimiento lenalidomida (considerar bortezomib en alto riesgo)",
+   "nota": "ESMO: tras TAPH, mantenimiento lenalidomida; alto riesgo puede requerir proteasoma asociado",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "primera_linea"
+    },
+    {
+     "campo": "candidato_trasplante",
+     "eq": true
+    },
+    {
+     "campo": "tratamientos_previos",
+     "contains": "TAPH"
+    }
+   ],
+   "componentes": [
+    "dirigida"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "recaida_len_sensible",
+   "label": "DRd/KRd/Isa-Kd segun exposicion previa",
+   "nota": "ESMO recaida: si no refractario a lenalidomida/anti-CD38, usar tripletes eficaces adaptados a tratamientos previos",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "recaida"
+    },
+    {
+     "campo": "lenalidomida_refractario",
+     "ne": true
+    },
+    {
+     "campo": "triple_clase_refractario",
+     "ne": true
+    }
+   ],
+   "componentes": [
+    "dirigida",
+    "inmunoterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "recaida_len_refractario",
+   "label": "PVd, KdD o Isa-Kd para lenalidomida-refractario",
+   "nota": "ESMO recaida: enfermedad lenalidomida-refractaria tras lenalidomida mantenimiento/DRd -> pomalidomida o carfilzomib con anti-CD38 si sensible",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "recaida"
+    },
+    {
+     "campo": "lenalidomida_refractario",
+     "eq": true
+    },
+    {
+     "campo": "triple_clase_refractario",
+     "ne": true
+    }
+   ],
+   "componentes": [
+    "dirigida",
+    "inmunoterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "car_t_bcma",
+   "label": "CAR-T BCMA (cilta-cel o ide-cel)",
+   "nota": "ESMO/EMA actual: recaida triple-clase expuesta/refractaria y candidato -> CAR-T BCMA con respuestas profundas",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "recaida"
+    },
+    {
+     "campo": "triple_clase_refractario",
+     "eq": true
+    },
+    {
+     "campo": "candidato_car_t",
+     "eq": true
+    }
+   ],
+   "componentes": [
+    "celular"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "biespecifico_bcma_gprc5d",
+   "label": "Biespecifico BCMA/GPRC5D (teclistamab, elranatamab, talquetamab)",
+   "nota": "ESMO/actualizacion: triple-clase refractario o post-CAR-T -> biespecificos BCMA o GPRC5D",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "recaida"
+    },
+    {
+     "campo": "triple_clase_refractario",
+     "eq": true
+    }
+   ],
+   "componentes": [
+    "celular",
+    "inmunoterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "paliativo_mieloma",
+   "label": "Soporte, radioterapia antialgica y tratamiento atenuado",
+   "nota": "ESMO: fragilidad extrema o no candidato a terapias activas -> soporte, control oseo/dolor e individualizacion",
+   "cuando": [
+    {
+     "campo": "ecog",
+     "in": [
+      "3",
+      "4"
+     ]
+    }
+   ],
+   "componentes": [
+    "soporte",
+    "radioterapia"
+   ],
+   "evidencia": "V, B"
+  }
+ ],
+ "preguntas": [
+  {
+   "key": "fit_taph_limite",
+   "tipo": "noul",
+   "capa": 1,
+   "cuando": {
+    "campo": "candidato_trasplante",
+    "eq": true
+   },
+   "instrucciones": "¿La elegibilidad a trasplante es robusta considerando edad biologica, fragilidad, renal y comorbilidades?"
+  },
+  {
+   "key": "alto_riesgo_funcional",
+   "tipo": "noul",
+   "capa": 2,
+   "cuando": {
+    "campo": "citogenetica_alto_riesgo",
+    "eq": true
+   },
+   "instrucciones": "¿El perfil de alto riesgo justifica mantenimiento/intensificacion con inhibidor de proteasoma ademas de lenalidomida?"
+  }
+ ],
+ "seguridad": [
+  {
+   "key": "neuropatia_bortezomib",
+   "cuando": {
+    "campo": "neuropatia_significativa",
+    "eq": true
+   },
+   "bloquea": [
+    "d_vrd_taph",
+    "vrd_taph",
+    "d_vmp_no_taph"
+   ],
+   "instrucciones": "¿La neuropatia hace inaceptable bortezomib/thalidomida sin modificar el esquema?",
+   "umbral": 0.6,
+   "motivo": "Neuropatia significativa limita bortezomib/thalidomida"
+  },
+  {
+   "key": "cardio_carfilzomib",
+   "cuando": {
+    "campo": "cardiopatia_carfilzomib",
+    "eq": true
+   },
+   "bloquea": [
+    "recaida_len_sensible",
+    "recaida_len_refractario"
+   ],
+   "instrucciones": "¿La cardiopatia hace inaceptable carfilzomib y obliga a escoger alternativas?",
+   "umbral": 0.7,
+   "motivo": "Riesgo cardiaco con carfilzomib"
+  }
+ ],
+ "avisos": [
+  {
+   "cuando": {
+    "campo": "citogenetica_alto_riesgo",
+    "missing": true
+   },
+   "texto": "Citogenetica/FISH no disponible: imprescindible para riesgo y mantenimiento."
+  },
+  {
+   "cuando": {
+    "campo": "lineas_previas",
+    "gte": 1
+   },
+   "texto": "En recaida documentar refractariedad a lenalidomida, anti-CD38 y triple clase."
+  }
+ ],
+ "vinetas": [
+  {
+   "id": "MIELOMA-V01",
+   "titulo": "Candidato a trasplante primera linea",
+   "fuente": "PERSEUS/GRIFFIN",
+   "payload": {
+    "edad": 59,
+    "ecog": "1",
+    "estadio_r_iss": "II",
+    "candidato_trasplante": true,
+    "citogenetica_alto_riesgo": false
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "d_vrd_taph",
+    "aceptables": [
+     "d_vrd_taph",
+     "vrd_taph"
+    ]
+   }
+  },
+  {
+   "id": "MIELOMA-V02",
+   "titulo": "Alto riesgo candidato TAPH",
+   "fuente": "ESMO alto riesgo",
+   "payload": {
+    "edad": 61,
+    "ecog": "1",
+    "estadio_r_iss": "III",
+    "candidato_trasplante": true,
+    "citogenetica_alto_riesgo": true
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "d_vrd_taph",
+    "aceptables": [
+     "d_vrd_taph",
+     "vrd_taph"
+    ]
+   }
+  },
+  {
+   "id": "MIELOMA-V03",
+   "titulo": "No candidato DRd",
+   "fuente": "MAIA",
+   "payload": {
+    "edad": 78,
+    "ecog": "1",
+    "estadio_r_iss": "II",
+    "candidato_trasplante": false,
+    "citogenetica_alto_riesgo": false
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "drd_no_taph",
+    "aceptables": [
+     "drd_no_taph",
+     "d_vmp_no_taph"
+    ]
+   }
+  },
+  {
+   "id": "MIELOMA-V04",
+   "titulo": "No candidato renal/bortezomib",
+   "fuente": "ALCYONE",
+   "payload": {
+    "edad": 80,
+    "ecog": "2",
+    "estadio_r_iss": "III",
+    "candidato_trasplante": false,
+    "insuficiencia_renal": true,
+    "citogenetica_alto_riesgo": true
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "d_vmp_no_taph",
+    "aceptables": [
+     "d_vmp_no_taph",
+     "drd_no_taph"
+    ]
+   }
+  },
+  {
+   "id": "MIELOMA-V05",
+   "titulo": "Recaida len sensible",
+   "fuente": "ESMO recaida",
+   "payload": {
+    "edad": 66,
+    "ecog": "1",
+    "estadio_r_iss": "II",
+    "candidato_trasplante": true,
+    "lineas_previas": 1,
+    "lenalidomida_refractario": false,
+    "anti_cd38_refractario": false,
+    "triple_clase_refractario": false,
+    "tratamientos_previos": [
+     "VRd",
+     "TAPH",
+     "mantenimiento lenalidomida suspendido"
+    ]
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "recaida_len_sensible",
+    "aceptables": [
+     "recaida_len_sensible"
+    ]
+   }
+  },
+  {
+   "id": "MIELOMA-V06",
+   "titulo": "Recaida len refractario",
+   "fuente": "ESMO recaida len refractaria",
+   "payload": {
+    "edad": 70,
+    "ecog": "1",
+    "estadio_r_iss": "II",
+    "candidato_trasplante": false,
+    "lineas_previas": 1,
+    "lenalidomida_refractario": true,
+    "anti_cd38_refractario": false,
+    "triple_clase_refractario": false,
+    "tratamientos_previos": [
+     "DRd"
+    ]
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "recaida_len_refractario",
+    "aceptables": [
+     "recaida_len_refractario"
+    ]
+   }
+  },
+  {
+   "id": "MIELOMA-V07",
+   "titulo": "Triple clase candidato CAR-T",
+   "fuente": "CARTITUDE/KarMMa",
+   "payload": {
+    "edad": 63,
+    "ecog": "1",
+    "estadio_r_iss": "III",
+    "candidato_trasplante": true,
+    "lineas_previas": 4,
+    "lenalidomida_refractario": true,
+    "anti_cd38_refractario": true,
+    "triple_clase_refractario": true,
+    "candidato_car_t": true,
+    "tratamientos_previos": [
+     "VRd",
+     "daratumumab",
+     "pomalidomida",
+     "carfilzomib"
+    ]
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "car_t_bcma",
+    "aceptables": [
+     "car_t_bcma",
+     "biespecifico_bcma_gprc5d"
+    ]
+   }
+  },
+  {
+   "id": "MIELOMA-V08",
+   "titulo": "Falta elegibilidad TAPH",
+   "fuente": "Dato requerido",
+   "payload": {
+    "edad": 64,
+    "ecog": "1",
+    "estadio_r_iss": "II",
+    "candidato_trasplante": null
+   },
+   "esperado": {
+    "tipo": "necesita_datos"
+   }
+  },
+  {
+   "id": "MIELOMA-V09",
+   "titulo": "ECOG 4 sepsis y renal",
+   "fuente": "Seguridad",
+   "payload": {
+    "edad": 84,
+    "ecog": "4",
+    "estadio_r_iss": "III",
+    "candidato_trasplante": false,
+    "insuficiencia_renal": true,
+    "comorbilidades_relevantes": [
+     "sepsis",
+     "delirium",
+     "fragilidad extrema"
+    ],
+    "descripcion_libre": "No deambula, infeccion activa, hipercalcemia sintomatica."
+   },
+   "esperado": {
+    "tipo": "revision_humana"
+   }
+  }
+ ]
+}

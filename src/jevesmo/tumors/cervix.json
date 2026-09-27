@@ -1,0 +1,656 @@
+{
+ "id": "cervix",
+ "nombre": "Cancer de cervix",
+ "grupo": "Ginecologico",
+ "version": "CERVIX-ESMO-2025.1",
+ "guias": [
+  {
+   "titulo": "ESMO Clinical Practice Guideline: Cervical cancer",
+   "anio": 2023,
+   "url": "https://www.esmo.org/guidelines/gynaecological-cancers/cervical-cancer"
+  },
+  {
+   "titulo": "ESMO Living Guideline: Cervical cancer updates",
+   "anio": 2024,
+   "url": "https://www.esmo.org/guidelines/living-guidelines"
+  }
+ ],
+ "descripcion": "Cancer de cervix: cirugia precoz, quimiorradioterapia con braquiterapia, pembrolizumab con QRT, induccion INTERLACE y sistemico avanzado.",
+ "campos": [
+  {
+   "id": "estadio_figo",
+   "label": "Estadio FIGO",
+   "tipo": "choice",
+   "opciones": [
+    "IA1",
+    "IA2_IB1",
+    "IB2_IIA",
+    "IIB_IVA",
+    "IVB_recurrente"
+   ],
+   "requerido": true,
+   "pregunta": "¿Cual es el estadio FIGO agrupado?"
+  },
+  {
+   "id": "histologia",
+   "label": "Histologia",
+   "tipo": "choice",
+   "opciones": [
+    "escamoso",
+    "adenocarcinoma",
+    "adenosquamoso",
+    "neuroendocrino",
+    "otro"
+   ],
+   "requerido": true,
+   "pregunta": "¿Cual es la histologia?"
+  },
+  {
+   "id": "tamano_cm",
+   "label": "Tamano tumoral",
+   "tipo": "number",
+   "min": 0,
+   "max": 20,
+   "unidad": "cm"
+  },
+  {
+   "id": "ganglios_positivos",
+   "label": "Ganglios positivos",
+   "tipo": "bool"
+  },
+  {
+   "id": "margenes_o_parametrios",
+   "label": "Margenes/parametrios positivos tras cirugia",
+   "tipo": "bool"
+  },
+  {
+   "id": "pdl1_cps",
+   "label": "PD-L1 CPS",
+   "tipo": "number",
+   "min": 0,
+   "max": 100,
+   "requerido_si": {
+    "campo": "estadio_figo",
+    "eq": "IVB_recurrente"
+   },
+   "pregunta": "En enfermedad persistente/recurrente/metastasica, ¿cual es el PD-L1 CPS?"
+  },
+  {
+   "id": "candidato_cisplatino",
+   "label": "Candidata a cisplatino",
+   "tipo": "bool"
+  },
+  {
+   "id": "contra_bev",
+   "label": "Contraindicacion para bevacizumab",
+   "tipo": "bool"
+  }
+ ],
+ "derivados": [
+  {
+   "id": "entorno",
+   "label": "Entorno clinico",
+   "defecto": "localmente_avanzado",
+   "reglas": [
+    {
+     "cuando": {
+      "campo": "estadio_figo",
+      "in": [
+       "IA1",
+       "IA2_IB1",
+       "IB2_IIA"
+      ]
+     },
+     "valor": "precoz"
+    },
+    {
+     "cuando": {
+      "campo": "estadio_figo",
+      "eq": "IVB_recurrente"
+     },
+     "valor": "avanzado"
+    }
+   ]
+  }
+ ],
+ "opciones": [
+  {
+   "id": "conizacion_ia1",
+   "label": "Conizacion o histerectomia simple",
+   "nota": "ESMO: IA1 sin invasion linfovascular puede tratarse con conizacion/histerectomia simple con margenes negativos.",
+   "cuando": {
+    "campo": "estadio_figo",
+    "eq": "IA1"
+   },
+   "componentes": [
+    "cirugia"
+   ],
+   "evidencia": "III, B"
+  },
+  {
+   "id": "histerectomia_radical_ganglio",
+   "label": "Histerectomia radical/trachelectomia + estadiaje ganglionar",
+   "nota": "ESMO: IA2-IB1 operable -> cirugia radical adaptada y ganglio centinela/linfadenectomia segun riesgo.",
+   "cuando": {
+    "campo": "estadio_figo",
+    "eq": "IA2_IB1"
+   },
+   "componentes": [
+    "cirugia"
+   ],
+   "evidencia": "I, B"
+  },
+  {
+   "id": "cirugia_o_qrt_ib2_iia",
+   "label": "Cirugia radical o quimiorradioterapia",
+   "nota": "ESMO: IB2-IIA puede manejarse con cirugia radical seleccionada o QRT si tumor voluminoso/riesgo de adyuvancia multimodal.",
+   "cuando": {
+    "campo": "estadio_figo",
+    "eq": "IB2_IIA"
+   },
+   "componentes": [
+    "cirugia",
+    "quimiorradioterapia"
+   ],
+   "evidencia": "I, B"
+  },
+  {
+   "id": "qrt_braquiterapia",
+   "label": "Quimiorradioterapia con cisplatino + braquiterapia",
+   "nota": "ESMO: IIB-IVA o no quirurgico -> radioterapia externa con cisplatino semanal y braquiterapia.",
+   "cuando": {
+    "campo": "estadio_figo",
+    "eq": "IIB_IVA"
+   },
+   "componentes": [
+    "quimiorradioterapia",
+    "radioterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "pembro_qrt_alto_riesgo",
+   "label": "Pembrolizumab + QRT y mantenimiento",
+   "nota": "KEYNOTE-A18/ESMO: localmente avanzado de alto riesgo (IB2-IIB ganglio positivo o III-IVA) -> pembrolizumab con QRT y mantenimiento.",
+   "cuando": [
+    {
+     "campo": "estadio_figo",
+     "in": [
+      "IB2_IIA",
+      "IIB_IVA"
+     ]
+    },
+    {
+     "any": [
+      {
+       "campo": "ganglios_positivos",
+       "eq": true
+      },
+      {
+       "campo": "estadio_figo",
+       "eq": "IIB_IVA"
+      }
+     ]
+    }
+   ],
+   "componentes": [
+    "inmunoterapia",
+    "quimiorradioterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "induccion_interlace",
+   "label": "Induccion carboplatino-paclitaxel semanal seguida de QRT",
+   "nota": "INTERLACE: IB1 ganglio positivo, IB2-IIA o IIB-IVA seleccionadas pueden recibir induccion corta antes de QRT.",
+   "cuando": [
+    {
+     "campo": "estadio_figo",
+     "in": [
+      "IB2_IIA",
+      "IIB_IVA"
+     ]
+    },
+    {
+     "campo": "ganglios_positivos",
+     "ne": true
+    }
+   ],
+   "componentes": [
+    "quimioterapia",
+    "quimiorradioterapia"
+   ],
+   "evidencia": "I, B"
+  },
+  {
+   "id": "adyuvante_qrt_postqx",
+   "label": "QRT adyuvante postoperatoria",
+   "nota": "ESMO: margenes positivos, parametrio positivo o ganglios positivos tras cirugia -> QRT adyuvante basada en cisplatino.",
+   "cuando": {
+    "campo": "margenes_o_parametrios",
+    "eq": true
+   },
+   "componentes": [
+    "quimiorradioterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "pembro_platino_taxol_bev_1l",
+   "label": "Pembrolizumab + platino-paclitaxel +- bevacizumab",
+   "nota": "KEYNOTE-826/ESMO: persistente, recurrente o metastasico con PD-L1 CPS>=1 -> pembrolizumab + platino-paclitaxel, con bevacizumab si apropiado.",
+   "cuando": [
+    {
+     "campo": "estadio_figo",
+     "eq": "IVB_recurrente"
+    },
+    {
+     "campo": "pdl1_cps",
+     "gte": 1
+    },
+    {
+     "any": [
+      {
+       "campo": "lineas_previas",
+       "missing": true
+      },
+      {
+       "campo": "lineas_previas",
+       "eq": 0
+      }
+     ]
+    }
+   ],
+   "componentes": [
+    "quimioterapia",
+    "inmunoterapia",
+    "antiangiogenico"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "platino_taxol_bev_1l",
+   "label": "Platino-paclitaxel +- bevacizumab",
+   "nota": "GOG-240/ESMO: recurrente/metastasica PD-L1 negativa o sin inmunoterapia -> doblete platino-taxano; bevacizumab si no contraindicado.",
+   "cuando": [
+    {
+     "campo": "estadio_figo",
+     "eq": "IVB_recurrente"
+    },
+    {
+     "campo": "pdl1_cps",
+     "lt": 1
+    },
+    {
+     "any": [
+      {
+       "campo": "lineas_previas",
+       "missing": true
+      },
+      {
+       "campo": "lineas_previas",
+       "eq": 0
+      }
+     ]
+    }
+   ],
+   "componentes": [
+    "quimioterapia",
+    "antiangiogenico"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "tisotumab_2l",
+   "label": "Tisotumab vedotina",
+   "nota": "innovaTV 301/ESMO: tras progresion a quimioterapia en recurrente/metastasico, tisotumab vedotina mejora supervivencia frente a quimioterapia.",
+   "cuando": [
+    {
+     "campo": "estadio_figo",
+     "eq": "IVB_recurrente"
+    },
+    {
+     "campo": "lineas_previas",
+     "gte": 1
+    }
+   ],
+   "componentes": [
+    "dirigida"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "cemiplimab_2l",
+   "label": "Cemiplimab",
+   "nota": "EMPOWER-Cervical 1/ESMO: tras platino, cemiplimab es opcion en cancer cervical recurrente/metastasico independientemente de PD-L1.",
+   "cuando": [
+    {
+     "campo": "estadio_figo",
+     "eq": "IVB_recurrente"
+    },
+    {
+     "campo": "lineas_previas",
+     "gte": 1
+    }
+   ],
+   "componentes": [
+    "inmunoterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "soporte_cervix",
+   "label": "Soporte y radioterapia paliativa",
+   "nota": "ESMO: ECOG 3-4 o sintomas locales/metastaticos no candidatos a sistemico -> soporte y RT paliativa.",
+   "cuando": {
+    "campo": "ecog",
+    "in": [
+     "3",
+     "4"
+    ]
+   },
+   "componentes": [
+    "soporte",
+    "radioterapia"
+   ],
+   "evidencia": "V, A"
+  }
+ ],
+ "preguntas": [
+  {
+   "key": "preservar_fertilidad",
+   "tipo": "noul",
+   "capa": 1,
+   "cuando": {
+    "campo": "estadio_figo",
+    "in": [
+     "IA1",
+     "IA2_IB1"
+    ]
+   },
+   "instrucciones": "¿La paciente desea y es candidata a preservacion de fertilidad?"
+  },
+  {
+   "key": "alto_riesgo_local",
+   "tipo": "noul",
+   "capa": 1,
+   "cuando": {
+    "campo": "estadio_figo",
+    "in": [
+     "IB2_IIA",
+     "IIB_IVA"
+    ]
+   },
+   "instrucciones": "¿Tiene criterios de alto riesgo para intensificar QRT?"
+  },
+  {
+   "key": "apta_bev",
+   "tipo": "noul",
+   "capa": 2,
+   "cuando": {
+    "campo": "estadio_figo",
+    "eq": "IVB_recurrente"
+   },
+   "instrucciones": "¿Es apropiado anadir bevacizumab considerando fistulas, sangrado, trombosis e HTA?"
+  }
+ ],
+ "seguridad": [
+  {
+   "key": "contra_bev_cervix",
+   "cuando": {
+    "campo": "contra_bev",
+    "eq": true
+   },
+   "bloquea_componentes": [
+    "antiangiogenico"
+   ],
+   "instrucciones": "¿Riesgo inaceptable de fistula, sangrado, perforacion o HTA para bevacizumab?",
+   "motivo": "Contraindicacion para bevacizumab"
+  },
+  {
+   "key": "contra_ici_cervix",
+   "cuando": {
+    "campo": "comorbilidades_relevantes",
+    "present": true
+   },
+   "bloquea_componentes": [
+    "inmunoterapia"
+   ],
+   "instrucciones": "¿Existe contraindicacion mayor para inmunoterapia?",
+   "motivo": "Riesgo inaceptable para inmunoterapia"
+  }
+ ],
+ "avisos": [
+  {
+   "cuando": [
+    {
+     "campo": "estadio_figo",
+     "eq": "IVB_recurrente"
+    },
+    {
+     "campo": "pdl1_cps",
+     "missing": true
+    }
+   ],
+   "texto": "PD-L1 CPS no disponible: necesario para decidir pembrolizumab en 1L avanzada."
+  },
+  {
+   "cuando": {
+    "campo": "candidato_cisplatino",
+    "eq": false
+   },
+   "texto": "No candidata a cisplatino: adaptar radiosensibilizacion; revision multidisciplinar."
+  }
+ ],
+ "vinetas": [
+  {
+   "id": "CERVIX-V01",
+   "titulo": "IA1 microinvasor",
+   "fuente": "ESMO IA1 conizacion",
+   "payload": {
+    "edad": 34,
+    "sexo": "mujer",
+    "ecog": "0",
+    "estadio_figo": "IA1",
+    "histologia": "escamoso",
+    "tamano_cm": 0.3
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "conizacion_ia1",
+    "aceptables": [
+     "conizacion_ia1"
+    ]
+   }
+  },
+  {
+   "id": "CERVIX-V02",
+   "titulo": "IB1 operable",
+   "fuente": "ESMO early surgery",
+   "payload": {
+    "edad": 43,
+    "sexo": "mujer",
+    "ecog": "0",
+    "estadio_figo": "IA2_IB1",
+    "histologia": "escamoso",
+    "tamano_cm": 1.8
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "histerectomia_radical_ganglio",
+    "aceptables": [
+     "histerectomia_radical_ganglio"
+    ]
+   }
+  },
+  {
+   "id": "CERVIX-V03",
+   "titulo": "Postoperatorio ganglios positivos",
+   "fuente": "ESMO adjuvant QRT",
+   "payload": {
+    "edad": 48,
+    "sexo": "mujer",
+    "ecog": "0",
+    "estadio_figo": "IA2_IB1",
+    "histologia": "escamoso",
+    "margenes_o_parametrios": true,
+    "ganglios_positivos": true
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "adyuvante_qrt_postqx",
+    "aceptables": [
+     "adyuvante_qrt_postqx"
+    ]
+   }
+  },
+  {
+   "id": "CERVIX-V04",
+   "titulo": "IIB localmente avanzado",
+   "fuente": "ESMO definitive QRT",
+   "payload": {
+    "edad": 52,
+    "sexo": "mujer",
+    "ecog": "1",
+    "estadio_figo": "IIB_IVA",
+    "histologia": "escamoso",
+    "tamano_cm": 5.5,
+    "candidato_cisplatino": true
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "qrt_braquiterapia",
+    "aceptables": [
+     "qrt_braquiterapia",
+     "pembro_qrt_alto_riesgo",
+     "induccion_interlace"
+    ]
+   }
+  },
+  {
+   "id": "CERVIX-V05",
+   "titulo": "Alto riesgo localmente avanzado",
+   "fuente": "KEYNOTE-A18",
+   "payload": {
+    "edad": 49,
+    "sexo": "mujer",
+    "ecog": "0",
+    "estadio_figo": "IIB_IVA",
+    "histologia": "adenocarcinoma",
+    "ganglios_positivos": true,
+    "tamano_cm": 6
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "pembro_qrt_alto_riesgo",
+    "aceptables": [
+     "pembro_qrt_alto_riesgo",
+     "qrt_braquiterapia"
+    ]
+   }
+  },
+  {
+   "id": "CERVIX-V06",
+   "titulo": "Metastasico CPS positivo 1L",
+   "fuente": "KEYNOTE-826",
+   "payload": {
+    "edad": 56,
+    "sexo": "mujer",
+    "ecog": "1",
+    "estadio_figo": "IVB_recurrente",
+    "histologia": "escamoso",
+    "pdl1_cps": 20,
+    "lineas_previas": 0,
+    "contra_bev": false
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "pembro_platino_taxol_bev_1l",
+    "aceptables": [
+     "pembro_platino_taxol_bev_1l"
+    ]
+   }
+  },
+  {
+   "id": "CERVIX-V07",
+   "titulo": "Metastasico CPS negativo",
+   "fuente": "GOG-240",
+   "payload": {
+    "edad": 61,
+    "sexo": "mujer",
+    "ecog": "1",
+    "estadio_figo": "IVB_recurrente",
+    "histologia": "escamoso",
+    "pdl1_cps": 0,
+    "lineas_previas": 0,
+    "contra_bev": false
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "platino_taxol_bev_1l",
+    "aceptables": [
+     "platino_taxol_bev_1l"
+    ]
+   }
+  },
+  {
+   "id": "CERVIX-V08",
+   "titulo": "Progresion tras platino",
+   "fuente": "innovaTV/EMPOWER",
+   "payload": {
+    "edad": 58,
+    "sexo": "mujer",
+    "ecog": "1",
+    "estadio_figo": "IVB_recurrente",
+    "histologia": "escamoso",
+    "pdl1_cps": 5,
+    "lineas_previas": 1,
+    "tratamientos_previos": [
+     "cisplatino-paclitaxel-pembrolizumab"
+    ]
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "tisotumab_2l",
+    "aceptables": [
+     "tisotumab_2l",
+     "cemiplimab_2l"
+    ]
+   }
+  },
+  {
+   "id": "CERVIX-V09",
+   "titulo": "Avanzado sin PD-L1",
+   "fuente": "ESMO PD-L1 needed",
+   "payload": {
+    "edad": 60,
+    "sexo": "mujer",
+    "ecog": "1",
+    "estadio_figo": "IVB_recurrente",
+    "histologia": "escamoso",
+    "lineas_previas": 0
+   },
+   "esperado": {
+    "tipo": "necesita_datos"
+   }
+  },
+  {
+   "id": "CERVIX-V10",
+   "titulo": "ECOG 4 metastasico",
+   "fuente": "ESMO palliative care",
+   "payload": {
+    "edad": 79,
+    "sexo": "mujer",
+    "ecog": "4",
+    "estadio_figo": "IVB_recurrente",
+    "histologia": "escamoso",
+    "pdl1_cps": 10,
+    "lineas_previas": 0,
+    "descripcion_libre": "Sangrado tumoral, caquexia y postrada en cama."
+   },
+   "esperado": {
+    "tipo": "revision_humana"
+   }
+  }
+ ]
+}

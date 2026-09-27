@@ -1,0 +1,195 @@
+{
+ "tumor": "carcinoma_escamoso_cutaneo",
+ "nombre": "Carcinoma escamoso cutaneo",
+ "grupo": "Piel",
+ "version": "CARCINOMA_ESCAMOSO_CUTANEO-ESMO-2024.1",
+ "fecha": "2026-09-27T14:47:18+00:00",
+ "modelo": "jev-latest",
+ "mock": false,
+ "umbral_confianza": 0.6,
+ "n": 9,
+ "aciertos": 9,
+ "acierto_global": 1.0,
+ "acierto_tratamiento": 1.0,
+ "acierto_preferida": 1.0,
+ "acierto_seguridad": 1.0,
+ "confianza_aciertos": 0.8442857142857143,
+ "confianza_fallos": null,
+ "n_multiopcion": 4,
+ "acierto_multiopcion": 1.0,
+ "candidatos_medios": 1.5714285714285714,
+ "casos": [
+  {
+   "id": "CARCINOMA_ESCAMOSO_CUTANEO-V01",
+   "titulo": "Bajo riesgo",
+   "fuente": "Cirugia",
+   "esperado_tipo": "recomendacion",
+   "esperado": "escision_estandar_cscc",
+   "aceptables": [
+    "escision_estandar_cscc"
+   ],
+   "obtenido": "escision_estandar_cscc",
+   "obtenido_label": "Escision quirurgica con margenes adecuados",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "CARCINOMA_ESCAMOSO_CUTANEO-V02",
+   "titulo": "Alto riesgo nariz",
+   "fuente": "Mohs",
+   "esperado_tipo": "recomendacion",
+   "esperado": "mohs_o_cirugia_alto_riesgo_cscc",
+   "aceptables": [
+    "mohs_o_cirugia_alto_riesgo_cscc"
+   ],
+   "obtenido": "mohs_o_cirugia_alto_riesgo_cscc",
+   "obtenido_label": "Cirugia micrografica de Mohs o escision amplia",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "CARCINOMA_ESCAMOSO_CUTANEO-V03",
+   "titulo": "Margen afecto",
+   "fuente": "RT adyuvante",
+   "esperado_tipo": "recomendacion",
+   "esperado": "rt_adyuvante_cscc",
+   "aceptables": [
+    "rt_adyuvante_cscc",
+    "mohs_o_cirugia_alto_riesgo_cscc"
+   ],
+   "obtenido": "rt_adyuvante_cscc",
+   "obtenido_label": "Radioterapia adyuvante",
+   "confianza": 0.32,
+   "revision": true,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  },
+  {
+   "id": "CARCINOMA_ESCAMOSO_CUTANEO-V04",
+   "titulo": "No operable",
+   "fuente": "RT definitiva",
+   "esperado_tipo": "recomendacion",
+   "esperado": "rt_definitiva_cscc",
+   "aceptables": [
+    "rt_definitiva_cscc"
+   ],
+   "obtenido": "rt_definitiva_cscc",
+   "obtenido_label": "Radioterapia definitiva si no cirugia",
+   "confianza": 0.99,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  },
+  {
+   "id": "CARCINOMA_ESCAMOSO_CUTANEO-V05",
+   "titulo": "Localmente avanzado",
+   "fuente": "Cemiplimab",
+   "esperado_tipo": "recomendacion",
+   "esperado": "cemiplimab_cscc",
+   "aceptables": [
+    "cemiplimab_cscc",
+    "pembrolizumab_cscc"
+   ],
+   "obtenido": "cemiplimab_cscc",
+   "obtenido_label": "Cemiplimab anti-PD-1",
+   "confianza": 0.87,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  },
+  {
+   "id": "CARCINOMA_ESCAMOSO_CUTANEO-V06",
+   "titulo": "Metastasico",
+   "fuente": "anti-PD-1",
+   "esperado_tipo": "recomendacion",
+   "esperado": "cemiplimab_cscc",
+   "aceptables": [
+    "cemiplimab_cscc",
+    "pembrolizumab_cscc"
+   ],
+   "obtenido": "cemiplimab_cscc",
+   "obtenido_label": "Cemiplimab anti-PD-1",
+   "confianza": 0.73,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  },
+  {
+   "id": "CARCINOMA_ESCAMOSO_CUTANEO-V07",
+   "titulo": "No ICI por trasplante",
+   "fuente": "Cetuximab/quimio",
+   "esperado_tipo": "recomendacion",
+   "esperado": "quimio_egfr_cscc_no_ici",
+   "aceptables": [
+    "quimio_egfr_cscc_no_ici"
+   ],
+   "obtenido": "quimio_egfr_cscc_no_ici",
+   "obtenido_label": "Quimioterapia o anti-EGFR paliativo si no ICI",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "CARCINOMA_ESCAMOSO_CUTANEO-V08",
+   "titulo": "Falta situacion",
+   "fuente": "Dato imprescindible",
+   "esperado_tipo": "necesita_datos",
+   "esperado": "necesita_datos",
+   "aceptables": [],
+   "obtenido": "necesita_datos",
+   "obtenido_label": null,
+   "confianza": null,
+   "revision": null,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [
+    "¿Cual es la situacion del carcinoma escamoso cutaneo?"
+   ],
+   "n_candidatos": 0,
+   "error": null
+  },
+  {
+   "id": "CARCINOMA_ESCAMOSO_CUTANEO-V09",
+   "titulo": "Autoinmunidad activa",
+   "fuente": "Seguridad",
+   "esperado_tipo": "revision_humana",
+   "esperado": "revision_humana",
+   "aceptables": [],
+   "obtenido": "revision (sin opcion segura)",
+   "obtenido_label": null,
+   "confianza": 0.0,
+   "revision": true,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  }
+ ]
+}

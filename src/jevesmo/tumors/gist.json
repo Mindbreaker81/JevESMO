@@ -1,0 +1,631 @@
+{
+ "id": "gist",
+ "nombre": "GIST",
+ "grupo": "Digestivo",
+ "version": "gist-ESMO-2022.1",
+ "guias": [
+  {
+   "titulo": "ESMO-EURACAN-GENTURIS Clinical Practice Guideline: Gastrointestinal stromal tumours",
+   "anio": 2022,
+   "url": "https://www.esmo.org/guidelines/gastrointestinal-cancers/gastrointestinal-stromal-tumours"
+  }
+ ],
+ "descripcion": "GIST resecable, riesgo Miettinen, mutaciones KIT/PDGFRA y secuencia imatinib-sunitinib-regorafenib-ripretinib/avapritinib.",
+ "campos": [
+  {
+   "id": "setting_gist",
+   "label": "Setting",
+   "tipo": "choice",
+   "seccion": "Tumor",
+   "opciones": [
+    "resecable_bajo",
+    "resecable_intermedio",
+    "resecable_alto",
+    "localmente_avanzado",
+    "metastasico"
+   ],
+   "requerido": true,
+   "pregunta": "¿El GIST es resecable bajo/intermedio/alto riesgo, localmente avanzado o metastasico?"
+  },
+  {
+   "id": "mutacion",
+   "label": "Mutacion driver",
+   "tipo": "choice",
+   "seccion": "Biomarcadores",
+   "opciones": [
+    "KIT_exon11",
+    "KIT_exon9",
+    "PDGFRA_D842V",
+    "SDH_deficiente",
+    "wildtype",
+    "desconocido"
+   ],
+   "requerido": true,
+   "pregunta": "¿Cual es la mutacion principal?"
+  },
+  {
+   "id": "riesgo_miettinen",
+   "label": "Riesgo Miettinen/AFIP",
+   "tipo": "choice",
+   "seccion": "Tumor",
+   "opciones": [
+    "muy_bajo",
+    "bajo",
+    "intermedio",
+    "alto",
+    "desconocido"
+   ],
+   "requerido": true,
+   "pregunta": "¿Cual es el riesgo de recidiva Miettinen/AFIP?"
+  },
+  {
+   "id": "rotura_tumoral",
+   "label": "Rotura tumoral",
+   "tipo": "bool",
+   "seccion": "Tumor"
+  },
+  {
+   "id": "candidato_cirugia",
+   "label": "Candidato a cirugia R0",
+   "tipo": "bool",
+   "seccion": "Tumor",
+   "requerido": true,
+   "pregunta": "¿Es candidato a reseccion R0 si procede?"
+  },
+  {
+   "id": "progresion_imatinib",
+   "label": "Progresion a imatinib",
+   "tipo": "bool",
+   "seccion": "Tumor"
+  },
+  {
+   "id": "progresion_sunitinib",
+   "label": "Progresion a sunitinib",
+   "tipo": "bool",
+   "seccion": "Tumor"
+  },
+  {
+   "id": "progresion_regorafenib",
+   "label": "Progresion a regorafenib",
+   "tipo": "bool",
+   "seccion": "Tumor"
+  },
+  {
+   "id": "edema_derrame_riesgo",
+   "label": "Riesgo de edema/derrame o toxicidad avapritinib",
+   "tipo": "bool",
+   "seccion": "Seguridad"
+  }
+ ],
+ "opciones": [
+  {
+   "id": "cirugia_observacion_bajo",
+   "label": "Cirugia R0 y observacion",
+   "nota": "ESMO: GIST localizado muy bajo/bajo/intermedio riesgo resecable -> reseccion completa sin adyuvancia; vigilancia adaptada.",
+   "cuando": [
+    {
+     "campo": "setting_gist",
+     "in": [
+      "resecable_bajo",
+      "resecable_intermedio"
+     ]
+    },
+    {
+     "campo": "riesgo_miettinen",
+     "in": [
+      "muy_bajo",
+      "bajo",
+      "intermedio"
+     ]
+    },
+    {
+     "campo": "candidato_cirugia",
+     "eq": true
+    }
+   ],
+   "componentes": [
+    "cirugia",
+    "vigilancia"
+   ],
+   "evidencia": "III, A"
+  },
+  {
+   "id": "imatinib_ady_3y",
+   "label": "Imatinib adyuvante 3 anos",
+   "nota": "ESMO: GIST resecado de alto riesgo sensible a imatinib -> imatinib 400 mg/dia durante 3 anos.",
+   "cuando": [
+    {
+     "campo": "setting_gist",
+     "eq": "resecable_alto"
+    },
+    {
+     "campo": "riesgo_miettinen",
+     "eq": "alto"
+    },
+    {
+     "campo": "mutacion",
+     "in": [
+      "KIT_exon11",
+      "KIT_exon9",
+      "desconocido"
+     ]
+    }
+   ],
+   "componentes": [
+    "dirigida"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "imatinib_neoadyuvante",
+   "label": "Imatinib neoadyuvante",
+   "nota": "ESMO: GIST localmente avanzado/borderline resecable sensible -> imatinib preoperatorio hasta maxima respuesta.",
+   "cuando": [
+    {
+     "campo": "setting_gist",
+     "eq": "localmente_avanzado"
+    },
+    {
+     "campo": "mutacion",
+     "in": [
+      "KIT_exon11",
+      "KIT_exon9",
+      "desconocido"
+     ]
+    },
+    {
+     "campo": "candidato_cirugia",
+     "eq": true
+    }
+   ],
+   "componentes": [
+    "dirigida",
+    "cirugia"
+   ],
+   "evidencia": "III, A"
+  },
+  {
+   "id": "imatinib_400_1l",
+   "label": "Imatinib 400 mg 1L avanzado",
+   "nota": "ESMO: GIST metastasico KIT exon 11 u otra mutacion sensible -> imatinib 400 mg/dia indefinido 1L.",
+   "cuando": [
+    {
+     "campo": "setting_gist",
+     "eq": "metastasico"
+    },
+    {
+     "campo": "mutacion",
+     "in": [
+      "KIT_exon11",
+      "desconocido",
+      "wildtype"
+     ]
+    },
+    {
+     "any": [
+      {
+       "campo": "lineas_previas",
+       "missing": true
+      },
+      {
+       "campo": "lineas_previas",
+       "eq": 0
+      }
+     ]
+    }
+   ],
+   "componentes": [
+    "dirigida"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "imatinib_800_exon9",
+   "label": "Imatinib 800 mg en KIT exon 9",
+   "nota": "ESMO: GIST avanzado KIT exon 9 -> dosis alta imatinib 800 mg/dia mejora PFS.",
+   "cuando": [
+    {
+     "campo": "setting_gist",
+     "eq": "metastasico"
+    },
+    {
+     "campo": "mutacion",
+     "eq": "KIT_exon9"
+    },
+    {
+     "any": [
+      {
+       "campo": "lineas_previas",
+       "missing": true
+      },
+      {
+       "campo": "lineas_previas",
+       "eq": 0
+      }
+     ]
+    }
+   ],
+   "componentes": [
+    "dirigida"
+   ],
+   "evidencia": "I, B"
+  },
+  {
+   "id": "avapritinib_d842v",
+   "label": "Avapritinib PDGFRA D842V",
+   "nota": "ESMO: GIST PDGFRA D842V avanzado/no resecable -> avapritinib, resistente a imatinib.",
+   "cuando": [
+    {
+     "campo": "mutacion",
+     "eq": "PDGFRA_D842V"
+    },
+    {
+     "campo": "setting_gist",
+     "in": [
+      "localmente_avanzado",
+      "metastasico"
+     ]
+    }
+   ],
+   "componentes": [
+    "dirigida"
+   ],
+   "evidencia": "III, A"
+  },
+  {
+   "id": "sunitinib_2l",
+   "label": "Sunitinib 2L",
+   "nota": "ESMO: progresion/intolerancia a imatinib -> sunitinib 2L.",
+   "cuando": [
+    {
+     "campo": "setting_gist",
+     "eq": "metastasico"
+    },
+    {
+     "campo": "lineas_previas",
+     "gte": 1
+    },
+    {
+     "campo": "progresion_imatinib",
+     "eq": true
+    }
+   ],
+   "componentes": [
+    "dirigida"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "regorafenib_3l",
+   "label": "Regorafenib 3L",
+   "nota": "ESMO: progresion a imatinib y sunitinib -> regorafenib 3L.",
+   "cuando": [
+    {
+     "campo": "setting_gist",
+     "eq": "metastasico"
+    },
+    {
+     "campo": "lineas_previas",
+     "gte": 2
+    },
+    {
+     "campo": "progresion_sunitinib",
+     "eq": true
+    }
+   ],
+   "componentes": [
+    "dirigida"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "ripretinib_4l",
+   "label": "Ripretinib 4L",
+   "nota": "ESMO: progresion a imatinib, sunitinib y regorafenib -> ripretinib 4L.",
+   "cuando": [
+    {
+     "campo": "setting_gist",
+     "eq": "metastasico"
+    },
+    {
+     "campo": "lineas_previas",
+     "gte": 3
+    },
+    {
+     "campo": "progresion_regorafenib",
+     "eq": true
+    }
+   ],
+   "componentes": [
+    "dirigida"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "ensayo_sdh_wt",
+   "label": "Ensayo/estrategia especifica SDH-def/WT",
+   "nota": "ESMO: GIST SDH-deficiente o WT tiene menor sensibilidad a imatinib; priorizar centros expertos, ensayos y manejo individualizado.",
+   "cuando": [
+    {
+     "campo": "mutacion",
+     "in": [
+      "SDH_deficiente",
+      "wildtype"
+     ]
+    },
+    {
+     "campo": "setting_gist",
+     "in": [
+      "localmente_avanzado",
+      "metastasico"
+     ]
+    }
+   ],
+   "componentes": [
+    "soporte",
+    "dirigida"
+   ],
+   "evidencia": "IV, B"
+  }
+ ],
+ "preguntas": [
+  {
+   "key": "riesgo_recurrencia",
+   "tipo": "choice",
+   "capa": 1,
+   "cuando": {
+    "campo": "riesgo_miettinen",
+    "eq": "desconocido"
+   },
+   "instrucciones": "Estima riesgo por tamano, mitosis, localizacion y rotura.",
+   "criterios": {
+    "bajo": "Bajo/intermedio",
+    "alto": "Alto riesgo o rotura",
+    "incierto": "Datos insuficientes"
+   }
+  },
+  {
+   "key": "neoadyuvancia_util",
+   "tipo": "noul",
+   "capa": 1,
+   "cuando": {
+    "campo": "setting_gist",
+    "eq": "localmente_avanzado"
+   },
+   "instrucciones": "¿Imatinib neoadyuvante podria reducir morbilidad y aumentar probabilidad de R0?"
+  },
+  {
+   "key": "resistencia_secundaria",
+   "tipo": "noul",
+   "capa": 2,
+   "cuando": {
+    "campo": "lineas_previas",
+    "gte": 1
+   },
+   "instrucciones": "¿El patron sugiere progresion verdadera a TKI previo y necesidad de cambiar de linea?"
+  }
+ ],
+ "seguridad": [
+  {
+   "key": "avapritinib_tox",
+   "cuando": {
+    "campo": "edema_derrame_riesgo",
+    "present": true
+   },
+   "bloquea": [
+    "avapritinib_d842v"
+   ],
+   "instrucciones": "¿El riesgo de edema, derrames, deterioro cognitivo o fragilidad hace inseguro avapritinib?",
+   "motivo": "Toxicidad potencialmente inaceptable de avapritinib"
+  }
+ ],
+ "avisos": [
+  {
+   "cuando": {
+    "campo": "mutacion",
+    "eq": "desconocido"
+   },
+   "texto": "Mutacion KIT/PDGFRA no disponible: imprescindible para dosis/avapritinib y sensibilidad."
+  },
+  {
+   "cuando": {
+    "campo": "rotura_tumoral",
+    "missing": true
+   },
+   "texto": "Rotura tumoral cambia a alto riesgo de recidiva."
+  }
+ ],
+ "vinetas": [
+  {
+   "id": "GIST-V01",
+   "titulo": "Bajo riesgo resecable",
+   "fuente": "ESMO vigilancia",
+   "payload": {
+    "edad": 64,
+    "ecog": "0",
+    "sexo": "mujer",
+    "setting_gist": "resecable_bajo",
+    "mutacion": "KIT_exon11",
+    "riesgo_miettinen": "bajo",
+    "candidato_cirugia": true
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "cirugia_observacion_bajo",
+    "aceptables": [
+     "cirugia_observacion_bajo"
+    ]
+   }
+  },
+  {
+   "id": "GIST-V02",
+   "titulo": "Alto riesgo resecado KIT exon11",
+   "fuente": "Adyuvancia 3 anos",
+   "payload": {
+    "edad": 55,
+    "ecog": "0",
+    "sexo": "hombre",
+    "setting_gist": "resecable_alto",
+    "mutacion": "KIT_exon11",
+    "riesgo_miettinen": "alto",
+    "candidato_cirugia": true
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "imatinib_ady_3y",
+    "aceptables": [
+     "imatinib_ady_3y"
+    ]
+   }
+  },
+  {
+   "id": "GIST-V03",
+   "titulo": "Localmente avanzado sensible",
+   "fuente": "Neoadyuvancia",
+   "payload": {
+    "edad": 60,
+    "ecog": "0",
+    "sexo": "mujer",
+    "setting_gist": "localmente_avanzado",
+    "mutacion": "KIT_exon11",
+    "riesgo_miettinen": "alto",
+    "candidato_cirugia": true
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "imatinib_neoadyuvante",
+    "aceptables": [
+     "imatinib_neoadyuvante"
+    ]
+   }
+  },
+  {
+   "id": "GIST-V04",
+   "titulo": "Metastasico exon9",
+   "fuente": "Dosis 800",
+   "payload": {
+    "edad": 49,
+    "ecog": "1",
+    "sexo": "hombre",
+    "setting_gist": "metastasico",
+    "mutacion": "KIT_exon9",
+    "riesgo_miettinen": "alto",
+    "candidato_cirugia": false
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "imatinib_800_exon9",
+    "aceptables": [
+     "imatinib_800_exon9"
+    ]
+   }
+  },
+  {
+   "id": "GIST-V05",
+   "titulo": "PDGFRA D842V",
+   "fuente": "Avapritinib",
+   "payload": {
+    "edad": 67,
+    "ecog": "1",
+    "sexo": "mujer",
+    "setting_gist": "metastasico",
+    "mutacion": "PDGFRA_D842V",
+    "riesgo_miettinen": "alto",
+    "candidato_cirugia": false
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "avapritinib_d842v",
+    "aceptables": [
+     "avapritinib_d842v"
+    ]
+   }
+  },
+  {
+   "id": "GIST-V06",
+   "titulo": "2L tras imatinib",
+   "fuente": "Sunitinib",
+   "payload": {
+    "edad": 58,
+    "ecog": "1",
+    "sexo": "hombre",
+    "setting_gist": "metastasico",
+    "mutacion": "KIT_exon11",
+    "riesgo_miettinen": "alto",
+    "candidato_cirugia": false,
+    "lineas_previas": 1,
+    "progresion_imatinib": true
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "sunitinib_2l",
+    "aceptables": [
+     "sunitinib_2l"
+    ]
+   }
+  },
+  {
+   "id": "GIST-V07",
+   "titulo": "4L",
+   "fuente": "Ripretinib",
+   "payload": {
+    "edad": 62,
+    "ecog": "1",
+    "sexo": "mujer",
+    "setting_gist": "metastasico",
+    "mutacion": "KIT_exon11",
+    "riesgo_miettinen": "alto",
+    "candidato_cirugia": false,
+    "lineas_previas": 3,
+    "progresion_imatinib": true,
+    "progresion_sunitinib": true,
+    "progresion_regorafenib": true
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "ripretinib_4l",
+    "aceptables": [
+     "ripretinib_4l"
+    ]
+   }
+  },
+  {
+   "id": "GIST-V08",
+   "titulo": "Falta mutacion",
+   "fuente": "Dato imprescindible",
+   "payload": {
+    "edad": 59,
+    "ecog": "0",
+    "sexo": "hombre",
+    "setting_gist": "metastasico",
+    "mutacion": null,
+    "riesgo_miettinen": "alto",
+    "candidato_cirugia": false
+   },
+   "esperado": {
+    "tipo": "necesita_datos"
+   }
+  },
+  {
+   "id": "GIST-V09",
+   "titulo": "D842V con toxicidad avapritinib",
+   "fuente": "Seguridad",
+   "payload": {
+    "edad": 82,
+    "ecog": "2",
+    "sexo": "mujer",
+    "setting_gist": "metastasico",
+    "mutacion": "PDGFRA_D842V",
+    "riesgo_miettinen": "alto",
+    "candidato_cirugia": false,
+    "edema_derrame_riesgo": true,
+    "comorbilidades_relevantes": [
+     "deterioro cognitivo y derrame pleural recurrente"
+    ]
+   },
+   "esperado": {
+    "tipo": "revision_humana"
+   }
+  }
+ ]
+}

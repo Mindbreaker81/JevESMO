@@ -1,0 +1,212 @@
+{
+ "tumor": "cod",
+ "nombre": "Cancer de origen primario desconocido",
+ "grupo": "Origen desconocido",
+ "version": "COD-ESMO-2023.1",
+ "fecha": "2026-09-27T14:47:21+00:00",
+ "modelo": "jev-latest",
+ "mock": false,
+ "umbral_confianza": 0.6,
+ "n": 10,
+ "aciertos": 10,
+ "acierto_global": 1.0,
+ "acierto_tratamiento": 1.0,
+ "acierto_preferida": 1.0,
+ "acierto_seguridad": 1.0,
+ "confianza_aciertos": 0.9924999999999999,
+ "confianza_fallos": null,
+ "n_multiopcion": 3,
+ "acierto_multiopcion": 1.0,
+ "candidatos_medios": 1.5,
+ "casos": [
+  {
+   "id": "COD-V01",
+   "titulo": "Mujer adenocarcinoma axilar",
+   "fuente": "ESMO CUP 2023: subgrupo favorable mama oculta",
+   "esperado_tipo": "recomendacion",
+   "esperado": "axilar_mujer_mama_like",
+   "aceptables": [
+    "axilar_mujer_mama_like"
+   ],
+   "obtenido": "axilar_mujer_mama_like",
+   "obtenido_label": "Tratamiento como cancer de mama oculto",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "COD-V02",
+   "titulo": "Carcinomatosis peritoneal serosa",
+   "fuente": "ESMO CUP 2023: tratar como ovario/peritoneal seroso",
+   "esperado_tipo": "recomendacion",
+   "esperado": "peritoneal_seroso_ovario_like",
+   "aceptables": [
+    "peritoneal_seroso_ovario_like"
+   ],
+   "obtenido": "peritoneal_seroso_ovario_like",
+   "obtenido_label": "Carboplatino-paclitaxel + cirugia citorreductora como ovario/peritoneal",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "COD-V03",
+   "titulo": "Escamoso cervical ganglionar",
+   "fuente": "ESMO CUP 2023: escamoso cervical como cabeza y cuello",
+   "esperado_tipo": "recomendacion",
+   "esperado": "escamoso_cervical_hn_like",
+   "aceptables": [
+    "escamoso_cervical_hn_like"
+   ],
+   "obtenido": "escamoso_cervical_hn_like",
+   "obtenido_label": "Quimiorradioterapia/cirugia como carcinoma escamoso cervical de cabeza y cuello",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "COD-V04",
+   "titulo": "Linea media germinal",
+   "fuente": "ESMO CUP 2023: tumor germinal extragonadal pobremente diferenciado",
+   "esperado_tipo": "recomendacion",
+   "esperado": "germinal_linea_media",
+   "aceptables": [
+    "germinal_linea_media"
+   ],
+   "obtenido": "germinal_linea_media",
+   "obtenido_label": "Quimioterapia basada en cisplatino tipo tumor germinal",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "COD-V05",
+   "titulo": "Hombre PSA positivo",
+   "fuente": "ESMO CUP 2023: PSA compatible prostata",
+   "esperado_tipo": "recomendacion",
+   "esperado": "prostata_like_adt",
+   "aceptables": [
+    "prostata_like_adt"
+   ],
+   "obtenido": "prostata_like_adt",
+   "obtenido_label": "Terapia de deprivacion androgenica +- intensificacion como prostata",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "COD-V06",
+   "titulo": "CUP desfavorable primera linea",
+   "fuente": "ESMO CUP 2023: doblete platino-taxano empirico",
+   "esperado_tipo": "recomendacion",
+   "esperado": "platino_taxano_desfavorable_1l",
+   "aceptables": [
+    "platino_taxano_desfavorable_1l",
+    "gem_platino_desfavorable"
+   ],
+   "obtenido": "platino_taxano_desfavorable_1l",
+   "obtenido_label": "Carboplatino/cisplatino + paclitaxel (CUP desfavorable 1L)",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  },
+  {
+   "id": "COD-V07",
+   "titulo": "CUP MSI-H",
+   "fuente": "ESMO CUP 2023/agnostico: inmunoterapia MSI-H",
+   "esperado_tipo": "recomendacion",
+   "esperado": "inmunoterapia_msi_tmb",
+   "aceptables": [
+    "inmunoterapia_msi_tmb"
+   ],
+   "obtenido": "inmunoterapia_msi_tmb",
+   "obtenido_label": "Pembrolizumab/dostarlimab si MSI-H/dMMR o TMB alto",
+   "confianza": 0.98,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 3,
+   "error": null
+  },
+  {
+   "id": "COD-V08",
+   "titulo": "CUP NTRK fusion",
+   "fuente": "ESMO CUP 2023/precision oncology: NTRK agnostico",
+   "esperado_tipo": "recomendacion",
+   "esperado": "trk_inhibidor_cod",
+   "aceptables": [
+    "trk_inhibidor_cod"
+   ],
+   "obtenido": "trk_inhibidor_cod",
+   "obtenido_label": "Larotrectinib/entrectinib si fusion NTRK",
+   "confianza": 0.96,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  },
+  {
+   "id": "COD-V09",
+   "titulo": "Falta patron clinico",
+   "fuente": "ESMO CUP 2023: subgrupo favorable vs desfavorable imprescindible",
+   "esperado_tipo": "necesita_datos",
+   "esperado": "necesita_datos",
+   "aceptables": [],
+   "obtenido": "necesita_datos",
+   "obtenido_label": null,
+   "confianza": null,
+   "revision": null,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [
+    "¿Encaja en un subgrupo favorable o desfavorable?"
+   ],
+   "n_candidatos": 0,
+   "error": null
+  },
+  {
+   "id": "COD-V10",
+   "titulo": "CUP desfavorable ECOG 4 no apto platino",
+   "fuente": "ESMO CUP 2023: soporte si no candidato a quimioterapia",
+   "esperado_tipo": "revision_humana",
+   "esperado": "revision_humana",
+   "aceptables": [],
+   "obtenido": "revision (soporte_cod)",
+   "obtenido_label": "Mejor soporte exclusivo",
+   "confianza": 1.0,
+   "revision": true,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 3,
+   "error": null
+  }
+ ]
+}

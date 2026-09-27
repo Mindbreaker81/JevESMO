@@ -1,0 +1,17 @@
+# Secretos
+.env
+.env.*
+!.env.example
+.streamlit/secrets.toml
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.egg-info/
+build/
+dist/
+
+# Cache regenerable de METABRIC (se descarga de cBioPortal)
+data/metabric_clinical.json
+data/evaluation_results.json

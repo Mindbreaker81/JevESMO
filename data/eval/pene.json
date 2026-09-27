@@ -1,0 +1,192 @@
+{
+ "tumor": "pene",
+ "nombre": "Carcinoma de pene",
+ "grupo": "Genitourinario",
+ "version": "PENE-ESMO-2024.1",
+ "fecha": "2026-09-27T14:47:42+00:00",
+ "modelo": "jev-latest",
+ "mock": false,
+ "umbral_confianza": 0.6,
+ "n": 9,
+ "aciertos": 9,
+ "acierto_global": 1.0,
+ "acierto_tratamiento": 1.0,
+ "acierto_preferida": 1.0,
+ "acierto_seguridad": 1.0,
+ "confianza_aciertos": 1.0,
+ "confianza_fallos": null,
+ "n_multiopcion": 0,
+ "acierto_multiopcion": null,
+ "candidatos_medios": 1.0,
+ "casos": [
+  {
+   "id": "PENE-V01",
+   "titulo": "Localizado organo-conservador",
+   "fuente": "ESMO-EURACAN penile cancer 2024 - organ sparing",
+   "esperado_tipo": "recomendacion",
+   "esperado": "cirugia_conservadora_pene",
+   "aceptables": [
+    "cirugia_conservadora_pene"
+   ],
+   "obtenido": "cirugia_conservadora_pene",
+   "obtenido_label": "Cirugia conservadora/laser/glandectomia parcial",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "PENE-V02",
+   "titulo": "Localizado T3 no conservador",
+   "fuente": "ESMO-EURACAN penile cancer 2024 - partial/total penectomy",
+   "esperado_tipo": "recomendacion",
+   "esperado": "penectomia_parcial_total",
+   "aceptables": [
+    "penectomia_parcial_total"
+   ],
+   "obtenido": "penectomia_parcial_total",
+   "obtenido_label": "Penectomia parcial o total",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "PENE-V03",
+   "titulo": "cN1 resecable",
+   "fuente": "ESMO-EURACAN penile cancer 2024 - inguinal lymphadenectomy",
+   "esperado_tipo": "recomendacion",
+   "esperado": "linfadenectomia_inguinal",
+   "aceptables": [
+    "linfadenectomia_inguinal"
+   ],
+   "obtenido": "linfadenectomia_inguinal",
+   "obtenido_label": "Linfadenectomia inguinal dinamica/radical",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "PENE-V04",
+   "titulo": "Bulky cN3 fit",
+   "fuente": "ESMO-EURACAN penile cancer 2024 - neoadjuvant TIP",
+   "esperado_tipo": "recomendacion",
+   "esperado": "tip_neoadyuvante_pene",
+   "aceptables": [
+    "tip_neoadyuvante_pene"
+   ],
+   "obtenido": "tip_neoadyuvante_pene",
+   "obtenido_label": "Quimioterapia neoadyuvante TIP",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "PENE-V05",
+   "titulo": "Metastasico 1L cisplatino-fit",
+   "fuente": "ESMO-EURACAN penile cancer 2024 - palliative platinum chemotherapy",
+   "esperado_tipo": "recomendacion",
+   "esperado": "qt_paliativa_platino_pene",
+   "aceptables": [
+    "qt_paliativa_platino_pene"
+   ],
+   "obtenido": "qt_paliativa_platino_pene",
+   "obtenido_label": "Quimioterapia sistemica paliativa con platino-taxano/5FU",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "PENE-V06",
+   "titulo": "Metastasico MSI alto pretratado",
+   "fuente": "ESMO-EURACAN penile cancer 2024 - biomarker-driven immunotherapy consideration",
+   "esperado_tipo": "recomendacion",
+   "esperado": "inmunoterapia_biomarcador_pene",
+   "aceptables": [
+    "inmunoterapia_biomarcador_pene"
+   ],
+   "obtenido": "inmunoterapia_biomarcador_pene",
+   "obtenido_label": "Pembrolizumab u otra inmunoterapia por MSI-H/TMB alto",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "PENE-V07",
+   "titulo": "Metastasico no cisplatino",
+   "fuente": "ESMO-EURACAN penile cancer 2024 - non-cisplatin palliation",
+   "esperado_tipo": "recomendacion",
+   "esperado": "qt_no_cis_pene",
+   "aceptables": [
+    "qt_no_cis_pene"
+   ],
+   "obtenido": "qt_no_cis_pene",
+   "obtenido_label": "Quimioterapia paliativa no cisplatino / soporte individualizado",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "PENE-V08",
+   "titulo": "Falta estadio",
+   "fuente": "Dato imprescindible - entorno clinico",
+   "esperado_tipo": "necesita_datos",
+   "esperado": "necesita_datos",
+   "aceptables": [],
+   "obtenido": "necesita_datos",
+   "obtenido_label": null,
+   "confianza": null,
+   "revision": null,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [
+    "¿Cual es el entorno (localizado, ganglionar clinico, localmente avanzado o metastasico)?"
+   ],
+   "n_candidatos": 0,
+   "error": null
+  },
+  {
+   "id": "PENE-V09",
+   "titulo": "Bulky cN3 con insuficiencia renal",
+   "fuente": "Seguridad - cisplatino contraindicado por insuficiencia renal",
+   "esperado_tipo": "revision_humana",
+   "esperado": "revision_humana",
+   "aceptables": [],
+   "obtenido": "revision (sin opcion segura)",
+   "obtenido_label": null,
+   "confianza": 0.0,
+   "revision": true,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  }
+ ]
+}

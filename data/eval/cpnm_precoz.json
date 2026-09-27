@@ -1,0 +1,179 @@
+{
+ "tumor": "cpnm_precoz",
+ "nombre": "Cancer de pulmon no microcitico precoz y localmente avanzado",
+ "grupo": "Toracico",
+ "version": "CPNM_PRECOZ-ESMO-2025.1",
+ "fecha": "2026-09-27T14:47:24+00:00",
+ "modelo": "jev-latest",
+ "mock": false,
+ "umbral_confianza": 0.6,
+ "n": 8,
+ "aciertos": 8,
+ "acierto_global": 1.0,
+ "acierto_tratamiento": 1.0,
+ "acierto_preferida": 1.0,
+ "acierto_seguridad": 1.0,
+ "confianza_aciertos": 0.7333333333333334,
+ "confianza_fallos": null,
+ "n_multiopcion": 5,
+ "acierto_multiopcion": 1.0,
+ "candidatos_medios": 2.5,
+ "casos": [
+  {
+   "id": "CPNM_PRECOZ-V01",
+   "titulo": "IIIA EGFR resecado",
+   "fuente": "ESMO early LA NSCLC/ADAURA: EGFR resecado IB-IIIA",
+   "esperado_tipo": "recomendacion",
+   "esperado": "osimertinib_adyuvante",
+   "aceptables": [
+    "osimertinib_adyuvante",
+    "quimio_adyuvante_platino",
+    "cirugia_reseccion"
+   ],
+   "obtenido": "osimertinib_adyuvante",
+   "obtenido_label": "Osimertinib adyuvante 3 anios",
+   "confianza": 0.29,
+   "revision": true,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 3,
+   "error": null
+  },
+  {
+   "id": "CPNM_PRECOZ-V02",
+   "titulo": "II ALK resecado",
+   "fuente": "ESMO/ALINA: ALK+ resecado",
+   "esperado_tipo": "recomendacion",
+   "esperado": "alectinib_adyuvante",
+   "aceptables": [
+    "alectinib_adyuvante",
+    "quimio_adyuvante_platino",
+    "cirugia_reseccion"
+   ],
+   "obtenido": "alectinib_adyuvante",
+   "obtenido_label": "Alectinib adyuvante 2 anios",
+   "confianza": 0.5,
+   "revision": true,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 3,
+   "error": null
+  },
+  {
+   "id": "CPNM_PRECOZ-V03",
+   "titulo": "IIIA no driver resecable",
+   "fuente": "ESMO/CheckMate 816 KEYNOTE-671",
+   "esperado_tipo": "recomendacion",
+   "esperado": "neoadyuvante_quimio_nivo",
+   "aceptables": [
+    "neoadyuvante_quimio_nivo",
+    "perioperatorio_pembro",
+    "quimio_adyuvante_platino"
+   ],
+   "obtenido": "neoadyuvante_quimio_nivo",
+   "obtenido_label": "Quimioterapia neoadyuvante + nivolumab",
+   "confianza": 0.69,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 4,
+   "error": null
+  },
+  {
+   "id": "CPNM_PRECOZ-V04",
+   "titulo": "I no operable",
+   "fuente": "ESMO: SBRT estadio I inoperable",
+   "esperado_tipo": "recomendacion",
+   "esperado": "sbrt_no_operable",
+   "aceptables": [
+    "sbrt_no_operable"
+   ],
+   "obtenido": "sbrt_no_operable",
+   "obtenido_label": "SBRT/SABR radical",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "CPNM_PRECOZ-V05",
+   "titulo": "III irresecable sin driver tras QRT",
+   "fuente": "PACIFIC: durvalumab tras QRT",
+   "esperado_tipo": "recomendacion",
+   "esperado": "qrt_definitiva_durva",
+   "aceptables": [
+    "qrt_definitiva_durva"
+   ],
+   "obtenido": "qrt_definitiva_durva",
+   "obtenido_label": "QRT concurrente definitiva -> durvalumab",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  },
+  {
+   "id": "CPNM_PRECOZ-V06",
+   "titulo": "III irresecable EGFR tras QRT",
+   "fuente": "LAURA: osimertinib tras QRT EGFRm",
+   "esperado_tipo": "recomendacion",
+   "esperado": "qrt_definitiva_osimertinib",
+   "aceptables": [
+    "qrt_definitiva_osimertinib"
+   ],
+   "obtenido": "qrt_definitiva_osimertinib",
+   "obtenido_label": "QRT definitiva -> osimertinib",
+   "confianza": 0.92,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  },
+  {
+   "id": "CPNM_PRECOZ-V07",
+   "titulo": "Falta resecabilidad",
+   "fuente": "ESMO: la resecabilidad define la rama curativa",
+   "esperado_tipo": "necesita_datos",
+   "esperado": "necesita_datos",
+   "aceptables": [],
+   "obtenido": "necesita_datos",
+   "obtenido_label": null,
+   "confianza": null,
+   "revision": null,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [
+    "¿El tumor es resecable segun comite toracico?"
+   ],
+   "n_candidatos": 0,
+   "error": null
+  },
+  {
+   "id": "CPNM_PRECOZ-V08",
+   "titulo": "III irresecable con autoinmunidad activa",
+   "fuente": "Seguridad inmunoterapia: autoinmunidad activa",
+   "esperado_tipo": "revision_humana",
+   "esperado": "revision_humana",
+   "aceptables": [],
+   "obtenido": "revision (qrt_definitiva_sola)",
+   "obtenido_label": "Quimiorradioterapia concurrente definitiva",
+   "confianza": 0.15,
+   "revision": true,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  }
+ ]
+}

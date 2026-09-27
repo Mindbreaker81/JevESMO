@@ -1,0 +1,732 @@
+{
+ "id": "ccr_metastasico",
+ "nombre": "Cancer colorrectal metastasico",
+ "grupo": "Digestivo",
+ "version": "ccr_metastasico-ESMO-2026.1",
+ "guias": [
+  {
+   "titulo": "ESMO Clinical Practice Guideline: Metastatic colorectal cancer",
+   "anio": 2026,
+   "url": "https://www.esmo.org/guidelines/esmo-clinical-practice-guideline-metastatic-colorectal-cancer"
+  }
+ ],
+ "descripcion": "CCR metastasico por RAS/BRAF/MSI/HER2/KRAS G12C, lateralidad, resecabilidad y lineas previas.",
+ "campos": [
+  {
+   "id": "ras",
+   "label": "RAS KRAS/NRAS",
+   "tipo": "choice",
+   "seccion": "Biomarcadores",
+   "opciones": [
+    "wt",
+    "mutado",
+    "desconocido"
+   ],
+   "requerido": true,
+   "pregunta": "¿RAS es wt, mutado o desconocido?"
+  },
+  {
+   "id": "braf_v600e",
+   "label": "BRAF V600E",
+   "tipo": "choice",
+   "seccion": "Biomarcadores",
+   "opciones": [
+    "si",
+    "no",
+    "desconocido"
+   ],
+   "requerido": true,
+   "pregunta": "¿BRAF V600E esta presente?"
+  },
+  {
+   "id": "msi",
+   "label": "MSI-H/dMMR",
+   "tipo": "choice",
+   "seccion": "Biomarcadores",
+   "opciones": [
+    "si",
+    "no",
+    "desconocido"
+   ],
+   "requerido": true,
+   "pregunta": "¿El tumor es MSI-H/dMMR?"
+  },
+  {
+   "id": "her2",
+   "label": "HER2 amplificado/positivo",
+   "tipo": "choice",
+   "seccion": "Biomarcadores",
+   "opciones": [
+    "si",
+    "no",
+    "desconocido"
+   ]
+  },
+  {
+   "id": "kras_g12c",
+   "label": "KRAS G12C",
+   "tipo": "choice",
+   "seccion": "Biomarcadores",
+   "opciones": [
+    "si",
+    "no",
+    "desconocido"
+   ]
+  },
+  {
+   "id": "lateralidad",
+   "label": "Lateralidad primario",
+   "tipo": "choice",
+   "seccion": "Tumor",
+   "opciones": [
+    "izquierdo",
+    "derecho",
+    "desconocido"
+   ],
+   "requerido": true,
+   "pregunta": "¿El primario es izquierdo o derecho?"
+  },
+  {
+   "id": "resecabilidad",
+   "label": "Resecabilidad metastasica",
+   "tipo": "choice",
+   "seccion": "Tumor",
+   "opciones": [
+    "resecable",
+    "potencialmente_resecable",
+    "irresecable"
+   ],
+   "requerido": true,
+   "pregunta": "¿Las metastasis son resecables, potencialmente resecables o irresecables?"
+  },
+  {
+   "id": "candidato_intensivo",
+   "label": "Candidato a quimioterapia intensiva",
+   "tipo": "bool",
+   "seccion": "Tumor",
+   "requerido": true,
+   "pregunta": "¿Es candidato a quimioterapia combinada/intensiva?"
+  },
+  {
+   "id": "sangrado_riesgo",
+   "label": "Sangrado/perforacion/trombosis alto riesgo",
+   "tipo": "bool",
+   "seccion": "Seguridad"
+  },
+  {
+   "id": "enfermedad_autoinmune_activa",
+   "label": "Enfermedad autoinmune activa",
+   "tipo": "bool",
+   "seccion": "Seguridad"
+  }
+ ],
+ "opciones": [
+  {
+   "id": "cirugia_metastasectomia",
+   "label": "Reseccion/metastasectomia perioperatoria",
+   "nota": "ESMO: metastasis claramente resecables -> reseccion completa/metastasectomia en MDT, con quimioterapia perioperatoria seleccionada.",
+   "cuando": [
+    {
+     "campo": "resecabilidad",
+     "eq": "resecable"
+    }
+   ],
+   "componentes": [
+    "cirugia",
+    "quimioterapia"
+   ],
+   "evidencia": "II, B"
+  },
+  {
+   "id": "folfoxiri_bev_conversion",
+   "label": "FOLFOXIRI + bevacizumab de conversion",
+   "nota": "ESMO: potencialmente resecable o necesidad de maxima reduccion tumoral -> triplete + bevacizumab si fit.",
+   "cuando": [
+    {
+     "campo": "resecabilidad",
+     "eq": "potencialmente_resecable"
+    },
+    {
+     "campo": "candidato_intensivo",
+     "eq": true
+    }
+   ],
+   "componentes": [
+    "quimioterapia",
+    "antiangiogenico"
+   ],
+   "evidencia": "I, B"
+  },
+  {
+   "id": "doublet_egfr_izq_1l",
+   "label": "FOLFOX/FOLFIRI + anti-EGFR 1L",
+   "nota": "ESMO: RAS/BRAF wt, MSS, primario izquierdo, objetivo respuesta -> doblete + cetuximab/panitumumab 1L.",
+   "cuando": [
+    {
+     "campo": "ras",
+     "eq": "wt"
+    },
+    {
+     "campo": "braf_v600e",
+     "eq": "no"
+    },
+    {
+     "campo": "msi",
+     "eq": "no"
+    },
+    {
+     "campo": "lateralidad",
+     "eq": "izquierdo"
+    },
+    {
+     "any": [
+      {
+       "campo": "lineas_previas",
+       "missing": true
+      },
+      {
+       "campo": "lineas_previas",
+       "eq": 0
+      }
+     ]
+    }
+   ],
+   "componentes": [
+    "quimioterapia",
+    "dirigida"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "doublet_bev_1l",
+   "label": "FOLFOX/FOLFIRI + bevacizumab 1L",
+   "nota": "ESMO: RAS mutado o primario derecho/MSS -> doblete de quimioterapia + bevacizumab estandar 1L.",
+   "cuando": [
+    {
+     "campo": "msi",
+     "ne": "si"
+    },
+    {
+     "any": [
+      {
+       "campo": "lineas_previas",
+       "missing": true
+      },
+      {
+       "campo": "lineas_previas",
+       "eq": 0
+      }
+     ]
+    },
+    {
+     "any": [
+      {
+       "campo": "ras",
+       "eq": "mutado"
+      },
+      {
+       "campo": "lateralidad",
+       "eq": "derecho"
+      },
+      {
+       "campo": "braf_v600e",
+       "eq": "si"
+      }
+     ]
+    }
+   ],
+   "componentes": [
+    "quimioterapia",
+    "antiangiogenico"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "pembro_msi_1l",
+   "label": "Pembrolizumab 1L MSI-H/dMMR",
+   "nota": "ESMO/KEYNOTE-177: CCRm MSI-H/dMMR no tratado -> pembrolizumab 1L preferido.",
+   "cuando": [
+    {
+     "campo": "msi",
+     "eq": "si"
+    },
+    {
+     "any": [
+      {
+       "campo": "lineas_previas",
+       "missing": true
+      },
+      {
+       "campo": "lineas_previas",
+       "eq": 0
+      }
+     ]
+    }
+   ],
+   "componentes": [
+    "inmunoterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "nivolumab_ipilimumab_msi",
+   "label": "Nivolumab + ipilimumab MSI-H",
+   "nota": "ESMO: MSI-H/dMMR tras tratamiento -> nivolumab/ipilimumab opcion valida.",
+   "cuando": [
+    {
+     "campo": "msi",
+     "eq": "si"
+    },
+    {
+     "campo": "lineas_previas",
+     "gte": 1
+    }
+   ],
+   "componentes": [
+    "inmunoterapia"
+   ],
+   "evidencia": "II, B"
+  },
+  {
+   "id": "encorafenib_cetuximab",
+   "label": "Encorafenib + cetuximab BRAF V600E",
+   "nota": "ESMO/BEACON: BRAF V600E tras al menos 1 linea -> encorafenib + cetuximab.",
+   "cuando": [
+    {
+     "campo": "braf_v600e",
+     "eq": "si"
+    },
+    {
+     "campo": "lineas_previas",
+     "gte": 1
+    }
+   ],
+   "componentes": [
+    "dirigida"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "her2_tucatinib_trastuzumab",
+   "label": "Tucatinib + trastuzumab HER2+",
+   "nota": "ESMO/MOUNTAINEER: RAS wt HER2+ refractario -> tucatinib + trastuzumab (o doble anti-HER2).",
+   "cuando": [
+    {
+     "campo": "her2",
+     "eq": "si"
+    },
+    {
+     "campo": "ras",
+     "eq": "wt"
+    },
+    {
+     "campo": "lineas_previas",
+     "gte": 1
+    }
+   ],
+   "componentes": [
+    "anti_her2",
+    "dirigida"
+   ],
+   "evidencia": "II, B"
+  },
+  {
+   "id": "tas102_bev",
+   "label": "Trifluridina/tipiracilo + bevacizumab",
+   "nota": "ESMO/SUNLIGHT: CCRm refractario tras terapias estandar -> TAS-102 + bevacizumab.",
+   "cuando": [
+    {
+     "campo": "lineas_previas",
+     "gte": 2
+    }
+   ],
+   "componentes": [
+    "quimioterapia",
+    "antiangiogenico"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "fruquintinib",
+   "label": "Fruquintinib refractario",
+   "nota": "ESMO/FRESCO-2: enfermedad refractaria tras terapias estandar -> fruquintinib en pacientes seleccionados.",
+   "cuando": [
+    {
+     "campo": "lineas_previas",
+     "gte": 2
+    }
+   ],
+   "componentes": [
+    "antiangiogenico",
+    "dirigida"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "g12c_egfr",
+   "label": "Sotorasib/adagrasib + anti-EGFR KRAS G12C",
+   "nota": "ESMO actual: KRAS G12C tras lineas previas -> inhibidor KRAS G12C combinado con anti-EGFR.",
+   "cuando": [
+    {
+     "campo": "kras_g12c",
+     "eq": "si"
+    },
+    {
+     "campo": "lineas_previas",
+     "gte": 1
+    }
+   ],
+   "componentes": [
+    "dirigida"
+   ],
+   "evidencia": "II, B"
+  },
+  {
+   "id": "soporte_mcrc",
+   "label": "Soporte exclusivo/ensayo clinico",
+   "nota": "ESMO: ECOG pobre o agotamiento de opciones -> cuidados de soporte y ensayos.",
+   "cuando": [
+    {
+     "campo": "candidato_intensivo",
+     "eq": false
+    },
+    {
+     "campo": "lineas_previas",
+     "gte": 3
+    }
+   ],
+   "componentes": [
+    "soporte"
+   ],
+   "evidencia": "V, A"
+  }
+ ],
+ "preguntas": [
+  {
+   "key": "objetivo_conversion",
+   "tipo": "noul",
+   "capa": 1,
+   "cuando": {
+    "campo": "resecabilidad",
+    "eq": "potencialmente_resecable"
+   },
+   "instrucciones": "¿Existe objetivo realista de conversion a reseccion/ablacion R0 tras respuesta sistemica?"
+  },
+  {
+   "key": "necesita_respuesta_rapida",
+   "tipo": "choice",
+   "capa": 1,
+   "cuando": {
+    "any": [
+     {
+      "campo": "lineas_previas",
+      "missing": true
+     },
+     {
+      "campo": "lineas_previas",
+      "eq": 0
+     }
+    ]
+   },
+   "instrucciones": "Evalua el objetivo de primera linea.",
+   "criterios": {
+    "respuesta": "Maxima respuesta/citorreduccion",
+    "control": "Control con menor toxicidad",
+    "inmuno": "Biologia MSI-H favorece inmunoterapia"
+   }
+  },
+  {
+   "key": "biomarcadores_completos",
+   "tipo": "noul",
+   "capa": 2,
+   "cuando": {
+    "any": [
+     {
+      "campo": "her2",
+      "eq": "desconocido"
+     },
+     {
+      "campo": "kras_g12c",
+      "eq": "desconocido"
+     }
+    ]
+   },
+   "instrucciones": "¿Faltan biomarcadores que deban completarse antes de seleccionar lineas posteriores?"
+  }
+ ],
+ "seguridad": [
+  {
+   "key": "riesgo_bev",
+   "cuando": {
+    "campo": "sangrado_riesgo",
+    "present": true
+   },
+   "bloquea_componentes": [
+    "antiangiogenico"
+   ],
+   "instrucciones": "Con sangrado, perforacion, cirugia reciente o trombosis, ¿antiangiogenicos suponen riesgo inaceptable?",
+   "motivo": "Riesgo alto para antiangiogenicos"
+  },
+  {
+   "key": "autoinmune_ici",
+   "cuando": {
+    "campo": "enfermedad_autoinmune_activa",
+    "present": true
+   },
+   "bloquea_componentes": [
+    "inmunoterapia"
+   ],
+   "instrucciones": "¿La inmunoterapia es insegura por enfermedad autoinmune activa?",
+   "motivo": "Riesgo autoinmune con inmunoterapia"
+  }
+ ],
+ "avisos": [
+  {
+   "cuando": {
+    "campo": "ras",
+    "eq": "desconocido"
+   },
+   "texto": "RAS no disponible: imprescindible antes de anti-EGFR."
+  },
+  {
+   "cuando": {
+    "campo": "braf_v600e",
+    "eq": "desconocido"
+   },
+   "texto": "BRAF V600E no disponible."
+  },
+  {
+   "cuando": {
+    "campo": "msi",
+    "eq": "desconocido"
+   },
+   "texto": "MSI/dMMR no disponible: puede indicar pembrolizumab 1L."
+  }
+ ],
+ "vinetas": [
+  {
+   "id": "CCR_METASTASICO-V01",
+   "titulo": "MSI-H 1L",
+   "fuente": "KEYNOTE-177",
+   "payload": {
+    "edad": 65,
+    "ecog": "0",
+    "sexo": "mujer",
+    "ras": "wt",
+    "braf_v600e": "no",
+    "msi": "si",
+    "her2": "no",
+    "kras_g12c": "no",
+    "lateralidad": "derecho",
+    "resecabilidad": "irresecable",
+    "candidato_intensivo": true
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "pembro_msi_1l",
+    "aceptables": [
+     "pembro_msi_1l"
+    ]
+   }
+  },
+  {
+   "id": "CCR_METASTASICO-V02",
+   "titulo": "Izquierdo RAS/BRAF wt MSS 1L",
+   "fuente": "ESMO anti-EGFR izquierda",
+   "payload": {
+    "edad": 58,
+    "ecog": "0",
+    "sexo": "hombre",
+    "ras": "wt",
+    "braf_v600e": "no",
+    "msi": "no",
+    "her2": "no",
+    "kras_g12c": "no",
+    "lateralidad": "izquierdo",
+    "resecabilidad": "irresecable",
+    "candidato_intensivo": true
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "doublet_egfr_izq_1l",
+    "aceptables": [
+     "doublet_egfr_izq_1l"
+    ]
+   }
+  },
+  {
+   "id": "CCR_METASTASICO-V03",
+   "titulo": "RAS mutado MSS 1L",
+   "fuente": "ESMO bevacizumab",
+   "payload": {
+    "edad": 62,
+    "ecog": "1",
+    "sexo": "mujer",
+    "ras": "mutado",
+    "braf_v600e": "no",
+    "msi": "no",
+    "her2": "no",
+    "kras_g12c": "no",
+    "lateralidad": "izquierdo",
+    "resecabilidad": "irresecable",
+    "candidato_intensivo": true
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "doublet_bev_1l",
+    "aceptables": [
+     "doublet_bev_1l"
+    ]
+   }
+  },
+  {
+   "id": "CCR_METASTASICO-V04",
+   "titulo": "Potencialmente resecable",
+   "fuente": "Conversion",
+   "payload": {
+    "edad": 52,
+    "ecog": "0",
+    "sexo": "hombre",
+    "ras": "mutado",
+    "braf_v600e": "no",
+    "msi": "no",
+    "her2": "no",
+    "kras_g12c": "no",
+    "lateralidad": "derecho",
+    "resecabilidad": "potencialmente_resecable",
+    "candidato_intensivo": true
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "folfoxiri_bev_conversion",
+    "aceptables": [
+     "folfoxiri_bev_conversion",
+     "doublet_bev_1l"
+    ]
+   }
+  },
+  {
+   "id": "CCR_METASTASICO-V05",
+   "titulo": "BRAF V600E 2L",
+   "fuente": "BEACON",
+   "payload": {
+    "edad": 59,
+    "ecog": "1",
+    "sexo": "mujer",
+    "ras": "wt",
+    "braf_v600e": "si",
+    "msi": "no",
+    "her2": "no",
+    "kras_g12c": "no",
+    "lateralidad": "derecho",
+    "resecabilidad": "irresecable",
+    "candidato_intensivo": true,
+    "lineas_previas": 1
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "encorafenib_cetuximab",
+    "aceptables": [
+     "encorafenib_cetuximab"
+    ]
+   }
+  },
+  {
+   "id": "CCR_METASTASICO-V06",
+   "titulo": "HER2+ RAS wt refractario",
+   "fuente": "MOUNTAINEER",
+   "payload": {
+    "edad": 55,
+    "ecog": "0",
+    "sexo": "hombre",
+    "ras": "wt",
+    "braf_v600e": "no",
+    "msi": "no",
+    "her2": "si",
+    "kras_g12c": "no",
+    "lateralidad": "izquierdo",
+    "resecabilidad": "irresecable",
+    "candidato_intensivo": true,
+    "lineas_previas": 2
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "her2_tucatinib_trastuzumab",
+    "aceptables": [
+     "her2_tucatinib_trastuzumab"
+    ]
+   }
+  },
+  {
+   "id": "CCR_METASTASICO-V07",
+   "titulo": "Refractario TAS-102+bev",
+   "fuente": "SUNLIGHT",
+   "payload": {
+    "edad": 70,
+    "ecog": "1",
+    "sexo": "mujer",
+    "ras": "mutado",
+    "braf_v600e": "no",
+    "msi": "no",
+    "her2": "no",
+    "kras_g12c": "no",
+    "lateralidad": "derecho",
+    "resecabilidad": "irresecable",
+    "candidato_intensivo": false,
+    "lineas_previas": 3
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "tas102_bev",
+    "aceptables": [
+     "tas102_bev",
+     "fruquintinib"
+    ]
+   }
+  },
+  {
+   "id": "CCR_METASTASICO-V08",
+   "titulo": "Falta MSI",
+   "fuente": "Dato imprescindible",
+   "payload": {
+    "edad": 61,
+    "ecog": "0",
+    "sexo": "hombre",
+    "ras": "wt",
+    "braf_v600e": "no",
+    "msi": null,
+    "lateralidad": "izquierdo",
+    "resecabilidad": "irresecable",
+    "candidato_intensivo": true
+   },
+   "esperado": {
+    "tipo": "necesita_datos"
+   }
+  },
+  {
+   "id": "CCR_METASTASICO-V09",
+   "titulo": "MSI-H con autoinmunidad grave",
+   "fuente": "Seguridad ICI",
+   "payload": {
+    "edad": 64,
+    "ecog": "1",
+    "sexo": "mujer",
+    "ras": "wt",
+    "braf_v600e": "no",
+    "msi": "si",
+    "her2": "no",
+    "kras_g12c": "no",
+    "lateralidad": "derecho",
+    "resecabilidad": "irresecable",
+    "candidato_intensivo": true,
+    "enfermedad_autoinmune_activa": true,
+    "comorbilidades_relevantes": [
+     "lupus con nefritis activa"
+    ]
+   },
+   "esperado": {
+    "tipo": "revision_humana"
+   }
+  }
+ ]
+}

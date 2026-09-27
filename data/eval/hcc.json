@@ -1,0 +1,200 @@
+{
+ "tumor": "hcc",
+ "nombre": "Carcinoma hepatocelular",
+ "grupo": "Digestivo",
+ "version": "HCC-ESMO-2025.1",
+ "fecha": "2026-09-27T14:47:31+00:00",
+ "modelo": "jev-latest",
+ "mock": false,
+ "umbral_confianza": 0.6,
+ "n": 9,
+ "aciertos": 9,
+ "acierto_global": 1.0,
+ "acierto_tratamiento": 1.0,
+ "acierto_preferida": 1.0,
+ "acierto_seguridad": 1.0,
+ "confianza_aciertos": 0.9528571428571428,
+ "confianza_fallos": null,
+ "n_multiopcion": 5,
+ "acierto_multiopcion": 1.0,
+ "candidatos_medios": 2.7142857142857144,
+ "casos": [
+  {
+   "id": "HCC-V01",
+   "titulo": "BCLC A resecable sin portal HTA",
+   "fuente": "ESMO HCC - reseccion",
+   "esperado_tipo": "recomendacion",
+   "esperado": "reseccion_hcc",
+   "aceptables": [
+    "reseccion_hcc",
+    "ablacion_hcc"
+   ],
+   "obtenido": "reseccion_hcc",
+   "obtenido_label": "Reseccion hepatica",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  },
+  {
+   "id": "HCC-V02",
+   "titulo": "HCC pequeño no resecable",
+   "fuente": "ESMO HCC - ablacion",
+   "esperado_tipo": "recomendacion",
+   "esperado": "ablacion_hcc",
+   "aceptables": [
+    "ablacion_hcc",
+    "trasplante_hcc"
+   ],
+   "obtenido": "ablacion_hcc",
+   "obtenido_label": "Ablacion percutanea",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "HCC-V03",
+   "titulo": "BCLC A candidato trasplante",
+   "fuente": "ESMO HCC - trasplante",
+   "esperado_tipo": "recomendacion",
+   "esperado": "trasplante_hcc",
+   "aceptables": [
+    "trasplante_hcc"
+   ],
+   "obtenido": "trasplante_hcc",
+   "obtenido_label": "Trasplante hepatico",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "HCC-V04",
+   "titulo": "BCLC B multinodular",
+   "fuente": "ESMO HCC - TACE",
+   "esperado_tipo": "recomendacion",
+   "esperado": "tace_hcc",
+   "aceptables": [
+    "tace_hcc"
+   ],
+   "obtenido": "tace_hcc",
+   "obtenido_label": "TACE",
+   "confianza": 0.89,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 5,
+   "error": null
+  },
+  {
+   "id": "HCC-V05",
+   "titulo": "BCLC C Child A sin varices",
+   "fuente": "IMbrave150",
+   "esperado_tipo": "recomendacion",
+   "esperado": "atezo_bev_1l",
+   "aceptables": [
+    "atezo_bev_1l",
+    "durva_treme_1l",
+    "tki_1l"
+   ],
+   "obtenido": "atezo_bev_1l",
+   "obtenido_label": "Atezolizumab + bevacizumab",
+   "confianza": 0.9,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 4,
+   "error": null
+  },
+  {
+   "id": "HCC-V06",
+   "titulo": "BCLC C con varices no tratadas",
+   "fuente": "HIMALAYA / seguridad bevacizumab",
+   "esperado_tipo": "recomendacion",
+   "esperado": "durva_treme_1l",
+   "aceptables": [
+    "durva_treme_1l",
+    "tki_1l",
+    "durvalumab_mono"
+   ],
+   "obtenido": "durva_treme_1l",
+   "obtenido_label": "Durvalumab + tremelimumab (STRIDE)",
+   "confianza": 0.98,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 3,
+   "error": null
+  },
+  {
+   "id": "HCC-V07",
+   "titulo": "Segunda linea AFP alta",
+   "fuente": "REACH-2 / RESORCE",
+   "esperado_tipo": "recomendacion",
+   "esperado": "ramucirumab_afp_2l",
+   "aceptables": [
+    "ramucirumab_afp_2l",
+    "regorafenib_2l",
+    "cabozantinib_2l"
+   ],
+   "obtenido": "ramucirumab_afp_2l",
+   "obtenido_label": "Ramucirumab si AFP >=400",
+   "confianza": 0.9,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 3,
+   "error": null
+  },
+  {
+   "id": "HCC-V08",
+   "titulo": "Falta Child-Pugh",
+   "fuente": "ESMO HCC - funcion hepatica imprescindible",
+   "esperado_tipo": "necesita_datos",
+   "esperado": "necesita_datos",
+   "aceptables": [],
+   "obtenido": "necesita_datos",
+   "obtenido_label": null,
+   "confianza": null,
+   "revision": null,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [
+    "¿Cual es la clase Child-Pugh?"
+   ],
+   "n_candidatos": 0,
+   "error": null
+  },
+  {
+   "id": "HCC-V09",
+   "titulo": "Child C BCLC D",
+   "fuente": "ESMO HCC - BCLC D soporte",
+   "esperado_tipo": "revision_humana",
+   "esperado": "revision_humana",
+   "aceptables": [],
+   "obtenido": "revision (soporte_hcc)",
+   "obtenido_label": "Cuidados de soporte exclusivo",
+   "confianza": 1.0,
+   "revision": true,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  }
+ ]
+}

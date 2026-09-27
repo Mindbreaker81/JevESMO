@@ -1,0 +1,194 @@
+{
+ "tumor": "colon_localizado",
+ "nombre": "Cancer de colon localizado",
+ "grupo": "Digestivo",
+ "version": "colon_localizado-ESMO-2023.1",
+ "fecha": "2026-09-27T14:47:22+00:00",
+ "modelo": "jev-latest",
+ "mock": false,
+ "umbral_confianza": 0.6,
+ "n": 9,
+ "aciertos": 9,
+ "acierto_global": 1.0,
+ "acierto_tratamiento": 1.0,
+ "acierto_preferida": 1.0,
+ "acierto_seguridad": 1.0,
+ "confianza_aciertos": 0.8928571428571429,
+ "confianza_fallos": null,
+ "n_multiopcion": 1,
+ "acierto_multiopcion": 1.0,
+ "candidatos_medios": 1.2857142857142858,
+ "casos": [
+  {
+   "id": "COLON_LOCALIZADO-V01",
+   "titulo": "Estadio II bajo riesgo pMMR resecado",
+   "fuente": "ESMO colon: vigilancia",
+   "esperado_tipo": "recomendacion",
+   "esperado": "observacion_ii_bajo_pmmr",
+   "aceptables": [
+    "observacion_ii_bajo_pmmr"
+   ],
+   "obtenido": "observacion_ii_bajo_pmmr",
+   "obtenido_label": "Observacion en estadio II bajo riesgo pMMR",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "COLON_LOCALIZADO-V02",
+   "titulo": "Estadio II dMMR",
+   "fuente": "ESMO colon: dMMR estadio II sin adyuvancia",
+   "esperado_tipo": "recomendacion",
+   "esperado": "observacion_ii_dmmr",
+   "aceptables": [
+    "observacion_ii_dmmr"
+   ],
+   "obtenido": "observacion_ii_dmmr",
+   "obtenido_label": "Observacion tras R0 en estadio II dMMR",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "COLON_LOCALIZADO-V03",
+   "titulo": "Estadio II alto riesgo pMMR",
+   "fuente": "ESMO colon: fluoropirimidina",
+   "esperado_tipo": "recomendacion",
+   "esperado": "fluoropirimidina_ii_alto",
+   "aceptables": [
+    "fluoropirimidina_ii_alto",
+    "capox_ii_alto"
+   ],
+   "obtenido": "fluoropirimidina_ii_alto",
+   "obtenido_label": "Fluoropirimidina adyuvante 6 meses",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "COLON_LOCALIZADO-V04",
+   "titulo": "Estadio III bajo riesgo",
+   "fuente": "IDEA: CAPOX 3 meses",
+   "esperado_tipo": "recomendacion",
+   "esperado": "capox_3m_iii_bajo",
+   "aceptables": [
+    "capox_3m_iii_bajo"
+   ],
+   "obtenido": "capox_3m_iii_bajo",
+   "obtenido_label": "CAPOX 3 meses (IDEA) en estadio III bajo riesgo",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "COLON_LOCALIZADO-V05",
+   "titulo": "Estadio III alto riesgo",
+   "fuente": "ESMO/IDEA: 6 meses",
+   "esperado_tipo": "recomendacion",
+   "esperado": "folfox_capox_6m_iii_alto",
+   "aceptables": [
+    "folfox_capox_6m_iii_alto"
+   ],
+   "obtenido": "folfox_capox_6m_iii_alto",
+   "obtenido_label": "FOLFOX o CAPOX 6 meses en estadio III alto riesgo",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "COLON_LOCALIZADO-V06",
+   "titulo": "III alto no apto a oxaliplatino",
+   "fuente": "ESMO: fluoropirimidina si no apto",
+   "esperado_tipo": "recomendacion",
+   "esperado": "fluoropirimidina_sola_no_apto",
+   "aceptables": [
+    "fluoropirimidina_sola_no_apto",
+    "capox_3m_iii_alto_no_apto"
+   ],
+   "obtenido": "fluoropirimidina_sola_no_apto",
+   "obtenido_label": "Fluoropirimidina sola si no apto a oxaliplatino",
+   "confianza": 0.25,
+   "revision": true,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 3,
+   "error": null
+  },
+  {
+   "id": "COLON_LOCALIZADO-V07",
+   "titulo": "Colon dMMR localmente avanzado",
+   "fuente": "NICHE/ESMO",
+   "esperado_tipo": "recomendacion",
+   "esperado": "inmunoterapia_neoadyuvante_dmmr",
+   "aceptables": [
+    "inmunoterapia_neoadyuvante_dmmr"
+   ],
+   "obtenido": "inmunoterapia_neoadyuvante_dmmr",
+   "obtenido_label": "Inmunoterapia neoadyuvante para colon dMMR localmente avanzado",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "COLON_LOCALIZADO-V08",
+   "titulo": "Falta estadio",
+   "fuente": "Dato imprescindible",
+   "esperado_tipo": "necesita_datos",
+   "esperado": "necesita_datos",
+   "aceptables": [],
+   "obtenido": "necesita_datos",
+   "obtenido_label": null,
+   "confianza": null,
+   "revision": null,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [
+    "¿Cual es el estadio/riesgo (II bajo/alto, III bajo/alto o localmente avanzado)?"
+   ],
+   "n_candidatos": 0,
+   "error": null
+  },
+  {
+   "id": "COLON_LOCALIZADO-V09",
+   "titulo": "Neuropatia grave en III",
+   "fuente": "Seguridad oxaliplatino",
+   "esperado_tipo": "revision_humana",
+   "esperado": "revision_humana",
+   "aceptables": [],
+   "obtenido": "revision (sin opcion segura)",
+   "obtenido_label": null,
+   "confianza": 0.0,
+   "revision": true,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  }
+ ]
+}

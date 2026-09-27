@@ -1,0 +1,198 @@
+{
+ "tumor": "recto",
+ "nombre": "Cancer de recto localizado",
+ "grupo": "Digestivo",
+ "version": "recto-ESMO-2024.1",
+ "fecha": "2026-09-27T14:47:44+00:00",
+ "modelo": "jev-latest",
+ "mock": false,
+ "umbral_confianza": 0.6,
+ "n": 9,
+ "aciertos": 9,
+ "acierto_global": 1.0,
+ "acierto_tratamiento": 1.0,
+ "acierto_preferida": 0.8571428571428571,
+ "acierto_seguridad": 1.0,
+ "confianza_aciertos": 0.87,
+ "confianza_fallos": null,
+ "n_multiopcion": 4,
+ "acierto_multiopcion": 1.0,
+ "candidatos_medios": 1.8571428571428572,
+ "casos": [
+  {
+   "id": "RECTO-V01",
+   "titulo": "Bajo riesgo",
+   "fuente": "ESMO recto: cirugia directa",
+   "esperado_tipo": "recomendacion",
+   "esperado": "cirugia_directa_tme",
+   "aceptables": [
+    "cirugia_directa_tme"
+   ],
+   "obtenido": "cirugia_directa_tme",
+   "obtenido_label": "Cirugia directa con TME",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "RECTO-V02",
+   "titulo": "Intermedio requiere downstaging",
+   "fuente": "ESMO recto: QRT larga",
+   "esperado_tipo": "recomendacion",
+   "esperado": "qrt_larga_intermedio",
+   "aceptables": [
+    "qrt_larga_intermedio",
+    "rt_corta_intermedio"
+   ],
+   "obtenido": "qrt_larga_intermedio",
+   "obtenido_label": "Quimiorradioterapia larga preoperatoria",
+   "confianza": 0.96,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  },
+  {
+   "id": "RECTO-V03",
+   "titulo": "Intermedio resecable",
+   "fuente": "ESMO: RT corta alternativa",
+   "esperado_tipo": "recomendacion",
+   "esperado": "rt_corta_intermedio",
+   "aceptables": [
+    "rt_corta_intermedio",
+    "qrt_larga_intermedio"
+   ],
+   "obtenido": "rt_corta_intermedio",
+   "obtenido_label": "Radioterapia corta 5x5 Gy seguida de TME",
+   "confianza": 0.83,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  },
+  {
+   "id": "RECTO-V04",
+   "titulo": "Alto riesgo MRI",
+   "fuente": "RAPIDO/PRODIGE: TNT",
+   "esperado_tipo": "recomendacion",
+   "esperado": "tnt_alto",
+   "aceptables": [
+    "tnt_alto",
+    "rt_corta_tnt",
+    "qrt_larga_tnt"
+   ],
+   "obtenido": "tnt_alto",
+   "obtenido_label": "Tratamiento neoadyuvante total (TNT)",
+   "confianza": 0.65,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 3,
+   "error": null
+  },
+  {
+   "id": "RECTO-V05",
+   "titulo": "Muy alto riesgo MRF+",
+   "fuente": "ESMO: TNT",
+   "esperado_tipo": "recomendacion",
+   "esperado": "rt_corta_tnt",
+   "aceptables": [
+    "tnt_alto",
+    "rt_corta_tnt",
+    "qrt_larga_tnt"
+   ],
+   "obtenido": "tnt_alto",
+   "obtenido_label": "Tratamiento neoadyuvante total (TNT)",
+   "confianza": 0.65,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": false,
+   "preguntas": [],
+   "n_candidatos": 3,
+   "error": null
+  },
+  {
+   "id": "RECTO-V06",
+   "titulo": "Recto dMMR localmente avanzado",
+   "fuente": "Dostarlimab dMMR",
+   "esperado_tipo": "recomendacion",
+   "esperado": "dostarlimab_dmmr",
+   "aceptables": [
+    "dostarlimab_dmmr"
+   ],
+   "obtenido": "dostarlimab_dmmr",
+   "obtenido_label": "Dostarlimab/anti-PD-1 neoadyuvante en dMMR",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "RECTO-V07",
+   "titulo": "Respuesta completa y preservacion",
+   "fuente": "Watch and wait",
+   "esperado_tipo": "recomendacion",
+   "esperado": "watch_wait",
+   "aceptables": [
+    "watch_wait"
+   ],
+   "obtenido": "watch_wait",
+   "obtenido_label": "Watch and wait con vigilancia intensiva",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "RECTO-V08",
+   "titulo": "Falta riesgo MRI",
+   "fuente": "Dato imprescindible",
+   "esperado_tipo": "necesita_datos",
+   "esperado": "necesita_datos",
+   "aceptables": [],
+   "obtenido": "necesita_datos",
+   "obtenido_label": null,
+   "confianza": null,
+   "revision": null,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [
+    "¿Cual es el grupo de riesgo local por RM o respuesta completa?"
+   ],
+   "n_candidatos": 0,
+   "error": null
+  },
+  {
+   "id": "RECTO-V09",
+   "titulo": "dMMR con autoinmunidad grave",
+   "fuente": "Seguridad ICI",
+   "esperado_tipo": "revision_humana",
+   "esperado": "revision_humana",
+   "aceptables": [],
+   "obtenido": "revision (sin opcion segura)",
+   "obtenido_label": null,
+   "confianza": 0.0,
+   "revision": true,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  }
+ ]
+}

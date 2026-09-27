@@ -1,0 +1,196 @@
+{
+ "tumor": "endometrio",
+ "nombre": "Cancer de endometrio",
+ "grupo": "Ginecologico",
+ "version": "ENDOMETRIO-ESMO-2025.1",
+ "fecha": "2026-09-27T14:47:27+00:00",
+ "modelo": "jev-latest",
+ "mock": false,
+ "umbral_confianza": 0.6,
+ "n": 9,
+ "aciertos": 9,
+ "acierto_global": 1.0,
+ "acierto_tratamiento": 1.0,
+ "acierto_preferida": 1.0,
+ "acierto_seguridad": 1.0,
+ "confianza_aciertos": 0.9985714285714286,
+ "confianza_fallos": null,
+ "n_multiopcion": 2,
+ "acierto_multiopcion": 1.0,
+ "candidatos_medios": 1.2857142857142858,
+ "casos": [
+  {
+   "id": "ENDOMETRIO-V01",
+   "titulo": "POLEmut bajo riesgo",
+   "fuente": "ESMO/ESGO POLE low risk",
+   "esperado_tipo": "recomendacion",
+   "esperado": "observacion_bajo_riesgo",
+   "aceptables": [
+    "observacion_bajo_riesgo"
+   ],
+   "obtenido": "observacion_bajo_riesgo",
+   "obtenido_label": "Observacion tras cirugia",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "ENDOMETRIO-V02",
+   "titulo": "Intermedio postoperatorio",
+   "fuente": "ESMO brachy intermediate risk",
+   "esperado_tipo": "recomendacion",
+   "esperado": "braquiterapia_vaginal",
+   "aceptables": [
+    "braquiterapia_vaginal"
+   ],
+   "obtenido": "braquiterapia_vaginal",
+   "obtenido_label": "Braquiterapia vaginal adyuvante",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "ENDOMETRIO-V03",
+   "titulo": "Estadio III p53abn alto riesgo",
+   "fuente": "ESMO high risk adjuvant",
+   "esperado_tipo": "recomendacion",
+   "esperado": "quimio_rt_alto_riesgo",
+   "aceptables": [
+    "quimio_rt_alto_riesgo",
+    "rt_pelvica"
+   ],
+   "obtenido": "quimio_rt_alto_riesgo",
+   "obtenido_label": "Quimioterapia carboplatino-paclitaxel +- radioterapia adyuvante",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  },
+  {
+   "id": "ENDOMETRIO-V04",
+   "titulo": "Avanzado dMMR 1L",
+   "fuente": "RUBY/NRG-GY018 dMMR",
+   "esperado_tipo": "recomendacion",
+   "esperado": "carbo_taxol_ici_dmmr_1l",
+   "aceptables": [
+    "carbo_taxol_ici_dmmr_1l"
+   ],
+   "obtenido": "carbo_taxol_ici_dmmr_1l",
+   "obtenido_label": "Carboplatino-paclitaxel + dostarlimab/pembrolizumab (dMMR)",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "ENDOMETRIO-V05",
+   "titulo": "Avanzado pMMR 1L",
+   "fuente": "RUBY/DUO-E pMMR",
+   "esperado_tipo": "recomendacion",
+   "esperado": "carbo_taxol_ici_pmmr_1l",
+   "aceptables": [
+    "carbo_taxol_ici_pmmr_1l",
+    "carbo_taxol_solo"
+   ],
+   "obtenido": "carbo_taxol_ici_pmmr_1l",
+   "obtenido_label": "Carboplatino-paclitaxel + pembrolizumab/dostarlimab/durvalumab",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "ENDOMETRIO-V06",
+   "titulo": "pMMR segunda linea",
+   "fuente": "KEYNOTE-775",
+   "esperado_tipo": "recomendacion",
+   "esperado": "lenvatinib_pembro_2l",
+   "aceptables": [
+    "lenvatinib_pembro_2l"
+   ],
+   "obtenido": "lenvatinib_pembro_2l",
+   "obtenido_label": "Lenvatinib + pembrolizumab",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "ENDOMETRIO-V07",
+   "titulo": "ER positivo indolente",
+   "fuente": "ESMO hormonal therapy",
+   "esperado_tipo": "recomendacion",
+   "esperado": "hormonoterapia",
+   "aceptables": [
+    "hormonoterapia",
+    "carbo_taxol_ici_pmmr_1l",
+    "carbo_taxol_solo"
+   ],
+   "obtenido": "hormonoterapia",
+   "obtenido_label": "Hormonoterapia",
+   "confianza": 0.99,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  },
+  {
+   "id": "ENDOMETRIO-V08",
+   "titulo": "Falta subtipo molecular",
+   "fuente": "ESMO molecular classification required",
+   "esperado_tipo": "necesita_datos",
+   "esperado": "necesita_datos",
+   "aceptables": [],
+   "obtenido": "necesita_datos",
+   "obtenido_label": null,
+   "confianza": null,
+   "revision": null,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [
+    "¿Cual es el subtipo molecular integrado?"
+   ],
+   "n_candidatos": 0,
+   "error": null
+  },
+  {
+   "id": "ENDOMETRIO-V09",
+   "titulo": "ECOG 4 recurrente",
+   "fuente": "ESMO poor PS",
+   "esperado_tipo": "revision_humana",
+   "esperado": "revision_humana",
+   "aceptables": [],
+   "obtenido": "revision (soporte_endometrio)",
+   "obtenido_label": "Soporte exclusivo/valoracion geriatrica",
+   "confianza": 1.0,
+   "revision": true,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  }
+ ]
+}

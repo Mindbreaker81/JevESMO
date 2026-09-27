@@ -1,0 +1,213 @@
+{
+ "tumor": "melanoma",
+ "nombre": "Melanoma cutaneo",
+ "grupo": "Piel",
+ "version": "MELANOMA-ESMO-2025.1",
+ "fecha": "2026-09-27T14:47:36+00:00",
+ "modelo": "jev-latest",
+ "mock": false,
+ "umbral_confianza": 0.6,
+ "n": 10,
+ "aciertos": 10,
+ "acierto_global": 1.0,
+ "acierto_tratamiento": 1.0,
+ "acierto_preferida": 1.0,
+ "acierto_seguridad": 1.0,
+ "confianza_aciertos": 0.9475,
+ "confianza_fallos": null,
+ "n_multiopcion": 2,
+ "acierto_multiopcion": 1.0,
+ "candidatos_medios": 1.25,
+ "casos": [
+  {
+   "id": "MELANOMA-V01",
+   "titulo": "IA resecado",
+   "fuente": "ESMO melanoma precoz",
+   "esperado_tipo": "recomendacion",
+   "esperado": "escision_vigilancia_i_iiA",
+   "aceptables": [
+    "escision_vigilancia_i_iiA"
+   ],
+   "obtenido": "escision_vigilancia_i_iiA",
+   "obtenido_label": "Escision amplia y vigilancia",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "MELANOMA-V02",
+   "titulo": "IIB resecado",
+   "fuente": "KEYNOTE-716",
+   "esperado_tipo": "recomendacion",
+   "esperado": "ady_pembro_iib_iic",
+   "aceptables": [
+    "ady_pembro_iib_iic"
+   ],
+   "obtenido": "ady_pembro_iib_iic",
+   "obtenido_label": "Pembrolizumab adyuvante en IIB/IIC",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "MELANOMA-V03",
+   "titulo": "III resecado BRAF wt",
+   "fuente": "anti-PD-1 adyuvante",
+   "esperado_tipo": "recomendacion",
+   "esperado": "ady_anti_pd1_iii",
+   "aceptables": [
+    "ady_anti_pd1_iii"
+   ],
+   "obtenido": "ady_anti_pd1_iii",
+   "obtenido_label": "Nivolumab o pembrolizumab adyuvante en III",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "MELANOMA-V04",
+   "titulo": "III BRAF mutado",
+   "fuente": "COMBI-AD",
+   "esperado_tipo": "recomendacion",
+   "esperado": "ady_anti_pd1_iii",
+   "aceptables": [
+    "ady_anti_pd1_iii",
+    "ady_dab_tram_iii_braf"
+   ],
+   "obtenido": "ady_anti_pd1_iii",
+   "obtenido_label": "Nivolumab o pembrolizumab adyuvante en III",
+   "confianza": 0.6,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  },
+  {
+   "id": "MELANOMA-V05",
+   "titulo": "III macroscopico",
+   "fuente": "SWOG S1801",
+   "esperado_tipo": "recomendacion",
+   "esperado": "neoady_pembro_iii_macro",
+   "aceptables": [
+    "neoady_pembro_iii_macro"
+   ],
+   "obtenido": "neoady_pembro_iii_macro",
+   "obtenido_label": "Pembrolizumab neoadyuvante y adyuvante",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "MELANOMA-V06",
+   "titulo": "IV BRAF wt LDH alta",
+   "fuente": "ipi+nivo",
+   "esperado_tipo": "recomendacion",
+   "esperado": "ipi_nivo_iv",
+   "aceptables": [
+    "ipi_nivo_iv"
+   ],
+   "obtenido": "ipi_nivo_iv",
+   "obtenido_label": "Nivolumab + ipilimumab 1L",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "MELANOMA-V07",
+   "titulo": "IV BRAF mutado respuesta rapida",
+   "fuente": "BRAF/MEK",
+   "esperado_tipo": "recomendacion",
+   "esperado": "braf_mek_iv",
+   "aceptables": [
+    "braf_mek_iv",
+    "ipi_nivo_iv"
+   ],
+   "obtenido": "braf_mek_iv",
+   "obtenido_label": "BRAF/MEK inhibidor",
+   "confianza": 0.98,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  },
+  {
+   "id": "MELANOMA-V08",
+   "titulo": "IV post anti-PD-1",
+   "fuente": "TIL",
+   "esperado_tipo": "recomendacion",
+   "esperado": "til_post_ici",
+   "aceptables": [
+    "til_post_ici"
+   ],
+   "obtenido": "til_post_ici",
+   "obtenido_label": "TIL/lifileucel o ensayo tras anti-PD-1",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "MELANOMA-V09",
+   "titulo": "Falta BRAF",
+   "fuente": "Dato imprescindible",
+   "esperado_tipo": "necesita_datos",
+   "esperado": "necesita_datos",
+   "aceptables": [],
+   "obtenido": "necesita_datos",
+   "obtenido_label": null,
+   "confianza": null,
+   "revision": null,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [
+    "¿Cual es el estado de BRAF V600 (mutado/wt/desconocido)?"
+   ],
+   "n_candidatos": 0,
+   "error": null
+  },
+  {
+   "id": "MELANOMA-V10",
+   "titulo": "Autoinmune activa",
+   "fuente": "Seguridad ICI",
+   "esperado_tipo": "revision_humana",
+   "esperado": "revision_humana",
+   "aceptables": [],
+   "obtenido": "revision (sin opcion segura)",
+   "obtenido_label": null,
+   "confianza": null,
+   "revision": true,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 0,
+   "error": null
+  }
+ ]
+}

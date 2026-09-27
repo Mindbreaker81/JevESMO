@@ -1,0 +1,192 @@
+{
+ "tumor": "rinon",
+ "nombre": "Carcinoma renal",
+ "grupo": "Genitourinario",
+ "version": "RINON-ESMO-2024.1",
+ "fecha": "2026-09-27T14:47:44+00:00",
+ "modelo": "jev-latest",
+ "mock": false,
+ "umbral_confianza": 0.6,
+ "n": 9,
+ "aciertos": 9,
+ "acierto_global": 1.0,
+ "acierto_tratamiento": 1.0,
+ "acierto_preferida": 1.0,
+ "acierto_seguridad": 1.0,
+ "confianza_aciertos": 1.0,
+ "confianza_fallos": null,
+ "n_multiopcion": 0,
+ "acierto_multiopcion": null,
+ "candidatos_medios": 1.0,
+ "casos": [
+  {
+   "id": "RINON-V01",
+   "titulo": "Localizado bajo riesgo",
+   "fuente": "ESMO RCC 2024 - localized surgery and surveillance",
+   "esperado_tipo": "recomendacion",
+   "esperado": "nefrectomia_vigilancia",
+   "aceptables": [
+    "nefrectomia_vigilancia"
+   ],
+   "obtenido": "nefrectomia_vigilancia",
+   "obtenido_label": "Nefrectomia parcial/radical y vigilancia",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "RINON-V02",
+   "titulo": "Adyuvancia alto riesgo celulas claras",
+   "fuente": "ESMO RCC 2024 - pembrolizumab adjuvant KEYNOTE-564",
+   "esperado_tipo": "recomendacion",
+   "esperado": "pembro_adyuvante_rcc",
+   "aceptables": [
+    "pembro_adyuvante_rcc"
+   ],
+   "obtenido": "pembro_adyuvante_rcc",
+   "obtenido_label": "Pembrolizumab adyuvante",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "RINON-V03",
+   "titulo": "Avanzado celulas claras favorable",
+   "fuente": "ESMO RCC 2024 - favorable risk ICI TKI",
+   "esperado_tipo": "recomendacion",
+   "esperado": "ici_tki_favorable",
+   "aceptables": [
+    "ici_tki_favorable"
+   ],
+   "obtenido": "ici_tki_favorable",
+   "obtenido_label": "Pembrolizumab+axitinib o pembrolizumab+lenvatinib",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "RINON-V04",
+   "titulo": "Avanzado intermedio sin urgencia",
+   "fuente": "ESMO RCC 2024 - nivo ipi intermediate poor risk",
+   "esperado_tipo": "recomendacion",
+   "esperado": "nivo_ipi_inter_pobre",
+   "aceptables": [
+    "nivo_ipi_inter_pobre"
+   ],
+   "obtenido": "nivo_ipi_inter_pobre",
+   "obtenido_label": "Nivolumab + ipilimumab",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "RINON-V05",
+   "titulo": "Avanzado pobre con crisis sintomatica",
+   "fuente": "ESMO RCC 2024 - ICI TKI when rapid response needed",
+   "esperado_tipo": "recomendacion",
+   "esperado": "ici_tki_inter_pobre",
+   "aceptables": [
+    "ici_tki_inter_pobre"
+   ],
+   "obtenido": "ici_tki_inter_pobre",
+   "obtenido_label": "ICI + TKI anti-VEGF",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "RINON-V06",
+   "titulo": "Papilar avanzado",
+   "fuente": "ESMO RCC 2024 - non clear cell cabozantinib",
+   "esperado_tipo": "recomendacion",
+   "esperado": "cabozantinib_no_claras",
+   "aceptables": [
+    "cabozantinib_no_claras"
+   ],
+   "obtenido": "cabozantinib_no_claras",
+   "obtenido_label": "Cabozantinib (no celulas claras)",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "RINON-V07",
+   "titulo": "Segunda linea tras ICI TKI",
+   "fuente": "ESMO RCC 2024 - cabozantinib subsequent therapy",
+   "esperado_tipo": "recomendacion",
+   "esperado": "cabozantinib_2l",
+   "aceptables": [
+    "cabozantinib_2l"
+   ],
+   "obtenido": "cabozantinib_2l",
+   "obtenido_label": "Cabozantinib 2L",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "RINON-V08",
+   "titulo": "Falta IMDC",
+   "fuente": "Dato imprescindible - IMDC",
+   "esperado_tipo": "necesita_datos",
+   "esperado": "necesita_datos",
+   "aceptables": [],
+   "obtenido": "necesita_datos",
+   "obtenido_label": null,
+   "confianza": null,
+   "revision": null,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [
+    "En enfermedad avanzada, ¿cual es el riesgo IMDC?"
+   ],
+   "n_candidatos": 0,
+   "error": null
+  },
+  {
+   "id": "RINON-V09",
+   "titulo": "Intermedio con autoinmune activa",
+   "fuente": "Seguridad - ICI contraindicado relativo",
+   "esperado_tipo": "revision_humana",
+   "esperado": "revision_humana",
+   "aceptables": [],
+   "obtenido": "revision (sin opcion segura)",
+   "obtenido_label": null,
+   "confianza": null,
+   "revision": true,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 0,
+   "error": null
+  }
+ ]
+}

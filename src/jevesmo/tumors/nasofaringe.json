@@ -1,0 +1,538 @@
+{
+ "id": "nasofaringe",
+ "nombre": "Carcinoma nasofaringeo",
+ "grupo": "Cabeza y cuello / Endocrino",
+ "version": "NASOFARINGE-ESMO-2023.1",
+ "guias": [
+  {
+   "titulo": "ESMO-EURACAN Clinical Practice Guideline: Nasopharyngeal Carcinoma",
+   "anio": 2023,
+   "url": "https://www.esmo.org/guidelines/esmo-euracan-clinical-practice-guideline-nasopharyngeal-carcinoma"
+  }
+ ],
+ "descripcion": "Carcinoma nasofaringeo: RT, QRT con cisplatino, induccion gemcitabina-cisplatino y enfermedad recurrente/metastasica.",
+ "campos": [
+  {
+   "id": "estadio",
+   "label": "Estadio/situacion",
+   "tipo": "choice",
+   "seccion": "Tumor",
+   "opciones": [
+    "I",
+    "II",
+    "III",
+    "IVA",
+    "recurrente_metastasico"
+   ],
+   "requerido": true,
+   "pregunta": "¿Cual es el estadio (I, II, III, IVA) o si es recurrente_metastasico?"
+  },
+  {
+   "id": "histologia",
+   "label": "Histologia",
+   "tipo": "choice",
+   "seccion": "Tumor",
+   "opciones": [
+    "no_queratinizante",
+    "queratinizante",
+    "indiferenciado"
+   ],
+   "requerido": true,
+   "pregunta": "¿Cual es la histologia del carcinoma nasofaringeo?"
+  },
+  {
+   "id": "ebv_dna_alto",
+   "label": "EBV-DNA alto/persistente",
+   "tipo": "bool",
+   "seccion": "Biomarcadores"
+  },
+  {
+   "id": "cisplatino_apto",
+   "label": "Apto para cisplatino",
+   "tipo": "bool",
+   "seccion": "Seguridad"
+  },
+  {
+   "id": "enfermedad_voluminosa",
+   "label": "T/N voluminoso o alto riesgo",
+   "tipo": "bool",
+   "seccion": "Riesgo"
+  },
+  {
+   "id": "pdl1_expresa",
+   "label": "PD-L1 expresado",
+   "tipo": "bool",
+   "seccion": "Biomarcadores"
+  }
+ ],
+ "derivados": [],
+ "opciones": [
+  {
+   "id": "rt_sola_estadio_i",
+   "label": "Radioterapia radical sola",
+   "nota": "Estadio I: RT radical IMRT sin quimioterapia.",
+   "cuando": {
+    "campo": "estadio",
+    "eq": "I"
+   },
+   "componentes": [
+    "radioterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "qrt_estadio_ii",
+   "label": "Quimiorradioterapia concomitante (estadio II)",
+   "nota": "Estadio II: RT + cisplatino concomitante, especialmente N1 o factores de riesgo.",
+   "cuando": [
+    {
+     "campo": "estadio",
+     "eq": "II"
+    },
+    {
+     "campo": "cisplatino_apto",
+     "ne": false
+    }
+   ],
+   "componentes": [
+    "quimiorradioterapia",
+    "quimioterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "rt_estadio_ii_no_cis",
+   "label": "RT sola si cisplatino no apto",
+   "nota": "Estadio II con cisplatino contraindicado: RT radical e individualizacion.",
+   "cuando": [
+    {
+     "campo": "estadio",
+     "eq": "II"
+    },
+    {
+     "campo": "cisplatino_apto",
+     "eq": false
+    }
+   ],
+   "componentes": [
+    "radioterapia"
+   ],
+   "evidencia": "II, B"
+  },
+  {
+   "id": "induccion_gp_mas_qrt",
+   "label": "Induccion gemcitabina-cisplatino seguida de QRT",
+   "nota": "Estadio III-IVA voluminoso/alto riesgo: induccion gemcitabina-cisplatino seguida de QRT.",
+   "cuando": [
+    {
+     "campo": "estadio",
+     "in": [
+      "III",
+      "IVA"
+     ]
+    },
+    {
+     "campo": "enfermedad_voluminosa",
+     "eq": true
+    },
+    {
+     "campo": "cisplatino_apto",
+     "ne": false
+    }
+   ],
+   "componentes": [
+    "quimioterapia",
+    "quimiorradioterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "qrt_definitiva_npc",
+   "label": "Quimiorradioterapia definitiva con cisplatino",
+   "nota": "Estadio III-IVA no metastasico: QRT concomitante con cisplatino; induccion segun riesgo.",
+   "cuando": [
+    {
+     "campo": "estadio",
+     "in": [
+      "III",
+      "IVA"
+     ]
+    },
+    {
+     "campo": "cisplatino_apto",
+     "ne": false
+    }
+   ],
+   "componentes": [
+    "quimiorradioterapia",
+    "quimioterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "rt_definitiva_no_cis_npc",
+   "label": "RT definitiva si no cisplatino",
+   "nota": "Pacientes no candidatos a cisplatino: RT radical e individualizacion.",
+   "cuando": [
+    {
+     "campo": "estadio",
+     "in": [
+      "III",
+      "IVA"
+     ]
+    },
+    {
+     "campo": "cisplatino_apto",
+     "eq": false
+    }
+   ],
+   "componentes": [
+    "radioterapia"
+   ],
+   "evidencia": "III, B"
+  },
+  {
+   "id": "gem_cis_ici_1l",
+   "label": "Gemcitabina-cisplatino + anti-PD-1 1L",
+   "nota": "R/M 1L: gemcitabina-cisplatino con toripalimab/camrelizumab u otro anti-PD-1 es estandar actual.",
+   "cuando": [
+    {
+     "campo": "estadio",
+     "eq": "recurrente_metastasico"
+    },
+    {
+     "any": [
+      {
+       "campo": "lineas_previas",
+       "missing": true
+      },
+      {
+       "campo": "lineas_previas",
+       "eq": 0
+      }
+     ]
+    },
+    {
+     "campo": "cisplatino_apto",
+     "ne": false
+    }
+   ],
+   "componentes": [
+    "quimioterapia",
+    "inmunoterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "gem_cis_1l",
+   "label": "Gemcitabina-cisplatino 1L",
+   "nota": "R/M: gemcitabina-cisplatino es doblete de referencia si inmunoterapia no disponible/no adecuada.",
+   "cuando": [
+    {
+     "campo": "estadio",
+     "eq": "recurrente_metastasico"
+    },
+    {
+     "any": [
+      {
+       "campo": "lineas_previas",
+       "missing": true
+      },
+      {
+       "campo": "lineas_previas",
+       "eq": 0
+      }
+     ]
+    },
+    {
+     "campo": "cisplatino_apto",
+     "ne": false
+    }
+   ],
+   "componentes": [
+    "quimioterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "monoquimio_no_platino",
+   "label": "Quimioterapia no platino / soporte individualizado",
+   "nota": "R/M no candidato a platino: monoterapia paliativa o soporte segun fragilidad.",
+   "cuando": [
+    {
+     "campo": "estadio",
+     "eq": "recurrente_metastasico"
+    },
+    {
+     "campo": "cisplatino_apto",
+     "eq": false
+    }
+   ],
+   "componentes": [
+    "quimioterapia",
+    "soporte"
+   ],
+   "evidencia": "III, B"
+  },
+  {
+   "id": "inmunoterapia_2l_npc",
+   "label": "Inmunoterapia anti-PD-1 tras platino",
+   "nota": "Tras progresion a platino: anti-PD-1 es opcion en pacientes seleccionados.",
+   "cuando": [
+    {
+     "campo": "estadio",
+     "eq": "recurrente_metastasico"
+    },
+    {
+     "campo": "lineas_previas",
+     "gte": 1
+    }
+   ],
+   "componentes": [
+    "inmunoterapia"
+   ],
+   "evidencia": "II, B"
+  }
+ ],
+ "preguntas": [
+  {
+   "key": "riesgo_induccion",
+   "tipo": "choice",
+   "capa": 1,
+   "cuando": {
+    "campo": "estadio",
+    "in": [
+     "III",
+     "IVA"
+    ]
+   },
+   "instrucciones": "Clasifica el riesgo de recaida que justifica induccion antes de QRT.",
+   "criterios": {
+    "alto": "T/N voluminoso, EBV-DNA alto o multiples ganglios",
+    "estandar": "Riesgo no voluminoso; QRT directa razonable"
+   }
+  },
+  {
+   "key": "oligorecurrencia_local",
+   "tipo": "noul",
+   "capa": 2,
+   "cuando": {
+    "campo": "estadio",
+    "eq": "recurrente_metastasico"
+   },
+   "instrucciones": "¿La recurrencia parece oligometastasica/localmente rescatable con tratamiento local radical?"
+  }
+ ],
+ "seguridad": [
+  {
+   "key": "contra_cisplatino_npc",
+   "cuando": {
+    "campo": "cisplatino_apto",
+    "present": true
+   },
+   "bloquea_componentes": [
+    "quimiorradioterapia"
+   ],
+   "instrucciones": "¿Funcion renal/auditiva o fragilidad contraindican cisplatino concurrente?",
+   "umbral": 0.7,
+   "motivo": "Cisplatino no seguro."
+  },
+  {
+   "key": "contra_ici_npc",
+   "cuando": {
+    "campo": "comorbilidades_relevantes",
+    "present": true
+   },
+   "bloquea_componentes": [
+    "inmunoterapia"
+   ],
+   "instrucciones": "¿Hay contraindicacion mayor para anti-PD-1?",
+   "motivo": "Contraindicacion mayor para inmunoterapia."
+  }
+ ],
+ "avisos": [
+  {
+   "cuando": {
+    "campo": "ebv_dna_alto",
+    "missing": true
+   },
+   "texto": "EBV-DNA no disponible: ayuda a estratificar riesgo y vigilancia."
+  }
+ ],
+ "vinetas": [
+  {
+   "id": "NASOFARINGE-V01",
+   "titulo": "Estadio I",
+   "fuente": "ESMO NPC RT sola",
+   "payload": {
+    "edad": 60,
+    "ecog": "0",
+    "estadio": "I",
+    "histologia": "no_queratinizante"
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "rt_sola_estadio_i",
+    "aceptables": [
+     "rt_sola_estadio_i"
+    ]
+   }
+  },
+  {
+   "id": "NASOFARINGE-V02",
+   "titulo": "Estadio II apto platino",
+   "fuente": "ESMO NPC QRT II",
+   "payload": {
+    "edad": 60,
+    "ecog": "0",
+    "estadio": "II",
+    "histologia": "no_queratinizante",
+    "cisplatino_apto": true
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "qrt_estadio_ii",
+    "aceptables": [
+     "qrt_estadio_ii"
+    ]
+   }
+  },
+  {
+   "id": "NASOFARINGE-V03",
+   "titulo": "III voluminoso",
+   "fuente": "GP induccion + QRT",
+   "payload": {
+    "edad": 60,
+    "ecog": "0",
+    "estadio": "III",
+    "histologia": "indiferenciado",
+    "enfermedad_voluminosa": true,
+    "ebv_dna_alto": true,
+    "cisplatino_apto": true
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "induccion_gp_mas_qrt",
+    "aceptables": [
+     "induccion_gp_mas_qrt",
+     "qrt_definitiva_npc"
+    ]
+   }
+  },
+  {
+   "id": "NASOFARINGE-V04",
+   "titulo": "IVA no voluminoso",
+   "fuente": "QRT definitiva",
+   "payload": {
+    "edad": 60,
+    "ecog": "1",
+    "estadio": "IVA",
+    "histologia": "no_queratinizante",
+    "enfermedad_voluminosa": false,
+    "cisplatino_apto": true
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "qrt_definitiva_npc",
+    "aceptables": [
+     "qrt_definitiva_npc"
+    ]
+   }
+  },
+  {
+   "id": "NASOFARINGE-V05",
+   "titulo": "No cisplatino",
+   "fuente": "RT si no cisplatino",
+   "payload": {
+    "edad": 60,
+    "ecog": "1",
+    "estadio": "III",
+    "histologia": "no_queratinizante",
+    "cisplatino_apto": false,
+    "insuficiencia_renal": true
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "rt_definitiva_no_cis_npc",
+    "aceptables": [
+     "rt_definitiva_no_cis_npc"
+    ]
+   }
+  },
+  {
+   "id": "NASOFARINGE-V06",
+   "titulo": "R/M primera linea",
+   "fuente": "JUPITER/CAPTAIN",
+   "payload": {
+    "edad": 60,
+    "ecog": "1",
+    "estadio": "recurrente_metastasico",
+    "histologia": "no_queratinizante",
+    "cisplatino_apto": true,
+    "pdl1_expresa": true
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "gem_cis_ici_1l",
+    "aceptables": [
+     "gem_cis_ici_1l",
+     "gem_cis_1l"
+    ]
+   }
+  },
+  {
+   "id": "NASOFARINGE-V07",
+   "titulo": "R/M post platino",
+   "fuente": "anti-PD-1 2L",
+   "payload": {
+    "edad": 60,
+    "ecog": "1",
+    "estadio": "recurrente_metastasico",
+    "histologia": "no_queratinizante",
+    "lineas_previas": 1,
+    "tratamientos_previos": [
+     "gemcitabina cisplatino"
+    ]
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "inmunoterapia_2l_npc",
+    "aceptables": [
+     "inmunoterapia_2l_npc"
+    ]
+   }
+  },
+  {
+   "id": "NASOFARINGE-V08",
+   "titulo": "Falta histologia",
+   "fuente": "Dato imprescindible",
+   "payload": {
+    "edad": 60,
+    "ecog": "0",
+    "estadio": "II",
+    "histologia": null
+   },
+   "esperado": {
+    "tipo": "necesita_datos"
+   }
+  },
+  {
+   "id": "NASOFARINGE-V09",
+   "titulo": "Autoinmunidad activa en 2L",
+   "fuente": "Seguridad anti-PD-1",
+   "payload": {
+    "edad": 60,
+    "ecog": "1",
+    "estadio": "recurrente_metastasico",
+    "histologia": "no_queratinizante",
+    "lineas_previas": 1,
+    "comorbilidades_relevantes": [
+     "hepatitis autoinmune activa con inmunosupresion"
+    ]
+   },
+   "esperado": {
+    "tipo": "revision_humana"
+   }
+  }
+ ]
+}

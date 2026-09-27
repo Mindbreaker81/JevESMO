@@ -1,0 +1,194 @@
+{
+ "tumor": "ccr_metastasico",
+ "nombre": "Cancer colorrectal metastasico",
+ "grupo": "Digestivo",
+ "version": "ccr_metastasico-ESMO-2026.1",
+ "fecha": "2026-09-27T14:47:19+00:00",
+ "modelo": "jev-latest",
+ "mock": false,
+ "umbral_confianza": 0.6,
+ "n": 9,
+ "aciertos": 9,
+ "acierto_global": 1.0,
+ "acierto_tratamiento": 1.0,
+ "acierto_preferida": 1.0,
+ "acierto_seguridad": 1.0,
+ "confianza_aciertos": 0.9142857142857144,
+ "confianza_fallos": null,
+ "n_multiopcion": 3,
+ "acierto_multiopcion": 1.0,
+ "candidatos_medios": 1.7142857142857142,
+ "casos": [
+  {
+   "id": "CCR_METASTASICO-V01",
+   "titulo": "MSI-H 1L",
+   "fuente": "KEYNOTE-177",
+   "esperado_tipo": "recomendacion",
+   "esperado": "pembro_msi_1l",
+   "aceptables": [
+    "pembro_msi_1l"
+   ],
+   "obtenido": "pembro_msi_1l",
+   "obtenido_label": "Pembrolizumab 1L MSI-H/dMMR",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "CCR_METASTASICO-V02",
+   "titulo": "Izquierdo RAS/BRAF wt MSS 1L",
+   "fuente": "ESMO anti-EGFR izquierda",
+   "esperado_tipo": "recomendacion",
+   "esperado": "doublet_egfr_izq_1l",
+   "aceptables": [
+    "doublet_egfr_izq_1l"
+   ],
+   "obtenido": "doublet_egfr_izq_1l",
+   "obtenido_label": "FOLFOX/FOLFIRI + anti-EGFR 1L",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "CCR_METASTASICO-V03",
+   "titulo": "RAS mutado MSS 1L",
+   "fuente": "ESMO bevacizumab",
+   "esperado_tipo": "recomendacion",
+   "esperado": "doublet_bev_1l",
+   "aceptables": [
+    "doublet_bev_1l"
+   ],
+   "obtenido": "doublet_bev_1l",
+   "obtenido_label": "FOLFOX/FOLFIRI + bevacizumab 1L",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "CCR_METASTASICO-V04",
+   "titulo": "Potencialmente resecable",
+   "fuente": "Conversion",
+   "esperado_tipo": "recomendacion",
+   "esperado": "folfoxiri_bev_conversion",
+   "aceptables": [
+    "folfoxiri_bev_conversion",
+    "doublet_bev_1l"
+   ],
+   "obtenido": "folfoxiri_bev_conversion",
+   "obtenido_label": "FOLFOXIRI + bevacizumab de conversion",
+   "confianza": 0.97,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  },
+  {
+   "id": "CCR_METASTASICO-V05",
+   "titulo": "BRAF V600E 2L",
+   "fuente": "BEACON",
+   "esperado_tipo": "recomendacion",
+   "esperado": "encorafenib_cetuximab",
+   "aceptables": [
+    "encorafenib_cetuximab"
+   ],
+   "obtenido": "encorafenib_cetuximab",
+   "obtenido_label": "Encorafenib + cetuximab BRAF V600E",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "CCR_METASTASICO-V06",
+   "titulo": "HER2+ RAS wt refractario",
+   "fuente": "MOUNTAINEER",
+   "esperado_tipo": "recomendacion",
+   "esperado": "her2_tucatinib_trastuzumab",
+   "aceptables": [
+    "her2_tucatinib_trastuzumab"
+   ],
+   "obtenido": "her2_tucatinib_trastuzumab",
+   "obtenido_label": "Tucatinib + trastuzumab HER2+",
+   "confianza": 0.83,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 3,
+   "error": null
+  },
+  {
+   "id": "CCR_METASTASICO-V07",
+   "titulo": "Refractario TAS-102+bev",
+   "fuente": "SUNLIGHT",
+   "esperado_tipo": "recomendacion",
+   "esperado": "tas102_bev",
+   "aceptables": [
+    "tas102_bev",
+    "fruquintinib"
+   ],
+   "obtenido": "tas102_bev",
+   "obtenido_label": "Trifluridina/tipiracilo + bevacizumab",
+   "confianza": 0.6,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 3,
+   "error": null
+  },
+  {
+   "id": "CCR_METASTASICO-V08",
+   "titulo": "Falta MSI",
+   "fuente": "Dato imprescindible",
+   "esperado_tipo": "necesita_datos",
+   "esperado": "necesita_datos",
+   "aceptables": [],
+   "obtenido": "necesita_datos",
+   "obtenido_label": null,
+   "confianza": null,
+   "revision": null,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [
+    "¿El tumor es MSI-H/dMMR?"
+   ],
+   "n_candidatos": 0,
+   "error": null
+  },
+  {
+   "id": "CCR_METASTASICO-V09",
+   "titulo": "MSI-H con autoinmunidad grave",
+   "fuente": "Seguridad ICI",
+   "esperado_tipo": "revision_humana",
+   "esperado": "revision_humana",
+   "aceptables": [],
+   "obtenido": "revision (sin opcion segura)",
+   "obtenido_label": null,
+   "confianza": 0.0,
+   "revision": true,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  }
+ ]
+}

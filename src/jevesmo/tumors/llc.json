@@ -1,0 +1,580 @@
+{
+ "id": "llc",
+ "nombre": "Leucemia linfocitica cronica",
+ "grupo": "Hematologia",
+ "version": "CLL-ESMO-2024.1",
+ "guias": [
+  {
+   "titulo": "ESMO Clinical Practice Guideline: Chronic lymphocytic leukaemia",
+   "anio": 2024,
+   "url": "https://www.esmo.org/guidelines/haematological-malignancies/chronic-lymphocytic-leukaemia"
+  }
+ ],
+ "descripcion": "LLC: indicacion iwCLL, Binet/Rai, TP53/del17p, IGHV, BTKi continuo frente a venetoclax-obinutuzumab y recaida.",
+ "campos": [
+  {
+   "id": "estadio_cll",
+   "label": "Estadio Binet/Rai",
+   "tipo": "choice",
+   "opciones": [
+    "Binet_A_Rai_0_I",
+    "Binet_B_Rai_II",
+    "Binet_C_Rai_III_IV"
+   ],
+   "requerido": true,
+   "pregunta": "¿Cual es el estadio Binet/Rai?"
+  },
+  {
+   "id": "indicacion_iwcll",
+   "label": "Indicacion iwCLL de tratamiento",
+   "tipo": "bool",
+   "requerido": true,
+   "pregunta": "¿Cumple criterios iwCLL para iniciar tratamiento?"
+  },
+  {
+   "id": "tp53_del17p",
+   "label": "TP53 mutado o del(17p)",
+   "tipo": "choice",
+   "opciones": [
+    "alterado",
+    "no_alterado",
+    "desconocido"
+   ],
+   "requerido_si": {
+    "campo": "indicacion_iwcll",
+    "eq": true
+   },
+   "pregunta": "¿Hay mutacion TP53 o delecion 17p?"
+  },
+  {
+   "id": "ighv",
+   "label": "IGHV",
+   "tipo": "choice",
+   "opciones": [
+    "mutado",
+    "no_mutado",
+    "desconocido"
+   ],
+   "requerido_si": {
+    "campo": "indicacion_iwcll",
+    "eq": true
+   },
+   "pregunta": "¿Cual es el estado IGHV?"
+  },
+  {
+   "id": "cardiopatia_anticoagulacion",
+   "label": "Cardiopatia significativa o anticoagulacion",
+   "tipo": "bool",
+   "seccion": "Seguridad"
+  },
+  {
+   "id": "preferencia_tiempo_fijo",
+   "label": "Preferencia por tratamiento de duracion fija",
+   "tipo": "bool",
+   "seccion": "Preferencias"
+  }
+ ],
+ "derivados": [
+  {
+   "id": "situacion",
+   "label": "Situacion clinica",
+   "defecto": "primera_linea",
+   "reglas": [
+    {
+     "cuando": {
+      "campo": "lineas_previas",
+      "gte": 1
+     },
+     "valor": "recaida"
+    }
+   ]
+  }
+ ],
+ "opciones": [
+  {
+   "id": "observacion",
+   "label": "Observacion activa",
+   "nota": "ESMO CLL: sin criterios iwCLL de tratamiento -> watch and wait, incluso en estadios iniciales",
+   "cuando": [
+    {
+     "campo": "indicacion_iwcll",
+     "eq": false
+    }
+   ],
+   "componentes": [
+    "vigilancia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "btki_1l",
+   "label": "Inhibidor BTK covalente continuo (acalabrutinib/zanubrutinib/ibrutinib)",
+   "nota": "ESMO CLL: primera linea con iwCLL, especialmente TP53/del17p o IGHV no mutado; BTKi continuo evita quimio",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "primera_linea"
+    },
+    {
+     "campo": "indicacion_iwcll",
+     "eq": true
+    },
+    {
+     "campo": "cardiopatia_anticoagulacion",
+     "ne": true
+    }
+   ],
+   "componentes": [
+    "dirigida"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "ven_obinu_1l",
+   "label": "Venetoclax + obinutuzumab tiempo fijo",
+   "nota": "ESMO CLL: primera linea sin TP53 alterado o si se prioriza duracion fija; CLL14",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "primera_linea"
+    },
+    {
+     "campo": "indicacion_iwcll",
+     "eq": true
+    },
+    {
+     "campo": "tp53_del17p",
+     "ne": "alterado"
+    }
+   ],
+   "componentes": [
+    "dirigida",
+    "inmunoterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "ven_obinu_tp53",
+   "label": "Venetoclax + obinutuzumab si BTKi no adecuado",
+   "nota": "ESMO CLL: TP53/del17p con contraindicacion/preferencia contra BTKi -> venetoclax-obinutuzumab puede ser opcion",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "primera_linea"
+    },
+    {
+     "campo": "indicacion_iwcll",
+     "eq": true
+    },
+    {
+     "campo": "tp53_del17p",
+     "eq": "alterado"
+    },
+    {
+     "campo": "cardiopatia_anticoagulacion",
+     "eq": true
+    }
+   ],
+   "componentes": [
+    "dirigida",
+    "inmunoterapia"
+   ],
+   "evidencia": "II, B"
+  },
+  {
+   "id": "ven_ibrutinib_1l",
+   "label": "Venetoclax + ibrutinib tiempo fijo",
+   "nota": "ESMO CLL: opcion de duracion fija oral en primera linea seleccionada (GLOW/CAPTIVATE), si no hay alto riesgo cardiovascular",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "primera_linea"
+    },
+    {
+     "campo": "indicacion_iwcll",
+     "eq": true
+    },
+    {
+     "campo": "preferencia_tiempo_fijo",
+     "eq": true
+    },
+    {
+     "campo": "cardiopatia_anticoagulacion",
+     "ne": true
+    }
+   ],
+   "componentes": [
+    "dirigida"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "fitcr_ighv_mutado",
+   "label": "FCR/BR solo en casos seleccionados IGHV mutado",
+   "nota": "ESMO CLL: inmunoquimioterapia restringida a jovenes/fit con IGHV mutado, TP53 normal y decision informada",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "primera_linea"
+    },
+    {
+     "campo": "indicacion_iwcll",
+     "eq": true
+    },
+    {
+     "campo": "ighv",
+     "eq": "mutado"
+    },
+    {
+     "campo": "tp53_del17p",
+     "eq": "no_alterado"
+    },
+    {
+     "campo": "edad",
+     "lt": 65
+    }
+   ],
+   "componentes": [
+    "quimioterapia",
+    "inmunoterapia"
+   ],
+   "evidencia": "II, B"
+  },
+  {
+   "id": "venetoclax_recaida_post_btki",
+   "label": "Venetoclax + rituximab/obinutuzumab tras BTKi",
+   "nota": "ESMO CLL: recaida/progresion tras BTKi -> cambiar a venetoclax basado en anti-CD20 si procede",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "recaida"
+    },
+    {
+     "campo": "tratamientos_previos",
+     "contains": "BTK"
+    }
+   ],
+   "componentes": [
+    "dirigida",
+    "inmunoterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "btki_recaida_post_ven",
+   "label": "BTKi covalente o no covalente tras venetoclax",
+   "nota": "ESMO CLL: recaida tras venetoclax sin exposicion a BTKi -> acalabrutinib/zanubrutinib; tras BTKi considerar pirtobrutinib/ensayo",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "recaida"
+    },
+    {
+     "campo": "tratamientos_previos",
+     "contains": "venetoclax"
+    }
+   ],
+   "componentes": [
+    "dirigida"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "pirtobrutinib_ensayo",
+   "label": "Pirtobrutinib/ensayo clinico en doble expuesto",
+   "nota": "ESMO CLL: recaida tras BTKi y venetoclax -> inhibidor BTK no covalente, ensayo o terapia celular si disponible",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "recaida"
+    },
+    {
+     "campo": "tratamientos_previos",
+     "contains": "BTK"
+    },
+    {
+     "campo": "tratamientos_previos",
+     "contains": "venetoclax"
+    }
+   ],
+   "componentes": [
+    "dirigida"
+   ],
+   "evidencia": "III, B"
+  }
+ ],
+ "preguntas": [
+  {
+   "key": "iwcll_limite",
+   "tipo": "noul",
+   "capa": 1,
+   "cuando": {
+    "campo": "indicacion_iwcll",
+    "eq": true
+   },
+   "instrucciones": "¿La indicacion iwCLL es clara y no se debe a causas reversibles?"
+  },
+  {
+   "key": "preferencia_continuo_vs_fijo",
+   "tipo": "choice",
+   "capa": 1,
+   "cuando": {
+    "campo": "indicacion_iwcll",
+    "eq": true
+   },
+   "instrucciones": "Si hay varias opciones, ¿que estrategia encaja mejor?",
+   "criterios": {
+    "continuo": "Tratamiento continuo oral con BTKi",
+    "fijo": "Duracion fija con venetoclax-obinutuzumab/venetoclax-ibrutinib"
+   }
+  }
+ ],
+ "seguridad": [
+  {
+   "key": "riesgo_btki",
+   "cuando": {
+    "campo": "cardiopatia_anticoagulacion",
+    "eq": true
+   },
+   "bloquea": [
+    "btki_1l",
+    "ven_ibrutinib_1l",
+    "btki_recaida_post_ven"
+   ],
+   "instrucciones": "Con fibrilacion auricular, insuficiencia cardiaca, hipertension no controlada o anticoagulacion, ¿el riesgo de BTKi es inaceptable?",
+   "umbral": 0.55,
+   "motivo": "Riesgo cardiovascular/hemorragico alto con BTKi"
+  },
+  {
+   "key": "tls_venetoclax",
+   "cuando": {
+    "campo": "insuficiencia_renal",
+    "eq": true
+   },
+   "bloquea_componentes": [
+    "dirigida"
+   ],
+   "instrucciones": "¿El riesgo de lisis tumoral/insuficiencia renal hace inseguro iniciar venetoclax u otra terapia dirigida sin medidas especializadas?",
+   "umbral": 0.8,
+   "motivo": "Riesgo de lisis tumoral/renal requiere manejo especializado"
+  }
+ ],
+ "avisos": [
+  {
+   "cuando": {
+    "campo": "tp53_del17p",
+    "eq": "desconocido"
+   },
+   "texto": "TP53/del17p desconocido: debe testarse antes de primera linea o recaida."
+  },
+  {
+   "cuando": {
+    "campo": "ighv",
+    "eq": "desconocido"
+   },
+   "texto": "IGHV desconocido: modifica duracion esperada de respuesta y evita inmunoquimioterapia inapropiada."
+  }
+ ],
+ "vinetas": [
+  {
+   "id": "LLC-V01",
+   "titulo": "Binet A sin iwCLL",
+   "fuente": "ESMO watch and wait",
+   "payload": {
+    "edad": 66,
+    "ecog": "0",
+    "estadio_cll": "Binet_A_Rai_0_I",
+    "indicacion_iwcll": false
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "observacion",
+    "aceptables": [
+     "observacion"
+    ]
+   }
+  },
+  {
+   "id": "LLC-V02",
+   "titulo": "TP53 alterado primera linea",
+   "fuente": "ESMO TP53/del17p",
+   "payload": {
+    "edad": 72,
+    "ecog": "1",
+    "estadio_cll": "Binet_C_Rai_III_IV",
+    "indicacion_iwcll": true,
+    "tp53_del17p": "alterado",
+    "ighv": "no_mutado",
+    "cardiopatia_anticoagulacion": false
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "btki_1l",
+    "aceptables": [
+     "btki_1l"
+    ]
+   }
+  },
+  {
+   "id": "LLC-V03",
+   "titulo": "Tiempo fijo TP53 normal",
+   "fuente": "CLL14",
+   "payload": {
+    "edad": 75,
+    "ecog": "1",
+    "estadio_cll": "Binet_B_Rai_II",
+    "indicacion_iwcll": true,
+    "tp53_del17p": "no_alterado",
+    "ighv": "no_mutado",
+    "preferencia_tiempo_fijo": true,
+    "cardiopatia_anticoagulacion": false
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "ven_obinu_1l",
+    "aceptables": [
+     "ven_obinu_1l",
+     "ven_ibrutinib_1l",
+     "btki_1l"
+    ]
+   }
+  },
+  {
+   "id": "LLC-V04",
+   "titulo": "Joven IGHV mutado",
+   "fuente": "ESMO seleccionado FCR",
+   "payload": {
+    "edad": 55,
+    "ecog": "0",
+    "estadio_cll": "Binet_C_Rai_III_IV",
+    "indicacion_iwcll": true,
+    "tp53_del17p": "no_alterado",
+    "ighv": "mutado",
+    "cardiopatia_anticoagulacion": false
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "ven_obinu_1l",
+    "aceptables": [
+     "ven_obinu_1l",
+     "fitcr_ighv_mutado",
+     "btki_1l"
+    ]
+   }
+  },
+  {
+   "id": "LLC-V05",
+   "titulo": "Cardiopatia anticoagulacion",
+   "fuente": "Seguridad BTKi",
+   "payload": {
+    "edad": 78,
+    "ecog": "1",
+    "estadio_cll": "Binet_C_Rai_III_IV",
+    "indicacion_iwcll": true,
+    "tp53_del17p": "no_alterado",
+    "ighv": "no_mutado",
+    "cardiopatia_anticoagulacion": true,
+    "comorbilidades_relevantes": [
+     "fibrilacion auricular anticoagulada"
+    ]
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "ven_obinu_1l",
+    "aceptables": [
+     "ven_obinu_1l"
+    ]
+   }
+  },
+  {
+   "id": "LLC-V06",
+   "titulo": "Recaida post-BTKi",
+   "fuente": "ESMO secuencia",
+   "payload": {
+    "edad": 70,
+    "ecog": "1",
+    "estadio_cll": "Binet_C_Rai_III_IV",
+    "indicacion_iwcll": true,
+    "tp53_del17p": "alterado",
+    "ighv": "no_mutado",
+    "lineas_previas": 1,
+    "tratamientos_previos": [
+     "BTK acalabrutinib"
+    ]
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "venetoclax_recaida_post_btki",
+    "aceptables": [
+     "venetoclax_recaida_post_btki"
+    ]
+   }
+  },
+  {
+   "id": "LLC-V07",
+   "titulo": "Doble expuesto",
+   "fuente": "ESMO pirtobrutinib/ensayo",
+   "payload": {
+    "edad": 69,
+    "ecog": "1",
+    "estadio_cll": "Binet_C_Rai_III_IV",
+    "indicacion_iwcll": true,
+    "tp53_del17p": "alterado",
+    "ighv": "no_mutado",
+    "lineas_previas": 2,
+    "tratamientos_previos": [
+     "BTK ibrutinib",
+     "venetoclax"
+    ]
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "pirtobrutinib_ensayo",
+    "aceptables": [
+     "pirtobrutinib_ensayo",
+     "btki_recaida_post_ven",
+     "venetoclax_recaida_post_btki"
+    ]
+   }
+  },
+  {
+   "id": "LLC-V08",
+   "titulo": "Falta TP53 con iwCLL",
+   "fuente": "Dato requerido",
+   "payload": {
+    "edad": 73,
+    "ecog": "1",
+    "estadio_cll": "Binet_C_Rai_III_IV",
+    "indicacion_iwcll": true,
+    "tp53_del17p": null,
+    "ighv": "no_mutado"
+   },
+   "esperado": {
+    "tipo": "necesita_datos"
+   }
+  },
+  {
+   "id": "LLC-V09",
+   "titulo": "ECOG 4 sepsis",
+   "fuente": "Seguridad",
+   "payload": {
+    "edad": 86,
+    "ecog": "4",
+    "estadio_cll": "Binet_C_Rai_III_IV",
+    "indicacion_iwcll": true,
+    "tp53_del17p": "alterado",
+    "ighv": "no_mutado",
+    "cardiopatia_anticoagulacion": true,
+    "insuficiencia_renal": true,
+    "comorbilidades_relevantes": [
+     "sepsis activa",
+     "delirium",
+     "fragilidad extrema"
+    ]
+   },
+   "esperado": {
+    "tipo": "revision_humana"
+   }
+  }
+ ]
+}

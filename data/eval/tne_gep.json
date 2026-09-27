@@ -1,0 +1,196 @@
+{
+ "tumor": "tne_gep",
+ "nombre": "Tumores neuroendocrinos gastroenteropancreaticos",
+ "grupo": "Digestivo",
+ "version": "tne_gep-ESMO-2024.1",
+ "fecha": "2026-09-27T14:47:51+00:00",
+ "modelo": "jev-latest",
+ "mock": false,
+ "umbral_confianza": 0.6,
+ "n": 9,
+ "aciertos": 9,
+ "acierto_global": 1.0,
+ "acierto_tratamiento": 1.0,
+ "acierto_preferida": 0.7142857142857143,
+ "acierto_seguridad": 1.0,
+ "confianza_aciertos": 0.65,
+ "confianza_fallos": null,
+ "n_multiopcion": 4,
+ "acierto_multiopcion": 1.0,
+ "candidatos_medios": 2.0,
+ "casos": [
+  {
+   "id": "TNE_GEP-V01",
+   "titulo": "NET ileal SSTR+ estable",
+   "fuente": "CLARINET/PROMID",
+   "esperado_tipo": "recomendacion",
+   "esperado": "ssa_control",
+   "aceptables": [
+    "ssa_control",
+    "vigilancia_net_bajo_volumen"
+   ],
+   "obtenido": "ssa_control",
+   "obtenido_label": "Analogo de somatostatina",
+   "confianza": 0.16,
+   "revision": true,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  },
+  {
+   "id": "TNE_GEP-V02",
+   "titulo": "NET bajo volumen no funcionante",
+   "fuente": "Vigilancia",
+   "esperado_tipo": "recomendacion",
+   "esperado": "vigilancia_net_bajo_volumen",
+   "aceptables": [
+    "vigilancia_net_bajo_volumen",
+    "ssa_control"
+   ],
+   "obtenido": "ssa_control",
+   "obtenido_label": "Analogo de somatostatina",
+   "confianza": 0.2,
+   "revision": true,
+   "acierto": true,
+   "acierto_preferida": false,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  },
+  {
+   "id": "TNE_GEP-V03",
+   "titulo": "NET midgut progresivo SSTR+",
+   "fuente": "NETTER-1",
+   "esperado_tipo": "recomendacion",
+   "esperado": "prrt_lu177",
+   "aceptables": [
+    "prrt_lu177"
+   ],
+   "obtenido": "prrt_lu177",
+   "obtenido_label": "PRRT Lu-177 DOTATATE",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "TNE_GEP-V04",
+   "titulo": "pNET progresivo",
+   "fuente": "Sunitinib/everolimus",
+   "esperado_tipo": "recomendacion",
+   "esperado": "sunitinib_pnet",
+   "aceptables": [
+    "sunitinib_pnet",
+    "everolimus_net",
+    "captem_pnet"
+   ],
+   "obtenido": "everolimus_net",
+   "obtenido_label": "Everolimus",
+   "confianza": 0.31,
+   "revision": true,
+   "acierto": true,
+   "acierto_preferida": false,
+   "preguntas": [],
+   "n_candidatos": 4,
+   "error": null
+  },
+  {
+   "id": "TNE_GEP-V05",
+   "titulo": "pNET volumen alto",
+   "fuente": "CAPTEM",
+   "esperado_tipo": "recomendacion",
+   "esperado": "captem_pnet",
+   "aceptables": [
+    "captem_pnet"
+   ],
+   "obtenido": "captem_pnet",
+   "obtenido_label": "CAPTEM/quimioterapia temozolomida",
+   "confianza": 0.88,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 3,
+   "error": null
+  },
+  {
+   "id": "TNE_GEP-V06",
+   "titulo": "NEC avanzado",
+   "fuente": "Platino etoposido",
+   "esperado_tipo": "recomendacion",
+   "esperado": "platino_etoposido_nec",
+   "aceptables": [
+    "platino_etoposido_nec"
+   ],
+   "obtenido": "platino_etoposido_nec",
+   "obtenido_label": "Platino + etoposido",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "TNE_GEP-V07",
+   "titulo": "NEC 2L",
+   "fuente": "FOLFOX/FOLFIRI",
+   "esperado_tipo": "recomendacion",
+   "esperado": "folfox_folfiri_nec_2l",
+   "aceptables": [
+    "folfox_folfiri_nec_2l"
+   ],
+   "obtenido": "folfox_folfiri_nec_2l",
+   "obtenido_label": "FOLFOX/FOLFIRI 2L NEC",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "TNE_GEP-V08",
+   "titulo": "Falta categoria",
+   "fuente": "Dato imprescindible",
+   "esperado_tipo": "necesita_datos",
+   "esperado": "necesita_datos",
+   "aceptables": [],
+   "obtenido": "necesita_datos",
+   "obtenido_label": null,
+   "confianza": null,
+   "revision": null,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [
+    "¿Es NET G1/G2, NET G3 bien diferenciado o NEC pobremente diferenciado?"
+   ],
+   "n_candidatos": 0,
+   "error": null
+  },
+  {
+   "id": "TNE_GEP-V09",
+   "titulo": "PRRT con insuficiencia renal",
+   "fuente": "Seguridad PRRT",
+   "esperado_tipo": "revision_humana",
+   "esperado": "revision_humana",
+   "aceptables": [],
+   "obtenido": "revision (sin opcion segura)",
+   "obtenido_label": null,
+   "confianza": 0.0,
+   "revision": true,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  }
+ ]
+}

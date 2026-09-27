@@ -1,0 +1,179 @@
+{
+ "tumor": "timo",
+ "nombre": "Timoma y carcinoma timico",
+ "grupo": "Toracico",
+ "version": "TIMO-ESMO-2025.1",
+ "fecha": "2026-09-27T14:47:48+00:00",
+ "modelo": "jev-latest",
+ "mock": false,
+ "umbral_confianza": 0.6,
+ "n": 8,
+ "aciertos": 8,
+ "acierto_global": 1.0,
+ "acierto_tratamiento": 1.0,
+ "acierto_preferida": 0.5,
+ "acierto_seguridad": 1.0,
+ "confianza_aciertos": 0.7316666666666666,
+ "confianza_fallos": null,
+ "n_multiopcion": 5,
+ "acierto_multiopcion": 1.0,
+ "candidatos_medios": 1.8333333333333333,
+ "casos": [
+  {
+   "id": "TIMO-V01",
+   "titulo": "Timoma I R0",
+   "fuente": "ESMO TET: R0 estadio I vigilancia",
+   "esperado_tipo": "recomendacion",
+   "esperado": "observacion_r0_bajo_riesgo",
+   "aceptables": [
+    "observacion_r0_bajo_riesgo",
+    "reseccion_primaria"
+   ],
+   "obtenido": "reseccion_primaria",
+   "obtenido_label": "Reseccion completa (timectomia) en centro experto",
+   "confianza": 0.53,
+   "revision": true,
+   "acierto": true,
+   "acierto_preferida": false,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  },
+  {
+   "id": "TIMO-V02",
+   "titulo": "Timoma III resecable",
+   "fuente": "ESMO: reseccion y considerar RT estadio III",
+   "esperado_tipo": "recomendacion",
+   "esperado": "reseccion_primaria",
+   "aceptables": [
+    "reseccion_primaria",
+    "rt_adyuvante_r1_r2_iii"
+   ],
+   "obtenido": "reseccion_primaria",
+   "obtenido_label": "Reseccion completa (timectomia) en centro experto",
+   "confianza": 0.92,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  },
+  {
+   "id": "TIMO-V03",
+   "titulo": "Carcinoma timico II R0",
+   "fuente": "ESMO: carcinoma timico resecado considerar RT",
+   "esperado_tipo": "recomendacion",
+   "esperado": "rt_adyuvante_r1_r2_iii",
+   "aceptables": [
+    "rt_adyuvante_r1_r2_iii",
+    "reseccion_primaria"
+   ],
+   "obtenido": "reseccion_primaria",
+   "obtenido_label": "Reseccion completa (timectomia) en centro experto",
+   "confianza": 0.73,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": false,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  },
+  {
+   "id": "TIMO-V04",
+   "titulo": "IVA irresecable primera linea",
+   "fuente": "ESMO: induccion con platino y reevaluacion",
+   "esperado_tipo": "recomendacion",
+   "esperado": "quimio_induccion",
+   "aceptables": [
+    "quimio_induccion",
+    "quimiorradioterapia_definitiva",
+    "platino_avanzado"
+   ],
+   "obtenido": "quimiorradioterapia_definitiva",
+   "obtenido_label": "Quimiorradioterapia definitiva",
+   "confianza": 0.34,
+   "revision": true,
+   "acierto": true,
+   "acierto_preferida": false,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  },
+  {
+   "id": "TIMO-V05",
+   "titulo": "IVB carcinoma primera linea",
+   "fuente": "ESMO: platino avanzado",
+   "esperado_tipo": "recomendacion",
+   "esperado": "platino_avanzado",
+   "aceptables": [
+    "platino_avanzado"
+   ],
+   "obtenido": "platino_avanzado",
+   "obtenido_label": "Quimioterapia basada en platino",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "TIMO-V06",
+   "titulo": "Carcinoma tras platino",
+   "fuente": "ESMO: sunitinib/lenvatinib tras platino",
+   "esperado_tipo": "recomendacion",
+   "esperado": "sunitinib_lenvatinib_carcinoma",
+   "aceptables": [
+    "sunitinib_lenvatinib_carcinoma",
+    "pembrolizumab_carcinoma"
+   ],
+   "obtenido": "sunitinib_lenvatinib_carcinoma",
+   "obtenido_label": "Sunitinib o lenvatinib en carcinoma timico",
+   "confianza": 0.87,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  },
+  {
+   "id": "TIMO-V07",
+   "titulo": "Histologia faltante",
+   "fuente": "ESMO: histologia timoma vs carcinoma define tratamiento",
+   "esperado_tipo": "necesita_datos",
+   "esperado": "necesita_datos",
+   "aceptables": [],
+   "obtenido": "necesita_datos",
+   "obtenido_label": null,
+   "confianza": null,
+   "revision": null,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [
+    "¿Es timoma o carcinoma timico?"
+   ],
+   "n_candidatos": 0,
+   "error": null
+  },
+  {
+   "id": "TIMO-V08",
+   "titulo": "Carcinoma pretratado fragil con miastenia",
+   "fuente": "Seguridad: ICI en tumor timico y miastenia; ECOG 4 requiere soporte/revision",
+   "esperado_tipo": "revision_humana",
+   "esperado": "revision_humana",
+   "aceptables": [],
+   "obtenido": "revision (sunitinib_lenvatinib_carcinoma)",
+   "obtenido_label": "Sunitinib o lenvatinib en carcinoma timico",
+   "confianza": 1.0,
+   "revision": true,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  }
+ ]
+}

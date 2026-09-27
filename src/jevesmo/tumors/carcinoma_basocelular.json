@@ -1,0 +1,441 @@
+{
+ "id": "carcinoma_basocelular",
+ "nombre": "Carcinoma basocelular",
+ "grupo": "Piel",
+ "version": "CARCINOMA_BASOCELULAR-ESMO-2024.1",
+ "guias": [
+  {
+   "titulo": "ESMO Clinical Practice Guidelines: Melanoma and Skin Cancers",
+   "anio": 2024,
+   "url": "https://www.esmo.org/guidelines/melanoma-and-skin-cancers"
+  }
+ ],
+ "descripcion": "Carcinoma basocelular: cirugia/Mohs/RT, inhibidores Hedgehog y cemiplimab tras progresion/intolerancia.",
+ "campos": [
+  {
+   "id": "situacion",
+   "label": "Situacion",
+   "tipo": "choice",
+   "seccion": "Tumor",
+   "opciones": [
+    "localizado_bajo_riesgo",
+    "localizado_alto_riesgo",
+    "localmente_avanzado",
+    "metastasico"
+   ],
+   "requerido": true,
+   "pregunta": "¿Cual es la situacion del carcinoma basocelular?"
+  },
+  {
+   "id": "resecable",
+   "label": "Resecable",
+   "tipo": "bool",
+   "seccion": "Cirugia"
+  },
+  {
+   "id": "hhi_previo",
+   "label": "Inhibidor Hedgehog previo",
+   "tipo": "bool",
+   "seccion": "Historial"
+  },
+  {
+   "id": "hhi_apto",
+   "label": "Apto para inhibidor Hedgehog",
+   "tipo": "bool",
+   "seccion": "Seguridad"
+  },
+  {
+   "id": "candidato_ici",
+   "label": "Candidato a cemiplimab",
+   "tipo": "bool",
+   "seccion": "Seguridad"
+  }
+ ],
+ "derivados": [],
+ "opciones": [
+  {
+   "id": "escision_bcc",
+   "label": "Escision quirurgica estandar",
+   "nota": "BCC localizado de bajo riesgo: escision completa con margenes adecuados.",
+   "cuando": {
+    "campo": "situacion",
+    "eq": "localizado_bajo_riesgo"
+   },
+   "componentes": [
+    "cirugia"
+   ],
+   "evidencia": "III, A"
+  },
+  {
+   "id": "mohs_bcc_alto_riesgo",
+   "label": "Cirugia micrografica de Mohs",
+   "nota": "BCC alto riesgo, recurrente o zona H facial: Mohs/control micrografico de margenes.",
+   "cuando": {
+    "campo": "situacion",
+    "eq": "localizado_alto_riesgo"
+   },
+   "componentes": [
+    "cirugia"
+   ],
+   "evidencia": "III, A"
+  },
+  {
+   "id": "rt_bcc_no_cirugia",
+   "label": "Radioterapia definitiva",
+   "nota": "BCC localizado no candidato a cirugia o cirugia muy morbida: RT definitiva.",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "in": [
+      "localizado_bajo_riesgo",
+      "localizado_alto_riesgo"
+     ]
+    },
+    {
+     "campo": "resecable",
+     "eq": false
+    }
+   ],
+   "componentes": [
+    "radioterapia"
+   ],
+   "evidencia": "III, B"
+  },
+  {
+   "id": "vismo_soni_bcc",
+   "label": "Vismodegib o sonidegib",
+   "nota": "BCC localmente avanzado/metastasico no candidato a cirugia/RT curativa: inhibidor Hedgehog.",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "in": [
+      "localmente_avanzado",
+      "metastasico"
+     ]
+    },
+    {
+     "campo": "hhi_previo",
+     "ne": true
+    },
+    {
+     "campo": "hhi_apto",
+     "ne": false
+    }
+   ],
+   "componentes": [
+    "dirigida"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "cemiplimab_bcc_2l",
+   "label": "Cemiplimab tras HHI",
+   "nota": "BCC avanzado que progresa o no tolera inhibidor Hedgehog: cemiplimab 2L.",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "in": [
+      "localmente_avanzado",
+      "metastasico"
+     ]
+    },
+    {
+     "campo": "hhi_previo",
+     "eq": true
+    },
+    {
+     "campo": "candidato_ici",
+     "ne": false
+    }
+   ],
+   "componentes": [
+    "inmunoterapia"
+   ],
+   "evidencia": "II, A"
+  },
+  {
+   "id": "rt_paliativa_bcc",
+   "label": "Radioterapia/cirugia paliativa local",
+   "nota": "Si enfermedad local sintomatica y no candidato a sistemico, considerar RT/cirugia paliativa.",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "in": [
+      "localmente_avanzado",
+      "metastasico"
+     ]
+    },
+    {
+     "campo": "hhi_apto",
+     "eq": false
+    },
+    {
+     "campo": "candidato_ici",
+     "eq": false
+    }
+   ],
+   "componentes": [
+    "radioterapia",
+    "soporte"
+   ],
+   "evidencia": "IV, B"
+  },
+  {
+   "id": "soporte_bcc",
+   "label": "Soporte exclusivo",
+   "nota": "Enfermedad muy fragil/ECOG 3-4: soporte y control sintomatico.",
+   "cuando": {
+    "campo": "ecog",
+    "in": [
+     "3",
+     "4"
+    ]
+   },
+   "componentes": [
+    "soporte"
+   ],
+   "evidencia": "V, A"
+  }
+ ],
+ "preguntas": [
+  {
+   "key": "morbilidad_cirugia_bcc",
+   "tipo": "noul",
+   "capa": 1,
+   "cuando": {
+    "campo": "situacion",
+    "in": [
+     "localizado_alto_riesgo",
+     "localmente_avanzado"
+    ]
+   },
+   "instrucciones": "¿La cirugia produciria morbilidad funcional/cosmetica desproporcionada?"
+  },
+  {
+   "key": "respuesta_hhi_bcc",
+   "tipo": "score",
+   "capa": 2,
+   "cuando": {
+    "campo": "situacion",
+    "in": [
+     "localmente_avanzado",
+     "metastasico"
+    ]
+   },
+   "instrucciones": "Estima la probabilidad de beneficio neto con inhibidor Hedgehog.",
+   "criterios": [
+    "Baja",
+    "Intermedia",
+    "Alta"
+   ]
+  }
+ ],
+ "seguridad": [
+  {
+   "key": "contra_ici_bcc",
+   "cuando": {
+    "campo": "comorbilidades_relevantes",
+    "present": true
+   },
+   "bloquea_componentes": [
+    "inmunoterapia"
+   ],
+   "instrucciones": "¿Autoinmunidad activa, trasplante u otra condicion contraindica cemiplimab?",
+   "motivo": "Contraindicacion mayor para anti-PD-1."
+  },
+  {
+   "key": "contra_hhi",
+   "cuando": {
+    "campo": "hhi_apto",
+    "present": true
+   },
+   "bloquea": [
+    "vismo_soni_bcc"
+   ],
+   "instrucciones": "¿Embarazo, intolerancia severa o fragilidad hacen inseguro vismodegib/sonidegib?",
+   "motivo": "Inhibidor Hedgehog no seguro."
+  }
+ ],
+ "avisos": [
+  {
+   "cuando": [
+    {
+     "campo": "situacion",
+     "in": [
+      "localmente_avanzado",
+      "metastasico"
+     ]
+    },
+    {
+     "campo": "hhi_previo",
+     "missing": true
+    }
+   ],
+   "texto": "Debe documentarse si recibio inhibidor Hedgehog antes de cemiplimab."
+  }
+ ],
+ "vinetas": [
+  {
+   "id": "CARCINOMA_BASOCELULAR-V01",
+   "titulo": "BCC bajo riesgo",
+   "fuente": "Escision",
+   "payload": {
+    "edad": 60,
+    "ecog": "0",
+    "situacion": "localizado_bajo_riesgo",
+    "resecable": true
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "escision_bcc",
+    "aceptables": [
+     "escision_bcc"
+    ]
+   }
+  },
+  {
+   "id": "CARCINOMA_BASOCELULAR-V02",
+   "titulo": "BCC alto riesgo facial",
+   "fuente": "Mohs",
+   "payload": {
+    "edad": 60,
+    "ecog": "0",
+    "situacion": "localizado_alto_riesgo",
+    "resecable": true
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "mohs_bcc_alto_riesgo",
+    "aceptables": [
+     "mohs_bcc_alto_riesgo"
+    ]
+   }
+  },
+  {
+   "id": "CARCINOMA_BASOCELULAR-V03",
+   "titulo": "No operable",
+   "fuente": "RT",
+   "payload": {
+    "edad": 60,
+    "ecog": "1",
+    "situacion": "localizado_alto_riesgo",
+    "resecable": false
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "rt_bcc_no_cirugia",
+    "aceptables": [
+     "rt_bcc_no_cirugia"
+    ]
+   }
+  },
+  {
+   "id": "CARCINOMA_BASOCELULAR-V04",
+   "titulo": "Localmente avanzado",
+   "fuente": "HHI",
+   "payload": {
+    "edad": 60,
+    "ecog": "1",
+    "situacion": "localmente_avanzado",
+    "hhi_previo": false,
+    "hhi_apto": true
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "vismo_soni_bcc",
+    "aceptables": [
+     "vismo_soni_bcc"
+    ]
+   }
+  },
+  {
+   "id": "CARCINOMA_BASOCELULAR-V05",
+   "titulo": "Metastasico 1L",
+   "fuente": "HHI",
+   "payload": {
+    "edad": 60,
+    "ecog": "1",
+    "situacion": "metastasico",
+    "hhi_previo": false,
+    "hhi_apto": true
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "vismo_soni_bcc",
+    "aceptables": [
+     "vismo_soni_bcc"
+    ]
+   }
+  },
+  {
+   "id": "CARCINOMA_BASOCELULAR-V06",
+   "titulo": "Tras HHI",
+   "fuente": "Cemiplimab",
+   "payload": {
+    "edad": 60,
+    "ecog": "1",
+    "situacion": "localmente_avanzado",
+    "hhi_previo": true,
+    "candidato_ici": true
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "cemiplimab_bcc_2l",
+    "aceptables": [
+     "cemiplimab_bcc_2l"
+    ]
+   }
+  },
+  {
+   "id": "CARCINOMA_BASOCELULAR-V07",
+   "titulo": "No sistemico",
+   "fuente": "RT paliativa",
+   "payload": {
+    "edad": 60,
+    "ecog": "2",
+    "situacion": "localmente_avanzado",
+    "hhi_previo": false,
+    "hhi_apto": false,
+    "candidato_ici": false
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "rt_paliativa_bcc",
+    "aceptables": [
+     "rt_paliativa_bcc"
+    ]
+   }
+  },
+  {
+   "id": "CARCINOMA_BASOCELULAR-V08",
+   "titulo": "Falta situacion",
+   "fuente": "Dato imprescindible",
+   "payload": {
+    "edad": 60,
+    "ecog": "0",
+    "situacion": null
+   },
+   "esperado": {
+    "tipo": "necesita_datos"
+   }
+  },
+  {
+   "id": "CARCINOMA_BASOCELULAR-V09",
+   "titulo": "Post-HHI autoinmune",
+   "fuente": "Seguridad",
+   "payload": {
+    "edad": 60,
+    "ecog": "1",
+    "situacion": "metastasico",
+    "hhi_previo": true,
+    "candidato_ici": true,
+    "comorbilidades_relevantes": [
+     "miastenia gravis activa grave"
+    ]
+   },
+   "esperado": {
+    "tipo": "revision_humana"
+   }
+  }
+ ]
+}

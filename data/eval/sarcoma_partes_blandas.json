@@ -1,0 +1,214 @@
+{
+ "tumor": "sarcoma_partes_blandas",
+ "nombre": "Sarcoma de partes blandas",
+ "grupo": "Sarcomas",
+ "version": "SARCOMA_PARTES_BLANDAS-ESMO-2021.1",
+ "fecha": "2026-09-27T14:47:46+00:00",
+ "modelo": "jev-latest",
+ "mock": false,
+ "umbral_confianza": 0.6,
+ "n": 10,
+ "aciertos": 10,
+ "acierto_global": 1.0,
+ "acierto_tratamiento": 1.0,
+ "acierto_preferida": 0.875,
+ "acierto_seguridad": 1.0,
+ "confianza_aciertos": 0.7475,
+ "confianza_fallos": null,
+ "n_multiopcion": 5,
+ "acierto_multiopcion": 1.0,
+ "candidatos_medios": 1.625,
+ "casos": [
+  {
+   "id": "SARCOMA_PARTES_BLANDAS-V01",
+   "titulo": "STS pequeno grado 1 extremidad",
+   "fuente": "ESMO STS 2021: cirugia sola en bajo riesgo resecable",
+   "esperado_tipo": "recomendacion",
+   "esperado": "cirugia_sola_bajo_riesgo",
+   "aceptables": [
+    "cirugia_sola_bajo_riesgo"
+   ],
+   "obtenido": "cirugia_sola_bajo_riesgo",
+   "obtenido_label": "Cirugia amplia R0 sola",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "SARCOMA_PARTES_BLANDAS-V02",
+   "titulo": "STS alto riesgo extremidad",
+   "fuente": "ESMO STS 2021: RT preoperatoria/cirugia en alto riesgo",
+   "esperado_tipo": "recomendacion",
+   "esperado": "cirugia_rt_preop",
+   "aceptables": [
+    "cirugia_rt_preop",
+    "quimio_neoadyuvante_alto_riesgo"
+   ],
+   "obtenido": "cirugia_rt_preop",
+   "obtenido_label": "Radioterapia preoperatoria seguida de cirugia",
+   "confianza": 0.29,
+   "revision": true,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  },
+  {
+   "id": "SARCOMA_PARTES_BLANDAS-V03",
+   "titulo": "Liposarcoma retroperitoneal localizado",
+   "fuente": "ESMO STS 2021: retroperitoneo, cirugia experta y RT selectiva",
+   "esperado_tipo": "recomendacion",
+   "esperado": "rt_neoadyuvante_retroperitoneo_selectivo",
+   "aceptables": [
+    "rt_neoadyuvante_retroperitoneo_selectivo"
+   ],
+   "obtenido": "rt_neoadyuvante_retroperitoneo_selectivo",
+   "obtenido_label": "RT preoperatoria selectiva + reseccion retroperitoneal experta",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "SARCOMA_PARTES_BLANDAS-V04",
+   "titulo": "STS metastasico primera linea",
+   "fuente": "ESMO STS 2021: doxorrubicina 1L",
+   "esperado_tipo": "recomendacion",
+   "esperado": "doxorrubicina_1l",
+   "aceptables": [
+    "doxorrubicina_1l",
+    "doxo_ifosfamida_1l"
+   ],
+   "obtenido": "doxorrubicina_1l",
+   "obtenido_label": "Doxorrubicina 1L",
+   "confianza": 0.93,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  },
+  {
+   "id": "SARCOMA_PARTES_BLANDAS-V05",
+   "titulo": "Leiomiomsarcoma tras antraciclina",
+   "fuente": "ESMO STS 2021: leiomiosarcoma pretratado",
+   "esperado_tipo": "recomendacion",
+   "esperado": "trabectedina_lipo_lms",
+   "aceptables": [
+    "trabectedina_lipo_lms"
+   ],
+   "obtenido": "trabectedina_lipo_lms",
+   "obtenido_label": "Trabectedina (liposarcoma/leiomiosarcoma)",
+   "confianza": 0.69,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  },
+  {
+   "id": "SARCOMA_PARTES_BLANDAS-V06",
+   "titulo": "Liposarcoma pretratado",
+   "fuente": "ESMO STS 2021: eribulina/trabectedina en liposarcoma",
+   "esperado_tipo": "recomendacion",
+   "esperado": "eribulina_liposarcoma",
+   "aceptables": [
+    "eribulina_liposarcoma",
+    "trabectedina_lipo_lms"
+   ],
+   "obtenido": "trabectedina_lipo_lms",
+   "obtenido_label": "Trabectedina (liposarcoma/leiomiosarcoma)",
+   "confianza": 0.07,
+   "revision": true,
+   "acierto": true,
+   "acierto_preferida": false,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  },
+  {
+   "id": "SARCOMA_PARTES_BLANDAS-V07",
+   "titulo": "STS no liposarcoma pretratado",
+   "fuente": "ESMO STS 2021: pazopanib no adipocitico tras QT",
+   "esperado_tipo": "recomendacion",
+   "esperado": "pazopanib_no_lipo",
+   "aceptables": [
+    "pazopanib_no_lipo"
+   ],
+   "obtenido": "pazopanib_no_lipo",
+   "obtenido_label": "Pazopanib (STS no adipocitico)",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "SARCOMA_PARTES_BLANDAS-V08",
+   "titulo": "Sarcoma NTRK fusion",
+   "fuente": "ESMO STS/precision oncology: TRK inhibitors for NTRK fusion",
+   "esperado_tipo": "recomendacion",
+   "esperado": "larotrectinib_entrectinib_ntrk",
+   "aceptables": [
+    "larotrectinib_entrectinib_ntrk"
+   ],
+   "obtenido": "larotrectinib_entrectinib_ntrk",
+   "obtenido_label": "Larotrectinib/entrectinib si fusion NTRK",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  },
+  {
+   "id": "SARCOMA_PARTES_BLANDAS-V09",
+   "titulo": "Falta histotipo",
+   "fuente": "ESMO STS 2021: diagnostico histologico experto obligatorio",
+   "esperado_tipo": "necesita_datos",
+   "esperado": "necesita_datos",
+   "aceptables": [],
+   "obtenido": "necesita_datos",
+   "obtenido_label": null,
+   "confianza": null,
+   "revision": null,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [
+    "¿Cual es el histotipo?"
+   ],
+   "n_candidatos": 0,
+   "error": null
+  },
+  {
+   "id": "SARCOMA_PARTES_BLANDAS-V10",
+   "titulo": "STS metastasico ECOG 4 cardiopatia",
+   "fuente": "ESMO STS 2021: soporte si no candidato a tratamiento activo",
+   "esperado_tipo": "revision_humana",
+   "esperado": "revision_humana",
+   "aceptables": [],
+   "obtenido": "revision (soporte_sts)",
+   "obtenido_label": "Mejor soporte exclusivo / cuidados paliativos",
+   "confianza": 1.0,
+   "revision": true,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 3,
+   "error": null
+  }
+ ]
+}

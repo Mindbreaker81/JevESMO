@@ -1,0 +1,804 @@
+{
+ "id": "ovario",
+ "nombre": "Cancer epitelial de ovario",
+ "grupo": "Ginecologico",
+ "version": "OVARIO-ESMO-2025.1",
+ "guias": [
+  {
+   "titulo": "ESMO Clinical Practice Guideline / Living Guideline: Epithelial ovarian cancer",
+   "anio": 2025,
+   "url": "https://www.esmo.org/guidelines/gynaecological-cancers/ovarian-cancer"
+  },
+  {
+   "titulo": "ESGO-ESMO-ESP consensus recommendations on ovarian cancer",
+   "anio": 2024,
+   "url": "https://www.esmo.org/guidelines/gynaecological-cancers"
+  }
+ ],
+ "descripcion": "Cancer epitelial de ovario: histologia, estadio, cirugia primaria o neoadyuvancia, platino-taxano +- bevacizumab, mantenimiento PARP por BRCA/HRD y recaida.",
+ "campos": [
+  {
+   "id": "estadio",
+   "label": "Estadio FIGO",
+   "tipo": "choice",
+   "opciones": [
+    "I",
+    "II",
+    "III",
+    "IV",
+    "recaida"
+   ],
+   "requerido": true,
+   "pregunta": "¿Cual es el estadio FIGO o si se trata de recaida?"
+  },
+  {
+   "id": "histologia",
+   "label": "Histologia",
+   "tipo": "choice",
+   "opciones": [
+    "seroso_alto_grado",
+    "endometrioide_alto_grado",
+    "mucinoso",
+    "celulas_claras",
+    "bajo_grado",
+    "otro_epitelial"
+   ],
+   "requerido": true,
+   "pregunta": "¿Cual es la histologia epitelial principal?"
+  },
+  {
+   "id": "grado",
+   "label": "Grado",
+   "tipo": "choice",
+   "opciones": [
+    "1",
+    "2",
+    "3"
+   ]
+  },
+  {
+   "id": "cirugia_primaria_factible",
+   "label": "Citorreduccion primaria completa factible",
+   "tipo": "bool",
+   "requerido_si": {
+    "campo": "estadio",
+    "in": [
+     "III",
+     "IV"
+    ]
+   },
+   "pregunta": "En estadio III-IV, ¿es factible citorreduccion primaria completa por equipo experto?"
+  },
+  {
+   "id": "enfermedad_residual",
+   "label": "Enfermedad residual tras cirugia",
+   "tipo": "choice",
+   "opciones": [
+    "R0",
+    "macroscopica",
+    "no_operada"
+   ]
+  },
+  {
+   "id": "brca",
+   "label": "BRCA1/2",
+   "tipo": "choice",
+   "opciones": [
+    "mutado",
+    "no_mutado",
+    "desconocido"
+   ],
+   "requerido_si": {
+    "campo": "estadio",
+    "in": [
+     "III",
+     "IV",
+     "recaida"
+    ]
+   },
+   "pregunta": "¿Cual es el estado BRCA1/2?"
+  },
+  {
+   "id": "hrd",
+   "label": "HRD",
+   "tipo": "choice",
+   "opciones": [
+    "positivo",
+    "negativo",
+    "desconocido"
+   ]
+  },
+  {
+   "id": "bevacizumab_usado_1l",
+   "label": "Bevacizumab usado en 1L",
+   "tipo": "bool"
+  },
+  {
+   "id": "intervalo_platino_meses",
+   "label": "Intervalo libre de platino",
+   "tipo": "number",
+   "min": 0,
+   "max": 120,
+   "unidad": "meses",
+   "requerido_si": {
+    "campo": "estadio",
+    "eq": "recaida"
+   },
+   "pregunta": "En recaida, ¿cual es el intervalo libre de platino en meses?"
+  },
+  {
+   "id": "fralfa",
+   "label": "FRalfa",
+   "tipo": "choice",
+   "opciones": [
+    "alto",
+    "bajo",
+    "desconocido"
+   ]
+  },
+  {
+   "id": "contra_bev",
+   "label": "Contraindicacion para bevacizumab",
+   "tipo": "bool"
+  }
+ ],
+ "derivados": [
+  {
+   "id": "platino_sensible",
+   "label": "Sensibilidad a platino",
+   "defecto": "no_aplica",
+   "reglas": [
+    {
+     "cuando": [
+      {
+       "campo": "estadio",
+       "eq": "recaida"
+      },
+      {
+       "campo": "intervalo_platino_meses",
+       "gte": 6
+      }
+     ],
+     "valor": "sensible"
+    },
+    {
+     "cuando": [
+      {
+       "campo": "estadio",
+       "eq": "recaida"
+      },
+      {
+       "campo": "intervalo_platino_meses",
+       "lt": 6
+      }
+     ],
+     "valor": "resistente"
+    }
+   ]
+  }
+ ],
+ "opciones": [
+  {
+   "id": "cirugia_estadiaje_precoz",
+   "label": "Cirugia de estadiaje completa y vigilancia",
+   "nota": "ESMO: estadio I bajo riesgo completamente estadificado (bajo grado IA/IB) puede observarse tras cirugia adecuada.",
+   "cuando": [
+    {
+     "campo": "estadio",
+     "eq": "I"
+    },
+    {
+     "campo": "histologia",
+     "in": [
+      "bajo_grado",
+      "mucinoso"
+     ]
+    },
+    {
+     "campo": "grado",
+     "in": [
+      "1",
+      "2"
+     ]
+    }
+   ],
+   "componentes": [
+    "cirugia",
+    "vigilancia"
+   ],
+   "evidencia": "III, B"
+  },
+  {
+   "id": "quimio_adyuvante_precoz",
+   "label": "Carboplatino-paclitaxel adyuvante",
+   "nota": "ESMO: estadio I-II de alto riesgo (alto grado, celulas claras, IC-II o estadiaje incompleto) requiere quimioterapia adyuvante con platino-taxano.",
+   "cuando": [
+    {
+     "campo": "estadio",
+     "in": [
+      "I",
+      "II"
+     ]
+    },
+    {
+     "any": [
+      {
+       "campo": "estadio",
+       "eq": "II"
+      },
+      {
+       "campo": "histologia",
+       "in": [
+        "seroso_alto_grado",
+        "endometrioide_alto_grado",
+        "celulas_claras"
+       ]
+      },
+      {
+       "campo": "grado",
+       "eq": "3"
+      }
+     ]
+    }
+   ],
+   "componentes": [
+    "quimioterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "debulking_primario_qt",
+   "label": "Citorreduccion primaria completa seguida de carboplatino-paclitaxel",
+   "nota": "ESMO: estadio III-IV con posibilidad de reseccion completa -> cirugia primaria seguida de carboplatino-paclitaxel.",
+   "cuando": [
+    {
+     "campo": "estadio",
+     "in": [
+      "III",
+      "IV"
+     ]
+    },
+    {
+     "campo": "cirugia_primaria_factible",
+     "eq": true
+    }
+   ],
+   "componentes": [
+    "cirugia",
+    "quimioterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "neoadyuvancia_ids",
+   "label": "Carboplatino-paclitaxel neoadyuvante + cirugia de intervalo",
+   "nota": "ESMO: estadio III-IV no resecable de entrada -> neoadyuvancia y cirugia de intervalo si respuesta.",
+   "cuando": [
+    {
+     "campo": "estadio",
+     "in": [
+      "III",
+      "IV"
+     ]
+    },
+    {
+     "campo": "cirugia_primaria_factible",
+     "eq": false
+    }
+   ],
+   "componentes": [
+    "quimioterapia",
+    "cirugia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "qt_bev_1l",
+   "label": "Carboplatino-paclitaxel + bevacizumab y mantenimiento",
+   "nota": "ESMO: estadio III con residual macroscopica o estadio IV puede recibir bevacizumab con QT y mantenimiento si no contraindicado.",
+   "cuando": [
+    {
+     "campo": "estadio",
+     "in": [
+      "III",
+      "IV"
+     ]
+    },
+    {
+     "campo": "contra_bev",
+     "ne": true
+    },
+    {
+     "any": [
+      {
+       "campo": "enfermedad_residual",
+       "eq": "macroscopica"
+      },
+      {
+       "campo": "estadio",
+       "eq": "IV"
+      }
+     ]
+    }
+   ],
+   "componentes": [
+    "quimioterapia",
+    "antiangiogenico"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "mantenimiento_olaparib",
+   "label": "Mantenimiento olaparib",
+   "nota": "SOLO-1/ESMO: respuesta a platino en primera linea, cancer alto grado avanzado BRCA mutado -> olaparib mantenimiento.",
+   "cuando": [
+    {
+     "campo": "estadio",
+     "in": [
+      "III",
+      "IV"
+     ]
+    },
+    {
+     "campo": "brca",
+     "eq": "mutado"
+    }
+   ],
+   "componentes": [
+    "dirigida"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "mantenimiento_olaparib_bev",
+   "label": "Mantenimiento olaparib + bevacizumab",
+   "nota": "PAOLA-1/ESMO: si se uso bevacizumab en 1L y HRD positivo (incluye BRCA) -> olaparib + bevacizumab.",
+   "cuando": [
+    {
+     "campo": "estadio",
+     "in": [
+      "III",
+      "IV"
+     ]
+    },
+    {
+     "campo": "bevacizumab_usado_1l",
+     "eq": true
+    },
+    {
+     "any": [
+      {
+       "campo": "hrd",
+       "eq": "positivo"
+      },
+      {
+       "campo": "brca",
+       "eq": "mutado"
+      }
+     ]
+    }
+   ],
+   "componentes": [
+    "dirigida",
+    "antiangiogenico"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "mantenimiento_niraparib",
+   "label": "Mantenimiento niraparib",
+   "nota": "PRIMA/ESMO: tras respuesta a platino en enfermedad avanzada sin BRCA mutado, niraparib es opcion de mantenimiento, mayor beneficio si HRD positivo.",
+   "cuando": [
+    {
+     "campo": "estadio",
+     "in": [
+      "III",
+      "IV"
+     ]
+    },
+    {
+     "campo": "brca",
+     "ne": "mutado"
+    }
+   ],
+   "componentes": [
+    "dirigida"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "recaida_platino_sensible",
+   "label": "Doblete basado en platino +- bevacizumab/PARP",
+   "nota": "ESMO: recaida platino-sensible (intervalo >=6 meses) -> combinacion basada en platino; considerar bevacizumab o mantenimiento PARP segun antecedentes.",
+   "cuando": {
+    "campo": "platino_sensible",
+    "eq": "sensible"
+   },
+   "componentes": [
+    "quimioterapia",
+    "antiangiogenico",
+    "dirigida"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "recaida_platino_resistente",
+   "label": "Quimioterapia no platino secuencial +- bevacizumab",
+   "nota": "AURELIA/ESMO: recaida resistente a platino -> agente unico no platino; bevacizumab si no contraindicado.",
+   "cuando": [
+    {
+     "campo": "platino_sensible",
+     "eq": "resistente"
+    },
+    {
+     "campo": "fralfa",
+     "ne": "alto"
+    }
+   ],
+   "componentes": [
+    "quimioterapia",
+    "antiangiogenico"
+   ],
+   "evidencia": "I, B"
+  },
+  {
+   "id": "mirvetuximab_fralfa",
+   "label": "Mirvetuximab soravtansina",
+   "nota": "MIRASOL/ESMO: enfermedad resistente a platino, FRalfa alto y lineas previas -> mirvetuximab preferente frente a quimioterapia.",
+   "cuando": [
+    {
+     "campo": "platino_sensible",
+     "eq": "resistente"
+    },
+    {
+     "campo": "fralfa",
+     "eq": "alto"
+    },
+    {
+     "campo": "lineas_previas",
+     "gte": 1
+    }
+   ],
+   "componentes": [
+    "dirigida"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "soporte_ensayo",
+   "label": "Mejor soporte/ensayo clinico",
+   "nota": "ESMO: ECOG pobre o situacion fuera de estandar -> soporte, control sintomatico y/o ensayo clinico.",
+   "cuando": {
+    "campo": "ecog",
+    "in": [
+     "3",
+     "4"
+    ]
+   },
+   "componentes": [
+    "soporte"
+   ],
+   "evidencia": "V, A"
+  }
+ ],
+ "preguntas": [
+  {
+   "key": "resecabilidad_limite",
+   "tipo": "choice",
+   "capa": 1,
+   "cuando": {
+    "campo": "estadio",
+    "in": [
+     "III",
+     "IV"
+    ]
+   },
+   "instrucciones": "Valora si el patron de enfermedad permite citorreduccion completa inicial.",
+   "criterios": {
+    "primaria": "Reseccion completa realista",
+    "neoadyuvancia": "Mejor neoadyuvancia"
+   }
+  },
+  {
+   "key": "alto_riesgo_bev",
+   "tipo": "noul",
+   "capa": 2,
+   "cuando": {
+    "campo": "estadio",
+    "in": [
+     "III",
+     "IV"
+    ]
+   },
+   "instrucciones": "¿Perfil de alto riesgo que favorece bevacizumab?"
+  },
+  {
+   "key": "beneficio_parp",
+   "tipo": "score",
+   "capa": 2,
+   "cuando": {
+    "campo": "estadio",
+    "in": [
+     "III",
+     "IV",
+     "recaida"
+    ]
+   },
+   "instrucciones": "Beneficio esperado de PARP segun BRCA/HRD.",
+   "criterios": [
+    "Bajo",
+    "Intermedio",
+    "Alto"
+   ]
+  }
+ ],
+ "seguridad": [
+  {
+   "key": "riesgo_bev",
+   "cuando": {
+    "campo": "contra_bev",
+    "eq": true
+   },
+   "bloquea_componentes": [
+    "antiangiogenico"
+   ],
+   "instrucciones": "¿Existe riesgo inaceptable para antiangiogenicos?",
+   "motivo": "Contraindicacion clinica para bevacizumab/antiangiogenico"
+  }
+ ],
+ "avisos": [
+  {
+   "cuando": [
+    {
+     "campo": "estadio",
+     "in": [
+      "III",
+      "IV",
+      "recaida"
+     ]
+    },
+    {
+     "campo": "brca",
+     "in": [
+      "desconocido"
+     ]
+    }
+   ],
+   "texto": "BRCA desconocido: debe testarse porque cambia mantenimiento PARP."
+  },
+  {
+   "cuando": [
+    {
+     "campo": "estadio",
+     "in": [
+      "III",
+      "IV"
+     ]
+    },
+    {
+     "campo": "hrd",
+     "in": [
+      "desconocido"
+     ]
+    }
+   ],
+   "texto": "HRD desconocido: puede modificar mantenimiento PARP."
+  },
+  {
+   "cuando": [
+    {
+     "campo": "platino_sensible",
+     "eq": "resistente"
+    },
+    {
+     "campo": "fralfa",
+     "in": [
+      "desconocido"
+     ]
+    }
+   ],
+   "texto": "FRalfa no testado: podria abrir mirvetuximab."
+  }
+ ],
+ "vinetas": [
+  {
+   "id": "OVARIO-V01",
+   "titulo": "Estadio IA bajo grado",
+   "fuente": "ESMO early low risk",
+   "payload": {
+    "edad": 45,
+    "sexo": "mujer",
+    "ecog": "0",
+    "estadio": "I",
+    "histologia": "bajo_grado",
+    "grado": "1"
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "cirugia_estadiaje_precoz",
+    "aceptables": [
+     "cirugia_estadiaje_precoz"
+    ]
+   }
+  },
+  {
+   "id": "OVARIO-V02",
+   "titulo": "Estadio IC seroso alto grado",
+   "fuente": "ESMO early high risk",
+   "payload": {
+    "edad": 59,
+    "sexo": "mujer",
+    "ecog": "0",
+    "estadio": "I",
+    "histologia": "seroso_alto_grado",
+    "grado": "3"
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "quimio_adyuvante_precoz",
+    "aceptables": [
+     "quimio_adyuvante_precoz"
+    ]
+   }
+  },
+  {
+   "id": "OVARIO-V03",
+   "titulo": "Avanzado resecable BRCA mutado",
+   "fuente": "SOLO-1",
+   "payload": {
+    "edad": 62,
+    "sexo": "mujer",
+    "ecog": "1",
+    "estadio": "III",
+    "histologia": "seroso_alto_grado",
+    "grado": "3",
+    "cirugia_primaria_factible": true,
+    "enfermedad_residual": "R0",
+    "brca": "mutado",
+    "hrd": "positivo"
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "mantenimiento_olaparib",
+    "aceptables": [
+     "debulking_primario_qt",
+     "mantenimiento_olaparib"
+    ]
+   }
+  },
+  {
+   "id": "OVARIO-V04",
+   "titulo": "Estadio IV no resecable",
+   "fuente": "ESMO neoadjuvant",
+   "payload": {
+    "edad": 70,
+    "sexo": "mujer",
+    "ecog": "1",
+    "estadio": "IV",
+    "histologia": "seroso_alto_grado",
+    "grado": "3",
+    "cirugia_primaria_factible": false,
+    "enfermedad_residual": "no_operada",
+    "brca": "no_mutado",
+    "hrd": "negativo"
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "neoadyuvancia_ids",
+    "aceptables": [
+     "neoadyuvancia_ids",
+     "mantenimiento_niraparib",
+     "qt_bev_1l"
+    ]
+   }
+  },
+  {
+   "id": "OVARIO-V05",
+   "titulo": "Alto riesgo HRD positivo con bev",
+   "fuente": "PAOLA-1",
+   "payload": {
+    "edad": 55,
+    "sexo": "mujer",
+    "ecog": "0",
+    "estadio": "IV",
+    "histologia": "seroso_alto_grado",
+    "grado": "3",
+    "cirugia_primaria_factible": true,
+    "enfermedad_residual": "macroscopica",
+    "brca": "no_mutado",
+    "hrd": "positivo",
+    "bevacizumab_usado_1l": true,
+    "contra_bev": false
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "mantenimiento_olaparib_bev",
+    "aceptables": [
+     "qt_bev_1l",
+     "mantenimiento_olaparib_bev"
+    ]
+   }
+  },
+  {
+   "id": "OVARIO-V06",
+   "titulo": "Recaida platino sensible",
+   "fuente": "ESMO recurrent platinum-sensitive",
+   "payload": {
+    "edad": 63,
+    "sexo": "mujer",
+    "ecog": "1",
+    "estadio": "recaida",
+    "histologia": "seroso_alto_grado",
+    "brca": "no_mutado",
+    "intervalo_platino_meses": 14,
+    "lineas_previas": 1
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "recaida_platino_sensible",
+    "aceptables": [
+     "recaida_platino_sensible"
+    ]
+   }
+  },
+  {
+   "id": "OVARIO-V07",
+   "titulo": "Recaida resistente FRalfa alto",
+   "fuente": "MIRASOL",
+   "payload": {
+    "edad": 66,
+    "sexo": "mujer",
+    "ecog": "1",
+    "estadio": "recaida",
+    "histologia": "seroso_alto_grado",
+    "brca": "no_mutado",
+    "intervalo_platino_meses": 3,
+    "fralfa": "alto",
+    "lineas_previas": 2
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "mirvetuximab_fralfa",
+    "aceptables": [
+     "mirvetuximab_fralfa"
+    ]
+   }
+  },
+  {
+   "id": "OVARIO-V08",
+   "titulo": "Falta BRCA en avanzado",
+   "fuente": "ESMO BRCA testing",
+   "payload": {
+    "edad": 58,
+    "sexo": "mujer",
+    "ecog": "0",
+    "estadio": "III",
+    "histologia": "seroso_alto_grado",
+    "grado": "3",
+    "cirugia_primaria_factible": true
+   },
+   "esperado": {
+    "tipo": "necesita_datos"
+   }
+  },
+  {
+   "id": "OVARIO-V09",
+   "titulo": "ECOG 4 avanzado",
+   "fuente": "ESMO supportive care",
+   "payload": {
+    "edad": 82,
+    "sexo": "mujer",
+    "ecog": "4",
+    "estadio": "IV",
+    "histologia": "seroso_alto_grado",
+    "cirugia_primaria_factible": false,
+    "brca": "no_mutado",
+    "hrd": "negativo",
+    "descripcion_libre": "Caquexia, ascitis masiva y dependencia total."
+   },
+   "esperado": {
+    "tipo": "revision_humana"
+   }
+  }
+ ]
+}

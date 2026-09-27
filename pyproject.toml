@@ -1,0 +1,25 @@
+[project]
+name = "jevesmo"
+version = "0.1.0"
+description = "Sistema de apoyo a la decision clinica oncologica basado en guias ESMO y el modelo System One Jev (TypeSafe AI)."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "pydantic>=2.6",
+    "fastapi>=0.110",
+    "uvicorn[standard]>=0.29",
+    "typesafe-sdk>=0.1; python_version >= '3.10'",
+    "python-dotenv>=1.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]

@@ -1,0 +1,713 @@
+{
+ "id": "gastrico",
+ "nombre": "Cancer gastrico",
+ "grupo": "Digestivo",
+ "version": "GASTRICO-ESMO-2024.1",
+ "guias": [
+  {
+   "titulo": "Gastric cancer: ESMO Clinical Practice Guideline for diagnosis, treatment and follow-up",
+   "anio": 2022,
+   "url": "https://www.esmo.org/guidelines/esmo-clinical-practice-guideline-gastric-cancer"
+  },
+  {
+   "titulo": "ESMO Living Guideline: Gastric Cancer",
+   "anio": 2024,
+   "url": "https://www.esmo.org/guidelines/living-guidelines/esmo-living-guideline-gastric-cancer"
+  }
+ ],
+ "descripcion": "Cancer gastrico/union EG: FLOT +- durvalumab, avanzado segun HER2, PD-L1 CPS, MSI-H y Claudin 18.2; 2L ramucirumab-paclitaxel y T-DXd.",
+ "campos": [
+  {
+   "id": "situacion",
+   "label": "Situacion clinica",
+   "tipo": "choice",
+   "seccion": "Tumor",
+   "opciones": [
+    "precoz_endoscopico",
+    "localizado_resecable",
+    "irresecable_metastasico"
+   ],
+   "requerido": true,
+   "pregunta": "¿Es precoz endoscopico, localizado resecable o irresecable/metastasico?"
+  },
+  {
+   "id": "histologia",
+   "label": "Histologia",
+   "tipo": "choice",
+   "seccion": "Tumor",
+   "opciones": [
+    "adenocarcinoma_intestinal",
+    "adenocarcinoma_difuso",
+    "mixto_otro"
+   ],
+   "requerido": true,
+   "pregunta": "¿Cual es la histologia del cancer gastrico?"
+  },
+  {
+   "id": "her2",
+   "label": "HER2",
+   "tipo": "choice",
+   "seccion": "Biomarcadores",
+   "opciones": [
+    "positivo",
+    "negativo",
+    "desconocido"
+   ]
+  },
+  {
+   "id": "pdl1_cps",
+   "label": "PD-L1 CPS",
+   "tipo": "number",
+   "seccion": "Biomarcadores",
+   "min": 0,
+   "max": 100
+  },
+  {
+   "id": "msi",
+   "label": "MSI/MMR",
+   "tipo": "choice",
+   "seccion": "Biomarcadores",
+   "opciones": [
+    "msi_h",
+    "pmmr",
+    "desconocido"
+   ]
+  },
+  {
+   "id": "claudin182",
+   "label": "Claudin 18.2",
+   "tipo": "choice",
+   "seccion": "Biomarcadores",
+   "opciones": [
+    "positivo",
+    "negativo",
+    "desconocido"
+   ]
+  },
+  {
+   "id": "fevi",
+   "label": "FEVI",
+   "tipo": "number",
+   "seccion": "Seguridad",
+   "min": 0,
+   "max": 100,
+   "unidad": "%"
+  },
+  {
+   "id": "sangrado_activo",
+   "label": "Sangrado digestivo activo o alto riesgo",
+   "tipo": "bool",
+   "seccion": "Seguridad"
+  }
+ ],
+ "derivados": [],
+ "opciones": [
+  {
+   "id": "reseccion_endoscopica",
+   "label": "Reseccion endoscopica",
+   "nota": "ESMO: cancer gastrico muy precoz que cumple criterios endoscopicos puede tratarse con reseccion endoscopica curativa",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "precoz_endoscopico"
+    }
+   ],
+   "componentes": [
+    "cirugia"
+   ],
+   "evidencia": "III, B"
+  },
+  {
+   "id": "flot_perioperatorio",
+   "label": "FLOT perioperatorio",
+   "nota": "ESMO: adenocarcinoma gastrico/EGJ resecable cT2 o N+ -> FLOT perioperatorio",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "localizado_resecable"
+    }
+   ],
+   "componentes": [
+    "quimioterapia",
+    "cirugia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "flot_durvalumab_periop",
+   "label": "FLOT + durvalumab perioperatorio",
+   "nota": "ESMO/Living: resecable de alto riesgo, FLOT + durvalumab puede considerarse donde aprobado (MATTERHORN)",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "localizado_resecable"
+    },
+    {
+     "campo": "pdl1_cps",
+     "gte": 1
+    }
+   ],
+   "componentes": [
+    "quimioterapia",
+    "inmunoterapia",
+    "cirugia"
+   ],
+   "evidencia": "I, B"
+  },
+  {
+   "id": "quimiorradioterapia_postop",
+   "label": "Quimiorradioterapia o quimioterapia adyuvante",
+   "nota": "ESMO: si cirugia primaria sin perioperatorio, valorar adyuvancia o QRT segun margen/ganglios",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "localizado_resecable"
+    },
+    {
+     "campo": "tratamientos_previos",
+     "contains": "gastrectomia"
+    }
+   ],
+   "componentes": [
+    "quimioterapia",
+    "quimiorradioterapia"
+   ],
+   "evidencia": "I, B"
+  },
+  {
+   "id": "pembro_trastu_quimio_1l",
+   "label": "Pembrolizumab + trastuzumab + quimioterapia",
+   "nota": "ESMO: avanzado HER2+ 1L -> fluoropirimidina-platino + trastuzumab; anadir pembrolizumab especialmente CPS positivo (KEYNOTE-811)",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "irresecable_metastasico"
+    },
+    {
+     "campo": "her2",
+     "eq": "positivo"
+    },
+    {
+     "any": [
+      {
+       "campo": "lineas_previas",
+       "missing": true
+      },
+      {
+       "campo": "lineas_previas",
+       "eq": 0
+      }
+     ]
+    }
+   ],
+   "componentes": [
+    "quimioterapia",
+    "anti_her2",
+    "inmunoterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "ici_quimio_cps",
+   "label": "Nivolumab/pembrolizumab + quimioterapia",
+   "nota": "ESMO: avanzado HER2 negativo con PD-L1 CPS elevado -> ICI + platino-fluoropirimidina",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "irresecable_metastasico"
+    },
+    {
+     "campo": "her2",
+     "ne": "positivo"
+    },
+    {
+     "campo": "pdl1_cps",
+     "gte": 5
+    },
+    {
+     "any": [
+      {
+       "campo": "lineas_previas",
+       "missing": true
+      },
+      {
+       "campo": "lineas_previas",
+       "eq": 0
+      }
+     ]
+    }
+   ],
+   "componentes": [
+    "quimioterapia",
+    "inmunoterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "zolbetuximab_quimio",
+   "label": "Zolbetuximab + CAPOX/FOLFOX",
+   "nota": "ESMO Living: avanzado HER2 negativo, CLDN18.2 positivo 1L -> zolbetuximab + quimioterapia",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "irresecable_metastasico"
+    },
+    {
+     "campo": "her2",
+     "ne": "positivo"
+    },
+    {
+     "campo": "claudin182",
+     "eq": "positivo"
+    },
+    {
+     "any": [
+      {
+       "campo": "lineas_previas",
+       "missing": true
+      },
+      {
+       "campo": "lineas_previas",
+       "eq": 0
+      }
+     ]
+    }
+   ],
+   "componentes": [
+    "quimioterapia",
+    "dirigida"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "ici_msi_h",
+   "label": "Inmunoterapia para MSI-H/dMMR",
+   "nota": "ESMO: MSI-H/dMMR avanzado tiene alta sensibilidad a PD-1; considerar inmunoterapia",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "irresecable_metastasico"
+    },
+    {
+     "campo": "msi",
+     "eq": "msi_h"
+    }
+   ],
+   "componentes": [
+    "inmunoterapia"
+   ],
+   "evidencia": "II, B"
+  },
+  {
+   "id": "quimio_doblete_1l",
+   "label": "Quimioterapia platino-fluoropirimidina",
+   "nota": "ESMO: avanzado HER2 negativo, PD-L1 bajo o sin biomarcador -> doblete fluoropirimidina-platino",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "irresecable_metastasico"
+    },
+    {
+     "any": [
+      {
+       "campo": "lineas_previas",
+       "missing": true
+      },
+      {
+       "campo": "lineas_previas",
+       "eq": 0
+      }
+     ]
+    }
+   ],
+   "componentes": [
+    "quimioterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "ram_paclitaxel_2l",
+   "label": "Ramucirumab + paclitaxel",
+   "nota": "ESMO: 2a linea tras platino-fluoropirimidina -> ramucirumab + paclitaxel (RAINBOW)",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "irresecable_metastasico"
+    },
+    {
+     "campo": "lineas_previas",
+     "gte": 1
+    }
+   ],
+   "componentes": [
+    "antiangiogenico",
+    "quimioterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "tdxd_her2_2l",
+   "label": "Trastuzumab deruxtecan",
+   "nota": "ESMO: avanzado HER2+ tras trastuzumab -> T-DXd en 2a/3a linea (DESTINY-Gastric)",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "irresecable_metastasico"
+    },
+    {
+     "campo": "her2",
+     "eq": "positivo"
+    },
+    {
+     "campo": "lineas_previas",
+     "gte": 1
+    }
+   ],
+   "componentes": [
+    "anti_her2",
+    "quimioterapia"
+   ],
+   "evidencia": "I, B"
+  },
+  {
+   "id": "irinotecan_taxano_2l",
+   "label": "Irinotecan o taxano",
+   "nota": "ESMO: 2a linea si no candidato a ramucirumab-paclitaxel -> irinotecan, paclitaxel o docetaxel",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "irresecable_metastasico"
+    },
+    {
+     "campo": "lineas_previas",
+     "gte": 1
+    }
+   ],
+   "componentes": [
+    "quimioterapia"
+   ],
+   "evidencia": "I, B"
+  }
+ ],
+ "preguntas": [
+  {
+   "key": "riesgo_periop",
+   "tipo": "choice",
+   "capa": 1,
+   "cuando": {
+    "campo": "situacion",
+    "eq": "localizado_resecable"
+   },
+   "instrucciones": "Clasifica el riesgo perioperatorio y la necesidad de intensificar mas alla de FLOT estandar",
+   "criterios": {
+    "estandar": "resecable sin factores de alto riesgo",
+    "alto": "bulky N+, T4 o alto riesgo de recaida"
+   }
+  },
+  {
+   "key": "beneficio_ici_cps",
+   "tipo": "score",
+   "capa": 2,
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "irresecable_metastasico"
+    },
+    {
+     "campo": "pdl1_cps",
+     "gte": 1
+    },
+    {
+     "campo": "pdl1_cps",
+     "lt": 5
+    }
+   ],
+   "instrucciones": "PD-L1 CPS bajo: estima beneficio de ICI",
+   "criterios": [
+    "bajo",
+    "incierto",
+    "alto"
+   ]
+  }
+ ],
+ "seguridad": [
+  {
+   "key": "sangrado_ram",
+   "cuando": {
+    "campo": "sangrado_activo",
+    "eq": true
+   },
+   "bloquea_componentes": [
+    "antiangiogenico"
+   ],
+   "instrucciones": "Con sangrado digestivo activo/alto riesgo, ¿ramucirumab supone riesgo hemorragico inaceptable?",
+   "motivo": "Sangrado activo: evitar antiangiogenico"
+  },
+  {
+   "key": "cardiaco_her2",
+   "cuando": {
+    "campo": "fevi",
+    "present": true
+   },
+   "bloquea_componentes": [
+    "anti_her2"
+   ],
+   "instrucciones": "Segun FEVI, ¿anti-HER2 supone riesgo cardiaco inaceptable?",
+   "motivo": "Riesgo cardiaco para anti-HER2"
+  },
+  {
+   "key": "autoinmune_ici",
+   "cuando": {
+    "campo": "comorbilidades_relevantes",
+    "contains": "autoinmune"
+   },
+   "bloquea_componentes": [
+    "inmunoterapia"
+   ],
+   "instrucciones": "¿La autoinmunidad activa hace inaceptable la inmunoterapia?",
+   "motivo": "Autoinmunidad activa"
+  }
+ ],
+ "avisos": [
+  {
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "irresecable_metastasico"
+    },
+    {
+     "campo": "her2",
+     "missing": true
+    }
+   ],
+   "texto": "HER2 no testado: imprescindible para trastuzumab/T-DXd."
+  },
+  {
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "irresecable_metastasico"
+    },
+    {
+     "campo": "pdl1_cps",
+     "missing": true
+    }
+   ],
+   "texto": "PD-L1 CPS no disponible: condiciona ICI."
+  },
+  {
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "irresecable_metastasico"
+    },
+    {
+     "campo": "claudin182",
+     "missing": true
+    }
+   ],
+   "texto": "Claudin 18.2 no testado: puede habilitar zolbetuximab."
+  }
+ ],
+ "vinetas": [
+  {
+   "id": "GASTRICO-V01",
+   "titulo": "Gastrico localizado fit",
+   "fuente": "ESMO gastric - FLOT perioperatorio",
+   "payload": {
+    "edad": 58,
+    "ecog": "0",
+    "sexo": "hombre",
+    "situacion": "localizado_resecable",
+    "histologia": "adenocarcinoma_intestinal",
+    "pdl1_cps": 0
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "flot_perioperatorio",
+    "aceptables": [
+     "flot_perioperatorio"
+    ]
+   }
+  },
+  {
+   "id": "GASTRICO-V02",
+   "titulo": "Localizado alto riesgo PD-L1 positivo",
+   "fuente": "MATTERHORN / ESMO living",
+   "payload": {
+    "edad": 52,
+    "ecog": "0",
+    "sexo": "mujer",
+    "situacion": "localizado_resecable",
+    "histologia": "adenocarcinoma_difuso",
+    "pdl1_cps": 5,
+    "descripcion_libre": "cT4aN2 bulky, paciente fit"
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "flot_durvalumab_periop",
+    "aceptables": [
+     "flot_durvalumab_periop",
+     "flot_perioperatorio"
+    ]
+   }
+  },
+  {
+   "id": "GASTRICO-V03",
+   "titulo": "Metastasico HER2+",
+   "fuente": "KEYNOTE-811",
+   "payload": {
+    "edad": 65,
+    "ecog": "1",
+    "sexo": "hombre",
+    "situacion": "irresecable_metastasico",
+    "histologia": "adenocarcinoma_intestinal",
+    "her2": "positivo",
+    "pdl1_cps": 10,
+    "msi": "pmmr",
+    "fevi": 60
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "pembro_trastu_quimio_1l",
+    "aceptables": [
+     "pembro_trastu_quimio_1l"
+    ]
+   }
+  },
+  {
+   "id": "GASTRICO-V04",
+   "titulo": "Metastasico CLDN18.2+ HER2-",
+   "fuente": "SPOTLIGHT/GLOW",
+   "payload": {
+    "edad": 59,
+    "ecog": "1",
+    "sexo": "mujer",
+    "situacion": "irresecable_metastasico",
+    "histologia": "adenocarcinoma_difuso",
+    "her2": "negativo",
+    "pdl1_cps": 2,
+    "claudin182": "positivo",
+    "msi": "pmmr"
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "zolbetuximab_quimio",
+    "aceptables": [
+     "zolbetuximab_quimio",
+     "quimio_doblete_1l"
+    ]
+   }
+  },
+  {
+   "id": "GASTRICO-V05",
+   "titulo": "Metastasico HER2- CPS alto",
+   "fuente": "CheckMate-649 / KEYNOTE-859",
+   "payload": {
+    "edad": 70,
+    "ecog": "1",
+    "sexo": "hombre",
+    "situacion": "irresecable_metastasico",
+    "histologia": "adenocarcinoma_intestinal",
+    "her2": "negativo",
+    "pdl1_cps": 20,
+    "claudin182": "negativo",
+    "msi": "pmmr"
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "ici_quimio_cps",
+    "aceptables": [
+     "ici_quimio_cps"
+    ]
+   }
+  },
+  {
+   "id": "GASTRICO-V06",
+   "titulo": "Segunda linea tras FOLFOX+nivo",
+   "fuente": "RAINBOW",
+   "payload": {
+    "edad": 62,
+    "ecog": "1",
+    "sexo": "mujer",
+    "situacion": "irresecable_metastasico",
+    "histologia": "adenocarcinoma_intestinal",
+    "her2": "negativo",
+    "lineas_previas": 1,
+    "tratamientos_previos": [
+     "FOLFOX+nivolumab"
+    ]
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "ram_paclitaxel_2l",
+    "aceptables": [
+     "ram_paclitaxel_2l",
+     "irinotecan_taxano_2l"
+    ]
+   }
+  },
+  {
+   "id": "GASTRICO-V07",
+   "titulo": "HER2+ tras trastuzumab",
+   "fuente": "DESTINY-Gastric",
+   "payload": {
+    "edad": 57,
+    "ecog": "1",
+    "sexo": "hombre",
+    "situacion": "irresecable_metastasico",
+    "histologia": "adenocarcinoma_intestinal",
+    "her2": "positivo",
+    "lineas_previas": 1,
+    "tratamientos_previos": [
+     "CAPOX+trastuzumab+pembrolizumab"
+    ],
+    "fevi": 58
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "tdxd_her2_2l",
+    "aceptables": [
+     "tdxd_her2_2l",
+     "ram_paclitaxel_2l"
+    ]
+   }
+  },
+  {
+   "id": "GASTRICO-V08",
+   "titulo": "Falta situacion clinica",
+   "fuente": "ESMO - estadio imprescindible",
+   "payload": {
+    "edad": 60,
+    "ecog": "0",
+    "sexo": "hombre",
+    "situacion": null,
+    "histologia": "adenocarcinoma_intestinal"
+   },
+   "esperado": {
+    "tipo": "necesita_datos"
+   }
+  },
+  {
+   "id": "GASTRICO-V09",
+   "titulo": "HER2+ con FEVI muy baja",
+   "fuente": "Seguridad anti-HER2",
+   "payload": {
+    "edad": 73,
+    "ecog": "1",
+    "sexo": "hombre",
+    "situacion": "irresecable_metastasico",
+    "histologia": "adenocarcinoma_intestinal",
+    "her2": "positivo",
+    "pdl1_cps": 10,
+    "fevi": 30,
+    "comorbilidades_relevantes": [
+     "insuficiencia cardiaca sintomatica"
+    ]
+   },
+   "esperado": {
+    "tipo": "revision_humana"
+   }
+  }
+ ]
+}

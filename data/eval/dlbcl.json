@@ -1,0 +1,193 @@
+{
+ "tumor": "dlbcl",
+ "nombre": "Linfoma B difuso de celulas grandes",
+ "grupo": "Hematologia",
+ "version": "DLBCL-ESMO-2025.1",
+ "fecha": "2026-09-27T14:47:27+00:00",
+ "modelo": "jev-latest",
+ "mock": false,
+ "umbral_confianza": 0.6,
+ "n": 9,
+ "aciertos": 9,
+ "acierto_global": 1.0,
+ "acierto_tratamiento": 1.0,
+ "acierto_preferida": 1.0,
+ "acierto_seguridad": 1.0,
+ "confianza_aciertos": 0.937142857142857,
+ "confianza_fallos": null,
+ "n_multiopcion": 2,
+ "acierto_multiopcion": 1.0,
+ "candidatos_medios": 1.2857142857142858,
+ "casos": [
+  {
+   "id": "DLBCL-V01",
+   "titulo": "Estadio limitado bajo riesgo",
+   "fuente": "ESMO Lymphomas DLBCL limitado",
+   "esperado_tipo": "recomendacion",
+   "esperado": "rchop_limitado_rt",
+   "aceptables": [
+    "rchop_limitado_rt"
+   ],
+   "obtenido": "rchop_limitado_rt",
+   "obtenido_label": "R-CHOP abreviado + radioterapia ISRT",
+   "confianza": 0.87,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  },
+  {
+   "id": "DLBCL-V02",
+   "titulo": "Avanzado IPI alto",
+   "fuente": "POLARIX / ESMO primera linea IPI 3-5",
+   "esperado_tipo": "recomendacion",
+   "esperado": "pola_r_chp_1l",
+   "aceptables": [
+    "pola_r_chp_1l",
+    "rchop_1l"
+   ],
+   "obtenido": "pola_r_chp_1l",
+   "obtenido_label": "Pola-R-CHP 6 ciclos",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "DLBCL-V03",
+   "titulo": "Anciano fit",
+   "fuente": "ESMO pacientes muy ancianos",
+   "esperado_tipo": "recomendacion",
+   "esperado": "r_mini_chop",
+   "aceptables": [
+    "r_mini_chop"
+   ],
+   "obtenido": "r_mini_chop",
+   "obtenido_label": "R-mini-CHOP",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "DLBCL-V04",
+   "titulo": "Contraindicacion antraciclina",
+   "fuente": "ESMO alternativa si cardiopatia",
+   "esperado_tipo": "recomendacion",
+   "esperado": "no_antraciclina",
+   "aceptables": [
+    "no_antraciclina"
+   ],
+   "obtenido": "no_antraciclina",
+   "obtenido_label": "R-CEOP/R-GemOx sin antraciclina",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "DLBCL-V05",
+   "titulo": "Recaida precoz candidata CAR-T",
+   "fuente": "ZUMA-7/TRANSFORM",
+   "esperado_tipo": "recomendacion",
+   "esperado": "car_t_2l_precoz",
+   "aceptables": [
+    "car_t_2l_precoz"
+   ],
+   "obtenido": "car_t_2l_precoz",
+   "obtenido_label": "CAR-T axi-cel o liso-cel en 2a linea",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "DLBCL-V06",
+   "titulo": "Recaida tardia candidata TAPH",
+   "fuente": "ESMO recaida tardia",
+   "esperado_tipo": "recomendacion",
+   "esperado": "rescate_taph_tardio",
+   "aceptables": [
+    "rescate_taph_tardio"
+   ],
+   "obtenido": "rescate_taph_tardio",
+   "obtenido_label": "Quimio de rescate (R-DHAP/R-ICE/R-GDP) + TAPH",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "DLBCL-V07",
+   "titulo": "Tercera linea post-CAR-T",
+   "fuente": "ESMO biespecificos",
+   "esperado_tipo": "recomendacion",
+   "esperado": "bispecifico_3l",
+   "aceptables": [
+    "bispecifico_3l"
+   ],
+   "obtenido": "bispecifico_3l",
+   "obtenido_label": "Anticuerpo biespecifico (glofitamab o epcoritamab)",
+   "confianza": 0.69,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  },
+  {
+   "id": "DLBCL-V08",
+   "titulo": "Falta estadio",
+   "fuente": "Dato esencial",
+   "esperado_tipo": "necesita_datos",
+   "esperado": "necesita_datos",
+   "aceptables": [],
+   "obtenido": "necesita_datos",
+   "obtenido_label": null,
+   "confianza": null,
+   "revision": null,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [
+    "¿Cual es el estadio Ann Arbor/Lugano y si hay enfermedad voluminosa?"
+   ],
+   "n_candidatos": 0,
+   "error": null
+  },
+  {
+   "id": "DLBCL-V09",
+   "titulo": "ECOG 4 pluripatologico",
+   "fuente": "Seguridad fitness",
+   "esperado_tipo": "revision_humana",
+   "esperado": "revision_humana",
+   "aceptables": [],
+   "obtenido": "revision (no_antraciclina)",
+   "obtenido_label": "R-CEOP/R-GemOx sin antraciclina",
+   "confianza": 1.0,
+   "revision": true,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  }
+ ]
+}

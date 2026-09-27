@@ -1,0 +1,212 @@
+{
+ "tumor": "tiroides",
+ "nombre": "Cancer de tiroides",
+ "grupo": "Cabeza y cuello / Endocrino",
+ "version": "TIROIDES-ESMO-2024.1",
+ "fecha": "2026-09-27T14:47:50+00:00",
+ "modelo": "jev-latest",
+ "mock": false,
+ "umbral_confianza": 0.6,
+ "n": 10,
+ "aciertos": 10,
+ "acierto_global": 1.0,
+ "acierto_tratamiento": 1.0,
+ "acierto_preferida": 1.0,
+ "acierto_seguridad": 1.0,
+ "confianza_aciertos": 1.0,
+ "confianza_fallos": null,
+ "n_multiopcion": 1,
+ "acierto_multiopcion": 1.0,
+ "candidatos_medios": 1.125,
+ "casos": [
+  {
+   "id": "TIROIDES-V01",
+   "titulo": "Diferenciado bajo riesgo",
+   "fuente": "ATA bajo riesgo",
+   "esperado_tipo": "recomendacion",
+   "esperado": "lobectomia_vigilancia_bajo_riesgo",
+   "aceptables": [
+    "lobectomia_vigilancia_bajo_riesgo"
+   ],
+   "obtenido": "lobectomia_vigilancia_bajo_riesgo",
+   "obtenido_label": "Cirugia conservadora/lobectomia y vigilancia",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "TIROIDES-V02",
+   "titulo": "Diferenciado alto riesgo",
+   "fuente": "RAI",
+   "esperado_tipo": "recomendacion",
+   "esperado": "tiroidectomia_rai_intermedio_alto",
+   "aceptables": [
+    "tiroidectomia_rai_intermedio_alto"
+   ],
+   "obtenido": "tiroidectomia_rai_intermedio_alto",
+   "obtenido_label": "Tiroidectomia total +- RAI segun riesgo",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "TIROIDES-V03",
+   "titulo": "Metastatico yodo-captante",
+   "fuente": "RAI",
+   "esperado_tipo": "recomendacion",
+   "esperado": "rai_metastatico_sensible",
+   "aceptables": [
+    "rai_metastatico_sensible"
+   ],
+   "obtenido": "rai_metastatico_sensible",
+   "obtenido_label": "Radioyodo para enfermedad yodo-captante",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "TIROIDES-V04",
+   "titulo": "RAI refractario indolente",
+   "fuente": "Vigilancia",
+   "esperado_tipo": "recomendacion",
+   "esperado": "vigilancia_rai_refractario_indolente",
+   "aceptables": [
+    "vigilancia_rai_refractario_indolente"
+   ],
+   "obtenido": "vigilancia_rai_refractario_indolente",
+   "obtenido_label": "Vigilancia activa RAI-refractario indolente",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "TIROIDES-V05",
+   "titulo": "RAI refractario progresivo",
+   "fuente": "SELECT",
+   "esperado_tipo": "recomendacion",
+   "esperado": "lenvatinib_sorafenib_dtc",
+   "aceptables": [
+    "lenvatinib_sorafenib_dtc"
+   ],
+   "obtenido": "lenvatinib_sorafenib_dtc",
+   "obtenido_label": "Lenvatinib (preferente) o sorafenib",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "TIROIDES-V06",
+   "titulo": "Medular RET mutado",
+   "fuente": "LIBRETTO",
+   "esperado_tipo": "recomendacion",
+   "esperado": "selpercatinib_mtc_ret",
+   "aceptables": [
+    "selpercatinib_mtc_ret",
+    "selpercatinib_ret_dtc"
+   ],
+   "obtenido": "selpercatinib_mtc_ret",
+   "obtenido_label": "Selpercatinib/pralsetinib en medular RET-mutado",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  },
+  {
+   "id": "TIROIDES-V07",
+   "titulo": "Medular RET negativo",
+   "fuente": "Vandetanib/cabozantinib",
+   "esperado_tipo": "recomendacion",
+   "esperado": "vandetanib_cabozantinib_mtc",
+   "aceptables": [
+    "vandetanib_cabozantinib_mtc"
+   ],
+   "obtenido": "vandetanib_cabozantinib_mtc",
+   "obtenido_label": "Vandetanib o cabozantinib en medular avanzado",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "TIROIDES-V08",
+   "titulo": "Anaplasico BRAF V600E",
+   "fuente": "Dabrafenib trametinib",
+   "esperado_tipo": "recomendacion",
+   "esperado": "anaplasico_braf_dab_tram",
+   "aceptables": [
+    "anaplasico_braf_dab_tram"
+   ],
+   "obtenido": "anaplasico_braf_dab_tram",
+   "obtenido_label": "Dabrafenib + trametinib si BRAF V600E",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "TIROIDES-V09",
+   "titulo": "Falta riesgo ATA",
+   "fuente": "Dato imprescindible",
+   "esperado_tipo": "necesita_datos",
+   "esperado": "necesita_datos",
+   "aceptables": [],
+   "obtenido": "necesita_datos",
+   "obtenido_label": null,
+   "confianza": null,
+   "revision": null,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [
+    "¿Cual es el riesgo ATA (bajo, intermedio, alto)?"
+   ],
+   "n_candidatos": 0,
+   "error": null
+  },
+  {
+   "id": "TIROIDES-V10",
+   "titulo": "RAI refractario sangrado",
+   "fuente": "Seguridad antiangiogenico",
+   "esperado_tipo": "revision_humana",
+   "esperado": "revision_humana",
+   "aceptables": [],
+   "obtenido": "revision (sin opcion segura)",
+   "obtenido_label": null,
+   "confianza": 0.0,
+   "revision": true,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  }
+ ]
+}

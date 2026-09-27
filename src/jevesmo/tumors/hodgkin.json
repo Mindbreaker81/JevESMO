@@ -1,0 +1,577 @@
+{
+ "id": "hodgkin",
+ "nombre": "Linfoma de Hodgkin clasico",
+ "grupo": "Hematologia",
+ "version": "HODGKIN-ESMO-2025.1",
+ "guias": [
+  {
+   "titulo": "ESMO Clinical Practice Guideline: Lymphomas",
+   "anio": 2025,
+   "url": "https://www.esmo.org/guidelines/esmo-clinical-practice-guideline-lymphomas"
+  }
+ ],
+ "descripcion": "Hodgkin clasico: limitado favorable/desfavorable, avanzado BrECADD/escBEACOPP o A-AVD, ancianos y recaida.",
+ "campos": [
+  {
+   "id": "estadio",
+   "label": "Estadio Ann Arbor/Lugano",
+   "tipo": "choice",
+   "opciones": [
+    "limitado_favorable",
+    "limitado_desfavorable",
+    "avanzado"
+   ],
+   "requerido": true,
+   "pregunta": "¿Es estadio limitado favorable, limitado desfavorable o avanzado?"
+  },
+  {
+   "id": "pet2",
+   "label": "PET interino Deauville",
+   "tipo": "choice",
+   "opciones": [
+    "negativo",
+    "positivo",
+    "no_realizado"
+   ]
+  },
+  {
+   "id": "bleomicina_contraindicada",
+   "label": "Contraindicacion a bleomicina",
+   "tipo": "bool",
+   "seccion": "Seguridad"
+  },
+  {
+   "id": "candidato_intensivo",
+   "label": "Candidato a tratamiento intensivo",
+   "tipo": "bool",
+   "requerido": true,
+   "pregunta": "¿Es candidato a ABVD/BrECADD/escBEACOPP o rescate intensivo?"
+  },
+  {
+   "id": "candidato_taph",
+   "label": "Candidato a TAPH",
+   "tipo": "bool",
+   "seccion": "Recaida"
+  },
+  {
+   "id": "alto_riesgo_post_taph",
+   "label": "Alto riesgo post-TAPH",
+   "tipo": "bool",
+   "seccion": "Recaida"
+  }
+ ],
+ "derivados": [
+  {
+   "id": "situacion",
+   "label": "Situacion clinica",
+   "defecto": "primera_linea",
+   "reglas": [
+    {
+     "cuando": {
+      "campo": "lineas_previas",
+      "gte": 2
+     },
+     "valor": "post_taph_o_multiple"
+    },
+    {
+     "cuando": {
+      "campo": "lineas_previas",
+      "eq": 1
+     },
+     "valor": "primera_recaida"
+    }
+   ]
+  }
+ ],
+ "opciones": [
+  {
+   "id": "abvd2_rt",
+   "label": "ABVD x2 + radioterapia ISRT 20 Gy",
+   "nota": "ESMO Hodgkin: limitado favorable -> ABVD 2 ciclos seguido de RT involucrada guiado por PET",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "primera_linea"
+    },
+    {
+     "campo": "estadio",
+     "eq": "limitado_favorable"
+    },
+    {
+     "campo": "candidato_intensivo",
+     "eq": true
+    },
+    {
+     "campo": "bleomicina_contraindicada",
+     "ne": true
+    }
+   ],
+   "componentes": [
+    "quimioterapia",
+    "radioterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "abvd4_rt",
+   "label": "ABVD x4 + radioterapia ISRT 30 Gy",
+   "nota": "ESMO Hodgkin: limitado desfavorable -> ABVD 4 ciclos + RT, con adaptacion segun PET",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "primera_linea"
+    },
+    {
+     "campo": "estadio",
+     "eq": "limitado_desfavorable"
+    },
+    {
+     "campo": "candidato_intensivo",
+     "eq": true
+    },
+    {
+     "campo": "bleomicina_contraindicada",
+     "ne": true
+    }
+   ],
+   "componentes": [
+    "quimioterapia",
+    "radioterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "avd_sin_bleomicina",
+   "label": "AVD +/- brentuximab si bleomicina contraindicada",
+   "nota": "ESMO Hodgkin: si bleomicina no segura, usar AVD y considerar brentuximab",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "primera_linea"
+    },
+    {
+     "campo": "bleomicina_contraindicada",
+     "eq": true
+    },
+    {
+     "campo": "candidato_intensivo",
+     "eq": true
+    }
+   ],
+   "componentes": [
+    "quimioterapia",
+    "dirigida"
+   ],
+   "evidencia": "II, B"
+  },
+  {
+   "id": "brecadd_escbeacopp",
+   "label": "BrECADD o escBEACOPP guiado por PET",
+   "nota": "ESMO Hodgkin avanzado fit: BrECADD/escBEACOPP consigue alto control; elegir por toxicidad y PET",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "primera_linea"
+    },
+    {
+     "campo": "estadio",
+     "eq": "avanzado"
+    },
+    {
+     "campo": "edad",
+     "lt": 60
+    },
+    {
+     "campo": "candidato_intensivo",
+     "eq": true
+    }
+   ],
+   "componentes": [
+    "quimioterapia",
+    "dirigida"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "a_avd_avanzado",
+   "label": "A-AVD (brentuximab vedotina + AVD)",
+   "nota": "ESMO Hodgkin avanzado: A-AVD alternativa a BEACOPP/BrECADD, especialmente si se evita bleomicina; ECHELON-1",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "primera_linea"
+    },
+    {
+     "campo": "estadio",
+     "eq": "avanzado"
+    },
+    {
+     "campo": "candidato_intensivo",
+     "eq": true
+    }
+   ],
+   "componentes": [
+    "quimioterapia",
+    "dirigida"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "anciano_bv_dacarbazina",
+   "label": "Regimen adaptado en ancianos (AVD reducido o brentuximab+dacarbazina)",
+   "nota": "ESMO Hodgkin: ancianos/no candidatos a intensivo requieren esquema individualizado evitando bleomicina y toxicidad excesiva",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "primera_linea"
+    },
+    {
+     "any": [
+      {
+       "campo": "edad",
+       "gte": 70
+      },
+      {
+       "campo": "candidato_intensivo",
+       "eq": false
+      }
+     ]
+    }
+   ],
+   "componentes": [
+    "quimioterapia",
+    "dirigida"
+   ],
+   "evidencia": "III, B"
+  },
+  {
+   "id": "rescate_taph",
+   "label": "Quimioterapia de rescate + TAPH",
+   "nota": "ESMO Hodgkin recaida sensible y candidato -> rescate seguido de trasplante autologo",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "primera_recaida"
+    },
+    {
+     "campo": "candidato_taph",
+     "eq": true
+    }
+   ],
+   "componentes": [
+    "quimioterapia",
+    "trasplante"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "bv_mantenimiento",
+   "label": "Brentuximab vedotina consolidacion post-TAPH",
+   "nota": "ESMO Hodgkin: alto riesgo post-TAPH -> brentuximab mantenimiento (AETHERA)",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "in": [
+      "primera_recaida",
+      "post_taph_o_multiple"
+     ]
+    },
+    {
+     "campo": "alto_riesgo_post_taph",
+     "eq": true
+    }
+   ],
+   "componentes": [
+    "dirigida"
+   ],
+   "evidencia": "II, A"
+  },
+  {
+   "id": "anti_pd1",
+   "label": "Anti-PD1 (nivolumab o pembrolizumab)",
+   "nota": "ESMO Hodgkin: recaida tras TAPH/BV o no candidato -> anti-PD1 con alta tasa de respuesta",
+   "cuando": [
+    {
+     "campo": "situacion",
+     "eq": "post_taph_o_multiple"
+    }
+   ],
+   "componentes": [
+    "inmunoterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "paliativo_hl",
+   "label": "Tratamiento paliativo/soporte o radioterapia sintomatica",
+   "nota": "ESMO Hodgkin: paciente no candidato a terapia sistemica activa -> control sintomatico individualizado",
+   "cuando": [
+    {
+     "campo": "ecog",
+     "in": [
+      "3",
+      "4"
+     ]
+    },
+    {
+     "campo": "candidato_intensivo",
+     "eq": false
+    }
+   ],
+   "componentes": [
+    "soporte",
+    "radioterapia"
+   ],
+   "evidencia": "V, B"
+  }
+ ],
+ "preguntas": [
+  {
+   "key": "balance_toxicidad_avanzado",
+   "tipo": "choice",
+   "capa": 1,
+   "cuando": {
+    "campo": "estadio",
+    "eq": "avanzado"
+   },
+   "instrucciones": "En Hodgkin avanzado fit, ¿que balance es preferible?",
+   "criterios": {
+    "max_control": "Priorizar maximo control con BrECADD/escBEACOPP",
+    "menos_toxicidad": "Priorizar menor toxicidad con A-AVD/AVD adaptado"
+   }
+  },
+  {
+   "key": "pet_persistencia",
+   "tipo": "noul",
+   "capa": 2,
+   "cuando": {
+    "campo": "pet2",
+    "eq": "positivo"
+   },
+   "instrucciones": "¿El PET positivo representa enfermedad residual significativa que justifica intensificacion o biopsia?"
+  }
+ ],
+ "seguridad": [
+  {
+   "key": "toxicidad_bleomicina",
+   "cuando": {
+    "campo": "bleomicina_contraindicada",
+    "eq": true
+   },
+   "bloquea": [
+    "abvd2_rt",
+    "abvd4_rt"
+   ],
+   "instrucciones": "¿La enfermedad pulmonar/edad hace inaceptable exponer a bleomicina?",
+   "umbral": 0.5,
+   "motivo": "Riesgo pulmonar inaceptable con bleomicina"
+  },
+  {
+   "key": "autoinmune_pd1",
+   "cuando": {
+    "campo": "comorbilidades_relevantes",
+    "present": true
+   },
+   "bloquea": [
+    "anti_pd1"
+   ],
+   "instrucciones": "¿Hay enfermedad autoinmune activa o trasplante que haga peligroso anti-PD1?",
+   "umbral": 0.75,
+   "motivo": "Riesgo inmunologico alto para anti-PD1"
+  }
+ ],
+ "avisos": [
+  {
+   "cuando": {
+    "campo": "pet2",
+    "missing": true
+   },
+   "texto": "PET interino no disponible: muchas estrategias modernas son PET-adaptadas."
+  }
+ ],
+ "vinetas": [
+  {
+   "id": "HODGKIN-V01",
+   "titulo": "Limitado favorable",
+   "fuente": "ESMO limitado favorable",
+   "payload": {
+    "edad": 28,
+    "ecog": "0",
+    "estadio": "limitado_favorable",
+    "candidato_intensivo": true,
+    "bleomicina_contraindicada": false
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "abvd2_rt",
+    "aceptables": [
+     "abvd2_rt"
+    ]
+   }
+  },
+  {
+   "id": "HODGKIN-V02",
+   "titulo": "Limitado desfavorable",
+   "fuente": "ESMO limitado desfavorable",
+   "payload": {
+    "edad": 35,
+    "ecog": "0",
+    "estadio": "limitado_desfavorable",
+    "candidato_intensivo": true,
+    "bleomicina_contraindicada": false
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "abvd4_rt",
+    "aceptables": [
+     "abvd4_rt"
+    ]
+   }
+  },
+  {
+   "id": "HODGKIN-V03",
+   "titulo": "Avanzado joven fit",
+   "fuente": "HD21/ESMO avanzado",
+   "payload": {
+    "edad": 31,
+    "ecog": "1",
+    "estadio": "avanzado",
+    "candidato_intensivo": true,
+    "bleomicina_contraindicada": false,
+    "pet2": "no_realizado"
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "brecadd_escbeacopp",
+    "aceptables": [
+     "brecadd_escbeacopp",
+     "a_avd_avanzado"
+    ]
+   }
+  },
+  {
+   "id": "HODGKIN-V04",
+   "titulo": "Avanzado bleomicina contraindicada",
+   "fuente": "ECHELON-1",
+   "payload": {
+    "edad": 52,
+    "ecog": "1",
+    "estadio": "avanzado",
+    "candidato_intensivo": true,
+    "bleomicina_contraindicada": true,
+    "comorbilidades_relevantes": [
+     "fibrosis pulmonar"
+    ]
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "a_avd_avanzado",
+    "aceptables": [
+     "a_avd_avanzado",
+     "avd_sin_bleomicina"
+    ]
+   }
+  },
+  {
+   "id": "HODGKIN-V05",
+   "titulo": "Anciano no intensivo",
+   "fuente": "ESMO ancianos",
+   "payload": {
+    "edad": 78,
+    "ecog": "2",
+    "estadio": "avanzado",
+    "candidato_intensivo": false,
+    "bleomicina_contraindicada": true
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "anciano_bv_dacarbazina",
+    "aceptables": [
+     "anciano_bv_dacarbazina"
+    ]
+   }
+  },
+  {
+   "id": "HODGKIN-V06",
+   "titulo": "Primera recaida candidato TAPH",
+   "fuente": "ESMO recaida",
+   "payload": {
+    "edad": 42,
+    "ecog": "0",
+    "estadio": "avanzado",
+    "candidato_intensivo": true,
+    "lineas_previas": 1,
+    "candidato_taph": true,
+    "tratamientos_previos": [
+     "ABVD"
+    ]
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "rescate_taph",
+    "aceptables": [
+     "rescate_taph"
+    ]
+   }
+  },
+  {
+   "id": "HODGKIN-V07",
+   "titulo": "Post-TAPH recaida",
+   "fuente": "ESMO anti-PD1",
+   "payload": {
+    "edad": 39,
+    "ecog": "1",
+    "estadio": "avanzado",
+    "candidato_intensivo": true,
+    "lineas_previas": 2,
+    "candidato_taph": false,
+    "tratamientos_previos": [
+     "ABVD",
+     "TAPH",
+     "brentuximab"
+    ]
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "anti_pd1",
+    "aceptables": [
+     "anti_pd1"
+    ]
+   }
+  },
+  {
+   "id": "HODGKIN-V08",
+   "titulo": "Falta estadio",
+   "fuente": "Dato requerido",
+   "payload": {
+    "edad": 30,
+    "ecog": "0",
+    "estadio": null,
+    "candidato_intensivo": true
+   },
+   "esperado": {
+    "tipo": "necesita_datos"
+   }
+  },
+  {
+   "id": "HODGKIN-V09",
+   "titulo": "ECOG 4 infeccion activa",
+   "fuente": "Seguridad",
+   "payload": {
+    "edad": 81,
+    "ecog": "4",
+    "estadio": "avanzado",
+    "candidato_intensivo": false,
+    "bleomicina_contraindicada": true,
+    "comorbilidades_relevantes": [
+     "neumonia grave",
+     "fragilidad"
+    ],
+    "descripcion_libre": "Encamado con insuficiencia respiratoria."
+   },
+   "esperado": {
+    "tipo": "revision_humana"
+   }
+  }
+ ]
+}

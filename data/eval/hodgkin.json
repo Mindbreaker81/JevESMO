@@ -1,0 +1,194 @@
+{
+ "tumor": "hodgkin",
+ "nombre": "Linfoma de Hodgkin clasico",
+ "grupo": "Hematologia",
+ "version": "HODGKIN-ESMO-2025.1",
+ "fecha": "2026-09-27T14:47:32+00:00",
+ "modelo": "jev-latest",
+ "mock": false,
+ "umbral_confianza": 0.6,
+ "n": 9,
+ "aciertos": 9,
+ "acierto_global": 1.0,
+ "acierto_tratamiento": 1.0,
+ "acierto_preferida": 1.0,
+ "acierto_seguridad": 1.0,
+ "confianza_aciertos": 0.86,
+ "confianza_fallos": null,
+ "n_multiopcion": 2,
+ "acierto_multiopcion": 1.0,
+ "candidatos_medios": 1.4285714285714286,
+ "casos": [
+  {
+   "id": "HODGKIN-V01",
+   "titulo": "Limitado favorable",
+   "fuente": "ESMO limitado favorable",
+   "esperado_tipo": "recomendacion",
+   "esperado": "abvd2_rt",
+   "aceptables": [
+    "abvd2_rt"
+   ],
+   "obtenido": "abvd2_rt",
+   "obtenido_label": "ABVD x2 + radioterapia ISRT 20 Gy",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "HODGKIN-V02",
+   "titulo": "Limitado desfavorable",
+   "fuente": "ESMO limitado desfavorable",
+   "esperado_tipo": "recomendacion",
+   "esperado": "abvd4_rt",
+   "aceptables": [
+    "abvd4_rt"
+   ],
+   "obtenido": "abvd4_rt",
+   "obtenido_label": "ABVD x4 + radioterapia ISRT 30 Gy",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "HODGKIN-V03",
+   "titulo": "Avanzado joven fit",
+   "fuente": "HD21/ESMO avanzado",
+   "esperado_tipo": "recomendacion",
+   "esperado": "brecadd_escbeacopp",
+   "aceptables": [
+    "brecadd_escbeacopp",
+    "a_avd_avanzado"
+   ],
+   "obtenido": "brecadd_escbeacopp",
+   "obtenido_label": "BrECADD o escBEACOPP guiado por PET",
+   "confianza": 0.66,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  },
+  {
+   "id": "HODGKIN-V04",
+   "titulo": "Avanzado bleomicina contraindicada",
+   "fuente": "ECHELON-1",
+   "esperado_tipo": "recomendacion",
+   "esperado": "a_avd_avanzado",
+   "aceptables": [
+    "a_avd_avanzado",
+    "avd_sin_bleomicina"
+   ],
+   "obtenido": "a_avd_avanzado",
+   "obtenido_label": "A-AVD (brentuximab vedotina + AVD)",
+   "confianza": 0.36,
+   "revision": true,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 3,
+   "error": null
+  },
+  {
+   "id": "HODGKIN-V05",
+   "titulo": "Anciano no intensivo",
+   "fuente": "ESMO ancianos",
+   "esperado_tipo": "recomendacion",
+   "esperado": "anciano_bv_dacarbazina",
+   "aceptables": [
+    "anciano_bv_dacarbazina"
+   ],
+   "obtenido": "anciano_bv_dacarbazina",
+   "obtenido_label": "Regimen adaptado en ancianos (AVD reducido o brentuximab+dacarbazina)",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "HODGKIN-V06",
+   "titulo": "Primera recaida candidato TAPH",
+   "fuente": "ESMO recaida",
+   "esperado_tipo": "recomendacion",
+   "esperado": "rescate_taph",
+   "aceptables": [
+    "rescate_taph"
+   ],
+   "obtenido": "rescate_taph",
+   "obtenido_label": "Quimioterapia de rescate + TAPH",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "HODGKIN-V07",
+   "titulo": "Post-TAPH recaida",
+   "fuente": "ESMO anti-PD1",
+   "esperado_tipo": "recomendacion",
+   "esperado": "anti_pd1",
+   "aceptables": [
+    "anti_pd1"
+   ],
+   "obtenido": "anti_pd1",
+   "obtenido_label": "Anti-PD1 (nivolumab o pembrolizumab)",
+   "confianza": 1.0,
+   "revision": false,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null
+  },
+  {
+   "id": "HODGKIN-V08",
+   "titulo": "Falta estadio",
+   "fuente": "Dato requerido",
+   "esperado_tipo": "necesita_datos",
+   "esperado": "necesita_datos",
+   "aceptables": [],
+   "obtenido": "necesita_datos",
+   "obtenido_label": null,
+   "confianza": null,
+   "revision": null,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [
+    "¿Es estadio limitado favorable, limitado desfavorable o avanzado?"
+   ],
+   "n_candidatos": 0,
+   "error": null
+  },
+  {
+   "id": "HODGKIN-V09",
+   "titulo": "ECOG 4 infeccion activa",
+   "fuente": "Seguridad",
+   "esperado_tipo": "revision_humana",
+   "esperado": "revision_humana",
+   "aceptables": [],
+   "obtenido": "revision (paliativo_hl)",
+   "obtenido_label": "Tratamiento paliativo/soporte o radioterapia sintomatica",
+   "confianza": 0.75,
+   "revision": true,
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null
+  }
+ ]
+}
