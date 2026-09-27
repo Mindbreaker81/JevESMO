@@ -313,13 +313,20 @@ def render_evaluation(client: JevClient) -> None:
         "datos, bloquea opciones peligrosas).</li>"
         "<li><b>METABRIC</b> (cBioPortal, Curtis et al. 2012 · Pereira et al. 2016): cohorte real de "
         "pacientes con cancer de mama. Compara la recomendacion con el tratamiento que realmente recibieron "
-        "y con su evolucion (supervivencia libre de recaida).</li></ul></div>"
+        "y con su evolucion (supervivencia libre de recaida).</li>"
+        "<li><b>MSK-CHORD</b> (cBioPortal, Jee et al. <i>Nature</i> 2024): cohorte real de Memorial Sloan Kettering "
+        "(~25.000 pacientes, 2014-2022) con linea temporal de tratamientos, ECOG y perfil genomico MSK-IMPACT. "
+        "Se usa para CPNM, colorrectal y pancreas metastasicos y mama metastasica: compara la 1ª linea que "
+        "recomienda JevESMO con la que realmente recibio cada paciente y con su supervivencia global.</li></ul></div>"
     )
 
     with st.expander("▶ Ejecutar una nueva evaluacion", expanded=False):
         sel = st.multiselect("Tumores (viñetas)", sorted(specs), default=sorted(specs),
                              format_func=lambda t: f"{specs[t].grupo} · {specs[t].nombre}")
         do_met = st.checkbox("Incluir cohorte METABRIC (mama, ~200 pacientes)", value=False)
+        cm1, cm2 = st.columns([3, 1])
+        do_msk = cm1.checkbox("Incluir cohorte MSK-CHORD (CPNM, CCR, pancreas y mama metastasicos)", value=False)
+        msk_n = cm2.number_input("Pacientes por tumor", 10, 300, 60, step=10)
         c1, c2, c3, c4, c5 = st.columns(5)
         strata = {
             "HR+/HER2-": c1.number_input("HR+/HER2-", 0, 1000, DEFAULT_STRATA["HR+/HER2-"], step=10),
@@ -330,21 +337,21 @@ def render_evaluation(client: JevClient) -> None:
         seed = c5.number_input("Semilla", 0, 9999, 42)
         if client.is_mock:
             nb('<div class="nb-card red">Modo MOCK: los resultados no reflejaran el rendimiento real de Jev.</div>')
-        if st.button("▶ Ejecutar evaluacion", width="stretch", disabled=not (sel or do_met)):
+        if st.button("▶ Ejecutar evaluacion", width="stretch", disabled=not (sel or do_met or do_msk)):
             bar = st.progress(0.0, text="Iniciando...")
 
             def prog(done: int, total: int, label: str) -> None:
                 bar.progress(done / total, text=f"{label}: {done}/{total}")
 
             try:
-                run_all(client=client, tumors=sel or [], metabric_too=do_met,
+                run_all(client=client, tumors=sel or [], metabric_too=do_met, msk_too=do_msk, msk_n=int(msk_n),
                         strata={k: int(v) for k, v in strata.items()}, seed=int(seed), progress=prog)
                 st.rerun()
             except Exception as exc:
                 nb(f'<div class="nb-card red"><h3>Error en la evaluacion</h3><div class="note">{e(exc)}</div></div>')
 
     res = load_results()
-    if not res["tumores"] and not res["metabric"]:
+    if not res["tumores"] and not res["metabric"] and not res.get("msk_chord"):
         nb('<div class="nb-empty">Aun no hay resultados.<br>Ejecuta una evaluacion.</div>')
         return
 
@@ -418,6 +425,7 @@ def render_evaluation(client: JevClient) -> None:
     # ------------------------------------------------ METABRIC
     m = res["metabric"]
     if not m:
+        _render_msk(res.get("msk_chord"))
         return
     g, lum = m["global"], m["luminal_precoz"]
     nb('<div class="nb-section right">B · Cohorte real METABRIC</div>')
@@ -494,6 +502,128 @@ def render_evaluation(client: JevClient) -> None:
                                 "rfs_months", "rfs_event")} for c in m["casos"]],
             width="stretch", hide_index=True,
         )
+
+    _render_msk(res.get("msk_chord"))
+
+
+def _os_txt(o: dict | None) -> str:
+    if not o or not o.get("n"):
+        return "—"
+    med = o.get("mediana_meses")
+    return f"{'no alcanzada' if med is None else f'{med:.1f} m'}"
+
+
+def _render_msk(r: dict | None) -> None:
+    if not r or not r.get("tumores"):
+        return
+    g, tums = r["global"], r["tumores"]
+    casos = r.get("casos") or {}
+    nb('<div class="nb-section right">C · Cohorte real MSK-CHORD · otros tumores</div>')
+    nb(
+        f'<span class="nb-tag {"red" if r.get("mock") else "green"}">Modelo · {e(r.get("modelo", ""))}</span>'
+        f'<span class="nb-tag">Ejecucion · {e(str(r.get("fecha", ""))[:16].replace("T", " "))} UTC</span>'
+        f'<span class="nb-tag yellow">MSK-CHORD · CC BY-NC-ND 4.0 · solo metricas agregadas</span>'
+    )
+    oc, od = g["os_concordante"], g["os_discordante"]
+    _kpi_row([
+        _kpi("Pacientes evaluables", f"{g['evaluables']}/{g['n']}", "yellow", f"{len(tums)} tumores · 1ª linea metastasica"),
+        _kpi("Concordancia compatible", _pct(g["compatible"]), _color(g["compatible"]) or "cyan",
+             "recibio una opcion del mismo escalon ESMO"),
+        _kpi("Concordancia exacta", _pct(g["exacta"]), "lilac", "mismo regimen que la recomendacion top-1"),
+        _kpi("SG mediana conc. / disc.", f"{_os_txt(oc)} / {_os_txt(od)}", "pink",
+             f"n={oc.get('n', 0)} / {od.get('n', 0)} · observacional"),
+    ])
+
+    rows = []
+    for tid, x in tums.items():
+        rows.append(
+            f'<tr class="{"ok" if (x["compatible"] or 0) >= .75 else "ko"}"><td><b>{e(x["nombre"])}</b>'
+            f'<div class="src">{e(x.get("compatible_nota", ""))}</div></td>'
+            f'<td>{x["evaluables"]}/{x["n"]}</td><td>{_pct(x["exacta"])}</td><td>{_pct(x["compatible"])}</td>'
+            f'<td>{x.get("necesita_datos", 0)}</td><td>{_pct(x.get("revision_pct"))}</td>'
+            f'<td>{_os_txt(x.get("os_concordante"))} / {_os_txt(x.get("os_discordante"))}</td></tr>'
+        )
+    nb(
+        '<table class="nb-table"><thead><tr><th>Tumor</th><th>Evaluables</th><th>Exacta</th><th>Compatible</th>'
+        '<th>Pide datos</th><th>Revision</th><th>SG mediana conc./disc.</th></tr></thead><tbody>'
+        + "".join(rows) + "</tbody></table>"
+    )
+
+    d = (tums.get("cpnm_metastasico") or {}).get("driver_dirigida")
+    if d:
+        a, b = d.get("os_recibio_dirigida") or {}, d.get("os_no_recibio_dirigida") or {}
+        nb(
+            '<div class="nb-card yellow"><h3>CPNM con driver accionable en 1ª linea (EGFR, ALK, ROS1, BRAF, MET, RET, NTRK)</h3>'
+            + _hbar("Jev recomienda terapia dirigida", d.get("jev_recomienda_dirigida"), "green")
+            + _hbar(f"SG 24 m · recibio dirigida (n={a.get('n', 0)})", a.get("os_24m"), "green")
+            + _hbar(f"SG 24 m · no recibio dirigida (n={b.get('n', 0)})", b.get("os_24m"), "red")
+            + f'<div class="note">Mediana SG: {_os_txt(a)} con dirigida vs {_os_txt(b)} sin dirigida. '
+            "KRAS G12C y HER2 mutado se excluyen: ESMO reserva su terapia dirigida para 2ª linea. "
+            "Muestras pequeñas; comparacion no aleatorizada.</div></div>"
+        )
+
+    nb('<div class="nb-section right">Detalle MSK-CHORD por tumor</div>')
+    tid = st.selectbox("Tumor (MSK-CHORD)", list(tums), key="eval_msk_tumor",
+                       format_func=lambda k: f"{tums[k]['nombre']} (n={tums[k]['n']})")
+    x = tums[tid]
+    c1, c2 = st.columns(2, gap="large")
+    with c1:
+        mat = x.get("matriz") or {}
+        cols = sorted({c for row in mat.values() for c in row})
+        head = "".join(f"<th>{e(c)}</th>" for c in cols)
+        body = "".join(
+            f"<tr><th>Jev: {e(rk)}</th>"
+            + "".join(f'<td class="{"g" if c == rk else "y"}">{row.get(c, 0)}</td>' for c in cols) + "</tr>"
+            for rk, row in mat.items()
+        )
+        nb(
+            '<div class="nb-card"><h3>Matriz · recomendacion Jev vs 1ª linea recibida</h3>'
+            f'<table class="nb-cm"><tr><th></th>{head}</tr>{body}</table>'
+            '<div class="note">Filas: clase recomendada por Jev. Columnas: clase recibida en MSK.</div></div>'
+        )
+    with c2:
+        bars = "".join(
+            _hbar(f"{s} (n={v['evaluables']})", v.get("compatible"), _color(v.get("compatible")) or "cyan")
+            for s, v in (x.get("por_subgrupo") or {}).items()
+        )
+        nb(f'<div class="nb-card"><h3>Concordancia compatible por subgrupo</h3>{bars}</div>')
+        oc, od = x.get("os_concordante") or {}, x.get("os_discordante") or {}
+        nb(
+            '<div class="nb-card"><h3>Supervivencia global (Kaplan-Meier)</h3>'
+            + _hbar(f"SG 12 m · concordantes (n={oc.get('n', 0)})", oc.get("os_12m"), "green")
+            + _hbar(f"SG 12 m · discordantes (n={od.get('n', 0)})", od.get("os_12m"), "red")
+            + _hbar(f"SG 24 m · concordantes (n={oc.get('n', 0)})", oc.get("os_24m"), "green")
+            + _hbar(f"SG 24 m · discordantes (n={od.get('n', 0)})", od.get("os_24m"), "red")
+            + "</div>"
+        )
+
+    nb(
+        '<div class="nb-card red"><h3>Como interpretar MSK-CHORD</h3><ul>'
+        "<li><b>Concordar con la practica de MSK no equivale a acertar</b>: mide si la recomendacion es la que "
+        "eligen oncologos expertos en un centro de referencia. Las discordancias pueden deberse a la epoca "
+        "(2014-2022, antes de algunas aprobaciones), a ensayos clinicos, a preferencias o a datos incompletos.</li>"
+        "<li>Colorrectal: MSK inicia a menudo FOLFOX sin biologico y lo añade despues; se cuenta como "
+        "<b>compatible</b> (mismo esqueleto de quimio). Pancreas: FOLFIRINOX y gemcitabina + nab-paclitaxel son "
+        "opciones equivalentes en ESMO para ECOG 0-1.</li>"
+        "<li>Datos imputados: no hay PD-L1 TPS numerico (solo positivo/negativo), la edad es aproximada, la "
+        "localizacion del pancreas y la resecabilidad del CCR se imputan cuando no constan, y RE/RP de mama "
+        "proceden del estado HR global (explica parte de la baja concordancia en triple negativo).</li>"
+        "<li>La comparacion de supervivencia entre concordantes y discordantes es <b>observacional y con "
+        "factores de confusion</b>; es ilustrativa, no causal.</li>"
+        "<li>Licencia CC BY-NC-ND 4.0: el repositorio solo publica metricas agregadas; los datos por paciente se "
+        "descargan de cBioPortal en local.</li></ul></div>"
+    )
+
+    cs = casos.get(tid)
+    if cs:
+        with st.expander(f"Ver los {len(cs)} casos MSK-CHORD de {x['nombre']} (solo local)"):
+            st.dataframe(
+                [{k: c.get(k) for k in ("patient_id", "subgrupo", "ecog", "status", "recomendacion", "clase_jev",
+                                        "clase_recibida", "agentes_1l", "compatible", "confianza", "os_months",
+                                        "os_event")} | {"agentes_1l": ", ".join(c.get("agentes_1l") or [])}
+                 for c in cs],
+                width="stretch", hide_index=True,
+            )
 
 
 def main() -> None:

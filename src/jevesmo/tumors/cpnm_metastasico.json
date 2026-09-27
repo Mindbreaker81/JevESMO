@@ -1,1 +1,734 @@
-{"id":"cpnm_metastasico","nombre":"CPNM metastasico","grupo":"Toracico","version":"CPNM_METASTASICO-ESMO-2025.1","guias":[{"titulo":"ESMO Living Guideline: metastatic non-small-cell lung cancer","anio":2025,"url":"https://www.esmo.org/guidelines/living-guidelines/esmo-living-guideline-non-small-cell-lung-cancer"},{"titulo":"Metastatic non-small-cell lung cancer: ESMO Clinical Practice Guideline","anio":2023,"url":"https://www.esmo.org/guidelines/lung-and-chest-tumours/metastatic-non-small-cell-lung-cancer"}],"descripcion":"CPNM estadio IV por biomarcador accionable, PD-L1/histologia sin driver y lineas posteriores.","campos":[{"id":"histologia","label":"Histologia","tipo":"choice","opciones":[{"id":"no_escamoso","label":"no escamoso"},{"id":"escamoso","label":"escamoso"}],"requerido":true,"pregunta":"¿La histologia es escamosa o no escamosa?"},{"id":"driver","label":"Driver oncogenico principal","tipo":"choice","opciones":["egfr_comun","egfr_exon20","alk","ros1","braf_v600e","kras_g12c","met_ex14","ret","ntrk","her2_mutado","ninguno","desconocido"],"seccion":"Biomarcadores","requerido":true,"pregunta":"¿Cual es el driver oncogenico principal (o ninguno/desconocido)?"},{"id":"pdl1_tps","label":"PD-L1 TPS","tipo":"number","min":0,"max":100,"unidad":"%","seccion":"Biomarcadores","requerido_si":{"any":[{"campo":"driver","eq":"ninguno"},{"campo":"driver","eq":"desconocido"}]},"pregunta":"¿Cual es el PD-L1 TPS?"},{"id":"metastasis_cerebrales_activas","label":"Metastasis cerebrales activas","tipo":"bool","seccion":"Extension"},{"id":"enfermedad_autoinmune_activa","label":"Enfermedad autoinmune activa","tipo":"bool","seccion":"Seguridad"},{"id":"enfermedad_intersticial_pulmonar","label":"EPI/neumonitis previa","tipo":"bool","seccion":"Seguridad"},{"id":"candidato_platino","label":"Candidato a doblete de platino","tipo":"bool","seccion":"Seguridad"}],"derivados":[{"id":"categoria","label":"Categoria molecular","defecto":"sin driver","reglas":[{"cuando":{"campo":"driver","eq":"desconocido"},"valor":"pendiente molecular"},{"cuando":{"campo":"driver","nin":["ninguno","desconocido"]},"valor":"driver accionable"}]}],"opciones":[{"id":"osimertinib_1l","label":"Osimertinib 1L","nota":"ESMO: EGFR exon19del/L858R metastasico -> osimertinib primera linea; considerar CNS.","cuando":[{"campo":"driver","eq":"egfr_comun"},{"any":[{"campo":"lineas_previas","missing":true},{"campo":"lineas_previas","eq":0}]}],"componentes":["dirigida"],"evidencia":"I, A"},{"id":"amivantamab_lazertinib_1l","label":"Amivantamab + lazertinib 1L","nota":"ESMO living guideline: EGFR comun metastasico, especialmente alto riesgo/CNS, amivantamab-lazertinib es opcion de 1L si disponible.","cuando":[{"campo":"driver","eq":"egfr_comun"},{"any":[{"campo":"lineas_previas","missing":true},{"campo":"lineas_previas","eq":0}]}],"componentes":["dirigida"],"evidencia":"I, A"},{"id":"amivantamab_exon20","label":"Amivantamab +- quimioterapia en EGFR exon20","nota":"ESMO: CPNM EGFR exon20 insercion -> amivantamab basado en PAPILLON/CHRYSALIS segun linea y disponibilidad.","cuando":{"campo":"driver","eq":"egfr_exon20"},"componentes":["dirigida","quimioterapia"],"evidencia":"I, A"},{"id":"alectinib_alk","label":"Alectinib/brigatinib/lorlatinib 1L","nota":"ESMO: ALK+ metastasico -> inhibidor ALK de nueva generacion (alectinib, brigatinib o lorlatinib) preferido.","cuando":[{"campo":"driver","eq":"alk"},{"any":[{"campo":"lineas_previas","missing":true},{"campo":"lineas_previas","eq":0}]}],"componentes":["dirigida"],"evidencia":"I, A"},{"id":"entrectinib_ros1_ntrk","label":"Entrectinib/repotrectinib (ROS1/NTRK)","nota":"ESMO: ROS1+ o NTRK fusion -> TKI activo (entrectinib/repotrectinib/larotrectinib segun fusion y CNS).","cuando":[{"campo":"driver","in":["ros1","ntrk"]},{"any":[{"campo":"lineas_previas","missing":true},{"campo":"lineas_previas","eq":0}]}],"componentes":["dirigida"],"evidencia":"I, A"},{"id":"dabrafenib_trametinib","label":"Dabrafenib + trametinib","nota":"ESMO: BRAF V600E metastasico -> dabrafenib + trametinib.","cuando":{"campo":"driver","eq":"braf_v600e"},"componentes":["dirigida"],"evidencia":"I, A"},{"id":"selpercatinib_ret","label":"Selpercatinib/pralsetinib","nota":"ESMO: RET fusion metastasico -> selpercatinib o pralsetinib preferente.","cuando":{"campo":"driver","eq":"ret"},"componentes":["dirigida"],"evidencia":"I, A"},{"id":"capmatinib_tepotinib_met","label":"Capmatinib/tepotinib","nota":"ESMO: MET exon 14 skipping -> inhibidor MET (capmatinib/tepotinib).","cuando":{"campo":"driver","eq":"met_ex14"},"componentes":["dirigida"],"evidencia":"I, A"},{"id":"pembro_monoterapia","label":"Pembrolizumab monoterapia","nota":"ESMO: sin driver, PD-L1 TPS >=50%, ECOG 0-1 -> pembrolizumab monoterapia si no precisa respuesta rapida.","cuando":[{"campo":"driver","eq":"ninguno"},{"campo":"pdl1_tps","gte":50},{"any":[{"campo":"lineas_previas","missing":true},{"campo":"lineas_previas","eq":0}]}],"componentes":["inmunoterapia"],"evidencia":"I, A"},{"id":"quimio_ici_noescamoso","label":"Platino+pemetrexed+pembrolizumab","nota":"ESMO/KEYNOTE-189: no escamoso sin driver, cualquier PD-L1, 1L -> quimioterapia pemetrexed-platino + pembrolizumab.","cuando":[{"campo":"driver","eq":"ninguno"},{"campo":"histologia","eq":"no_escamoso"},{"any":[{"campo":"lineas_previas","missing":true},{"campo":"lineas_previas","eq":0}]}],"componentes":["quimioterapia","inmunoterapia"],"evidencia":"I, A"},{"id":"quimio_ici_escamoso","label":"Carboplatino+taxano+pembrolizumab","nota":"ESMO/KEYNOTE-407: escamoso sin driver, cualquier PD-L1, 1L -> carboplatino-taxano + pembrolizumab.","cuando":[{"campo":"driver","eq":"ninguno"},{"campo":"histologia","eq":"escamoso"},{"any":[{"campo":"lineas_previas","missing":true},{"campo":"lineas_previas","eq":0}]}],"componentes":["quimioterapia","inmunoterapia"],"evidencia":"I, A"},{"id":"docetaxel_nintedanib","label":"Docetaxel +- nintedanib / ramucirumab 2L","nota":"ESMO: tras progresion a 1L con inmuno-quimioterapia sin driver -> docetaxel con antiangiogenico en adenocarcinoma o docetaxel si escamoso.","cuando":[{"campo":"driver","eq":"ninguno"},{"campo":"lineas_previas","gte":1}],"componentes":["quimioterapia","antiangiogenico"],"evidencia":"I, B"},{"id":"kras_g12c_2l","label":"Sotorasib/adagrasib","nota":"ESMO: KRAS G12C tras al menos una linea sistemica -> inhibidor KRAS G12C.","cuando":[{"campo":"driver","eq":"kras_g12c"},{"campo":"lineas_previas","gte":1}],"componentes":["dirigida"],"evidencia":"I, B"},{"id":"tdxd_her2_2l","label":"Trastuzumab deruxtecan","nota":"ESMO: HER2 mutado tras tratamiento previo -> trastuzumab deruxtecan.","cuando":[{"campo":"driver","eq":"her2_mutado"},{"campo":"lineas_previas","gte":1}],"componentes":["dirigida"],"evidencia":"I, B"}],"preguntas":[{"key":"urgencia_respuesta","tipo":"choice","capa":1,"cuando":{"campo":"driver","eq":"ninguno"},"instrucciones":"Valora si se necesita respuesta tumoral rapida por carga sintomatica/visceral.","criterios":{"no_urgente":"Carga baja, se puede priorizar tolerabilidad","urgente":"Sintomas o amenaza organica; priorizar tasa de respuesta"}},{"key":"cns_prioridad","tipo":"noul","capa":2,"cuando":{"campo":"metastasis_cerebrales_activas","eq":true},"instrucciones":"¿La actividad intracraneal debe condicionar fuertemente la eleccion del farmaco?"},{"key":"molecular_incompleto","tipo":"noul","capa":2,"cuando":{"campo":"driver","eq":"desconocido"},"instrucciones":"¿Es prudente esperar/completar NGS antes de iniciar inmunoterapia en este CPNM metastasico?"}],"seguridad":[{"key":"autoinmune_ici","cuando":{"campo":"enfermedad_autoinmune_activa","eq":true},"bloquea_componentes":["inmunoterapia"],"instrucciones":"¿La enfermedad autoinmune activa contraindica inmunoterapia en este caso?","motivo":"Autoinmunidad activa con riesgo de toxicidad inmunomediada grave."},{"key":"epi_tki_tdxd","cuando":{"campo":"enfermedad_intersticial_pulmonar","eq":true},"bloquea":["osimertinib_1l","amivantamab_lazertinib_1l","tdxd_her2_2l"],"instrucciones":"Con EPI/neumonitis previa, ¿es inaceptable el riesgo pulmonar de TKI EGFR/T-DXd?","umbral":0.55,"motivo":"EPI/neumonitis previa: riesgo elevado de neumonitis farmacologica."}],"avisos":[{"cuando":{"campo":"driver","eq":"desconocido"},"texto":"Perfil molecular incompleto: EGFR/ALK/ROS1/BRAF/MET/RET/NTRK/KRAS/HER2 puede cambiar totalmente la primera linea."},{"cuando":[{"campo":"driver","eq":"ninguno"},{"campo":"pdl1_tps","missing":true}],"texto":"PD-L1 no disponible: no se puede seleccionar monoterapia anti-PD-1 con precision."}],"vinetas":[{"id":"CPNM_METASTASICO-V01","titulo":"EGFR comun 1L","fuente":"ESMO mNSCLC: EGFR 1L osimertinib","payload":{"edad":64,"sexo":"mujer","ecog":"1","histologia":"no_escamoso","driver":"egfr_comun","pdl1_tps":80,"lineas_previas":0},"esperado":{"tipo":"recomendacion","preferida":"osimertinib_1l","aceptables":["osimertinib_1l","amivantamab_lazertinib_1l"]}},{"id":"CPNM_METASTASICO-V02","titulo":"ALK 1L con CNS","fuente":"ESMO: ALK TKI CNS activo","payload":{"edad":49,"sexo":"hombre","ecog":"0","histologia":"no_escamoso","driver":"alk","metastasis_cerebrales_activas":true},"esperado":{"tipo":"recomendacion","preferida":"alectinib_alk","aceptables":["alectinib_alk"]}},{"id":"CPNM_METASTASICO-V03","titulo":"No escamoso sin driver PD-L1 alto","fuente":"ESMO KEYNOTE-024/189","payload":{"edad":70,"sexo":"mujer","ecog":"1","histologia":"no_escamoso","driver":"ninguno","pdl1_tps":75,"lineas_previas":0},"esperado":{"tipo":"recomendacion","preferida":"pembro_monoterapia","aceptables":["pembro_monoterapia","quimio_ici_noescamoso"]}},{"id":"CPNM_METASTASICO-V04","titulo":"Escamoso PD-L1 bajo 1L","fuente":"KEYNOTE-407","payload":{"edad":62,"sexo":"hombre","ecog":"1","histologia":"escamoso","driver":"ninguno","pdl1_tps":5,"lineas_previas":0},"esperado":{"tipo":"recomendacion","preferida":"quimio_ici_escamoso","aceptables":["quimio_ici_escamoso"]}},{"id":"CPNM_METASTASICO-V05","titulo":"KRAS G12C segunda linea","fuente":"ESMO: KRAS G12C tras progresion","payload":{"edad":66,"sexo":"mujer","ecog":"1","histologia":"no_escamoso","driver":"kras_g12c","lineas_previas":1,"tratamientos_previos":["carboplatino+pemetrexed+pembrolizumab"]},"esperado":{"tipo":"recomendacion","preferida":"kras_g12c_2l","aceptables":["kras_g12c_2l"]}},{"id":"CPNM_METASTASICO-V06","titulo":"HER2 mutado segunda linea","fuente":"ESMO/DESTINY-Lung: T-DXd","payload":{"edad":58,"sexo":"mujer","ecog":"1","histologia":"no_escamoso","driver":"her2_mutado","lineas_previas":1},"esperado":{"tipo":"recomendacion","preferida":"tdxd_her2_2l","aceptables":["tdxd_her2_2l"]}},{"id":"CPNM_METASTASICO-V07","titulo":"PD-L1 faltante sin driver","fuente":"ESMO: PD-L1 requerido para rama sin driver","payload":{"edad":59,"sexo":"hombre","ecog":"1","histologia":"escamoso","driver":"ninguno","pdl1_tps":null},"esperado":{"tipo":"necesita_datos"}},{"id":"CPNM_METASTASICO-V08","titulo":"ICI contraindicado por autoinmunidad","fuente":"Seguridad inmunoterapia","payload":{"edad":72,"sexo":"mujer","ecog":"1","histologia":"no_escamoso","driver":"ninguno","pdl1_tps":90,"enfermedad_autoinmune_activa":true,"comorbilidades_relevantes":["artritis reumatoide activa con biologico"]},"esperado":{"tipo":"revision_humana"}}]}
+{
+ "id": "cpnm_metastasico",
+ "nombre": "CPNM metastasico",
+ "grupo": "Toracico",
+ "version": "CPNM_METASTASICO-ESMO-2025.1",
+ "guias": [
+  {
+   "titulo": "ESMO Living Guideline: metastatic non-small-cell lung cancer",
+   "anio": 2025,
+   "url": "https://www.esmo.org/guidelines/living-guidelines/esmo-living-guideline-non-small-cell-lung-cancer"
+  },
+  {
+   "titulo": "Metastatic non-small-cell lung cancer: ESMO Clinical Practice Guideline",
+   "anio": 2023,
+   "url": "https://www.esmo.org/guidelines/lung-and-chest-tumours/metastatic-non-small-cell-lung-cancer"
+  }
+ ],
+ "descripcion": "CPNM estadio IV por biomarcador accionable, PD-L1/histologia sin driver y lineas posteriores.",
+ "campos": [
+  {
+   "id": "histologia",
+   "label": "Histologia",
+   "tipo": "choice",
+   "opciones": [
+    {
+     "id": "no_escamoso",
+     "label": "no escamoso"
+    },
+    {
+     "id": "escamoso",
+     "label": "escamoso"
+    }
+   ],
+   "requerido": true,
+   "pregunta": "¿La histologia es escamosa o no escamosa?"
+  },
+  {
+   "id": "driver",
+   "label": "Driver oncogenico principal",
+   "tipo": "choice",
+   "opciones": [
+    "egfr_comun",
+    "egfr_exon20",
+    "alk",
+    "ros1",
+    "braf_v600e",
+    "kras_g12c",
+    "met_ex14",
+    "ret",
+    "ntrk",
+    "her2_mutado",
+    "ninguno",
+    "desconocido"
+   ],
+   "seccion": "Biomarcadores",
+   "requerido": true,
+   "pregunta": "¿Cual es el driver oncogenico principal (o ninguno/desconocido)?"
+  },
+  {
+   "id": "pdl1_tps",
+   "label": "PD-L1 TPS",
+   "tipo": "number",
+   "min": 0,
+   "max": 100,
+   "unidad": "%",
+   "seccion": "Biomarcadores",
+   "requerido_si": {
+    "any": [
+     {
+      "campo": "driver",
+      "in": [
+       "ninguno",
+       "desconocido"
+      ]
+     },
+     {
+      "all": [
+       {
+        "campo": "driver",
+        "in": [
+         "kras_g12c",
+         "her2_mutado"
+        ]
+       },
+       {
+        "campo": "lineas_previas",
+        "lte": 0
+       }
+      ]
+     }
+    ]
+   },
+   "pregunta": "¿Cual es el PD-L1 TPS?"
+  },
+  {
+   "id": "metastasis_cerebrales_activas",
+   "label": "Metastasis cerebrales activas",
+   "tipo": "bool",
+   "seccion": "Extension"
+  },
+  {
+   "id": "enfermedad_autoinmune_activa",
+   "label": "Enfermedad autoinmune activa",
+   "tipo": "bool",
+   "seccion": "Seguridad"
+  },
+  {
+   "id": "enfermedad_intersticial_pulmonar",
+   "label": "EPI/neumonitis previa",
+   "tipo": "bool",
+   "seccion": "Seguridad"
+  },
+  {
+   "id": "candidato_platino",
+   "label": "Candidato a doblete de platino",
+   "tipo": "bool",
+   "seccion": "Seguridad"
+  }
+ ],
+ "derivados": [
+  {
+   "id": "categoria",
+   "label": "Categoria molecular",
+   "defecto": "sin driver",
+   "reglas": [
+    {
+     "cuando": {
+      "campo": "driver",
+      "eq": "desconocido"
+     },
+     "valor": "pendiente molecular"
+    },
+    {
+     "cuando": {
+      "campo": "driver",
+      "nin": [
+       "ninguno",
+       "desconocido"
+      ]
+     },
+     "valor": "driver accionable"
+    }
+   ]
+  }
+ ],
+ "opciones": [
+  {
+   "id": "osimertinib_1l",
+   "label": "Osimertinib 1L",
+   "nota": "ESMO: EGFR exon19del/L858R metastasico -> osimertinib primera linea; considerar CNS.",
+   "cuando": [
+    {
+     "campo": "driver",
+     "eq": "egfr_comun"
+    },
+    {
+     "any": [
+      {
+       "campo": "lineas_previas",
+       "missing": true
+      },
+      {
+       "campo": "lineas_previas",
+       "eq": 0
+      }
+     ]
+    }
+   ],
+   "componentes": [
+    "dirigida"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "amivantamab_lazertinib_1l",
+   "label": "Amivantamab + lazertinib 1L",
+   "nota": "ESMO living guideline: EGFR comun metastasico, especialmente alto riesgo/CNS, amivantamab-lazertinib es opcion de 1L si disponible.",
+   "cuando": [
+    {
+     "campo": "driver",
+     "eq": "egfr_comun"
+    },
+    {
+     "any": [
+      {
+       "campo": "lineas_previas",
+       "missing": true
+      },
+      {
+       "campo": "lineas_previas",
+       "eq": 0
+      }
+     ]
+    }
+   ],
+   "componentes": [
+    "dirigida"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "amivantamab_exon20",
+   "label": "Amivantamab +- quimioterapia en EGFR exon20",
+   "nota": "ESMO: CPNM EGFR exon20 insercion -> amivantamab basado en PAPILLON/CHRYSALIS segun linea y disponibilidad.",
+   "cuando": {
+    "campo": "driver",
+    "eq": "egfr_exon20"
+   },
+   "componentes": [
+    "dirigida",
+    "quimioterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "alectinib_alk",
+   "label": "Alectinib/brigatinib/lorlatinib 1L",
+   "nota": "ESMO: ALK+ metastasico -> inhibidor ALK de nueva generacion (alectinib, brigatinib o lorlatinib) preferido.",
+   "cuando": [
+    {
+     "campo": "driver",
+     "eq": "alk"
+    },
+    {
+     "any": [
+      {
+       "campo": "lineas_previas",
+       "missing": true
+      },
+      {
+       "campo": "lineas_previas",
+       "eq": 0
+      }
+     ]
+    }
+   ],
+   "componentes": [
+    "dirigida"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "entrectinib_ros1_ntrk",
+   "label": "Entrectinib/repotrectinib (ROS1/NTRK)",
+   "nota": "ESMO: ROS1+ o NTRK fusion -> TKI activo (entrectinib/repotrectinib/larotrectinib segun fusion y CNS).",
+   "cuando": [
+    {
+     "campo": "driver",
+     "in": [
+      "ros1",
+      "ntrk"
+     ]
+    },
+    {
+     "any": [
+      {
+       "campo": "lineas_previas",
+       "missing": true
+      },
+      {
+       "campo": "lineas_previas",
+       "eq": 0
+      }
+     ]
+    }
+   ],
+   "componentes": [
+    "dirigida"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "dabrafenib_trametinib",
+   "label": "Dabrafenib + trametinib",
+   "nota": "ESMO: BRAF V600E metastasico -> dabrafenib + trametinib.",
+   "cuando": {
+    "campo": "driver",
+    "eq": "braf_v600e"
+   },
+   "componentes": [
+    "dirigida"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "selpercatinib_ret",
+   "label": "Selpercatinib/pralsetinib",
+   "nota": "ESMO: RET fusion metastasico -> selpercatinib o pralsetinib preferente.",
+   "cuando": {
+    "campo": "driver",
+    "eq": "ret"
+   },
+   "componentes": [
+    "dirigida"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "capmatinib_tepotinib_met",
+   "label": "Capmatinib/tepotinib",
+   "nota": "ESMO: MET exon 14 skipping -> inhibidor MET (capmatinib/tepotinib).",
+   "cuando": {
+    "campo": "driver",
+    "eq": "met_ex14"
+   },
+   "componentes": [
+    "dirigida"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "pembro_monoterapia",
+   "label": "Pembrolizumab monoterapia",
+   "nota": "ESMO: sin driver, PD-L1 TPS >=50%, ECOG 0-1 -> pembrolizumab monoterapia si no precisa respuesta rapida. Aplica tambien en 1a linea a KRAS G12C y HER2 mutado (sin terapia dirigida aprobada en 1L; la dirigida se reserva para 2L).",
+   "cuando": [
+    {
+     "campo": "driver",
+     "in": [
+      "ninguno",
+      "kras_g12c",
+      "her2_mutado"
+     ]
+    },
+    {
+     "campo": "pdl1_tps",
+     "gte": 50
+    },
+    {
+     "any": [
+      {
+       "campo": "lineas_previas",
+       "missing": true
+      },
+      {
+       "campo": "lineas_previas",
+       "eq": 0
+      }
+     ]
+    }
+   ],
+   "componentes": [
+    "inmunoterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "quimio_ici_noescamoso",
+   "label": "Platino+pemetrexed+pembrolizumab",
+   "nota": "ESMO/KEYNOTE-189: no escamoso sin driver, cualquier PD-L1, 1L -> quimioterapia pemetrexed-platino + pembrolizumab. Aplica tambien en 1a linea a KRAS G12C y HER2 mutado (sin terapia dirigida aprobada en 1L; la dirigida se reserva para 2L).",
+   "cuando": [
+    {
+     "campo": "driver",
+     "in": [
+      "ninguno",
+      "kras_g12c",
+      "her2_mutado"
+     ]
+    },
+    {
+     "campo": "histologia",
+     "eq": "no_escamoso"
+    },
+    {
+     "any": [
+      {
+       "campo": "lineas_previas",
+       "missing": true
+      },
+      {
+       "campo": "lineas_previas",
+       "eq": 0
+      }
+     ]
+    }
+   ],
+   "componentes": [
+    "quimioterapia",
+    "inmunoterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "quimio_ici_escamoso",
+   "label": "Carboplatino+taxano+pembrolizumab",
+   "nota": "ESMO/KEYNOTE-407: escamoso sin driver, cualquier PD-L1, 1L -> carboplatino-taxano + pembrolizumab. Aplica tambien en 1a linea a KRAS G12C y HER2 mutado (sin terapia dirigida aprobada en 1L; la dirigida se reserva para 2L).",
+   "cuando": [
+    {
+     "campo": "driver",
+     "in": [
+      "ninguno",
+      "kras_g12c",
+      "her2_mutado"
+     ]
+    },
+    {
+     "campo": "histologia",
+     "eq": "escamoso"
+    },
+    {
+     "any": [
+      {
+       "campo": "lineas_previas",
+       "missing": true
+      },
+      {
+       "campo": "lineas_previas",
+       "eq": 0
+      }
+     ]
+    }
+   ],
+   "componentes": [
+    "quimioterapia",
+    "inmunoterapia"
+   ],
+   "evidencia": "I, A"
+  },
+  {
+   "id": "docetaxel_nintedanib",
+   "label": "Docetaxel +- nintedanib / ramucirumab 2L",
+   "nota": "ESMO: tras progresion a 1L con inmuno-quimioterapia sin driver -> docetaxel con antiangiogenico en adenocarcinoma o docetaxel si escamoso.",
+   "cuando": [
+    {
+     "campo": "driver",
+     "in": [
+      "ninguno",
+      "kras_g12c",
+      "her2_mutado"
+     ]
+    },
+    {
+     "campo": "lineas_previas",
+     "gte": 1
+    }
+   ],
+   "componentes": [
+    "quimioterapia",
+    "antiangiogenico"
+   ],
+   "evidencia": "I, B"
+  },
+  {
+   "id": "kras_g12c_2l",
+   "label": "Sotorasib/adagrasib",
+   "nota": "ESMO: KRAS G12C tras al menos una linea sistemica -> inhibidor KRAS G12C.",
+   "cuando": [
+    {
+     "campo": "driver",
+     "eq": "kras_g12c"
+    },
+    {
+     "campo": "lineas_previas",
+     "gte": 1
+    }
+   ],
+   "componentes": [
+    "dirigida"
+   ],
+   "evidencia": "I, B"
+  },
+  {
+   "id": "tdxd_her2_2l",
+   "label": "Trastuzumab deruxtecan",
+   "nota": "ESMO: HER2 mutado tras tratamiento previo -> trastuzumab deruxtecan.",
+   "cuando": [
+    {
+     "campo": "driver",
+     "eq": "her2_mutado"
+    },
+    {
+     "campo": "lineas_previas",
+     "gte": 1
+    }
+   ],
+   "componentes": [
+    "dirigida"
+   ],
+   "evidencia": "I, B"
+  }
+ ],
+ "preguntas": [
+  {
+   "key": "urgencia_respuesta",
+   "tipo": "choice",
+   "capa": 1,
+   "cuando": {
+    "campo": "driver",
+    "eq": "ninguno"
+   },
+   "instrucciones": "Valora si se necesita respuesta tumoral rapida por carga sintomatica/visceral.",
+   "criterios": {
+    "no_urgente": "Carga baja, se puede priorizar tolerabilidad",
+    "urgente": "Sintomas o amenaza organica; priorizar tasa de respuesta"
+   }
+  },
+  {
+   "key": "cns_prioridad",
+   "tipo": "noul",
+   "capa": 2,
+   "cuando": {
+    "campo": "metastasis_cerebrales_activas",
+    "eq": true
+   },
+   "instrucciones": "¿La actividad intracraneal debe condicionar fuertemente la eleccion del farmaco?"
+  },
+  {
+   "key": "molecular_incompleto",
+   "tipo": "noul",
+   "capa": 2,
+   "cuando": {
+    "campo": "driver",
+    "eq": "desconocido"
+   },
+   "instrucciones": "¿Es prudente esperar/completar NGS antes de iniciar inmunoterapia en este CPNM metastasico?"
+  }
+ ],
+ "seguridad": [
+  {
+   "key": "autoinmune_ici",
+   "cuando": {
+    "campo": "enfermedad_autoinmune_activa",
+    "eq": true
+   },
+   "bloquea_componentes": [
+    "inmunoterapia"
+   ],
+   "instrucciones": "¿La enfermedad autoinmune activa contraindica inmunoterapia en este caso?",
+   "motivo": "Autoinmunidad activa con riesgo de toxicidad inmunomediada grave."
+  },
+  {
+   "key": "epi_tki_tdxd",
+   "cuando": {
+    "campo": "enfermedad_intersticial_pulmonar",
+    "eq": true
+   },
+   "bloquea": [
+    "osimertinib_1l",
+    "amivantamab_lazertinib_1l",
+    "tdxd_her2_2l"
+   ],
+   "instrucciones": "Con EPI/neumonitis previa, ¿es inaceptable el riesgo pulmonar de TKI EGFR/T-DXd?",
+   "umbral": 0.55,
+   "motivo": "EPI/neumonitis previa: riesgo elevado de neumonitis farmacologica."
+  }
+ ],
+ "avisos": [
+  {
+   "cuando": {
+    "campo": "driver",
+    "eq": "desconocido"
+   },
+   "texto": "Perfil molecular incompleto: EGFR/ALK/ROS1/BRAF/MET/RET/NTRK/KRAS/HER2 puede cambiar totalmente la primera linea."
+  },
+  {
+   "cuando": [
+    {
+     "campo": "driver",
+     "eq": "ninguno"
+    },
+    {
+     "campo": "pdl1_tps",
+     "missing": true
+    }
+   ],
+   "texto": "PD-L1 no disponible: no se puede seleccionar monoterapia anti-PD-1 con precision."
+  }
+ ],
+ "vinetas": [
+  {
+   "id": "CPNM_METASTASICO-V01",
+   "titulo": "EGFR comun 1L",
+   "fuente": "ESMO mNSCLC: EGFR 1L osimertinib",
+   "payload": {
+    "edad": 64,
+    "sexo": "mujer",
+    "ecog": "1",
+    "histologia": "no_escamoso",
+    "driver": "egfr_comun",
+    "pdl1_tps": 80,
+    "lineas_previas": 0
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "osimertinib_1l",
+    "aceptables": [
+     "osimertinib_1l",
+     "amivantamab_lazertinib_1l"
+    ]
+   }
+  },
+  {
+   "id": "CPNM_METASTASICO-V02",
+   "titulo": "ALK 1L con CNS",
+   "fuente": "ESMO: ALK TKI CNS activo",
+   "payload": {
+    "edad": 49,
+    "sexo": "hombre",
+    "ecog": "0",
+    "histologia": "no_escamoso",
+    "driver": "alk",
+    "metastasis_cerebrales_activas": true
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "alectinib_alk",
+    "aceptables": [
+     "alectinib_alk"
+    ]
+   }
+  },
+  {
+   "id": "CPNM_METASTASICO-V03",
+   "titulo": "No escamoso sin driver PD-L1 alto",
+   "fuente": "ESMO KEYNOTE-024/189",
+   "payload": {
+    "edad": 70,
+    "sexo": "mujer",
+    "ecog": "1",
+    "histologia": "no_escamoso",
+    "driver": "ninguno",
+    "pdl1_tps": 75,
+    "lineas_previas": 0
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "pembro_monoterapia",
+    "aceptables": [
+     "pembro_monoterapia",
+     "quimio_ici_noescamoso"
+    ]
+   }
+  },
+  {
+   "id": "CPNM_METASTASICO-V04",
+   "titulo": "Escamoso PD-L1 bajo 1L",
+   "fuente": "KEYNOTE-407",
+   "payload": {
+    "edad": 62,
+    "sexo": "hombre",
+    "ecog": "1",
+    "histologia": "escamoso",
+    "driver": "ninguno",
+    "pdl1_tps": 5,
+    "lineas_previas": 0
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "quimio_ici_escamoso",
+    "aceptables": [
+     "quimio_ici_escamoso"
+    ]
+   }
+  },
+  {
+   "id": "CPNM_METASTASICO-V05",
+   "titulo": "KRAS G12C segunda linea",
+   "fuente": "ESMO: KRAS G12C tras progresion",
+   "payload": {
+    "edad": 66,
+    "sexo": "mujer",
+    "ecog": "1",
+    "histologia": "no_escamoso",
+    "driver": "kras_g12c",
+    "lineas_previas": 1,
+    "tratamientos_previos": [
+     "carboplatino+pemetrexed+pembrolizumab"
+    ]
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "kras_g12c_2l",
+    "aceptables": [
+     "kras_g12c_2l"
+    ]
+   }
+  },
+  {
+   "id": "CPNM_METASTASICO-V06",
+   "titulo": "HER2 mutado segunda linea",
+   "fuente": "ESMO/DESTINY-Lung: T-DXd",
+   "payload": {
+    "edad": 58,
+    "sexo": "mujer",
+    "ecog": "1",
+    "histologia": "no_escamoso",
+    "driver": "her2_mutado",
+    "lineas_previas": 1
+   },
+   "esperado": {
+    "tipo": "recomendacion",
+    "preferida": "tdxd_her2_2l",
+    "aceptables": [
+     "tdxd_her2_2l"
+    ]
+   }
+  },
+  {
+   "id": "CPNM_METASTASICO-V07",
+   "titulo": "PD-L1 faltante sin driver",
+   "fuente": "ESMO: PD-L1 requerido para rama sin driver",
+   "payload": {
+    "edad": 59,
+    "sexo": "hombre",
+    "ecog": "1",
+    "histologia": "escamoso",
+    "driver": "ninguno",
+    "pdl1_tps": null
+   },
+   "esperado": {
+    "tipo": "necesita_datos"
+   }
+  },
+  {
+   "id": "CPNM_METASTASICO-V08",
+   "titulo": "ICI contraindicado por autoinmunidad",
+   "fuente": "Seguridad inmunoterapia",
+   "payload": {
+    "edad": 72,
+    "sexo": "mujer",
+    "ecog": "1",
+    "histologia": "no_escamoso",
+    "driver": "ninguno",
+    "pdl1_tps": 90,
+    "enfermedad_autoinmune_activa": true,
+    "comorbilidades_relevantes": [
+     "artritis reumatoide activa con biologico"
+    ]
+   },
+   "esperado": {
+    "tipo": "revision_humana"
+   }
+  }
+ ]
+}

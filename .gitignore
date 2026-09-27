@@ -15,3 +15,7 @@ dist/
 # Cache regenerable de METABRIC (se descarga de cBioPortal)
 data/metabric_clinical.json
 data/evaluation_results.json
+
+# MSK-CHORD (CC BY-NC-ND): cache local, no redistribuir
+data/msk_chord/
+data/eval/_msk_chord_casos.json

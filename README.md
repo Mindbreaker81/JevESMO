@@ -75,7 +75,7 @@ src/jevesmo/
   engine/pipeline.py       # Motor generico: run(tumor_id, datos, client)
   tumors/*.json            # 43 arboles ESMO (opciones, preguntas Jev, seguridad, viñetas)
   jev_client.py            # Cliente Jev: real (typesafe-sdk) o mock si no hay API key
-  evaluation/              # Evaluacion: viñetas por tumor + cohorte METABRIC (mama)
+  evaluation/              # Evaluacion: viñetas + cohortes reales METABRIC y MSK-CHORD
 scripts/                   # validate_specs.py, run_vignettes.py, run_evaluation.py
 data/eval/                 # Resultados de evaluacion por tumor
 ```
@@ -130,7 +130,7 @@ contiene las preguntas que hay que responder antes de continuar.
 
 ## Evaluacion
 
-La pestaña **📊 Evaluacion** muestra (y permite relanzar) dos pruebas:
+La pestaña **📊 Evaluacion** muestra (y permite relanzar) tres pruebas:
 
 1. **Casos de referencia ESMO** (campo `vinetas` de cada spec): 404 viñetas en
    43 tumores, con la respuesta esperada segun la guia vigente e incluyendo casos
@@ -140,21 +140,53 @@ La pestaña **📊 Evaluacion** muestra (y permite relanzar) dos pruebas:
 2. **METABRIC** (cBioPortal `brca_metabric`, Curtis 2012 / Pereira 2016), solo
    mama: cohorte real. Compara con el tratamiento recibido y calcula el AUC, la
    calibracion y el valor pronostico (Kaplan-Meier).
+3. **MSK-CHORD** (cBioPortal `msk_chord_2024`, Jee et al., *Nature* 2024):
+   cohorte real de Memorial Sloan Kettering (~25.000 pacientes, 2014-2022) con
+   linea temporal de tratamientos, ECOG y genomica MSK-IMPACT. Se reconstruye la
+   1ª linea de pacientes metastasicos de novo de **CPNM, colorrectal, pancreas y
+   mama** (60 por tumor), se construye el caso (edad, ECOG, histologia, EGFR/ALK/
+   ROS1/BRAF/MET/RET/NTRK/KRAS G12C/HER2, RAS/BRAF/MSI y lateralidad, BRCA, HR/HER2)
+   y se compara la recomendacion con el tratamiento recibido (concordancia exacta y
+   *compatible*: mismo escalon ESMO) y con la supervivencia global.
 
 ```powershell
 .\.venv\Scripts\python.exe scripts\run_evaluation.py            # todo
 .\.venv\Scripts\python.exe scripts\run_evaluation.py --no-metabric
+.\.venv\Scripts\python.exe scripts\run_evaluation.py --solo-msk    # solo MSK-CHORD
 ```
 
 Ultimos resultados (Jev real): viñetas **404/404**, opcion preferida 96,5%, 132
 casos con eleccion real entre 2 o mas opciones: 100%. METABRIC luminal precoz:
 AUC 0,92, sensibilidad 93%.
 
+MSK-CHORD (n=240, 237 evaluables):
+
+| Tumor | Evaluables | Concordancia exacta | Concordancia compatible |
+|---|---|---|---|
+| CPNM metastasico | 60/60 | 55% | 55% |
+| CCR metastasico | 57/60 | 16% | 88% |
+| Pancreas metastasico | 60/60 | 47% | 97% |
+| Mama metastasica | 60/60 | 65% | 72% |
+| **Global** | 237/240 | 46% | 78% |
+
+En CPNM con driver accionable en 1ª linea, Jev recomienda terapia dirigida en el
+100% de los casos (SG a 24 m: 65% con dirigida vs 57% sin ella). En CCR, MSK suele
+empezar FOLFOX sin biologico (se cuenta como compatible). En pancreas, Jev prefiere
+gemcitabina + nab-paclitaxel y MSK FOLFIRINOX (equivalentes en ESMO). Las
+discordancias en CPNM sin driver son sobre todo quimio sola (practica anterior a
+2018) frente a quimio-inmunoterapia.
+
 **Limitaciones**: las viñetas las ha redactado IA a partir de las guias y
 **deben validarse por oncologos**. Los arboles se iteraron con esas mismas
 viñetas, asi que el 100% sobreestima el rendimiento en casos reales. Los arboles
 simplifican las guias: las situaciones no modeladas terminan en "fuera del arbol"
-con revision obligatoria. METABRIC es practica de 1977-2005 y ECOG se asume 0.
+con revision obligatoria. METABRIC es practica de 1977-2005 y ECOG se asume 0. En MSK-CHORD **concordar
+con la practica no equivale a acertar**; hay datos imputados (PD-L1 solo
+positivo/negativo, edad aproximada, RE/RP = estado HR global, localizacion del
+pancreas y resecabilidad del CCR cuando no constan), y la comparacion de
+supervivencia es observacional. Licencia CC BY-NC-ND 4.0: el repositorio solo
+contiene metricas agregadas; los datos por paciente se descargan en local
+(`data/msk_chord/`, ignorado por git).
 
 ## Siguientes pasos
 
