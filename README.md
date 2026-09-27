@@ -14,6 +14,9 @@ la app pregunta o exige revision de un oncologo.
 
 ## Arquitectura
 
+> Explicacion detallada del flujo de decision y de como se usa Jev:
+> [docs/FLUJO_DECISION.md](docs/FLUJO_DECISION.md)
+
 Motor generico + un **spec JSON por tumor** (`src/jevesmo/tumors/<id>.json`).
 El motor (`src/jevesmo/engine/`) es identico para todos los tumores:
 
