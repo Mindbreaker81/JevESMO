@@ -119,7 +119,7 @@ def render_form() -> tuple[TumorSpec, dict]:
 
     guias = " · ".join(f'<a href="{e(g.url)}" target="_blank">{e(g.titulo)} ({e(g.anio)})</a>' for g in spec.guias)
     nb(f'<div class="nb-card cyan"><div class="note">{e(spec.descripcion)}</div>'
-       f'<div class="src">📘 {guias}</div></div>')
+       f'<div class="src">Guias · {guias}</div></div>')
 
     if spec.vinetas:
         c1, c2 = st.columns([3, 1])
@@ -182,7 +182,7 @@ def render_results(resultado: dict) -> None:
     if resultado["status"] == "necesita_datos":
         items = "".join(f"<li>{e(p)}</li>" for p in resultado["preguntas"])
         nb(
-            '<div class="nb-card yellow"><h3>❓ Necesito mas datos</h3>'
+            '<div class="nb-card yellow"><h3>Necesito mas datos</h3>'
             "<div>Faltan datos clinicos imprescindibles. No voy a recomendar nada hasta que me respondas:</div>"
             f"<ul>{items}</ul></div>"
         )
@@ -206,7 +206,7 @@ def render_results(resultado: dict) -> None:
             for m in motivos
         )
         nb(
-            '<div class="nb-card red"><h3>⚠ Revision obligatoria por oncologo</h3>'
+            '<div class="nb-card red"><h3>Revision obligatoria por oncologo</h3>'
             f"<div>Motivos:</div><ul>{items}</ul></div>"
         )
 
@@ -229,7 +229,7 @@ def render_results(resultado: dict) -> None:
     chosen_id = rec["id"] if rec else None
     for i, c in enumerate(resultado["candidatos"], start=1):
         cls = "blocked" if c["contraindicado"] else ("chosen" if c["id"] == chosen_id else "")
-        extra = f'<div class="n">🚫 {e(c["motivo_contraindicacion"])}</div>' if c["contraindicado"] else ""
+        extra = f'<div class="n">✕ {e(c["motivo_contraindicacion"])}</div>' if c["contraindicado"] else ""
         nb(
             f'<div class="nb-option {cls}"><div class="badge">{i}</div><div>'
             f'<div class="t">{e(c["label"])}</div><div class="n">{e(c["esmo_note"])}'
@@ -677,7 +677,7 @@ def main() -> None:
         f'<div>{mode_tag}<span class="nb-tag pink">Human-in-the-loop</span></div></div>'
     )
 
-    tab_rec, tab_eval = st.tabs(["🩺 Recomendacion", "📊 Evaluacion"])
+    tab_rec, tab_eval = st.tabs(["01 · Recomendacion", "02 · Evaluacion"])
 
     with tab_rec:
         col_izq, col_der = st.columns([1, 1], gap="large")
