@@ -121,7 +121,7 @@
   {
    "id": "ablacion_hcc",
    "label": "Ablación percutanea",
-   "nota": "ESMO: BCLC 0/A no resecable, tumor pequeno accesible -> ablación térmica como alternativa curativa",
+   "nota": "ESMO: BCLC 0/A no resecable, tumor pequeño accesible -> ablación térmica como alternativa curativa",
    "cuando": [
     {
      "campo": "bclc",
@@ -449,7 +449,7 @@
    "instrucciones": "Para HCC temprano, elige estrategia curativa más plausible según función hepática, portal HTA y localización",
    "criterios": {
     "reseccion": "mejor candidato a resección",
-    "ablacion": "tumor pequeno accesible no resecable",
+    "ablacion": "tumor pequeño accesible no resecable",
     "trasplante": "cirrosis/portal HTA dentro de criterios de trasplante"
    }
   },

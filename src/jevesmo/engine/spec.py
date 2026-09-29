@@ -168,7 +168,7 @@ class TumorSpec(BaseModel):
 
 # Campos comunes a todos los tumores. Los specs NO deben redefinirlos.
 COMMON_FIELDS: list[Campo] = [
-    Campo(id="edad", label="Edad", tipo="number", seccion="Paciente", min=0, max=120, unidad="anios",
+    Campo(id="edad", label="Edad", tipo="number", seccion="Paciente", min=0, max=120, unidad="años",
           requerido=True, pregunta="¿Cuál es la edad del paciente?"),
     Campo(id="sexo", label="Sexo", tipo="choice", seccion="Paciente",
           opciones=[ChoiceOption(id="mujer", label="mujer"), ChoiceOption(id="hombre", label="hombre")]),

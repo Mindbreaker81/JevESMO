@@ -215,7 +215,7 @@
   },
   {
    "id": "osimertinib_adyuvante",
-   "label": "Osimertinib adyuvante 3 anios",
+   "label": "Osimertinib adyuvante 3 años",
    "nota": "ESMO/ADAURA: CPNM resecado estadio IB-IIIA con EGFR exon19del/L858R tras tratamiento local +- quimioterapia -> osimertinib adyuvante.",
    "cuando": [
     {
@@ -241,7 +241,7 @@
   },
   {
    "id": "alectinib_adyuvante",
-   "label": "Alectinib adyuvante 2 anios",
+   "label": "Alectinib adyuvante 2 años",
    "nota": "ESMO/ALINA: CPNM resecado ALK+ estadio IB-IIIA -> alectinib adyuvante preferente frente a quimioterapia si disponible.",
    "cuando": [
     {

@@ -34,7 +34,7 @@
     "cirugia_reseccion"
    ],
    "obtenido": "osimertinib_adyuvante",
-   "obtenido_label": "Osimertinib adyuvante 3 anios",
+   "obtenido_label": "Osimertinib adyuvante 3 años",
    "confianza": 0.36,
    "revision": true,
    "motivos_revision": [
@@ -58,7 +58,7 @@
     "cirugia_reseccion"
    ],
    "obtenido": "alectinib_adyuvante",
-   "obtenido_label": "Alectinib adyuvante 2 anios",
+   "obtenido_label": "Alectinib adyuvante 2 años",
    "confianza": 0.39,
    "revision": true,
    "motivos_revision": [

@@ -177,7 +177,7 @@
   {
    "id": "pembro_trastu_quimio_1l",
    "label": "Pembrolizumab + trastuzumab + quimioterapia",
-   "nota": "ESMO: avanzado HER2+ 1L -> fluoropirimidina-platino + trastuzumab; anadir pembrolizumab especialmente CPS positivo (KEYNOTE-811)",
+   "nota": "ESMO: avanzado HER2+ 1L -> fluoropirimidina-platino + trastuzumab; añadir pembrolizumab especialmente CPS positivo (KEYNOTE-811)",
    "cuando": [
     {
      "campo": "situacion",

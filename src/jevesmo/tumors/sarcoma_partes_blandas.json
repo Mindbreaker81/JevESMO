@@ -190,7 +190,7 @@
   {
    "id": "cirugia_sola_bajo_riesgo",
    "label": "Cirugía amplia R0 sola",
-   "nota": "ESMO STS: sarcoma localizado resecable superficial/pequeno o grado 1, con margen amplio factible, se trata con cirugía planificada en centro experto sin RT rutinaria.",
+   "nota": "ESMO STS: sarcoma localizado resecable superficial/pequeño o grado 1, con margen amplio factible, se trata con cirugía planificada en centro experto sin RT rutinaria.",
    "cuando": [
     {
      "campo": "situacion",
@@ -670,7 +670,7 @@
  "vinetas": [
   {
    "id": "SARCOMA_PARTES_BLANDAS-V01",
-   "titulo": "STS pequeno grado 1 extremidad",
+   "titulo": "STS pequeño grado 1 extremidad",
    "fuente": "ESMO STS 2021: cirugia sola en bajo riesgo resecable",
    "payload": {
     "edad": 63,

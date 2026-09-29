@@ -91,7 +91,7 @@ def _widget(spec: TumorSpec, c: Campo, box) -> object:
     if c.tipo == "choice":
         labels = {o.id: o.label for o in c.opciones}
         v = box.selectbox(label, [UNK] + list(labels), key=k, help=c.ayuda,
-                          format_func=lambda x: "— desconocido —" if x == UNK else labels.get(x, x))
+                          format_func=lambda x: "— desconocido —" if x == UNK else labels.get(x, {"si": "sí"}.get(x, x)))
         return None if v == UNK else v
     if c.tipo == "bool":
         v = box.selectbox(label, [UNK, "si", "no"], key=k, help=c.ayuda,

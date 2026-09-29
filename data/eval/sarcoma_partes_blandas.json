@@ -24,7 +24,7 @@
  "casos": [
   {
    "id": "SARCOMA_PARTES_BLANDAS-V01",
-   "titulo": "STS pequeno grado 1 extremidad",
+   "titulo": "STS pequeño grado 1 extremidad",
    "fuente": "ESMO STS 2021: cirugia sola en bajo riesgo resecable",
    "esperado_tipo": "recomendacion",
    "esperado": "cirugia_sola_bajo_riesgo",

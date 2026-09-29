@@ -12,6 +12,8 @@ la app pregunta o exige revision de un oncologo.
 > sustituye el criterio clinico. Toda recomendacion requiere validacion por
 > un oncologo.
 
+**Vídeo de 20 s:** [docs/media/JevESMO_20s.mp4](docs/media/JevESMO_20s.mp4)
+
 ## Arquitectura
 
 > Explicacion detallada del flujo de decision y de como se usa Jev:
