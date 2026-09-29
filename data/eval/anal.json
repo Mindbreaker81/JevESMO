@@ -53,7 +53,7 @@
     "qrt_mmc_5fu"
    ],
    "obtenido": "escision_local_selectiva",
-   "obtenido_label": "Escision local selectiva",
+   "obtenido_label": "Escisión local selectiva",
    "confianza": 0.2,
    "revision": true,
    "motivos_revision": [
@@ -87,7 +87,7 @@
   },
   {
    "id": "ANAL-V04",
-   "titulo": "Recaida local tras QRT",
+   "titulo": "Recaída local tras QRT",
    "fuente": "APR rescate",
    "esperado_tipo": "recomendacion",
    "esperado": "apr_rescate",
@@ -95,7 +95,7 @@
     "apr_rescate"
    ],
    "obtenido": "apr_rescate",
-   "obtenido_label": "Amputacion abdominoperineal de rescate",
+   "obtenido_label": "Amputación abdominoperineal de rescate",
    "confianza": 1.0,
    "revision": false,
    "motivos_revision": [],
@@ -107,7 +107,7 @@
   },
   {
    "id": "ANAL-V05",
-   "titulo": "Metastasico 1L",
+   "titulo": "Metastásico 1L",
    "fuente": "InterAACT",
    "esperado_tipo": "recomendacion",
    "esperado": "carbo_paclitaxel_1l",
@@ -130,7 +130,7 @@
   },
   {
    "id": "ANAL-V06",
-   "titulo": "Metastasico 2L",
+   "titulo": "Metastásico 2L",
    "fuente": "Retifanlimab",
    "esperado_tipo": "recomendacion",
    "esperado": "retifanlimab_2l",
@@ -150,7 +150,7 @@
   },
   {
    "id": "ANAL-V07",
-   "titulo": "Falta histologia",
+   "titulo": "Falta histología",
    "fuente": "Dato imprescindible",
    "esperado_tipo": "necesita_datos",
    "esperado": "necesita_datos",

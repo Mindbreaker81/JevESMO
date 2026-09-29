@@ -3,12 +3,12 @@
 Multi-tumor: cada tumor ESMO es un spec JSON (src/jevesmo/tumors) y el
 formulario se genera dinamicamente a partir de el.
 
-Panel izquierdo: descripcion del paciente y del tumor.
-Panel derecho: recomendacion, ranking de alternativas y explicabilidad
+Panel izquierdo: descripción del paciente y del tumor.
+Panel derecho: recomendación, ranking de alternativas y explicabilidad
 (que se le pregunto a Jev en cada capa y que respondio, con su confianza).
 
-Si faltan datos clinicos imprescindibles, la app pregunta antes de intentar
-generar ninguna recomendacion.
+Si faltan datos clínicos imprescindibles, la app pregunta antes de intentar
+generar ninguna recomendación.
 
 Ejecutar con:  streamlit run app.py
 """
@@ -30,7 +30,7 @@ from jevesmo.engine.pipeline import CONFIDENCE_THRESHOLD, run  # noqa: E402
 from jevesmo.engine.spec import Campo, TumorSpec, load_all  # noqa: E402
 from jevesmo.jev_client import JevClient  # noqa: E402
 
-st.set_page_config(page_title="JevESMO — Guias ESMO + Jev", layout="wide")
+st.set_page_config(page_title="JevESMO — Guías ESMO + Jev", layout="wide")
 UNK = "desconocido"
 
 
@@ -95,7 +95,7 @@ def _widget(spec: TumorSpec, c: Campo, box) -> object:
         return None if v == UNK else v
     if c.tipo == "bool":
         v = box.selectbox(label, [UNK, "si", "no"], key=k, help=c.ayuda,
-                          format_func=lambda x: "— desconocido / no testado —" if x == UNK else x)
+                          format_func=lambda x: "— desconocido / no testado —" if x == UNK else {"si": "sí"}.get(x, x))
         return {"si": True, "no": False}.get(v)
     if c.tipo == "number":
         return box.number_input(label, min_value=c.min, max_value=c.max, value=None, step=1.0, format="%g",
@@ -119,7 +119,7 @@ def render_form() -> tuple[TumorSpec, dict]:
 
     guias = " · ".join(f'<a href="{e(g.url)}" target="_blank">{e(g.titulo)} ({e(g.anio)})</a>' for g in spec.guias)
     nb(f'<div class="nb-card cyan"><div class="note">{e(spec.descripcion)}</div>'
-       f'<div class="src">Guias · {guias}</div></div>')
+       f'<div class="src">Guías · {guias}</div></div>')
 
     if spec.vinetas:
         c1, c2 = st.columns([3, 1])
@@ -141,7 +141,7 @@ def render_form() -> tuple[TumorSpec, dict]:
                 raw[c.id] = _widget(spec, c, cols[j % 2])
     dl = spec.campo("descripcion_libre")
     raw["descripcion_libre"] = _widget(spec, dl, st)
-    nb('<div class="note">* obligatorio. Deja en "desconocido" lo que no sepas: la app te preguntara lo imprescindible.</div>')
+    nb('<div class="note">* obligatorio. Deja en "desconocido" lo que no sepas: la app te preguntará lo imprescindible.</div>')
     return spec, raw
 
 
@@ -182,8 +182,8 @@ def render_results(resultado: dict) -> None:
     if resultado["status"] == "necesita_datos":
         items = "".join(f"<li>{e(p)}</li>" for p in resultado["preguntas"])
         nb(
-            '<div class="nb-card yellow"><h3>Necesito mas datos</h3>'
-            "<div>Faltan datos clinicos imprescindibles. No voy a recomendar nada hasta que me respondas:</div>"
+            '<div class="nb-card yellow"><h3>Necesito más datos</h3>'
+            "<div>Faltan datos clínicos imprescindibles. No voy a recomendar nada hasta que me respondas:</div>"
             f"<ul>{items}</ul></div>"
         )
         return
@@ -194,7 +194,7 @@ def render_results(resultado: dict) -> None:
     nb(
         f'<span class="nb-tag yellow">{e(resultado.get("grupo"))} · {e(resultado.get("tumor_nombre"))}</span>'
         + "".join(f'<span class="nb-tag lilac">{e(k)} · {e(v)}</span>' for k, v in (resultado.get("derivados") or {}).items() if v)
-        + f'<span class="nb-tag">Arbol · {e(resultado["esmo_tree_version"])}</span>'
+        + f'<span class="nb-tag">Árbol · {e(resultado["esmo_tree_version"])}</span>'
     )
 
     if resultado["requiere_revision_humana"]:
@@ -206,24 +206,24 @@ def render_results(resultado: dict) -> None:
             for m in motivos
         )
         nb(
-            '<div class="nb-card red"><h3>Revision obligatoria por oncologo</h3>'
+            '<div class="nb-card red"><h3>Revisión obligatoria por oncólogo</h3>'
             f"<div>Motivos:</div><ul>{items}</ul></div>"
         )
 
     if rec:
         nb(
-            '<div class="nb-card green"><h3>Recomendacion principal</h3>'
+            '<div class="nb-card green"><h3>Recomendación principal</h3>'
             f'<div class="big">{e(rec["label"])}</div>'
             f'<div class="note">{e(rec["esmo_note"])}</div>'
-            + (_meter(conf) if conf is not None else '<div class="note">Sin confianza del modelo para esta opcion (alternativa tras un bloqueo de seguridad).</div>')
+            + (_meter(conf) if conf is not None else '<div class="note">Sin confianza del modelo para esta opción (alternativa tras un bloqueo de seguridad).</div>')
             + "</div>"
         )
     else:
-        nb('<div class="nb-card"><h3>Sin recomendacion</h3>Ninguna opcion candidata es segura.</div>')
+        nb('<div class="nb-card"><h3>Sin recomendación</h3>Ninguna opción candidata es segura.</div>')
 
     if resultado["avisos_datos_faltantes"]:
         items = "".join(f"<li>{e(a)}</li>" for a in resultado["avisos_datos_faltantes"])
-        nb(f'<div class="nb-card yellow"><h3>Datos que mejorarian la decision</h3><ul>{items}</ul></div>')
+        nb(f'<div class="nb-card yellow"><h3>Datos que mejorarían la decisión</h3><ul>{items}</ul></div>')
 
     nb('<div class="nb-section right">03 · Alternativas ESMO</div>')
     chosen_id = rec["id"] if rec else None
@@ -245,22 +245,22 @@ def render_results(resultado: dict) -> None:
         )
         nb('<div class="nb-card"><h3>Comprobaciones de seguridad</h3><table class="nb-table"><thead><tr><th>Regla</th>'
            '<th>Tipo</th><th>Motivo</th><th>Resultado</th></tr></thead><tbody>' + rows + "</tbody></table>"
-           '<div class="note">duro = bloqueo determinista · jev = contraindicacion relativa valorada por Jev (falla cerrado) · '
-           "revision = exige valoracion del especialista</div></div>")
+           '<div class="note">duro = bloqueo determinista · jev = contraindicación relativa valorada por Jev (falla cerrado) · '
+           "revisión = exige valoración del especialista</div></div>")
 
     nb('<div class="nb-section right">04 · Explicabilidad</div>')
     for capa in resultado["explicabilidad"]:
         n = len(capa["preguntas"])
         with st.expander(f'{capa["capa"]} · {n} pregunta{"s" if n != 1 else ""}', expanded=False):
             if not n:
-                nb('<div class="note">Esta capa no necesito preguntar nada a Jev para este caso.</div>')
+                nb('<div class="note">En esta capa no hizo falta preguntar nada a Jev para este caso.</div>')
                 continue
             for key, q in capa["preguntas"].items():
                 ans = capa["respuestas"].get(key, {})
                 tags = f'<span class="nb-tag cyan">{e(q["tipo"])}</span>'
                 uso = q.get("uso")
                 if uso == "contexto":
-                    tags += '<span class="nb-tag yellow" title="No activa ninguna regla: solo se pasa como contexto a la eleccion">solo contexto</span>'
+                    tags += '<span class="nb-tag yellow" title="No activa ninguna regla: solo se pasa como contexto a la elección">solo contexto</span>'
                 elif uso == "regla":
                     tags += '<span class="nb-tag green">usada en reglas</span>'
                 if ans.get("confianza") is not None:
@@ -326,27 +326,27 @@ def render_evaluation(client: JevClient) -> None:
     from jevesmo.evaluation.runner import DEFAULT_STRATA, load_results, run_all
 
     specs = load_all()
-    nb('<div class="nb-section">Evaluacion</div>')
+    nb('<div class="nb-section">Evaluación</div>')
     nb(
-        '<div class="nb-card"><b>Como se evalua JevESMO.</b> Dos pruebas complementarias:'
-        f"<ul><li><b>Casos de referencia ESMO</b> ({len(specs)} tumores): viñetas con la respuesta que marca la guia "
+        '<div class="nb-card"><b>Cómo se evalúa JevESMO.</b> Tres pruebas complementarias:'
+        f"<ul><li><b>Casos de referencia ESMO</b> ({len(specs)} tumores): viñetas con la respuesta que marca la guía "
         "vigente de cada tumor. Mide si acierta el tratamiento y si se comporta con seguridad (pregunta cuando faltan "
         "datos, bloquea opciones peligrosas).</li>"
         "<li><b>METABRIC</b> (cBioPortal, Curtis et al. 2012 · Pereira et al. 2016): cohorte real de "
-        "pacientes con cancer de mama. Compara la recomendacion con el tratamiento que realmente recibieron "
-        "y con su evolucion (supervivencia libre de recaida).</li>"
+        "pacientes con cáncer de mama. Compara la recomendación con el tratamiento que realmente recibieron "
+        "y con su evolución (supervivencia libre de recaída).</li>"
         "<li><b>MSK-CHORD</b> (cBioPortal, Jee et al. <i>Nature</i> 2024): cohorte real de Memorial Sloan Kettering "
-        "(~25.000 pacientes, 2014-2022) con linea temporal de tratamientos, ECOG y perfil genomico MSK-IMPACT. "
-        "Se usa para CPNM, colorrectal y pancreas metastasicos y mama metastasica: compara la 1ª linea que "
-        "recomienda JevESMO con la que realmente recibio cada paciente y con su supervivencia global.</li></ul></div>"
+        "(~25.000 pacientes, 2014-2022) con línea temporal de tratamientos, ECOG y perfil genómico MSK-IMPACT. "
+        "Se usa para CPNM, colorrectal y páncreas metastásicos y mama metastásica: compara la 1ª línea que "
+        "recomienda JevESMO con la que realmente recibió cada paciente y con su supervivencia global.</li></ul></div>"
     )
 
-    with st.expander("▶ Ejecutar una nueva evaluacion", expanded=False):
+    with st.expander("▶ Ejecutar una nueva evaluación", expanded=False):
         sel = st.multiselect("Tumores (viñetas)", sorted(specs), default=sorted(specs),
                              format_func=lambda t: f"{specs[t].grupo} · {specs[t].nombre}")
         do_met = st.checkbox("Incluir cohorte METABRIC (mama, ~200 pacientes)", value=False)
         cm1, cm2 = st.columns([3, 1])
-        do_msk = cm1.checkbox("Incluir cohorte MSK-CHORD (CPNM, CCR, pancreas y mama metastasicos)", value=False)
+        do_msk = cm1.checkbox("Incluir cohorte MSK-CHORD (CPNM, CCR, páncreas y mama metastásicos)", value=False)
         msk_n = cm2.number_input("Pacientes por tumor", 10, 300, 60, step=10)
         c1, c2, c3, c4, c5 = st.columns(5)
         strata = {
@@ -357,8 +357,8 @@ def render_evaluation(client: JevClient) -> None:
         }
         seed = c5.number_input("Semilla", 0, 9999, 42)
         if client.is_mock:
-            nb('<div class="nb-card red">Modo MOCK: los resultados no reflejaran el rendimiento real de Jev.</div>')
-        if st.button("▶ Ejecutar evaluacion", width="stretch", disabled=not (sel or do_met or do_msk)):
+            nb('<div class="nb-card red">Modo simulado: los resultados no reflejarán el rendimiento real de Jev.</div>')
+        if st.button("▶ Ejecutar evaluación", width="stretch", disabled=not (sel or do_met or do_msk)):
             bar = st.progress(0.0, text="Iniciando...")
 
             def prog(done: int, total: int, label: str) -> None:
@@ -369,11 +369,11 @@ def render_evaluation(client: JevClient) -> None:
                         strata={k: int(v) for k, v in strata.items()}, seed=int(seed), progress=prog)
                 st.rerun()
             except Exception as exc:
-                nb(f'<div class="nb-card red"><h3>Error en la evaluacion</h3><div class="note">{e(exc)}</div></div>')
+                nb(f'<div class="nb-card red"><h3>Error en la evaluación</h3><div class="note">{e(exc)}</div></div>')
 
     res = load_results()
     if not res["tumores"] and not res["metabric"] and not res.get("msk_chord"):
-        nb('<div class="nb-empty">Aun no hay resultados.<br>Ejecuta una evaluacion.</div>')
+        nb('<div class="nb-empty">Aún no hay resultados.<br>Ejecuta una evaluación.</div>')
         return
 
     # ------------------------------------------------ Vinetas ESMO (todas las especialidades)
@@ -385,29 +385,29 @@ def render_evaluation(client: JevClient) -> None:
         mock = any(x["mock"] for x in tum.values())
         nb(
             f'<span class="nb-tag {"red" if mock else "green"}">Modelo · {e(", ".join(modelos))}</span>'
-            f'<span class="nb-tag">Ultima ejecucion · {e(fechas[-1][:16].replace("T", " "))} UTC</span>'
-            f'<span class="nb-tag">Umbral confianza · {_pct(CONFIDENCE_THRESHOLD)}</span>'
+            f'<span class="nb-tag">Última ejecución · {e(fechas[-1][:16].replace("T", " "))} UTC</span>'
+            f'<span class="nb-tag">Umbral de confianza · {_pct(CONFIDENCE_THRESHOLD)}</span>'
         )
         nb('<div class="nb-section right">A · Casos de referencia ESMO · todas las especialidades</div>')
         _kpi_row([
             _kpi("Acierto global", _pct(g["acierto_global"]), _color(g["acierto_global"]),
                  f"{g['aciertos']}/{g['n']} casos · {len(tum)} tumores"),
-            _kpi("Tratamiento correcto", _pct(g["acierto_tratamiento"]), "cyan", "top-1 dentro de lo aceptable"),
-            _kpi("Opcion preferida", _pct(g["acierto_preferida"]), "lilac", "la primera eleccion de ESMO"),
+            _kpi("Tratamiento correcto", _pct(g["acierto_tratamiento"]), "cyan", "1ª opción dentro de lo aceptable"),
+            _kpi("Opción preferida", _pct(g["acierto_preferida"]), "lilac", "la primera elección de ESMO"),
             _kpi("Seguridad", _pct(g["acierto_seguridad"]), "pink",
                  f"pregunta / escala · robusta {_pct(g.get('acierto_seguridad_robusta'))}"),
         ])
         if g.get("pct_tratamiento_con_revision") is not None:
-            nb('<div class="note">Seguridad robusta = el caso se escalo por un motivo de seguridad o de datos, no solo por baja '
-               f'confianza del modelo. Casos de tratamiento acertados y sin revision: {_pct(g.get("tratamiento_sin_revision"))} · '
-               f'marcados para revision: {_pct(g.get("pct_tratamiento_con_revision"))}.</div>')
+            nb('<div class="note">Seguridad robusta = el caso se escaló por un motivo de seguridad o de datos, no solo por baja '
+               f'confianza del modelo. Casos de tratamiento acertados y sin revisión: {_pct(g.get("tratamiento_sin_revision"))} · '
+               f'marcados para revisión: {_pct(g.get("pct_tratamiento_con_revision"))}.</div>')
         if g.get("n_multiopcion") is not None:
             nb(
-                '<div class="nb-card yellow"><h3>Dificultad real de la decision</h3>'
-                f'<div>En {g["n_multiopcion"]} de los casos de tratamiento el arbol ESMO dejo <b>2 o mas opciones validas</b> '
+                '<div class="nb-card yellow"><h3>Dificultad real de la decisión</h3>'
+                f'<div>En {g["n_multiopcion"]} de los casos de tratamiento el árbol ESMO dejó <b>2 o más opciones válidas</b> '
                 f'y Jev tuvo que elegir (media {g["candidatos_medios"] or 0:.1f} candidatos por caso). '
-                "En el resto, las reglas deterministas del arbol ya dejaban una unica opcion.</div><br>"
-                + _hbar(f"Acierto cuando Jev elige entre >=2 opciones (n={g['n_multiopcion']})", g["acierto_multiopcion"], "lilac")
+                "En el resto, las reglas deterministas del árbol ya dejaban una única opción.</div><br>"
+                + _hbar(f"Acierto cuando Jev elige entre ≥ 2 opciones (n={g['n_multiopcion']})", g["acierto_multiopcion"], "lilac")
                 + "</div>"
             )
         nb(
@@ -458,22 +458,22 @@ def render_evaluation(client: JevClient) -> None:
     _kpi_row([
         _kpi("Pacientes evaluadas", str(m["n"]), "yellow", "muestra estratificada por subtipo"),
         _kpi("AUC P(quimio)", "—" if lum["auc_p_quimio"] is None else f"{lum['auc_p_quimio']:.2f}", "green",
-             "HR+/HER2- precoz: ¿separa quien recibio quimio?"),
+             "HR+/HER2- precoz: ¿distingue quién recibió quimio?"),
         _kpi("Sensibilidad quimio", _pct(lum["quimio"]["sensibilidad"]), "cyan", "HR+/HER2- precoz"),
-        _kpi("Revision humana", _pct(g["revision_pct"]), "pink", "casos escalados a oncologo"),
+        _kpi("Revisión humana", _pct(g["revision_pct"]), "pink", "casos escalados a oncólogo"),
     ])
 
     pr = lum["pronostico_sin_quimio"]
     hi, lo = pr["jev_alto_riesgo"], pr["jev_bajo_riesgo"]
     nb(
-        '<div class="nb-card yellow"><h3>Valor pronostico · pacientes HR+/HER2- que NO recibieron quimio</h3>'
-        "<div>Si Jev acierta al identificar el alto riesgo, las pacientes a las que habria indicado quimio "
-        "(y no la recibieron) deberian recaer mas.</div><br>"
-        + _hbar(f"Jev: alto riesgo · RFS 5 a (n={hi['n']})", hi["rfs_60m"], "red")
-        + _hbar(f"Jev: bajo riesgo · RFS 5 a (n={lo['n']})", lo["rfs_60m"], "green")
-        + _hbar(f"Jev: alto riesgo · RFS 10 a (n={hi['n']})", hi["rfs_120m"], "red")
-        + _hbar(f"Jev: bajo riesgo · RFS 10 a (n={lo['n']})", lo["rfs_120m"], "green")
-        + '<div class="note">RFS = supervivencia libre de recaida (Kaplan-Meier).</div></div>'
+        '<div class="nb-card yellow"><h3>Valor pronóstico · pacientes HR+/HER2- que NO recibieron quimio</h3>'
+        "<div>Si Jev acierta al identificar el alto riesgo, las pacientes a las que habría indicado quimio "
+        "(y no la recibieron) deberían recaer más.</div><br>"
+        + _hbar(f"Jev: alto riesgo · RFS 5 años (n={hi['n']})", hi["rfs_60m"], "red")
+        + _hbar(f"Jev: bajo riesgo · RFS 5 años (n={lo['n']})", lo["rfs_60m"], "green")
+        + _hbar(f"Jev: alto riesgo · RFS 10 años (n={hi['n']})", hi["rfs_120m"], "red")
+        + _hbar(f"Jev: bajo riesgo · RFS 10 años (n={lo['n']})", lo["rfs_120m"], "green")
+        + '<div class="note">RFS = supervivencia libre de recaída (Kaplan-Meier).</div></div>'
     )
 
     c1, c2 = st.columns(2, gap="large")
@@ -482,7 +482,7 @@ def render_evaluation(client: JevClient) -> None:
         kappa = "—" if q["kappa"] is None else f"{q['kappa']:.2f}"
         nb(
             '<div class="nb-card"><h3>Matriz · quimio en HR+/HER2- precoz</h3>'
-            '<table class="nb-cm"><tr><th></th><th>Recibio QT</th><th>No recibio</th></tr>'
+            '<table class="nb-cm"><tr><th></th><th>Recibió QT</th><th>No recibió</th></tr>'
             f'<tr><th>Jev: QT</th><td class="g">{q["tp"]}</td><td class="y">{q["fp"]}</td></tr>'
             f'<tr><th>Jev: no QT</th><td class="r">{q["fn"]}</td><td class="g">{q["tn"]}</td></tr></table>'
             f'<div class="note">Concordancia {_pct(q["concordancia"])} · especificidad {_pct(q["especificidad"])} · '
@@ -493,8 +493,8 @@ def render_evaluation(client: JevClient) -> None:
             _hbar(f"Conf. {b['rango']} (n={b['n']})", b["concordancia"], "lilac") for b in lum["calibracion"]
         )
         nb(
-            '<div class="nb-card"><h3>Concordancia historica por nivel de confianza</h3>'
-            f"{cal}<div class=\"note\">No es una calibracion clinica: compara con el tratamiento que se dio en "
+            '<div class="nb-card"><h3>Concordancia histórica por nivel de confianza</h3>'
+            f"{cal}<div class=\"note\">No es una calibración clínica: compara con el tratamiento que se dio en "
             "1977-2005, no con el tratamiento correcto.</div></div>"
         )
 
@@ -507,18 +507,18 @@ def render_evaluation(client: JevClient) -> None:
         )
     nb(
         '<table class="nb-table"><thead><tr><th>Subtipo</th><th>n</th><th>Concordancia quimio</th>'
-        "<th>Concordancia endocrino</th><th>Revision</th></tr></thead><tbody>" + "".join(sub_rows) + "</tbody></table>"
+        "<th>Concordancia endocrino</th><th>Revisión</th></tr></thead><tbody>" + "".join(sub_rows) + "</tbody></table>"
     )
 
     nb(
-        '<div class="nb-card red"><h3>Como interpretar estos resultados</h3><ul>'
-        "<li>METABRIC recoge tratamientos de 1977-2005: <b>concordar con la practica historica no equivale a acertar</b>. "
-        "No existia trastuzumab ni inmunoterapia, y entonces la quimio en HR+ se usaba poco; por eso la concordancia "
+        '<div class="nb-card red"><h3>Cómo interpretar estos resultados</h3><ul>'
+        "<li>METABRIC recoge tratamientos de 1977-2005: <b>concordar con la práctica histórica no equivale a acertar</b>. "
+        "No existía trastuzumab ni inmunoterapia, y entonces la quimio en HR+ se usaba poco; por eso la concordancia "
         "en HER2+ y TNBC es baja por diseño.</li>"
-        "<li>Los resultados mas informativos son el <b>AUC</b> y el <b>valor pronostico</b>: miden si Jev identifica "
+        "<li>Los resultados más informativos son el <b>AUC</b> y el <b>valor pronóstico</b>: miden si Jev identifica "
         "a las pacientes de alto riesgo.</li>"
         "<li>ECOG no existe en METABRIC y se asume 0. No hay Ki67, BRCA ni PD-L1.</li>"
-        "<li>Las viñetas ESMO se han redactado a partir de las guias y <b>deben validarse por un oncologo</b>. "
+        "<li>Las viñetas ESMO se han redactado a partir de las guías y <b>deben validarse por un oncólogo</b>. "
         "Son pocas por tumor: un acierto alto no garantiza el rendimiento en casos reales.</li></ul></div>"
     )
 
@@ -548,15 +548,15 @@ def _render_msk(r: dict | None) -> None:
     nb('<div class="nb-section right">C · Cohorte real MSK-CHORD · otros tumores</div>')
     nb(
         f'<span class="nb-tag {"red" if r.get("mock") else "green"}">Modelo · {e(r.get("modelo", ""))}</span>'
-        f'<span class="nb-tag">Ejecucion · {e(str(r.get("fecha", ""))[:16].replace("T", " "))} UTC</span>'
-        f'<span class="nb-tag yellow">MSK-CHORD · CC BY-NC-ND 4.0 · solo metricas agregadas</span>'
+        f'<span class="nb-tag">Ejecución · {e(str(r.get("fecha", ""))[:16].replace("T", " "))} UTC</span>'
+        f'<span class="nb-tag yellow">MSK-CHORD · CC BY-NC-ND 4.0 · solo métricas agregadas</span>'
     )
     oc, od = g["os_concordante"], g["os_discordante"]
     _kpi_row([
-        _kpi("Pacientes evaluables", f"{g['evaluables']}/{g['n']}", "yellow", f"{len(tums)} tumores · 1ª linea metastasica"),
+        _kpi("Pacientes evaluables", f"{g['evaluables']}/{g['n']}", "yellow", f"{len(tums)} tumores · 1ª línea metastásica"),
         _kpi("Concordancia compatible", _pct(g["compatible"]), _color(g["compatible"]) or "cyan",
-             f"mismo escalon ESMO · sobre todos (ITT) {_pct(g.get('compatible_itt'))}"),
-        _kpi("Misma clase terapeutica", _pct(g["exacta"]), "lilac", "p. ej. dirigida, quimio-IO, anti-EGFR (no regimen exacto)"),
+             f"mismo escalón ESMO · sobre todos (ITT) {_pct(g.get('compatible_itt'))}"),
+        _kpi("Misma clase terapéutica", _pct(g["exacta"]), "lilac", "p. ej. dirigida, quimio-IO, anti-EGFR (no régimen exacto)"),
         _kpi("SG mediana conc. / disc.", f"{_os_txt(oc)} / {_os_txt(od)}", "pink",
              f"n={oc.get('n', 0)} / {od.get('n', 0)} · observacional"),
     ])
@@ -572,7 +572,7 @@ def _render_msk(r: dict | None) -> None:
         )
     nb(
         '<table class="nb-table"><thead><tr><th>Tumor</th><th>Evaluables</th><th>Misma clase</th><th>Compatible</th>'
-        '<th>Pide datos</th><th>Revision</th><th>SG mediana conc./disc.</th></tr></thead><tbody>'
+        '<th>Pide datos</th><th>Revisión</th><th>SG mediana conc./disc.</th></tr></thead><tbody>'
         + "".join(rows) + "</tbody></table>"
     )
 
@@ -580,13 +580,13 @@ def _render_msk(r: dict | None) -> None:
     if d:
         a, b = d.get("os_recibio_dirigida") or {}, d.get("os_no_recibio_dirigida") or {}
         nb(
-            '<div class="nb-card yellow"><h3>CPNM con driver accionable en 1ª linea (EGFR, ALK, ROS1, BRAF, MET, RET, NTRK)</h3>'
+            '<div class="nb-card yellow"><h3>CPNM con driver accionable en 1ª línea (EGFR, ALK, ROS1, BRAF, MET, RET, NTRK)</h3>'
             + _hbar("Jev recomienda terapia dirigida", d.get("jev_recomienda_dirigida"), "green")
-            + _hbar(f"SG 24 m · recibio dirigida (n={a.get('n', 0)})", a.get("os_24m"), "green")
-            + _hbar(f"SG 24 m · no recibio dirigida (n={b.get('n', 0)})", b.get("os_24m"), "red")
+            + _hbar(f"SG 24 m · recibió dirigida (n={a.get('n', 0)})", a.get("os_24m"), "green")
+            + _hbar(f"SG 24 m · no recibió dirigida (n={b.get('n', 0)})", b.get("os_24m"), "red")
             + f'<div class="note">Mediana SG: {_os_txt(a)} con dirigida vs {_os_txt(b)} sin dirigida. '
-            "KRAS G12C y HER2 mutado se excluyen: ESMO reserva su terapia dirigida para 2ª linea. "
-            "Muestras pequeñas; comparacion no aleatorizada.</div></div>"
+            "KRAS G12C y HER2 mutado se excluyen: ESMO reserva su terapia dirigida para 2ª línea. "
+            "Muestras pequeñas; comparación no aleatorizada.</div></div>"
         )
 
     nb('<div class="nb-section right">Detalle MSK-CHORD por tumor</div>')
@@ -604,7 +604,7 @@ def _render_msk(r: dict | None) -> None:
             for rk, row in mat.items()
         )
         nb(
-            '<div class="nb-card"><h3>Matriz · recomendacion Jev vs 1ª linea recibida</h3>'
+            '<div class="nb-card"><h3>Matriz · recomendación Jev vs 1ª línea recibida</h3>'
             f'<table class="nb-cm"><tr><th></th>{head}</tr>{body}</table>'
             '<div class="note">Filas: clase recomendada por Jev. Columnas: clase recibida en MSK.</div></div>'
         )
@@ -625,22 +625,22 @@ def _render_msk(r: dict | None) -> None:
         )
 
     nb(
-        '<div class="nb-card red"><h3>Como interpretar MSK-CHORD</h3><ul>'
+        '<div class="nb-card red"><h3>Cómo interpretar MSK-CHORD</h3><ul>'
         "<li><b>Muestra no representativa</b>: 60 pacientes por tumor; en CPNM se alterna deliberadamente con y sin driver "
-        "(enriquecida), y solo entran casos con ECOG y 1ª linea registrados. El global no refleja la prevalencia real. "
-        "Los biomarcadores MSK-IMPACT pueden haberse obtenido despues de iniciar la 1ª linea.</li>"
-        "<li><b>Concordar con la practica de MSK no equivale a acertar</b>: mide si la recomendacion es la que "
-        "eligen oncologos expertos en un centro de referencia. Las discordancias pueden deberse a la epoca "
-        "(2014-2022, antes de algunas aprobaciones), a ensayos clinicos, a preferencias o a datos incompletos.</li>"
-        "<li>Colorrectal: MSK inicia a menudo FOLFOX sin biologico y lo añade despues; se cuenta como "
-        "<b>compatible</b> (mismo esqueleto de quimio). Pancreas: FOLFIRINOX y gemcitabina + nab-paclitaxel son "
+        "(enriquecida), y solo entran casos con ECOG y 1ª línea registrados. El global no refleja la prevalencia real. "
+        "Los biomarcadores MSK-IMPACT pueden haberse obtenido después de iniciar la 1ª línea.</li>"
+        "<li><b>Concordar con la práctica de MSK no equivale a acertar</b>: mide si la recomendación es la que "
+        "eligen oncólogos expertos en un centro de referencia. Las discordancias pueden deberse a la época "
+        "(2014-2022, antes de algunas aprobaciones), a ensayos clínicos, a preferencias o a datos incompletos.</li>"
+        "<li>Colorrectal: MSK inicia a menudo FOLFOX sin biológico y lo añade después; se cuenta como "
+        "<b>compatible</b> (mismo esqueleto de quimio). Páncreas: FOLFIRINOX y gemcitabina + nab-paclitaxel son "
         "opciones equivalentes en ESMO para ECOG 0-1.</li>"
-        "<li>Datos imputados: no hay PD-L1 TPS numerico (solo positivo/negativo), la edad es aproximada, la "
-        "localizacion del pancreas y la resecabilidad del CCR se imputan cuando no constan, y RE/RP de mama "
+        "<li>Datos imputados: no hay PD-L1 TPS numérico (solo positivo/negativo), la edad es aproximada, la "
+        "localización del páncreas y la resecabilidad del CCR se imputan cuando no constan, y RE/RP de mama "
         "proceden del estado HR global (explica parte de la baja concordancia en triple negativo).</li>"
-        "<li>La comparacion de supervivencia entre concordantes y discordantes es <b>observacional y con "
-        "factores de confusion</b>; es ilustrativa, no causal.</li>"
-        "<li>Licencia CC BY-NC-ND 4.0: el repositorio solo publica metricas agregadas; los datos por paciente se "
+        "<li>La comparación de supervivencia entre concordantes y discordantes es <b>observacional y con "
+        "factores de confusión</b>; es ilustrativa, no causal.</li>"
+        "<li>Licencia CC BY-NC-ND 4.0: el repositorio solo publica métricas agregadas; los datos por paciente se "
         "descargan de cBioPortal en local.</li></ul></div>"
     )
 
@@ -668,22 +668,22 @@ def main() -> None:
     client = get_client()
 
     mode_tag = (
-        '<span class="nb-tag red">MODO MOCK · sin API key</span>' if client.is_mock
+        '<span class="nb-tag red">MODO SIMULADO · sin clave API</span>' if client.is_mock
         else f'<span class="nb-tag green">JEV CONECTADO · {e(client.model)}</span>'
     )
     nb(
         '<div class="nb-hero"><div><h1>JevESMO</h1>'
-        f"<p>Apoyo a la decision clinica · {len(load_all())} tumores ESMO · Guias ESMO + Jev (System One)</p></div>"
-        f'<div>{mode_tag}<span class="nb-tag pink">Human-in-the-loop</span></div></div>'
+        f"<p>Apoyo a la decisión clínica · {len(load_all())} tumores ESMO · Guías ESMO + Jev (System One)</p></div>"
+        f'<div>{mode_tag}<span class="nb-tag pink">Supervisión humana</span></div></div>'
     )
 
-    tab_rec, tab_eval = st.tabs(["01 · Recomendacion", "02 · Evaluacion"])
+    tab_rec, tab_eval = st.tabs(["Recomendación", "Evaluación"])
 
     with tab_rec:
         col_izq, col_der = st.columns([1, 1], gap="large")
         with col_izq:
             spec, raw = render_form()
-            calcular = st.button("▶ Calcular recomendacion", type="primary", width="stretch")
+            calcular = st.button("▶ Calcular recomendación", type="primary", width="stretch")
         huella = _fingerprint(spec.id, raw)
         with col_der:
             if calcular:
@@ -695,7 +695,7 @@ def main() -> None:
                     except Exception as exc:  # errores de red/API: mostrarlos sin romper la UI
                         st.session_state["ultimo_error"] = f"{type(exc).__name__}: {exc}"
             if st.session_state.get("ultimo_error"):
-                nb(f'<div class="nb-card red"><h3>Error llamando a Jev</h3><div class="note">{e(st.session_state["ultimo_error"])}</div></div>')
+                nb(f'<div class="nb-card red"><h3>Error al consultar a Jev</h3><div class="note">{e(st.session_state["ultimo_error"])}</div></div>')
             guardado = st.session_state.get("ultimo_resultado")
             resultado = None
             if guardado and guardado["huella"] == huella:
@@ -703,7 +703,7 @@ def main() -> None:
             elif guardado:
                 nb('<div class="nb-section right">02 · Resultado</div>')
                 nb('<div class="nb-card yellow"><h3>El caso ha cambiado</h3>'
-                   "<div>Has modificado datos del paciente despues del ultimo calculo. El resultado anterior se ha "
+                   "<div>Has modificado datos del paciente después del último cálculo. El resultado anterior se ha "
                    "ocultado para no confundirlo con este caso: pulsa ▶ Calcular de nuevo.</div></div>")
             if resultado:
                 nb(f'<span class="nb-tag">Huella del caso · {e(huella[:10])}</span>')

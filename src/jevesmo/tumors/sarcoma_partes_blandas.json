@@ -10,11 +10,11 @@
    "url": "https://www.esmo.org/guidelines/guidelines-by-topic/soft-tissue-and-visceral-sarcomas"
   }
  ],
- "descripcion": "Sarcomas de partes blandas del adulto: tratamiento local y sistemico segun localizacion, histotipo, riesgo, linea y biomarcadores accionables.",
+ "descripcion": "Sarcomas de partes blandas del adulto: tratamiento local y sistémico según localización, histotipo, riesgo, línea y biomarcadores accionables.",
  "campos": [
   {
    "id": "situacion",
-   "label": "Situacion clinica",
+   "label": "Situación clínica",
    "tipo": "choice",
    "opciones": [
     "localizado_resecable",
@@ -23,11 +23,11 @@
     "metastasico"
    ],
    "requerido": true,
-   "pregunta": "¿La enfermedad es localizada resecable, localizada borderline, localmente irresecable o metastasica?"
+   "pregunta": "¿La enfermedad es localizada resecable, localizada borderline, localmente irresecable o metastásica?"
   },
   {
    "id": "localizacion",
-   "label": "Localizacion",
+   "label": "Localización",
    "tipo": "choice",
    "opciones": [
     "extremidad_pared",
@@ -37,7 +37,7 @@
     "otro"
    ],
    "requerido": true,
-   "pregunta": "¿Cual es la localizacion principal del sarcoma?"
+   "pregunta": "¿Cuál es la localización principal del sarcoma?"
   },
   {
    "id": "histotipo",
@@ -55,7 +55,7 @@
     "otro"
    ],
    "requerido": true,
-   "pregunta": "¿Cual es el histotipo?"
+   "pregunta": "¿Cuál es el histotipo?"
   },
   {
    "id": "grado",
@@ -73,11 +73,11 @@
      "localizado_borderline"
     ]
    },
-   "pregunta": "¿Cual es el grado FNCLCC (1-3)?"
+   "pregunta": "¿Cuál es el grado FNCLCC (1-3)?"
   },
   {
    "id": "tamano_cm",
-   "label": "Tamano tumoral",
+   "label": "Tamaño tumoral",
    "tipo": "number",
    "min": 0,
    "max": 80,
@@ -89,7 +89,7 @@
      "localizado_borderline"
     ]
    },
-   "pregunta": "¿Cual es el tamano maximo en cm?"
+   "pregunta": "¿Cuál es el tamaño máximo en cm?"
   },
   {
    "id": "profundo",
@@ -98,7 +98,7 @@
   },
   {
    "id": "margen_quirurgico",
-   "label": "Margen quirurgico",
+   "label": "Margen quirúrgico",
    "tipo": "choice",
    "opciones": [
     "no_operado",
@@ -110,13 +110,13 @@
   },
   {
    "id": "ntrk_fusion",
-   "label": "Fusion NTRK",
+   "label": "Fusión NTRK",
    "tipo": "bool",
    "seccion": "Biomarcadores"
   },
   {
    "id": "antraciclina_contraindicada",
-   "label": "Contraindicacion a antraciclinas",
+   "label": "Contraindicación a antraciclinas",
    "tipo": "bool",
    "seccion": "Seguridad"
   },
@@ -189,8 +189,8 @@
  "opciones": [
   {
    "id": "cirugia_sola_bajo_riesgo",
-   "label": "Cirugia amplia R0 sola",
-   "nota": "ESMO STS: sarcoma localizado resecable superficial/pequeno o grado 1, con margen amplio factible, se trata con cirugia planificada en centro experto sin RT rutinaria.",
+   "label": "Cirugía amplia R0 sola",
+   "nota": "ESMO STS: sarcoma localizado resecable superficial/pequeno o grado 1, con margen amplio factible, se trata con cirugía planificada en centro experto sin RT rutinaria.",
    "cuando": [
     {
      "campo": "situacion",
@@ -208,8 +208,8 @@
   },
   {
    "id": "cirugia_rt_preop",
-   "label": "Radioterapia preoperatoria seguida de cirugia",
-   "nota": "ESMO STS extremidad/pared: tumores profundos, >5 cm o grado 2-3 resecables con riesgo funcional; RT preoperatoria 50 Gy y cirugia experta es opcion estandar.",
+   "label": "Radioterapia preoperatoria seguida de cirugía",
+   "nota": "ESMO STS extremidad/pared: tumores profundos, >5 cm o grado 2-3 resecables con riesgo funcional; RT preoperatoria 50 Gy y cirugía experta es opción estándar.",
    "cuando": [
     {
      "campo": "situacion",
@@ -235,7 +235,7 @@
   },
   {
    "id": "cirugia_rt_postop",
-   "label": "Cirugia amplia + radioterapia postoperatoria",
+   "label": "Cirugía amplia + radioterapia postoperatoria",
    "nota": "ESMO STS localizado alto riesgo: si no se hizo RT preoperatoria o hay margen estrecho/R1, RT postoperatoria mejora control local.",
    "cuando": [
     {
@@ -262,8 +262,8 @@
   },
   {
    "id": "rt_neoadyuvante_retroperitoneo_selectivo",
-   "label": "RT preoperatoria selectiva + reseccion retroperitoneal experta",
-   "nota": "ESMO retroperitoneo: cirugia macroscopica completa en centro experto; RT preoperatoria solo selectiva, sobre todo liposarcoma bien/dediferenciado, no rutinaria para leiomiosarcoma.",
+   "label": "RT preoperatoria selectiva + resección retroperitoneal experta",
+   "nota": "ESMO retroperitoneo: cirugía macroscópica completa en centro experto; RT preoperatoria solo selectiva, sobre todo liposarcoma bien/dediferenciado, no rutinaria para leiomiosarcoma.",
    "cuando": [
     {
      "campo": "situacion",
@@ -290,7 +290,7 @@
   {
    "id": "quimio_neoadyuvante_alto_riesgo",
    "label": "Quimioterapia perioperatoria con doxorrubicina + ifosfamida",
-   "nota": "ESMO STS: en sarcoma extremidad/tronco de alto riesgo (G3, profundo, >5 cm) de histologia sensible puede considerarse QT perioperatoria con antraciclina-ifosfamida.",
+   "nota": "ESMO STS: en sarcoma extremidad/tronco de alto riesgo (G3, profundo, >5 cm) de histología sensible puede considerarse QT perioperatoria con antraciclina-ifosfamida.",
    "cuando": [
     {
      "campo": "situacion",
@@ -321,7 +321,7 @@
   {
    "id": "doxorrubicina_1l",
    "label": "Doxorrubicina 1L",
-   "nota": "ESMO STS avanzado/metastasico: doxorrubicina es estandar de primera linea para la mayoria de sarcomas de partes blandas si no se requiere respuesta rapida.",
+   "nota": "ESMO STS avanzado/metastasico: doxorrubicina es estándar de primera línea para la mayoría de sarcomas de partes blandas si no se requiere respuesta rápida.",
    "cuando": [
     {
      "campo": "situacion",
@@ -351,7 +351,7 @@
   {
    "id": "doxo_ifosfamida_1l",
    "label": "Doxorrubicina + ifosfamida 1L si se necesita respuesta",
-   "nota": "ESMO STS avanzado: doxorrubicina-ifosfamida se reserva para pacientes fit cuando la reduccion tumoral rapida puede permitir cirugia/paliacion; mayor toxicidad sin clara ventaja de SG.",
+   "nota": "ESMO STS avanzado: doxorrubicina-ifosfamida se reserva para pacientes fit cuando la reducción tumoral rápida puede permitir cirugía/paliacion; mayor toxicidad sin clara ventaja de SG.",
    "cuando": [
     {
      "campo": "situacion",
@@ -410,7 +410,7 @@
   {
    "id": "eribulina_liposarcoma",
    "label": "Eribulina (liposarcoma)",
-   "nota": "ESMO STS avanzado: eribulina mejora supervivencia frente a dacarbazina en liposarcoma pretratado y es opcion tras antraciclina.",
+   "nota": "ESMO STS avanzado: eribulina mejora supervivencia frente a dacarbazina en liposarcoma pretratado y es opción tras antraciclina.",
    "cuando": [
     {
      "campo": "situacion",
@@ -435,8 +435,8 @@
   },
   {
    "id": "pazopanib_no_lipo",
-   "label": "Pazopanib (STS no adipocitico)",
-   "nota": "ESMO STS avanzado: pazopanib es opcion en sarcomas no adipociticos tras quimioterapia previa, si no hay contraindicacion vascular/hepatica.",
+   "label": "Pazopanib (STS no adipocítico)",
+   "nota": "ESMO STS avanzado: pazopanib es opción en sarcomas no adipocíticos tras quimioterapia previa, si no hay contraindicación vascular/hepática.",
    "cuando": [
     {
      "campo": "situacion",
@@ -467,7 +467,7 @@
   {
    "id": "weekly_paclitaxel_angiosarcoma",
    "label": "Paclitaxel semanal (angiosarcoma)",
-   "nota": "ESMO STS avanzado angiosarcoma: paclitaxel semanal es una opcion activa, especialmente cutaneo/cabeza-cuello.",
+   "nota": "ESMO STS avanzado angiosarcoma: paclitaxel semanal es una opción activa, especialmente cutáneo/cabeza-cuello.",
    "cuando": [
     {
      "campo": "situacion",
@@ -489,7 +489,7 @@
   {
    "id": "imatinib_dfsp",
    "label": "Imatinib (DFSP irresecable/metastasico)",
-   "nota": "ESMO STS: dermatofibrosarcoma protuberans localmente avanzado/metastasico con fusion COL1A1-PDGFB se trata con imatinib para facilitar cirugia o control sistemico.",
+   "nota": "ESMO STS: dermatofibrosarcoma protuberans localmente avanzado/metastasico con fusión COL1A1-PDGFB se trata con imatinib para facilitar cirugía o control sistémico.",
    "cuando": [
     {
      "campo": "situacion",
@@ -510,8 +510,8 @@
   },
   {
    "id": "larotrectinib_entrectinib_ntrk",
-   "label": "Larotrectinib/entrectinib si fusion NTRK",
-   "nota": "ESMO: cualquier sarcoma avanzado con fusion NTRK accionable debe recibir inhibidor TRK preferentemente a quimioterapia no especifica cuando disponible.",
+   "label": "Larotrectinib/entrectinib si fusión NTRK",
+   "nota": "ESMO: cualquier sarcoma avanzado con fusión NTRK accionable debe recibir inhibidor TRK preferentemente a quimioterapia no específica cuando disponible.",
    "cuando": [
     {
      "campo": "situacion",
@@ -533,7 +533,7 @@
   {
    "id": "soporte_sts",
    "label": "Mejor soporte exclusivo / cuidados paliativos",
-   "nota": "ESMO STS: ECOG 3-4, fragilidad marcada o toxicidad inaceptable -> priorizar soporte y control sintomatico en vez de tratamiento sistemico activo.",
+   "nota": "ESMO STS: ECOG 3-4, fragilidad marcada o toxicidad inaceptable -> priorizar soporte y control sintomático en vez de tratamiento sistémico activo.",
    "cuando": {
     "campo": "ecog",
     "in": [
@@ -556,7 +556,7 @@
     "campo": "situacion",
     "eq": "localizado_borderline"
    },
-   "instrucciones": "Valora en MDT si una reseccion R0 funcionalmente aceptable es probable tras tratamiento neoadyuvante.",
+   "instrucciones": "Valora en MDT si una resección R0 funcionalmente aceptable es probable tras tratamiento neoadyuvante.",
    "criterios": {
     "resecable": "R0 funcional plausible",
     "irresecable": "R0 funcional improbable"
@@ -573,7 +573,7 @@
      "metastasico"
     ]
    },
-   "instrucciones": "¿La situacion clinica requiere maxima respuesta tumoral rapida (dolor, compromiso organico o conversion a cirugia)?"
+   "instrucciones": "¿La situación clínica requiere máxima respuesta tumoral rápida (dolor, compromiso orgánico o conversión a cirugía)?"
   },
   {
    "key": "histologia_quimiosensible",
@@ -583,7 +583,7 @@
     "campo": "riesgo_local",
     "eq": "alto_riesgo"
    },
-   "instrucciones": "Segun histotipo y riesgo de recaida, ¿es razonable esperar sensibilidad relevante a quimioterapia perioperatoria con antraciclina/ifosfamida?"
+   "instrucciones": "Según histotipo y riesgo de recaída, ¿es razonable esperar sensibilidad relevante a quimioterapia perioperatoria con antraciclina/ifosfamida?"
   }
  ],
  "seguridad": [
@@ -628,7 +628,7 @@
     "doxo_ifosfamida_1l",
     "quimio_neoadyuvante_alto_riesgo"
    ],
-   "instrucciones": "¿El riesgo renal, neurologico o de fragilidad contraindica ifosfamida?",
+   "instrucciones": "¿El riesgo renal, neurológico o de fragilidad contraindica ifosfamida?",
    "umbral": 0.55,
    "motivo": "Riesgo inaceptable para ifosfamida"
   }
@@ -648,7 +648,7 @@
      "missing": true
     }
    ],
-   "texto": "Fusion NTRK no testada: puede cambiar la decision hacia inhibidor TRK."
+   "texto": "Fusión NTRK no testada: puede cambiar la decisión hacia inhibidor TRK."
   },
   {
    "cuando": [
@@ -664,7 +664,7 @@
      "missing": true
     }
    ],
-   "texto": "El estado de margen planificado/obtenido modifica la indicacion de RT postoperatoria o re-reseccion."
+   "texto": "El estado de margen planificado/obtenido modifica la indicación de RT postoperatoria o re-reseccion."
   }
  ],
  "vinetas": [
@@ -742,7 +742,7 @@
   },
   {
    "id": "SARCOMA_PARTES_BLANDAS-V04",
-   "titulo": "STS metastasico primera linea",
+   "titulo": "STS metastásico primera línea",
    "fuente": "ESMO STS 2021: doxorrubicina 1L",
    "payload": {
     "edad": 58,
@@ -838,7 +838,7 @@
   },
   {
    "id": "SARCOMA_PARTES_BLANDAS-V08",
-   "titulo": "Sarcoma NTRK fusion",
+   "titulo": "Sarcoma NTRK fusión",
    "fuente": "ESMO STS/precision oncology: TRK inhibitors for NTRK fusion",
    "payload": {
     "edad": 42,
@@ -876,7 +876,7 @@
   },
   {
    "id": "SARCOMA_PARTES_BLANDAS-V10",
-   "titulo": "STS metastasico ECOG 4 cardiopatia",
+   "titulo": "STS metastásico ECOG 4 cardiopatía",
    "fuente": "ESMO STS 2021: soporte si no candidato a tratamiento activo",
    "payload": {
     "edad": 82,

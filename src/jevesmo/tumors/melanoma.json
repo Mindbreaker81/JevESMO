@@ -1,6 +1,6 @@
 {
  "id": "melanoma",
- "nombre": "Melanoma cutaneo",
+ "nombre": "Melanoma cutáneo",
  "grupo": "Piel",
  "version": "MELANOMA-ESMO-2025.1",
  "guias": [
@@ -10,7 +10,7 @@
    "url": "https://www.esmo.org/guidelines/esmo-clinical-practice-guideline-cutaneous-melanoma"
   }
  ],
- "descripcion": "Melanoma cutaneo resecable, adyuvancia, neoadyuvancia y enfermedad metastasica con BRAF, inmunoterapia combinada, anti-LAG3, BRAF/MEK, metastasis cerebrales y TIL.",
+ "descripcion": "Melanoma cutáneo resecable, adyuvancia, neoadyuvancia y enfermedad metastásica con BRAF, inmunoterapia combinada, anti-LAG3, BRAF/MEK, metástasis cerebrales y TIL.",
  "campos": [
   {
    "id": "estadio",
@@ -29,7 +29,7 @@
     "IV"
    ],
    "requerido": true,
-   "pregunta": "¿Cual es el estadio/situacion del melanoma?"
+   "pregunta": "¿Cuál es el estadio/situacion del melanoma?"
   },
   {
    "id": "braf_v600",
@@ -49,13 +49,13 @@
      "IV"
     ]
    },
-   "pregunta": "¿Cual es el estado de BRAF V600 (mutado/wt/desconocido)?"
+   "pregunta": "¿Cuál es el estado de BRAF V600 (mutado/wt/desconocido)?"
   },
   {
    "id": "metastasis_cerebrales",
-   "label": "Metastasis cerebrales",
+   "label": "Metástasis cerebrales",
    "tipo": "choice",
-   "seccion": "Metastasis",
+   "seccion": "Metástasis",
    "opciones": [
     "ninguna",
     "asintomaticas",
@@ -64,7 +64,7 @@
   },
   {
    "id": "enfermedad_sintomatica_rapida",
-   "label": "Enfermedad sintomatica o progresion rapida",
+   "label": "Enfermedad sintomática o progresión rápida",
    "tipo": "bool",
    "seccion": "Avanzada"
   },
@@ -85,8 +85,8 @@
  "opciones": [
   {
    "id": "escision_vigilancia_i_iiA",
-   "label": "Escision amplia y vigilancia",
-   "nota": "Estadio 0-IIA resecado: escision amplia, ganglio centinela segun Breslow y vigilancia; no adyuvancia sistemica rutinaria.",
+   "label": "Escisión amplia y vigilancia",
+   "nota": "Estadio 0-IIA resecado: escisión amplia, ganglio centinela según Breslow y vigilancia; no adyuvancia sistémica rutinaria.",
    "cuando": {
     "campo": "estadio",
     "in": [
@@ -153,7 +153,7 @@
   {
    "id": "neoady_pembro_iii_macro",
    "label": "Pembrolizumab neoadyuvante y adyuvante",
-   "nota": "Estadio III macroscopico resecable: pembrolizumab perioperatorio/neoadyuvante mejora EFS (SWOG S1801).",
+   "nota": "Estadio III macroscópico resecable: pembrolizumab perioperatorio/neoadyuvante mejora EFS (SWOG S1801).",
    "cuando": {
     "campo": "estadio",
     "eq": "III_macroscopico"
@@ -167,7 +167,7 @@
   {
    "id": "ipi_nivo_iv",
    "label": "Nivolumab + ipilimumab 1L",
-   "nota": "Metastasico 1L: nivolumab+ipilimumab ofrece maxima probabilidad de respuesta duradera, preferible en alto riesgo/LDH alta/metastasis cerebrales si fit.",
+   "nota": "Metastásico 1L: nivolumab+ipilimumab ofrece máxima probabilidad de respuesta duradera, preferible en alto riesgo/LDH alta/metastasis cerebrales si fit.",
    "cuando": [
     {
      "campo": "estadio",
@@ -200,7 +200,7 @@
   {
    "id": "nivo_relatlimab_iv",
    "label": "Nivolumab + relatlimab 1L",
-   "nota": "Metastasico 1L: nivolumab+relatlimab es opcion con menor toxicidad que ipi+nivo en pacientes seleccionados.",
+   "nota": "Metastásico 1L: nivolumab+relatlimab es opción con menor toxicidad que ipi+nivo en pacientes seleccionados.",
    "cuando": [
     {
      "campo": "estadio",
@@ -239,7 +239,7 @@
   {
    "id": "anti_pd1_mono_iv",
    "label": "Anti-PD-1 monoterapia",
-   "nota": "Metastasico 1L: pembrolizumab o nivolumab monoterapia si bajo volumen o no candidato a combinacion.",
+   "nota": "Metastásico 1L: pembrolizumab o nivolumab monoterapia si bajo volumen o no candidato a combinación.",
    "cuando": [
     {
      "campo": "estadio",
@@ -278,7 +278,7 @@
   {
    "id": "braf_mek_iv",
    "label": "BRAF/MEK inhibidor",
-   "nota": "Melanoma metastasico BRAF V600 mutado: BRAF/MEK, especialmente si necesidad de respuesta rapida.",
+   "nota": "Melanoma metastásico BRAF V600 mutado: BRAF/MEK, especialmente si necesidad de respuesta rápida.",
    "cuando": [
     {
      "campo": "estadio",
@@ -296,8 +296,8 @@
   },
   {
    "id": "local_cerebral_srs",
-   "label": "Tratamiento local de metastasis cerebrales + sistemico",
-   "nota": "Metastasis cerebrales sintomaticas: SRS/cirugia/corticoides y seleccionar terapia sistemica.",
+   "label": "Tratamiento local de metástasis cerebrales + sistémico",
+   "nota": "Metástasis cerebrales sintomáticas: SRS/cirugia/corticoides y seleccionar terapia sistémica.",
    "cuando": [
     {
      "campo": "estadio",
@@ -319,7 +319,7 @@
   {
    "id": "til_post_ici",
    "label": "TIL/lifileucel o ensayo tras anti-PD-1",
-   "nota": "Tras progresion a anti-PD-1, considerar TIL en centros expertos/ensayo.",
+   "nota": "Tras progresión a anti-PD-1, considerar TIL en centros expertos/ensayo.",
    "cuando": [
     {
      "campo": "estadio",
@@ -342,7 +342,7 @@
   {
    "id": "soporte_melanoma_fragil",
    "label": "Soporte exclusivo",
-   "nota": "ECOG 3-4 o fragilidad extrema: soporte y control sintomatico.",
+   "nota": "ECOG 3-4 o fragilidad extrema: soporte y control sintomático.",
    "cuando": {
     "campo": "ecog",
     "in": [
@@ -381,7 +381,7 @@
      "eq": "mutado"
     }
    ],
-   "instrucciones": "¿Existe necesidad de respuesta rapida que favorezca iniciar BRAF/MEK frente a inmunoterapia?"
+   "instrucciones": "¿Existe necesidad de respuesta rápida que favorezca iniciar BRAF/MEK frente a inmunoterapia?"
   },
   {
    "key": "cerebral_control_local",
@@ -394,10 +394,10 @@
      "sintomaticas"
     ]
    },
-   "instrucciones": "Valora manejo inicial de metastasis cerebrales.",
+   "instrucciones": "Valora manejo inicial de metástasis cerebrales.",
    "criterios": {
-    "sistemico": "Asintomaticas pequenas: tratamiento sistemico primero",
-    "local": "Sintomaticas/voluminosas: SRS/cirugia/corticoides"
+    "sistemico": "Asintomáticas pequenas: tratamiento sistémico primero",
+    "local": "Sintomáticas/voluminosas: SRS/cirugia/corticoides"
    }
   }
  ],
@@ -411,8 +411,8 @@
    "bloquea_componentes": [
     "inmunoterapia"
    ],
-   "instrucciones": "¿La enfermedad autoinmune activa o inmunosupresion hace inaceptable la inmunoterapia?",
-   "motivo": "Contraindicacion mayor para inmunoterapia."
+   "instrucciones": "¿La enfermedad autoinmune activa o inmunosupresión hace inaceptable la inmunoterapia?",
+   "motivo": "Contraindicación mayor para inmunoterapia."
   }
  ],
  "avisos": [
@@ -431,7 +431,7 @@
      "eq": "desconocido"
     }
    ],
-   "texto": "BRAF V600 desconocido: debe testarse porque cambia adyuvancia y tratamiento metastasico."
+   "texto": "BRAF V600 desconocido: debe testarse porque cambia adyuvancia y tratamiento metastásico."
   }
  ],
  "vinetas": [
@@ -508,7 +508,7 @@
   },
   {
    "id": "MELANOMA-V05",
-   "titulo": "III macroscopico",
+   "titulo": "III macroscópico",
    "fuente": "SWOG S1801",
    "payload": {
     "edad": 60,
@@ -547,7 +547,7 @@
   },
   {
    "id": "MELANOMA-V07",
-   "titulo": "IV BRAF mutado respuesta rapida",
+   "titulo": "IV BRAF mutado respuesta rápida",
    "fuente": "BRAF/MEK",
    "payload": {
     "edad": 60,

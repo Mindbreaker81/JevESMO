@@ -1,6 +1,6 @@
 {
  "id": "tiroides",
- "nombre": "Cancer de tiroides",
+ "nombre": "Cáncer de tiroides",
  "grupo": "Cabeza y cuello / Endocrino",
  "version": "TIROIDES-ESMO-2024.1",
  "guias": [
@@ -15,11 +15,11 @@
    "url": "https://www.esmo.org/guidelines/esmo-clinical-practice-guideline-thyroid-cancer/eupdate-thyroid-cancer-treatment-recommendations"
   }
  ],
- "descripcion": "Cancer diferenciado, medular y anaplasico de tiroides: cirugia/RAI, enfermedad refractaria a RAI y terapias dirigidas RET/BRAF/NTRK.",
+ "descripcion": "Cáncer diferenciado, medular y anaplásico de tiroides: cirugía/RAI, enfermedad refractaria a RAI y terapias dirigidas RET/BRAF/NTRK.",
  "campos": [
   {
    "id": "tipo",
-   "label": "Tipo histologico",
+   "label": "Tipo histológico",
    "tipo": "choice",
    "seccion": "Tumor",
    "opciones": [
@@ -28,11 +28,11 @@
     "anaplasico"
    ],
    "requerido": true,
-   "pregunta": "¿Cual es el tipo histologico (diferenciado, medular o anaplasico)?"
+   "pregunta": "¿Cuál es el tipo histológico (diferenciado, medular o anaplásico)?"
   },
   {
    "id": "situacion",
-   "label": "Situacion clinica",
+   "label": "Situación clínica",
    "tipo": "choice",
    "seccion": "Tumor",
    "opciones": [
@@ -43,7 +43,7 @@
     "metastasico_no_rai"
    ],
    "requerido": true,
-   "pregunta": "¿Cual es la situacion clinica actual?"
+   "pregunta": "¿Cuál es la situación clínica actual?"
   },
   {
    "id": "riesgo_ata",
@@ -59,17 +59,17 @@
     "campo": "tipo",
     "eq": "diferenciado"
    },
-   "pregunta": "¿Cual es el riesgo ATA (bajo, intermedio, alto)?"
+   "pregunta": "¿Cuál es el riesgo ATA (bajo, intermedio, alto)?"
   },
   {
    "id": "progresion_sintomatica",
-   "label": "Progresion RECIST o enfermedad sintomatica",
+   "label": "Progresión RECIST o enfermedad sintomática",
    "tipo": "bool",
    "seccion": "Avanzada"
   },
   {
    "id": "ret_alterado",
-   "label": "Alteracion RET",
+   "label": "Alteración RET",
    "tipo": "bool",
    "seccion": "Biomarcadores"
   },
@@ -81,13 +81,13 @@
   },
   {
    "id": "ntrk_fusion",
-   "label": "Fusion NTRK",
+   "label": "Fusión NTRK",
    "tipo": "bool",
    "seccion": "Biomarcadores"
   },
   {
    "id": "antiangiogenico_apto",
-   "label": "Apto para TKI antiangiogenico",
+   "label": "Apto para TKI antiangiogénico",
    "tipo": "bool",
    "seccion": "Seguridad"
   }
@@ -96,8 +96,8 @@
  "opciones": [
   {
    "id": "lobectomia_vigilancia_bajo_riesgo",
-   "label": "Cirugia conservadora/lobectomia y vigilancia",
-   "nota": "Diferenciado localizado de bajo riesgo: cirugia adecuada y vigilancia; RAI no rutinario.",
+   "label": "Cirugía conservadora/lobectomia y vigilancia",
+   "nota": "Diferenciado localizado de bajo riesgo: cirugía adecuada y vigilancia; RAI no rutinario.",
    "cuando": [
     {
      "campo": "tipo",
@@ -120,8 +120,8 @@
   },
   {
    "id": "tiroidectomia_rai_intermedio_alto",
-   "label": "Tiroidectomia total +- RAI segun riesgo",
-   "nota": "Diferenciado de riesgo intermedio/alto: tiroidectomia total, TSH supresion y considerar/indicar RAI.",
+   "label": "Tiroidectomía total +- RAI según riesgo",
+   "nota": "Diferenciado de riesgo intermedio/alto: tiroidectomía total, TSH supresión y considerar/indicar RAI.",
    "cuando": [
     {
      "campo": "tipo",
@@ -151,7 +151,7 @@
   {
    "id": "rai_metastatico_sensible",
    "label": "Radioyodo para enfermedad yodo-captante",
-   "nota": "Enfermedad metastasica diferenciada y captante: RAI si beneficio esperado y tolerancia.",
+   "nota": "Enfermedad metastásica diferenciada y captante: RAI si beneficio esperado y tolerancia.",
    "cuando": [
     {
      "campo": "tipo",
@@ -170,7 +170,7 @@
   {
    "id": "vigilancia_rai_refractario_indolente",
    "label": "Vigilancia activa RAI-refractario indolente",
-   "nota": "RAI-refractario asintomatico y lento puede observarse hasta progresion relevante antes de TKI.",
+   "nota": "RAI-refractario asintomático y lento puede observarse hasta progresión relevante antes de TKI.",
    "cuando": [
     {
      "campo": "tipo",
@@ -225,7 +225,7 @@
   {
    "id": "selpercatinib_ret_dtc",
    "label": "Selpercatinib/pralsetinib si RET",
-   "nota": "Tumores tiroideos avanzados con fusion/mutacion RET: inhibidor selectivo RET.",
+   "nota": "Tumores tiroideos avanzados con fusión/mutacion RET: inhibidor selectivo RET.",
    "cuando": [
     {
      "campo": "ret_alterado",
@@ -247,7 +247,7 @@
   {
    "id": "larotrectinib_entrectinib_ntrk",
    "label": "Larotrectinib/entrectinib si NTRK",
-   "nota": "Fusion NTRK: inhibidor TRK en enfermedad avanzada sin alternativas satisfactorias.",
+   "nota": "Fusión NTRK: inhibidor TRK en enfermedad avanzada sin alternativas satisfactorias.",
    "cuando": [
     {
      "campo": "ntrk_fusion",
@@ -268,8 +268,8 @@
   },
   {
    "id": "cirugia_medular_localizado",
-   "label": "Tiroidectomia total + diseccion ganglionar en medular",
-   "nota": "Carcinoma medular localizado: cirugia completa con diseccion apropiada; RAI no indicado.",
+   "label": "Tiroidectomía total + disección ganglionar en medular",
+   "nota": "Carcinoma medular localizado: cirugía completa con disección apropiada; RAI no indicado.",
    "cuando": [
     {
      "campo": "tipo",
@@ -350,7 +350,7 @@
   {
    "id": "anaplasico_braf_dab_tram",
    "label": "Dabrafenib + trametinib si BRAF V600E",
-   "nota": "Cancer anaplasico BRAF V600E avanzado: dabrafenib + trametinib.",
+   "nota": "Cáncer anaplásico BRAF V600E avanzado: dabrafenib + trametinib.",
    "cuando": [
     {
      "campo": "tipo",
@@ -368,8 +368,8 @@
   },
   {
    "id": "anaplasico_multimodal_paliativo",
-   "label": "Tratamiento multimodal/paliativo anaplasico",
-   "nota": "Anaplasico sin diana accionable: valorar cirugia/RT si resecable, quimioterapia/RT o soporte.",
+   "label": "Tratamiento multimodal/paliativo anaplásico",
+   "nota": "Anaplásico sin diana accionable: valorar cirugía/RT si resecable, quimioterapia/RT o soporte.",
    "cuando": [
     {
      "campo": "tipo",
@@ -417,7 +417,7 @@
      "metastasico_no_rai"
     ]
    },
-   "instrucciones": "¿La progresion es clinicamente relevante y justifica iniciar tratamiento sistemico ahora?"
+   "instrucciones": "¿La progresión es clinicamente relevante y justifica iniciar tratamiento sistémico ahora?"
   },
   {
    "key": "necesidad_test_molecular",
@@ -439,7 +439,7 @@
      }
     ]
    },
-   "instrucciones": "¿Debe priorizarse completar perfil molecular RET/BRAF/NTRK antes de elegir terapia sistemica?"
+   "instrucciones": "¿Debe priorizarse completar perfil molecular RET/BRAF/NTRK antes de elegir terapia sistémica?"
   }
  ],
  "seguridad": [
@@ -452,8 +452,8 @@
    "bloquea_componentes": [
     "antiangiogenico"
    ],
-   "instrucciones": "¿Hay hipertension no controlada, sangrado, fistula/invasion vascular o riesgo cardiovascular que haga inseguro un TKI antiangiogenico?",
-   "motivo": "Riesgo inaceptable con TKI antiangiogenico."
+   "instrucciones": "¿Hay hipertensión no controlada, sangrado, fístula/invasion vascular o riesgo cardiovascular que haga inseguro un TKI antiangiogénico?",
+   "motivo": "Riesgo inaceptable con TKI antiangiogénico."
   }
  ],
  "avisos": [
@@ -484,7 +484,7 @@
      "missing": true
     }
    ],
-   "texto": "BRAF V600E no testado en anaplasico: cambia de forma critica la opcion inicial."
+   "texto": "BRAF V600E no testado en anaplásico: cambia de forma critica la opción inicial."
   }
  ],
  "vinetas": [
@@ -528,7 +528,7 @@
   },
   {
    "id": "TIROIDES-V03",
-   "titulo": "Metastatico yodo-captante",
+   "titulo": "Metastático yodo-captante",
    "fuente": "RAI",
    "payload": {
     "edad": 60,
@@ -632,7 +632,7 @@
   },
   {
    "id": "TIROIDES-V08",
-   "titulo": "Anaplasico BRAF V600E",
+   "titulo": "Anaplásico BRAF V600E",
    "fuente": "Dabrafenib trametinib",
    "payload": {
     "edad": 60,

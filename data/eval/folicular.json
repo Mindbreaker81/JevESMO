@@ -1,7 +1,7 @@
 {
  "tumor": "folicular",
  "nombre": "Linfoma folicular",
- "grupo": "Hematologia",
+ "grupo": "Hematología",
  "version": "FOLLICULAR-ESMO-2025.1",
  "fecha": "2026-09-27T18:58:47+00:00",
  "modelo": "jev-latest",
@@ -55,7 +55,7 @@
     "rituximab_mono"
    ],
    "obtenido": "watch_wait",
-   "obtenido_label": "Observacion activa (watch and wait)",
+   "obtenido_label": "Observación activa (watch and wait)",
    "confianza": 0.98,
    "revision": true,
    "motivos_revision": [
@@ -137,7 +137,7 @@
   },
   {
    "id": "FOLICULAR-V06",
-   "titulo": "Primera recaida",
+   "titulo": "Primera recaída",
    "fuente": "AUGMENT",
    "esperado_tipo": "recomendacion",
    "esperado": "r2_recaida",
@@ -157,7 +157,7 @@
   },
   {
    "id": "FOLICULAR-V07",
-   "titulo": "Tercera linea candidato CAR-T",
+   "titulo": "Tercera línea candidato CAR-T",
    "fuente": "ESMO FL recaida multiple",
    "esperado_tipo": "recomendacion",
    "esperado": "car_t_fl",
@@ -199,7 +199,7 @@
   },
   {
    "id": "FOLICULAR-V09",
-   "titulo": "Infeccion activa y necesidad de anti-CD20",
+   "titulo": "Infección activa y necesidad de anti-CD20",
    "fuente": "Seguridad",
    "esperado_tipo": "revision_humana",
    "esperado": "revision_humana",

@@ -1,6 +1,6 @@
 {
  "tumor": "carcinoma_escamoso_cutaneo",
- "nombre": "Carcinoma escamoso cutaneo",
+ "nombre": "Carcinoma escamoso cutáneo",
  "grupo": "Piel",
  "version": "CARCINOMA_ESCAMOSO_CUTANEO-ESMO-2024.1",
  "fecha": "2026-09-27T18:58:36+00:00",
@@ -32,7 +32,7 @@
     "escision_estandar_cscc"
    ],
    "obtenido": "escision_estandar_cscc",
-   "obtenido_label": "Escision quirurgica con margenes adecuados",
+   "obtenido_label": "Escisión quirúrgica con margenes adecuados",
    "confianza": 1.0,
    "revision": false,
    "motivos_revision": [],
@@ -52,7 +52,7 @@
     "mohs_o_cirugia_alto_riesgo_cscc"
    ],
    "obtenido": "mohs_o_cirugia_alto_riesgo_cscc",
-   "obtenido_label": "Cirugia micrografica de Mohs o escision amplia",
+   "obtenido_label": "Cirugía micrográfica de Mohs o escisión amplia",
    "confianza": 1.0,
    "revision": false,
    "motivos_revision": [],
@@ -95,7 +95,7 @@
     "rt_definitiva_cscc"
    ],
    "obtenido": "rt_definitiva_cscc",
-   "obtenido_label": "Radioterapia definitiva si no cirugia",
+   "obtenido_label": "Radioterapia definitiva si no cirugía",
    "confianza": 0.99,
    "revision": true,
    "motivos_revision": [
@@ -130,7 +130,7 @@
   },
   {
    "id": "CARCINOMA_ESCAMOSO_CUTANEO-V06",
-   "titulo": "Metastasico",
+   "titulo": "Metastásico",
    "fuente": "anti-PD-1",
    "esperado_tipo": "recomendacion",
    "esperado": "cemiplimab_cscc",
@@ -171,7 +171,7 @@
   },
   {
    "id": "CARCINOMA_ESCAMOSO_CUTANEO-V08",
-   "titulo": "Falta situacion",
+   "titulo": "Falta situación",
    "fuente": "Dato imprescindible",
    "esperado_tipo": "necesita_datos",
    "esperado": "necesita_datos",

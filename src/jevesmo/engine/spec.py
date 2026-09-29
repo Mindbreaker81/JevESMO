@@ -1,13 +1,13 @@
 """Esquema de las especificaciones de tumor (src/jevesmo/tumors/*.json).
 
 Cada tumor es un JSON auto-contenido y auditable con:
-- campos clinicos especificos (ademas de los comunes a todos los tumores),
+- campos clínicos específicos (además de los comunes a todos los tumores),
 - derivados (p.ej. subtipo molecular) calculados con reglas deterministas,
-- opciones de tratamiento permitidas por ESMO, cada una con su condicion,
-- preguntas a Jev (capas 1-2) para juicio clinico sobre el caso,
+- opciones de tratamiento permitidas por ESMO, cada una con su condición,
+- preguntas a Jev (capas 1-2) para juicio clínico sobre el caso,
 - reglas de seguridad (capa 4) que pueden bloquear opciones,
-- avisos por datos que mejorarian la decision,
-- viñetas de referencia para la evaluacion.
+- avisos por datos que mejorarían la decisión,
+- viñetas de referencia para la evaluación.
 """
 
 from __future__ import annotations
@@ -103,17 +103,17 @@ class Seguridad(BaseModel):
     """Regla de seguridad (capa 4).
 
     tipo:
-      - "duro": contraindicacion explicita -> bloqueo determinista, sin preguntar a Jev.
-      - "jev" (defecto): contraindicacion relativa. Jev estima si aplica al caso; bloquea si
-        noul >= umbral. Falla cerrado: sin respuesta valida o en zona dudosa -> revision obligatoria.
-      - "revision": nunca bloquea, pero obliga a revision por especialista si se activa.
+      - "duro": contraindicación explicita -> bloqueo determinista, sin preguntar a Jev.
+      - "jev" (defecto): contraindicación relativa. Jev estima si aplica al caso; bloquea si
+        noul >= umbral. Falla cerrado: sin respuesta válida o en zona dudosa -> revisión obligatoria.
+      - "revisión": nunca bloquea, pero obliga a revisión por especialista si se activa.
     """
 
     key: str
     instrucciones: str = ""
     tipo: Literal["jev", "duro", "revision"] = "jev"
     cuando: Cond = None
-    bloquea: list[str] = Field(default_factory=list, description="ids de opcion")
+    bloquea: list[str] = Field(default_factory=list, description="ids de opción")
     bloquea_componentes: list[str] = Field(default_factory=list)
     umbral: float = 0.5
     motivo: str
@@ -169,19 +169,19 @@ class TumorSpec(BaseModel):
 # Campos comunes a todos los tumores. Los specs NO deben redefinirlos.
 COMMON_FIELDS: list[Campo] = [
     Campo(id="edad", label="Edad", tipo="number", seccion="Paciente", min=0, max=120, unidad="anios",
-          requerido=True, pregunta="¿Cual es la edad del paciente?"),
+          requerido=True, pregunta="¿Cuál es la edad del paciente?"),
     Campo(id="sexo", label="Sexo", tipo="choice", seccion="Paciente",
           opciones=[ChoiceOption(id="mujer", label="mujer"), ChoiceOption(id="hombre", label="hombre")]),
     Campo(id="ecog", label="ECOG performance status", tipo="choice", seccion="Paciente",
           opciones=[ChoiceOption(id=str(i), label=str(i)) for i in range(5)],
-          requerido=True, pregunta="¿Cual es el ECOG performance status del paciente (0-4)?"),
+          requerido=True, pregunta="¿Cuál es el ECOG performance status del paciente (0-4)?"),
     Campo(id="insuficiencia_renal", label="Insuficiencia renal", tipo="bool", seccion="Seguridad"),
-    Campo(id="insuficiencia_hepatica", label="Insuficiencia hepatica", tipo="bool", seccion="Seguridad"),
+    Campo(id="insuficiencia_hepatica", label="Insuficiencia hepática", tipo="bool", seccion="Seguridad"),
     Campo(id="comorbilidades_relevantes", label="Comorbilidades relevantes", tipo="list", seccion="Seguridad"),
-    Campo(id="lineas_previas", label="Lineas previas de tratamiento sistemico en enfermedad avanzada",
+    Campo(id="lineas_previas", label="Líneas previas de tratamiento sistémico en enfermedad avanzada",
           tipo="number", seccion="Historial", min=0, max=15),
     Campo(id="tratamientos_previos", label="Tratamientos previos", tipo="list", seccion="Historial"),
-    Campo(id="descripcion_libre", label="Notas clinicas (texto libre)", tipo="text", seccion="Notas"),
+    Campo(id="descripcion_libre", label="Notas clínicas (texto libre)", tipo="text", seccion="Notas"),
 ]
 COMMON_IDS = {c.id for c in COMMON_FIELDS}
 
@@ -215,14 +215,14 @@ def validate_spec(spec: TumorSpec) -> list[str]:
         for r in d.reglas:
             chk(f"derivado {d.id}", r.cuando)
     for o in spec.opciones:
-        chk(f"opcion {o.id}", o.cuando)
+        chk(f"opción {o.id}", o.cuando)
     for q in spec.preguntas:
         chk(f"pregunta {q.key}", q.cuando)
     for s in spec.seguridad:
         chk(f"seguridad {s.key}", s.cuando)
         for b in s.bloquea:
             if b not in opt_ids:
-                errs.append(f"seguridad {s.key}: bloquea opcion inexistente '{b}'")
+                errs.append(f"seguridad {s.key}: bloquea opción inexistente '{b}'")
         if s.tipo == "jev" and not s.instrucciones:
             errs.append(f"seguridad {s.key}: tipo 'jev' sin instrucciones")
     for a in spec.avisos:
@@ -236,7 +236,7 @@ def validate_spec(spec: TumorSpec) -> list[str]:
         if linea_re.search(o.label) and not any(
                 r in ("lineas_previas", "tratamientos_previos") or "situacion" in r or "linea" in r or "recaida" in r
                 for r in refs):
-            errs.append(f"opcion {o.id}: la etiqueta indica linea >=2 pero 'cuando' no comprueba lineas_previas/tratamientos_previos")
+            errs.append(f"opción {o.id}: la etiqueta indica línea >=2 pero 'cuando' no comprueba lineas_previas/tratamientos_previos")
 
     vids = [v.id for v in spec.vinetas]
     if dup := {i for i in vids if vids.count(i) > 1}:
@@ -248,14 +248,14 @@ def validate_spec(spec: TumorSpec) -> list[str]:
         for f, val in v.payload.items():
             c = spec.campo(f)
             if c and c.tipo == "choice" and val is not None and val not in {o.id for o in c.opciones}:
-                errs.append(f"viñeta {v.id}: valor '{val}' no valido para {f}")
+                errs.append(f"viñeta {v.id}: valor '{val}' no válido para {f}")
         e = v.esperado
         if e.tipo == "recomendacion":
             if not e.preferida or e.preferida not in opt_ids:
-                errs.append(f"viñeta {v.id}: preferida '{e.preferida}' no es una opcion")
+                errs.append(f"viñeta {v.id}: preferida '{e.preferida}' no es una opción")
             for a in e.aceptables:
                 if a not in opt_ids:
-                    errs.append(f"viñeta {v.id}: aceptable '{a}' no es una opcion")
+                    errs.append(f"viñeta {v.id}: aceptable '{a}' no es una opción")
             if e.preferida and e.preferida not in e.aceptables:
                 errs.append(f"viñeta {v.id}: la preferida debe estar en aceptables")
     return errs

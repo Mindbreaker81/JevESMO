@@ -1,6 +1,6 @@
 {
  "id": "gastrico",
- "nombre": "Cancer gastrico",
+ "nombre": "Cáncer gástrico",
  "grupo": "Digestivo",
  "version": "GASTRICO-ESMO-2024.1",
  "guias": [
@@ -15,11 +15,11 @@
    "url": "https://www.esmo.org/guidelines/living-guidelines/esmo-living-guideline-gastric-cancer"
   }
  ],
- "descripcion": "Cancer gastrico/union EG: FLOT +- durvalumab, avanzado segun HER2, PD-L1 CPS, MSI-H y Claudin 18.2; 2L ramucirumab-paclitaxel y T-DXd.",
+ "descripcion": "Cáncer gástrico/union EG: FLOT +- durvalumab, avanzado según HER2, PD-L1 CPS, MSI-H y Claudin 18.2; 2L ramucirumab-paclitaxel y T-DXd.",
  "campos": [
   {
    "id": "situacion",
-   "label": "Situacion clinica",
+   "label": "Situación clínica",
    "tipo": "choice",
    "seccion": "Tumor",
    "opciones": [
@@ -28,11 +28,11 @@
     "irresecable_metastasico"
    ],
    "requerido": true,
-   "pregunta": "¿Es precoz endoscopico, localizado resecable o irresecable/metastasico?"
+   "pregunta": "¿Es precoz endoscópico, localizado resecable o irresecable/metastasico?"
   },
   {
    "id": "histologia",
-   "label": "Histologia",
+   "label": "Histología",
    "tipo": "choice",
    "seccion": "Tumor",
    "opciones": [
@@ -41,7 +41,7 @@
     "mixto_otro"
    ],
    "requerido": true,
-   "pregunta": "¿Cual es la histologia del cancer gastrico?"
+   "pregunta": "¿Cuál es la histología del cáncer gástrico?"
   },
   {
    "id": "her2",
@@ -104,8 +104,8 @@
  "opciones": [
   {
    "id": "reseccion_endoscopica",
-   "label": "Reseccion endoscopica",
-   "nota": "ESMO: cancer gastrico muy precoz que cumple criterios endoscopicos puede tratarse con reseccion endoscopica curativa",
+   "label": "Resección endoscópica",
+   "nota": "ESMO: cáncer gástrico muy precoz que cumple criterios endoscópicos puede tratarse con resección endoscópica curativa",
    "cuando": [
     {
      "campo": "situacion",
@@ -120,7 +120,7 @@
   {
    "id": "flot_perioperatorio",
    "label": "FLOT perioperatorio",
-   "nota": "ESMO: adenocarcinoma gastrico/EGJ resecable cT2 o N+ -> FLOT perioperatorio",
+   "nota": "ESMO: adenocarcinoma gástrico/EGJ resecable cT2 o N+ -> FLOT perioperatorio",
    "cuando": [
     {
      "campo": "situacion",
@@ -157,7 +157,7 @@
   {
    "id": "quimiorradioterapia_postop",
    "label": "Quimiorradioterapia o quimioterapia adyuvante",
-   "nota": "ESMO: si cirugia primaria sin perioperatorio, valorar adyuvancia o QRT segun margen/ganglios",
+   "nota": "ESMO: si cirugía primaria sin perioperatorio, valorar adyuvancia o QRT según margen/ganglios",
    "cuando": [
     {
      "campo": "situacion",
@@ -332,7 +332,7 @@
   {
    "id": "ram_paclitaxel_2l",
    "label": "Ramucirumab + paclitaxel",
-   "nota": "ESMO: 2a linea tras platino-fluoropirimidina -> ramucirumab + paclitaxel (RAINBOW)",
+   "nota": "ESMO: 2a línea tras platino-fluoropirimidina -> ramucirumab + paclitaxel (RAINBOW)",
    "cuando": [
     {
      "campo": "situacion",
@@ -352,7 +352,7 @@
   {
    "id": "tdxd_her2_2l",
    "label": "Trastuzumab deruxtecan",
-   "nota": "ESMO: avanzado HER2+ tras trastuzumab -> T-DXd en 2a/3a linea (DESTINY-Gastric)",
+   "nota": "ESMO: avanzado HER2+ tras trastuzumab -> T-DXd en 2a/3a línea (DESTINY-Gastric)",
    "cuando": [
     {
      "campo": "situacion",
@@ -376,7 +376,7 @@
   {
    "id": "irinotecan_taxano_2l",
    "label": "Irinotecan o taxano",
-   "nota": "ESMO: 2a linea si no candidato a ramucirumab-paclitaxel -> irinotecan, paclitaxel o docetaxel",
+   "nota": "ESMO: 2a línea si no candidato a ramucirumab-paclitaxel -> irinotecan, paclitaxel o docetaxel",
    "cuando": [
     {
      "campo": "situacion",
@@ -402,10 +402,10 @@
     "campo": "situacion",
     "eq": "localizado_resecable"
    },
-   "instrucciones": "Clasifica el riesgo perioperatorio y la necesidad de intensificar mas alla de FLOT estandar",
+   "instrucciones": "Clasifica el riesgo perioperatorio y la necesidad de intensificar más alla de FLOT estándar",
    "criterios": {
     "estandar": "resecable sin factores de alto riesgo",
-    "alto": "bulky N+, T4 o alto riesgo de recaida"
+    "alto": "bulky N+, T4 o alto riesgo de recaída"
    }
   },
   {
@@ -444,8 +444,8 @@
    "bloquea_componentes": [
     "antiangiogenico"
    ],
-   "instrucciones": "Con sangrado digestivo activo/alto riesgo, ¿ramucirumab supone riesgo hemorragico inaceptable?",
-   "motivo": "Sangrado activo: evitar antiangiogenico"
+   "instrucciones": "Con sangrado digestivo activo/alto riesgo, ¿ramucirumab supone riesgo hemorrágico inaceptable?",
+   "motivo": "Sangrado activo: evitar antiangiogénico"
   },
   {
    "key": "cardiaco_her2",
@@ -456,7 +456,7 @@
    "bloquea_componentes": [
     "anti_her2"
    ],
-   "instrucciones": "Segun FEVI, ¿anti-HER2 supone riesgo cardiaco inaceptable?",
+   "instrucciones": "Según FEVI, ¿anti-HER2 supone riesgo cardiaco inaceptable?",
    "motivo": "Riesgo cardiaco para anti-HER2"
   },
   {
@@ -516,7 +516,7 @@
  "vinetas": [
   {
    "id": "GASTRICO-V01",
-   "titulo": "Gastrico localizado fit",
+   "titulo": "Gástrico localizado fit",
    "fuente": "ESMO gastric - FLOT perioperatorio",
    "payload": {
     "edad": 58,
@@ -558,7 +558,7 @@
   },
   {
    "id": "GASTRICO-V03",
-   "titulo": "Metastasico HER2+",
+   "titulo": "Metastásico HER2+",
    "fuente": "KEYNOTE-811",
    "payload": {
     "edad": 65,
@@ -581,7 +581,7 @@
   },
   {
    "id": "GASTRICO-V04",
-   "titulo": "Metastasico CLDN18.2+ HER2-",
+   "titulo": "Metastásico CLDN18.2+ HER2-",
    "fuente": "SPOTLIGHT/GLOW",
    "payload": {
     "edad": 59,
@@ -605,7 +605,7 @@
   },
   {
    "id": "GASTRICO-V05",
-   "titulo": "Metastasico HER2- CPS alto",
+   "titulo": "Metastásico HER2- CPS alto",
    "fuente": "CheckMate-649 / KEYNOTE-859",
    "payload": {
     "edad": 70,
@@ -628,7 +628,7 @@
   },
   {
    "id": "GASTRICO-V06",
-   "titulo": "Segunda linea tras FOLFOX+nivo",
+   "titulo": "Segunda línea tras FOLFOX+nivo",
    "fuente": "RAINBOW",
    "payload": {
     "edad": 62,
@@ -679,7 +679,7 @@
   },
   {
    "id": "GASTRICO-V08",
-   "titulo": "Falta situacion clinica",
+   "titulo": "Falta situación clínica",
    "fuente": "ESMO - estadio imprescindible",
    "payload": {
     "edad": 60,

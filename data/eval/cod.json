@@ -1,6 +1,6 @@
 {
  "tumor": "cod",
- "nombre": "Cancer de origen primario desconocido",
+ "nombre": "Cáncer de origen primario desconocido",
  "grupo": "Origen desconocido",
  "version": "COD-ESMO-2023.1",
  "fecha": "2026-09-27T18:58:39+00:00",
@@ -32,7 +32,7 @@
     "axilar_mujer_mama_like"
    ],
    "obtenido": "axilar_mujer_mama_like",
-   "obtenido_label": "Tratamiento como cancer de mama oculto",
+   "obtenido_label": "Tratamiento como cáncer de mama oculto",
    "confianza": 1.0,
    "revision": true,
    "motivos_revision": [
@@ -54,7 +54,7 @@
     "peritoneal_seroso_ovario_like"
    ],
    "obtenido": "peritoneal_seroso_ovario_like",
-   "obtenido_label": "Carboplatino-paclitaxel + cirugia citorreductora como ovario/peritoneal",
+   "obtenido_label": "Carboplatino-paclitaxel + cirugía citorreductora como ovario/peritoneal",
    "confianza": 1.0,
    "revision": true,
    "motivos_revision": [
@@ -90,7 +90,7 @@
   },
   {
    "id": "COD-V04",
-   "titulo": "Linea media germinal",
+   "titulo": "Línea media germinal",
    "fuente": "ESMO CUP 2023: tumor germinal extragonadal pobremente diferenciado",
    "esperado_tipo": "recomendacion",
    "esperado": "germinal_linea_media",
@@ -120,7 +120,7 @@
     "prostata_like_adt"
    ],
    "obtenido": "prostata_like_adt",
-   "obtenido_label": "Terapia de deprivacion androgenica +- intensificacion como prostata",
+   "obtenido_label": "Terapia de deprivación androgénica +- intensificación como próstata",
    "confianza": 1.0,
    "revision": true,
    "motivos_revision": [
@@ -134,7 +134,7 @@
   },
   {
    "id": "COD-V06",
-   "titulo": "CUP desfavorable primera linea",
+   "titulo": "CUP desfavorable primera línea",
    "fuente": "ESMO CUP 2023: doblete platino-taxano empirico",
    "esperado_tipo": "recomendacion",
    "esperado": "platino_taxano_desfavorable_1l",
@@ -179,7 +179,7 @@
   },
   {
    "id": "COD-V08",
-   "titulo": "CUP NTRK fusion",
+   "titulo": "CUP NTRK fusión",
    "fuente": "ESMO CUP 2023/precision oncology: NTRK agnostico",
    "esperado_tipo": "recomendacion",
    "esperado": "trk_inhibidor_cod",
@@ -187,7 +187,7 @@
     "trk_inhibidor_cod"
    ],
    "obtenido": "trk_inhibidor_cod",
-   "obtenido_label": "Larotrectinib/entrectinib si fusion NTRK",
+   "obtenido_label": "Larotrectinib/entrectinib si fusión NTRK",
    "confianza": 0.96,
    "revision": true,
    "motivos_revision": [
@@ -201,7 +201,7 @@
   },
   {
    "id": "COD-V09",
-   "titulo": "Falta patron clinico",
+   "titulo": "Falta patron clínico",
    "fuente": "ESMO CUP 2023: subgrupo favorable vs desfavorable imprescindible",
    "esperado_tipo": "necesita_datos",
    "esperado": "necesita_datos",

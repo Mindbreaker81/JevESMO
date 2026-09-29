@@ -1,7 +1,7 @@
 {
  "tumor": "manto",
- "nombre": "Linfoma de celulas del manto",
- "grupo": "Hematologia",
+ "nombre": "Linfoma de células del manto",
+ "grupo": "Hematología",
  "version": "MCL-ESMO-2025.1",
  "fecha": "2026-09-27T18:58:55+00:00",
  "modelo": "jev-latest",
@@ -54,7 +54,7 @@
     "triangle_intensivo"
    ],
    "obtenido": "triangle_intensivo",
-   "obtenido_label": "Induccion intensiva con citarabina + rituximab +/- ibrutinib (TRIANGLE) + TAPH/mantenimiento",
+   "obtenido_label": "Inducción intensiva con citarabina + rituximab +/- ibrutinib (TRIANGLE) + TAPH/mantenimiento",
    "confianza": 1.0,
    "revision": true,
    "motivos_revision": [
@@ -99,7 +99,7 @@
     "tp53_ensayo_btk"
    ],
    "obtenido": "tp53_ensayo_btk",
-   "obtenido_label": "Ensayo clinico / BTKi-combinacion en TP53 alterado",
+   "obtenido_label": "Ensayo clínico / BTKi-combinacion en TP53 alterado",
    "confianza": 1.0,
    "revision": true,
    "motivos_revision": [
@@ -113,7 +113,7 @@
   },
   {
    "id": "MANTO-V05",
-   "titulo": "Primera recaida sin BTKi",
+   "titulo": "Primera recaída sin BTKi",
    "fuente": "ESMO BTKi",
    "esperado_tipo": "recomendacion",
    "esperado": "btki_recaida",

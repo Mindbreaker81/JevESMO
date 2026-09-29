@@ -1,6 +1,6 @@
 {
  "id": "merkel",
- "nombre": "Carcinoma de celulas de Merkel",
+ "nombre": "Carcinoma de células de Merkel",
  "grupo": "Piel",
  "version": "MERKEL-ESMO-2024.1",
  "guias": [
@@ -10,7 +10,7 @@
    "url": "https://www.esmo.org/guidelines/esmo-clinical-practice-guideline-merkel-cell-carcinoma"
   }
  ],
- "descripcion": "Carcinoma de celulas de Merkel localizado, ganglionar y avanzado: cirugia + radioterapia y anti-PD-(L)1 en enfermedad avanzada.",
+ "descripcion": "Carcinoma de células de Merkel localizado, ganglionar y avanzado: cirugía + radioterapia y anti-PD-(L)1 en enfermedad avanzada.",
  "campos": [
   {
    "id": "estadio",
@@ -24,13 +24,13 @@
     "IV"
    ],
    "requerido": true,
-   "pregunta": "¿Cual es el estadio/situacion del carcinoma de Merkel?"
+   "pregunta": "¿Cuál es el estadio/situacion del carcinoma de Merkel?"
   },
   {
    "id": "resecable",
    "label": "Resecable",
    "tipo": "bool",
-   "seccion": "Cirugia"
+   "seccion": "Cirugía"
   },
   {
    "id": "margenes_afectos",
@@ -46,7 +46,7 @@
   },
   {
    "id": "inmunosupresion",
-   "label": "Inmunosupresion relevante",
+   "label": "Inmunosupresión relevante",
    "tipo": "bool",
    "seccion": "Seguridad"
   }
@@ -55,8 +55,8 @@
  "opciones": [
   {
    "id": "cirugia_rt_local_merkel",
-   "label": "Escision amplia + radioterapia adyuvante",
-   "nota": "MCC localizado resecable: excision amplia, estadificacion ganglio centinela y RT adyuvante al lecho en la mayoria.",
+   "label": "Escisión amplia + radioterapia adyuvante",
+   "nota": "MCC localizado resecable: excisión amplia, estadificación ganglio centinela y RT adyuvante al lecho en la mayoría.",
    "cuando": [
     {
      "campo": "estadio",
@@ -78,7 +78,7 @@
   {
    "id": "rt_definitiva_merkel",
    "label": "Radioterapia definitiva",
-   "nota": "Si no candidato a cirugia, RT definitiva puede lograr control locorregional en enfermedad localizada.",
+   "nota": "Si no candidato a cirugía, RT definitiva puede lograr control locorregional en enfermedad localizada.",
    "cuando": [
     {
      "campo": "estadio",
@@ -99,8 +99,8 @@
   },
   {
    "id": "manejo_ganglionar_rt_merkel",
-   "label": "Diseccion/RT ganglionar + RT adyuvante",
-   "nota": "Estadio III ganglionar resecable: tratamiento locorregional con cirugia ganglionar y/o RT adyuvante.",
+   "label": "Disección/RT ganglionar + RT adyuvante",
+   "nota": "Estadio III ganglionar resecable: tratamiento locorregional con cirugía ganglionar y/o RT adyuvante.",
    "cuando": [
     {
      "campo": "estadio",
@@ -122,7 +122,7 @@
   {
    "id": "avelumab_merkel_1l",
    "label": "Avelumab 1L avanzado",
-   "nota": "MCC avanzado: avelumab anti-PD-L1 es estandar en enfermedad metastasica o irresecable (JAVELIN Merkel 200).",
+   "nota": "MCC avanzado: avelumab anti-PD-L1 es estándar en enfermedad metastásica o irresecable (JAVELIN Merkel 200).",
    "cuando": [
     {
      "campo": "estadio",
@@ -170,7 +170,7 @@
   {
    "id": "quimio_merkel_no_ici",
    "label": "Quimioterapia paliativa basada en platino/etoposido",
-   "nota": "Si inmunoterapia esta contraindicada o tras progresion, quimioterapia puede inducir respuestas cortas.",
+   "nota": "Si inmunoterapia esta contraindicada o tras progresión, quimioterapia puede inducir respuestas cortas.",
    "cuando": [
     {
      "campo": "estadio",
@@ -192,7 +192,7 @@
   {
    "id": "soporte_merkel",
    "label": "Soporte exclusivo",
-   "nota": "Fragilidad extrema/ECOG 3-4: soporte y control sintomatico.",
+   "nota": "Fragilidad extrema/ECOG 3-4: soporte y control sintomático.",
    "cuando": {
     "campo": "ecog",
     "in": [
@@ -218,7 +218,7 @@
      "III_ganglionar"
     ]
    },
-   "instrucciones": "Valora beneficio de RT adyuvante segun margenes, inmunosupresion, tamano y localizacion.",
+   "instrucciones": "Valora beneficio de RT adyuvante según margenes, inmunosupresión, tamaño y localización.",
    "criterios": [
     "Bajo",
     "Intermedio",
@@ -236,7 +236,7 @@
      "IV"
     ]
    },
-   "instrucciones": "¿El paciente es candidato clinico a anti-PD-(L)1 considerando autoinmunidad, trasplante y corticoides?"
+   "instrucciones": "¿El paciente es candidato clínico a anti-PD-(L)1 considerando autoinmunidad, trasplante y corticoides?"
   }
  ],
  "seguridad": [
@@ -249,8 +249,8 @@
    "bloquea_componentes": [
     "inmunoterapia"
    ],
-   "instrucciones": "¿Existe contraindicacion mayor para anti-PD-(L)1 (trasplante, autoinmunidad activa grave)?",
-   "motivo": "Contraindicacion mayor para inmunoterapia."
+   "instrucciones": "¿Existe contraindicación mayor para anti-PD-(L)1 (trasplante, autoinmunidad activa grave)?",
+   "motivo": "Contraindicación mayor para inmunoterapia."
   }
  ],
  "avisos": [
@@ -259,7 +259,7 @@
     "campo": "inmunosupresion",
     "eq": true
    },
-   "texto": "Inmunosupresion empeora pronostico y complica inmunoterapia; requiere discusion multidisciplinar."
+   "texto": "Inmunosupresión empeora pronóstico y complica inmunoterapia; requiere discusión multidisciplinar."
   }
  ],
  "vinetas": [
@@ -283,7 +283,7 @@
   },
   {
    "id": "MERKEL-V02",
-   "titulo": "Localizado no quirurgico",
+   "titulo": "Localizado no quirúrgico",
    "fuente": "RT definitiva",
    "payload": {
     "edad": 60,
@@ -356,7 +356,7 @@
   },
   {
    "id": "MERKEL-V06",
-   "titulo": "Metastasico primera linea",
+   "titulo": "Metastásico primera línea",
    "fuente": "Avelumab",
    "payload": {
     "edad": 60,
@@ -375,7 +375,7 @@
   },
   {
    "id": "MERKEL-V07",
-   "titulo": "Metastasico no ICI",
+   "titulo": "Metastásico no ICI",
    "fuente": "Quimioterapia",
    "payload": {
     "edad": 60,
@@ -407,7 +407,7 @@
   },
   {
    "id": "MERKEL-V09",
-   "titulo": "Metastasico autoinmune",
+   "titulo": "Metastásico autoinmune",
    "fuente": "Seguridad ICI",
    "payload": {
     "edad": 60,

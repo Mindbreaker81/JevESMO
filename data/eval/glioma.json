@@ -1,7 +1,7 @@
 {
  "tumor": "glioma",
  "nombre": "Gliomas del adulto",
- "grupo": "Neurooncologia",
+ "grupo": "Neurooncología",
  "version": "GLIOMA-ESMO-2024.1",
  "fecha": "2026-09-27T18:58:49+00:00",
  "modelo": "jev-latest",
@@ -173,7 +173,7 @@
     "observacion_bajo_grado_resecado"
    ],
    "obtenido": "observacion_bajo_grado_resecado",
-   "obtenido_label": "Vigilancia tras reseccion completa de bajo grado IDH-mut",
+   "obtenido_label": "Vigilancia tras resección completa de bajo grado IDH-mut",
    "confianza": 1.0,
    "revision": false,
    "motivos_revision": [],
@@ -205,13 +205,13 @@
   },
   {
    "id": "GLIOMA-V10",
-   "titulo": "GBM recaida ECOG 4 hemorragia",
+   "titulo": "GBM recaída ECOG 4 hemorragia",
    "fuente": "ESMO: soporte/revision si no candidato a rescate",
    "esperado_tipo": "revision_humana",
    "esperado": "revision_humana",
    "aceptables": [],
    "obtenido": "revision (soporte_glioma)",
-   "obtenido_label": "Soporte, corticoides, antiepilepticos y cuidados paliativos",
+   "obtenido_label": "Soporte, corticoides, antiepilépticos y cuidados paliativos",
    "confianza": 0.99,
    "revision": true,
    "motivos_revision": [

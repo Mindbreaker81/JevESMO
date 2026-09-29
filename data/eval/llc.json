@@ -1,7 +1,7 @@
 {
  "tumor": "llc",
- "nombre": "Leucemia linfocitica cronica",
- "grupo": "Hematologia",
+ "nombre": "Leucemia linfocítica crónica",
+ "grupo": "Hematología",
  "version": "CLL-ESMO-2024.1",
  "fecha": "2026-09-27T18:58:52+00:00",
  "modelo": "jev-latest",
@@ -32,7 +32,7 @@
     "observacion"
    ],
    "obtenido": "observacion",
-   "obtenido_label": "Observacion activa",
+   "obtenido_label": "Observación activa",
    "confianza": 1.0,
    "revision": false,
    "motivos_revision": [],
@@ -44,7 +44,7 @@
   },
   {
    "id": "LLC-V02",
-   "titulo": "TP53 alterado primera linea",
+   "titulo": "TP53 alterado primera línea",
    "fuente": "ESMO TP53/del17p",
    "esperado_tipo": "recomendacion",
    "esperado": "btki_1l",
@@ -114,7 +114,7 @@
   },
   {
    "id": "LLC-V05",
-   "titulo": "Cardiopatia anticoagulacion",
+   "titulo": "Cardiopatía anticoagulación",
    "fuente": "Seguridad BTKi",
    "esperado_tipo": "recomendacion",
    "esperado": "ven_obinu_1l",
@@ -136,7 +136,7 @@
   },
   {
    "id": "LLC-V06",
-   "titulo": "Recaida post-BTKi",
+   "titulo": "Recaída post-BTKi",
    "fuente": "ESMO secuencia",
    "esperado_tipo": "recomendacion",
    "esperado": "venetoclax_recaida_post_btki",
@@ -166,7 +166,7 @@
     "venetoclax_recaida_post_btki"
    ],
    "obtenido": "pirtobrutinib_ensayo",
-   "obtenido_label": "Pirtobrutinib/ensayo clinico en doble expuesto",
+   "obtenido_label": "Pirtobrutinib/ensayo clínico en doble expuesto",
    "confianza": 0.92,
    "revision": false,
    "motivos_revision": [],

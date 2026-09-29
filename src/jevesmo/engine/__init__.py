@@ -1,1 +1,1 @@
-"""Motor generico de arboles ESMO dirigidos por especificacion JSON."""
+"""Motor genérico de árboles ESMO dirigidos por especificación JSON."""

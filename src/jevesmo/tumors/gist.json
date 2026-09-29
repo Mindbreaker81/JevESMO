@@ -25,11 +25,11 @@
     "metastasico"
    ],
    "requerido": true,
-   "pregunta": "¿El GIST es resecable bajo/intermedio/alto riesgo, localmente avanzado o metastasico?"
+   "pregunta": "¿El GIST es resecable bajo/intermedio/alto riesgo, localmente avanzado o metastásico?"
   },
   {
    "id": "mutacion",
-   "label": "Mutacion driver",
+   "label": "Mutación driver",
    "tipo": "choice",
    "seccion": "Biomarcadores",
    "opciones": [
@@ -41,7 +41,7 @@
     "desconocido"
    ],
    "requerido": true,
-   "pregunta": "¿Cual es la mutacion principal?"
+   "pregunta": "¿Cuál es la mutación principal?"
   },
   {
    "id": "riesgo_miettinen",
@@ -56,7 +56,7 @@
     "desconocido"
    ],
    "requerido": true,
-   "pregunta": "¿Cual es el riesgo de recidiva Miettinen/AFIP?"
+   "pregunta": "¿Cuál es el riesgo de recidiva Miettinen/AFIP?"
   },
   {
    "id": "rotura_tumoral",
@@ -66,27 +66,27 @@
   },
   {
    "id": "candidato_cirugia",
-   "label": "Candidato a cirugia R0",
+   "label": "Candidato a cirugía R0",
    "tipo": "bool",
    "seccion": "Tumor",
    "requerido": true,
-   "pregunta": "¿Es candidato a reseccion R0 si procede?"
+   "pregunta": "¿Es candidato a resección R0 si procede?"
   },
   {
    "id": "progresion_imatinib",
-   "label": "Progresion a imatinib",
+   "label": "Progresión a imatinib",
    "tipo": "bool",
    "seccion": "Tumor"
   },
   {
    "id": "progresion_sunitinib",
-   "label": "Progresion a sunitinib",
+   "label": "Progresión a sunitinib",
    "tipo": "bool",
    "seccion": "Tumor"
   },
   {
    "id": "progresion_regorafenib",
-   "label": "Progresion a regorafenib",
+   "label": "Progresión a regorafenib",
    "tipo": "bool",
    "seccion": "Tumor"
   },
@@ -100,8 +100,8 @@
  "opciones": [
   {
    "id": "cirugia_observacion_bajo",
-   "label": "Cirugia R0 y observacion",
-   "nota": "ESMO: GIST localizado muy bajo/bajo/intermedio riesgo resecable -> reseccion completa sin adyuvancia; vigilancia adaptada.",
+   "label": "Cirugía R0 y observación",
+   "nota": "ESMO: GIST localizado muy bajo/bajo/intermedio riesgo resecable -> resección completa sin adyuvancia; vigilancia adaptada.",
    "cuando": [
     {
      "campo": "setting_gist",
@@ -131,8 +131,8 @@
   },
   {
    "id": "imatinib_ady_3y",
-   "label": "Imatinib adyuvante 3 anos",
-   "nota": "ESMO: GIST resecado de alto riesgo sensible a imatinib -> imatinib 400 mg/dia durante 3 anos.",
+   "label": "Imatinib adyuvante 3 años",
+   "nota": "ESMO: GIST resecado de alto riesgo sensible a imatinib -> imatinib 400 mg/dia durante 3 años.",
    "cuando": [
     {
      "campo": "setting_gist",
@@ -159,7 +159,7 @@
   {
    "id": "imatinib_neoadyuvante",
    "label": "Imatinib neoadyuvante",
-   "nota": "ESMO: GIST localmente avanzado/borderline resecable sensible -> imatinib preoperatorio hasta maxima respuesta.",
+   "nota": "ESMO: GIST localmente avanzado/borderline resecable sensible -> imatinib preoperatorio hasta máxima respuesta.",
    "cuando": [
     {
      "campo": "setting_gist",
@@ -187,7 +187,7 @@
   {
    "id": "imatinib_400_1l",
    "label": "Imatinib 400 mg 1L avanzado",
-   "nota": "ESMO: GIST metastasico KIT exon 11 u otra mutacion sensible -> imatinib 400 mg/dia indefinido 1L.",
+   "nota": "ESMO: GIST metastásico KIT exón 11 u otra mutación sensible -> imatinib 400 mg/dia indefinido 1L.",
    "cuando": [
     {
      "campo": "setting_gist",
@@ -221,8 +221,8 @@
   },
   {
    "id": "imatinib_800_exon9",
-   "label": "Imatinib 800 mg en KIT exon 9",
-   "nota": "ESMO: GIST avanzado KIT exon 9 -> dosis alta imatinib 800 mg/dia mejora PFS.",
+   "label": "Imatinib 800 mg en KIT exón 9",
+   "nota": "ESMO: GIST avanzado KIT exón 9 -> dosis alta imatinib 800 mg/dia mejora PFS.",
    "cuando": [
     {
      "campo": "setting_gist",
@@ -275,7 +275,7 @@
   {
    "id": "sunitinib_2l",
    "label": "Sunitinib 2L",
-   "nota": "ESMO: progresion/intolerancia a imatinib -> sunitinib 2L.",
+   "nota": "ESMO: progresión/intolerancia a imatinib -> sunitinib 2L.",
    "cuando": [
     {
      "campo": "setting_gist",
@@ -298,7 +298,7 @@
   {
    "id": "regorafenib_3l",
    "label": "Regorafenib 3L",
-   "nota": "ESMO: progresion a imatinib y sunitinib -> regorafenib 3L.",
+   "nota": "ESMO: progresión a imatinib y sunitinib -> regorafenib 3L.",
    "cuando": [
     {
      "campo": "setting_gist",
@@ -321,7 +321,7 @@
   {
    "id": "ripretinib_4l",
    "label": "Ripretinib 4L",
-   "nota": "ESMO: progresion a imatinib, sunitinib y regorafenib -> ripretinib 4L.",
+   "nota": "ESMO: progresión a imatinib, sunitinib y regorafenib -> ripretinib 4L.",
    "cuando": [
     {
      "campo": "setting_gist",
@@ -343,7 +343,7 @@
   },
   {
    "id": "ensayo_sdh_wt",
-   "label": "Ensayo/estrategia especifica SDH-def/WT",
+   "label": "Ensayo/estrategia específica SDH-def/WT",
    "nota": "ESMO: GIST SDH-deficiente o WT tiene menor sensibilidad a imatinib; priorizar centros expertos, ensayos y manejo individualizado.",
    "cuando": [
     {
@@ -377,7 +377,7 @@
     "campo": "riesgo_miettinen",
     "eq": "desconocido"
    },
-   "instrucciones": "Estima riesgo por tamano, mitosis, localizacion y rotura.",
+   "instrucciones": "Estima riesgo por tamaño, mitosis, localización y rotura.",
    "criterios": {
     "bajo": "Bajo/intermedio",
     "alto": "Alto riesgo o rotura",
@@ -392,7 +392,7 @@
     "campo": "setting_gist",
     "eq": "localmente_avanzado"
    },
-   "instrucciones": "¿Imatinib neoadyuvante podria reducir morbilidad y aumentar probabilidad de R0?"
+   "instrucciones": "¿Imatinib neoadyuvante podría reducir morbilidad y aumentar probabilidad de R0?"
   },
   {
    "key": "resistencia_secundaria",
@@ -402,7 +402,7 @@
     "campo": "lineas_previas",
     "gte": 1
    },
-   "instrucciones": "¿El patron sugiere progresion verdadera a TKI previo y necesidad de cambiar de linea?"
+   "instrucciones": "¿El patron sugiere progresión verdadera a TKI previo y necesidad de cambiar de línea?"
   }
  ],
  "seguridad": [
@@ -425,7 +425,7 @@
     "campo": "mutacion",
     "eq": "desconocido"
    },
-   "texto": "Mutacion KIT/PDGFRA no disponible: imprescindible para dosis/avapritinib y sensibilidad."
+   "texto": "Mutación KIT/PDGFRA no disponible: imprescindible para dosis/avapritinib y sensibilidad."
   },
   {
    "cuando": {
@@ -501,7 +501,7 @@
   },
   {
    "id": "GIST-V04",
-   "titulo": "Metastasico exon9",
+   "titulo": "Metastásico exon9",
    "fuente": "Dosis 800",
    "payload": {
     "edad": 49,
@@ -591,7 +591,7 @@
   },
   {
    "id": "GIST-V08",
-   "titulo": "Falta mutacion",
+   "titulo": "Falta mutación",
    "fuente": "Dato imprescindible",
    "payload": {
     "edad": 59,

@@ -32,7 +32,7 @@
     "cirugia_sola_bajo_riesgo"
    ],
    "obtenido": "cirugia_sola_bajo_riesgo",
-   "obtenido_label": "Cirugia amplia R0 sola",
+   "obtenido_label": "Cirugía amplia R0 sola",
    "confianza": 1.0,
    "revision": false,
    "motivos_revision": [],
@@ -76,7 +76,7 @@
     "rt_neoadyuvante_retroperitoneo_selectivo"
    ],
    "obtenido": "rt_neoadyuvante_retroperitoneo_selectivo",
-   "obtenido_label": "RT preoperatoria selectiva + reseccion retroperitoneal experta",
+   "obtenido_label": "RT preoperatoria selectiva + resección retroperitoneal experta",
    "confianza": 1.0,
    "revision": false,
    "motivos_revision": [],
@@ -88,7 +88,7 @@
   },
   {
    "id": "SARCOMA_PARTES_BLANDAS-V04",
-   "titulo": "STS metastasico primera linea",
+   "titulo": "STS metastásico primera línea",
    "fuente": "ESMO STS 2021: doxorrubicina 1L",
    "esperado_tipo": "recomendacion",
    "esperado": "doxorrubicina_1l",
@@ -166,7 +166,7 @@
     "pazopanib_no_lipo"
    ],
    "obtenido": "pazopanib_no_lipo",
-   "obtenido_label": "Pazopanib (STS no adipocitico)",
+   "obtenido_label": "Pazopanib (STS no adipocítico)",
    "confianza": 1.0,
    "revision": true,
    "motivos_revision": [
@@ -180,7 +180,7 @@
   },
   {
    "id": "SARCOMA_PARTES_BLANDAS-V08",
-   "titulo": "Sarcoma NTRK fusion",
+   "titulo": "Sarcoma NTRK fusión",
    "fuente": "ESMO STS/precision oncology: TRK inhibitors for NTRK fusion",
    "esperado_tipo": "recomendacion",
    "esperado": "larotrectinib_entrectinib_ntrk",
@@ -188,7 +188,7 @@
     "larotrectinib_entrectinib_ntrk"
    ],
    "obtenido": "larotrectinib_entrectinib_ntrk",
-   "obtenido_label": "Larotrectinib/entrectinib si fusion NTRK",
+   "obtenido_label": "Larotrectinib/entrectinib si fusión NTRK",
    "confianza": 1.0,
    "revision": false,
    "motivos_revision": [],
@@ -220,7 +220,7 @@
   },
   {
    "id": "SARCOMA_PARTES_BLANDAS-V10",
-   "titulo": "STS metastasico ECOG 4 cardiopatia",
+   "titulo": "STS metastásico ECOG 4 cardiopatía",
    "fuente": "ESMO STS 2021: soporte si no candidato a tratamiento activo",
    "esperado_tipo": "revision_humana",
    "esperado": "revision_humana",

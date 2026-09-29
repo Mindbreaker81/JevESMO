@@ -1,6 +1,6 @@
 {
  "tumor": "esofago",
- "nombre": "Cancer de esofago y union esofagogastrica",
+ "nombre": "Cáncer de esófago y union esofagogástrica",
  "grupo": "Digestivo",
  "version": "ESOFAGO-ESMO-2025.1",
  "fecha": "2026-09-27T18:58:46+00:00",
@@ -24,7 +24,7 @@
  "casos": [
   {
    "id": "ESOFAGO-V01",
-   "titulo": "Escamoso toracico T3N1 resecable",
+   "titulo": "Escamoso torácico T3N1 resecable",
    "fuente": "ESMO - CROSS resecable localmente avanzado",
    "esperado_tipo": "recomendacion",
    "esperado": "cross_trimodal",
@@ -32,7 +32,7 @@
     "cross_trimodal"
    ],
    "obtenido": "cross_trimodal",
-   "obtenido_label": "QRT neoadyuvante CROSS seguida de cirugia",
+   "obtenido_label": "QRT neoadyuvante CROSS seguida de cirugía",
    "confianza": 1.0,
    "revision": true,
    "motivos_revision": [
@@ -89,7 +89,7 @@
   },
   {
    "id": "ESOFAGO-V04",
-   "titulo": "Residual tras CROSS y cirugia",
+   "titulo": "Residual tras CROSS y cirugía",
    "fuente": "CheckMate 577",
    "esperado_tipo": "recomendacion",
    "esperado": "nivolumab_adyuvante",
@@ -109,7 +109,7 @@
   },
   {
    "id": "ESOFAGO-V05",
-   "titulo": "Adenocarcinoma metastasico HER2+",
+   "titulo": "Adenocarcinoma metastásico HER2+",
    "fuente": "ESMO - HER2+ 1L",
    "esperado_tipo": "recomendacion",
    "esperado": "pembro_trastu_quimio_1l",
@@ -131,7 +131,7 @@
   },
   {
    "id": "ESOFAGO-V06",
-   "titulo": "Escamoso metastasico CPS alto",
+   "titulo": "Escamoso metastásico CPS alto",
    "fuente": "KEYNOTE-590 / CheckMate 648",
    "esperado_tipo": "recomendacion",
    "esperado": "ici_quimio_cps_alto",
@@ -153,7 +153,7 @@
   },
   {
    "id": "ESOFAGO-V07",
-   "titulo": "Adenocarcinoma 2a linea",
+   "titulo": "Adenocarcinoma 2a línea",
    "fuente": "RAINBOW",
    "esperado_tipo": "recomendacion",
    "esperado": "ram_paclitaxel_2l",
@@ -162,7 +162,7 @@
     "taxano_irinotecan_2l"
    ],
    "obtenido": "ram_paclitaxel_2l",
-   "obtenido_label": "Ramucirumab + paclitaxel 2a linea",
+   "obtenido_label": "Ramucirumab + paclitaxel 2a línea",
    "confianza": 0.78,
    "revision": true,
    "motivos_revision": [
@@ -176,7 +176,7 @@
   },
   {
    "id": "ESOFAGO-V08",
-   "titulo": "Falta histologia",
+   "titulo": "Falta histología",
    "fuente": "ESMO - histologia imprescindible",
    "esperado_tipo": "necesita_datos",
    "esperado": "necesita_datos",

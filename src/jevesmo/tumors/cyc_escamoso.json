@@ -10,11 +10,11 @@
    "url": "https://www.esmo.org/guidelines/esmo-clinical-practice-guideline-head-and-neck-cancers"
   }
  ],
- "descripcion": "Carcinoma escamoso de cavidad oral, orofaringe VPH+/-, laringe/hipofaringe: tratamiento curativo, preservacion de organo y enfermedad recurrente/metastasica.",
+ "descripcion": "Carcinoma escamoso de cavidad oral, orofaringe VPH+/-, laringe/hipofaringe: tratamiento curativo, preservación de órgano y enfermedad recurrente/metastasica.",
  "campos": [
   {
    "id": "estadio",
-   "label": "Estadio / situacion",
+   "label": "Estadio / situación",
    "tipo": "choice",
    "seccion": "Tumor",
    "opciones": [
@@ -25,7 +25,7 @@
     "recurrente_metastasico"
    ],
    "requerido": true,
-   "pregunta": "¿Cual es el estadio o situacion clinica (I, II, III, IVA o recurrente_metastasico)?"
+   "pregunta": "¿Cuál es el estadio o situación clínica (I, II, III, IVA o recurrente_metastasico)?"
   },
   {
    "id": "subsitio",
@@ -51,7 +51,7 @@
     }
    ],
    "requerido": true,
-   "pregunta": "¿Cual es el subsitio primario?"
+   "pregunta": "¿Cuál es el subsitio primario?"
   },
   {
    "id": "vph_p16",
@@ -66,7 +66,7 @@
   },
   {
    "id": "resecable",
-   "label": "Resecable con intencion curativa",
+   "label": "Resecable con intención curativa",
    "tipo": "bool",
    "seccion": "Tumor",
    "requerido_si": {
@@ -76,17 +76,17 @@
      "IVA"
     ]
    },
-   "pregunta": "¿El tumor es resecable con intencion curativa?"
+   "pregunta": "¿El tumor es resecable con intención curativa?"
   },
   {
    "id": "factores_alto_riesgo_postop",
-   "label": "Margen positivo o extension extranodal",
+   "label": "Margen positivo o extensión extranodal",
    "tipo": "bool",
    "seccion": "Postoperatorio"
   },
   {
    "id": "factores_intermedios_postop",
-   "label": "pT3-4, pN2-3, invasion perineural/vascular u otros factores intermedios",
+   "label": "pT3-4, pN2-3, invasión perineural/vascular u otros factores intermedios",
    "tipo": "bool",
    "seccion": "Postoperatorio"
   },
@@ -109,8 +109,8 @@
  "opciones": [
   {
    "id": "cirugia_o_rt_precoz",
-   "label": "Cirugia o radioterapia radical monomodal",
-   "nota": "Estadios I-II: cirugia conservadora o RT radical segun subsitio, funcion y morbilidad.",
+   "label": "Cirugía o radioterapia radical monomodal",
+   "nota": "Estadios I-II: cirugía conservadora o RT radical según subsitio, función y morbilidad.",
    "cuando": {
     "campo": "estadio",
     "in": [
@@ -126,8 +126,8 @@
   },
   {
    "id": "cirugia_adyuvante_observacion",
-   "label": "Cirugia completa y observacion/RT selectiva",
-   "nota": "Tras reseccion R0 sin factores de riesgo mayores puede observarse o usar RT adyuvante segun riesgo anatomopatologico.",
+   "label": "Cirugía completa y observación/RT selectiva",
+   "nota": "Tras resección R0 sin factores de riesgo mayores puede observarse o usar RT adyuvante según riesgo anatomopatológico.",
    "cuando": [
     {
      "campo": "estadio",
@@ -162,7 +162,7 @@
   {
    "id": "rt_adyuvante",
    "label": "Radioterapia adyuvante postoperatoria",
-   "nota": "Factores intermedios (pT3-4, pN2-3, invasion perineural/vascular) tras cirugia -> RT adyuvante.",
+   "nota": "Factores intermedios (pT3-4, pN2-3, invasión perineural/vascular) tras cirugía -> RT adyuvante.",
    "cuando": [
     {
      "campo": "estadio",
@@ -194,7 +194,7 @@
   {
    "id": "qrt_adyuvante_cisplatino",
    "label": "Quimiorradioterapia adyuvante con cisplatino",
-   "nota": "Margen positivo y/o extension extranodal tras cirugia -> QRT adyuvante con cisplatino si candidato.",
+   "nota": "Margen positivo y/o extensión extranodal tras cirugía -> QRT adyuvante con cisplatino si candidato.",
    "cuando": [
     {
      "campo": "estadio",
@@ -257,7 +257,7 @@
   {
    "id": "qrt_definitiva_cisplatino",
    "label": "Quimiorradioterapia definitiva con cisplatino",
-   "nota": "Enfermedad localmente avanzada no resecable o preservacion de organo en laringe/hipofaringe -> RT + cisplatino concomitante si apto.",
+   "nota": "Enfermedad localmente avanzada no resecable o preservación de órgano en laringe/hipofaringe -> RT + cisplatino concomitante si apto.",
    "cuando": [
     {
      "campo": "estadio",
@@ -317,7 +317,7 @@
   {
    "id": "pembro_monoterapia_1l",
    "label": "Pembrolizumab monoterapia 1L",
-   "nota": "R/M: pembrolizumab 1L para PD-L1 CPS>=1, especialmente CPS>=20 o enfermedad poco sintomatica (KEYNOTE-048).",
+   "nota": "R/M: pembrolizumab 1L para PD-L1 CPS>=1, especialmente CPS>=20 o enfermedad poco sintomática (KEYNOTE-048).",
    "cuando": [
     {
      "campo": "estadio",
@@ -348,7 +348,7 @@
   {
    "id": "pembro_platino_5fu_1l",
    "label": "Pembrolizumab + platino + 5-FU 1L",
-   "nota": "R/M: pembrolizumab + platino/5-FU si necesidad de respuesta rapida o CPS positivo (KEYNOTE-048).",
+   "nota": "R/M: pembrolizumab + platino/5-FU si necesidad de respuesta rápida o CPS positivo (KEYNOTE-048).",
    "cuando": [
     {
      "campo": "estadio",
@@ -386,7 +386,7 @@
   {
    "id": "extreme_1l",
    "label": "EXTREME (platino + 5-FU + cetuximab)",
-   "nota": "R/M: EXTREME es opcion 1L cuando inmunoterapia no es adecuada o PD-L1 CPS bajo/negativo.",
+   "nota": "R/M: EXTREME es opción 1L cuando inmunoterapia no es adecuada o PD-L1 CPS bajo/negativo.",
    "cuando": [
     {
      "campo": "estadio",
@@ -426,7 +426,7 @@
   {
    "id": "nivolumab_2l",
    "label": "Nivolumab 2L tras platino",
-   "nota": "R/M: progresion tras platino -> nivolumab mejora supervivencia (CheckMate 141).",
+   "nota": "R/M: progresión tras platino -> nivolumab mejora supervivencia (CheckMate 141).",
    "cuando": [
     {
      "campo": "estadio",
@@ -468,10 +468,10 @@
     "campo": "subsitio",
     "eq": "laringe_hipofaringe"
    },
-   "instrucciones": "Valora si el objetivo clinico prioritario es preservacion de laringe sin comprometer control oncologico.",
+   "instrucciones": "Valora si el objetivo clínico prioritario es preservación de laringe sin comprometer control oncológico.",
    "criterios": {
-    "preservar": "Preservacion con QRT razonable",
-    "cirugia": "Cirugia primaria preferible"
+    "preservar": "Preservación con QRT razonable",
+    "cirugia": "Cirugía primaria preferible"
    }
   },
   {
@@ -482,7 +482,7 @@
     "campo": "estadio",
     "eq": "recurrente_metastasico"
    },
-   "instrucciones": "Por carga tumoral, sintomas o riesgo vital, ¿se necesita respuesta rapida que favorezca combinacion con quimioterapia?"
+   "instrucciones": "Por carga tumoral, síntomas o riesgo vital, ¿se necesita respuesta rápida que favorezca combinación con quimioterapia?"
   },
   {
    "key": "resecabilidad_borde",
@@ -495,7 +495,7 @@
      "IVA"
     ]
    },
-   "instrucciones": "Si la resecabilidad es borderline, ¿parece factible una reseccion R0 con morbilidad aceptable?"
+   "instrucciones": "Si la resecabilidad es borderline, ¿parece factible una resección R0 con morbilidad aceptable?"
   }
  ],
  "seguridad": [
@@ -508,9 +508,9 @@
    "bloquea_componentes": [
     "quimiorradioterapia"
    ],
-   "instrucciones": "Con funcion renal, audicion, neuropatia y comorbilidades descritas, ¿esta contraindicado cisplatino de forma clinicamente relevante?",
+   "instrucciones": "Con función renal, audición, neuropatía y comorbilidades descritas, ¿esta contraindicado cisplatino de forma clinicamente relevante?",
    "umbral": 0.7,
-   "motivo": "Contraindicacion o fragilidad incompatible con cisplatino concurrente."
+   "motivo": "Contraindicación o fragilidad incompatible con cisplatino concurrente."
   },
   {
    "key": "contra_ici_autoimmune",
@@ -521,7 +521,7 @@
    "bloquea_componentes": [
     "inmunoterapia"
    ],
-   "instrucciones": "¿Existe enfermedad autoinmune activa, trasplante u otra contraindicacion mayor para anti-PD-1?",
+   "instrucciones": "¿Existe enfermedad autoinmune activa, trasplante u otra contraindicación mayor para anti-PD-1?",
    "motivo": "Riesgo inaceptable para inmunoterapia anti-PD-1."
   }
  ],
@@ -537,7 +537,7 @@
      "missing": true
     }
    ],
-   "texto": "PD-L1 CPS no disponible: cambia la eleccion de pembrolizumab frente a EXTREME."
+   "texto": "PD-L1 CPS no disponible: cambia la elección de pembrolizumab frente a EXTREME."
   },
   {
    "cuando": [
@@ -550,7 +550,7 @@
      "missing": true
     }
    ],
-   "texto": "p16/VPH no informado: relevante para pronostico."
+   "texto": "p16/VPH no informado: relevante para pronóstico."
   }
  ],
  "vinetas": [
@@ -618,7 +618,7 @@
   },
   {
    "id": "CYC_ESCAMOSO-V04",
-   "titulo": "Laringe preservacion",
+   "titulo": "Laringe preservación",
    "fuente": "ESMO Head and Neck CPG",
    "payload": {
     "edad": 60,
@@ -682,7 +682,7 @@
   },
   {
    "id": "CYC_ESCAMOSO-V07",
-   "titulo": "R/M segunda linea",
+   "titulo": "R/M segunda línea",
    "fuente": "ESMO Head and Neck CPG",
    "payload": {
     "edad": 60,

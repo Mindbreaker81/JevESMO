@@ -1,7 +1,7 @@
 {
  "tumor": "vulva",
  "nombre": "Carcinoma escamoso de vulva",
- "grupo": "Ginecologico",
+ "grupo": "Ginecológico",
  "version": "VULVA-ESMO-2023.1",
  "fecha": "2026-09-27T18:59:19+00:00",
  "modelo": "jev-latest",
@@ -32,7 +32,7 @@
     "escision_local_ia"
    ],
    "obtenido": "escision_local_ia",
-   "obtenido_label": "Escision local amplia sin estadiaje ganglionar",
+   "obtenido_label": "Escisión local amplia sin estadiaje ganglionar",
    "confianza": 1.0,
    "revision": true,
    "motivos_revision": [
@@ -54,7 +54,7 @@
     "escision_ganglio_centinela"
    ],
    "obtenido": "escision_ganglio_centinela",
-   "obtenido_label": "Escision radical local + ganglio centinela",
+   "obtenido_label": "Escisión radical local + ganglio centinela",
    "confianza": 1.0,
    "revision": true,
    "motivos_revision": [
@@ -76,7 +76,7 @@
     "escision_linfadenectomia"
    ],
    "obtenido": "escision_linfadenectomia",
-   "obtenido_label": "Escision radical local + linfadenectomia inguinofemoral",
+   "obtenido_label": "Escisión radical local + linfadenectomía inguinofemoral",
    "confianza": 1.0,
    "revision": true,
    "motivos_revision": [
@@ -99,7 +99,7 @@
     "escision_ganglio_centinela"
    ],
    "obtenido": "escision_ganglio_centinela",
-   "obtenido_label": "Escision radical local + ganglio centinela",
+   "obtenido_label": "Escisión radical local + ganglio centinela",
    "confianza": 0.48,
    "revision": true,
    "motivos_revision": [
@@ -137,7 +137,7 @@
   },
   {
    "id": "VULVA-V06",
-   "titulo": "Extension extranodal",
+   "titulo": "Extensión extranodal",
    "fuente": "ESGO extranodal QRT",
    "esperado_tipo": "recomendacion",
    "esperado": "qrt_adyuvante_extranodal",
@@ -181,7 +181,7 @@
   },
   {
    "id": "VULVA-V08",
-   "titulo": "Metastasico recurrente",
+   "titulo": "Metastásico recurrente",
    "fuente": "ESGO palliative systemic",
    "esperado_tipo": "recomendacion",
    "esperado": "sistemico_paliativo",
@@ -189,7 +189,7 @@
     "sistemico_paliativo"
    ],
    "obtenido": "sistemico_paliativo",
-   "obtenido_label": "Tratamiento sistemico paliativo/ensayo clinico",
+   "obtenido_label": "Tratamiento sistémico paliativo/ensayo clínico",
    "confianza": 1.0,
    "revision": true,
    "motivos_revision": [
@@ -229,7 +229,7 @@
    "esperado": "revision_humana",
    "aceptables": [],
    "obtenido": "revision (soporte_vulva)",
-   "obtenido_label": "Soporte, control local de sintomas y cuidados paliativos",
+   "obtenido_label": "Soporte, control local de síntomas y cuidados paliativos",
    "confianza": 0.99,
    "revision": true,
    "motivos_revision": [

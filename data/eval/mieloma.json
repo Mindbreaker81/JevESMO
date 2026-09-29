@@ -1,7 +1,7 @@
 {
  "tumor": "mieloma",
  "nombre": "Mieloma multiple",
- "grupo": "Hematologia",
+ "grupo": "Hematología",
  "version": "MYELOMA-ESMO-2025.1",
  "fecha": "2026-09-27T18:58:58+00:00",
  "modelo": "jev-latest",
@@ -24,7 +24,7 @@
  "casos": [
   {
    "id": "MIELOMA-V01",
-   "titulo": "Candidato a trasplante primera linea",
+   "titulo": "Candidato a trasplante primera línea",
    "fuente": "PERSEUS/GRIFFIN",
    "esperado_tipo": "recomendacion",
    "esperado": "d_vrd_taph",
@@ -33,7 +33,7 @@
     "vrd_taph"
    ],
    "obtenido": "d_vrd_taph",
-   "obtenido_label": "D-VRd induccion + TAPH + consolidacion/mantenimiento lenalidomida",
+   "obtenido_label": "D-VRd inducción + TAPH + consolidación/mantenimiento lenalidomida",
    "confianza": 0.69,
    "revision": true,
    "motivos_revision": [
@@ -56,7 +56,7 @@
     "vrd_taph"
    ],
    "obtenido": "d_vrd_taph",
-   "obtenido_label": "D-VRd induccion + TAPH + consolidacion/mantenimiento lenalidomida",
+   "obtenido_label": "D-VRd inducción + TAPH + consolidación/mantenimiento lenalidomida",
    "confianza": 0.75,
    "revision": true,
    "motivos_revision": [
@@ -119,7 +119,7 @@
   },
   {
    "id": "MIELOMA-V05",
-   "titulo": "Recaida len sensible",
+   "titulo": "Recaída len sensible",
    "fuente": "ESMO recaida",
    "esperado_tipo": "recomendacion",
    "esperado": "recaida_len_sensible",
@@ -127,7 +127,7 @@
     "recaida_len_sensible"
    ],
    "obtenido": "recaida_len_sensible",
-   "obtenido_label": "DRd/KRd/Isa-Kd segun exposicion previa",
+   "obtenido_label": "DRd/KRd/Isa-Kd según exposición previa",
    "confianza": 1.0,
    "revision": false,
    "motivos_revision": [],
@@ -139,7 +139,7 @@
   },
   {
    "id": "MIELOMA-V06",
-   "titulo": "Recaida len refractario",
+   "titulo": "Recaída len refractario",
    "fuente": "ESMO recaida len refractaria",
    "esperado_tipo": "recomendacion",
    "esperado": "recaida_len_refractario",
@@ -206,7 +206,7 @@
    "esperado": "revision_humana",
    "aceptables": [],
    "obtenido": "revision (paliativo_mieloma)",
-   "obtenido_label": "Soporte, radioterapia antialgica y tratamiento atenuado",
+   "obtenido_label": "Soporte, radioterapia antiálgica y tratamiento atenuado",
    "confianza": 0.99,
    "revision": true,
    "motivos_revision": [

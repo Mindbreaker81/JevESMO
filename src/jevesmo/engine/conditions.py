@@ -1,6 +1,6 @@
-"""Lenguaje de condiciones JSON para los arboles ESMO.
+"""Lenguaje de condiciones JSON para los árboles ESMO.
 
-Una condicion es un dict (o una lista, equivalente a "all"):
+Una condición es un dict (o una lista, equivalente a "all"):
 
   {"campo": "estadio", "in": ["III", "IV"]}
   {"campo": "egfr", "eq": true}
@@ -10,7 +10,7 @@ Una condicion es un dict (o una lista, equivalente a "all"):
   {"campo": "jev.alto_riesgo", "gte": 0.5}    # respuesta de Jev de capas 1-2
   {"all": [...]}, {"any": [...]}, {"not": {...}}
 
-Logica de tres valores: cualquier comparacion sobre un valor desconocido
+Lógica de tres valores: cualquier comparación sobre un valor desconocido
 (None, "", "desconocido", []) es FALSA, incluidas `ne`/`nin`/`ncontains`
 ("desconocido" no equivale a "sabemos que no es X"). Solo `missing`/`present`
 se activan con datos ausentes, de forma explicita.
@@ -35,7 +35,7 @@ def evaluate(cond: Any, ctx: dict[str, Any]) -> bool:
     if isinstance(cond, list):
         return all(evaluate(c, ctx) for c in cond)
     if not isinstance(cond, dict):
-        raise ValueError(f"Condicion invalida: {cond!r}")
+        raise ValueError(f"Condición inválida: {cond!r}")
     if "all" in cond:
         return all(evaluate(c, ctx) for c in cond["all"])
     if "any" in cond:
@@ -80,7 +80,7 @@ def evaluate(cond: Any, ctx: dict[str, Any]) -> bool:
 
 
 def referenced_fields(cond: Any) -> Iterable[str]:
-    """Todos los campos que usa una condicion (para validar specs)."""
+    """Todos los campos que usa una condición (para validar specs)."""
     if isinstance(cond, list):
         for c in cond:
             yield from referenced_fields(c)

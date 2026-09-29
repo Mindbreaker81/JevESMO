@@ -1,7 +1,7 @@
 {
  "tumor": "ovario",
- "nombre": "Cancer epitelial de ovario",
- "grupo": "Ginecologico",
+ "nombre": "Cáncer epitelial de ovario",
+ "grupo": "Ginecológico",
  "version": "OVARIO-ESMO-2025.1",
  "fecha": "2026-09-27T18:59:00+00:00",
  "modelo": "jev-latest",
@@ -32,7 +32,7 @@
     "cirugia_estadiaje_precoz"
    ],
    "obtenido": "cirugia_estadiaje_precoz",
-   "obtenido_label": "Cirugia de estadiaje completa y vigilancia",
+   "obtenido_label": "Cirugía de estadiaje completa y vigilancia",
    "confianza": 1.0,
    "revision": false,
    "motivos_revision": [],
@@ -98,7 +98,7 @@
     "qt_bev_1l"
    ],
    "obtenido": "neoadyuvancia_ids",
-   "obtenido_label": "Carboplatino-paclitaxel neoadyuvante + cirugia de intervalo",
+   "obtenido_label": "Carboplatino-paclitaxel neoadyuvante + cirugía de intervalo",
    "confianza": 0.84,
    "revision": true,
    "motivos_revision": [
@@ -133,7 +133,7 @@
   },
   {
    "id": "OVARIO-V06",
-   "titulo": "Recaida platino sensible",
+   "titulo": "Recaída platino sensible",
    "fuente": "ESMO recurrent platinum-sensitive",
    "esperado_tipo": "recomendacion",
    "esperado": "recaida_platino_sensible",
@@ -153,7 +153,7 @@
   },
   {
    "id": "OVARIO-V07",
-   "titulo": "Recaida resistente FRalfa alto",
+   "titulo": "Recaída resistente FRalfa alto",
    "fuente": "MIRASOL",
    "esperado_tipo": "recomendacion",
    "esperado": "mirvetuximab_fralfa",
@@ -199,7 +199,7 @@
    "esperado": "revision_humana",
    "aceptables": [],
    "obtenido": "revision (soporte_ensayo)",
-   "obtenido_label": "Mejor soporte/ensayo clinico",
+   "obtenido_label": "Mejor soporte/ensayo clínico",
    "confianza": 0.99,
    "revision": true,
    "motivos_revision": [

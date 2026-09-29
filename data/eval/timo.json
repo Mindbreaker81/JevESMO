@@ -1,7 +1,7 @@
 {
  "tumor": "timo",
- "nombre": "Timoma y carcinoma timico",
- "grupo": "Toracico",
+ "nombre": "Timoma y carcinoma tímico",
+ "grupo": "Torácico",
  "version": "TIMO-ESMO-2025.1",
  "fecha": "2026-09-27T18:59:09+00:00",
  "modelo": "jev-latest",
@@ -33,7 +33,7 @@
     "reseccion_primaria"
    ],
    "obtenido": "reseccion_primaria",
-   "obtenido_label": "Reseccion completa (timectomia) en centro experto",
+   "obtenido_label": "Resección completa (timectomía) en centro experto",
    "confianza": 0.55,
    "revision": true,
    "motivos_revision": [
@@ -57,7 +57,7 @@
     "rt_adyuvante_r1_r2_iii"
    ],
    "obtenido": "reseccion_primaria",
-   "obtenido_label": "Reseccion completa (timectomia) en centro experto",
+   "obtenido_label": "Resección completa (timectomía) en centro experto",
    "confianza": 0.88,
    "revision": true,
    "motivos_revision": [
@@ -71,7 +71,7 @@
   },
   {
    "id": "TIMO-V03",
-   "titulo": "Carcinoma timico II R0",
+   "titulo": "Carcinoma tímico II R0",
    "fuente": "ESMO: carcinoma timico resecado considerar RT",
    "esperado_tipo": "recomendacion",
    "esperado": "rt_adyuvante_r1_r2_iii",
@@ -80,7 +80,7 @@
     "reseccion_primaria"
    ],
    "obtenido": "reseccion_primaria",
-   "obtenido_label": "Reseccion completa (timectomia) en centro experto",
+   "obtenido_label": "Resección completa (timectomía) en centro experto",
    "confianza": 0.73,
    "revision": true,
    "motivos_revision": [
@@ -94,7 +94,7 @@
   },
   {
    "id": "TIMO-V04",
-   "titulo": "IVA irresecable primera linea",
+   "titulo": "IVA irresecable primera línea",
    "fuente": "ESMO: induccion con platino y reevaluacion",
    "esperado_tipo": "recomendacion",
    "esperado": "quimio_induccion",
@@ -118,7 +118,7 @@
   },
   {
    "id": "TIMO-V05",
-   "titulo": "IVB carcinoma primera linea",
+   "titulo": "IVB carcinoma primera línea",
    "fuente": "ESMO: platino avanzado",
    "esperado_tipo": "recomendacion",
    "esperado": "platino_avanzado",
@@ -147,7 +147,7 @@
     "pembrolizumab_carcinoma"
    ],
    "obtenido": "sunitinib_lenvatinib_carcinoma",
-   "obtenido_label": "Sunitinib o lenvatinib en carcinoma timico",
+   "obtenido_label": "Sunitinib o lenvatinib en carcinoma tímico",
    "confianza": 0.85,
    "revision": true,
    "motivos_revision": [
@@ -161,7 +161,7 @@
   },
   {
    "id": "TIMO-V07",
-   "titulo": "Histologia faltante",
+   "titulo": "Histología faltante",
    "fuente": "ESMO: histologia timoma vs carcinoma define tratamiento",
    "esperado_tipo": "necesita_datos",
    "esperado": "necesita_datos",
@@ -187,7 +187,7 @@
    "esperado": "revision_humana",
    "aceptables": [],
    "obtenido": "revision (sunitinib_lenvatinib_carcinoma)",
-   "obtenido_label": "Sunitinib o lenvatinib en carcinoma timico",
+   "obtenido_label": "Sunitinib o lenvatinib en carcinoma tímico",
    "confianza": 1.0,
    "revision": true,
    "motivos_revision": [

@@ -1,6 +1,6 @@
 {
  "tumor": "tiroides",
- "nombre": "Cancer de tiroides",
+ "nombre": "Cáncer de tiroides",
  "grupo": "Cabeza y cuello / Endocrino",
  "version": "TIROIDES-ESMO-2024.1",
  "fecha": "2026-09-27T18:59:11+00:00",
@@ -32,7 +32,7 @@
     "lobectomia_vigilancia_bajo_riesgo"
    ],
    "obtenido": "lobectomia_vigilancia_bajo_riesgo",
-   "obtenido_label": "Cirugia conservadora/lobectomia y vigilancia",
+   "obtenido_label": "Cirugía conservadora/lobectomia y vigilancia",
    "confianza": 1.0,
    "revision": false,
    "motivos_revision": [],
@@ -52,7 +52,7 @@
     "tiroidectomia_rai_intermedio_alto"
    ],
    "obtenido": "tiroidectomia_rai_intermedio_alto",
-   "obtenido_label": "Tiroidectomia total +- RAI segun riesgo",
+   "obtenido_label": "Tiroidectomía total +- RAI según riesgo",
    "confianza": 1.0,
    "revision": false,
    "motivos_revision": [],
@@ -64,7 +64,7 @@
   },
   {
    "id": "TIROIDES-V03",
-   "titulo": "Metastatico yodo-captante",
+   "titulo": "Metastático yodo-captante",
    "fuente": "RAI",
    "esperado_tipo": "recomendacion",
    "esperado": "rai_metastatico_sensible",
@@ -171,7 +171,7 @@
   },
   {
    "id": "TIROIDES-V08",
-   "titulo": "Anaplasico BRAF V600E",
+   "titulo": "Anaplásico BRAF V600E",
    "fuente": "Dabrafenib trametinib",
    "esperado_tipo": "recomendacion",
    "esperado": "anaplasico_braf_dab_tram",

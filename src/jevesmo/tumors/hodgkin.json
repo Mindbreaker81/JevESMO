@@ -1,7 +1,7 @@
 {
  "id": "hodgkin",
- "nombre": "Linfoma de Hodgkin clasico",
- "grupo": "Hematologia",
+ "nombre": "Linfoma de Hodgkin clásico",
+ "grupo": "Hematología",
  "version": "HODGKIN-ESMO-2025.1",
  "guias": [
   {
@@ -10,7 +10,7 @@
    "url": "https://www.esmo.org/guidelines/esmo-clinical-practice-guideline-lymphomas"
   }
  ],
- "descripcion": "Hodgkin clasico: limitado favorable/desfavorable, avanzado BrECADD/escBEACOPP o A-AVD, ancianos y recaida.",
+ "descripcion": "Hodgkin clásico: limitado favorable/desfavorable, avanzado BrECADD/escBEACOPP o A-AVD, ancianos y recaída.",
  "campos": [
   {
    "id": "estadio",
@@ -36,7 +36,7 @@
   },
   {
    "id": "bleomicina_contraindicada",
-   "label": "Contraindicacion a bleomicina",
+   "label": "Contraindicación a bleomicina",
    "tipo": "bool",
    "seccion": "Seguridad"
   },
@@ -51,19 +51,19 @@
    "id": "candidato_taph",
    "label": "Candidato a TAPH",
    "tipo": "bool",
-   "seccion": "Recaida"
+   "seccion": "Recaída"
   },
   {
    "id": "alto_riesgo_post_taph",
    "label": "Alto riesgo post-TAPH",
    "tipo": "bool",
-   "seccion": "Recaida"
+   "seccion": "Recaída"
   }
  ],
  "derivados": [
   {
    "id": "situacion",
-   "label": "Situacion clinica",
+   "label": "Situación clínica",
    "defecto": "primera_linea",
    "reglas": [
     {
@@ -117,7 +117,7 @@
   {
    "id": "abvd4_rt",
    "label": "ABVD x4 + radioterapia ISRT 30 Gy",
-   "nota": "ESMO Hodgkin: limitado desfavorable -> ABVD 4 ciclos + RT, con adaptacion segun PET",
+   "nota": "ESMO Hodgkin: limitado desfavorable -> ABVD 4 ciclos + RT, con adaptación según PET",
    "cuando": [
     {
      "campo": "situacion",
@@ -222,7 +222,7 @@
   },
   {
    "id": "anciano_bv_dacarbazina",
-   "label": "Regimen adaptado en ancianos (AVD reducido o brentuximab+dacarbazina)",
+   "label": "Régimen adaptado en ancianos (AVD reducido o brentuximab+dacarbazina)",
    "nota": "ESMO Hodgkin: ancianos/no candidatos a intensivo requieren esquema individualizado evitando bleomicina y toxicidad excesiva",
    "cuando": [
     {
@@ -251,7 +251,7 @@
   {
    "id": "rescate_taph",
    "label": "Quimioterapia de rescate + TAPH",
-   "nota": "ESMO Hodgkin recaida sensible y candidato -> rescate seguido de trasplante autologo",
+   "nota": "ESMO Hodgkin recaída sensible y candidato -> rescate seguido de trasplante autólogo",
    "cuando": [
     {
      "campo": "situacion",
@@ -270,7 +270,7 @@
   },
   {
    "id": "bv_mantenimiento",
-   "label": "Brentuximab vedotina consolidacion post-TAPH",
+   "label": "Brentuximab vedotina consolidación post-TAPH",
    "nota": "ESMO Hodgkin: alto riesgo post-TAPH -> brentuximab mantenimiento (AETHERA)",
    "cuando": [
     {
@@ -293,7 +293,7 @@
   {
    "id": "anti_pd1",
    "label": "Anti-PD1 (nivolumab o pembrolizumab)",
-   "nota": "ESMO Hodgkin: recaida tras TAPH/BV o no candidato -> anti-PD1 con alta tasa de respuesta",
+   "nota": "ESMO Hodgkin: recaída tras TAPH/BV o no candidato -> anti-PD1 con alta tasa de respuesta",
    "cuando": [
     {
      "campo": "situacion",
@@ -307,8 +307,8 @@
   },
   {
    "id": "paliativo_hl",
-   "label": "Tratamiento paliativo/soporte o radioterapia sintomatica",
-   "nota": "ESMO Hodgkin: paciente no candidato a terapia sistemica activa -> control sintomatico individualizado",
+   "label": "Tratamiento paliativo/soporte o radioterapia sintomática",
+   "nota": "ESMO Hodgkin: paciente no candidato a terapia sistémica activa -> control sintomático individualizado",
    "cuando": [
     {
      "campo": "ecog",
@@ -338,9 +338,9 @@
     "campo": "estadio",
     "eq": "avanzado"
    },
-   "instrucciones": "En Hodgkin avanzado fit, ¿que balance es preferible?",
+   "instrucciones": "En Hodgkin avanzado fit, ¿qué balance es preferible?",
    "criterios": {
-    "max_control": "Priorizar maximo control con BrECADD/escBEACOPP",
+    "max_control": "Priorizar máximo control con BrECADD/escBEACOPP",
     "menos_toxicidad": "Priorizar menor toxicidad con A-AVD/AVD adaptado"
    }
   },
@@ -352,7 +352,7 @@
     "campo": "pet2",
     "eq": "positivo"
    },
-   "instrucciones": "¿El PET positivo representa enfermedad residual significativa que justifica intensificacion o biopsia?"
+   "instrucciones": "¿El PET positivo representa enfermedad residual significativa que justifica intensificación o biopsia?"
   }
  ],
  "seguridad": [
@@ -381,7 +381,7 @@
    ],
    "instrucciones": "¿Hay enfermedad autoinmune activa o trasplante que haga peligroso anti-PD1?",
    "umbral": 0.75,
-   "motivo": "Riesgo inmunologico alto para anti-PD1"
+   "motivo": "Riesgo inmunológico alto para anti-PD1"
   }
  ],
  "avisos": [
@@ -497,7 +497,7 @@
   },
   {
    "id": "HODGKIN-V06",
-   "titulo": "Primera recaida candidato TAPH",
+   "titulo": "Primera recaída candidato TAPH",
    "fuente": "ESMO recaida",
    "payload": {
     "edad": 42,
@@ -520,7 +520,7 @@
   },
   {
    "id": "HODGKIN-V07",
-   "titulo": "Post-TAPH recaida",
+   "titulo": "Post-TAPH recaída",
    "fuente": "ESMO anti-PD1",
    "payload": {
     "edad": 39,
@@ -559,7 +559,7 @@
   },
   {
    "id": "HODGKIN-V09",
-   "titulo": "ECOG 4 infeccion activa",
+   "titulo": "ECOG 4 infección activa",
    "fuente": "Seguridad",
    "payload": {
     "edad": 81,

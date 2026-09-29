@@ -1,7 +1,7 @@
 {
  "tumor": "hodgkin",
- "nombre": "Linfoma de Hodgkin clasico",
- "grupo": "Hematologia",
+ "nombre": "Linfoma de Hodgkin clásico",
+ "grupo": "Hematología",
  "version": "HODGKIN-ESMO-2025.1",
  "fecha": "2026-09-27T18:58:52+00:00",
  "modelo": "jev-latest",
@@ -124,7 +124,7 @@
     "anciano_bv_dacarbazina"
    ],
    "obtenido": "anciano_bv_dacarbazina",
-   "obtenido_label": "Regimen adaptado en ancianos (AVD reducido o brentuximab+dacarbazina)",
+   "obtenido_label": "Régimen adaptado en ancianos (AVD reducido o brentuximab+dacarbazina)",
    "confianza": 1.0,
    "revision": true,
    "motivos_revision": [
@@ -138,7 +138,7 @@
   },
   {
    "id": "HODGKIN-V06",
-   "titulo": "Primera recaida candidato TAPH",
+   "titulo": "Primera recaída candidato TAPH",
    "fuente": "ESMO recaida",
    "esperado_tipo": "recomendacion",
    "esperado": "rescate_taph",
@@ -160,7 +160,7 @@
   },
   {
    "id": "HODGKIN-V07",
-   "titulo": "Post-TAPH recaida",
+   "titulo": "Post-TAPH recaída",
    "fuente": "ESMO anti-PD1",
    "esperado_tipo": "recomendacion",
    "esperado": "anti_pd1",
@@ -202,13 +202,13 @@
   },
   {
    "id": "HODGKIN-V09",
-   "titulo": "ECOG 4 infeccion activa",
+   "titulo": "ECOG 4 infección activa",
    "fuente": "Seguridad",
    "esperado_tipo": "revision_humana",
    "esperado": "revision_humana",
    "aceptables": [],
    "obtenido": "revision (paliativo_hl)",
-   "obtenido_label": "Tratamiento paliativo/soporte o radioterapia sintomatica",
+   "obtenido_label": "Tratamiento paliativo/soporte o radioterapia sintomática",
    "confianza": 0.85,
    "revision": true,
    "motivos_revision": [

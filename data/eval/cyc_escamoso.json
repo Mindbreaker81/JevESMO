@@ -32,7 +32,7 @@
     "cirugia_o_rt_precoz"
    ],
    "obtenido": "cirugia_o_rt_precoz",
-   "obtenido_label": "Cirugia o radioterapia radical monomodal",
+   "obtenido_label": "Cirugía o radioterapia radical monomodal",
    "confianza": 1.0,
    "revision": false,
    "motivos_revision": [],
@@ -86,7 +86,7 @@
   },
   {
    "id": "CYC_ESCAMOSO-V04",
-   "titulo": "Laringe preservacion",
+   "titulo": "Laringe preservación",
    "fuente": "ESMO Head and Neck CPG",
    "esperado_tipo": "recomendacion",
    "esperado": "qrt_definitiva_cisplatino",
@@ -154,7 +154,7 @@
   },
   {
    "id": "CYC_ESCAMOSO-V07",
-   "titulo": "R/M segunda linea",
+   "titulo": "R/M segunda línea",
    "fuente": "ESMO Head and Neck CPG",
    "esperado_tipo": "recomendacion",
    "esperado": "nivolumab_2l",

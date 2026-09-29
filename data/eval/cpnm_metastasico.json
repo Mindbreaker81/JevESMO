@@ -1,7 +1,7 @@
 {
  "tumor": "cpnm_metastasico",
- "nombre": "CPNM metastasico",
- "grupo": "Toracico",
+ "nombre": "CPNM metastásico",
+ "grupo": "Torácico",
  "version": "CPNM_METASTASICO-ESMO-2025.1",
  "fecha": "2026-09-27T18:58:42+00:00",
  "modelo": "jev-latest",
@@ -108,7 +108,7 @@
   },
   {
    "id": "CPNM_METASTASICO-V05",
-   "titulo": "KRAS G12C segunda linea",
+   "titulo": "KRAS G12C segunda línea",
    "fuente": "ESMO: KRAS G12C tras progresion",
    "esperado_tipo": "recomendacion",
    "esperado": "kras_g12c_2l",
@@ -128,7 +128,7 @@
   },
   {
    "id": "CPNM_METASTASICO-V06",
-   "titulo": "HER2 mutado segunda linea",
+   "titulo": "HER2 mutado segunda línea",
    "fuente": "ESMO/DESTINY-Lung: T-DXd",
    "esperado_tipo": "recomendacion",
    "esperado": "tdxd_her2_2l",

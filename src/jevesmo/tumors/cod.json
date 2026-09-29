@@ -1,6 +1,6 @@
 {
  "id": "cod",
- "nombre": "Cancer de origen primario desconocido",
+ "nombre": "Cáncer de origen primario desconocido",
  "grupo": "Origen desconocido",
  "version": "COD-ESMO-2023.1",
  "guias": [
@@ -10,11 +10,11 @@
    "url": "https://www.esmo.org/guidelines/esmo-clinical-practice-guideline-cancers-of-unknown-primary-site"
   }
  ],
- "descripcion": "Cancer de origen primario desconocido: identifica subgrupos favorables tratables como entidad equivalente, frente a CUP desfavorable con dobletes platino-taxano y terapias dirigidas si biomarcador accionable.",
+ "descripcion": "Cáncer de origen primario desconocido: identifica subgrupos favorables tratables como entidad equivalente, frente a CUP desfavorable con dobletes platino-taxano y terapias dirigidas si biomarcador accionable.",
  "campos": [
   {
    "id": "histologia",
-   "label": "Histologia/IHQ dominante",
+   "label": "Histología/IHQ dominante",
    "tipo": "choice",
    "opciones": [
     "adenocarcinoma",
@@ -27,11 +27,11 @@
     "otro"
    ],
    "requerido": true,
-   "pregunta": "¿Cual es la histologia/IHQ dominante del CUP?"
+   "pregunta": "¿Cuál es la histología/IHQ dominante del CUP?"
   },
   {
    "id": "patron_clinico",
-   "label": "Patron clinico",
+   "label": "Patron clínico",
    "tipo": "choice",
    "opciones": [
     "axilar_mujer",
@@ -49,14 +49,14 @@
   },
   {
    "id": "extension",
-   "label": "Extension",
+   "label": "Extensión",
    "tipo": "choice",
    "opciones": [
     "localizado_regional",
     "metastasico"
    ],
    "requerido": true,
-   "pregunta": "¿La enfermedad es localizada/regional o metastasica diseminada?"
+   "pregunta": "¿La enfermedad es localizada/regional o metastásica diseminada?"
   },
   {
    "id": "msi_high",
@@ -72,7 +72,7 @@
   },
   {
    "id": "ntrk_fusion",
-   "label": "Fusion NTRK",
+   "label": "Fusión NTRK",
    "tipo": "bool",
    "seccion": "Biomarcadores"
   },
@@ -90,7 +90,7 @@
   },
   {
    "id": "psa_elevado",
-   "label": "PSA elevado/compatible prostata",
+   "label": "PSA elevado/compatible próstata",
    "tipo": "bool",
    "seccion": "Biomarcadores"
   },
@@ -102,7 +102,7 @@
   },
   {
    "id": "neuropatia_grado",
-   "label": "Neuropatia periferica grado",
+   "label": "Neuropatía periférica grado",
    "tipo": "number",
    "min": 0,
    "max": 4,
@@ -112,7 +112,7 @@
  "derivados": [
   {
    "id": "pronostico",
-   "label": "Grupo pronostico",
+   "label": "Grupo pronóstico",
    "defecto": "desfavorable",
    "reglas": [
     {
@@ -132,8 +132,8 @@
  "opciones": [
   {
    "id": "axilar_mujer_mama_like",
-   "label": "Tratamiento como cancer de mama oculto",
-   "nota": "ESMO CUP: mujer con adenocarcinoma en ganglios axilares aislados se maneja como cancer de mama oculto con diseccion/RT y tratamiento sistemico segun perfil receptor.",
+   "label": "Tratamiento como cáncer de mama oculto",
+   "nota": "ESMO CUP: mujer con adenocarcinoma en ganglios axilares aislados se maneja como cáncer de mama oculto con disección/RT y tratamiento sistémico según perfil receptor.",
    "cuando": {
     "campo": "patron_clinico",
     "eq": "axilar_mujer"
@@ -149,8 +149,8 @@
   },
   {
    "id": "peritoneal_seroso_ovario_like",
-   "label": "Carboplatino-paclitaxel + cirugia citorreductora como ovario/peritoneal",
-   "nota": "ESMO CUP: mujer con carcinomatosis peritoneal serosa papilar se trata como cancer ovarico primario peritoneal con cirugia citorreductora y platino-taxano.",
+   "label": "Carboplatino-paclitaxel + cirugía citorreductora como ovario/peritoneal",
+   "nota": "ESMO CUP: mujer con carcinomatosis peritoneal serosa papilar se trata como cáncer ovárico primario peritoneal con cirugía citorreductora y platino-taxano.",
    "cuando": {
     "campo": "patron_clinico",
     "eq": "peritoneal_seroso_mujer"
@@ -164,7 +164,7 @@
   {
    "id": "escamoso_cervical_hn_like",
    "label": "Quimiorradioterapia/cirugia como carcinoma escamoso cervical de cabeza y cuello",
-   "nota": "ESMO CUP: adenopatias cervicales con carcinoma escamoso se tratan como carcinoma de cabeza y cuello oculto, con panendoscopia, cirugia/RT y cisplatino si indicado.",
+   "nota": "ESMO CUP: adenopatías cervicales con carcinoma escamoso se tratan como carcinoma de cabeza y cuello oculto, con panendoscopia, cirugía/RT y cisplatino si indicado.",
    "cuando": {
     "campo": "patron_clinico",
     "eq": "cervical_escamoso"
@@ -192,7 +192,7 @@
   {
    "id": "germinal_linea_media",
    "label": "Quimioterapia basada en cisplatino tipo tumor germinal",
-   "nota": "ESMO CUP: varon joven o tumor pobremente diferenciado de linea media con marcadores/clinica germinal debe tratarse como tumor germinal extragonadal con cisplatino (BEP/EP).",
+   "nota": "ESMO CUP: varon joven o tumor pobremente diferenciado de línea media con marcadores/clinica germinal debe tratarse como tumor germinal extragonadal con cisplatino (BEP/EP).",
    "cuando": {
     "campo": "patron_clinico",
     "eq": "linea_media_germinal"
@@ -204,8 +204,8 @@
   },
   {
    "id": "prostata_like_adt",
-   "label": "Terapia de deprivacion androgenica +- intensificacion como prostata",
-   "nota": "ESMO CUP: hombre con adenocarcinoma oseo/blastico o PSA/IHQ prostatica compatible se trata como cancer de prostata, no como CUP desfavorable.",
+   "label": "Terapia de deprivación androgénica +- intensificación como próstata",
+   "nota": "ESMO CUP: hombre con adenocarcinoma óseo/blastico o PSA/IHQ prostática compatible se trata como cáncer de próstata, no como CUP desfavorable.",
    "cuando": {
     "any": [
      {
@@ -227,7 +227,7 @@
   {
    "id": "neuroendocrino_bajo_grado_ssa",
    "label": "Analogos de somatostatina/terapia NET para neuroendocrino bien diferenciado",
-   "nota": "ESMO CUP: neoplasia neuroendocrina bien diferenciada de primario oculto se maneja como NET metastasico segun grado, SSTR y carga tumoral.",
+   "nota": "ESMO CUP: neoplasia neuroendocrina bien diferenciada de primario oculto se maneja como NET metastásico según grado, SSTR y carga tumoral.",
    "cuando": [
     {
      "campo": "patron_clinico",
@@ -275,8 +275,8 @@
   },
   {
    "id": "local_oligometastasico_mdt",
-   "label": "Tratamiento local radical de enfermedad oligometastasica",
-   "nota": "ESMO CUP: CUP oligometastasico o unico sitio resecable/irradiable debe discutirse para tratamiento local radical con intencion prolongada, ademas de sistemico segun histologia.",
+   "label": "Tratamiento local radical de enfermedad oligometastásica",
+   "nota": "ESMO CUP: CUP oligometastásico o único sitio resecable/irradiable debe discutirse para tratamiento local radical con intención prolongada, además de sistémico según histología.",
    "cuando": {
     "campo": "patron_clinico",
     "eq": "oligometastasico"
@@ -291,7 +291,7 @@
   {
    "id": "platino_taxano_desfavorable_1l",
    "label": "Carboplatino/cisplatino + paclitaxel (CUP desfavorable 1L)",
-   "nota": "ESMO CUP: enfermedad metastasica desfavorable sin subgrupo favorable ni biomarcador accionable se trata con doblete empirico basado en platino-taxano en pacientes aptos.",
+   "nota": "ESMO CUP: enfermedad metastásica desfavorable sin subgrupo favorable ni biomarcador accionable se trata con doblete empírico basado en platino-taxano en pacientes aptos.",
    "cuando": [
     {
      "campo": "patron_clinico",
@@ -321,8 +321,8 @@
   },
   {
    "id": "gem_platino_desfavorable",
-   "label": "Gemcitabina + platino alternativa empirica",
-   "nota": "ESMO CUP: gemcitabina-platino es alternativa empirica en CUP desfavorable cuando taxano no es adecuado o perfil clinico lo favorece.",
+   "label": "Gemcitabina + platino alternativa empírica",
+   "nota": "ESMO CUP: gemcitabina-platino es alternativa empírica en CUP desfavorable cuando taxano no es adecuado o perfil clínico lo favorece.",
    "cuando": [
     {
      "campo": "patron_clinico",
@@ -353,7 +353,7 @@
   {
    "id": "inmunoterapia_msi_tmb",
    "label": "Pembrolizumab/dostarlimab si MSI-H/dMMR o TMB alto",
-   "nota": "ESMO CUP: MSI-H/dMMR o TMB alto es biomarcador agnostico para inmunoterapia, preferible a quimioterapia empirica si el estado clinico lo permite.",
+   "nota": "ESMO CUP: MSI-H/dMMR o TMB alto es biomarcador agnóstico para inmunoterapia, preferible a quimioterapia empírica si el estado clínico lo permite.",
    "cuando": {
     "any": [
      {
@@ -373,8 +373,8 @@
   },
   {
    "id": "trk_inhibidor_cod",
-   "label": "Larotrectinib/entrectinib si fusion NTRK",
-   "nota": "ESMO CUP/precision oncology: fusion NTRK accionable justifica inhibidor TRK agnostico (larotrectinib/entrectinib).",
+   "label": "Larotrectinib/entrectinib si fusión NTRK",
+   "nota": "ESMO CUP/precision oncology: fusión NTRK accionable justifica inhibidor TRK agnóstico (larotrectinib/entrectinib).",
    "cuando": {
     "campo": "ntrk_fusion",
     "eq": true
@@ -386,8 +386,8 @@
   },
   {
    "id": "terapia_dirigida_perfil_genomico",
-   "label": "Terapia dirigida adaptada a alteracion accionable",
-   "nota": "ESMO CUP: si perfil genomico identifica alteracion accionable con farmaco aprobado o fuerte evidencia (BRAF V600E, HER2 amplificado, RET/ALK/ROS1, etc.), considerar terapia dirigida/ensayo.",
+   "label": "Terapia dirigida adaptada a alteración accionable",
+   "nota": "ESMO CUP: si perfil genómico identifica alteración accionable con fármaco aprobado o fuerte evidencia (BRAF V600E, HER2 amplificado, RET/ALK/ROS1, etc.), considerar terapia dirigida/ensayo.",
    "cuando": {
     "any": [
      {
@@ -407,8 +407,8 @@
   },
   {
    "id": "segunda_linea_ensayo_soporte",
-   "label": "Ensayo clinico, segunda linea individualizada o soporte",
-   "nota": "ESMO CUP: tras progresion a 1L en CUP desfavorable, no hay estandar; priorizar ensayo, tratamiento segun biomarcador o soporte segun beneficio esperado.",
+   "label": "Ensayo clínico, segunda línea individualizada o soporte",
+   "nota": "ESMO CUP: tras progresión a 1L en CUP desfavorable, no hay estándar; priorizar ensayo, tratamiento según biomarcador o soporte según beneficio esperado.",
    "cuando": [
     {
      "campo": "patron_clinico",
@@ -428,7 +428,7 @@
   {
    "id": "soporte_cod",
    "label": "Mejor soporte exclusivo",
-   "nota": "ESMO CUP: ECOG 3-4, carga sintomatica alta o comorbilidad que impide tratamiento -> cuidados paliativos y soporte, evitando quimioterapia empirica de bajo beneficio.",
+   "nota": "ESMO CUP: ECOG 3-4, carga sintomática alta o comorbilidad que impide tratamiento -> cuidados paliativos y soporte, evitando quimioterapia empírica de bajo beneficio.",
    "cuando": {
     "campo": "ecog",
     "in": [
@@ -453,7 +453,7 @@
      "eq": "desfavorable"
     }
    },
-   "instrucciones": "¿La presentacion clinica, IHQ e imagen encajan suficientemente con un subgrupo favorable de CUP para tratar como tumor equivalente?"
+   "instrucciones": "¿La presentación clínica, IHQ e imagen encajan suficientemente con un subgrupo favorable de CUP para tratar como tumor equivalente?"
   },
   {
    "key": "beneficio_genomica",
@@ -463,7 +463,7 @@
     "campo": "patron_clinico",
     "eq": "desfavorable"
    },
-   "instrucciones": "¿El perfil molecular/genomico disponible cambia de forma accionable la eleccion frente a quimioterapia empirica?"
+   "instrucciones": "¿El perfil molecular/genomico disponible cambia de forma accionable la elección frente a quimioterapia empírica?"
   },
   {
    "key": "apto_doblete",
@@ -473,7 +473,7 @@
     "campo": "patron_clinico",
     "eq": "desfavorable"
    },
-   "instrucciones": "¿El paciente esta suficientemente fit para doblete de quimioterapia empirica basado en platino?"
+   "instrucciones": "¿El paciente esta suficientemente fit para doblete de quimioterapia empírica basado en platino?"
   }
  ],
  "seguridad": [
@@ -498,7 +498,7 @@
     "neuroendocrino_alto_grado_platino_etoposido",
     "peritoneal_seroso_ovario_like"
    ],
-   "instrucciones": "¿La funcion renal, audicion, neuropatia o fragilidad contraindica platino?",
+   "instrucciones": "¿La función renal, audición, neuropatía o fragilidad contraindica platino?",
    "umbral": 0.55,
    "motivo": "No apto para platino"
   },
@@ -512,9 +512,9 @@
     "platino_taxano_desfavorable_1l",
     "peritoneal_seroso_ovario_like"
    ],
-   "instrucciones": "¿La neuropatia hace inaceptable paclitaxel/taxano?",
+   "instrucciones": "¿La neuropatía hace inaceptable paclitaxel/taxano?",
    "umbral": 0.55,
-   "motivo": "Neuropatia significativa para taxano"
+   "motivo": "Neuropatía significativa para taxano"
   },
   {
    "key": "autoinmune_ici",
@@ -527,7 +527,7 @@
    ],
    "instrucciones": "¿La enfermedad autoinmune activa contraindica inmunoterapia?",
    "umbral": 0.55,
-   "motivo": "Contraindicacion relativa/absoluta para inmunoterapia"
+   "motivo": "Contraindicación relativa/absoluta para inmunoterapia"
   }
  ],
  "avisos": [
@@ -546,14 +546,14 @@
      "missing": true
     }
    ],
-   "texto": "Biomarcadores agnosticos (MSI/dMMR, NTRK, TMB) no documentados: pueden cambiar el tratamiento."
+   "texto": "Biomarcadores agnósticos (MSI/dMMR, NTRK, TMB) no documentados: pueden cambiar el tratamiento."
   },
   {
    "cuando": {
     "campo": "psa_elevado",
     "missing": true
    },
-   "texto": "En hombre con adenocarcinoma y metastasis oseas, PSA/IHQ prostatica puede reclasificar a subgrupo favorable."
+   "texto": "En hombre con adenocarcinoma y metástasis óseas, PSA/IHQ prostática puede reclasificar a subgrupo favorable."
   },
   {
    "cuando": [
@@ -566,7 +566,7 @@
      "eq": "desfavorable"
     }
    ],
-   "texto": "Si la enfermedad es realmente localizada, discutir biopsia/revision e intencion local radical antes de empirico paliativo."
+   "texto": "Si la enfermedad es realmente localizada, discutir biopsia/revision e intención local radical antes de empírico paliativo."
   }
  ],
  "vinetas": [
@@ -634,7 +634,7 @@
   },
   {
    "id": "COD-V04",
-   "titulo": "Linea media germinal",
+   "titulo": "Línea media germinal",
    "fuente": "ESMO CUP 2023: tumor germinal extragonadal pobremente diferenciado",
    "payload": {
     "edad": 28,
@@ -678,7 +678,7 @@
   },
   {
    "id": "COD-V06",
-   "titulo": "CUP desfavorable primera linea",
+   "titulo": "CUP desfavorable primera línea",
    "fuente": "ESMO CUP 2023: doblete platino-taxano empirico",
    "payload": {
     "edad": 61,
@@ -728,7 +728,7 @@
   },
   {
    "id": "COD-V08",
-   "titulo": "CUP NTRK fusion",
+   "titulo": "CUP NTRK fusión",
    "fuente": "ESMO CUP 2023/precision oncology: NTRK agnostico",
    "payload": {
     "edad": 45,
@@ -750,7 +750,7 @@
   },
   {
    "id": "COD-V09",
-   "titulo": "Falta patron clinico",
+   "titulo": "Falta patron clínico",
    "fuente": "ESMO CUP 2023: subgrupo favorable vs desfavorable imprescindible",
    "payload": {
     "edad": 60,

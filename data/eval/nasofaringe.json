@@ -1,6 +1,6 @@
 {
  "tumor": "nasofaringe",
- "nombre": "Carcinoma nasofaringeo",
+ "nombre": "Carcinoma nasofaríngeo",
  "grupo": "Cabeza y cuello / Endocrino",
  "version": "NASOFARINGE-ESMO-2023.1",
  "fecha": "2026-09-27T18:58:59+00:00",
@@ -73,7 +73,7 @@
     "qrt_definitiva_npc"
    ],
    "obtenido": "induccion_gp_mas_qrt",
-   "obtenido_label": "Induccion gemcitabina-cisplatino seguida de QRT",
+   "obtenido_label": "Inducción gemcitabina-cisplatino seguida de QRT",
    "confianza": 0.82,
    "revision": false,
    "motivos_revision": [],
@@ -127,7 +127,7 @@
   },
   {
    "id": "NASOFARINGE-V06",
-   "titulo": "R/M primera linea",
+   "titulo": "R/M primera línea",
    "fuente": "JUPITER/CAPTAIN",
    "esperado_tipo": "recomendacion",
    "esperado": "gem_cis_ici_1l",
@@ -172,7 +172,7 @@
   },
   {
    "id": "NASOFARINGE-V08",
-   "titulo": "Falta histologia",
+   "titulo": "Falta histología",
    "fuente": "Dato imprescindible",
    "esperado_tipo": "necesita_datos",
    "esperado": "necesita_datos",

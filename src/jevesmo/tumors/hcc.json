@@ -15,7 +15,7 @@
    "url": "https://interactiveguidelines.esmo.org/esmo-web-app/gl_toc/index.php?GL_id=61"
   }
  ],
- "descripcion": "HCC segun BCLC y funcion hepatica: reseccion, ablacion, trasplante, TACE, inmunoterapia combinada, TKI y segunda linea; seguridad de bevacizumab con varices.",
+ "descripcion": "HCC según BCLC y función hepática: resección, ablación, trasplante, TACE, inmunoterapia combinada, TKI y segunda línea; seguridad de bevacizumab con varices.",
  "campos": [
   {
    "id": "bclc",
@@ -30,7 +30,7 @@
     "D"
    ],
    "requerido": true,
-   "pregunta": "¿Cual es el estadio BCLC (0, A, B, C o D)?"
+   "pregunta": "¿Cuál es el estadio BCLC (0, A, B, C o D)?"
   },
   {
    "id": "child_pugh",
@@ -43,23 +43,23 @@
     "C"
    ],
    "requerido": true,
-   "pregunta": "¿Cual es la clase Child-Pugh?"
+   "pregunta": "¿Cuál es la clase Child-Pugh?"
   },
   {
    "id": "resecable",
-   "label": "Resecable tecnicamente y funcion hepatica adecuada",
+   "label": "Resecable tecnicamente y función hepática adecuada",
    "tipo": "bool",
    "seccion": "Tumor"
   },
   {
    "id": "portal_hipertension",
-   "label": "Hipertension portal clinicamente significativa",
+   "label": "Hipertensión portal clinicamente significativa",
    "tipo": "bool",
    "seccion": "Tumor"
   },
   {
    "id": "ablacion_posible",
-   "label": "Ablacion posible",
+   "label": "Ablación posible",
    "tipo": "bool",
    "seccion": "Tumor"
   },
@@ -88,8 +88,8 @@
  "opciones": [
   {
    "id": "reseccion_hcc",
-   "label": "Reseccion hepatica",
-   "nota": "ESMO: BCLC 0/A con lesion resecable, Child-Pugh A, sin hipertension portal significativa -> reseccion",
+   "label": "Resección hepática",
+   "nota": "ESMO: BCLC 0/A con lesión resecable, Child-Pugh A, sin hipertensión portal significativa -> resección",
    "cuando": [
     {
      "campo": "bclc",
@@ -120,8 +120,8 @@
   },
   {
    "id": "ablacion_hcc",
-   "label": "Ablacion percutanea",
-   "nota": "ESMO: BCLC 0/A no resecable, tumor pequeno accesible -> ablacion termica como alternativa curativa",
+   "label": "Ablación percutanea",
+   "nota": "ESMO: BCLC 0/A no resecable, tumor pequeno accesible -> ablación térmica como alternativa curativa",
    "cuando": [
     {
      "campo": "bclc",
@@ -142,7 +142,7 @@
   },
   {
    "id": "trasplante_hcc",
-   "label": "Trasplante hepatico",
+   "label": "Trasplante hepático",
    "nota": "ESMO: BCLC 0/A dentro de Milan/downstaging, cirrosis o portal HTA y candidato -> trasplante",
    "cuando": [
     {
@@ -165,7 +165,7 @@
   {
    "id": "tace_hcc",
    "label": "TACE",
-   "nota": "ESMO: BCLC B intermedio, Child-Pugh A/B seleccionado, sin invasion vascular/extrahepatica -> TACE",
+   "nota": "ESMO: BCLC B intermedio, Child-Pugh A/B seleccionado, sin invasión vascular/extrahepatica -> TACE",
    "cuando": [
     {
      "campo": "bclc",
@@ -296,7 +296,7 @@
   {
    "id": "durvalumab_mono",
    "label": "Durvalumab monoterapia",
-   "nota": "ESMO: opcion 1L si no candidato a tremelimumab/bevacizumab y se desea ICI con menor toxicidad",
+   "nota": "ESMO: opción 1L si no candidato a tremelimumab/bevacizumab y se desea ICI con menor toxicidad",
    "cuando": [
     {
      "campo": "bclc",
@@ -329,8 +329,8 @@
   },
   {
    "id": "regorafenib_2l",
-   "label": "Regorafenib 2a linea",
-   "nota": "ESMO: tras tolerar sorafenib y progresion, Child-Pugh A -> regorafenib (RESORCE)",
+   "label": "Regorafenib 2a línea",
+   "nota": "ESMO: tras tolerar sorafenib y progresión, Child-Pugh A -> regorafenib (RESORCE)",
    "cuando": [
     {
      "campo": "bclc",
@@ -356,8 +356,8 @@
   },
   {
    "id": "cabozantinib_2l",
-   "label": "Cabozantinib 2a linea",
-   "nota": "ESMO: HCC avanzado tras sorafenib/otra terapia sistemica, Child-Pugh A -> cabozantinib (CELESTIAL)",
+   "label": "Cabozantinib 2a línea",
+   "nota": "ESMO: HCC avanzado tras sorafenib/otra terapia sistémica, Child-Pugh A -> cabozantinib (CELESTIAL)",
    "cuando": [
     {
      "campo": "bclc",
@@ -446,9 +446,9 @@
      "A"
     ]
    },
-   "instrucciones": "Para HCC temprano, elige estrategia curativa mas plausible segun funcion hepatica, portal HTA y localizacion",
+   "instrucciones": "Para HCC temprano, elige estrategia curativa más plausible según función hepática, portal HTA y localización",
    "criterios": {
-    "reseccion": "mejor candidato a reseccion",
+    "reseccion": "mejor candidato a resección",
     "ablacion": "tumor pequeno accesible no resecable",
     "trasplante": "cirrosis/portal HTA dentro de criterios de trasplante"
    }
@@ -461,7 +461,7 @@
     "campo": "bclc",
     "eq": "B"
    },
-   "instrucciones": "¿Hay criterios de TACE refractario/no candidato a TACE que favorezcan sistemico?"
+   "instrucciones": "¿Hay criterios de TACE refractario/no candidato a TACE que favorezcan sistémico?"
   },
   {
    "key": "riesgo_bev",
@@ -474,7 +474,7 @@
      "C"
     ]
    },
-   "instrucciones": "¿Existe riesgo clinico relevante de sangrado que haga preferible evitar bevacizumab?"
+   "instrucciones": "¿Existe riesgo clínico relevante de sangrado que haga preferible evitar bevacizumab?"
   }
  ],
  "seguridad": [
@@ -488,8 +488,8 @@
     "atezo_bev_1l",
     "ramucirumab_afp_2l"
    ],
-   "instrucciones": "Con varices esofagogastricas no tratadas o alto riesgo de sangrado, ¿bevacizumab/ramucirumab es inaceptable hasta cribado y tratamiento?",
-   "motivo": "Varices no tratadas/alto riesgo: antiangiogenico contraindicado"
+   "instrucciones": "Con varices esofagogástricas no tratadas o alto riesgo de sangrado, ¿bevacizumab/ramucirumab es inaceptable hasta cribado y tratamiento?",
+   "motivo": "Varices no tratadas/alto riesgo: antiangiogénico contraindicado"
   },
   {
    "key": "autoinmune_ici",
@@ -514,8 +514,8 @@
     "dirigida",
     "antiangiogenico"
    ],
-   "instrucciones": "Con Child-Pugh C/descompensacion, ¿tratamiento sistemico activo tiene toxicidad inaceptable?",
-   "motivo": "Funcion hepatica Child-Pugh C"
+   "instrucciones": "Con Child-Pugh C/descompensacion, ¿tratamiento sistémico activo tiene toxicidad inaceptable?",
+   "motivo": "Función hepática Child-Pugh C"
   }
  ],
  "avisos": [
@@ -550,7 +550,7 @@
      "gte": 1
     }
    ],
-   "texto": "AFP no disponible: puede condicionar ramucirumab en 2a linea."
+   "texto": "AFP no disponible: puede condicionar ramucirumab en 2a línea."
   }
  ],
  "vinetas": [
@@ -690,7 +690,7 @@
   },
   {
    "id": "HCC-V07",
-   "titulo": "Segunda linea AFP alta",
+   "titulo": "Segunda línea AFP alta",
    "fuente": "REACH-2 / RESORCE",
    "payload": {
     "edad": 60,
@@ -717,7 +717,7 @@
   {
    "id": "HCC-V08",
    "titulo": "Falta Child-Pugh",
-   "fuente": "ESMO HCC - funcion hepatica imprescindible",
+   "fuente": "ESMO HCC - funcion hepática imprescindible",
    "payload": {
     "edad": 63,
     "ecog": "1",

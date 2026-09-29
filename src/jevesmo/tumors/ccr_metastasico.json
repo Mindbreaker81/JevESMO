@@ -1,6 +1,6 @@
 {
  "id": "ccr_metastasico",
- "nombre": "Cancer colorrectal metastasico",
+ "nombre": "Cáncer colorrectal metastásico",
  "grupo": "Digestivo",
  "version": "ccr_metastasico-ESMO-2026.1",
  "guias": [
@@ -10,7 +10,7 @@
    "url": "https://www.esmo.org/guidelines/esmo-clinical-practice-guideline-metastatic-colorectal-cancer"
   }
  ],
- "descripcion": "CCR metastasico por RAS/BRAF/MSI/HER2/KRAS G12C, lateralidad, resecabilidad y lineas previas.",
+ "descripcion": "CCR metastásico por RAS/BRAF/MSI/HER2/KRAS G12C, lateralidad, resecabilidad y líneas previas.",
  "campos": [
   {
    "id": "ras",
@@ -88,7 +88,7 @@
   },
   {
    "id": "resecabilidad",
-   "label": "Resecabilidad metastasica",
+   "label": "Resecabilidad metastásica",
    "tipo": "choice",
    "seccion": "Tumor",
    "opciones": [
@@ -97,7 +97,7 @@
     "irresecable"
    ],
    "requerido": true,
-   "pregunta": "¿Las metastasis son resecables, potencialmente resecables o irresecables?"
+   "pregunta": "¿Las metástasis son resecables, potencialmente resecables o irresecables?"
   },
   {
    "id": "candidato_intensivo",
@@ -123,8 +123,8 @@
  "opciones": [
   {
    "id": "cirugia_metastasectomia",
-   "label": "Reseccion/metastasectomia perioperatoria",
-   "nota": "ESMO: metastasis claramente resecables -> reseccion completa/metastasectomia en MDT, con quimioterapia perioperatoria seleccionada.",
+   "label": "Resección/metastasectomia perioperatoria",
+   "nota": "ESMO: metástasis claramente resecables -> resección completa/metastasectomia en MDT, con quimioterapia perioperatoria seleccionada.",
    "cuando": [
     {
      "campo": "resecabilidad",
@@ -139,8 +139,8 @@
   },
   {
    "id": "folfoxiri_bev_conversion",
-   "label": "FOLFOXIRI + bevacizumab de conversion",
-   "nota": "ESMO: potencialmente resecable o necesidad de maxima reduccion tumoral -> triplete + bevacizumab si fit.",
+   "label": "FOLFOXIRI + bevacizumab de conversión",
+   "nota": "ESMO: potencialmente resecable o necesidad de máxima reducción tumoral -> triplete + bevacizumab si fit.",
    "cuando": [
     {
      "campo": "resecabilidad",
@@ -200,7 +200,7 @@
   {
    "id": "doublet_bev_1l",
    "label": "FOLFOX/FOLFIRI + bevacizumab 1L",
-   "nota": "ESMO: RAS mutado o primario derecho/MSS -> doblete de quimioterapia + bevacizumab estandar 1L.",
+   "nota": "ESMO: RAS mutado o primario derecho/MSS -> doblete de quimioterapia + bevacizumab estándar 1L.",
    "cuando": [
     {
      "not": {
@@ -273,7 +273,7 @@
   {
    "id": "nivolumab_ipilimumab_msi",
    "label": "Nivolumab + ipilimumab MSI-H",
-   "nota": "ESMO: MSI-H/dMMR tras tratamiento -> nivolumab/ipilimumab opcion valida.",
+   "nota": "ESMO: MSI-H/dMMR tras tratamiento -> nivolumab/ipilimumab opción válida.",
    "cuando": [
     {
      "campo": "msi",
@@ -292,7 +292,7 @@
   {
    "id": "encorafenib_cetuximab",
    "label": "Encorafenib + cetuximab BRAF V600E",
-   "nota": "ESMO/BEACON: BRAF V600E tras al menos 1 linea -> encorafenib + cetuximab.",
+   "nota": "ESMO/BEACON: BRAF V600E tras al menos 1 línea -> encorafenib + cetuximab.",
    "cuando": [
     {
      "campo": "braf_v600e",
@@ -335,7 +335,7 @@
   {
    "id": "tas102_bev",
    "label": "Trifluridina/tipiracilo + bevacizumab",
-   "nota": "ESMO/SUNLIGHT: CCRm refractario tras terapias estandar -> TAS-102 + bevacizumab.",
+   "nota": "ESMO/SUNLIGHT: CCRm refractario tras terapias estándar -> TAS-102 + bevacizumab.",
    "cuando": [
     {
      "campo": "lineas_previas",
@@ -351,7 +351,7 @@
   {
    "id": "fruquintinib",
    "label": "Fruquintinib refractario",
-   "nota": "ESMO/FRESCO-2: enfermedad refractaria tras terapias estandar -> fruquintinib en pacientes seleccionados.",
+   "nota": "ESMO/FRESCO-2: enfermedad refractaria tras terapias estándar -> fruquintinib en pacientes seleccionados.",
    "cuando": [
     {
      "campo": "lineas_previas",
@@ -367,7 +367,7 @@
   {
    "id": "g12c_egfr",
    "label": "Sotorasib/adagrasib + anti-EGFR KRAS G12C",
-   "nota": "ESMO actual: KRAS G12C tras lineas previas -> inhibidor KRAS G12C combinado con anti-EGFR.",
+   "nota": "ESMO actual: KRAS G12C tras líneas previas -> inhibidor KRAS G12C combinado con anti-EGFR.",
    "cuando": [
     {
      "campo": "kras_g12c",
@@ -385,7 +385,7 @@
   },
   {
    "id": "soporte_mcrc",
-   "label": "Soporte exclusivo/ensayo clinico",
+   "label": "Soporte exclusivo/ensayo clínico",
    "nota": "ESMO: ECOG pobre o agotamiento de opciones -> cuidados de soporte y ensayos.",
    "cuando": [
     {
@@ -412,7 +412,7 @@
     "campo": "resecabilidad",
     "eq": "potencialmente_resecable"
    },
-   "instrucciones": "¿Existe objetivo realista de conversion a reseccion/ablacion R0 tras respuesta sistemica?"
+   "instrucciones": "¿Existe objetivo realista de conversión a resección/ablacion R0 tras respuesta sistémica?"
   },
   {
    "key": "necesita_respuesta_rapida",
@@ -430,11 +430,11 @@
      }
     ]
    },
-   "instrucciones": "Evalua el objetivo de primera linea.",
+   "instrucciones": "Evalúa el objetivo de primera línea.",
    "criterios": {
-    "respuesta": "Maxima respuesta/citorreduccion",
+    "respuesta": "Máxima respuesta/citorreduccion",
     "control": "Control con menor toxicidad",
-    "inmuno": "Biologia MSI-H favorece inmunoterapia"
+    "inmuno": "Biología MSI-H favorece inmunoterapia"
    }
   },
   {
@@ -453,7 +453,7 @@
      }
     ]
    },
-   "instrucciones": "¿Faltan biomarcadores que deban completarse antes de seleccionar lineas posteriores?"
+   "instrucciones": "¿Faltan biomarcadores que deban completarse antes de seleccionar líneas posteriores?"
   }
  ],
  "seguridad": [
@@ -466,8 +466,8 @@
    "bloquea_componentes": [
     "antiangiogenico"
    ],
-   "instrucciones": "Con sangrado, perforacion, cirugia reciente o trombosis, ¿antiangiogenicos suponen riesgo inaceptable?",
-   "motivo": "Riesgo alto para antiangiogenicos"
+   "instrucciones": "Con sangrado, perforación, cirugía reciente o trombosis, ¿antiangiogénicos suponen riesgo inaceptable?",
+   "motivo": "Riesgo alto para antiangiogénicos"
   },
   {
    "key": "autoinmune_ici",

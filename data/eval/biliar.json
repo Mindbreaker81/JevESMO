@@ -1,6 +1,6 @@
 {
  "tumor": "biliar",
- "nombre": "Cancer de vias biliares",
+ "nombre": "Cáncer de vías biliares",
  "grupo": "Digestivo",
  "version": "BILIAR-ESMO-2024.1",
  "fecha": "2026-09-27T18:58:34+00:00",
@@ -24,7 +24,7 @@
  "casos": [
   {
    "id": "BILIAR-V01",
-   "titulo": "Postreseccion",
+   "titulo": "Postresección",
    "fuente": "BILCAP",
    "esperado_tipo": "recomendacion",
    "esperado": "capecitabina_adyuvante",
@@ -90,7 +90,7 @@
   },
   {
    "id": "BILIAR-V04",
-   "titulo": "FGFR2 fusion post gemcis",
+   "titulo": "FGFR2 fusión post gemcis",
    "fuente": "FIGHT-202/FOENIX",
    "esperado_tipo": "recomendacion",
    "esperado": "fgfr_inhibidor",
@@ -135,7 +135,7 @@
   },
   {
    "id": "BILIAR-V06",
-   "titulo": "HER2 positivo vesicula 2L",
+   "titulo": "HER2 positivo vesícula 2L",
    "fuente": "ESMO - anti-HER2 BTC",
    "esperado_tipo": "recomendacion",
    "esperado": "antiher2_biliar",
@@ -166,7 +166,7 @@
     "folfox_2l"
    ],
    "obtenido": "folfox_2l",
-   "obtenido_label": "FOLFOX 2a linea",
+   "obtenido_label": "FOLFOX 2a línea",
    "confianza": 1.0,
    "revision": true,
    "motivos_revision": [

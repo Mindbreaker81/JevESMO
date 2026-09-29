@@ -10,11 +10,11 @@
    "url": "https://www.esmo.org/guidelines/melanoma-and-skin-cancers"
   }
  ],
- "descripcion": "Carcinoma basocelular: cirugia/Mohs/RT, inhibidores Hedgehog y cemiplimab tras progresion/intolerancia.",
+ "descripcion": "Carcinoma basocelular: cirugía/Mohs/RT, inhibidores Hedgehog y cemiplimab tras progresión/intolerancia.",
  "campos": [
   {
    "id": "situacion",
-   "label": "Situacion",
+   "label": "Situación",
    "tipo": "choice",
    "seccion": "Tumor",
    "opciones": [
@@ -24,13 +24,13 @@
     "metastasico"
    ],
    "requerido": true,
-   "pregunta": "¿Cual es la situacion del carcinoma basocelular?"
+   "pregunta": "¿Cuál es la situación del carcinoma basocelular?"
   },
   {
    "id": "resecable",
    "label": "Resecable",
    "tipo": "bool",
-   "seccion": "Cirugia"
+   "seccion": "Cirugía"
   },
   {
    "id": "hhi_previo",
@@ -55,8 +55,8 @@
  "opciones": [
   {
    "id": "escision_bcc",
-   "label": "Escision quirurgica estandar",
-   "nota": "BCC localizado de bajo riesgo: escision completa con margenes adecuados.",
+   "label": "Escisión quirúrgica estándar",
+   "nota": "BCC localizado de bajo riesgo: escisión completa con margenes adecuados.",
    "cuando": {
     "campo": "situacion",
     "eq": "localizado_bajo_riesgo"
@@ -68,8 +68,8 @@
   },
   {
    "id": "mohs_bcc_alto_riesgo",
-   "label": "Cirugia micrografica de Mohs",
-   "nota": "BCC alto riesgo, recurrente o zona H facial: Mohs/control micrografico de margenes.",
+   "label": "Cirugía micrográfica de Mohs",
+   "nota": "BCC alto riesgo, recurrente o zona H facial: Mohs/control micrográfico de margenes.",
    "cuando": {
     "campo": "situacion",
     "eq": "localizado_alto_riesgo"
@@ -82,7 +82,7 @@
   {
    "id": "rt_bcc_no_cirugia",
    "label": "Radioterapia definitiva",
-   "nota": "BCC localizado no candidato a cirugia o cirugia muy morbida: RT definitiva.",
+   "nota": "BCC localizado no candidato a cirugía o cirugía muy morbida: RT definitiva.",
    "cuando": [
     {
      "campo": "situacion",
@@ -104,7 +104,7 @@
   {
    "id": "vismo_soni_bcc",
    "label": "Vismodegib o sonidegib",
-   "nota": "BCC localmente avanzado/metastasico no candidato a cirugia/RT curativa: inhibidor Hedgehog.",
+   "nota": "BCC localmente avanzado/metastasico no candidato a cirugía/RT curativa: inhibidor Hedgehog.",
    "cuando": [
     {
      "campo": "situacion",
@@ -162,7 +162,7 @@
   {
    "id": "rt_paliativa_bcc",
    "label": "Radioterapia/cirugia paliativa local",
-   "nota": "Si enfermedad local sintomatica y no candidato a sistemico, considerar RT/cirugia paliativa.",
+   "nota": "Si enfermedad local sintomática y no candidato a sistémico, considerar RT/cirugia paliativa.",
    "cuando": [
     {
      "campo": "situacion",
@@ -189,7 +189,7 @@
   {
    "id": "soporte_bcc",
    "label": "Soporte exclusivo",
-   "nota": "Enfermedad muy fragil/ECOG 3-4: soporte y control sintomatico.",
+   "nota": "Enfermedad muy fragil/ECOG 3-4: soporte y control sintomático.",
    "cuando": {
     "campo": "ecog",
     "in": [
@@ -215,7 +215,7 @@
      "localmente_avanzado"
     ]
    },
-   "instrucciones": "¿La cirugia produciria morbilidad funcional/cosmetica desproporcionada?"
+   "instrucciones": "¿La cirugía produciria morbilidad funcional/cosmetica desproporcionada?"
   },
   {
    "key": "respuesta_hhi_bcc",
@@ -246,8 +246,8 @@
    "bloquea_componentes": [
     "inmunoterapia"
    ],
-   "instrucciones": "¿Autoinmunidad activa, trasplante u otra condicion contraindica cemiplimab?",
-   "motivo": "Contraindicacion mayor para anti-PD-1."
+   "instrucciones": "¿Autoinmunidad activa, trasplante u otra condición contraindica cemiplimab?",
+   "motivo": "Contraindicación mayor para anti-PD-1."
   },
   {
    "key": "contra_hhi",
@@ -277,7 +277,7 @@
      "missing": true
     }
    ],
-   "texto": "Debe documentarse si recibio inhibidor Hedgehog antes de cemiplimab."
+   "texto": "Debe documentarse si recibió inhibidor Hedgehog antes de cemiplimab."
   }
  ],
  "vinetas": [
@@ -356,7 +356,7 @@
   },
   {
    "id": "CARCINOMA_BASOCELULAR-V05",
-   "titulo": "Metastasico 1L",
+   "titulo": "Metastásico 1L",
    "fuente": "HHI",
    "payload": {
     "edad": 60,
@@ -394,7 +394,7 @@
   },
   {
    "id": "CARCINOMA_BASOCELULAR-V07",
-   "titulo": "No sistemico",
+   "titulo": "No sistémico",
    "fuente": "RT paliativa",
    "payload": {
     "edad": 60,
@@ -414,7 +414,7 @@
   },
   {
    "id": "CARCINOMA_BASOCELULAR-V08",
-   "titulo": "Falta situacion",
+   "titulo": "Falta situación",
    "fuente": "Dato imprescindible",
    "payload": {
     "edad": 60,

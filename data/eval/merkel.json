@@ -1,6 +1,6 @@
 {
  "tumor": "merkel",
- "nombre": "Carcinoma de celulas de Merkel",
+ "nombre": "Carcinoma de células de Merkel",
  "grupo": "Piel",
  "version": "MERKEL-ESMO-2024.1",
  "fecha": "2026-09-27T18:58:56+00:00",
@@ -32,7 +32,7 @@
     "cirugia_rt_local_merkel"
    ],
    "obtenido": "cirugia_rt_local_merkel",
-   "obtenido_label": "Escision amplia + radioterapia adyuvante",
+   "obtenido_label": "Escisión amplia + radioterapia adyuvante",
    "confianza": 1.0,
    "revision": false,
    "motivos_revision": [],
@@ -44,7 +44,7 @@
   },
   {
    "id": "MERKEL-V02",
-   "titulo": "Localizado no quirurgico",
+   "titulo": "Localizado no quirúrgico",
    "fuente": "RT definitiva",
    "esperado_tipo": "recomendacion",
    "esperado": "rt_definitiva_merkel",
@@ -72,7 +72,7 @@
     "manejo_ganglionar_rt_merkel"
    ],
    "obtenido": "manejo_ganglionar_rt_merkel",
-   "obtenido_label": "Diseccion/RT ganglionar + RT adyuvante",
+   "obtenido_label": "Disección/RT ganglionar + RT adyuvante",
    "confianza": 1.0,
    "revision": false,
    "motivos_revision": [],
@@ -125,7 +125,7 @@
   },
   {
    "id": "MERKEL-V06",
-   "titulo": "Metastasico primera linea",
+   "titulo": "Metastásico primera línea",
    "fuente": "Avelumab",
    "esperado_tipo": "recomendacion",
    "esperado": "avelumab_merkel_1l",
@@ -146,7 +146,7 @@
   },
   {
    "id": "MERKEL-V07",
-   "titulo": "Metastasico no ICI",
+   "titulo": "Metastásico no ICI",
    "fuente": "Quimioterapia",
    "esperado_tipo": "recomendacion",
    "esperado": "quimio_merkel_no_ici",
@@ -186,7 +186,7 @@
   },
   {
    "id": "MERKEL-V09",
-   "titulo": "Metastasico autoinmune",
+   "titulo": "Metastásico autoinmune",
    "fuente": "Seguridad ICI",
    "esperado_tipo": "revision_humana",
    "esperado": "revision_humana",

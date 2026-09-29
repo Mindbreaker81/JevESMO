@@ -32,7 +32,7 @@
     "cirugia_observacion_bajo"
    ],
    "obtenido": "cirugia_observacion_bajo",
-   "obtenido_label": "Cirugia R0 y observacion",
+   "obtenido_label": "Cirugía R0 y observación",
    "confianza": 1.0,
    "revision": false,
    "motivos_revision": [],
@@ -52,7 +52,7 @@
     "imatinib_ady_3y"
    ],
    "obtenido": "imatinib_ady_3y",
-   "obtenido_label": "Imatinib adyuvante 3 anos",
+   "obtenido_label": "Imatinib adyuvante 3 años",
    "confianza": 1.0,
    "revision": false,
    "motivos_revision": [],
@@ -84,7 +84,7 @@
   },
   {
    "id": "GIST-V04",
-   "titulo": "Metastasico exon9",
+   "titulo": "Metastásico exon9",
    "fuente": "Dosis 800",
    "esperado_tipo": "recomendacion",
    "esperado": "imatinib_800_exon9",
@@ -92,7 +92,7 @@
     "imatinib_800_exon9"
    ],
    "obtenido": "imatinib_800_exon9",
-   "obtenido_label": "Imatinib 800 mg en KIT exon 9",
+   "obtenido_label": "Imatinib 800 mg en KIT exón 9",
    "confianza": 1.0,
    "revision": true,
    "motivos_revision": [
@@ -166,7 +166,7 @@
   },
   {
    "id": "GIST-V08",
-   "titulo": "Falta mutacion",
+   "titulo": "Falta mutación",
    "fuente": "Dato imprescindible",
    "esperado_tipo": "necesita_datos",
    "esperado": "necesita_datos",

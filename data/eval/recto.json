@@ -1,6 +1,6 @@
 {
  "tumor": "recto",
- "nombre": "Cancer de recto localizado",
+ "nombre": "Cáncer de recto localizado",
  "grupo": "Digestivo",
  "version": "recto-ESMO-2024.1",
  "fecha": "2026-09-27T18:59:03+00:00",
@@ -32,7 +32,7 @@
     "cirugia_directa_tme"
    ],
    "obtenido": "cirugia_directa_tme",
-   "obtenido_label": "Cirugia directa con TME",
+   "obtenido_label": "Cirugía directa con TME",
    "confianza": 1.0,
    "revision": false,
    "motivos_revision": [],
@@ -160,7 +160,7 @@
   },
   {
    "id": "RECTO-V07",
-   "titulo": "Respuesta completa y preservacion",
+   "titulo": "Respuesta completa y preservación",
    "fuente": "Watch and wait",
    "esperado_tipo": "recomendacion",
    "esperado": "watch_wait",

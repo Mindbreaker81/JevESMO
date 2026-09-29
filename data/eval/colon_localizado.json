@@ -1,6 +1,6 @@
 {
  "tumor": "colon_localizado",
- "nombre": "Cancer de colon localizado",
+ "nombre": "Cáncer de colon localizado",
  "grupo": "Digestivo",
  "version": "colon_localizado-ESMO-2023.1",
  "fecha": "2026-09-27T18:58:40+00:00",
@@ -32,7 +32,7 @@
     "observacion_ii_bajo_pmmr"
    ],
    "obtenido": "observacion_ii_bajo_pmmr",
-   "obtenido_label": "Observacion en estadio II bajo riesgo pMMR",
+   "obtenido_label": "Observación en estadio II bajo riesgo pMMR",
    "confianza": 1.0,
    "revision": false,
    "motivos_revision": [],
@@ -52,7 +52,7 @@
     "observacion_ii_dmmr"
    ],
    "obtenido": "observacion_ii_dmmr",
-   "obtenido_label": "Observacion tras R0 en estadio II dMMR",
+   "obtenido_label": "Observación tras R0 en estadio II dMMR",
    "confianza": 1.0,
    "revision": true,
    "motivos_revision": [
@@ -197,7 +197,7 @@
   },
   {
    "id": "COLON_LOCALIZADO-V09",
-   "titulo": "Neuropatia grave en III",
+   "titulo": "Neuropatía grave en III",
    "fuente": "Seguridad oxaliplatino",
    "esperado_tipo": "revision_humana",
    "esperado": "revision_humana",

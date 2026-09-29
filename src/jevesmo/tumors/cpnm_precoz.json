@@ -1,7 +1,7 @@
 {
  "id": "cpnm_precoz",
- "nombre": "Cancer de pulmon no microcitico precoz y localmente avanzado",
- "grupo": "Toracico",
+ "nombre": "Cáncer de pulmón no microcítico precoz y localmente avanzado",
+ "grupo": "Torácico",
  "version": "CPNM_PRECOZ-ESMO-2025.1",
  "guias": [
   {
@@ -15,11 +15,11 @@
    "url": "https://www.esmo.org/guidelines/living-guidelines/esmo-living-guideline-non-small-cell-lung-cancer"
   }
  ],
- "descripcion": "CPNM estadios I-III: reseccion, tratamiento perioperatorio, SBRT y enfermedad III irresecable tras quimiorradioterapia.",
+ "descripcion": "CPNM estadios I-III: resección, tratamiento perioperatorio, SBRT y enfermedad III irresecable tras quimiorradioterapia.",
  "campos": [
   {
    "id": "estadio",
-   "label": "Estadio clinico",
+   "label": "Estadio clínico",
    "tipo": "choice",
    "opciones": [
     "I",
@@ -29,11 +29,11 @@
     "IIIC"
    ],
    "requerido": true,
-   "pregunta": "¿Cual es el estadio clinico (I, II, IIIA, IIIB o IIIC)?"
+   "pregunta": "¿Cuál es el estadio clínico (I, II, IIIA, IIIB o IIIC)?"
   },
   {
    "id": "histologia",
-   "label": "Histologia",
+   "label": "Histología",
    "tipo": "choice",
    "opciones": [
     {
@@ -50,21 +50,21 @@
     }
    ],
    "requerido": true,
-   "pregunta": "¿Cual es la histologia del CPNM?"
+   "pregunta": "¿Cuál es la histología del CPNM?"
   },
   {
    "id": "resecable",
    "label": "Resecable por equipo multidisciplinar",
    "tipo": "bool",
    "requerido": true,
-   "pregunta": "¿El tumor es resecable segun comite toracico?"
+   "pregunta": "¿El tumor es resecable según comite torácico?"
   },
   {
    "id": "candidato_cirugia",
-   "label": "Candidato a cirugia",
+   "label": "Candidato a cirugía",
    "tipo": "bool",
    "requerido": true,
-   "pregunta": "¿El paciente es candidato medico a cirugia?"
+   "pregunta": "¿El paciente es candidato médico a cirugía?"
   },
   {
    "id": "mut_egfr_comun",
@@ -95,7 +95,7 @@
   },
   {
    "id": "qrt_concurrente_completada",
-   "label": "QRT concurrente completada sin progresion",
+   "label": "QRT concurrente completada sin progresión",
    "tipo": "bool",
    "seccion": "Tratamiento previo"
   },
@@ -170,8 +170,8 @@
  "opciones": [
   {
    "id": "cirugia_reseccion",
-   "label": "Reseccion anatomica + linfadenectomia",
-   "nota": "ESMO CPNM precoz: enfermedad resecable y paciente operable -> cirugia radical con evaluacion ganglionar sistematica; adyuvancia segun estadio/riesgo.",
+   "label": "Resección anatómica + linfadenectomía",
+   "nota": "ESMO CPNM precoz: enfermedad resecable y paciente operable -> cirugía radical con evaluación ganglionar sistemática; adyuvancia según estadio/riesgo.",
    "cuando": [
     {
      "campo": "setting",
@@ -194,7 +194,7 @@
   {
    "id": "quimio_adyuvante_platino",
    "label": "Quimioterapia adyuvante basada en platino",
-   "nota": "ESMO: tras reseccion completa de CPNM estadio II-III y seleccion de IB alto riesgo, cisplatino-vinorelbina u otro doblete mejora supervivencia.",
+   "nota": "ESMO: tras resección completa de CPNM estadio II-III y selección de IB alto riesgo, cisplatino-vinorelbina u otro doblete mejora supervivencia.",
    "cuando": [
     {
      "campo": "setting",
@@ -268,7 +268,7 @@
   {
    "id": "neoadyuvante_quimio_nivo",
    "label": "Quimioterapia neoadyuvante + nivolumab",
-   "nota": "ESMO/CheckMate 816: CPNM resecable estadio II-IIIA, sin EGFR/ALK, candidato a cirugia -> quimio-neoadyuvante con nivolumab.",
+   "nota": "ESMO/CheckMate 816: CPNM resecable estadio II-IIIA, sin EGFR/ALK, candidato a cirugía -> quimio-neoadyuvante con nivolumab.",
    "cuando": [
     {
      "campo": "setting",
@@ -343,7 +343,7 @@
   {
    "id": "sbrt_no_operable",
    "label": "SBRT/SABR radical",
-   "nota": "ESMO: CPNM estadio I-II periferico no operable por comorbilidad -> radioterapia estereotactica ablativa con intencion curativa.",
+   "nota": "ESMO: CPNM estadio I-II periférico no operable por comorbilidad -> radioterapia estereotáctica ablativa con intención curativa.",
    "cuando": [
     {
      "campo": "estadio",
@@ -365,7 +365,7 @@
   {
    "id": "qrt_definitiva_durva",
    "label": "QRT concurrente definitiva -> durvalumab",
-   "nota": "ESMO/PACIFIC: CPNM estadio III irresecable, ECOG 0-1, sin progresion tras quimiorradioterapia basada en platino -> durvalumab de consolidacion.",
+   "nota": "ESMO/PACIFIC: CPNM estadio III irresecable, ECOG 0-1, sin progresión tras quimiorradioterapia basada en platino -> durvalumab de consolidación.",
    "cuando": [
     {
      "campo": "setting",
@@ -391,7 +391,7 @@
   {
    "id": "qrt_definitiva_osimertinib",
    "label": "QRT definitiva -> osimertinib",
-   "nota": "ESMO/LAURA: CPNM estadio III irresecable EGFR exon19del/L858R sin progresion tras QRT -> osimertinib de consolidacion.",
+   "nota": "ESMO/LAURA: CPNM estadio III irresecable EGFR exon19del/L858R sin progresión tras QRT -> osimertinib de consolidación.",
    "cuando": [
     {
      "campo": "setting",
@@ -415,7 +415,7 @@
   {
    "id": "qrt_definitiva_sola",
    "label": "Quimiorradioterapia concurrente definitiva",
-   "nota": "ESMO: estadio III irresecable apto -> QRT concurrente basada en platino; consolidacion posterior segun biomarcadores y tolerancia.",
+   "nota": "ESMO: estadio III irresecable apto -> QRT concurrente basada en platino; consolidación posterior según biomarcadores y tolerancia.",
    "cuando": {
     "campo": "setting",
     "eq": "III irresecable"
@@ -444,10 +444,10 @@
      "present": true
     }
    ],
-   "instrucciones": "Clasifica la resecabilidad real del caso tras induccion potencial.",
+   "instrucciones": "Clasifica la resecabilidad real del caso tras inducción potencial.",
    "criterios": {
     "claramente_resecable": "R0 probable con morbilidad aceptable",
-    "borderline": "N2 multietacion/vascular dudoso; requiere MDT experto",
+    "borderline": "N2 multiestación/vascular dudoso; requiere MDT experto",
     "irresecable": "No se espera R0 o toxicidad excesiva"
    }
   },
@@ -464,7 +464,7 @@
      "IIIC"
     ]
    },
-   "instrucciones": "¿El paciente parece apto para doblete de platino y/o inmunoterapia perioperatoria/consolidacion segun ECOG, organos y comorbilidad?"
+   "instrucciones": "¿El paciente parece apto para doblete de platino y/o inmunoterapia perioperatoria/consolidacion según ECOG, órganos y comorbilidad?"
   },
   {
    "key": "riesgo_recaida",
@@ -484,7 +484,7 @@
      ]
     }
    ],
-   "instrucciones": "Estima el riesgo de recaida postoperatoria integrando estadio, N, tamano, histologia y margenes.",
+   "instrucciones": "Estima el riesgo de recaída postoperatoria integrando estadio, N, tamaño, histología y margenes.",
    "criterios": [
     "bajo",
     "intermedio",
@@ -527,7 +527,7 @@
     "campo": "pdl1_tps",
     "missing": true
    },
-   "texto": "PD-L1 no disponible: puede influir en inmunoterapia perioperatoria y en discusion de beneficio."
+   "texto": "PD-L1 no disponible: puede influir en inmunoterapia perioperatoria y en discusión de beneficio."
   },
   {
    "cuando": {

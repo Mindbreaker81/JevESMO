@@ -32,7 +32,7 @@
     "escision_bcc"
    ],
    "obtenido": "escision_bcc",
-   "obtenido_label": "Escision quirurgica estandar",
+   "obtenido_label": "Escisión quirúrgica estándar",
    "confianza": 1.0,
    "revision": false,
    "motivos_revision": [],
@@ -52,7 +52,7 @@
     "mohs_bcc_alto_riesgo"
    ],
    "obtenido": "mohs_bcc_alto_riesgo",
-   "obtenido_label": "Cirugia micrografica de Mohs",
+   "obtenido_label": "Cirugía micrográfica de Mohs",
    "confianza": 1.0,
    "revision": false,
    "motivos_revision": [],
@@ -104,7 +104,7 @@
   },
   {
    "id": "CARCINOMA_BASOCELULAR-V05",
-   "titulo": "Metastasico 1L",
+   "titulo": "Metastásico 1L",
    "fuente": "HHI",
    "esperado_tipo": "recomendacion",
    "esperado": "vismo_soni_bcc",
@@ -144,7 +144,7 @@
   },
   {
    "id": "CARCINOMA_BASOCELULAR-V07",
-   "titulo": "No sistemico",
+   "titulo": "No sistémico",
    "fuente": "RT paliativa",
    "esperado_tipo": "recomendacion",
    "esperado": "rt_paliativa_bcc",
@@ -164,7 +164,7 @@
   },
   {
    "id": "CARCINOMA_BASOCELULAR-V08",
-   "titulo": "Falta situacion",
+   "titulo": "Falta situación",
    "fuente": "Dato imprescindible",
    "esperado_tipo": "necesita_datos",
    "esperado": "necesita_datos",

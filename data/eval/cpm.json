@@ -1,7 +1,7 @@
 {
  "tumor": "cpm",
- "nombre": "Cancer de pulmon microcitico",
- "grupo": "Toracico",
+ "nombre": "Cáncer de pulmón microcítico",
+ "grupo": "Torácico",
  "version": "CPM-ESMO-2025.1",
  "fecha": "2026-09-27T18:58:41+00:00",
  "modelo": "jev-latest",
@@ -32,7 +32,7 @@
     "qrt_concurrente_limitado"
    ],
    "obtenido": "qrt_concurrente_limitado",
-   "obtenido_label": "Cisplatino/etoposido + RT toracica concurrente",
+   "obtenido_label": "Cisplatino/etoposido + RT torácica concurrente",
    "confianza": 1.0,
    "revision": true,
    "motivos_revision": [
@@ -46,7 +46,7 @@
   },
   {
    "id": "CPM-V02",
-   "titulo": "Limitado tras QRT sin progresion",
+   "titulo": "Limitado tras QRT sin progresión",
    "fuente": "ADRIATIC: durvalumab consolidacion",
    "esperado_tipo": "recomendacion",
    "esperado": "durvalumab_adriatic",
@@ -55,7 +55,7 @@
     "pci_o_rm"
    ],
    "obtenido": "durvalumab_adriatic",
-   "obtenido_label": "Durvalumab consolidacion tras QRT",
+   "obtenido_label": "Durvalumab consolidación tras QRT",
    "confianza": 0.79,
    "revision": true,
    "motivos_revision": [
@@ -69,7 +69,7 @@
   },
   {
    "id": "CPM-V03",
-   "titulo": "Extenso primera linea",
+   "titulo": "Extenso primera línea",
    "fuente": "IMpower133/CASPIAN",
    "esperado_tipo": "recomendacion",
    "esperado": "platino_etoposido_ici_extenso",
@@ -90,7 +90,7 @@
   },
   {
    "id": "CPM-V04",
-   "titulo": "Recaida sensible",
+   "titulo": "Recaída sensible",
    "fuente": "ESMO SCLC recaida sensible",
    "esperado_tipo": "recomendacion",
    "esperado": "reinduccion_platino",
@@ -99,7 +99,7 @@
     "lurbinectedina_topotecan"
    ],
    "obtenido": "reinduccion_platino",
-   "obtenido_label": "Reinduccion con platino-etoposido",
+   "obtenido_label": "Reinducción con platino-etoposido",
    "confianza": 0.55,
    "revision": true,
    "motivos_revision": [
@@ -113,7 +113,7 @@
   },
   {
    "id": "CPM-V05",
-   "titulo": "Refractario segunda linea",
+   "titulo": "Refractario segunda línea",
    "fuente": "ESMO: topotecan/lurbinectedina",
    "esperado_tipo": "recomendacion",
    "esperado": "lurbinectedina_topotecan",
@@ -137,7 +137,7 @@
   },
   {
    "id": "CPM-V06",
-   "titulo": "Tercera linea tarlatamab",
+   "titulo": "Tercera línea tarlatamab",
    "fuente": "DeLLphi-301/tarlatamab",
    "esperado_tipo": "recomendacion",
    "esperado": "tarlatamab",
@@ -158,7 +158,7 @@
   },
   {
    "id": "CPM-V07",
-   "titulo": "Extension desconocida",
+   "titulo": "Extensión desconocida",
    "fuente": "ESMO: limitado vs extenso define tratamiento",
    "esperado_tipo": "necesita_datos",
    "esperado": "necesita_datos",

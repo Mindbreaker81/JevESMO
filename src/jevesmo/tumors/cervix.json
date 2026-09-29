@@ -1,7 +1,7 @@
 {
  "id": "cervix",
- "nombre": "Cancer de cervix",
- "grupo": "Ginecologico",
+ "nombre": "Cáncer de cérvix",
+ "grupo": "Ginecológico",
  "version": "CERVIX-ESMO-2025.1",
  "guias": [
   {
@@ -15,7 +15,7 @@
    "url": "https://www.esmo.org/guidelines/living-guidelines"
   }
  ],
- "descripcion": "Cancer de cervix: cirugia precoz, quimiorradioterapia con braquiterapia, pembrolizumab con QRT, induccion INTERLACE y sistemico avanzado.",
+ "descripcion": "Cáncer de cérvix: cirugía precoz, quimiorradioterapia con braquiterapia, pembrolizumab con QRT, inducción INTERLACE y sistémico avanzado.",
  "campos": [
   {
    "id": "estadio_figo",
@@ -29,11 +29,11 @@
     "IVB_recurrente"
    ],
    "requerido": true,
-   "pregunta": "¿Cual es el estadio FIGO agrupado?"
+   "pregunta": "¿Cuál es el estadio FIGO agrupado?"
   },
   {
    "id": "histologia",
-   "label": "Histologia",
+   "label": "Histología",
    "tipo": "choice",
    "opciones": [
     "escamoso",
@@ -43,11 +43,11 @@
     "otro"
    ],
    "requerido": true,
-   "pregunta": "¿Cual es la histologia?"
+   "pregunta": "¿Cuál es la histología?"
   },
   {
    "id": "tamano_cm",
-   "label": "Tamano tumoral",
+   "label": "Tamaño tumoral",
    "tipo": "number",
    "min": 0,
    "max": 20,
@@ -60,7 +60,7 @@
   },
   {
    "id": "margenes_o_parametrios",
-   "label": "Margenes/parametrios positivos tras cirugia",
+   "label": "Margenes/parametrios positivos tras cirugía",
    "tipo": "bool"
   },
   {
@@ -73,7 +73,7 @@
     "campo": "estadio_figo",
     "eq": "IVB_recurrente"
    },
-   "pregunta": "En enfermedad persistente/recurrente/metastasica, ¿cual es el PD-L1 CPS?"
+   "pregunta": "En enfermedad persistente/recurrente/metastasica, ¿cuál es el PD-L1 CPS?"
   },
   {
    "id": "candidato_cisplatino",
@@ -82,14 +82,14 @@
   },
   {
    "id": "contra_bev",
-   "label": "Contraindicacion para bevacizumab",
+   "label": "Contraindicación para bevacizumab",
    "tipo": "bool"
   }
  ],
  "derivados": [
   {
    "id": "entorno",
-   "label": "Entorno clinico",
+   "label": "Entorno clínico",
    "defecto": "localmente_avanzado",
    "reglas": [
     {
@@ -116,8 +116,8 @@
  "opciones": [
   {
    "id": "conizacion_ia1",
-   "label": "Conizacion o histerectomia simple",
-   "nota": "ESMO: IA1 sin invasion linfovascular puede tratarse con conizacion/histerectomia simple con margenes negativos.",
+   "label": "Conización o histerectomía simple",
+   "nota": "ESMO: IA1 sin invasión linfovascular puede tratarse con conización/histerectomia simple con margenes negativos.",
    "cuando": {
     "campo": "estadio_figo",
     "eq": "IA1"
@@ -129,8 +129,8 @@
   },
   {
    "id": "histerectomia_radical_ganglio",
-   "label": "Histerectomia radical/trachelectomia + estadiaje ganglionar",
-   "nota": "ESMO: IA2-IB1 operable -> cirugia radical adaptada y ganglio centinela/linfadenectomia segun riesgo.",
+   "label": "Histerectomía radical/trachelectomia + estadiaje ganglionar",
+   "nota": "ESMO: IA2-IB1 operable -> cirugía radical adaptada y ganglio centinela/linfadenectomia según riesgo.",
    "cuando": {
     "campo": "estadio_figo",
     "eq": "IA2_IB1"
@@ -142,8 +142,8 @@
   },
   {
    "id": "cirugia_o_qrt_ib2_iia",
-   "label": "Cirugia radical o quimiorradioterapia",
-   "nota": "ESMO: IB2-IIA puede manejarse con cirugia radical seleccionada o QRT si tumor voluminoso/riesgo de adyuvancia multimodal.",
+   "label": "Cirugía radical o quimiorradioterapia",
+   "nota": "ESMO: IB2-IIA puede manejarse con cirugía radical seleccionada o QRT si tumor voluminoso/riesgo de adyuvancia multimodal.",
    "cuando": {
     "campo": "estadio_figo",
     "eq": "IB2_IIA"
@@ -157,7 +157,7 @@
   {
    "id": "qrt_braquiterapia",
    "label": "Quimiorradioterapia con cisplatino + braquiterapia",
-   "nota": "ESMO: IIB-IVA o no quirurgico -> radioterapia externa con cisplatino semanal y braquiterapia.",
+   "nota": "ESMO: IIB-IVA o no quirúrgico -> radioterapia externa con cisplatino semanal y braquiterapia.",
    "cuando": {
     "campo": "estadio_figo",
     "eq": "IIB_IVA"
@@ -201,8 +201,8 @@
   },
   {
    "id": "induccion_interlace",
-   "label": "Induccion carboplatino-paclitaxel semanal seguida de QRT",
-   "nota": "INTERLACE: IB1 ganglio positivo, IB2-IIA o IIB-IVA seleccionadas pueden recibir induccion corta antes de QRT.",
+   "label": "Inducción carboplatino-paclitaxel semanal seguida de QRT",
+   "nota": "INTERLACE: IB1 ganglio positivo, IB2-IIA o IIB-IVA seleccionadas pueden recibir inducción corta antes de QRT.",
    "cuando": [
     {
      "campo": "estadio_figo",
@@ -227,7 +227,7 @@
   {
    "id": "adyuvante_qrt_postqx",
    "label": "QRT adyuvante postoperatoria",
-   "nota": "ESMO: margenes positivos, parametrio positivo o ganglios positivos tras cirugia -> QRT adyuvante basada en cisplatino.",
+   "nota": "ESMO: margenes positivos, parametrio positivo o ganglios positivos tras cirugía -> QRT adyuvante basada en cisplatino.",
    "cuando": {
     "campo": "margenes_o_parametrios",
     "eq": true
@@ -240,7 +240,7 @@
   {
    "id": "pembro_platino_taxol_bev_1l",
    "label": "Pembrolizumab + platino-paclitaxel +- bevacizumab",
-   "nota": "KEYNOTE-826/ESMO: persistente, recurrente o metastasico con PD-L1 CPS>=1 -> pembrolizumab + platino-paclitaxel, con bevacizumab si apropiado.",
+   "nota": "KEYNOTE-826/ESMO: persistente, recurrente o metastásico con PD-L1 CPS>=1 -> pembrolizumab + platino-paclitaxel, con bevacizumab si apropiado.",
    "cuando": [
     {
      "campo": "estadio_figo",
@@ -305,7 +305,7 @@
   {
    "id": "tisotumab_2l",
    "label": "Tisotumab vedotina",
-   "nota": "innovaTV 301/ESMO: tras progresion a quimioterapia en recurrente/metastasico, tisotumab vedotina mejora supervivencia frente a quimioterapia.",
+   "nota": "innovaTV 301/ESMO: tras progresión a quimioterapia en recurrente/metastasico, tisotumab vedotina mejora supervivencia frente a quimioterapia.",
    "cuando": [
     {
      "campo": "estadio_figo",
@@ -324,7 +324,7 @@
   {
    "id": "cemiplimab_2l",
    "label": "Cemiplimab",
-   "nota": "EMPOWER-Cervical 1/ESMO: tras platino, cemiplimab es opcion en cancer cervical recurrente/metastasico independientemente de PD-L1.",
+   "nota": "EMPOWER-Cervical 1/ESMO: tras platino, cemiplimab es opción en cáncer cervical recurrente/metastasico independientemente de PD-L1.",
    "cuando": [
     {
      "campo": "estadio_figo",
@@ -343,7 +343,7 @@
   {
    "id": "soporte_cervix",
    "label": "Soporte y radioterapia paliativa",
-   "nota": "ESMO: ECOG 3-4 o sintomas locales/metastaticos no candidatos a sistemico -> soporte y RT paliativa.",
+   "nota": "ESMO: ECOG 3-4 o síntomas locales/metastaticos no candidatos a sistémico -> soporte y RT paliativa.",
    "cuando": {
     "campo": "ecog",
     "in": [
@@ -370,7 +370,7 @@
      "IA2_IB1"
     ]
    },
-   "instrucciones": "¿La paciente desea y es candidata a preservacion de fertilidad?"
+   "instrucciones": "¿La paciente desea y es candidata a preservación de fertilidad?"
   },
   {
    "key": "alto_riesgo_local",
@@ -393,7 +393,7 @@
     "campo": "estadio_figo",
     "eq": "IVB_recurrente"
    },
-   "instrucciones": "¿Es apropiado anadir bevacizumab considerando fistulas, sangrado, trombosis e HTA?"
+   "instrucciones": "¿Es apropiado anadir bevacizumab considerando fístulas, sangrado, trombosis e HTA?"
   }
  ],
  "seguridad": [
@@ -406,8 +406,8 @@
    "bloquea_componentes": [
     "antiangiogenico"
    ],
-   "instrucciones": "¿Riesgo inaceptable de fistula, sangrado, perforacion o HTA para bevacizumab?",
-   "motivo": "Contraindicacion para bevacizumab"
+   "instrucciones": "¿Riesgo inaceptable de fístula, sangrado, perforación o HTA para bevacizumab?",
+   "motivo": "Contraindicación para bevacizumab"
   },
   {
    "key": "contra_ici_cervix",
@@ -418,7 +418,7 @@
    "bloquea_componentes": [
     "inmunoterapia"
    ],
-   "instrucciones": "¿Existe contraindicacion mayor para inmunoterapia?",
+   "instrucciones": "¿Existe contraindicación mayor para inmunoterapia?",
    "motivo": "Riesgo inaceptable para inmunoterapia"
   }
  ],
@@ -441,7 +441,7 @@
     "campo": "candidato_cisplatino",
     "eq": false
    },
-   "texto": "No candidata a cisplatino: adaptar radiosensibilizacion; revision multidisciplinar."
+   "texto": "No candidata a cisplatino: adaptar radiosensibilización; revisión multidisciplinar."
   }
  ],
  "vinetas": [
@@ -553,7 +553,7 @@
   },
   {
    "id": "CERVIX-V06",
-   "titulo": "Metastasico CPS positivo 1L",
+   "titulo": "Metastásico CPS positivo 1L",
    "fuente": "KEYNOTE-826",
    "payload": {
     "edad": 56,
@@ -575,7 +575,7 @@
   },
   {
    "id": "CERVIX-V07",
-   "titulo": "Metastasico CPS negativo",
+   "titulo": "Metastásico CPS negativo",
    "fuente": "GOG-240",
    "payload": {
     "edad": 61,
@@ -597,7 +597,7 @@
   },
   {
    "id": "CERVIX-V08",
-   "titulo": "Progresion tras platino",
+   "titulo": "Progresión tras platino",
    "fuente": "innovaTV/EMPOWER",
    "payload": {
     "edad": 58,
@@ -638,7 +638,7 @@
   },
   {
    "id": "CERVIX-V10",
-   "titulo": "ECOG 4 metastasico",
+   "titulo": "ECOG 4 metastásico",
    "fuente": "ESMO palliative care",
    "payload": {
     "edad": 79,

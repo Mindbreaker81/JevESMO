@@ -1,6 +1,6 @@
 {
  "tumor": "ccr_metastasico",
- "nombre": "Cancer colorrectal metastasico",
+ "nombre": "Cáncer colorrectal metastásico",
  "grupo": "Digestivo",
  "version": "ccr_metastasico-ESMO-2026.1",
  "fecha": "2026-09-27T18:58:37+00:00",
@@ -99,7 +99,7 @@
     "doublet_bev_1l"
    ],
    "obtenido": "folfoxiri_bev_conversion",
-   "obtenido_label": "FOLFOXIRI + bevacizumab de conversion",
+   "obtenido_label": "FOLFOXIRI + bevacizumab de conversión",
    "confianza": 0.97,
    "revision": true,
    "motivos_revision": [

@@ -1,7 +1,7 @@
 {
  "id": "llc",
- "nombre": "Leucemia linfocitica cronica",
- "grupo": "Hematologia",
+ "nombre": "Leucemia linfocítica crónica",
+ "grupo": "Hematología",
  "version": "CLL-ESMO-2024.1",
  "guias": [
   {
@@ -10,7 +10,7 @@
    "url": "https://www.esmo.org/guidelines/haematological-malignancies/chronic-lymphocytic-leukaemia"
   }
  ],
- "descripcion": "LLC: indicacion iwCLL, Binet/Rai, TP53/del17p, IGHV, BTKi continuo frente a venetoclax-obinutuzumab y recaida.",
+ "descripcion": "LLC: indicación iwCLL, Binet/Rai, TP53/del17p, IGHV, BTKi continuo frente a venetoclax-obinutuzumab y recaída.",
  "campos": [
   {
    "id": "estadio_cll",
@@ -22,11 +22,11 @@
     "Binet_C_Rai_III_IV"
    ],
    "requerido": true,
-   "pregunta": "¿Cual es el estadio Binet/Rai?"
+   "pregunta": "¿Cuál es el estadio Binet/Rai?"
   },
   {
    "id": "indicacion_iwcll",
-   "label": "Indicacion iwCLL de tratamiento",
+   "label": "Indicación iwCLL de tratamiento",
    "tipo": "bool",
    "requerido": true,
    "pregunta": "¿Cumple criterios iwCLL para iniciar tratamiento?"
@@ -44,7 +44,7 @@
     "campo": "indicacion_iwcll",
     "eq": true
    },
-   "pregunta": "¿Hay mutacion TP53 o delecion 17p?"
+   "pregunta": "¿Hay mutación TP53 o deleción 17p?"
   },
   {
    "id": "ighv",
@@ -59,17 +59,17 @@
     "campo": "indicacion_iwcll",
     "eq": true
    },
-   "pregunta": "¿Cual es el estado IGHV?"
+   "pregunta": "¿Cuál es el estado IGHV?"
   },
   {
    "id": "cardiopatia_anticoagulacion",
-   "label": "Cardiopatia significativa o anticoagulacion",
+   "label": "Cardiopatía significativa o anticoagulación",
    "tipo": "bool",
    "seccion": "Seguridad"
   },
   {
    "id": "preferencia_tiempo_fijo",
-   "label": "Preferencia por tratamiento de duracion fija",
+   "label": "Preferencia por tratamiento de duración fija",
    "tipo": "bool",
    "seccion": "Preferencias"
   }
@@ -77,7 +77,7 @@
  "derivados": [
   {
    "id": "situacion",
-   "label": "Situacion clinica",
+   "label": "Situación clínica",
    "defecto": "primera_linea",
    "reglas": [
     {
@@ -93,7 +93,7 @@
  "opciones": [
   {
    "id": "observacion",
-   "label": "Observacion activa",
+   "label": "Observación activa",
    "nota": "ESMO CLL: sin criterios iwCLL de tratamiento -> watch and wait, incluso en estadios iniciales",
    "cuando": [
     {
@@ -109,7 +109,7 @@
   {
    "id": "btki_1l",
    "label": "Inhibidor BTK covalente continuo (acalabrutinib/zanubrutinib/ibrutinib)",
-   "nota": "ESMO CLL: primera linea con iwCLL, especialmente TP53/del17p o IGHV no mutado; BTKi continuo evita quimio",
+   "nota": "ESMO CLL: primera línea con iwCLL, especialmente TP53/del17p o IGHV no mutado; BTKi continuo evita quimio",
    "cuando": [
     {
      "campo": "situacion",
@@ -134,7 +134,7 @@
   {
    "id": "ven_obinu_1l",
    "label": "Venetoclax + obinutuzumab tiempo fijo",
-   "nota": "ESMO CLL: primera linea sin TP53 alterado o si se prioriza duracion fija; CLL14",
+   "nota": "ESMO CLL: primera línea sin TP53 alterado o si se prioriza duración fija; CLL14",
    "cuando": [
     {
      "campo": "situacion",
@@ -160,7 +160,7 @@
   {
    "id": "ven_obinu_tp53",
    "label": "Venetoclax + obinutuzumab si BTKi no adecuado",
-   "nota": "ESMO CLL: TP53/del17p con contraindicacion/preferencia contra BTKi -> venetoclax-obinutuzumab puede ser opcion",
+   "nota": "ESMO CLL: TP53/del17p con contraindicación/preferencia contra BTKi -> venetoclax-obinutuzumab puede ser opción",
    "cuando": [
     {
      "campo": "situacion",
@@ -188,7 +188,7 @@
   {
    "id": "ven_ibrutinib_1l",
    "label": "Venetoclax + ibrutinib tiempo fijo",
-   "nota": "ESMO CLL: opcion de duracion fija oral en primera linea seleccionada (GLOW/CAPTIVATE), si no hay alto riesgo cardiovascular",
+   "nota": "ESMO CLL: opción de duración fija oral en primera línea seleccionada (GLOW/CAPTIVATE), si no hay alto riesgo cardiovascular",
    "cuando": [
     {
      "campo": "situacion",
@@ -217,7 +217,7 @@
   {
    "id": "fitcr_ighv_mutado",
    "label": "FCR/BR solo en casos seleccionados IGHV mutado",
-   "nota": "ESMO CLL: inmunoquimioterapia restringida a jovenes/fit con IGHV mutado, TP53 normal y decision informada",
+   "nota": "ESMO CLL: inmunoquimioterapia restringida a jovenes/fit con IGHV mutado, TP53 normal y decisión informada",
    "cuando": [
     {
      "campo": "situacion",
@@ -249,7 +249,7 @@
   {
    "id": "venetoclax_recaida_post_btki",
    "label": "Venetoclax + rituximab/obinutuzumab tras BTKi",
-   "nota": "ESMO CLL: recaida/progresion tras BTKi -> cambiar a venetoclax basado en anti-CD20 si procede",
+   "nota": "ESMO CLL: recaída/progresion tras BTKi -> cambiar a venetoclax basado en anti-CD20 si procede",
    "cuando": [
     {
      "campo": "situacion",
@@ -269,7 +269,7 @@
   {
    "id": "btki_recaida_post_ven",
    "label": "BTKi covalente o no covalente tras venetoclax",
-   "nota": "ESMO CLL: recaida tras venetoclax sin exposicion a BTKi -> acalabrutinib/zanubrutinib; tras BTKi considerar pirtobrutinib/ensayo",
+   "nota": "ESMO CLL: recaída tras venetoclax sin exposición a BTKi -> acalabrutinib/zanubrutinib; tras BTKi considerar pirtobrutinib/ensayo",
    "cuando": [
     {
      "campo": "situacion",
@@ -287,8 +287,8 @@
   },
   {
    "id": "pirtobrutinib_ensayo",
-   "label": "Pirtobrutinib/ensayo clinico en doble expuesto",
-   "nota": "ESMO CLL: recaida tras BTKi y venetoclax -> inhibidor BTK no covalente, ensayo o terapia celular si disponible",
+   "label": "Pirtobrutinib/ensayo clínico en doble expuesto",
+   "nota": "ESMO CLL: recaída tras BTKi y venetoclax -> inhibidor BTK no covalente, ensayo o terapia celular si disponible",
    "cuando": [
     {
      "campo": "situacion",
@@ -318,7 +318,7 @@
     "campo": "indicacion_iwcll",
     "eq": true
    },
-   "instrucciones": "¿La indicacion iwCLL es clara y no se debe a causas reversibles?"
+   "instrucciones": "¿La indicación iwCLL es clara y no se debe a causas reversibles?"
   },
   {
    "key": "preferencia_continuo_vs_fijo",
@@ -328,10 +328,10 @@
     "campo": "indicacion_iwcll",
     "eq": true
    },
-   "instrucciones": "Si hay varias opciones, ¿que estrategia encaja mejor?",
+   "instrucciones": "Si hay varias opciones, ¿qué estrategia encaja mejor?",
    "criterios": {
     "continuo": "Tratamiento continuo oral con BTKi",
-    "fijo": "Duracion fija con venetoclax-obinutuzumab/venetoclax-ibrutinib"
+    "fijo": "Duración fija con venetoclax-obinutuzumab/venetoclax-ibrutinib"
    }
   }
  ],
@@ -347,7 +347,7 @@
     "ven_ibrutinib_1l",
     "btki_recaida_post_ven"
    ],
-   "instrucciones": "Con fibrilacion auricular, insuficiencia cardiaca, hipertension no controlada o anticoagulacion, ¿el riesgo de BTKi es inaceptable?",
+   "instrucciones": "Con fibrilación auricular, insuficiencia cardiaca, hipertensión no controlada o anticoagulación, ¿el riesgo de BTKi es inaceptable?",
    "umbral": 0.55,
    "motivo": "Riesgo cardiovascular/hemorragico alto con BTKi"
   },
@@ -371,14 +371,14 @@
     "campo": "tp53_del17p",
     "eq": "desconocido"
    },
-   "texto": "TP53/del17p desconocido: debe testarse antes de primera linea o recaida."
+   "texto": "TP53/del17p desconocido: debe testarse antes de primera línea o recaída."
   },
   {
    "cuando": {
     "campo": "ighv",
     "eq": "desconocido"
    },
-   "texto": "IGHV desconocido: modifica duracion esperada de respuesta y evita inmunoquimioterapia inapropiada."
+   "texto": "IGHV desconocido: modifica duración esperada de respuesta y evita inmunoquimioterapia inapropiada."
   }
  ],
  "vinetas": [
@@ -402,7 +402,7 @@
   },
   {
    "id": "LLC-V02",
-   "titulo": "TP53 alterado primera linea",
+   "titulo": "TP53 alterado primera línea",
    "fuente": "ESMO TP53/del17p",
    "payload": {
     "edad": 72,
@@ -470,7 +470,7 @@
   },
   {
    "id": "LLC-V05",
-   "titulo": "Cardiopatia anticoagulacion",
+   "titulo": "Cardiopatía anticoagulación",
    "fuente": "Seguridad BTKi",
    "payload": {
     "edad": 78,
@@ -494,7 +494,7 @@
   },
   {
    "id": "LLC-V06",
-   "titulo": "Recaida post-BTKi",
+   "titulo": "Recaída post-BTKi",
    "fuente": "ESMO secuencia",
    "payload": {
     "edad": 70,

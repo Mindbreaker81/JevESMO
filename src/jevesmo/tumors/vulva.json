@@ -1,7 +1,7 @@
 {
  "id": "vulva",
  "nombre": "Carcinoma escamoso de vulva",
- "grupo": "Ginecologico",
+ "grupo": "Ginecológico",
  "version": "VULVA-ESMO-2023.1",
  "guias": [
   {
@@ -15,7 +15,7 @@
    "url": "https://www.esmo.org/guidelines/gynaecological-cancers/vulvar-cancer"
   }
  ],
- "descripcion": "Carcinoma escamoso de vulva: cirugia local, ganglio centinela, linfadenectomia, RT/QRT adyuvante y avanzado.",
+ "descripcion": "Carcinoma escamoso de vulva: cirugía local, ganglio centinela, linfadenectomía, RT/QRT adyuvante y avanzado.",
  "campos": [
   {
    "id": "estadio",
@@ -29,11 +29,11 @@
     "IVB_recurrente"
    ],
    "requerido": true,
-   "pregunta": "¿Cual es el estadio FIGO?"
+   "pregunta": "¿Cuál es el estadio FIGO?"
   },
   {
    "id": "histologia",
-   "label": "Histologia",
+   "label": "Histología",
    "tipo": "choice",
    "opciones": [
     "escamoso",
@@ -42,11 +42,11 @@
     "otro"
    ],
    "requerido": true,
-   "pregunta": "¿Cual es la histologia?"
+   "pregunta": "¿Cuál es la histología?"
   },
   {
    "id": "tamano_cm",
-   "label": "Tamano tumoral",
+   "label": "Tamaño tumoral",
    "tipo": "number",
    "min": 0,
    "max": 20,
@@ -54,7 +54,7 @@
   },
   {
    "id": "profundidad_mm",
-   "label": "Profundidad de invasion",
+   "label": "Profundidad de invasión",
    "tipo": "number",
    "min": 0,
    "max": 50,
@@ -72,7 +72,7 @@
   },
   {
    "id": "ganglios_positivos",
-   "label": "Ganglios positivos patologicos",
+   "label": "Ganglios positivos patológicos",
    "tipo": "choice",
    "opciones": [
     "ninguno",
@@ -84,7 +84,7 @@
   },
   {
    "id": "margenes",
-   "label": "Margenes quirurgicos",
+   "label": "Margenes quirúrgicos",
    "tipo": "choice",
    "opciones": [
     "negativos",
@@ -95,7 +95,7 @@
   },
   {
    "id": "resecable",
-   "label": "Resecable sin exenteracion mutilante",
+   "label": "Resecable sin exenteración mutilante",
    "tipo": "bool",
    "requerido_si": {
     "campo": "estadio",
@@ -104,7 +104,7 @@
      "IVB_recurrente"
     ]
    },
-   "pregunta": "En enfermedad avanzada/recurrente, ¿es resecable sin exenteracion mutilante?"
+   "pregunta": "En enfermedad avanzada/recurrente, ¿es resecable sin exenteración mutilante?"
   }
  ],
  "derivados": [
@@ -148,8 +148,8 @@
  "opciones": [
   {
    "id": "escision_local_ia",
-   "label": "Escision local amplia sin estadiaje ganglionar",
-   "nota": "ESGO/ESMO: lesion escamosa IA con invasion <=1 mm tiene riesgo ganglionar despreciable; escision local con margenes adecuados.",
+   "label": "Escisión local amplia sin estadiaje ganglionar",
+   "nota": "ESGO/ESMO: lesión escamosa IA con invasión <=1 mm tiene riesgo ganglionar despreciable; escisión local con margenes adecuados.",
    "cuando": [
     {
      "campo": "estadio",
@@ -167,8 +167,8 @@
   },
   {
    "id": "escision_ganglio_centinela",
-   "label": "Escision radical local + ganglio centinela",
-   "nota": "ESGO/ESMO: tumor unifocal <4 cm, invasion >1 mm, ganglios clinicamente negativos -> biopsia de ganglio centinela.",
+   "label": "Escisión radical local + ganglio centinela",
+   "nota": "ESGO/ESMO: tumor unifocal <4 cm, invasión >1 mm, ganglios clinicamente negativos -> biopsia de ganglio centinela.",
    "cuando": {
     "campo": "candidata_gcentinela",
     "eq": true
@@ -180,8 +180,8 @@
   },
   {
    "id": "escision_linfadenectomia",
-   "label": "Escision radical local + linfadenectomia inguinofemoral",
-   "nota": "ESGO/ESMO: tumor >=4 cm, multifocal o ganglios sospechosos/no candidato a centinela -> linfadenectomia inguinofemoral.",
+   "label": "Escisión radical local + linfadenectomía inguinofemoral",
+   "nota": "ESGO/ESMO: tumor >=4 cm, multifocal o ganglios sospechosos/no candidato a centinela -> linfadenectomía inguinofemoral.",
    "cuando": [
     {
      "campo": "estadio",
@@ -232,7 +232,7 @@
   {
    "id": "rt_inguinal_adyuvante",
    "label": "Radioterapia inguinofemoral/pelvica adyuvante",
-   "nota": "ESGO/ESMO: ganglio centinela macrometastasico, multiples ganglios o factores de alto riesgo -> radioterapia nodal adyuvante.",
+   "nota": "ESGO/ESMO: ganglio centinela macrometastásico, multiples ganglios o factores de alto riesgo -> radioterapia nodal adyuvante.",
    "cuando": {
     "campo": "ganglios_positivos",
     "in": [
@@ -248,7 +248,7 @@
   {
    "id": "qrt_adyuvante_extranodal",
    "label": "Quimiorradioterapia adyuvante",
-   "nota": "ESGO/ESMO: extension extranodal o enfermedad ganglionar voluminosa/alto riesgo -> considerar quimiorradioterapia adyuvante.",
+   "nota": "ESGO/ESMO: extensión extranodal o enfermedad ganglionar voluminosa/alto riesgo -> considerar quimiorradioterapia adyuvante.",
    "cuando": {
     "campo": "ganglios_positivos",
     "eq": "extranodal"
@@ -261,7 +261,7 @@
   {
    "id": "qrt_definitiva_avanzada",
    "label": "Quimiorradioterapia definitiva/neoadyuvante",
-   "nota": "ESGO/ESMO: enfermedad localmente avanzada no resecable sin gran mutilacion -> QRT definitiva o neoadyuvante para preservar organos.",
+   "nota": "ESGO/ESMO: enfermedad localmente avanzada no resecable sin gran mutilación -> QRT definitiva o neoadyuvante para preservar órganos.",
    "cuando": [
     {
      "campo": "estadio",
@@ -279,8 +279,8 @@
   },
   {
    "id": "cirugia_avanzada_resecable",
-   "label": "Cirugia radical individualizada +- reconstruccion",
-   "nota": "ESGO/ESMO: enfermedad localmente avanzada resecable con morbilidad aceptable -> cirugia radical en centro experto, adyuvancia segun patologia.",
+   "label": "Cirugía radical individualizada +- reconstrucción",
+   "nota": "ESGO/ESMO: enfermedad localmente avanzada resecable con morbilidad aceptable -> cirugía radical en centro experto, adyuvancia según patología.",
    "cuando": [
     {
      "campo": "estadio",
@@ -298,8 +298,8 @@
   },
   {
    "id": "sistemico_paliativo",
-   "label": "Tratamiento sistemico paliativo/ensayo clinico",
-   "nota": "ESGO/ESMO: metastasico o recurrente no curable -> quimioterapia basada en platino/taxano, inmunoterapia si biomarcadores, ensayo clinico y objetivos paliativos.",
+   "label": "Tratamiento sistémico paliativo/ensayo clínico",
+   "nota": "ESGO/ESMO: metastásico o recurrente no curable -> quimioterapia basada en platino/taxano, inmunoterapia si biomarcadores, ensayo clínico y objetivos paliativos.",
    "cuando": {
     "campo": "estadio",
     "eq": "IVB_recurrente"
@@ -313,8 +313,8 @@
   },
   {
    "id": "soporte_vulva",
-   "label": "Soporte, control local de sintomas y cuidados paliativos",
-   "nota": "ESGO/ESMO: ECOG 3-4 o enfermedad no candidata a tratamiento activo -> control de dolor, sangrado, infeccion y soporte integral.",
+   "label": "Soporte, control local de síntomas y cuidados paliativos",
+   "nota": "ESGO/ESMO: ECOG 3-4 o enfermedad no candidata a tratamiento activo -> control de dolor, sangrado, infección y soporte integral.",
    "cuando": {
     "campo": "ecog",
     "in": [
@@ -351,10 +351,10 @@
     "campo": "estadio",
     "eq": "IVA"
    },
-   "instrucciones": "Valora preservacion de organos y morbilidad quirurgica.",
+   "instrucciones": "Valora preservación de órganos y morbilidad quirúrgica.",
    "criterios": {
-    "quirurgica": "Reseccion factible",
-    "qrt": "Cirugia mutilante; preferir QRT"
+    "quirurgica": "Resección factible",
+    "qrt": "Cirugía mutilante; preferir QRT"
    }
   },
   {
@@ -382,7 +382,7 @@
    "bloquea_componentes": [
     "quimiorradioterapia"
    ],
-   "instrucciones": "¿La insuficiencia renal contraindica cisplatino/radiosensibilizacion estandar?",
+   "instrucciones": "¿La insuficiencia renal contraindica cisplatino/radiosensibilizacion estándar?",
    "motivo": "Insuficiencia renal limita QRT con cisplatino"
   }
  ],
@@ -392,14 +392,14 @@
     "campo": "ganglios_positivos",
     "eq": "desconocido"
    },
-   "texto": "Estado ganglionar desconocido: cambia indicacion de RT/QRT."
+   "texto": "Estado ganglionar desconocido: cambia indicación de RT/QRT."
   },
   {
    "cuando": {
     "campo": "margenes",
     "missing": true
    },
-   "texto": "Margenes no informados: pueden modificar indicacion de re-escision/RT."
+   "texto": "Margenes no informados: pueden modificar indicación de re-escision/RT."
   }
  ],
  "vinetas": [
@@ -526,7 +526,7 @@
   },
   {
    "id": "VULVA-V06",
-   "titulo": "Extension extranodal",
+   "titulo": "Extensión extranodal",
    "fuente": "ESGO extranodal QRT",
    "payload": {
     "edad": 63,
@@ -574,7 +574,7 @@
   },
   {
    "id": "VULVA-V08",
-   "titulo": "Metastasico recurrente",
+   "titulo": "Metastásico recurrente",
    "fuente": "ESGO palliative systemic",
    "payload": {
     "edad": 70,

@@ -1,6 +1,6 @@
 {
  "tumor": "melanoma",
- "nombre": "Melanoma cutaneo",
+ "nombre": "Melanoma cutáneo",
  "grupo": "Piel",
  "version": "MELANOMA-ESMO-2025.1",
  "fecha": "2026-09-27T18:58:55+00:00",
@@ -32,7 +32,7 @@
     "escision_vigilancia_i_iiA"
    ],
    "obtenido": "escision_vigilancia_i_iiA",
-   "obtenido_label": "Escision amplia y vigilancia",
+   "obtenido_label": "Escisión amplia y vigilancia",
    "confianza": 1.0,
    "revision": false,
    "motivos_revision": [],
@@ -107,7 +107,7 @@
   },
   {
    "id": "MELANOMA-V05",
-   "titulo": "III macroscopico",
+   "titulo": "III macroscópico",
    "fuente": "SWOG S1801",
    "esperado_tipo": "recomendacion",
    "esperado": "neoady_pembro_iii_macro",
@@ -149,7 +149,7 @@
   },
   {
    "id": "MELANOMA-V07",
-   "titulo": "IV BRAF mutado respuesta rapida",
+   "titulo": "IV BRAF mutado respuesta rápida",
    "fuente": "BRAF/MEK",
    "esperado_tipo": "recomendacion",
    "esperado": "braf_mek_iv",

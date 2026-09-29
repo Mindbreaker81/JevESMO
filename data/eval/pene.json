@@ -24,7 +24,7 @@
  "casos": [
   {
    "id": "PENE-V01",
-   "titulo": "Localizado organo-conservador",
+   "titulo": "Localizado órgano-conservador",
    "fuente": "ESMO-EURACAN penile cancer 2024 - organ sparing",
    "esperado_tipo": "recomendacion",
    "esperado": "cirugia_conservadora_pene",
@@ -32,7 +32,7 @@
     "cirugia_conservadora_pene"
    ],
    "obtenido": "cirugia_conservadora_pene",
-   "obtenido_label": "Cirugia conservadora/laser/glandectomia parcial",
+   "obtenido_label": "Cirugía conservadora/laser/glandectomia parcial",
    "confianza": 1.0,
    "revision": false,
    "motivos_revision": [],
@@ -52,7 +52,7 @@
     "penectomia_parcial_total"
    ],
    "obtenido": "penectomia_parcial_total",
-   "obtenido_label": "Penectomia parcial o total",
+   "obtenido_label": "Penectomía parcial o total",
    "confianza": 1.0,
    "revision": false,
    "motivos_revision": [],
@@ -72,7 +72,7 @@
     "linfadenectomia_inguinal"
    ],
    "obtenido": "linfadenectomia_inguinal",
-   "obtenido_label": "Linfadenectomia inguinal dinamica/radical",
+   "obtenido_label": "Linfadenectomía inguinal dinámica/radical",
    "confianza": 1.0,
    "revision": false,
    "motivos_revision": [],
@@ -104,7 +104,7 @@
   },
   {
    "id": "PENE-V05",
-   "titulo": "Metastasico 1L cisplatino-fit",
+   "titulo": "Metastásico 1L cisplatino-fit",
    "fuente": "ESMO-EURACAN penile cancer 2024 - palliative platinum chemotherapy",
    "esperado_tipo": "recomendacion",
    "esperado": "qt_paliativa_platino_pene",
@@ -112,7 +112,7 @@
     "qt_paliativa_platino_pene"
    ],
    "obtenido": "qt_paliativa_platino_pene",
-   "obtenido_label": "Quimioterapia sistemica paliativa con platino-taxano/5FU",
+   "obtenido_label": "Quimioterapia sistémica paliativa con platino-taxano/5FU",
    "confianza": 1.0,
    "revision": false,
    "motivos_revision": [],
@@ -124,7 +124,7 @@
   },
   {
    "id": "PENE-V06",
-   "titulo": "Metastasico MSI alto pretratado",
+   "titulo": "Metastásico MSI alto pretratado",
    "fuente": "ESMO-EURACAN penile cancer 2024 - biomarker-driven immunotherapy consideration",
    "esperado_tipo": "recomendacion",
    "esperado": "inmunoterapia_biomarcador_pene",
@@ -144,7 +144,7 @@
   },
   {
    "id": "PENE-V07",
-   "titulo": "Metastasico no cisplatino",
+   "titulo": "Metastásico no cisplatino",
    "fuente": "ESMO-EURACAN penile cancer 2024 - non-cisplatin palliation",
    "esperado_tipo": "recomendacion",
    "esperado": "qt_no_cis_pene",

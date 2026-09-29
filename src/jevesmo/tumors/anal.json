@@ -10,7 +10,7 @@
    "url": "https://www.esmo.org/guidelines/gastrointestinal-cancers/anal-cancer"
   }
  ],
- "descripcion": "Carcinoma escamoso anal localizado y avanzado: QRT mitomicina/5FU, rescate quirurgico, carboplatino-paclitaxel e inmunoterapia 2L.",
+ "descripcion": "Carcinoma escamoso anal localizado y avanzado: QRT mitomicina/5FU, rescate quirúrgico, carboplatino-paclitaxel e inmunoterapia 2L.",
  "campos": [
   {
    "id": "estadio_anal",
@@ -24,15 +24,15 @@
     "metastasico"
    ],
    "requerido": true,
-   "pregunta": "¿El carcinoma anal es localizado temprano, localmente avanzado, recaida local/persistente o metastasico?"
+   "pregunta": "¿El carcinoma anal es localizado temprano, localmente avanzado, recaída local/persistente o metastásico?"
   },
   {
    "id": "histologia_escamosa",
-   "label": "Histologia escamosa",
+   "label": "Histología escamosa",
    "tipo": "bool",
    "seccion": "Tumor",
    "requerido": true,
-   "pregunta": "¿La histologia es carcinoma escamoso de canal anal?"
+   "pregunta": "¿La histología es carcinoma escamoso de canal anal?"
   },
   {
    "id": "candidato_qrt",
@@ -44,7 +44,7 @@
   },
   {
    "id": "candidato_cirugia_rescate",
-   "label": "Candidato a cirugia de rescate APR",
+   "label": "Candidato a cirugía de rescate APR",
    "tipo": "bool",
    "seccion": "Tumor"
   },
@@ -56,7 +56,7 @@
   },
   {
    "id": "citopenias_graves",
-   "label": "Citopenias o infeccion no controlada",
+   "label": "Citopenias o infección no controlada",
    "tipo": "bool",
    "seccion": "Seguridad"
   },
@@ -71,7 +71,7 @@
   {
    "id": "qrt_mmc_5fu",
    "label": "QRT definitiva con mitomicina + 5-FU/capecitabina",
-   "nota": "ESMO: carcinoma escamoso anal no metastasico -> quimiorradioterapia definitiva con mitomicina y fluoropirimidina, preservacion de esfinter.",
+   "nota": "ESMO: carcinoma escamoso anal no metastásico -> quimiorradioterapia definitiva con mitomicina y fluoropirimidina, preservación de esfinter.",
    "cuando": [
     {
      "campo": "estadio_anal",
@@ -120,8 +120,8 @@
   },
   {
    "id": "escision_local_selectiva",
-   "label": "Escision local selectiva",
-   "nota": "ESMO: lesiones muy iniciales del margen anal/perianal bien diferenciadas pueden manejarse con escision local si margenes adecuados.",
+   "label": "Escisión local selectiva",
+   "nota": "ESMO: lesiones muy iniciales del margen anal/perianal bien diferenciadas pueden manejarse con escisión local si margenes adecuados.",
    "cuando": [
     {
      "campo": "estadio_anal",
@@ -139,8 +139,8 @@
   },
   {
    "id": "apr_rescate",
-   "label": "Amputacion abdominoperineal de rescate",
-   "nota": "ESMO: enfermedad persistente o recaida local tras QRT sin metastasis -> cirugia de rescate APR si resecable.",
+   "label": "Amputación abdominoperineal de rescate",
+   "nota": "ESMO: enfermedad persistente o recaída local tras QRT sin metástasis -> cirugía de rescate APR si resecable.",
    "cuando": [
     {
      "campo": "estadio_anal",
@@ -159,7 +159,7 @@
   {
    "id": "carbo_paclitaxel_1l",
    "label": "Carboplatino + paclitaxel 1L avanzado",
-   "nota": "ESMO/InterAACT: metastasica/irresecable avanzada -> carboplatino-paclitaxel preferido por tolerabilidad/supervivencia.",
+   "nota": "ESMO/InterAACT: metastásica/irresecable avanzada -> carboplatino-paclitaxel preferido por tolerabilidad/supervivencia.",
    "cuando": [
     {
      "campo": "estadio_anal",
@@ -186,7 +186,7 @@
   {
    "id": "cisplatino_5fu_1l",
    "label": "Cisplatino + 5-FU 1L avanzado",
-   "nota": "ESMO: alternativa historica en avanzado si carboplatino-paclitaxel no apropiado.",
+   "nota": "ESMO: alternativa histórica en avanzado si carboplatino-paclitaxel no apropiado.",
    "cuando": [
     {
      "campo": "estadio_anal",
@@ -213,7 +213,7 @@
   {
    "id": "retifanlimab_2l",
    "label": "Retifanlimab/nivolumab/pembrolizumab 2L",
-   "nota": "ESMO actual: progresion tras platino en carcinoma anal avanzado -> anti-PD-1.",
+   "nota": "ESMO actual: progresión tras platino en carcinoma anal avanzado -> anti-PD-1.",
    "cuando": [
     {
      "campo": "estadio_anal",
@@ -231,8 +231,8 @@
   },
   {
    "id": "ensayo_soporte_anal",
-   "label": "Ensayo clinico o soporte",
-   "nota": "ESMO: tras multiples lineas o ECOG pobre -> ensayo clinico/cuidados de soporte.",
+   "label": "Ensayo clínico o soporte",
+   "nota": "ESMO: tras multiples líneas o ECOG pobre -> ensayo clínico/cuidados de soporte.",
    "cuando": [
     {
      "campo": "estadio_anal",
@@ -258,7 +258,7 @@
     "campo": "estadio_anal",
     "eq": "localizado_temprano"
    },
-   "instrucciones": "¿Es lesion del margen anal/perianal muy inicial que permita escision local en vez de QRT?"
+   "instrucciones": "¿Es lesión del margen anal/perianal muy inicial que permita escisión local en vez de QRT?"
   },
   {
    "key": "fit_mitomicina",
@@ -278,7 +278,7 @@
     "campo": "lineas_previas",
     "gte": 1
    },
-   "instrucciones": "Tras platino, ¿el perfil clinico favorece anti-PD-1 frente a mas quimioterapia/soporte?"
+   "instrucciones": "Tras platino, ¿el perfil clínico favorece anti-PD-1 frente a más quimioterapia/soporte?"
   }
  ],
  "seguridad": [
@@ -293,7 +293,7 @@
     "quimiorradioterapia"
    ],
    "instrucciones": "Con citopenias/infeccion no controlada, ¿mitomicina/5-FU o quimioterapia supone riesgo inaceptable?",
-   "motivo": "Citopenias o infeccion grave impiden quimioterapia"
+   "motivo": "Citopenias o infección grave impiden quimioterapia"
   },
   {
    "key": "autoinmune_ici",
@@ -383,7 +383,7 @@
   },
   {
    "id": "ANAL-V04",
-   "titulo": "Recaida local tras QRT",
+   "titulo": "Recaída local tras QRT",
    "fuente": "APR rescate",
    "payload": {
     "edad": 60,
@@ -407,7 +407,7 @@
   },
   {
    "id": "ANAL-V05",
-   "titulo": "Metastasico 1L",
+   "titulo": "Metastásico 1L",
    "fuente": "InterAACT",
    "payload": {
     "edad": 62,
@@ -428,7 +428,7 @@
   },
   {
    "id": "ANAL-V06",
-   "titulo": "Metastasico 2L",
+   "titulo": "Metastásico 2L",
    "fuente": "Retifanlimab",
    "payload": {
     "edad": 58,
@@ -452,7 +452,7 @@
   },
   {
    "id": "ANAL-V07",
-   "titulo": "Falta histologia",
+   "titulo": "Falta histología",
    "fuente": "Dato imprescindible",
    "payload": {
     "edad": 55,

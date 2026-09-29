@@ -1,7 +1,7 @@
 {
  "tumor": "cervix",
- "nombre": "Cancer de cervix",
- "grupo": "Ginecologico",
+ "nombre": "Cáncer de cérvix",
+ "grupo": "Ginecológico",
  "version": "CERVIX-ESMO-2025.1",
  "fecha": "2026-09-27T18:58:38+00:00",
  "modelo": "jev-latest",
@@ -32,7 +32,7 @@
     "conizacion_ia1"
    ],
    "obtenido": "conizacion_ia1",
-   "obtenido_label": "Conizacion o histerectomia simple",
+   "obtenido_label": "Conización o histerectomía simple",
    "confianza": 1.0,
    "revision": true,
    "motivos_revision": [
@@ -54,7 +54,7 @@
     "histerectomia_radical_ganglio"
    ],
    "obtenido": "histerectomia_radical_ganglio",
-   "obtenido_label": "Histerectomia radical/trachelectomia + estadiaje ganglionar",
+   "obtenido_label": "Histerectomía radical/trachelectomia + estadiaje ganglionar",
    "confianza": 1.0,
    "revision": true,
    "motivos_revision": [
@@ -136,7 +136,7 @@
   },
   {
    "id": "CERVIX-V06",
-   "titulo": "Metastasico CPS positivo 1L",
+   "titulo": "Metastásico CPS positivo 1L",
    "fuente": "KEYNOTE-826",
    "esperado_tipo": "recomendacion",
    "esperado": "pembro_platino_taxol_bev_1l",
@@ -158,7 +158,7 @@
   },
   {
    "id": "CERVIX-V07",
-   "titulo": "Metastasico CPS negativo",
+   "titulo": "Metastásico CPS negativo",
    "fuente": "GOG-240",
    "esperado_tipo": "recomendacion",
    "esperado": "platino_taxol_bev_1l",
@@ -180,7 +180,7 @@
   },
   {
    "id": "CERVIX-V08",
-   "titulo": "Progresion tras platino",
+   "titulo": "Progresión tras platino",
    "fuente": "innovaTV/EMPOWER",
    "esperado_tipo": "recomendacion",
    "esperado": "tisotumab_2l",
@@ -224,7 +224,7 @@
   },
   {
    "id": "CERVIX-V10",
-   "titulo": "ECOG 4 metastasico",
+   "titulo": "ECOG 4 metastásico",
    "fuente": "ESMO palliative care",
    "esperado_tipo": "revision_humana",
    "esperado": "revision_humana",

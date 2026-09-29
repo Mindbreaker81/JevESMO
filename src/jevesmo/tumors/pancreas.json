@@ -1,6 +1,6 @@
 {
  "id": "pancreas",
- "nombre": "Adenocarcinoma de pancreas",
+ "nombre": "Adenocarcinoma de páncreas",
  "grupo": "Digestivo",
  "version": "PANCREAS-ESMO-2023.1",
  "guias": [
@@ -10,11 +10,11 @@
    "url": "https://www.esmo.org/guidelines/esmo-clinical-practice-guideline-pancreatic-cancer"
   }
  ],
- "descripcion": "Adenocarcinoma pancreatico: resecable, borderline, localmente avanzado y metastasico; mFOLFIRINOX, gem-nab-paclitaxel, NALIRIFOX, adyuvancia y olaparib en gBRCA.",
+ "descripcion": "Adenocarcinoma pancreático: resecable, borderline, localmente avanzado y metastásico; mFOLFIRINOX, gem-nab-paclitaxel, NALIRIFOX, adyuvancia y olaparib en gBRCA.",
  "campos": [
   {
    "id": "situacion",
-   "label": "Situacion anatomica",
+   "label": "Situación anatómica",
    "tipo": "choice",
    "seccion": "Tumor",
    "opciones": [
@@ -24,11 +24,11 @@
     "metastasico"
    ],
    "requerido": true,
-   "pregunta": "¿El adenocarcinoma pancreatico es resecable, borderline, localmente avanzado o metastasico?"
+   "pregunta": "¿El adenocarcinoma pancreático es resecable, borderline, localmente avanzado o metastásico?"
   },
   {
    "id": "localizacion",
-   "label": "Localizacion",
+   "label": "Localización",
    "tipo": "choice",
    "seccion": "Tumor",
    "opciones": [
@@ -36,7 +36,7 @@
     "cuerpo_cola"
    ],
    "requerido": true,
-   "pregunta": "¿La localizacion principal es cabeza o cuerpo/cola?"
+   "pregunta": "¿La localización principal es cabeza o cuerpo/cola?"
   },
   {
    "id": "brca_germinal",
@@ -69,7 +69,7 @@
   },
   {
    "id": "neuropatia_grado",
-   "label": "Neuropatia periferica grado",
+   "label": "Neuropatía periférica grado",
    "tipo": "number",
    "seccion": "Seguridad",
    "min": 0,
@@ -80,8 +80,8 @@
  "opciones": [
   {
    "id": "cirugia_ady_mfolfirinox",
-   "label": "Cirugia seguida de mFOLFIRINOX adyuvante",
-   "nota": "ESMO: resecable y fit -> reseccion upfront y adyuvancia mFOLFIRINOX 6 meses (PRODIGE 24)",
+   "label": "Cirugía seguida de mFOLFIRINOX adyuvante",
+   "nota": "ESMO: resecable y fit -> resección upfront y adyuvancia mFOLFIRINOX 6 meses (PRODIGE 24)",
    "cuando": [
     {
      "campo": "situacion",
@@ -103,7 +103,7 @@
   },
   {
    "id": "ady_gem_cap",
-   "label": "Cirugia + gemcitabina-capecitabina/gemcitabina adyuvante",
+   "label": "Cirugía + gemcitabina-capecitabina/gemcitabina adyuvante",
    "nota": "ESMO: resecable pero no candidato a mFOLFIRINOX -> adyuvancia gemcitabina-capecitabina o gemcitabina",
    "cuando": [
     {
@@ -120,7 +120,7 @@
   {
    "id": "neoady_mfolfirinox_borderline",
    "label": "mFOLFIRINOX neoadyuvante en borderline",
-   "nota": "ESMO: borderline resecable -> neoadyuvancia con mFOLFIRINOX y reevaluacion para cirugia",
+   "nota": "ESMO: borderline resecable -> neoadyuvancia con mFOLFIRINOX y reevaluación para cirugía",
    "cuando": [
     {
      "campo": "situacion",
@@ -143,7 +143,7 @@
   {
    "id": "gemnab_neoady_borderline",
    "label": "Gemcitabina + nab-paclitaxel neoadyuvante",
-   "nota": "ESMO: borderline si no candidato a mFOLFIRINOX -> gemcitabina + nab-paclitaxel y reevaluacion",
+   "nota": "ESMO: borderline si no candidato a mFOLFIRINOX -> gemcitabina + nab-paclitaxel y reevaluación",
    "cuando": [
     {
      "campo": "situacion",
@@ -158,8 +158,8 @@
   },
   {
    "id": "induccion_local_avanzado",
-   "label": "Quimioterapia de induccion para localmente avanzado",
-   "nota": "ESMO: localmente avanzado no metastasico -> FOLFIRINOX o gem-nab de induccion; valorar consolidacion/cirugia si respuesta",
+   "label": "Quimioterapia de inducción para localmente avanzado",
+   "nota": "ESMO: localmente avanzado no metastásico -> FOLFIRINOX o gem-nab de inducción; valorar consolidación/cirugia si respuesta",
    "cuando": [
     {
      "campo": "situacion",
@@ -173,8 +173,8 @@
   },
   {
    "id": "quimiorradio_consolidacion",
-   "label": "Quimiorradioterapia/SBRT de consolidacion",
-   "nota": "ESMO: localmente avanzado con control tras induccion -> considerar RT/QRT de consolidacion en seleccionados",
+   "label": "Quimiorradioterapia/SBRT de consolidación",
+   "nota": "ESMO: localmente avanzado con control tras inducción -> considerar RT/QRT de consolidación en seleccionados",
    "cuando": [
     {
      "campo": "situacion",
@@ -193,8 +193,8 @@
   },
   {
    "id": "mfolfirinox_1l",
-   "label": "mFOLFIRINOX 1a linea metastasico",
-   "nota": "ESMO: metastasico ECOG 0-1 y fit -> mFOLFIRINOX primera linea",
+   "label": "mFOLFIRINOX 1a línea metastásico",
+   "nota": "ESMO: metastásico ECOG 0-1 y fit -> mFOLFIRINOX primera línea",
    "cuando": [
     {
      "campo": "situacion",
@@ -227,8 +227,8 @@
   },
   {
    "id": "nalirifox_1l",
-   "label": "NALIRIFOX 1a linea metastasico",
-   "nota": "ESMO/updates: metastasico fit puede recibir NALIRIFOX como alternativa intensiva 1L",
+   "label": "NALIRIFOX 1a línea metastásico",
+   "nota": "ESMO/updates: metastásico fit puede recibir NALIRIFOX como alternativa intensiva 1L",
    "cuando": [
     {
      "campo": "situacion",
@@ -261,8 +261,8 @@
   },
   {
    "id": "gemnab_1l",
-   "label": "Gemcitabina + nab-paclitaxel 1a linea",
-   "nota": "ESMO: metastasico, especialmente si no candidato a FOLFIRINOX intensivo -> gemcitabina + nab-paclitaxel",
+   "label": "Gemcitabina + nab-paclitaxel 1a línea",
+   "nota": "ESMO: metastásico, especialmente si no candidato a FOLFIRINOX intensivo -> gemcitabina + nab-paclitaxel",
    "cuando": [
     {
      "campo": "situacion",
@@ -289,7 +289,7 @@
   {
    "id": "olaparib_mantenimiento",
    "label": "Olaparib mantenimiento",
-   "nota": "ESMO: gBRCA1/2 metastasico sin progresion tras >=16 semanas de platino -> olaparib mantenimiento (POLO)",
+   "nota": "ESMO: gBRCA1/2 metastásico sin progresión tras >=16 semanas de platino -> olaparib mantenimiento (POLO)",
    "cuando": [
     {
      "campo": "situacion",
@@ -312,7 +312,7 @@
   {
    "id": "pembro_msi_h",
    "label": "Pembrolizumab/nivolumab en MSI-H",
-   "nota": "ESMO: MSI-H/dMMR pancreatico avanzado, raro, considerar inhibidor PD-1",
+   "nota": "ESMO: MSI-H/dMMR pancreático avanzado, raro, considerar inhibidor PD-1",
    "cuando": [
     {
      "campo": "situacion",
@@ -330,8 +330,8 @@
   },
   {
    "id": "naliri_5fu_2l",
-   "label": "Nal-IRI + 5-FU/LV 2a linea",
-   "nota": "ESMO: tras gemcitabina en metastasico -> liposomal irinotecan + 5-FU/LV (NAPOLI-1)",
+   "label": "Nal-IRI + 5-FU/LV 2a línea",
+   "nota": "ESMO: tras gemcitabina en metastásico -> liposomal irinotecan + 5-FU/LV (NAPOLI-1)",
    "cuando": [
     {
      "campo": "situacion",
@@ -353,8 +353,8 @@
   },
   {
    "id": "folfox_2l",
-   "label": "FOLFOX/fluoropirimidina-oxaliplatino 2a linea",
-   "nota": "ESMO: tras FOLFIRINOX o gemcitabina, seleccionar regimen alternativo segun toxicidad/exposicion previa",
+   "label": "FOLFOX/fluoropirimidina-oxaliplatino 2a línea",
+   "nota": "ESMO: tras FOLFIRINOX o gemcitabina, seleccionar régimen alternativo según toxicidad/exposicion previa",
    "cuando": [
     {
      "campo": "situacion",
@@ -384,7 +384,7 @@
      "resecable"
     ]
    },
-   "instrucciones": "Segun edad, ECOG, comorbilidades, bilirrubina y neuropatia, ¿es candidato a FOLFIRINOX/mFOLFIRINOX?"
+   "instrucciones": "Según edad, ECOG, comorbilidades, bilirrubina y neuropatía, ¿es candidato a FOLFIRINOX/mFOLFIRINOX?"
   },
   {
    "key": "convertibilidad",
@@ -397,7 +397,7 @@
      "localmente_avanzado"
     ]
    },
-   "instrucciones": "Estima probabilidad de conversion a cirugia R0 tras induccion",
+   "instrucciones": "Estima probabilidad de conversión a cirugía R0 tras inducción",
    "criterios": [
     "baja",
     "intermedia",
@@ -434,8 +434,8 @@
     "cirugia_ady_mfolfirinox",
     "neoady_mfolfirinox_borderline"
    ],
-   "instrucciones": "Con neuropatia grado >=2, ¿oxaliplatino supone toxicidad inaceptable?",
-   "motivo": "Neuropatia relevante: evitar oxaliplatino"
+   "instrucciones": "Con neuropatía grado >=2, ¿oxaliplatino supone toxicidad inaceptable?",
+   "motivo": "Neuropatía relevante: evitar oxaliplatino"
   }
  ],
  "avisos": [
@@ -546,7 +546,7 @@
   },
   {
    "id": "PANCREAS-V05",
-   "titulo": "Metastasico fit 1L",
+   "titulo": "Metastásico fit 1L",
    "fuente": "ESMO - FOLFIRINOX/gem-nab/NALIRIFOX",
    "payload": {
     "edad": 57,
@@ -618,7 +618,7 @@
   },
   {
    "id": "PANCREAS-V08",
-   "titulo": "Falta situacion",
+   "titulo": "Falta situación",
    "fuente": "ESMO - resecabilidad imprescindible",
    "payload": {
     "edad": 61,
@@ -633,7 +633,7 @@
   },
   {
    "id": "PANCREAS-V09",
-   "titulo": "Metastasico ECOG4",
+   "titulo": "Metastásico ECOG4",
    "fuente": "ESMO - ECOG 3-4 soporte/revision",
    "payload": {
     "edad": 72,

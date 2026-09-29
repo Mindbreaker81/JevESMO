@@ -4,7 +4,7 @@
  "tumores": {
   "cpnm_metastasico": {
    "tumor": "cpnm_metastasico",
-   "nombre": "CPNM metastasico",
+   "nombre": "CPNM metastásico",
    "n": 60,
    "evaluables": 60,
    "necesita_datos": 0,
@@ -78,7 +78,7 @@
   },
   "ccr_metastasico": {
    "tumor": "ccr_metastasico",
-   "nombre": "Cancer colorrectal metastasico",
+   "nombre": "Cáncer colorrectal metastásico",
    "n": 60,
    "evaluables": 57,
    "necesita_datos": 3,
@@ -87,7 +87,7 @@
    "compatible": 0.8771929824561403,
    "cobertura": 0.95,
    "compatible_itt": 0.8333333333333334,
-   "compatible_nota": "misma quimio doblete sin (o con retraso >90 d del) biologico",
+   "compatible_nota": "misma quimio doblete sin (o con retraso >90 d del) biológico",
    "revision_pct": 0.0,
    "confianza_media": 1.0,
    "por_subgrupo": {
@@ -167,7 +167,7 @@
   },
   "pancreas": {
    "tumor": "pancreas",
-   "nombre": "Adenocarcinoma de pancreas",
+   "nombre": "Adenocarcinoma de páncreas",
    "n": 60,
    "evaluables": 60,
    "necesita_datos": 0,
@@ -227,7 +227,7 @@
   },
   "mama": {
    "tumor": "mama",
-   "nombre": "Cancer de mama",
+   "nombre": "Cáncer de mama",
    "n": 60,
    "evaluables": 49,
    "necesita_datos": 11,
@@ -236,7 +236,7 @@
    "compatible": 0.673469387755102,
    "cobertura": 0.8166666666666667,
    "compatible_itt": 0.55,
-   "compatible_nota": "endocrino sin iCDK4/6 (mismo eje terapeutico)",
+   "compatible_nota": "endocrino sin iCDK4/6 (mismo eje terapéutico)",
    "revision_pct": 0.40816326530612246,
    "confianza_media": 0.9957142857142857,
    "por_subgrupo": {

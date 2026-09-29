@@ -1,7 +1,7 @@
 {
  "tumor": "mesotelioma",
  "nombre": "Mesotelioma pleural maligno",
- "grupo": "Toracico",
+ "grupo": "Torácico",
  "version": "MESOTELIOMA-ESMO-2024.1",
  "fecha": "2026-09-27T18:58:57+00:00",
  "modelo": "jev-latest",
@@ -24,7 +24,7 @@
  "casos": [
   {
    "id": "MESOTELIOMA-V01",
-   "titulo": "No epitelioide metastasico 1L",
+   "titulo": "No epitelioide metastásico 1L",
    "fuente": "CheckMate 743: mayor beneficio en no epitelioide",
    "esperado_tipo": "recomendacion",
    "esperado": "nivo_ipi_1l",
@@ -45,7 +45,7 @@
   },
   {
    "id": "MESOTELIOMA-V02",
-   "titulo": "Epitelioide metastasico bev apto",
+   "titulo": "Epitelioide metastásico bev apto",
    "fuente": "MAPS: bevacizumab con cis/pem",
    "esperado_tipo": "recomendacion",
    "esperado": "platino_pem_bev",
@@ -97,7 +97,7 @@
     "cirugia_multimodal"
    ],
    "obtenido": "cirugia_multimodal",
-   "obtenido_label": "Cirugia en centro experto + tratamiento multimodal",
+   "obtenido_label": "Cirugía en centro experto + tratamiento multimodal",
    "confianza": 1.0,
    "revision": true,
    "motivos_revision": [
@@ -111,7 +111,7 @@
   },
   {
    "id": "MESOTELIOMA-V05",
-   "titulo": "Segunda linea tras quimioterapia",
+   "titulo": "Segunda línea tras quimioterapia",
    "fuente": "ESMO: nivolumab/pembrolizumab o quimio rescate",
    "esperado_tipo": "recomendacion",
    "esperado": "segunda_linea_nivo_pembro",
@@ -121,7 +121,7 @@
     "mantenimiento_pemetrexed"
    ],
    "obtenido": "segunda_linea_nivo_pembro",
-   "obtenido_label": "Inmunoterapia en segunda linea",
+   "obtenido_label": "Inmunoterapia en segunda línea",
    "confianza": 0.44,
    "revision": true,
    "motivos_revision": [
@@ -136,7 +136,7 @@
   },
   {
    "id": "MESOTELIOMA-V06",
-   "titulo": "Histologia desconocida",
+   "titulo": "Histología desconocida",
    "fuente": "ESMO: histologia define ICI vs quimio",
    "esperado_tipo": "necesita_datos",
    "esperado": "necesita_datos",
@@ -177,7 +177,7 @@
   },
   {
    "id": "MESOTELIOMA-V08",
-   "titulo": "ECOG 3 sintomatico",
+   "titulo": "ECOG 3 sintomático",
    "fuente": "ESMO: soporte si no candidato activo",
    "esperado_tipo": "recomendacion",
    "esperado": "soporte_exclusivo",
@@ -185,7 +185,7 @@
     "soporte_exclusivo"
    ],
    "obtenido": "soporte_exclusivo",
-   "obtenido_label": "Cuidados paliativos y control sintomatico",
+   "obtenido_label": "Cuidados paliativos y control sintomático",
    "confianza": 0.94,
    "revision": true,
    "motivos_revision": [

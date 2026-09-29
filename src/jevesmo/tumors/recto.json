@@ -1,6 +1,6 @@
 {
  "id": "recto",
- "nombre": "Cancer de recto localizado",
+ "nombre": "Cáncer de recto localizado",
  "grupo": "Digestivo",
  "version": "recto-ESMO-2024.1",
  "guias": [
@@ -15,7 +15,7 @@
    "url": "https://www.esmo.org/guidelines/gastrointestinal-cancers/rectal-cancer"
   }
  ],
- "descripcion": "Recto localizado por riesgo MRI: cirugia directa, RT corta, QRT larga, TNT, watch and wait y dMMR con dostarlimab/anti-PD-1.",
+ "descripcion": "Recto localizado por riesgo MRI: cirugía directa, RT corta, QRT larga, TNT, watch and wait y dMMR con dostarlimab/anti-PD-1.",
  "campos": [
   {
    "id": "riesgo_recto",
@@ -30,7 +30,7 @@
     "respuesta_clinica_completa"
    ],
    "requerido": true,
-   "pregunta": "¿Cual es el grupo de riesgo local por RM o respuesta completa?"
+   "pregunta": "¿Cuál es el grupo de riesgo local por RM o respuesta completa?"
   },
   {
    "id": "dmmr_msi",
@@ -59,7 +59,7 @@
   },
   {
    "id": "respuesta_clinica_completa",
-   "label": "Respuesta clinica completa tras neoadyuvancia",
+   "label": "Respuesta clínica completa tras neoadyuvancia",
    "tipo": "bool",
    "seccion": "Tumor"
   },
@@ -69,11 +69,11 @@
    "tipo": "bool",
    "seccion": "Tumor",
    "requerido": true,
-   "pregunta": "¿El paciente es candidato a cirugia TME si esta indicada?"
+   "pregunta": "¿El paciente es candidato a cirugía TME si esta indicada?"
   },
   {
    "id": "desea_preservacion_organo",
-   "label": "Prioridad de preservacion de organo",
+   "label": "Prioridad de preservación de órgano",
    "tipo": "bool",
    "seccion": "Tumor"
   },
@@ -87,8 +87,8 @@
  "opciones": [
   {
    "id": "cirugia_directa_tme",
-   "label": "Cirugia directa con TME",
-   "nota": "ESMO: recto bajo riesgo (cT1-2/N0 o cT3a-b sin amenazas) -> escision/TME primaria sin neoadyuvancia.",
+   "label": "Cirugía directa con TME",
+   "nota": "ESMO: recto bajo riesgo (cT1-2/N0 o cT3a-b sin amenazas) -> escisión/TME primaria sin neoadyuvancia.",
    "cuando": [
     {
      "campo": "riesgo_recto",
@@ -128,7 +128,7 @@
   {
    "id": "rt_corta_intermedio",
    "label": "Radioterapia corta 5x5 Gy seguida de TME",
-   "nota": "ESMO: riesgo intermedio resecable sin necesidad de gran downstaging -> RT corta preoperatoria y cirugia temprana/diferida.",
+   "nota": "ESMO: riesgo intermedio resecable sin necesidad de gran downstaging -> RT corta preoperatoria y cirugía temprana/diferida.",
    "cuando": [
     {
      "campo": "riesgo_recto",
@@ -148,7 +148,7 @@
   {
    "id": "tnt_alto",
    "label": "Tratamiento neoadyuvante total (TNT)",
-   "nota": "ESMO: alto riesgo (cT3c-d/T4, N2, EMVI+, MRF amenazada) -> TNT con quimioterapia sistemica + QRT/RT antes de TME.",
+   "nota": "ESMO: alto riesgo (cT3c-d/T4, N2, EMVI+, MRF amenazada) -> TNT con quimioterapia sistémica + QRT/RT antes de TME.",
    "cuando": [
     {
      "campo": "riesgo_recto",
@@ -178,8 +178,8 @@
   },
   {
    "id": "rt_corta_tnt",
-   "label": "RT corta seguida de quimioterapia de consolidacion",
-   "nota": "ESMO/RAPIDO: alto riesgo MRI -> 5x5 Gy seguido de CAPOX/FOLFOX antes de TME es estrategia TNT valida.",
+   "label": "RT corta seguida de quimioterapia de consolidación",
+   "nota": "ESMO/RAPIDO: alto riesgo MRI -> 5x5 Gy seguido de CAPOX/FOLFOX antes de TME es estrategia TNT válida.",
    "cuando": [
     {
      "campo": "riesgo_recto",
@@ -208,7 +208,7 @@
   },
   {
    "id": "qrt_larga_tnt",
-   "label": "QRT larga seguida de quimioterapia de consolidacion",
+   "label": "QRT larga seguida de quimioterapia de consolidación",
    "nota": "ESMO/OPRA: TNT con QRT larga es preferible si se busca downstaging/preservacion esfinteriana.",
    "cuando": [
     {
@@ -239,7 +239,7 @@
   {
    "id": "dostarlimab_dmmr",
    "label": "Dostarlimab/anti-PD-1 neoadyuvante en dMMR",
-   "nota": "ESMO actual: recto localmente avanzado dMMR/MSI-H -> anti-PD-1 neoadyuvante con intencion de respuesta completa y preservacion.",
+   "nota": "ESMO actual: recto localmente avanzado dMMR/MSI-H -> anti-PD-1 neoadyuvante con intención de respuesta completa y preservación.",
    "cuando": [
     {
      "campo": "dmmr_msi",
@@ -262,7 +262,7 @@
   {
    "id": "watch_wait",
    "label": "Watch and wait con vigilancia intensiva",
-   "nota": "ESMO: tras respuesta clinica completa documentada tras neoadyuvancia, vigilancia no operatoria puede considerarse en centros expertos.",
+   "nota": "ESMO: tras respuesta clínica completa documentada tras neoadyuvancia, vigilancia no operatoria puede considerarse en centros expertos.",
    "cuando": [
     {
      "any": [
@@ -289,7 +289,7 @@
   {
    "id": "tme_post_respuesta",
    "label": "TME tras neoadyuvancia si no respuesta completa",
-   "nota": "ESMO: TME sigue estandar tras neoadyuvancia si no se elige watch and wait o respuesta no es completa.",
+   "nota": "ESMO: TME sigue estándar tras neoadyuvancia si no se elige watch and wait o respuesta no es completa.",
    "cuando": [
     {
      "campo": "respuesta_clinica_completa",
@@ -315,7 +315,7 @@
   },
   {
    "id": "soporte_no_cirugia",
-   "label": "Tratamiento no quirurgico individualizado/soporte",
+   "label": "Tratamiento no quirúrgico individualizado/soporte",
    "nota": "ESMO: si no candidato a TME, manejo paliativo/local individualizado en MDT.",
    "cuando": [
     {
@@ -338,7 +338,7 @@
     "campo": "riesgo_recto",
     "eq": "intermedio"
    },
-   "instrucciones": "¿La localizacion, margen o necesidad de preservar esfinter justifican QRT larga frente a RT corta/cirugia?"
+   "instrucciones": "¿La localización, margen o necesidad de preservar esfinter justifican QRT larga frente a RT corta/cirugia?"
   },
   {
    "key": "prioridad_preservacion",
@@ -354,9 +354,9 @@
    },
    "instrucciones": "Valora el objetivo principal.",
    "criterios": {
-    "control_local": "Maximo control local con TME",
-    "preservacion": "Preservacion de organo/esfinter",
-    "sistemico": "Reducir recaida sistemica con TNT"
+    "control_local": "Máximo control local con TME",
+    "preservacion": "Preservación de órgano/esfinter",
+    "sistemico": "Reducir recaída sistémica con TNT"
    }
   },
   {
@@ -535,7 +535,7 @@
   },
   {
    "id": "RECTO-V07",
-   "titulo": "Respuesta completa y preservacion",
+   "titulo": "Respuesta completa y preservación",
    "fuente": "Watch and wait",
    "payload": {
     "edad": 51,

@@ -1,7 +1,7 @@
 {
  "id": "dlbcl",
- "nombre": "Linfoma B difuso de celulas grandes",
- "grupo": "Hematologia",
+ "nombre": "Linfoma B difuso de células grandes",
+ "grupo": "Hematología",
  "version": "DLBCL-ESMO-2025.1",
  "guias": [
   {
@@ -10,7 +10,7 @@
    "url": "https://www.esmo.org/guidelines/esmo-clinical-practice-guideline-lymphomas"
   }
  ],
- "descripcion": "DLBCL: tratamiento inicial por estadio, IPI/fitness y recaida precoz o tardia con CAR-T, TAPH y bispecificos.",
+ "descripcion": "DLBCL: tratamiento inicial por estadio, IPI/fitness y recaída precoz o tardía con CAR-T, TAPH y bispecíficos.",
  "campos": [
   {
    "id": "estadio",
@@ -24,7 +24,7 @@
     "IV"
    ],
    "requerido": true,
-   "pregunta": "¿Cual es el estadio Ann Arbor/Lugano y si hay enfermedad voluminosa?"
+   "pregunta": "¿Cuál es el estadio Ann Arbor/Lugano y si hay enfermedad voluminosa?"
   },
   {
    "id": "ipi",
@@ -36,13 +36,13 @@
     "3_5"
    ],
    "requerido": true,
-   "pregunta": "¿Cual es el IPI (0-1, 2 o 3-5)?"
+   "pregunta": "¿Cuál es el IPI (0-1, 2 o 3-5)?"
   },
   {
    "id": "doble_hit",
    "label": "MYC/BCL2/BCL6 doble/triple hit",
    "tipo": "bool",
-   "seccion": "Biologia"
+   "seccion": "Biología"
   },
   {
    "id": "candidato_antraciclina",
@@ -50,25 +50,25 @@
    "tipo": "bool",
    "seccion": "Fitness",
    "requerido": true,
-   "pregunta": "¿Es candidato a antraciclina (funcion cardiaca adecuada)?"
+   "pregunta": "¿Es candidato a antraciclina (función cardiaca adecuada)?"
   },
   {
    "id": "candidato_taph",
    "label": "Candidato a quimioterapia de rescate y TAPH",
    "tipo": "bool",
-   "seccion": "Recaida"
+   "seccion": "Recaída"
   },
   {
    "id": "candidato_car_t",
    "label": "Candidato a CAR-T",
    "tipo": "bool",
-   "seccion": "Recaida"
+   "seccion": "Recaída"
   },
   {
    "id": "meses_desde_fin_tratamiento",
-   "label": "Meses desde fin de primera linea",
+   "label": "Meses desde fin de primera línea",
    "tipo": "number",
-   "seccion": "Recaida",
+   "seccion": "Recaída",
    "min": 0,
    "max": 240
   },
@@ -85,7 +85,7 @@
  "derivados": [
   {
    "id": "situacion",
-   "label": "Situacion clinica",
+   "label": "Situación clínica",
    "defecto": "primera_linea",
    "reglas": [
     {
@@ -144,7 +144,7 @@
   {
    "id": "rchop_1l",
    "label": "R-CHOP 6 ciclos",
-   "nota": "ESMO DLBCL: primera linea estandar para DLBCL CD20+ con IPI bajo/intermedio o cuando Pola-R-CHP no es prioritario",
+   "nota": "ESMO DLBCL: primera línea estándar para DLBCL CD20+ con IPI bajo/intermedio o cuando Pola-R-CHP no es prioritario",
    "cuando": [
     {
      "campo": "situacion",
@@ -186,7 +186,7 @@
   {
    "id": "pola_r_chp_1l",
    "label": "Pola-R-CHP 6 ciclos",
-   "nota": "ESMO DLBCL: primera linea en IPI 2-5 especialmente estadio avanzado; POLARIX mejora PFS frente a R-CHOP",
+   "nota": "ESMO DLBCL: primera línea en IPI 2-5 especialmente estadio avanzado; POLARIX mejora PFS frente a R-CHOP",
    "cuando": [
     {
      "campo": "situacion",
@@ -250,7 +250,7 @@
   {
    "id": "no_antraciclina",
    "label": "R-CEOP/R-GemOx sin antraciclina",
-   "nota": "ESMO DLBCL: si antraciclina contraindicada por cardiopatia/FEVI baja, usar esquema sin doxorrubicina con intencion individualizada",
+   "nota": "ESMO DLBCL: si antraciclina contraindicada por cardiopatía/FEVI baja, usar esquema sin doxorrubicina con intención individualizada",
    "cuando": [
     {
      "campo": "situacion",
@@ -269,8 +269,8 @@
   },
   {
    "id": "car_t_2l_precoz",
-   "label": "CAR-T axi-cel o liso-cel en 2a linea",
-   "nota": "ESMO DLBCL: enfermedad primaria refractaria o recaida <=12 meses tras R-CHOP y candidato -> CAR-T de 2a linea (ZUMA-7/TRANSFORM)",
+   "label": "CAR-T axi-cel o liso-cel en 2a línea",
+   "nota": "ESMO DLBCL: enfermedad primaria refractaria o recaída <=12 meses tras R-CHOP y candidato -> CAR-T de 2a línea (ZUMA-7/TRANSFORM)",
    "cuando": [
     {
      "campo": "situacion",
@@ -293,7 +293,7 @@
   {
    "id": "rescate_taph_tardio",
    "label": "Quimio de rescate (R-DHAP/R-ICE/R-GDP) + TAPH",
-   "nota": "ESMO DLBCL: recaida tardia >12 meses, quimiosensible y candidato -> rescate basado en platino seguido de trasplante autologo",
+   "nota": "ESMO DLBCL: recaída tardía >12 meses, quimiosensible y candidato -> rescate basado en platino seguido de trasplante autólogo",
    "cuando": [
     {
      "campo": "situacion",
@@ -317,8 +317,8 @@
   },
   {
    "id": "car_t_3l",
-   "label": "CAR-T en 3a linea",
-   "nota": "ESMO DLBCL: tras >=2 lineas si no recibio CAR-T y es candidato -> axi-cel/tisa-cel/liso-cel",
+   "label": "CAR-T en 3a línea",
+   "nota": "ESMO DLBCL: tras >=2 líneas si no recibió CAR-T y es candidato -> axi-cel/tisa-cel/liso-cel",
    "cuando": [
     {
      "campo": "situacion",
@@ -341,7 +341,7 @@
   {
    "id": "bispecifico_3l",
    "label": "Anticuerpo biespecifico (glofitamab o epcoritamab)",
-   "nota": "ESMO DLBCL: tras >=2 lineas, especialmente post-CAR-T o no candidato a CAR-T -> biespecificos CD20xCD3",
+   "nota": "ESMO DLBCL: tras >=2 líneas, especialmente post-CAR-T o no candidato a CAR-T -> biespecíficos CD20xCD3",
    "cuando": [
     {
      "campo": "situacion",
@@ -357,7 +357,7 @@
   {
    "id": "polatuzumab_br",
    "label": "Polatuzumab vedotina + bendamustina-rituximab",
-   "nota": "ESMO DLBCL: recaida/refractario no candidato a TAPH/CAR-T o puente, opcion aprobada basada en GO29365",
+   "nota": "ESMO DLBCL: recaída/refractario no candidato a TAPH/CAR-T o puente, opción aprobada basada en GO29365",
    "cuando": [
     {
      "campo": "situacion",
@@ -398,7 +398,7 @@
      }
     ]
    },
-   "instrucciones": "Por edad, ECOG, comorbilidad y extension, ¿es razonable mantener una intencion curativa intensiva en este DLBCL?"
+   "instrucciones": "Por edad, ECOG, comorbilidad y extensión, ¿es razonable mantener una intención curativa intensiva en este DLBCL?"
   },
   {
    "key": "riesgo_cns",
@@ -408,7 +408,7 @@
     "campo": "ipi",
     "eq": "3_5"
    },
-   "instrucciones": "¿Hay riesgo alto de recaida en SNC (CNS-IPI alto, renal/suprarrenal/testicular, doble hit) que obligue a valorar profilaxis?"
+   "instrucciones": "¿Hay riesgo alto de recaída en SNC (CNS-IPI alto, renal/suprarrenal/testicular, doble hit) que obligue a valorar profilaxis?"
   }
  ],
  "seguridad": [
@@ -435,7 +435,7 @@
     "campo": "doble_hit",
     "missing": true
    },
-   "texto": "FISH MYC/BCL2/BCL6 no disponible: puede cambiar pronostico y necesidad de ensayo/intensificacion."
+   "texto": "FISH MYC/BCL2/BCL6 no disponible: puede cambiar pronóstico y necesidad de ensayo/intensificacion."
   }
  ],
  "vinetas": [
@@ -501,7 +501,7 @@
   },
   {
    "id": "DLBCL-V04",
-   "titulo": "Contraindicacion antraciclina",
+   "titulo": "Contraindicación antraciclina",
    "fuente": "ESMO alternativa si cardiopatia",
    "payload": {
     "edad": 76,
@@ -524,7 +524,7 @@
   },
   {
    "id": "DLBCL-V05",
-   "titulo": "Recaida precoz candidata CAR-T",
+   "titulo": "Recaída precoz candidata CAR-T",
    "fuente": "ZUMA-7/TRANSFORM",
    "payload": {
     "edad": 59,
@@ -550,7 +550,7 @@
   },
   {
    "id": "DLBCL-V06",
-   "titulo": "Recaida tardia candidata TAPH",
+   "titulo": "Recaída tardía candidata TAPH",
    "fuente": "ESMO recaida tardia",
    "payload": {
     "edad": 61,
@@ -576,7 +576,7 @@
   },
   {
    "id": "DLBCL-V07",
-   "titulo": "Tercera linea post-CAR-T",
+   "titulo": "Tercera línea post-CAR-T",
    "fuente": "ESMO biespecificos",
    "payload": {
     "edad": 67,
@@ -618,7 +618,7 @@
   },
   {
    "id": "DLBCL-V09",
-   "titulo": "ECOG 4 pluripatologico",
+   "titulo": "ECOG 4 pluripatológico",
    "fuente": "Seguridad fitness",
    "payload": {
     "edad": 88,

@@ -32,7 +32,7 @@
     "nefrectomia_vigilancia"
    ],
    "obtenido": "nefrectomia_vigilancia",
-   "obtenido_label": "Nefrectomia parcial/radical y vigilancia",
+   "obtenido_label": "Nefrectomía parcial/radical y vigilancia",
    "confianza": 1.0,
    "revision": false,
    "motivos_revision": [],
@@ -44,7 +44,7 @@
   },
   {
    "id": "RINON-V02",
-   "titulo": "Adyuvancia alto riesgo celulas claras",
+   "titulo": "Adyuvancia alto riesgo células claras",
    "fuente": "ESMO RCC 2024 - pembrolizumab adjuvant KEYNOTE-564",
    "esperado_tipo": "recomendacion",
    "esperado": "pembro_adyuvante_rcc",
@@ -64,7 +64,7 @@
   },
   {
    "id": "RINON-V03",
-   "titulo": "Avanzado celulas claras favorable",
+   "titulo": "Avanzado células claras favorable",
    "fuente": "ESMO RCC 2024 - favorable risk ICI TKI",
    "esperado_tipo": "recomendacion",
    "esperado": "ici_tki_favorable",
@@ -104,7 +104,7 @@
   },
   {
    "id": "RINON-V05",
-   "titulo": "Avanzado pobre con crisis sintomatica",
+   "titulo": "Avanzado pobre con crisis sintomática",
    "fuente": "ESMO RCC 2024 - ICI TKI when rapid response needed",
    "esperado_tipo": "recomendacion",
    "esperado": "ici_tki_inter_pobre",
@@ -132,7 +132,7 @@
     "cabozantinib_no_claras"
    ],
    "obtenido": "cabozantinib_no_claras",
-   "obtenido_label": "Cabozantinib (no celulas claras)",
+   "obtenido_label": "Cabozantinib (no células claras)",
    "confianza": 1.0,
    "revision": false,
    "motivos_revision": [],
@@ -144,7 +144,7 @@
   },
   {
    "id": "RINON-V07",
-   "titulo": "Segunda linea tras ICI TKI",
+   "titulo": "Segunda línea tras ICI TKI",
    "fuente": "ESMO RCC 2024 - cabozantinib subsequent therapy",
    "esperado_tipo": "recomendacion",
    "esperado": "cabozantinib_2l",

@@ -1,7 +1,7 @@
 {
  "id": "endometrio",
- "nombre": "Cancer de endometrio",
- "grupo": "Ginecologico",
+ "nombre": "Cáncer de endometrio",
+ "grupo": "Ginecológico",
  "version": "ENDOMETRIO-ESMO-2025.1",
  "guias": [
   {
@@ -15,7 +15,7 @@
    "url": "https://www.esmo.org/guidelines/gynaecological-cancers/endometrial-cancer"
   }
  ],
- "descripcion": "Cancer de endometrio con clasificacion molecular POLE/dMMR/p53abn/NSMP, grupos de riesgo y tratamiento avanzado con quimio-inmunoterapia, lenvatinib-pembrolizumab y hormonoterapia.",
+ "descripcion": "Cáncer de endometrio con clasificación molecular POLE/dMMR/p53abn/NSMP, grupos de riesgo y tratamiento avanzado con quimio-inmunoterapia, lenvatinib-pembrolizumab y hormonoterapia.",
  "campos": [
   {
    "id": "estadio",
@@ -29,11 +29,11 @@
     "recurrente"
    ],
    "requerido": true,
-   "pregunta": "¿Cual es el estadio FIGO o si es enfermedad recurrente?"
+   "pregunta": "¿Cuál es el estadio FIGO o si es enfermedad recurrente?"
   },
   {
    "id": "histologia",
-   "label": "Histologia",
+   "label": "Histología",
    "tipo": "choice",
    "opciones": [
     "endometrioide",
@@ -43,7 +43,7 @@
     "otro"
    ],
    "requerido": true,
-   "pregunta": "¿Cual es la histologia?"
+   "pregunta": "¿Cuál es la histología?"
   },
   {
    "id": "grado",
@@ -67,7 +67,7 @@
     "desconocido"
    ],
    "requerido": true,
-   "pregunta": "¿Cual es el subtipo molecular integrado?"
+   "pregunta": "¿Cuál es el subtipo molecular integrado?"
   },
   {
    "id": "riesgo",
@@ -87,7 +87,7 @@
      "III"
     ]
    },
-   "pregunta": "En enfermedad no metastasica, ¿cual es el grupo de riesgo integrado?"
+   "pregunta": "En enfermedad no metastásica, ¿cuál es el grupo de riesgo integrado?"
   },
   {
    "id": "er_pr_positivo",
@@ -101,7 +101,7 @@
   },
   {
    "id": "hipertension_no_controlada",
-   "label": "Hipertension no controlada",
+   "label": "Hipertensión no controlada",
    "tipo": "bool"
   }
  ],
@@ -131,7 +131,7 @@
  "opciones": [
   {
    "id": "observacion_bajo_riesgo",
-   "label": "Observacion tras cirugia",
+   "label": "Observación tras cirugía",
    "nota": "ESMO/ESGO: riesgo bajo, incluido POLEmut temprano o endometrioide IA bajo grado sin factores, no precisa adyuvancia.",
    "cuando": [
     {
@@ -154,7 +154,7 @@
   {
    "id": "braquiterapia_vaginal",
    "label": "Braquiterapia vaginal adyuvante",
-   "nota": "ESMO: riesgo intermedio o alto-intermedio seleccionado tras histerectomia -> braquiterapia vaginal.",
+   "nota": "ESMO: riesgo intermedio o alto-intermedio seleccionado tras histerectomía -> braquiterapia vaginal.",
    "cuando": [
     {
      "campo": "estadio",
@@ -178,8 +178,8 @@
   },
   {
    "id": "rt_pelvica",
-   "label": "Radioterapia pelvica adyuvante",
-   "nota": "ESMO: alto-intermedio con factores sustanciales o estadio II-III puede requerir radioterapia pelvica externa.",
+   "label": "Radioterapia pélvica adyuvante",
+   "nota": "ESMO: alto-intermedio con factores sustanciales o estadio II-III puede requerir radioterapia pélvica externa.",
    "cuando": [
     {
      "campo": "estadio",
@@ -205,7 +205,7 @@
   {
    "id": "quimio_rt_alto_riesgo",
    "label": "Quimioterapia carboplatino-paclitaxel +- radioterapia adyuvante",
-   "nota": "ESMO: alto riesgo, estadio III o histologias serosa/celulas claras/carcinosarcoma/p53abn -> quimioterapia con o sin radioterapia.",
+   "nota": "ESMO: alto riesgo, estadio III o histologías serosa/celulas claras/carcinosarcoma/p53abn -> quimioterapia con o sin radioterapia.",
    "cuando": [
     {
      "campo": "estadio",
@@ -299,7 +299,7 @@
   {
    "id": "carbo_taxol_solo",
    "label": "Carboplatino-paclitaxel",
-   "nota": "ESMO: si no puede usarse inmunoterapia, carboplatino-paclitaxel es el backbone de primera linea avanzada.",
+   "nota": "ESMO: si no puede usarse inmunoterapia, carboplatino-paclitaxel es el backbone de primera línea avanzada.",
    "cuando": [
     {
      "campo": "estadio",
@@ -333,7 +333,7 @@
   {
    "id": "lenvatinib_pembro_2l",
    "label": "Lenvatinib + pembrolizumab",
-   "nota": "KEYNOTE-775/ESMO: tras platino en cancer endometrial pMMR/no dMMR, lenvatinib + pembrolizumab es estandar si tolerable.",
+   "nota": "KEYNOTE-775/ESMO: tras platino en cáncer endometrial pMMR/no dMMR, lenvatinib + pembrolizumab es estándar si tolerable.",
    "cuando": [
     {
      "campo": "estadio",
@@ -388,7 +388,7 @@
   {
    "id": "hormonoterapia",
    "label": "Hormonoterapia",
-   "nota": "ESMO: endometrioide bajo grado, ER/PR positivo, bajo volumen/indolente -> hormonoterapia preferente si no precisa respuesta rapida.",
+   "nota": "ESMO: endometrioide bajo grado, ER/PR positivo, bajo volumen/indolente -> hormonoterapia preferente si no precisa respuesta rápida.",
    "cuando": [
     {
      "campo": "estadio",
@@ -413,8 +413,8 @@
   },
   {
    "id": "quimio_2l",
-   "label": "Quimioterapia paliativa de linea posterior",
-   "nota": "ESMO: tras progresion a platino e inmunoterapia/lenvatinib, quimioterapia secuencial o ensayo clinico.",
+   "label": "Quimioterapia paliativa de línea posterior",
+   "nota": "ESMO: tras progresión a platino e inmunoterapia/lenvatinib, quimioterapia secuencial o ensayo clínico.",
    "cuando": [
     {
      "campo": "estadio",
@@ -435,8 +435,8 @@
   },
   {
    "id": "soporte_endometrio",
-   "label": "Soporte exclusivo/valoracion geriatrica",
-   "nota": "ESMO: ECOG 3-4 o fragilidad marcada exige individualizar y puede hacer preferible tratamiento sintomatico.",
+   "label": "Soporte exclusivo/valoracion geriátrica",
+   "nota": "ESMO: ECOG 3-4 o fragilidad marcada exige individualizar y puede hacer preferible tratamiento sintomático.",
    "cuando": {
     "campo": "ecog",
     "in": [
@@ -459,7 +459,7 @@
     "campo": "riesgo",
     "eq": "alto_intermedio"
    },
-   "instrucciones": "Con riesgo alto-intermedio, decide si predomina riesgo local o sistemico.",
+   "instrucciones": "Con riesgo alto-intermedio, decide si predomina riesgo local o sistémico.",
    "criterios": {
     "local": "Braquiterapia/RT suficiente",
     "sistemico": "Considerar QT/RT"
@@ -496,7 +496,7 @@
    "bloquea_componentes": [
     "inmunoterapia"
    ],
-   "instrucciones": "¿Existe contraindicacion mayor para inmunoterapia?",
+   "instrucciones": "¿Existe contraindicación mayor para inmunoterapia?",
    "motivo": "Riesgo inaceptable para inmunoterapia"
   },
   {
@@ -508,8 +508,8 @@
    "bloquea": [
     "lenvatinib_pembro_2l"
    ],
-   "instrucciones": "¿La hipertension contraindica lenvatinib?",
-   "motivo": "Hipertension no controlada contraindica lenvatinib"
+   "instrucciones": "¿La hipertensión contraindica lenvatinib?",
+   "motivo": "Hipertensión no controlada contraindica lenvatinib"
   }
  ],
  "avisos": [
@@ -518,7 +518,7 @@
     "campo": "molecular",
     "eq": "desconocido"
    },
-   "texto": "Clasificacion molecular desconocida: modifica riesgo y tratamiento."
+   "texto": "Clasificación molecular desconocida: modifica riesgo y tratamiento."
   },
   {
    "cuando": [
@@ -650,7 +650,7 @@
   },
   {
    "id": "ENDOMETRIO-V06",
-   "titulo": "pMMR segunda linea",
+   "titulo": "pMMR segunda línea",
    "fuente": "KEYNOTE-775",
    "payload": {
     "edad": 59,

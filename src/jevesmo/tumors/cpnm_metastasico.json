@@ -1,7 +1,7 @@
 {
  "id": "cpnm_metastasico",
- "nombre": "CPNM metastasico",
- "grupo": "Toracico",
+ "nombre": "CPNM metastásico",
+ "grupo": "Torácico",
  "version": "CPNM_METASTASICO-ESMO-2025.1",
  "guias": [
   {
@@ -15,11 +15,11 @@
    "url": "https://www.esmo.org/guidelines/lung-and-chest-tumours/metastatic-non-small-cell-lung-cancer"
   }
  ],
- "descripcion": "CPNM estadio IV por biomarcador accionable, PD-L1/histologia sin driver y lineas posteriores.",
+ "descripcion": "CPNM estadio IV por biomarcador accionable, PD-L1/histologia sin driver y líneas posteriores.",
  "campos": [
   {
    "id": "histologia",
-   "label": "Histologia",
+   "label": "Histología",
    "tipo": "choice",
    "opciones": [
     {
@@ -32,11 +32,11 @@
     }
    ],
    "requerido": true,
-   "pregunta": "¿La histologia es escamosa o no escamosa?"
+   "pregunta": "¿La histología es escamosa o no escamosa?"
   },
   {
    "id": "driver",
-   "label": "Driver oncogenico principal",
+   "label": "Driver oncogénico principal",
    "tipo": "choice",
    "opciones": [
     "egfr_comun",
@@ -54,7 +54,7 @@
    ],
    "seccion": "Biomarcadores",
    "requerido": true,
-   "pregunta": "¿Cual es el driver oncogenico principal (o ninguno/desconocido)?"
+   "pregunta": "¿Cuál es el driver oncogénico principal (o ninguno/desconocido)?"
   },
   {
    "id": "pdl1_tps",
@@ -90,13 +90,13 @@
      }
     ]
    },
-   "pregunta": "¿Cual es el PD-L1 TPS?"
+   "pregunta": "¿Cuál es el PD-L1 TPS?"
   },
   {
    "id": "metastasis_cerebrales_activas",
-   "label": "Metastasis cerebrales activas",
+   "label": "Metástasis cerebrales activas",
    "tipo": "bool",
-   "seccion": "Extension"
+   "seccion": "Extensión"
   },
   {
    "id": "enfermedad_autoinmune_activa",
@@ -120,7 +120,7 @@
  "derivados": [
   {
    "id": "categoria",
-   "label": "Categoria molecular",
+   "label": "Categoría molecular",
    "defecto": "sin driver",
    "reglas": [
     {
@@ -149,7 +149,7 @@
   {
    "id": "osimertinib_1l",
    "label": "Osimertinib 1L",
-   "nota": "ESMO: EGFR exon19del/L858R metastasico -> osimertinib primera linea; considerar CNS.",
+   "nota": "ESMO: EGFR exon19del/L858R metastásico -> osimertinib primera línea; considerar CNS.",
    "cuando": [
     {
      "campo": "driver",
@@ -176,7 +176,7 @@
   {
    "id": "amivantamab_lazertinib_1l",
    "label": "Amivantamab + lazertinib 1L",
-   "nota": "ESMO living guideline: EGFR comun metastasico, especialmente alto riesgo/CNS, amivantamab-lazertinib es opcion de 1L si disponible.",
+   "nota": "ESMO living guideline: EGFR comun metastásico, especialmente alto riesgo/CNS, amivantamab-lazertinib es opción de 1L si disponible.",
    "cuando": [
     {
      "campo": "driver",
@@ -203,7 +203,7 @@
   {
    "id": "amivantamab_exon20",
    "label": "Amivantamab +- quimioterapia en EGFR exon20",
-   "nota": "ESMO: CPNM EGFR exon20 insercion -> amivantamab basado en PAPILLON/CHRYSALIS segun linea y disponibilidad.",
+   "nota": "ESMO: CPNM EGFR exon20 inserción -> amivantamab basado en PAPILLON/CHRYSALIS según línea y disponibilidad.",
    "cuando": {
     "campo": "driver",
     "eq": "egfr_exon20"
@@ -217,7 +217,7 @@
   {
    "id": "alectinib_alk",
    "label": "Alectinib/brigatinib/lorlatinib 1L",
-   "nota": "ESMO: ALK+ metastasico -> inhibidor ALK de nueva generacion (alectinib, brigatinib o lorlatinib) preferido.",
+   "nota": "ESMO: ALK+ metastásico -> inhibidor ALK de nueva generación (alectinib, brigatinib o lorlatinib) preferido.",
    "cuando": [
     {
      "campo": "driver",
@@ -244,7 +244,7 @@
   {
    "id": "entrectinib_ros1_ntrk",
    "label": "Entrectinib/repotrectinib (ROS1/NTRK)",
-   "nota": "ESMO: ROS1+ o NTRK fusion -> TKI activo (entrectinib/repotrectinib/larotrectinib segun fusion y CNS).",
+   "nota": "ESMO: ROS1+ o NTRK fusión -> TKI activo (entrectinib/repotrectinib/larotrectinib según fusión y CNS).",
    "cuando": [
     {
      "campo": "driver",
@@ -274,7 +274,7 @@
   {
    "id": "dabrafenib_trametinib",
    "label": "Dabrafenib + trametinib",
-   "nota": "ESMO: BRAF V600E metastasico -> dabrafenib + trametinib.",
+   "nota": "ESMO: BRAF V600E metastásico -> dabrafenib + trametinib.",
    "cuando": {
     "campo": "driver",
     "eq": "braf_v600e"
@@ -287,7 +287,7 @@
   {
    "id": "selpercatinib_ret",
    "label": "Selpercatinib/pralsetinib",
-   "nota": "ESMO: RET fusion metastasico -> selpercatinib o pralsetinib preferente.",
+   "nota": "ESMO: RET fusión metastásico -> selpercatinib o pralsetinib preferente.",
    "cuando": {
     "campo": "driver",
     "eq": "ret"
@@ -300,7 +300,7 @@
   {
    "id": "capmatinib_tepotinib_met",
    "label": "Capmatinib/tepotinib",
-   "nota": "ESMO: MET exon 14 skipping -> inhibidor MET (capmatinib/tepotinib).",
+   "nota": "ESMO: MET exón 14 skipping -> inhibidor MET (capmatinib/tepotinib).",
    "cuando": {
     "campo": "driver",
     "eq": "met_ex14"
@@ -313,7 +313,7 @@
   {
    "id": "pembro_monoterapia",
    "label": "Pembrolizumab monoterapia",
-   "nota": "ESMO: sin driver, PD-L1 TPS >=50%, ECOG 0-1 -> pembrolizumab monoterapia si no precisa respuesta rapida. Aplica tambien en 1a linea a KRAS G12C y HER2 mutado (sin terapia dirigida aprobada en 1L; la dirigida se reserva para 2L).",
+   "nota": "ESMO: sin driver, PD-L1 TPS >=50%, ECOG 0-1 -> pembrolizumab monoterapia si no precisa respuesta rápida. Aplica también en 1a línea a KRAS G12C y HER2 mutado (sin terapia dirigida aprobada en 1L; la dirigida se reserva para 2L).",
    "cuando": [
     {
      "campo": "driver",
@@ -348,7 +348,7 @@
   {
    "id": "quimio_ici_noescamoso",
    "label": "Platino+pemetrexed+pembrolizumab",
-   "nota": "ESMO/KEYNOTE-189: no escamoso sin driver, cualquier PD-L1, 1L -> quimioterapia pemetrexed-platino + pembrolizumab. Aplica tambien en 1a linea a KRAS G12C y HER2 mutado (sin terapia dirigida aprobada en 1L; la dirigida se reserva para 2L).",
+   "nota": "ESMO/KEYNOTE-189: no escamoso sin driver, cualquier PD-L1, 1L -> quimioterapia pemetrexed-platino + pembrolizumab. Aplica también en 1a línea a KRAS G12C y HER2 mutado (sin terapia dirigida aprobada en 1L; la dirigida se reserva para 2L).",
    "cuando": [
     {
      "campo": "driver",
@@ -384,7 +384,7 @@
   {
    "id": "quimio_ici_escamoso",
    "label": "Carboplatino+taxano+pembrolizumab",
-   "nota": "ESMO/KEYNOTE-407: escamoso sin driver, cualquier PD-L1, 1L -> carboplatino-taxano + pembrolizumab. Aplica tambien en 1a linea a KRAS G12C y HER2 mutado (sin terapia dirigida aprobada en 1L; la dirigida se reserva para 2L).",
+   "nota": "ESMO/KEYNOTE-407: escamoso sin driver, cualquier PD-L1, 1L -> carboplatino-taxano + pembrolizumab. Aplica también en 1a línea a KRAS G12C y HER2 mutado (sin terapia dirigida aprobada en 1L; la dirigida se reserva para 2L).",
    "cuando": [
     {
      "campo": "driver",
@@ -420,7 +420,7 @@
   {
    "id": "docetaxel_nintedanib",
    "label": "Docetaxel +- nintedanib / ramucirumab 2L",
-   "nota": "ESMO: tras progresion a 1L con inmuno-quimioterapia sin driver -> docetaxel con antiangiogenico en adenocarcinoma o docetaxel si escamoso.",
+   "nota": "ESMO: tras progresión a 1L con inmuno-quimioterapia sin driver -> docetaxel con antiangiogénico en adenocarcinoma o docetaxel si escamoso.",
    "cuando": [
     {
      "campo": "driver",
@@ -444,7 +444,7 @@
   {
    "id": "kras_g12c_2l",
    "label": "Sotorasib/adagrasib",
-   "nota": "ESMO: KRAS G12C tras al menos una linea sistemica -> inhibidor KRAS G12C.",
+   "nota": "ESMO: KRAS G12C tras al menos una línea sistémica -> inhibidor KRAS G12C.",
    "cuando": [
     {
      "campo": "driver",
@@ -489,10 +489,10 @@
     "campo": "driver",
     "eq": "ninguno"
    },
-   "instrucciones": "Valora si se necesita respuesta tumoral rapida por carga sintomatica/visceral.",
+   "instrucciones": "Valora si se necesita respuesta tumoral rápida por carga sintomática/visceral.",
    "criterios": {
     "no_urgente": "Carga baja, se puede priorizar tolerabilidad",
-    "urgente": "Sintomas o amenaza organica; priorizar tasa de respuesta"
+    "urgente": "Síntomas o amenaza orgánica; priorizar tasa de respuesta"
    }
   },
   {
@@ -503,7 +503,7 @@
     "campo": "metastasis_cerebrales_activas",
     "eq": true
    },
-   "instrucciones": "¿La actividad intracraneal debe condicionar fuertemente la eleccion del farmaco?"
+   "instrucciones": "¿La actividad intracraneal debe condicionar fuertemente la elección del fármaco?"
   },
   {
    "key": "molecular_incompleto",
@@ -513,7 +513,7 @@
     "campo": "driver",
     "eq": "desconocido"
    },
-   "instrucciones": "¿Es prudente esperar/completar NGS antes de iniciar inmunoterapia en este CPNM metastasico?"
+   "instrucciones": "¿Es prudente esperar/completar NGS antes de iniciar inmunoterapia en este CPNM metastásico?"
   }
  ],
  "seguridad": [
@@ -542,7 +542,7 @@
    ],
    "instrucciones": "Con EPI/neumonitis previa, ¿es inaceptable el riesgo pulmonar de TKI EGFR/T-DXd?",
    "umbral": 0.55,
-   "motivo": "EPI/neumonitis previa: riesgo elevado de neumonitis farmacologica."
+   "motivo": "EPI/neumonitis previa: riesgo elevado de neumonitis farmacológica."
   }
  ],
  "avisos": [
@@ -551,7 +551,7 @@
     "campo": "driver",
     "eq": "desconocido"
    },
-   "texto": "Perfil molecular incompleto: EGFR/ALK/ROS1/BRAF/MET/RET/NTRK/KRAS/HER2 puede cambiar totalmente la primera linea."
+   "texto": "Perfil molecular incompleto: EGFR/ALK/ROS1/BRAF/MET/RET/NTRK/KRAS/HER2 puede cambiar totalmente la primera línea."
   },
   {
    "cuando": [
@@ -564,7 +564,7 @@
      "missing": true
     }
    ],
-   "texto": "PD-L1 no disponible: no se puede seleccionar monoterapia anti-PD-1 con precision."
+   "texto": "PD-L1 no disponible: no se puede seleccionar monoterapia anti-PD-1 con precisión."
   }
  ],
  "vinetas": [
@@ -655,7 +655,7 @@
   },
   {
    "id": "CPNM_METASTASICO-V05",
-   "titulo": "KRAS G12C segunda linea",
+   "titulo": "KRAS G12C segunda línea",
    "fuente": "ESMO: KRAS G12C tras progresion",
    "payload": {
     "edad": 66,
@@ -678,7 +678,7 @@
   },
   {
    "id": "CPNM_METASTASICO-V06",
-   "titulo": "HER2 mutado segunda linea",
+   "titulo": "HER2 mutado segunda línea",
    "fuente": "ESMO/DESTINY-Lung: T-DXd",
    "payload": {
     "edad": 58,

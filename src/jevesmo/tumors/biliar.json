@@ -1,6 +1,6 @@
 {
  "id": "biliar",
- "nombre": "Cancer de vias biliares",
+ "nombre": "Cáncer de vías biliares",
  "grupo": "Digestivo",
  "version": "BILIAR-ESMO-2024.1",
  "guias": [
@@ -15,11 +15,11 @@
    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11846563/"
   }
  ],
- "descripcion": "Colangiocarcinoma intra/extrahepatico y vesicula: cirugia/adjuvancia capecitabina, gem-cis + durvalumab/pembrolizumab y dianas FGFR2, IDH1, HER2, BRAF, NTRK/MSI.",
+ "descripcion": "Colangiocarcinoma intra/extrahepatico y vesícula: cirugía/adjuvancia capecitabina, gem-cis + durvalumab/pembrolizumab y dianas FGFR2, IDH1, HER2, BRAF, NTRK/MSI.",
  "campos": [
   {
    "id": "situacion",
-   "label": "Situacion clinica",
+   "label": "Situación clínica",
    "tipo": "choice",
    "seccion": "Tumor",
    "opciones": [
@@ -31,7 +31,7 @@
   },
   {
    "id": "subtipo",
-   "label": "Subtipo anatomico",
+   "label": "Subtipo anatómico",
    "tipo": "choice",
    "seccion": "Tumor",
    "opciones": [
@@ -40,17 +40,17 @@
     "vesicula"
    ],
    "requerido": true,
-   "pregunta": "¿Es colangiocarcinoma intrahepatico, extrahepatico o cancer de vesicula?"
+   "pregunta": "¿Es colangiocarcinoma intrahepático, extrahepático o cáncer de vesícula?"
   },
   {
    "id": "post_reseccion",
-   "label": "Tras reseccion R0/R1",
+   "label": "Tras resección R0/R1",
    "tipo": "bool",
    "seccion": "Historial"
   },
   {
    "id": "fgfr2_fusion",
-   "label": "Fusion/reordenamiento FGFR2",
+   "label": "Fusión/reordenamiento FGFR2",
    "tipo": "bool",
    "seccion": "Biomarcadores"
   },
@@ -79,7 +79,7 @@
   },
   {
    "id": "ntrk_fusion",
-   "label": "Fusion NTRK",
+   "label": "Fusión NTRK",
    "tipo": "bool",
    "seccion": "Biomarcadores"
   },
@@ -105,8 +105,8 @@
  "opciones": [
   {
    "id": "cirugia_reseccion",
-   "label": "Reseccion quirurgica con linfadenectomia",
-   "nota": "ESMO: enfermedad localizada resecable -> cirugia radical si posible en centro hepatobiliar",
+   "label": "Resección quirúrgica con linfadenectomía",
+   "nota": "ESMO: enfermedad localizada resecable -> cirugía radical si posible en centro hepatobiliar",
    "cuando": [
     {
      "campo": "situacion",
@@ -127,7 +127,7 @@
   {
    "id": "capecitabina_adyuvante",
    "label": "Capecitabina adyuvante 6 meses",
-   "nota": "ESMO: tras reseccion de vias biliares -> capecitabina adyuvante 6 meses (BILCAP)",
+   "nota": "ESMO: tras resección de vías biliares -> capecitabina adyuvante 6 meses (BILCAP)",
    "cuando": [
     {
      "campo": "situacion",
@@ -214,7 +214,7 @@
   {
    "id": "gemox_1l_cis_no",
    "label": "Gemcitabina-oxaliplatino/carboplatino si no cisplatino",
-   "nota": "ESMO: si no apto para cisplatino, regimen alternativo basado en gemcitabina (GEMOX/carboplatino)",
+   "nota": "ESMO: si no apto para cisplatino, régimen alternativo basado en gemcitabina (GEMOX/carboplatino)",
    "cuando": [
     {
      "campo": "situacion",
@@ -244,8 +244,8 @@
   },
   {
    "id": "folfox_2l",
-   "label": "FOLFOX 2a linea",
-   "nota": "ESMO: tras gem-cis, FOLFOX es estandar de 2a linea si no hay diana accionable (ABC-06)",
+   "label": "FOLFOX 2a línea",
+   "nota": "ESMO: tras gem-cis, FOLFOX es estándar de 2a línea si no hay diana accionable (ABC-06)",
    "cuando": [
     {
      "campo": "situacion",
@@ -264,7 +264,7 @@
   {
    "id": "fgfr_inhibidor",
    "label": "Pemigatinib/futibatinib para FGFR2",
-   "nota": "ESMO: colangiocarcinoma intrahepatico con fusion/reordenamiento FGFR2 tras progresion -> pemigatinib o futibatinib",
+   "nota": "ESMO: colangiocarcinoma intrahepático con fusión/reordenamiento FGFR2 tras progresión -> pemigatinib o futibatinib",
    "cuando": [
     {
      "campo": "situacion",
@@ -291,7 +291,7 @@
   {
    "id": "ivosidenib_idh1",
    "label": "Ivosidenib para IDH1",
-   "nota": "ESMO: colangiocarcinoma IDH1 mutado tras progresion -> ivosidenib (ClarIDHy)",
+   "nota": "ESMO: colangiocarcinoma IDH1 mutado tras progresión -> ivosidenib (ClarIDHy)",
    "cuando": [
     {
      "campo": "situacion",
@@ -314,7 +314,7 @@
   {
    "id": "antiher2_biliar",
    "label": "Terapia anti-HER2",
-   "nota": "ESMO: HER2 amplificado/sobreexpresado tras linea previa -> trastuzumab-pertuzumab, zanidatamab o T-DXd si disponible",
+   "nota": "ESMO: HER2 amplificado/sobreexpresado tras línea previa -> trastuzumab-pertuzumab, zanidatamab o T-DXd si disponible",
    "cuando": [
     {
      "campo": "situacion",
@@ -361,7 +361,7 @@
   {
    "id": "ntrk_inhibidor",
    "label": "Larotrectinib/entrectinib",
-   "nota": "ESMO: fusion NTRK -> inhibidor TRK agnostico",
+   "nota": "ESMO: fusión NTRK -> inhibidor TRK agnóstico",
    "cuando": [
     {
      "campo": "situacion",
@@ -380,7 +380,7 @@
   {
    "id": "ici_msi_h",
    "label": "Inmunoterapia MSI-H/dMMR",
-   "nota": "ESMO: MSI-H/dMMR avanzado -> inhibidor PD-1 segun disponibilidad",
+   "nota": "ESMO: MSI-H/dMMR avanzado -> inhibidor PD-1 según disponibilidad",
    "cuando": [
     {
      "campo": "situacion",
@@ -406,7 +406,7 @@
     "campo": "situacion",
     "eq": "irresecable_metastasico"
    },
-   "instrucciones": "Segun funcion renal, audicion, neuropatia y ECOG, ¿es candidato a cisplatino?"
+   "instrucciones": "Según función renal, audición, neuropatía y ECOG, ¿es candidato a cisplatino?"
   },
   {
    "key": "prioridad_diana",
@@ -422,11 +422,11 @@
      "gte": 1
     }
    ],
-   "instrucciones": "Si hay varias alteraciones accionables, prioriza la diana con mas respaldo clinico",
+   "instrucciones": "Si hay varias alteraciones accionables, prioriza la diana con más respaldo clínico",
    "criterios": {
-    "fgfr2_idh1": "FGFR2/IDH1 en intrahepatico",
-    "her2": "HER2 en vesicula/extrahepatico",
-    "agnostica": "MSI-H/NTRK/BRAF agnostica"
+    "fgfr2_idh1": "FGFR2/IDH1 en intrahepático",
+    "her2": "HER2 en vesícula/extrahepatico",
+    "agnostica": "MSI-H/NTRK/BRAF agnóstica"
    }
   }
  ],
@@ -473,7 +473,7 @@
      "eq": "colangio_intrahepatico"
     }
    ],
-   "texto": "FGFR2 no testado: puede cambiar 2a linea intrahepatica."
+   "texto": "FGFR2 no testado: puede cambiar 2a línea intrahepática."
   },
   {
    "cuando": [
@@ -499,13 +499,13 @@
      "missing": true
     }
    ],
-   "texto": "HER2 no testado: relevante en vesicula/extrahepatico."
+   "texto": "HER2 no testado: relevante en vesícula/extrahepatico."
   }
  ],
  "vinetas": [
   {
    "id": "BILIAR-V01",
-   "titulo": "Postreseccion",
+   "titulo": "Postresección",
    "fuente": "BILCAP",
    "payload": {
     "edad": 64,
@@ -568,7 +568,7 @@
   },
   {
    "id": "BILIAR-V04",
-   "titulo": "FGFR2 fusion post gemcis",
+   "titulo": "FGFR2 fusión post gemcis",
    "fuente": "FIGHT-202/FOENIX",
    "payload": {
     "edad": 55,
@@ -615,7 +615,7 @@
   },
   {
    "id": "BILIAR-V06",
-   "titulo": "HER2 positivo vesicula 2L",
+   "titulo": "HER2 positivo vesícula 2L",
    "fuente": "ESMO - anti-HER2 BTC",
    "payload": {
     "edad": 58,

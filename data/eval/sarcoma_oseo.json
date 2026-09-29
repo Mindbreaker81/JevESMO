@@ -1,6 +1,6 @@
 {
  "tumor": "sarcoma_oseo",
- "nombre": "Sarcomas oseos",
+ "nombre": "Sarcomas óseos",
  "grupo": "Sarcomas",
  "version": "SARCOMA_OSEO-ESMO-2021.1",
  "fecha": "2026-09-27T18:59:07+00:00",
@@ -32,7 +32,7 @@
     "map_osteosarcoma"
    ],
    "obtenido": "map_osteosarcoma",
-   "obtenido_label": "MAP neoadyuvante/adyuvante + cirugia",
+   "obtenido_label": "MAP neoadyuvante/adyuvante + cirugía",
    "confianza": 1.0,
    "revision": false,
    "motivos_revision": [],
@@ -52,7 +52,7 @@
     "ap_osteosarcoma_adulto"
    ],
    "obtenido": "ap_osteosarcoma_adulto",
-   "obtenido_label": "Doxorrubicina + cisplatino perioperatorio + cirugia",
+   "obtenido_label": "Doxorrubicina + cisplatino perioperatorio + cirugía",
    "confianza": 1.0,
    "revision": false,
    "motivos_revision": [],
@@ -72,7 +72,7 @@
     "metastasectomia_osteo"
    ],
    "obtenido": "metastasectomia_osteo",
-   "obtenido_label": "QT tipo osteosarcoma + cirugia primaria y metastasectomia completa",
+   "obtenido_label": "QT tipo osteosarcoma + cirugía primaria y metastasectomía completa",
    "confianza": 1.0,
    "revision": false,
    "motivos_revision": [],
@@ -104,7 +104,7 @@
   },
   {
    "id": "SARCOMA_OSEO-V05",
-   "titulo": "Ewing metastasico",
+   "titulo": "Ewing metastásico",
    "fuente": "ESMO bone sarcoma: Ewing metastasico QT intensiva",
    "esperado_tipo": "recomendacion",
    "esperado": "ewing_metastasico",
@@ -112,7 +112,7 @@
     "ewing_metastasico"
    ],
    "obtenido": "ewing_metastasico",
-   "obtenido_label": "VDC/IE + tratamiento local de primario y metastasis si factible",
+   "obtenido_label": "VDC/IE + tratamiento local de primario y metástasis si factible",
    "confianza": 1.0,
    "revision": false,
    "motivos_revision": [],
@@ -132,7 +132,7 @@
     "cirugia_condrosarcoma"
    ],
    "obtenido": "cirugia_condrosarcoma",
-   "obtenido_label": "Cirugia amplia del condrosarcoma convencional",
+   "obtenido_label": "Cirugía amplia del condrosarcoma convencional",
    "confianza": 1.0,
    "revision": false,
    "motivos_revision": [],
@@ -164,7 +164,7 @@
   },
   {
    "id": "SARCOMA_OSEO-V08",
-   "titulo": "Recaida pulmonar osteosarcoma resecable",
+   "titulo": "Recaída pulmonar osteosarcoma resecable",
    "fuente": "ESMO bone sarcoma: metastasectomia en recaida resecable",
    "esperado_tipo": "recomendacion",
    "esperado": "cirugia_recaida_resecable",
@@ -172,7 +172,7 @@
     "cirugia_recaida_resecable"
    ],
    "obtenido": "cirugia_recaida_resecable",
-   "obtenido_label": "Reseccion completa de recaida/metastasis si factible",
+   "obtenido_label": "Resección completa de recaída/metastasis si factible",
    "confianza": 1.0,
    "revision": false,
    "motivos_revision": [],
@@ -184,7 +184,7 @@
   },
   {
    "id": "SARCOMA_OSEO-V09",
-   "titulo": "Falta histologia",
+   "titulo": "Falta histología",
    "fuente": "ESMO bone sarcoma: diagnostico histologico obligatorio",
    "esperado_tipo": "necesita_datos",
    "esperado": "necesita_datos",

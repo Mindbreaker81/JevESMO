@@ -1,7 +1,7 @@
 {
  "id": "timo",
- "nombre": "Timoma y carcinoma timico",
- "grupo": "Toracico",
+ "nombre": "Timoma y carcinoma tímico",
+ "grupo": "Torácico",
  "version": "TIMO-ESMO-2025.1",
  "guias": [
   {
@@ -15,11 +15,11 @@
    "url": "https://interactiveguidelines.esmo.org/esmo-web-app/toc/index.php?subjectAreaId=1"
   }
  ],
- "descripcion": "Tumores epiteliales timicos por histologia, estadio Masaoka-Koga/TNM, resecabilidad y linea.",
+ "descripcion": "Tumores epiteliales tímicos por histología, estadio Masaoka-Koga/TNM, resecabilidad y línea.",
  "campos": [
   {
    "id": "histologia",
-   "label": "Histologia",
+   "label": "Histología",
    "tipo": "choice",
    "opciones": [
     {
@@ -28,11 +28,11 @@
     },
     {
      "id": "carcinoma_timico",
-     "label": "carcinoma timico"
+     "label": "carcinoma tímico"
     }
    ],
    "requerido": true,
-   "pregunta": "¿Es timoma o carcinoma timico?"
+   "pregunta": "¿Es timoma o carcinoma tímico?"
   },
   {
    "id": "estadio",
@@ -46,7 +46,7 @@
     "IVB"
    ],
    "requerido": true,
-   "pregunta": "¿Cual es el estadio (I, II, III, IVA o IVB)?"
+   "pregunta": "¿Cuál es el estadio (I, II, III, IVA o IVB)?"
   },
   {
    "id": "resecable",
@@ -69,7 +69,7 @@
   },
   {
    "id": "miastenia_gravis",
-   "label": "Miastenia gravis u otra autoinmunidad paraneoplasica",
+   "label": "Miastenia gravis u otra autoinmunidad paraneoplásica",
    "tipo": "bool",
    "seccion": "Seguridad"
   },
@@ -83,7 +83,7 @@
  "derivados": [
   {
    "id": "situacion",
-   "label": "Situacion",
+   "label": "Situación",
    "defecto": "avanzado",
    "reglas": [
     {
@@ -147,8 +147,8 @@
  "opciones": [
   {
    "id": "reseccion_primaria",
-   "label": "Reseccion completa (timectomia) en centro experto",
-   "nota": "ESMO: timoma/carcinoma timico estadio I-II y III resecable -> reseccion completa R0, evitando ruptura capsular.",
+   "label": "Resección completa (timectomía) en centro experto",
+   "nota": "ESMO: timoma/carcinoma tímico estadio I-II y III resecable -> resección completa R0, evitando ruptura capsular.",
    "cuando": {
     "campo": "situacion",
     "eq": "local resecable"
@@ -161,7 +161,7 @@
   {
    "id": "rt_adyuvante_r1_r2_iii",
    "label": "Radioterapia adyuvante",
-   "nota": "ESMO: RT postoperatoria indicada tras R1/R2 y considerada en estadio III o carcinoma timico incluso R0 segun riesgo.",
+   "nota": "ESMO: RT postoperatoria indicada tras R1/R2 y considerada en estadio III o carcinoma tímico incluso R0 según riesgo.",
    "cuando": [
     {
      "campo": "situacion",
@@ -224,8 +224,8 @@
   },
   {
    "id": "quimio_induccion",
-   "label": "Quimioterapia de induccion CAP/ADOC -> reevaluar cirugia",
-   "nota": "ESMO: tumor localmente avanzado potencialmente resecable/irresecable inicial -> quimioterapia de induccion con platino (CAP/ADOC) y reevaluacion para reseccion.",
+   "label": "Quimioterapia de inducción CAP/ADOC -> reevaluar cirugía",
+   "nota": "ESMO: tumor localmente avanzado potencialmente resecable/irresecable inicial -> quimioterapia de inducción con platino (CAP/ADOC) y reevaluación para resección.",
    "cuando": {
     "campo": "situacion",
     "eq": "localmente avanzado irresecable"
@@ -239,7 +239,7 @@
   {
    "id": "quimiorradioterapia_definitiva",
    "label": "Quimiorradioterapia definitiva",
-   "nota": "ESMO: enfermedad localmente avanzada no resecable pese a induccion o no quirurgica -> tratamiento definitivo con QT/RT segun tolerancia.",
+   "nota": "ESMO: enfermedad localmente avanzada no resecable pese a inducción o no quirúrgica -> tratamiento definitivo con QT/RT según tolerancia.",
    "cuando": {
     "campo": "situacion",
     "eq": "localmente avanzado irresecable"
@@ -252,7 +252,7 @@
   {
    "id": "platino_avanzado",
    "label": "Quimioterapia basada en platino",
-   "nota": "ESMO: timoma o carcinoma timico avanzado/metastasico primera linea -> combinacion basada en platino (CAP/ADOC; carboplatino-paclitaxel en carcinoma).",
+   "nota": "ESMO: timoma o carcinoma tímico avanzado/metastasico primera línea -> combinación basada en platino (CAP/ADOC; carboplatino-paclitaxel en carcinoma).",
    "cuando": [
     {
      "campo": "situacion",
@@ -279,7 +279,7 @@
   {
    "id": "pemetrexed_octreotida_timoma",
    "label": "Pemetrexed/everolimus u octreotida-prednisona en timoma",
-   "nota": "ESMO: timoma recurrente tras platino -> opciones sistemicas como pemetrexed, everolimus u octreotida-prednisona si receptor positivo.",
+   "nota": "ESMO: timoma recurrente tras platino -> opciones sistémicas como pemetrexed, everolimus u octreotida-prednisona si receptor positivo.",
    "cuando": [
     {
      "campo": "histologia",
@@ -298,8 +298,8 @@
   },
   {
    "id": "sunitinib_lenvatinib_carcinoma",
-   "label": "Sunitinib o lenvatinib en carcinoma timico",
-   "nota": "ESMO: carcinoma timico tras quimioterapia basada en platino -> antiangiogenicos multiquinasa sunitinib o lenvatinib.",
+   "label": "Sunitinib o lenvatinib en carcinoma tímico",
+   "nota": "ESMO: carcinoma tímico tras quimioterapia basada en platino -> antiangiogénicos multiquinasa sunitinib o lenvatinib.",
    "cuando": [
     {
      "campo": "histologia",
@@ -318,8 +318,8 @@
   },
   {
    "id": "pembrolizumab_carcinoma",
-   "label": "Pembrolizumab en carcinoma timico seleccionado",
-   "nota": "ESMO: carcinoma timico pretratado puede considerar pembrolizumab solo en ausencia de autoinmunidad y con vigilancia estrecha; no preferido en timoma por toxicidad.",
+   "label": "Pembrolizumab en carcinoma tímico seleccionado",
+   "nota": "ESMO: carcinoma tímico pretratado puede considerar pembrolizumab solo en ausencia de autoinmunidad y con vigilancia estrecha; no preferido en timoma por toxicidad.",
    "cuando": [
     {
      "campo": "histologia",
@@ -363,7 +363,7 @@
    "instrucciones": "Valora la estrategia de MDT para enfermedad localmente avanzada.",
    "criterios": {
     "cirugia_directa": "R0 probable de entrada",
-    "induccion": "R0 posible tras reduccion tumoral",
+    "induccion": "R0 posible tras reducción tumoral",
     "no_quirurgico": "R0 improbable o riesgo excesivo"
    }
   },
@@ -375,7 +375,7 @@
     "campo": "situacion",
     "eq": "local resecable"
    },
-   "instrucciones": "Riesgo de recaida local que justificaria RT adyuvante.",
+   "instrucciones": "Riesgo de recaída local que justificaria RT adyuvante.",
    "criterios": [
     "bajo",
     "intermedio",
@@ -390,7 +390,7 @@
     "campo": "lineas_previas",
     "gte": 1
    },
-   "instrucciones": "¿Existe riesgo elevado de toxicidad autoinmune con inmunoterapia en tumor timico?"
+   "instrucciones": "¿Existe riesgo elevado de toxicidad autoinmune con inmunoterapia en tumor tímico?"
   }
  ],
  "seguridad": [
@@ -412,7 +412,7 @@
     "inmunoterapia"
    ],
    "instrucciones": "Con miastenia/autoinmunidad activa, ¿es inaceptable el riesgo de inmunoterapia?",
-   "motivo": "Tumor timico con autoinmunidad/miastenia: riesgo alto de toxicidad grave por ICI."
+   "motivo": "Tumor tímico con autoinmunidad/miastenia: riesgo alto de toxicidad grave por ICI."
   }
  ],
  "avisos": [
@@ -421,7 +421,7 @@
     "campo": "margen",
     "missing": true
    },
-   "texto": "Margen quirurgico no disponible: condiciona RT adyuvante."
+   "texto": "Margen quirúrgico no disponible: condiciona RT adyuvante."
   },
   {
    "cuando": [
@@ -484,7 +484,7 @@
   },
   {
    "id": "TIMO-V03",
-   "titulo": "Carcinoma timico II R0",
+   "titulo": "Carcinoma tímico II R0",
    "fuente": "ESMO: carcinoma timico resecado considerar RT",
    "payload": {
     "edad": 61,
@@ -506,7 +506,7 @@
   },
   {
    "id": "TIMO-V04",
-   "titulo": "IVA irresecable primera linea",
+   "titulo": "IVA irresecable primera línea",
    "fuente": "ESMO: induccion con platino y reevaluacion",
    "payload": {
     "edad": 57,
@@ -530,7 +530,7 @@
   },
   {
    "id": "TIMO-V05",
-   "titulo": "IVB carcinoma primera linea",
+   "titulo": "IVB carcinoma primera línea",
    "fuente": "ESMO: platino avanzado",
    "payload": {
     "edad": 66,
@@ -578,7 +578,7 @@
   },
   {
    "id": "TIMO-V07",
-   "titulo": "Histologia faltante",
+   "titulo": "Histología faltante",
    "fuente": "ESMO: histologia timoma vs carcinoma define tratamiento",
    "payload": {
     "edad": 60,

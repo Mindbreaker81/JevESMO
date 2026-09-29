@@ -1,6 +1,6 @@
 {
  "tumor": "tne_gep",
- "nombre": "Tumores neuroendocrinos gastroenteropancreaticos",
+ "nombre": "Tumores neuroendocrinos gastroenteropancreáticos",
  "grupo": "Digestivo",
  "version": "tne_gep-ESMO-2024.1",
  "fecha": "2026-09-27T18:59:12+00:00",
@@ -178,7 +178,7 @@
   },
   {
    "id": "TNE_GEP-V08",
-   "titulo": "Falta categoria",
+   "titulo": "Falta categoría",
    "fuente": "Dato imprescindible",
    "esperado_tipo": "necesita_datos",
    "esperado": "necesita_datos",

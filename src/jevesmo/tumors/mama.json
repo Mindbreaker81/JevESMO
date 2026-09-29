@@ -1,6 +1,6 @@
 {
  "id": "mama",
- "nombre": "Cancer de mama",
+ "nombre": "Cáncer de mama",
  "grupo": "Mama",
  "version": "BREAST-ESMO-2024.1",
  "guias": [
@@ -15,7 +15,7 @@
    "url": "https://www.esmo.org/living-guidelines/esmo-metastatic-breast-cancer-living-guideline"
   }
  ],
- "descripcion": "Cancer de mama precoz y metastasico: subtipo molecular (HR/HER2), biomarcadores accionables (BRCA, PD-L1, PIK3CA, ESR1) y linea de tratamiento.",
+ "descripcion": "Cáncer de mama precoz y metastásico: subtipo molecular (HR/HER2), biomarcadores accionables (BRCA, PD-L1, PIK3CA, ESR1) y línea de tratamiento.",
  "campos": [
   {
    "id": "estadio",
@@ -28,11 +28,11 @@
     "IV"
    ],
    "requerido": true,
-   "pregunta": "¿Cual es el estadio del tumor (I, II, III o IV/metastasico)?"
+   "pregunta": "¿Cuál es el estadio del tumor (I, II, III o IV/metastasico)?"
   },
   {
    "id": "tipo_histologico",
-   "label": "Tipo histologico",
+   "label": "Tipo histológico",
    "tipo": "choice",
    "opciones": [
     {
@@ -53,15 +53,15 @@
     }
    ],
    "requerido": true,
-   "pregunta": "¿Cual es el tipo histologico (ductal, lobulillar, inflamatorio, otro)?"
+   "pregunta": "¿Cuál es el tipo histológico (ductal, lobulillar, inflamatorio, otro)?"
   },
   {
    "id": "premenopausica",
-   "label": "Premenopausica",
+   "label": "Premenopáusica",
    "tipo": "bool",
    "seccion": "Paciente",
    "requerido": true,
-   "pregunta": "¿La paciente es premenopausica?"
+   "pregunta": "¿La paciente es premenopáusica?"
   },
   {
    "id": "embarazo_lactancia",
@@ -85,7 +85,7 @@
    ],
    "seccion": "Subtipo molecular",
    "requerido": true,
-   "pregunta": "¿Cual es el estado de HER2 (positivo/negativo)?"
+   "pregunta": "¿Cuál es el estado de HER2 (positivo/negativo)?"
   },
   {
    "id": "her2_ihc_score",
@@ -115,7 +115,7 @@
    ],
    "seccion": "Subtipo molecular",
    "requerido": true,
-   "pregunta": "¿Cual es el estado del receptor de estrogeno (RE)?"
+   "pregunta": "¿Cuál es el estado del receptor de estrogeno (RE)?"
   },
   {
    "id": "rp",
@@ -133,7 +133,7 @@
    ],
    "seccion": "Subtipo molecular",
    "requerido": true,
-   "pregunta": "¿Cual es el estado del receptor de progesterona (RP)?"
+   "pregunta": "¿Cuál es el estado del receptor de progesterona (RP)?"
   },
   {
    "id": "ki67_porcentaje",
@@ -146,23 +146,23 @@
   },
   {
    "id": "grado_histologico",
-   "label": "Grado histologico",
+   "label": "Grado histológico",
    "tipo": "choice",
    "opciones": [
     "1",
     "2",
     "3"
    ],
-   "seccion": "Anatomia patologica"
+   "seccion": "Anatomía patológica"
   },
   {
    "id": "tamano_tumor_mm",
-   "label": "Tamano tumoral",
+   "label": "Tamaño tumoral",
    "tipo": "number",
    "min": 0,
    "max": 300,
    "unidad": "mm",
-   "seccion": "Anatomia patologica"
+   "seccion": "Anatomía patológica"
   },
   {
    "id": "ganglios_positivos",
@@ -170,11 +170,11 @@
    "tipo": "number",
    "min": 0,
    "max": 60,
-   "seccion": "Anatomia patologica"
+   "seccion": "Anatomía patológica"
   },
   {
    "id": "brca_mutado",
-   "label": "Mutacion germinal BRCA1/2",
+   "label": "Mutación germinal BRCA1/2",
    "tipo": "bool",
    "seccion": "Biomarcadores"
   },
@@ -200,10 +200,10 @@
   },
   {
    "id": "enfermedad_residual",
-   "label": "Enfermedad invasiva residual tras neoadyuvancia (cirugia ya realizada)",
+   "label": "Enfermedad invasiva residual tras neoadyuvancia (cirugía ya realizada)",
    "tipo": "bool",
    "seccion": "Tratamiento previo",
-   "ayuda": "Solo si ya se hizo neoadyuvancia + cirugia. Dejar vacio si aun no se ha tratado."
+   "ayuda": "Solo si ya se hizo neoadyuvancia + cirugía. Dejar vacio si aun no se ha tratado."
   },
   {
    "id": "fraccion_eyeccion_ventricular",
@@ -217,7 +217,7 @@
     "campo": "her2",
     "eq": "positivo"
    },
-   "pregunta": "¿Cual es la FEVI (fraccion de eyeccion del ventriculo izquierdo, %)? Es imprescindible antes de indicar terapia anti-HER2."
+   "pregunta": "¿Cuál es la FEVI (fracción de eyección del ventriculo izquierdo, %)? Es imprescindible antes de indicar terapia anti-HER2."
   },
   {
    "id": "progreso_bajo_endocrino",
@@ -306,8 +306,8 @@
   },
   {
    "id": "quimio_neoadyuvante",
-   "label": "Quimioterapia (neo)adyuvante seguida de endocrina (alto riesgo clinico-patologico)",
-   "nota": "ESMO Early BC: HR+/HER2- alto riesgo (G3, N+, T>2cm, Ki67 alto, premenopausica) -> QT neoadyuvante o adyuvante tras cirugia + endocrina",
+   "label": "Quimioterapia (neo)adyuvante seguida de endocrina (alto riesgo clínico-patologico)",
+   "nota": "ESMO Early BC: HR+/HER2- alto riesgo (G3, N+, T>2cm, Ki67 alto, premenopáusica) -> QT neoadyuvante o adyuvante tras cirugía + endocrina",
    "cuando": [
     {
      "campo": "subtipo",
@@ -332,7 +332,7 @@
   },
   {
    "id": "endocrino_cdk46_1L",
-   "label": "Endocrina + inhibidor CDK4/6 (1a linea)",
+   "label": "Endocrina + inhibidor CDK4/6 (1a línea)",
    "nota": "ESMO Advanced BC: 1L HR+/HER2- -> endocrina + CDK4/6i",
    "cuando": [
     {
@@ -366,8 +366,8 @@
   },
   {
    "id": "fulvestrant_2L",
-   "label": "Fulvestrant/SERD +- inhibidor via PI3K/AKT/mTOR (2a linea)",
-   "nota": "ESMO Advanced BC: progresion tras endocrino -> considerar ESR1/PIK3CA",
+   "label": "Fulvestrant/SERD +- inhibidor vía PI3K/AKT/mTOR (2a línea)",
+   "nota": "ESMO Advanced BC: progresión tras endocrino -> considerar ESR1/PIK3CA",
    "cuando": [
     {
      "campo": "subtipo",
@@ -433,8 +433,8 @@
   },
   {
    "id": "quimio_metastasico",
-   "label": "Quimioterapia citotoxica secuencial",
-   "nota": "ESMO Advanced BC: lineas sucesivas tras agotar opciones endocrinas o crisis visceral",
+   "label": "Quimioterapia citotóxica secuencial",
+   "nota": "ESMO Advanced BC: líneas sucesivas tras agotar opciones endocrinas o crisis visceral",
    "cuando": [
     {
      "campo": "subtipo",
@@ -521,8 +521,8 @@
   },
   {
    "id": "th_pertuzumab_1L",
-   "label": "Taxano + trastuzumab + pertuzumab (1a linea)",
-   "nota": "ESMO Advanced BC: 1L HER2+ -> regimen CLEOPATRA",
+   "label": "Taxano + trastuzumab + pertuzumab (1a línea)",
+   "nota": "ESMO Advanced BC: 1L HER2+ -> régimen CLEOPATRA",
    "cuando": [
     {
      "campo": "subtipo",
@@ -556,7 +556,7 @@
   },
   {
    "id": "tdxd_2L",
-   "label": "Trastuzumab deruxtecan (T-DXd) (2a linea)",
+   "label": "Trastuzumab deruxtecan (T-DXd) (2a línea)",
    "nota": "ESMO Advanced BC: 2L HER2+ -> T-DXd (DESTINY-Breast03)",
    "cuando": [
     {
@@ -583,7 +583,7 @@
   {
    "id": "tucatinib_combo",
    "label": "Tucatinib + trastuzumab + capecitabina",
-   "nota": "ESMO Advanced BC: incluye actividad en metastasis cerebrales (HER2CLIMB)",
+   "nota": "ESMO Advanced BC: incluye actividad en metástasis cerebrales (HER2CLIMB)",
    "cuando": [
     {
      "campo": "subtipo",
@@ -609,8 +609,8 @@
   },
   {
    "id": "endocrino_add_on",
-   "label": "Mantenimiento anti-HER2 + terapia endocrina tras induccion con QT",
-   "nota": "ESMO Advanced BC: HR+/HER2+ metastasico -> tras la induccion con taxano + doble bloqueo HER2, mantenimiento con anti-HER2 + endocrino",
+   "label": "Mantenimiento anti-HER2 + terapia endocrina tras inducción con QT",
+   "nota": "ESMO Advanced BC: HR+/HER2+ metastásico -> tras la inducción con taxano + doble bloqueo HER2, mantenimiento con anti-HER2 + endocrino",
    "cuando": [
     {
      "campo": "subtipo",
@@ -694,7 +694,7 @@
   },
   {
    "id": "quimio_ici_1L",
-   "label": "Quimioterapia + pembrolizumab (PD-L1 CPS>=10, 1a linea)",
+   "label": "Quimioterapia + pembrolizumab (PD-L1 CPS>=10, 1a línea)",
    "nota": "ESMO Advanced BC TNBC: 1L PD-L1+ -> QT + ICI (KEYNOTE-355)",
    "cuando": [
     {
@@ -757,8 +757,8 @@
   },
   {
    "id": "sacituzumab_govitecan",
-   "label": "Sacituzumab govitecan (2a linea o posterior)",
-   "nota": "ESMO Advanced BC TNBC: tras >=1 linea previa -> SG (ASCENT)",
+   "label": "Sacituzumab govitecan (2a línea o posterior)",
+   "nota": "ESMO Advanced BC TNBC: tras >=1 línea previa -> SG (ASCENT)",
    "cuando": [
     {
      "campo": "subtipo",
@@ -782,8 +782,8 @@
   },
   {
    "id": "quimio_metastasico_tnbc",
-   "label": "Quimioterapia citotoxica secuencial",
-   "nota": "ESMO Advanced BC: opcion por defecto si no hay biomarcador accionable",
+   "label": "Quimioterapia citotóxica secuencial",
+   "nota": "ESMO Advanced BC: opción por defecto si no hay biomarcador accionable",
    "cuando": [
     {
      "campo": "subtipo",
@@ -811,7 +811,7 @@
     "campo": "her2_ihc_score",
     "eq": "2+"
    },
-   "instrucciones": "El IHC de HER2 es equivoco (2+). Basandote en el contexto clinico disponible, ¿es clinicamente prudente tratar este caso como HER2 positivo en ausencia de confirmacion FISH?"
+   "instrucciones": "El IHC de HER2 es equivoco (2+). Basandote en el contexto clínico disponible, ¿es clinicamente prudente tratar este caso como HER2 positivo en ausencia de confirmación FISH?"
   },
   {
    "key": "ki67_riesgo",
@@ -829,8 +829,8 @@
    ],
    "instrucciones": "Con Ki67 en zona intermedia, clasifica el riesgo proliferativo del tumor",
    "criterios": {
-    "bajo_riesgo": "Proliferacion baja, comportamiento mas indolente",
-    "alto_riesgo": "Proliferacion alta, considerar tratamiento mas agresivo"
+    "bajo_riesgo": "Proliferación baja, comportamiento más indolente",
+    "alto_riesgo": "Proliferación alta, considerar tratamiento más agresivo"
    }
   },
   {
@@ -841,7 +841,7 @@
     "campo": "brca_mutado",
     "missing": true
    },
-   "instrucciones": "No hay test BRCA disponible. Segun edad, subtipo tumoral e historia clinica, ¿existe sospecha clinica suficiente de mutacion BRCA1/2 como para recomendar test germinal antes de decidir tratamiento?"
+   "instrucciones": "No hay test BRCA disponible. Según edad, subtipo tumoral e historia clínica, ¿existe sospecha clínica suficiente de mutación BRCA1/2 como para recomendar test germinal antes de decidir tratamiento?"
   },
   {
    "key": "pdl1_limitrofe",
@@ -857,7 +857,7 @@
      "lt": 10
     }
    ],
-   "instrucciones": "PD-L1 CPS limitrofe (5-10). Evalua la probabilidad de beneficio real de inmunoterapia",
+   "instrucciones": "PD-L1 CPS limitrofe (5-10). Evalúa la probabilidad de beneficio real de inmunoterapia",
    "criterios": [
     "Beneficio improbable",
     "Beneficio incierto",
@@ -876,7 +876,7 @@
    "bloquea_componentes": [
     "anti_her2"
    ],
-   "motivo": "FEVI < 50%: contraindicacion para iniciar terapia anti-HER2 (ficha tecnica / ESMO). Requiere valoracion por cardio-oncologia."
+   "motivo": "FEVI < 50%: contraindicación para iniciar terapia anti-HER2 (ficha técnica / ESMO). Requiere valoración por cardio-oncología."
   },
   {
    "key": "riesgo_cardiaco_anti_her2",
@@ -897,8 +897,8 @@
     "anti_her2"
    ],
    "umbral": 0.5,
-   "instrucciones": "FEVI en el limite bajo de la normalidad (50-54%). Segun la historia cardiaca del paciente, ¿supone la terapia anti-HER2 un riesgo cardiaco inaceptable?",
-   "motivo": "Riesgo cardiaco inaceptable para anti-HER2 (FEVI limite + historia cardiaca)"
+   "instrucciones": "FEVI en el límite bajo de la normalidad (50-54%). Según la historia cardiaca del paciente, ¿supone la terapia anti-HER2 un riesgo cardiaco inaceptable?",
+   "motivo": "Riesgo cardiaco inaceptable para anti-HER2 (FEVI límite + historia cardiaca)"
   },
   {
    "key": "cardiopatia_anti_her2",
@@ -910,7 +910,7 @@
    "bloquea_componentes": [
     "anti_her2"
    ],
-   "motivo": "Cardiopatia documentada: valoracion por cardio-oncologia antes de anti-HER2."
+   "motivo": "Cardiopatía documentada: valoración por cardio-oncología antes de anti-HER2."
   }
  ],
  "avisos": [
@@ -919,7 +919,7 @@
     "campo": "ki67_porcentaje",
     "missing": true
    },
-   "texto": "Ki67 no disponible: la estratificacion de riesgo proliferativo es menos precisa."
+   "texto": "Ki67 no disponible: la estratificación de riesgo proliferativo es menos precisa."
   },
   {
    "cuando": [
@@ -954,7 +954,7 @@
      "missing": true
     }
    ],
-   "texto": "PD-L1 no disponible: no se puede valorar inmunoterapia en 1a linea metastasica."
+   "texto": "PD-L1 no disponible: no se puede valorar inmunoterapia en 1a línea metastásica."
   }
  ],
  "vinetas": [
@@ -1044,7 +1044,7 @@
   },
   {
    "id": "MAMA-V04",
-   "titulo": "HR+/HER2- metastasico 1a linea",
+   "titulo": "HR+/HER2- metastásico 1a línea",
    "fuente": "ESMO MBC Living Guideline - 1L: endocrina + CDK4/6i",
    "payload": {
     "edad": 58,
@@ -1069,7 +1069,7 @@
   },
   {
    "id": "MAMA-V05",
-   "titulo": "HR+/HER2- metastasico 2L PIK3CA mutado",
+   "titulo": "HR+/HER2- metastásico 2L PIK3CA mutado",
    "fuente": "ESMO MBC Living Guideline - PIK3CA mut tras CDK4/6i: alpelisib/capivasertib + fulvestrant",
    "payload": {
     "edad": 45,
@@ -1101,7 +1101,7 @@
   },
   {
    "id": "MAMA-V06",
-   "titulo": "HR+/HER2- metastasico 2L ESR1 mutado",
+   "titulo": "HR+/HER2- metastásico 2L ESR1 mutado",
    "fuente": "ESMO MBC Living Guideline - ESR1 mut: SERD (elacestrant/fulvestrant)",
    "payload": {
     "edad": 66,
@@ -1131,7 +1131,7 @@
   },
   {
    "id": "MAMA-V07",
-   "titulo": "HR+/HER2- metastasico con crisis visceral",
+   "titulo": "HR+/HER2- metastásico con crisis visceral",
    "fuente": "ESMO MBC Living Guideline - crisis visceral: quimioterapia",
    "payload": {
     "edad": 55,
@@ -1222,7 +1222,7 @@
   },
   {
    "id": "MAMA-V10",
-   "titulo": "HER2+ metastasico 1a linea",
+   "titulo": "HER2+ metastásico 1a línea",
    "fuente": "ESMO MBC Living Guideline - 1L HER2+: taxano + trastuzumab + pertuzumab (CLEOPATRA)",
    "payload": {
     "edad": 60,
@@ -1247,7 +1247,7 @@
   },
   {
    "id": "MAMA-V11",
-   "titulo": "HER2+ metastasico 2a linea",
+   "titulo": "HER2+ metastásico 2a línea",
    "fuente": "ESMO MBC Living Guideline - 2L HER2+: T-DXd (DESTINY-Breast03)",
    "payload": {
     "edad": 57,
@@ -1276,7 +1276,7 @@
   },
   {
    "id": "MAMA-V12",
-   "titulo": "HER2+ metastasico con metastasis cerebrales activas",
+   "titulo": "HER2+ metastásico con metástasis cerebrales activas",
    "fuente": "ESMO MBC Living Guideline - MTS cerebrales activas tras T-DXd: tucatinib + trastuzumab + capecitabina",
    "payload": {
     "edad": 50,
@@ -1393,7 +1393,7 @@
   },
   {
    "id": "MAMA-V16",
-   "titulo": "TNBC metastasico 1L PD-L1+",
+   "titulo": "TNBC metastásico 1L PD-L1+",
    "fuente": "ESMO MBC Living Guideline - TNBC PD-L1 CPS>=10: QT + pembrolizumab (KEYNOTE-355)",
    "payload": {
     "edad": 53,
@@ -1418,7 +1418,7 @@
   },
   {
    "id": "MAMA-V17",
-   "titulo": "TNBC metastasico 1L PD-L1-, BRCA wt",
+   "titulo": "TNBC metastásico 1L PD-L1-, BRCA wt",
    "fuente": "ESMO MBC Living Guideline - TNBC PD-L1- sin BRCAm: quimioterapia",
    "payload": {
     "edad": 64,
@@ -1443,7 +1443,7 @@
   },
   {
    "id": "MAMA-V18",
-   "titulo": "TNBC metastasico 2L",
+   "titulo": "TNBC metastásico 2L",
    "fuente": "ESMO MBC Living Guideline - TNBC >=2L: sacituzumab govitecan (ASCENT)",
    "payload": {
     "edad": 49,
@@ -1472,7 +1472,7 @@
   },
   {
    "id": "MAMA-V19",
-   "titulo": "TNBC metastasico BRCA+ PD-L1-",
+   "titulo": "TNBC metastásico BRCA+ PD-L1-",
    "fuente": "ESMO MBC Living Guideline - BRCAm: inhibidor PARP o platino",
    "payload": {
     "edad": 39,
@@ -1498,7 +1498,7 @@
   },
   {
    "id": "MAMA-V20",
-   "titulo": "HER2+ metastasico con FEVI 35%",
+   "titulo": "HER2+ metastásico con FEVI 35%",
    "fuente": "Seguridad - FEVI <50% contraindica anti-HER2 sin valoracion cardiologica",
    "payload": {
     "edad": 68,

@@ -1,7 +1,7 @@
 {
  "id": "folicular",
  "nombre": "Linfoma folicular",
- "grupo": "Hematologia",
+ "grupo": "Hematología",
  "version": "FOLLICULAR-ESMO-2025.1",
  "guias": [
   {
@@ -10,7 +10,7 @@
    "url": "https://www.esmo.org/guidelines/esmo-clinical-practice-guideline-lymphomas"
   }
  ],
- "descripcion": "Linfoma folicular: estadio limitado, carga tumoral GELF, POD24 y opciones de recaida con R2, biespecificos y CAR-T.",
+ "descripcion": "Linfoma folicular: estadio limitado, carga tumoral GELF, POD24 y opciones de recaída con R2, biespecíficos y CAR-T.",
  "campos": [
   {
    "id": "estadio",
@@ -24,11 +24,11 @@
     "IV"
    ],
    "requerido": true,
-   "pregunta": "¿Cual es el estadio Ann Arbor/Lugano?"
+   "pregunta": "¿Cuál es el estadio Ann Arbor/Lugano?"
   },
   {
    "id": "grado",
-   "label": "Grado histologico",
+   "label": "Grado histológico",
    "tipo": "choice",
    "opciones": [
     "1_2",
@@ -36,7 +36,7 @@
     "3B"
    ],
    "requerido": true,
-   "pregunta": "¿Cual es el grado histologico (1-2, 3A o 3B)?"
+   "pregunta": "¿Cuál es el grado histológico (1-2, 3A o 3B)?"
   },
   {
    "id": "carga_gelf",
@@ -58,15 +58,15 @@
   },
   {
    "id": "sintomatico",
-   "label": "Sintomatico o compromiso organico",
+   "label": "Sintomático o compromiso orgánico",
    "tipo": "bool",
-   "seccion": "Clinica"
+   "seccion": "Clínica"
   },
   {
    "id": "pod24",
-   "label": "POD24 (progresion <24 meses)",
+   "label": "POD24 (progresión <24 meses)",
    "tipo": "bool",
-   "seccion": "Recaida"
+   "seccion": "Recaída"
   },
   {
    "id": "candidato_inmunoquimio",
@@ -78,13 +78,13 @@
    "id": "candidato_car_t",
    "label": "Candidato a CAR-T",
    "tipo": "bool",
-   "seccion": "Recaida"
+   "seccion": "Recaída"
   }
  ],
  "derivados": [
   {
    "id": "situacion",
-   "label": "Situacion clinica",
+   "label": "Situación clínica",
    "defecto": "primera_linea",
    "reglas": [
     {
@@ -108,7 +108,7 @@
   {
    "id": "rt_limitado",
    "label": "Radioterapia local ISRT 24 Gy",
-   "nota": "ESMO FL: estadio I/II contiguo localizado -> radioterapia con intencion potencialmente curativa",
+   "nota": "ESMO FL: estadio I/II contiguo localizado -> radioterapia con intención potencialmente curativa",
    "cuando": [
     {
      "campo": "situacion",
@@ -136,8 +136,8 @@
   },
   {
    "id": "watch_wait",
-   "label": "Observacion activa (watch and wait)",
-   "nota": "ESMO FL: avanzado asintomatico de baja carga GELF -> vigilancia sin tratamiento inicial",
+   "label": "Observación activa (watch and wait)",
+   "nota": "ESMO FL: avanzado asintomático de baja carga GELF -> vigilancia sin tratamiento inicial",
    "cuando": [
     {
      "campo": "situacion",
@@ -170,7 +170,7 @@
   {
    "id": "rituximab_mono",
    "label": "Rituximab monoterapia",
-   "nota": "ESMO FL: baja carga pero se desea tratamiento o sintomas leves -> rituximab puede retrasar nueva terapia",
+   "nota": "ESMO FL: baja carga pero se desea tratamiento o síntomas leves -> rituximab puede retrasar nueva terapia",
    "cuando": [
     {
      "campo": "situacion",
@@ -222,7 +222,7 @@
   {
    "id": "obinutuzumab_quimio",
    "label": "Obinutuzumab-quimioterapia + mantenimiento",
-   "nota": "ESMO FL: alternativa anti-CD20 en primera linea alta carga; GALLIUM reduce PFS frente a rituximab",
+   "nota": "ESMO FL: alternativa anti-CD20 en primera línea alta carga; GALLIUM reduce PFS frente a rituximab",
    "cuando": [
     {
      "campo": "situacion",
@@ -248,7 +248,7 @@
   {
    "id": "tratar_como_dlbcl",
    "label": "Tratar como DLBCL (R-CHOP/Pola-R-CHP)",
-   "nota": "ESMO: FL grado 3B o transformacion se maneja como linfoma agresivo",
+   "nota": "ESMO: FL grado 3B o transformación se maneja como linfoma agresivo",
    "cuando": [
     {
      "campo": "grado",
@@ -264,7 +264,7 @@
   {
    "id": "r2_recaida",
    "label": "Lenalidomida + rituximab (R2)",
-   "nota": "ESMO FL: recaida tras inmunoquimioterapia, especialmente no refractario inmediato -> lenalidomida-rituximab (AUGMENT)",
+   "nota": "ESMO FL: recaída tras inmunoquimioterapia, especialmente no refractario inmediato -> lenalidomida-rituximab (AUGMENT)",
    "cuando": [
     {
      "campo": "situacion",
@@ -280,7 +280,7 @@
   {
    "id": "mosunetuzumab",
    "label": "Mosunetuzumab biespecifico",
-   "nota": "ESMO FL: tras >=2 lineas, opcion preferente sin quimioterapia con respuestas duraderas",
+   "nota": "ESMO FL: tras >=2 líneas, opción preferente sin quimioterapia con respuestas duraderas",
    "cuando": [
     {
      "campo": "situacion",
@@ -296,7 +296,7 @@
   {
    "id": "car_t_fl",
    "label": "CAR-T axi-cel/tisa-cel",
-   "nota": "ESMO FL: recaida multiple/POD24 tras >=2 lineas y candidato -> CAR-T",
+   "nota": "ESMO FL: recaída multiple/POD24 tras >=2 líneas y candidato -> CAR-T",
    "cuando": [
     {
      "campo": "situacion",
@@ -314,8 +314,8 @@
   },
   {
    "id": "ensayo_pod24",
-   "label": "Ensayo clinico / estrategia intensificada por POD24",
-   "nota": "ESMO FL: POD24 identifica alto riesgo; valorar rebiopsia, transformacion y terapias innovadoras/ensayo",
+   "label": "Ensayo clínico / estrategia intensificada por POD24",
+   "nota": "ESMO FL: POD24 identifica alto riesgo; valorar rebiopsia, transformación y terapias innovadoras/ensayo",
    "cuando": [
     {
      "campo": "pod24",
@@ -344,7 +344,7 @@
     "campo": "pod24",
     "eq": true
    },
-   "instrucciones": "Por clinica, LDH, crecimiento rapido o PET, ¿hay alta sospecha de transformacion a linfoma agresivo que requiera biopsia antes de decidir?"
+   "instrucciones": "Por clínica, LDH, crecimiento rápido o PET, ¿hay alta sospecha de transformación a linfoma agresivo que requiera biopsia antes de decidir?"
   },
   {
    "key": "necesita_tratar_baja_carga",
@@ -354,7 +354,7 @@
     "campo": "carga_gelf",
     "eq": "baja"
    },
-   "instrucciones": "Aunque la carga sea baja, ¿los sintomas/preferencias justifican tratamiento inmediato frente a watch and wait?"
+   "instrucciones": "Aunque la carga sea baja, ¿los síntomas/preferencias justifican tratamiento inmediato frente a watch and wait?"
   }
  ],
  "seguridad": [
@@ -367,7 +367,7 @@
    "bloquea_componentes": [
     "inmunoterapia"
    ],
-   "instrucciones": "¿Existe infeccion activa grave o inmunodeficiencia que haga inaceptable rituximab/obinutuzumab/mosunetuzumab ahora?",
+   "instrucciones": "¿Existe infección activa grave o inmunodeficiencia que haga inaceptable rituximab/obinutuzumab/mosunetuzumab ahora?",
    "umbral": 0.75,
    "motivo": "Riesgo infeccioso inaceptable para anti-CD20/biespecifico"
   }
@@ -378,7 +378,7 @@
     "campo": "pod24",
     "missing": true
    },
-   "texto": "POD24 no informado: importante en recaida por riesgo de transformacion y pronostico."
+   "texto": "POD24 no informado: importante en recaída por riesgo de transformación y pronóstico."
   }
  ],
  "vinetas": [
@@ -488,7 +488,7 @@
   },
   {
    "id": "FOLICULAR-V06",
-   "titulo": "Primera recaida",
+   "titulo": "Primera recaída",
    "fuente": "AUGMENT",
    "payload": {
     "edad": 64,
@@ -512,7 +512,7 @@
   },
   {
    "id": "FOLICULAR-V07",
-   "titulo": "Tercera linea candidato CAR-T",
+   "titulo": "Tercera línea candidato CAR-T",
    "fuente": "ESMO FL recaida multiple",
    "payload": {
     "edad": 57,
@@ -555,7 +555,7 @@
   },
   {
    "id": "FOLICULAR-V09",
-   "titulo": "Infeccion activa y necesidad de anti-CD20",
+   "titulo": "Infección activa y necesidad de anti-CD20",
    "fuente": "Seguridad",
    "payload": {
     "edad": 73,

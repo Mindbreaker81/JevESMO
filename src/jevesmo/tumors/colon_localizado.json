@@ -1,6 +1,6 @@
 {
  "id": "colon_localizado",
- "nombre": "Cancer de colon localizado",
+ "nombre": "Cáncer de colon localizado",
  "grupo": "Digestivo",
  "version": "colon_localizado-ESMO-2023.1",
  "guias": [
@@ -10,11 +10,11 @@
    "url": "https://www.esmo.org/guidelines/gastrointestinal-cancers/colon-cancer"
   }
  ],
- "descripcion": "Cancer de colon localizado: estadio II bajo/alto riesgo, estadio III bajo/alto riesgo, duracion IDEA, dMMR y neoadyuvancia en dMMR localmente avanzado.",
+ "descripcion": "Cáncer de colon localizado: estadio II bajo/alto riesgo, estadio III bajo/alto riesgo, duración IDEA, dMMR y neoadyuvancia en dMMR localmente avanzado.",
  "campos": [
   {
    "id": "estadio_colon",
-   "label": "Estadio/riesgo patologico",
+   "label": "Estadio/riesgo patológico",
    "tipo": "choice",
    "seccion": "Tumor",
    "opciones": [
@@ -25,7 +25,7 @@
     "localmente_avanzado"
    ],
    "requerido": true,
-   "pregunta": "¿Cual es el estadio/riesgo (II bajo/alto, III bajo/alto o localmente avanzado)?"
+   "pregunta": "¿Cuál es el estadio/riesgo (II bajo/alto, III bajo/alto o localmente avanzado)?"
   },
   {
    "id": "dmmr_msi",
@@ -42,10 +42,10 @@
   },
   {
    "id": "resecado_r0",
-   "label": "Reseccion R0 realizada",
+   "label": "Resección R0 realizada",
    "tipo": "bool",
    "seccion": "Tumor",
-   "pregunta": "¿Se ha realizado reseccion R0 del primario?",
+   "pregunta": "¿Se ha realizado resección R0 del primario?",
    "requerido_si": {
     "campo": "estadio_colon",
     "in": [
@@ -64,7 +64,7 @@
   },
   {
    "id": "neuropatia",
-   "label": "Neuropatia periferica clinicamente relevante",
+   "label": "Neuropatía periférica clinicamente relevante",
    "tipo": "bool",
    "seccion": "Seguridad"
   },
@@ -76,7 +76,7 @@
   },
   {
    "id": "preferencia_corta",
-   "label": "Preferencia fuerte por duracion corta si es aceptable",
+   "label": "Preferencia fuerte por duración corta si es aceptable",
    "tipo": "bool",
    "seccion": "Tumor"
   }
@@ -114,8 +114,8 @@
  "opciones": [
   {
    "id": "cirugia_reseccion_oncologica",
-   "label": "Colectomia oncologica con linfadenectomia",
-   "nota": "ESMO: enfermedad resecable no operada -> cirugia radical con evaluacion ganglionar adecuada.",
+   "label": "Colectomía oncológica con linfadenectomía",
+   "nota": "ESMO: enfermedad resecable no operada -> cirugía radical con evaluación ganglionar adecuada.",
    "cuando": [
     {
      "campo": "estadio_colon",
@@ -138,7 +138,7 @@
   },
   {
    "id": "observacion_ii_dmmr",
-   "label": "Observacion tras R0 en estadio II dMMR",
+   "label": "Observación tras R0 en estadio II dMMR",
    "nota": "ESMO: estadio II dMMR/MSI-H resecado, incluso con algunos factores de riesgo, no debe recibir fluoropirimidina adyuvante; vigilancia.",
    "cuando": [
     {
@@ -164,7 +164,7 @@
   },
   {
    "id": "observacion_ii_bajo_pmmr",
-   "label": "Observacion en estadio II bajo riesgo pMMR",
+   "label": "Observación en estadio II bajo riesgo pMMR",
    "nota": "ESMO: estadio II pMMR bajo riesgo tras R0 -> vigilancia sin quimioterapia adyuvante rutinaria.",
    "cuando": [
     {
@@ -256,7 +256,7 @@
   },
   {
    "id": "folfox_6m_iii_bajo",
-   "label": "FOLFOX/CAPOX 6 meses si maxima intensidad",
+   "label": "FOLFOX/CAPOX 6 meses si máxima intensidad",
    "nota": "ESMO/IDEA: estadio III bajo riesgo puede recibir 6 meses, sobre todo si FOLFOX o dudas de riesgo.",
    "cuando": [
     {
@@ -299,7 +299,7 @@
   {
    "id": "capox_3m_iii_alto_no_apto",
    "label": "CAPOX 3 meses si toxicidad impide 6 meses",
-   "nota": "ESMO/IDEA: III alto riesgo, CAPOX 3 meses puede ser compromiso si neuropatia/comorbilidad hacen inaceptable 6 meses.",
+   "nota": "ESMO/IDEA: III alto riesgo, CAPOX 3 meses puede ser compromiso si neuropatía/comorbilidad hacen inaceptable 6 meses.",
    "cuando": [
     {
      "campo": "estadio_colon",
@@ -322,7 +322,7 @@
   {
    "id": "fluoropirimidina_sola_no_apto",
    "label": "Fluoropirimidina sola si no apto a oxaliplatino",
-   "nota": "ESMO: si oxaliplatino contraindicado/no tolerable, fluoropirimidina sola es opcion menos eficaz pero aceptable.",
+   "nota": "ESMO: si oxaliplatino contraindicado/no tolerable, fluoropirimidina sola es opción menos eficaz pero aceptable.",
    "cuando": [
     {
      "campo": "resecado_r0",
@@ -349,7 +349,7 @@
   {
    "id": "inmunoterapia_neoadyuvante_dmmr",
    "label": "Inmunoterapia neoadyuvante para colon dMMR localmente avanzado",
-   "nota": "ESMO actual/NICHE: tumores dMMR localmente avanzados pueden considerarse para inmunoterapia neoadyuvante en MDT/ensayo antes de cirugia.",
+   "nota": "ESMO actual/NICHE: tumores dMMR localmente avanzados pueden considerarse para inmunoterapia neoadyuvante en MDT/ensayo antes de cirugía.",
    "cuando": [
     {
      "campo": "estadio_colon",
@@ -368,7 +368,7 @@
   {
    "id": "tnt_quimio_neoadyuvante_pmmr",
    "label": "Quimioterapia neoadyuvante en colon localmente avanzado pMMR",
-   "nota": "ESMO: T4b/amenaza de margen o localmente avanzado pMMR -> valorar quimioterapia preoperatoria y cirugia en MDT.",
+   "nota": "ESMO: T4b/amenaza de margen o localmente avanzado pMMR -> valorar quimioterapia preoperatoria y cirugía en MDT.",
    "cuando": [
     {
      "campo": "estadio_colon",
@@ -395,7 +395,7 @@
     "campo": "estadio_colon",
     "eq": "II_alto"
    },
-   "instrucciones": "En estadio II integra T4, perforacion/obstruccion, <12 ganglios, LVI/PNI y margen para categorizar riesgo.",
+   "instrucciones": "En estadio II integra T4, perforación/obstruccion, <12 ganglios, LVI/PNI y margen para categorizar riesgo.",
    "criterios": {
     "alto": "Alto riesgo claro",
     "intermedio": "Beneficio incierto",
@@ -414,7 +414,7 @@
      "II_alto"
     ]
    },
-   "instrucciones": "Con edad, ECOG, neuropatia y comorbilidades, ¿es apto para oxaliplatino adyuvante?"
+   "instrucciones": "Con edad, ECOG, neuropatía y comorbilidades, ¿es apto para oxaliplatino adyuvante?"
   },
   {
    "key": "colon_dmmr_neoady",
@@ -437,9 +437,9 @@
    "bloquea_componentes": [
     "quimioterapia"
    ],
-   "instrucciones": "Si hay neuropatia significativa u otra comorbilidad, ¿oxaliplatino/CAPOX/FOLFOX supone riesgo inaceptable?",
+   "instrucciones": "Si hay neuropatía significativa u otra comorbilidad, ¿oxaliplatino/CAPOX/FOLFOX supone riesgo inaceptable?",
    "umbral": 0.65,
-   "motivo": "Neuropatia/comorbilidad limita oxaliplatino; requiere individualizacion"
+   "motivo": "Neuropatía/comorbilidad limita oxaliplatino; requiere individualización"
   }
  ],
  "avisos": [
@@ -455,7 +455,7 @@
     "campo": "alto_riesgo_clinico",
     "missing": true
    },
-   "texto": "Faltan factores de alto riesgo patologico que modifican intensidad adyuvante."
+   "texto": "Faltan factores de alto riesgo patológico que modifican intensidad adyuvante."
   }
  ],
  "vinetas": [
@@ -628,7 +628,7 @@
   },
   {
    "id": "COLON_LOCALIZADO-V09",
-   "titulo": "Neuropatia grave en III",
+   "titulo": "Neuropatía grave en III",
    "fuente": "Seguridad oxaliplatino",
    "payload": {
     "edad": 70,

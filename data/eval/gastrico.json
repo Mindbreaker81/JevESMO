@@ -1,6 +1,6 @@
 {
  "tumor": "gastrico",
- "nombre": "Cancer gastrico",
+ "nombre": "Cáncer gástrico",
  "grupo": "Digestivo",
  "version": "GASTRICO-ESMO-2024.1",
  "fecha": "2026-09-27T18:58:47+00:00",
@@ -24,7 +24,7 @@
  "casos": [
   {
    "id": "GASTRICO-V01",
-   "titulo": "Gastrico localizado fit",
+   "titulo": "Gástrico localizado fit",
    "fuente": "ESMO gastric - FLOT perioperatorio",
    "esperado_tipo": "recomendacion",
    "esperado": "flot_perioperatorio",
@@ -67,7 +67,7 @@
   },
   {
    "id": "GASTRICO-V03",
-   "titulo": "Metastasico HER2+",
+   "titulo": "Metastásico HER2+",
    "fuente": "KEYNOTE-811",
    "esperado_tipo": "recomendacion",
    "esperado": "pembro_trastu_quimio_1l",
@@ -89,7 +89,7 @@
   },
   {
    "id": "GASTRICO-V04",
-   "titulo": "Metastasico CLDN18.2+ HER2-",
+   "titulo": "Metastásico CLDN18.2+ HER2-",
    "fuente": "SPOTLIGHT/GLOW",
    "esperado_tipo": "recomendacion",
    "esperado": "zolbetuximab_quimio",
@@ -112,7 +112,7 @@
   },
   {
    "id": "GASTRICO-V05",
-   "titulo": "Metastasico HER2- CPS alto",
+   "titulo": "Metastásico HER2- CPS alto",
    "fuente": "CheckMate-649 / KEYNOTE-859",
    "esperado_tipo": "recomendacion",
    "esperado": "ici_quimio_cps",
@@ -134,7 +134,7 @@
   },
   {
    "id": "GASTRICO-V06",
-   "titulo": "Segunda linea tras FOLFOX+nivo",
+   "titulo": "Segunda línea tras FOLFOX+nivo",
    "fuente": "RAINBOW",
    "esperado_tipo": "recomendacion",
    "esperado": "ram_paclitaxel_2l",
@@ -180,7 +180,7 @@
   },
   {
    "id": "GASTRICO-V08",
-   "titulo": "Falta situacion clinica",
+   "titulo": "Falta situación clínica",
    "fuente": "ESMO - estadio imprescindible",
    "esperado_tipo": "necesita_datos",
    "esperado": "necesita_datos",

@@ -1,6 +1,6 @@
 {
  "tumor": "pancreas",
- "nombre": "Adenocarcinoma de pancreas",
+ "nombre": "Adenocarcinoma de páncreas",
  "grupo": "Digestivo",
  "version": "PANCREAS-ESMO-2023.1",
  "fecha": "2026-09-27T18:59:00+00:00",
@@ -32,7 +32,7 @@
     "cirugia_ady_mfolfirinox"
    ],
    "obtenido": "cirugia_ady_mfolfirinox",
-   "obtenido_label": "Cirugia seguida de mFOLFIRINOX adyuvante",
+   "obtenido_label": "Cirugía seguida de mFOLFIRINOX adyuvante",
    "confianza": 0.8,
    "revision": false,
    "motivos_revision": [],
@@ -52,7 +52,7 @@
     "ady_gem_cap"
    ],
    "obtenido": "ady_gem_cap",
-   "obtenido_label": "Cirugia + gemcitabina-capecitabina/gemcitabina adyuvante",
+   "obtenido_label": "Cirugía + gemcitabina-capecitabina/gemcitabina adyuvante",
    "confianza": 1.0,
    "revision": false,
    "motivos_revision": [],
@@ -93,7 +93,7 @@
     "induccion_local_avanzado"
    ],
    "obtenido": "induccion_local_avanzado",
-   "obtenido_label": "Quimioterapia de induccion para localmente avanzado",
+   "obtenido_label": "Quimioterapia de inducción para localmente avanzado",
    "confianza": 1.0,
    "revision": false,
    "motivos_revision": [],
@@ -105,7 +105,7 @@
   },
   {
    "id": "PANCREAS-V05",
-   "titulo": "Metastasico fit 1L",
+   "titulo": "Metastásico fit 1L",
    "fuente": "ESMO - FOLFIRINOX/gem-nab/NALIRIFOX",
    "esperado_tipo": "recomendacion",
    "esperado": "mfolfirinox_1l",
@@ -115,7 +115,7 @@
     "gemnab_1l"
    ],
    "obtenido": "mfolfirinox_1l",
-   "obtenido_label": "mFOLFIRINOX 1a linea metastasico",
+   "obtenido_label": "mFOLFIRINOX 1a línea metastásico",
    "confianza": 0.33,
    "revision": true,
    "motivos_revision": [
@@ -161,7 +161,7 @@
     "folfox_2l"
    ],
    "obtenido": "naliri_5fu_2l",
-   "obtenido_label": "Nal-IRI + 5-FU/LV 2a linea",
+   "obtenido_label": "Nal-IRI + 5-FU/LV 2a línea",
    "confianza": 0.51,
    "revision": true,
    "motivos_revision": [
@@ -176,7 +176,7 @@
   },
   {
    "id": "PANCREAS-V08",
-   "titulo": "Falta situacion",
+   "titulo": "Falta situación",
    "fuente": "ESMO - resecabilidad imprescindible",
    "esperado_tipo": "necesita_datos",
    "esperado": "necesita_datos",
@@ -196,13 +196,13 @@
   },
   {
    "id": "PANCREAS-V09",
-   "titulo": "Metastasico ECOG4",
+   "titulo": "Metastásico ECOG4",
    "fuente": "ESMO - ECOG 3-4 soporte/revision",
    "esperado_tipo": "revision_humana",
    "esperado": "revision_humana",
    "aceptables": [],
    "obtenido": "revision (gemnab_1l)",
-   "obtenido_label": "Gemcitabina + nab-paclitaxel 1a linea",
+   "obtenido_label": "Gemcitabina + nab-paclitaxel 1a línea",
    "confianza": 1.0,
    "revision": true,
    "motivos_revision": [

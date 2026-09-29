@@ -1,6 +1,6 @@
 {
  "id": "esofago",
- "nombre": "Cancer de esofago y union esofagogastrica",
+ "nombre": "Cáncer de esófago y union esofagogástrica",
  "grupo": "Digestivo",
  "version": "ESOFAGO-ESMO-2025.1",
  "guias": [
@@ -15,11 +15,11 @@
    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11889489/"
   }
  ],
- "descripcion": "Escamoso y adenocarcinoma de esofago/union EG: CROSS, FLOT, QRT definitiva, nivolumab adyuvante y avanzado segun HER2, PD-L1, MSI y Claudin 18.2.",
+ "descripcion": "Escamoso y adenocarcinoma de esófago/union EG: CROSS, FLOT, QRT definitiva, nivolumab adyuvante y avanzado según HER2, PD-L1, MSI y Claudin 18.2.",
  "campos": [
   {
    "id": "situacion",
-   "label": "Situacion clinica",
+   "label": "Situación clínica",
    "tipo": "choice",
    "seccion": "Tumor",
    "opciones": [
@@ -29,11 +29,11 @@
     "metastasico"
    ],
    "requerido": true,
-   "pregunta": "¿Cual es la situacion: mucosa temprana, localizado resecable, localmente avanzado irresecable o metastasico?"
+   "pregunta": "¿Cuál es la situación: mucosa temprana, localizado resecable, localmente avanzado irresecable o metastásico?"
   },
   {
    "id": "histologia",
-   "label": "Histologia",
+   "label": "Histología",
    "tipo": "choice",
    "seccion": "Tumor",
    "opciones": [
@@ -41,11 +41,11 @@
     "adenocarcinoma"
    ],
    "requerido": true,
-   "pregunta": "¿La histologia es escamosa o adenocarcinoma?"
+   "pregunta": "¿La histología es escamosa o adenocarcinoma?"
   },
   {
    "id": "localizacion",
-   "label": "Localizacion",
+   "label": "Localización",
    "tipo": "choice",
    "seccion": "Tumor",
    "opciones": [
@@ -55,11 +55,11 @@
     "gastrico_cardias"
    ],
    "requerido": true,
-   "pregunta": "¿Localizacion dominante: cervical, toracico, union EG o cardias gastrico?"
+   "pregunta": "¿Localización dominante: cervical, torácico, union EG o cardias gástrico?"
   },
   {
    "id": "t_nm",
-   "label": "T clinico",
+   "label": "T clínico",
    "tipo": "choice",
    "seccion": "Tumor",
    "opciones": [
@@ -79,7 +79,7 @@
   },
   {
    "id": "residual_post_neoadyuvancia",
-   "label": "Enfermedad residual tras neoadyuvancia y cirugia R0",
+   "label": "Enfermedad residual tras neoadyuvancia y cirugía R0",
    "tipo": "bool",
    "seccion": "Tumor"
   },
@@ -137,7 +137,7 @@
  "derivados": [
   {
    "id": "enfoque",
-   "label": "Enfoque terapeutico",
+   "label": "Enfoque terapéutico",
    "defecto": "sistemico",
    "reglas": [
     {
@@ -163,8 +163,8 @@
  "opciones": [
   {
    "id": "reseccion_endoscopica",
-   "label": "Reseccion endoscopica",
-   "nota": "ESMO: T1a superficial sin alto riesgo puede tratarse con reseccion endoscopica en centro experto",
+   "label": "Resección endoscópica",
+   "nota": "ESMO: T1a superficial sin alto riesgo puede tratarse con resección endoscópica en centro experto",
    "cuando": [
     {
      "campo": "situacion",
@@ -178,8 +178,8 @@
   },
   {
    "id": "cirugia_primaria",
-   "label": "Cirugia primaria con linfadenectomia",
-   "nota": "ESMO: T1b/T2 N0 de bajo riesgo puede ir a cirugia primaria",
+   "label": "Cirugía primaria con linfadenectomía",
+   "nota": "ESMO: T1b/T2 N0 de bajo riesgo puede ir a cirugía primaria",
    "cuando": [
     {
      "campo": "situacion",
@@ -204,8 +204,8 @@
   },
   {
    "id": "cross_trimodal",
-   "label": "QRT neoadyuvante CROSS seguida de cirugia",
-   "nota": "ESMO: enfermedad resecable localmente avanzada de esofago/union EG, especialmente escamoso o adenocarcinoma esofagico: carboplatino-paclitaxel y RT preoperatoria seguida de cirugia",
+   "label": "QRT neoadyuvante CROSS seguida de cirugía",
+   "nota": "ESMO: enfermedad resecable localmente avanzada de esófago/union EG, especialmente escamoso o adenocarcinoma esofágico: carboplatino-paclitaxel y RT preoperatoria seguida de cirugía",
    "cuando": [
     {
      "campo": "situacion",
@@ -228,7 +228,7 @@
   {
    "id": "flot_perioperatorio",
    "label": "FLOT perioperatorio",
-   "nota": "ESMO: adenocarcinoma resecable de union EG/cardias gastrico cT2 o N+ -> quimioterapia perioperatoria FLOT",
+   "nota": "ESMO: adenocarcinoma resecable de union EG/cardias gástrico cT2 o N+ -> quimioterapia perioperatoria FLOT",
    "cuando": [
     {
      "campo": "situacion",
@@ -255,7 +255,7 @@
   {
    "id": "qrt_definitiva",
    "label": "Quimiorradioterapia definitiva",
-   "nota": "ESMO: escamoso cervical/toracico no quirurgico, irresecable o no candidato a cirugia -> QRT definitiva",
+   "nota": "ESMO: escamoso cervical/toracico no quirúrgico, irresecable o no candidato a cirugía -> QRT definitiva",
    "cuando": [
     {
      "any": [
@@ -282,7 +282,7 @@
   {
    "id": "nivolumab_adyuvante",
    "label": "Nivolumab adyuvante",
-   "nota": "ESMO: tras QRT neoadyuvante y cirugia R0 con enfermedad residual -> nivolumab adyuvante (CheckMate 577)",
+   "nota": "ESMO: tras QRT neoadyuvante y cirugía R0 con enfermedad residual -> nivolumab adyuvante (CheckMate 577)",
    "cuando": [
     {
      "campo": "situacion",
@@ -457,8 +457,8 @@
   },
   {
    "id": "ram_paclitaxel_2l",
-   "label": "Ramucirumab + paclitaxel 2a linea",
-   "nota": "ESMO: adenocarcinoma esofagogastrico avanzado tras 1L -> ramucirumab + paclitaxel (RAINBOW)",
+   "label": "Ramucirumab + paclitaxel 2a línea",
+   "nota": "ESMO: adenocarcinoma esofagogástrico avanzado tras 1L -> ramucirumab + paclitaxel (RAINBOW)",
    "cuando": [
     {
      "campo": "situacion",
@@ -481,7 +481,7 @@
   },
   {
    "id": "taxano_irinotecan_2l",
-   "label": "Taxano o irinotecan 2a linea",
+   "label": "Taxano o irinotecan 2a línea",
    "nota": "ESMO: enfermedad avanzada tras platino-fluoropirimidina si no candidato a ramucirumab o escamoso -> taxano o irinotecan",
    "cuando": [
     {
@@ -508,7 +508,7 @@
     "campo": "situacion",
     "eq": "localizado_resecable"
    },
-   "instrucciones": "¿El paciente es suficientemente fit para tratamiento trimodal o FLOT perioperatorio y cirugia?"
+   "instrucciones": "¿El paciente es suficientemente fit para tratamiento trimodal o FLOT perioperatorio y cirugía?"
   },
   {
    "key": "pd_l1_util",
@@ -546,7 +546,7 @@
    "bloquea_componentes": [
     "inmunoterapia"
    ],
-   "instrucciones": "Con enfermedad autoinmune activa o inmunosupresion relevante, ¿es inaceptable el riesgo de PD-1/PD-L1?",
+   "instrucciones": "Con enfermedad autoinmune activa o inmunosupresión relevante, ¿es inaceptable el riesgo de PD-1/PD-L1?",
    "motivo": "Riesgo autoinmune inaceptable para inmunoterapia"
   },
   {
@@ -558,7 +558,7 @@
    "bloquea_componentes": [
     "anti_her2"
    ],
-   "instrucciones": "Segun FEVI e historia cardiaca, ¿trastuzumab supone riesgo cardiaco inaceptable?",
+   "instrucciones": "Según FEVI e historia cardiaca, ¿trastuzumab supone riesgo cardiaco inaceptable?",
    "motivo": "Riesgo cardiaco para anti-HER2"
   }
  ],
@@ -574,7 +574,7 @@
      "missing": true
     }
    ],
-   "texto": "HER2 no disponible en adenocarcinoma avanzado: puede cambiar la 1a linea."
+   "texto": "HER2 no disponible en adenocarcinoma avanzado: puede cambiar la 1a línea."
   },
   {
    "cuando": [
@@ -610,7 +610,7 @@
  "vinetas": [
   {
    "id": "ESOFAGO-V01",
-   "titulo": "Escamoso toracico T3N1 resecable",
+   "titulo": "Escamoso torácico T3N1 resecable",
    "fuente": "ESMO - CROSS resecable localmente avanzado",
    "payload": {
     "edad": 59,
@@ -677,7 +677,7 @@
   },
   {
    "id": "ESOFAGO-V04",
-   "titulo": "Residual tras CROSS y cirugia",
+   "titulo": "Residual tras CROSS y cirugía",
    "fuente": "CheckMate 577",
    "payload": {
     "edad": 55,
@@ -702,7 +702,7 @@
   },
   {
    "id": "ESOFAGO-V05",
-   "titulo": "Adenocarcinoma metastasico HER2+",
+   "titulo": "Adenocarcinoma metastásico HER2+",
    "fuente": "ESMO - HER2+ 1L",
    "payload": {
     "edad": 61,
@@ -726,7 +726,7 @@
   },
   {
    "id": "ESOFAGO-V06",
-   "titulo": "Escamoso metastasico CPS alto",
+   "titulo": "Escamoso metastásico CPS alto",
    "fuente": "KEYNOTE-590 / CheckMate 648",
    "payload": {
     "edad": 66,
@@ -748,7 +748,7 @@
   },
   {
    "id": "ESOFAGO-V07",
-   "titulo": "Adenocarcinoma 2a linea",
+   "titulo": "Adenocarcinoma 2a línea",
    "fuente": "RAINBOW",
    "payload": {
     "edad": 64,
@@ -774,7 +774,7 @@
   },
   {
    "id": "ESOFAGO-V08",
-   "titulo": "Falta histologia",
+   "titulo": "Falta histología",
    "fuente": "ESMO - histologia imprescindible",
    "payload": {
     "edad": 58,

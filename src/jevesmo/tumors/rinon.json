@@ -10,7 +10,7 @@
    "url": "https://www.esmo.org/guidelines/genitourinary-cancers/renal-cell-carcinoma"
   }
  ],
- "descripcion": "Carcinoma renal localizado y avanzado por histologia, riesgo IMDC y linea, incluyendo pembrolizumab adyuvante, ICI+TKI, nivolumab+ipilimumab, cabozantinib y belzutifan.",
+ "descripcion": "Carcinoma renal localizado y avanzado por histología, riesgo IMDC y línea, incluyendo pembrolizumab adyuvante, ICI+TKI, nivolumab+ipilimumab, cabozantinib y belzutifan.",
  "campos": [
   {
    "id": "estadio_rinon",
@@ -25,7 +25,7 @@
   },
   {
    "id": "histologia_rinon",
-   "label": "Histologia",
+   "label": "Histología",
    "tipo": "choice",
    "opciones": [
     "celulas_claras",
@@ -34,7 +34,7 @@
     "no_claras_otro"
    ],
    "requerido": true,
-   "pregunta": "¿Cual es la histologia (celulas claras, papilar, cromofobo/no claras)?"
+   "pregunta": "¿Cuál es la histología (células claras, papilar, cromofobo/no claras)?"
   },
   {
    "id": "riesgo_imdc",
@@ -49,23 +49,23 @@
     "campo": "estadio_rinon",
     "eq": "avanzado"
    },
-   "pregunta": "En enfermedad avanzada, ¿cual es el riesgo IMDC?"
+   "pregunta": "En enfermedad avanzada, ¿cuál es el riesgo IMDC?"
   },
   {
    "id": "alto_riesgo_recaida",
-   "label": "Alto riesgo de recaida post-nefrectomia",
+   "label": "Alto riesgo de recaída post-nefrectomia",
    "tipo": "bool",
    "seccion": "Adyuvancia"
   },
   {
    "id": "nefrectomia_realizada",
-   "label": "Nefrectomia realizada",
+   "label": "Nefrectomía realizada",
    "tipo": "bool",
    "seccion": "Tratamiento local"
   },
   {
    "id": "necesidad_respuesta_rapida",
-   "label": "Necesidad de respuesta rapida/alta carga",
+   "label": "Necesidad de respuesta rápida/alta carga",
    "tipo": "bool",
    "seccion": "Enfermedad avanzada"
   },
@@ -73,17 +73,17 @@
    "id": "candidato_ici",
    "label": "Candidato a inmunoterapia",
    "tipo": "bool",
-   "seccion": "Tratamiento sistemico"
+   "seccion": "Tratamiento sistémico"
   },
   {
    "id": "candidato_tki",
-   "label": "Candidato a antiangiogenico/TKI",
+   "label": "Candidato a antiangiogénico/TKI",
    "tipo": "bool",
-   "seccion": "Tratamiento sistemico"
+   "seccion": "Tratamiento sistémico"
   },
   {
    "id": "vhl_alterado",
-   "label": "Alteracion VHL o indicacion belzutifan",
+   "label": "Alteración VHL o indicación belzutifan",
    "tipo": "bool",
    "seccion": "Biomarcadores"
   }
@@ -91,8 +91,8 @@
  "opciones": [
   {
    "id": "nefrectomia_vigilancia",
-   "label": "Nefrectomia parcial/radical y vigilancia",
-   "nota": "ESMO RCC localizado: cirugia con preservacion renal si posible y vigilancia segun riesgo es estandar para enfermedad resecable de riesgo bajo/intermedio.",
+   "label": "Nefrectomía parcial/radical y vigilancia",
+   "nota": "ESMO RCC localizado: cirugía con preservación renal si posible y vigilancia según riesgo es estándar para enfermedad resecable de riesgo bajo/intermedio.",
    "cuando": [
     {
      "campo": "estadio_rinon",
@@ -120,7 +120,7 @@
   {
    "id": "pembro_adyuvante_rcc",
    "label": "Pembrolizumab adyuvante",
-   "nota": "ESMO RCC celulas claras de alto riesgo tras nefrectomia (KEYNOTE-564) -> pembrolizumab adyuvante debe ofrecerse si candidato a ICI.",
+   "nota": "ESMO RCC células claras de alto riesgo tras nefrectomía (KEYNOTE-564) -> pembrolizumab adyuvante debe ofrecerse si candidato a ICI.",
    "cuando": [
     {
      "campo": "estadio_rinon",
@@ -159,7 +159,7 @@
   {
    "id": "ici_tki_favorable",
    "label": "Pembrolizumab+axitinib o pembrolizumab+lenvatinib",
-   "nota": "ESMO RCC celulas claras avanzado IMDC favorable: combinacion ICI+TKI anti-VEGF es opcion preferente de primera linea por PFS/OS y respuesta.",
+   "nota": "ESMO RCC células claras avanzado IMDC favorable: combinación ICI+TKI anti-VEGF es opción preferente de primera línea por PFS/OS y respuesta.",
    "cuando": [
     {
      "campo": "estadio_rinon",
@@ -208,7 +208,7 @@
   {
    "id": "nivo_ipi_inter_pobre",
    "label": "Nivolumab + ipilimumab",
-   "nota": "ESMO RCC celulas claras avanzado IMDC intermedio/pobre: nivolumab+ipilimumab es estandar de 1L, especialmente si no se requiere respuesta rapida inmediata.",
+   "nota": "ESMO RCC células claras avanzado IMDC intermedio/pobre: nivolumab+ipilimumab es estándar de 1L, especialmente si no se requiere respuesta rápida inmediata.",
    "cuando": [
     {
      "campo": "estadio_rinon",
@@ -270,7 +270,7 @@
   {
    "id": "ici_tki_inter_pobre",
    "label": "ICI + TKI anti-VEGF",
-   "nota": "ESMO RCC celulas claras avanzado IMDC intermedio/pobre: pembrolizumab+axitinib/lenvatinib o nivolumab+cabozantinib son estandares, preferibles cuando se precisa respuesta rapida.",
+   "nota": "ESMO RCC células claras avanzado IMDC intermedio/pobre: pembrolizumab+axitinib/lenvatinib o nivolumab+cabozantinib son estandares, preferibles cuando se precisa respuesta rápida.",
    "cuando": [
     {
      "campo": "estadio_rinon",
@@ -325,8 +325,8 @@
   },
   {
    "id": "cabozantinib_no_claras",
-   "label": "Cabozantinib (no celulas claras)",
-   "nota": "ESMO RCC no celulas claras/papilar avanzado: cabozantinib es una opcion sistemica preferente; considerar ensayos clinicos.",
+   "label": "Cabozantinib (no células claras)",
+   "nota": "ESMO RCC no células claras/papilar avanzado: cabozantinib es una opción sistémica preferente; considerar ensayos clínicos.",
    "cuando": [
     {
      "campo": "estadio_rinon",
@@ -373,8 +373,8 @@
   },
   {
    "id": "pembro_lenva_no_claras",
-   "label": "Pembrolizumab + lenvatinib (no celulas claras)",
-   "nota": "ESMO RCC no celulas claras avanzado: ICI+TKI puede considerarse en pacientes seleccionados con datos de fase II y necesidad de respuesta.",
+   "label": "Pembrolizumab + lenvatinib (no células claras)",
+   "nota": "ESMO RCC no células claras avanzado: ICI+TKI puede considerarse en pacientes seleccionados con datos de fase II y necesidad de respuesta.",
    "cuando": [
     {
      "campo": "estadio_rinon",
@@ -427,7 +427,7 @@
   {
    "id": "cabozantinib_2l",
    "label": "Cabozantinib 2L",
-   "nota": "ESMO RCC avanzado tras ICI/TKI: cabozantinib es opcion activa en segunda linea o posterior.",
+   "nota": "ESMO RCC avanzado tras ICI/TKI: cabozantinib es opción activa en segunda línea o posterior.",
    "cuando": [
     {
      "campo": "estadio_rinon",
@@ -463,7 +463,7 @@
   {
    "id": "belzutifan_2l",
    "label": "Belzutifan",
-   "nota": "ESMO RCC avanzado pretratado: belzutifan (HIF-2alpha) es opcion tras ICI/anti-VEGF donde este aprobado, especialmente con biologia VHL.",
+   "nota": "ESMO RCC avanzado pretratado: belzutifan (HIF-2alpha) es opción tras ICI/anti-VEGF donde este aprobado, especialmente con biología VHL.",
    "cuando": [
     {
      "campo": "estadio_rinon",
@@ -486,7 +486,7 @@
   {
    "id": "soporte_rinon",
    "label": "Soporte/paliativos",
-   "nota": "ESMO: ECOG 3-4 o comorbilidad extrema puede requerir soporte exclusivo o decision individualizada.",
+   "nota": "ESMO: ECOG 3-4 o comorbilidad extrema puede requerir soporte exclusivo o decisión individualizada.",
    "cuando": [
     {
      "campo": "ecog",
@@ -517,7 +517,7 @@
      "eq": "celulas_claras"
     }
    ],
-   "instrucciones": "Segun pT, grado, N, metastasectomia y margenes, ¿el riesgo de recaida justifica pembrolizumab adyuvante?"
+   "instrucciones": "Según pT, grado, N, metastasectomía y margenes, ¿el riesgo de recaída justifica pembrolizumab adyuvante?"
   },
   {
    "key": "respuesta_rapida_rcc",
@@ -527,7 +527,7 @@
     "campo": "estadio_rinon",
     "eq": "avanzado"
    },
-   "instrucciones": "Por carga tumoral, sintomas u organos en riesgo, ¿se necesita una respuesta rapida que favorezca ICI+TKI?"
+   "instrucciones": "Por carga tumoral, síntomas u órganos en riesgo, ¿se necesita una respuesta rápida que favorezca ICI+TKI?"
   },
   {
    "key": "ensayo_no_claras",
@@ -541,7 +541,7 @@
      "no_claras_otro"
     ]
    },
-   "instrucciones": "¿Existe disponibilidad razonable de ensayo clinico especifico para RCC no celulas claras?"
+   "instrucciones": "¿Existe disponibilidad razonable de ensayo clínico específico para RCC no células claras?"
   }
  ],
  "seguridad": [
@@ -568,8 +568,8 @@
     "antiangiogenico"
    ],
    "umbral": 0.6,
-   "instrucciones": "¿La hipertension no controlada o riesgo vascular hace inaceptable un TKI anti-VEGF?",
-   "motivo": "Riesgo vascular/HTA para antiangiogenico"
+   "instrucciones": "¿La hipertensión no controlada o riesgo vascular hace inaceptable un TKI anti-VEGF?",
+   "motivo": "Riesgo vascular/HTA para antiangiogénico"
   }
  ],
  "avisos": [
@@ -584,7 +584,7 @@
      "missing": true
     }
    ],
-   "texto": "IMDC no calculado: cambia la eleccion de primera linea."
+   "texto": "IMDC no calculado: cambia la elección de primera línea."
   }
  ],
  "vinetas": [
@@ -610,7 +610,7 @@
   },
   {
    "id": "RINON-V02",
-   "titulo": "Adyuvancia alto riesgo celulas claras",
+   "titulo": "Adyuvancia alto riesgo células claras",
    "fuente": "ESMO RCC 2024 - pembrolizumab adjuvant KEYNOTE-564",
    "payload": {
     "edad": 58,
@@ -631,7 +631,7 @@
   },
   {
    "id": "RINON-V03",
-   "titulo": "Avanzado celulas claras favorable",
+   "titulo": "Avanzado células claras favorable",
    "fuente": "ESMO RCC 2024 - favorable risk ICI TKI",
    "payload": {
     "edad": 64,
@@ -674,7 +674,7 @@
   },
   {
    "id": "RINON-V05",
-   "titulo": "Avanzado pobre con crisis sintomatica",
+   "titulo": "Avanzado pobre con crisis sintomática",
    "fuente": "ESMO RCC 2024 - ICI TKI when rapid response needed",
    "payload": {
     "edad": 60,
@@ -718,7 +718,7 @@
   },
   {
    "id": "RINON-V07",
-   "titulo": "Segunda linea tras ICI TKI",
+   "titulo": "Segunda línea tras ICI TKI",
    "fuente": "ESMO RCC 2024 - cabozantinib subsequent therapy",
    "payload": {
     "edad": 62,

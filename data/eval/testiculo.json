@@ -84,7 +84,7 @@
   },
   {
    "id": "TESTICULO-V04",
-   "titulo": "Buen riesgo metastasico",
+   "titulo": "Buen riesgo metastásico",
    "fuente": "ESMO testicular cancer - BEP x3 good risk",
    "esperado_tipo": "recomendacion",
    "esperado": "bep3_buen_riesgo",
@@ -152,7 +152,7 @@
     "reseccion_masa_residual_nsgct"
    ],
    "obtenido": "reseccion_masa_residual_nsgct",
-   "obtenido_label": "Reseccion de masa residual postquimioterapia",
+   "obtenido_label": "Resección de masa residual postquimioterapia",
    "confianza": 1.0,
    "revision": false,
    "motivos_revision": [],
@@ -164,7 +164,7 @@
   },
   {
    "id": "TESTICULO-V08",
-   "titulo": "Recaida post cisplatino",
+   "titulo": "Recaída post cisplatino",
    "fuente": "ESMO testicular cancer - salvage TIP/high dose",
    "esperado_tipo": "recomendacion",
    "esperado": "rescate_tip_altadosis",
@@ -172,7 +172,7 @@
     "rescate_tip_altadosis"
    ],
    "obtenido": "rescate_tip_altadosis",
-   "obtenido_label": "Quimioterapia de rescate TIP o altas dosis + rescate hematopoyetico",
+   "obtenido_label": "Quimioterapia de rescate TIP o altas dosis + rescate hematopoyético",
    "confianza": 1.0,
    "revision": false,
    "motivos_revision": [],
@@ -184,7 +184,7 @@
   },
   {
    "id": "TESTICULO-V09",
-   "titulo": "Falta histologia",
+   "titulo": "Falta histología",
    "fuente": "Dato imprescindible - histologia germinal",
    "esperado_tipo": "necesita_datos",
    "esperado": "necesita_datos",

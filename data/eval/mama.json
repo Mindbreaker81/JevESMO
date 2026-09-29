@@ -1,6 +1,6 @@
 {
  "tumor": "mama",
- "nombre": "Cancer de mama",
+ "nombre": "Cáncer de mama",
  "grupo": "Mama",
  "version": "BREAST-ESMO-2024.1",
  "fecha": "2026-09-27T18:58:54+00:00",
@@ -52,7 +52,7 @@
     "quimio_neoadyuvante"
    ],
    "obtenido": "quimio_neoadyuvante",
-   "obtenido_label": "Quimioterapia (neo)adyuvante seguida de endocrina (alto riesgo clinico-patologico)",
+   "obtenido_label": "Quimioterapia (neo)adyuvante seguida de endocrina (alto riesgo clínico-patologico)",
    "confianza": 0.99,
    "revision": false,
    "motivos_revision": [],
@@ -84,7 +84,7 @@
   },
   {
    "id": "MAMA-V04",
-   "titulo": "HR+/HER2- metastasico 1a linea",
+   "titulo": "HR+/HER2- metastásico 1a línea",
    "fuente": "ESMO MBC Living Guideline - 1L: endocrina + CDK4/6i",
    "esperado_tipo": "recomendacion",
    "esperado": "endocrino_cdk46_1L",
@@ -92,7 +92,7 @@
     "endocrino_cdk46_1L"
    ],
    "obtenido": "endocrino_cdk46_1L",
-   "obtenido_label": "Endocrina + inhibidor CDK4/6 (1a linea)",
+   "obtenido_label": "Endocrina + inhibidor CDK4/6 (1a línea)",
    "confianza": 1.0,
    "revision": true,
    "motivos_revision": [
@@ -106,7 +106,7 @@
   },
   {
    "id": "MAMA-V05",
-   "titulo": "HR+/HER2- metastasico 2L PIK3CA mutado",
+   "titulo": "HR+/HER2- metastásico 2L PIK3CA mutado",
    "fuente": "ESMO MBC Living Guideline - PIK3CA mut tras CDK4/6i: alpelisib/capivasertib + fulvestrant",
    "esperado_tipo": "recomendacion",
    "esperado": "pi3k_inhibidor_2L",
@@ -127,7 +127,7 @@
   },
   {
    "id": "MAMA-V06",
-   "titulo": "HR+/HER2- metastasico 2L ESR1 mutado",
+   "titulo": "HR+/HER2- metastásico 2L ESR1 mutado",
    "fuente": "ESMO MBC Living Guideline - ESR1 mut: SERD (elacestrant/fulvestrant)",
    "esperado_tipo": "recomendacion",
    "esperado": "fulvestrant_2L",
@@ -135,7 +135,7 @@
     "fulvestrant_2L"
    ],
    "obtenido": "fulvestrant_2L",
-   "obtenido_label": "Fulvestrant/SERD +- inhibidor via PI3K/AKT/mTOR (2a linea)",
+   "obtenido_label": "Fulvestrant/SERD +- inhibidor vía PI3K/AKT/mTOR (2a línea)",
    "confianza": 0.97,
    "revision": false,
    "motivos_revision": [],
@@ -147,7 +147,7 @@
   },
   {
    "id": "MAMA-V07",
-   "titulo": "HR+/HER2- metastasico con crisis visceral",
+   "titulo": "HR+/HER2- metastásico con crisis visceral",
    "fuente": "ESMO MBC Living Guideline - crisis visceral: quimioterapia",
    "esperado_tipo": "recomendacion",
    "esperado": "quimio_metastasico",
@@ -155,7 +155,7 @@
     "quimio_metastasico"
    ],
    "obtenido": "quimio_metastasico",
-   "obtenido_label": "Quimioterapia citotoxica secuencial",
+   "obtenido_label": "Quimioterapia citotóxica secuencial",
    "confianza": 1.0,
    "revision": false,
    "motivos_revision": [],
@@ -209,7 +209,7 @@
   },
   {
    "id": "MAMA-V10",
-   "titulo": "HER2+ metastasico 1a linea",
+   "titulo": "HER2+ metastásico 1a línea",
    "fuente": "ESMO MBC Living Guideline - 1L HER2+: taxano + trastuzumab + pertuzumab (CLEOPATRA)",
    "esperado_tipo": "recomendacion",
    "esperado": "th_pertuzumab_1L",
@@ -217,7 +217,7 @@
     "th_pertuzumab_1L"
    ],
    "obtenido": "th_pertuzumab_1L",
-   "obtenido_label": "Taxano + trastuzumab + pertuzumab (1a linea)",
+   "obtenido_label": "Taxano + trastuzumab + pertuzumab (1a línea)",
    "confianza": 1.0,
    "revision": true,
    "motivos_revision": [
@@ -231,7 +231,7 @@
   },
   {
    "id": "MAMA-V11",
-   "titulo": "HER2+ metastasico 2a linea",
+   "titulo": "HER2+ metastásico 2a línea",
    "fuente": "ESMO MBC Living Guideline - 2L HER2+: T-DXd (DESTINY-Breast03)",
    "esperado_tipo": "recomendacion",
    "esperado": "tdxd_2L",
@@ -239,7 +239,7 @@
     "tdxd_2L"
    ],
    "obtenido": "tdxd_2L",
-   "obtenido_label": "Trastuzumab deruxtecan (T-DXd) (2a linea)",
+   "obtenido_label": "Trastuzumab deruxtecan (T-DXd) (2a línea)",
    "confianza": 0.86,
    "revision": false,
    "motivos_revision": [],
@@ -251,7 +251,7 @@
   },
   {
    "id": "MAMA-V12",
-   "titulo": "HER2+ metastasico con metastasis cerebrales activas",
+   "titulo": "HER2+ metastásico con metástasis cerebrales activas",
    "fuente": "ESMO MBC Living Guideline - MTS cerebrales activas tras T-DXd: tucatinib + trastuzumab + capecitabina",
    "esperado_tipo": "recomendacion",
    "esperado": "tucatinib_combo",
@@ -334,7 +334,7 @@
   },
   {
    "id": "MAMA-V16",
-   "titulo": "TNBC metastasico 1L PD-L1+",
+   "titulo": "TNBC metastásico 1L PD-L1+",
    "fuente": "ESMO MBC Living Guideline - TNBC PD-L1 CPS>=10: QT + pembrolizumab (KEYNOTE-355)",
    "esperado_tipo": "recomendacion",
    "esperado": "quimio_ici_1L",
@@ -342,7 +342,7 @@
     "quimio_ici_1L"
    ],
    "obtenido": "quimio_ici_1L",
-   "obtenido_label": "Quimioterapia + pembrolizumab (PD-L1 CPS>=10, 1a linea)",
+   "obtenido_label": "Quimioterapia + pembrolizumab (PD-L1 CPS>=10, 1a línea)",
    "confianza": 1.0,
    "revision": true,
    "motivos_revision": [
@@ -356,7 +356,7 @@
   },
   {
    "id": "MAMA-V17",
-   "titulo": "TNBC metastasico 1L PD-L1-, BRCA wt",
+   "titulo": "TNBC metastásico 1L PD-L1-, BRCA wt",
    "fuente": "ESMO MBC Living Guideline - TNBC PD-L1- sin BRCAm: quimioterapia",
    "esperado_tipo": "recomendacion",
    "esperado": "quimio_metastasico_tnbc",
@@ -364,7 +364,7 @@
     "quimio_metastasico_tnbc"
    ],
    "obtenido": "quimio_metastasico_tnbc",
-   "obtenido_label": "Quimioterapia citotoxica secuencial",
+   "obtenido_label": "Quimioterapia citotóxica secuencial",
    "confianza": 1.0,
    "revision": true,
    "motivos_revision": [
@@ -378,7 +378,7 @@
   },
   {
    "id": "MAMA-V18",
-   "titulo": "TNBC metastasico 2L",
+   "titulo": "TNBC metastásico 2L",
    "fuente": "ESMO MBC Living Guideline - TNBC >=2L: sacituzumab govitecan (ASCENT)",
    "esperado_tipo": "recomendacion",
    "esperado": "sacituzumab_govitecan",
@@ -386,7 +386,7 @@
     "sacituzumab_govitecan"
    ],
    "obtenido": "sacituzumab_govitecan",
-   "obtenido_label": "Sacituzumab govitecan (2a linea o posterior)",
+   "obtenido_label": "Sacituzumab govitecan (2a línea o posterior)",
    "confianza": 0.96,
    "revision": false,
    "motivos_revision": [],
@@ -398,7 +398,7 @@
   },
   {
    "id": "MAMA-V19",
-   "titulo": "TNBC metastasico BRCA+ PD-L1-",
+   "titulo": "TNBC metastásico BRCA+ PD-L1-",
    "fuente": "ESMO MBC Living Guideline - BRCAm: inhibidor PARP o platino",
    "esperado_tipo": "recomendacion",
    "esperado": "parp_metastasico",
@@ -421,7 +421,7 @@
   },
   {
    "id": "MAMA-V20",
-   "titulo": "HER2+ metastasico con FEVI 35%",
+   "titulo": "HER2+ metastásico con FEVI 35%",
    "fuente": "Seguridad - FEVI <50% contraindica anti-HER2 sin valoracion cardiologica",
    "esperado_tipo": "revision_humana",
    "esperado": "revision_humana",

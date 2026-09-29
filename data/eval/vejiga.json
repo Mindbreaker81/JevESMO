@@ -1,6 +1,6 @@
 {
  "tumor": "vejiga",
- "nombre": "Cancer de vejiga / urotelial",
+ "nombre": "Cáncer de vejiga / urotelial",
  "grupo": "Genitourinario",
  "version": "VEJIGA-ESMO-2024.1",
  "fecha": "2026-09-27T18:59:13+00:00",
@@ -32,7 +32,7 @@
     "tur_bajo_riesgo"
    ],
    "obtenido": "tur_bajo_riesgo",
-   "obtenido_label": "TURBT completa +- instilacion unica intravesical",
+   "obtenido_label": "TURBT completa +- instilación única intravesical",
    "confianza": 1.0,
    "revision": false,
    "motivos_revision": [],
@@ -52,7 +52,7 @@
     "bcg_alto_riesgo"
    ],
    "obtenido": "bcg_alto_riesgo",
-   "obtenido_label": "TURBT + BCG induccion y mantenimiento 1-3 anios",
+   "obtenido_label": "TURBT + BCG inducción y mantenimiento 1-3 anios",
    "confianza": 1.0,
    "revision": false,
    "motivos_revision": [],
@@ -72,7 +72,7 @@
     "nac_cis_cistectomia"
    ],
    "obtenido": "nac_cis_cistectomia",
-   "obtenido_label": "Neoadyuvancia cisplatino + cistectomia radical",
+   "obtenido_label": "Neoadyuvancia cisplatino + cistectomía radical",
    "confianza": 1.0,
    "revision": true,
    "motivos_revision": [
@@ -86,7 +86,7 @@
   },
   {
    "id": "VEJIGA-V04",
-   "titulo": "MIBC preservacion vesical",
+   "titulo": "MIBC preservación vesical",
    "fuente": "ESMO bladder cancer - trimodality selected patient",
    "esperado_tipo": "recomendacion",
    "esperado": "trimodal_vejiga",
@@ -108,7 +108,7 @@
   },
   {
    "id": "VEJIGA-V05",
-   "titulo": "Metastasico 1L EV+pembro",
+   "titulo": "Metastásico 1L EV+pembro",
    "fuente": "ESMO living guideline - EV-302 first line",
    "esperado_tipo": "recomendacion",
    "esperado": "ev_pembro_1l",
@@ -130,7 +130,7 @@
   },
   {
    "id": "VEJIGA-V06",
-   "titulo": "Metastasico cis elegible sin EV",
+   "titulo": "Metastásico cis elegible sin EV",
    "fuente": "ESMO bladder cancer - gem cis nivo alternative",
    "esperado_tipo": "recomendacion",
    "esperado": "gem_cis_nivo_1l",

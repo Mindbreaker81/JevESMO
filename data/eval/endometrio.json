@@ -1,7 +1,7 @@
 {
  "tumor": "endometrio",
- "nombre": "Cancer de endometrio",
- "grupo": "Ginecologico",
+ "nombre": "Cáncer de endometrio",
+ "grupo": "Ginecológico",
  "version": "ENDOMETRIO-ESMO-2025.1",
  "fecha": "2026-09-27T18:58:46+00:00",
  "modelo": "jev-latest",
@@ -32,7 +32,7 @@
     "observacion_bajo_riesgo"
    ],
    "obtenido": "observacion_bajo_riesgo",
-   "obtenido_label": "Observacion tras cirugia",
+   "obtenido_label": "Observación tras cirugía",
    "confianza": 1.0,
    "revision": false,
    "motivos_revision": [],
@@ -128,7 +128,7 @@
   },
   {
    "id": "ENDOMETRIO-V06",
-   "titulo": "pMMR segunda linea",
+   "titulo": "pMMR segunda línea",
    "fuente": "KEYNOTE-775",
    "esperado_tipo": "recomendacion",
    "esperado": "lenvatinib_pembro_2l",
@@ -198,7 +198,7 @@
    "esperado": "revision_humana",
    "aceptables": [],
    "obtenido": "revision (soporte_endometrio)",
-   "obtenido_label": "Soporte exclusivo/valoracion geriatrica",
+   "obtenido_label": "Soporte exclusivo/valoracion geriátrica",
    "confianza": 1.0,
    "revision": true,
    "motivos_revision": [

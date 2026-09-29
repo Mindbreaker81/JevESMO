@@ -33,7 +33,7 @@
     "ablacion_hcc"
    ],
    "obtenido": "reseccion_hcc",
-   "obtenido_label": "Reseccion hepatica",
+   "obtenido_label": "Resección hepática",
    "confianza": 1.0,
    "revision": true,
    "motivos_revision": [
@@ -56,7 +56,7 @@
     "trasplante_hcc"
    ],
    "obtenido": "ablacion_hcc",
-   "obtenido_label": "Ablacion percutanea",
+   "obtenido_label": "Ablación percutanea",
    "confianza": 1.0,
    "revision": true,
    "motivos_revision": [
@@ -78,7 +78,7 @@
     "trasplante_hcc"
    ],
    "obtenido": "trasplante_hcc",
-   "obtenido_label": "Trasplante hepatico",
+   "obtenido_label": "Trasplante hepático",
    "confianza": 1.0,
    "revision": false,
    "motivos_revision": [],
@@ -160,7 +160,7 @@
   },
   {
    "id": "HCC-V07",
-   "titulo": "Segunda linea AFP alta",
+   "titulo": "Segunda línea AFP alta",
    "fuente": "REACH-2 / RESORCE",
    "esperado_tipo": "recomendacion",
    "esperado": "ramucirumab_afp_2l",
@@ -183,7 +183,7 @@
   {
    "id": "HCC-V08",
    "titulo": "Falta Child-Pugh",
-   "fuente": "ESMO HCC - funcion hepatica imprescindible",
+   "fuente": "ESMO HCC - funcion hepática imprescindible",
    "esperado_tipo": "necesita_datos",
    "esperado": "necesita_datos",
    "aceptables": [],

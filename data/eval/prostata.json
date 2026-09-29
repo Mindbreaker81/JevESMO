@@ -1,6 +1,6 @@
 {
  "tumor": "prostata",
- "nombre": "Cancer de prostata",
+ "nombre": "Cáncer de próstata",
  "grupo": "Genitourinario",
  "version": "PROSTATA-ESMO-2026.1",
  "fecha": "2026-09-27T18:59:02+00:00",
@@ -52,7 +52,7 @@
     "prostatectomia_radical"
    ],
    "obtenido": "prostatectomia_radical",
-   "obtenido_label": "Prostatectomia radical + linfadenectomia segun riesgo",
+   "obtenido_label": "Prostatectomía radical + linfadenectomía según riesgo",
    "confianza": 1.0,
    "revision": false,
    "motivos_revision": [],

@@ -1,7 +1,7 @@
 {
  "id": "manto",
- "nombre": "Linfoma de celulas del manto",
- "grupo": "Hematologia",
+ "nombre": "Linfoma de células del manto",
+ "grupo": "Hematología",
  "version": "MCL-ESMO-2025.1",
  "guias": [
   {
@@ -10,7 +10,7 @@
    "url": "https://www.esmo.org/guidelines/esmo-clinical-practice-guideline-lymphomas"
   }
  ],
- "descripcion": "Linfoma del manto: estadio, fitness, TP53, induccion con citarabina/ibrutinib (TRIANGLE), BR/R-BAC, mantenimiento, BTKi, pirtobrutinib y brexu-cel.",
+ "descripcion": "Linfoma del manto: estadio, fitness, TP53, inducción con citarabina/ibrutinib (TRIANGLE), BR/R-BAC, mantenimiento, BTKi, pirtobrutinib y brexu-cel.",
  "campos": [
   {
    "id": "estadio",
@@ -21,7 +21,7 @@
     "III_IV"
    ],
    "requerido": true,
-   "pregunta": "¿Cual es el estadio Ann Arbor/Lugano (localizado I-II o avanzado III-IV)?"
+   "pregunta": "¿Cuál es el estadio Ann Arbor/Lugano (localizado I-II o avanzado III-IV)?"
   },
   {
    "id": "mipi",
@@ -33,26 +33,26 @@
     "alto"
    ],
    "requerido": true,
-   "pregunta": "¿Cual es el MIPI?"
+   "pregunta": "¿Cuál es el MIPI?"
   },
   {
    "id": "tp53_alterado",
    "label": "TP53 mutado/delecion o cariotipo complejo",
    "tipo": "bool",
-   "seccion": "Biologia"
+   "seccion": "Biología"
   },
   {
    "id": "blastoid_pleomorphic",
    "label": "Variante blastoide/pleomorfica",
    "tipo": "bool",
-   "seccion": "Biologia"
+   "seccion": "Biología"
   },
   {
    "id": "candidato_intensivo",
    "label": "Joven/fit para citarabina intensiva",
    "tipo": "bool",
    "requerido": true,
-   "pregunta": "¿Es joven/fit para induccion intensiva con citarabina y TAPH?"
+   "pregunta": "¿Es joven/fit para inducción intensiva con citarabina y TAPH?"
   },
   {
    "id": "candidato_taph",
@@ -64,17 +64,17 @@
    "id": "candidato_car_t",
    "label": "Candidato a CAR-T",
    "tipo": "bool",
-   "seccion": "Recaida"
+   "seccion": "Recaída"
   },
   {
    "id": "btk_previo",
-   "label": "Exposicion previa a BTKi",
+   "label": "Exposición previa a BTKi",
    "tipo": "bool",
-   "seccion": "Recaida"
+   "seccion": "Recaída"
   },
   {
    "id": "cardiopatia_anticoagulacion",
-   "label": "Cardiopatia/anticoagulacion",
+   "label": "Cardiopatía/anticoagulacion",
    "tipo": "bool",
    "seccion": "Seguridad"
   }
@@ -82,7 +82,7 @@
  "derivados": [
   {
    "id": "situacion",
-   "label": "Situacion clinica",
+   "label": "Situación clínica",
    "defecto": "primera_linea",
    "reglas": [
     {
@@ -106,7 +106,7 @@
   {
    "id": "rt_localizado",
    "label": "Radioterapia local +/- inmunoquimioterapia breve",
-   "nota": "ESMO MCL: estadio I/II localizado raro -> RT involucrada con/sin R-CHOP/BR segun riesgo",
+   "nota": "ESMO MCL: estadio I/II localizado raro -> RT involucrada con/sin R-CHOP/BR según riesgo",
    "cuando": [
     {
      "campo": "situacion",
@@ -126,8 +126,8 @@
   },
   {
    "id": "triangle_intensivo",
-   "label": "Induccion intensiva con citarabina + rituximab +/- ibrutinib (TRIANGLE) + TAPH/mantenimiento",
-   "nota": "ESMO MCL: joven/fit avanzado, TP53 no alterado -> citarabina/rituximab, considerar ibrutinib segun TRIANGLE, TAPH y mantenimiento",
+   "label": "Inducción intensiva con citarabina + rituximab +/- ibrutinib (TRIANGLE) + TAPH/mantenimiento",
+   "nota": "ESMO MCL: joven/fit avanzado, TP53 no alterado -> citarabina/rituximab, considerar ibrutinib según TRIANGLE, TAPH y mantenimiento",
    "cuando": [
     {
      "campo": "situacion",
@@ -216,8 +216,8 @@
   },
   {
    "id": "tp53_ensayo_btk",
-   "label": "Ensayo clinico / BTKi-combinacion en TP53 alterado",
-   "nota": "ESMO MCL: TP53 alterado/blastoide responde mal a quimio; priorizar ensayo, BTKi-combinaciones o estrategias no quimioterapicas",
+   "label": "Ensayo clínico / BTKi-combinacion en TP53 alterado",
+   "nota": "ESMO MCL: TP53 alterado/blastoide responde mal a quimio; priorizar ensayo, BTKi-combinaciones o estrategias no quimioterápicas",
    "cuando": [
     {
      "campo": "situacion",
@@ -245,7 +245,7 @@
   {
    "id": "btki_recaida",
    "label": "BTKi covalente (acalabrutinib/zanubrutinib/ibrutinib)",
-   "nota": "ESMO MCL: primera recaida tras inmunoquimioterapia y sin BTKi previo -> BTKi es estandar",
+   "nota": "ESMO MCL: primera recaída tras inmunoquimioterapia y sin BTKi previo -> BTKi es estándar",
    "cuando": [
     {
      "campo": "situacion",
@@ -272,7 +272,7 @@
   {
    "id": "pirtobrutinib",
    "label": "Pirtobrutinib tras BTKi covalente",
-   "nota": "ESMO/actualizacion MCL: progresion tras BTKi covalente -> pirtobrutinib si disponible o ensayo",
+   "nota": "ESMO/actualizacion MCL: progresión tras BTKi covalente -> pirtobrutinib si disponible o ensayo",
    "cuando": [
     {
      "campo": "situacion",
@@ -294,7 +294,7 @@
   {
    "id": "brexu_cel",
    "label": "Brexucabtagene autoleucel CAR-T",
-   "nota": "ESMO MCL: recaida/refractario tras BTKi y candidato -> brexu-cel (ZUMA-2)",
+   "nota": "ESMO MCL: recaída/refractario tras BTKi y candidato -> brexu-cel (ZUMA-2)",
    "cuando": [
     {
      "campo": "situacion",
@@ -320,7 +320,7 @@
   {
    "id": "lenalidomida_rituximab",
    "label": "Lenalidomida-rituximab / temsirolimus paliativo",
-   "nota": "ESMO MCL: recaida no candidata a BTKi/CAR-T o lineas tardias -> inmunomodulador u otra terapia paliativa",
+   "nota": "ESMO MCL: recaída no candidata a BTKi/CAR-T o líneas tardías -> inmunomodulador u otra terapia paliativa",
    "cuando": [
     {
      "campo": "situacion",
@@ -336,7 +336,7 @@
   {
    "id": "soporte_manto",
    "label": "Soporte exclusivo o tratamiento muy atenuado",
-   "nota": "ESMO MCL: fragilidad extrema/no candidato a terapia activa -> soporte y control sintomatico",
+   "nota": "ESMO MCL: fragilidad extrema/no candidato a terapia activa -> soporte y control sintomático",
    "cuando": [
     {
      "campo": "ecog",
@@ -365,7 +365,7 @@
     "campo": "candidato_intensivo",
     "eq": true
    },
-   "instrucciones": "¿La edad biologica y comorbilidades hacen realmente seguro citarabina intensiva/TAPH?"
+   "instrucciones": "¿La edad biológica y comorbilidades hacen realmente seguro citarabina intensiva/TAPH?"
   },
   {
    "key": "tp53_impacto",
@@ -375,7 +375,7 @@
     "campo": "tp53_alterado",
     "eq": true
    },
-   "instrucciones": "¿La alteracion TP53/blastoide domina la decision y justifica evitar quimioterapia estandar?"
+   "instrucciones": "¿La alteración TP53/blastoide domina la decisión y justifica evitar quimioterapia estándar?"
   }
  ],
  "seguridad": [
@@ -389,7 +389,7 @@
     "triangle_intensivo",
     "btki_recaida"
    ],
-   "instrucciones": "¿El riesgo de fibrilacion auricular/hemorragia con ibrutinib u otros BTKi es inaceptable?",
+   "instrucciones": "¿El riesgo de fibrilación auricular/hemorragia con ibrutinib u otros BTKi es inaceptable?",
    "umbral": 0.55,
    "motivo": "Riesgo cardiovascular/hemorragico alto con BTKi"
   }
@@ -492,7 +492,7 @@
   },
   {
    "id": "MANTO-V05",
-   "titulo": "Primera recaida sin BTKi",
+   "titulo": "Primera recaída sin BTKi",
    "fuente": "ESMO BTKi",
    "payload": {
     "edad": 69,

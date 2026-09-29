@@ -1,6 +1,6 @@
 {
  "id": "tne_gep",
- "nombre": "Tumores neuroendocrinos gastroenteropancreaticos",
+ "nombre": "Tumores neuroendocrinos gastroenteropancreáticos",
  "grupo": "Digestivo",
  "version": "tne_gep-ESMO-2024.1",
  "guias": [
@@ -10,11 +10,11 @@
    "url": "https://www.esmo.org/guidelines/gastrointestinal-cancers/neuroendocrine-tumours"
   }
  ],
- "descripcion": "NET G1/G2/G3 y NEC GEP: SSTR, analogos somatostatina, PRRT Lu-177, everolimus, sunitinib pancreatico, CAPTEM y platino-etoposido.",
+ "descripcion": "NET G1/G2/G3 y NEC GEP: SSTR, analogos somatostatina, PRRT Lu-177, everolimus, sunitinib pancreático, CAPTEM y platino-etoposido.",
  "campos": [
   {
    "id": "categoria",
-   "label": "Categoria",
+   "label": "Categoría",
    "tipo": "choice",
    "seccion": "Tumor",
    "opciones": [
@@ -38,7 +38,7 @@
     "desconocido"
    ],
    "requerido": true,
-   "pregunta": "¿Cual es el origen primario GEP?"
+   "pregunta": "¿Cuál es el origen primario GEP?"
   },
   {
    "id": "setting",
@@ -71,26 +71,26 @@
    "id": "ki67",
    "label": "Ki-67",
    "tipo": "number",
-   "seccion": "Anatomia patologica",
+   "seccion": "Anatomía patológica",
    "min": 0,
    "max": 100,
    "unidad": "%"
   },
   {
    "id": "funcionante",
-   "label": "Sindromico/funcionante",
+   "label": "Sindrómico/funcionante",
    "tipo": "bool",
    "seccion": "Tumor"
   },
   {
    "id": "volumen_tumoral_alto",
-   "label": "Volumen tumoral alto o progresion rapida",
+   "label": "Volumen tumoral alto o progresión rápida",
    "tipo": "bool",
    "seccion": "Tumor"
   },
   {
    "id": "funcion_renal_prrt_apta",
-   "label": "Funcion renal/medular apta para PRRT",
+   "label": "Función renal/medular apta para PRRT",
    "tipo": "bool",
    "seccion": "Seguridad"
   },
@@ -104,8 +104,8 @@
  "opciones": [
   {
    "id": "cirugia_net_localizado",
-   "label": "Reseccion quirurgica del NET localizado",
-   "nota": "ESMO: NET GEP localizado resecable -> cirugia con intencion curativa y linfadenectomia segun localizacion.",
+   "label": "Resección quirúrgica del NET localizado",
+   "nota": "ESMO: NET GEP localizado resecable -> cirugía con intención curativa y linfadenectomía según localización.",
    "cuando": [
     {
      "campo": "setting",
@@ -126,8 +126,8 @@
   },
   {
    "id": "cirugia_nec_localizado",
-   "label": "Cirugia + quimioterapia perioperatoria en NEC localizado",
-   "nota": "ESMO: NEC GEP localizado resecable -> tratamiento multimodal con platino-etoposido perioperatorio y cirugia seleccionada.",
+   "label": "Cirugía + quimioterapia perioperatoria en NEC localizado",
+   "nota": "ESMO: NEC GEP localizado resecable -> tratamiento multimodal con platino-etoposido perioperatorio y cirugía seleccionada.",
    "cuando": [
     {
      "campo": "setting",
@@ -199,7 +199,7 @@
   {
    "id": "everolimus_net",
    "label": "Everolimus",
-   "nota": "ESMO: NET pancreatico o gastrointestinal no funcionante progresivo -> everolimus.",
+   "nota": "ESMO: NET pancreático o gastrointestinal no funcionante progresivo -> everolimus.",
    "cuando": {
     "all": [
      {
@@ -236,8 +236,8 @@
   },
   {
    "id": "sunitinib_pnet",
-   "label": "Sunitinib en NET pancreatico",
-   "nota": "ESMO: NET pancreatico progresivo bien diferenciado -> sunitinib.",
+   "label": "Sunitinib en NET pancreático",
+   "nota": "ESMO: NET pancreático progresivo bien diferenciado -> sunitinib.",
    "cuando": [
     {
      "campo": "origen",
@@ -261,7 +261,7 @@
   {
    "id": "captem_pnet",
    "label": "CAPTEM/quimioterapia temozolomida",
-   "nota": "ESMO: NET pancreatico o NET G3 bien diferenciado con Ki-67 alto/volumen alto -> capecitabina-temozolomida.",
+   "nota": "ESMO: NET pancreático o NET G3 bien diferenciado con Ki-67 alto/volumen alto -> capecitabina-temozolomida.",
    "cuando": [
     {
      "campo": "categoria",
@@ -333,7 +333,7 @@
   {
    "id": "folfox_folfiri_nec_2l",
    "label": "FOLFOX/FOLFIRI 2L NEC",
-   "nota": "ESMO: NEC progresivo tras platino -> FOLFOX/FOLFIRI o ensayo clinico.",
+   "nota": "ESMO: NEC progresivo tras platino -> FOLFOX/FOLFIRI o ensayo clínico.",
    "cuando": [
     {
      "campo": "categoria",
@@ -382,11 +382,11 @@
     "campo": "setting",
     "eq": "avanzado_progresivo"
    },
-   "instrucciones": "Clasifica ritmo de progresion y carga tumoral.",
+   "instrucciones": "Clasifica ritmo de progresión y carga tumoral.",
    "criterios": {
     "lento": "Lento/bajo volumen",
-    "intermedio": "Progresion clara, PRRT/dirigida",
-    "rapido": "Rapido/volumen alto, quimioterapia"
+    "intermedio": "Progresión clara, PRRT/dirigida",
+    "rapido": "Rápido/volumen alto, quimioterapia"
    }
   },
   {
@@ -397,7 +397,7 @@
     "campo": "sstr",
     "eq": "positivo"
    },
-   "instrucciones": "¿La captacion SSTR, funcion renal/medular y distribucion tumoral hacen apropiado PRRT?"
+   "instrucciones": "¿La captación SSTR, función renal/medular y distribución tumoral hacen apropiado PRRT?"
   },
   {
    "key": "diferenciacion_incierta",
@@ -407,7 +407,7 @@
     "campo": "categoria",
     "eq": "NET_G3_bien_dif"
    },
-   "instrucciones": "¿La morfologia y Ki-67 apoyan NET G3 bien diferenciado frente a NEC?"
+   "instrucciones": "¿La morfología y Ki-67 apoyan NET G3 bien diferenciado frente a NEC?"
   }
  ],
  "seguridad": [
@@ -420,7 +420,7 @@
    "bloquea_componentes": [
     "radionuclido"
    ],
-   "instrucciones": "¿La funcion renal/medular hace inseguro Lu-177 DOTATATE?",
+   "instrucciones": "¿La función renal/medular hace inseguro Lu-177 DOTATATE?",
    "motivo": "Riesgo renal/medular para PRRT"
   },
   {
@@ -433,7 +433,7 @@
     "everolimus_net"
    ],
    "instrucciones": "¿La diabetes mal controlada/infecciones hacen inaceptable everolimus?",
-   "motivo": "Riesgo metabolico/infeccioso con everolimus"
+   "motivo": "Riesgo metabólico/infeccioso con everolimus"
   }
  ],
  "avisos": [
@@ -622,7 +622,7 @@
   },
   {
    "id": "TNE_GEP-V08",
-   "titulo": "Falta categoria",
+   "titulo": "Falta categoría",
    "fuente": "Dato imprescindible",
    "payload": {
     "edad": 55,
