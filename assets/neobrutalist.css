@@ -1,14 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap');
 
 :root {
-  --nb-bg: #FFF4D6;
+  /* Paleta monocroma: blanco, negro y grises. Los nombres de las variables
+     (yellow, pink, cyan...) se conservan por compatibilidad con las clases
+     ya usadas en app.py; solo cambia el valor de color. */
+  --nb-bg: #F0F0F0;
   --nb-ink: #000;
-  --nb-yellow: #FFE14D;
-  --nb-pink: #FF5C8A;
-  --nb-cyan: #5CE1E6;
-  --nb-green: #7CFF6B;
-  --nb-red: #FF4D4D;
-  --nb-lilac: #B69CFF;
+  --nb-yellow: #E2E2E2;
+  --nb-pink: #4A4A4A;
+  --nb-cyan: #D0D0D0;
+  --nb-green: #E8E8E8;
+  --nb-red: #141414;
+  --nb-lilac: #BDBDBD;
   --nb-border: 3px solid var(--nb-ink);
   --nb-shadow: 6px 6px 0 var(--nb-ink);
   --nb-shadow-sm: 3px 3px 0 var(--nb-ink);
@@ -199,7 +202,7 @@ button[data-baseweb="tab"][aria-selected="true"] { background: var(--nb-yellow) 
 .nb-table td code { background: var(--nb-bg); border: 1px solid var(--nb-ink); color: var(--nb-ink); font-size: .72rem; }
 .nb-table tr.ok td.st { background: var(--nb-green); font-weight: 900; text-align: center; font-size: 1.1rem; }
 .nb-table tr.ko td.st { background: var(--nb-red); color: #fff; font-weight: 900; text-align: center; font-size: 1.1rem; }
-.nb-table tr.ko td { background: #ffe3e3; }
+.nb-table tr.ko td { background: #ececec; }
 .nb-table .src { font-family: 'JetBrains Mono', monospace; font-size: .68rem; opacity: .75; margin-top: .15rem; }
 
 .nb-cm { width: 100%; border-collapse: collapse; margin-top: .4rem; }
