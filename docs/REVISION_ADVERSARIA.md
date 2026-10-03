@@ -36,10 +36,10 @@ se hizo con él.
   el acierto agregado no cambia y la revisión sube de 18,7% a 26,7% (McNemar
   p=0,00012), marcando 14/42 discordancias reales frente a 11/42 sin auditoría. Alerta de manipulación:
   28/30 detectadas en 3 pasadas, 0/30 FP en el conjunto congelado.
-- `tests/test_engine.py`: 73 pruebas de regresión: bloqueo duro por FEVI, fallo
+- `tests/test_engine.py`: 69 pruebas de regresión: bloqueo duro por FEVI, fallo
   cerrado, datos fuera de rango, lógica trivalente, modo simulado, auditoría
   (desacuerdo, manipulación, sin respuesta, desactivada), backend alternativo y
-  que la opción preferida de todas las viñetas sigue siendo candidata.
+  que la opción preferida de todas las viñetas sigue siendo candidata. Con `tests/test_eval_stats.py` y `tests/test_llm_backend.py` son 95 en total.
 
 ## Lo que sigue pendiente
 
