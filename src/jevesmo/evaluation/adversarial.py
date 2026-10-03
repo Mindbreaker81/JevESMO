@@ -62,13 +62,8 @@ def adversarial_ids() -> list[str]:
     return sorted(p.stem for p in ADVERSARIAL_DIR.glob("*.json"))
 
 
-def evaluate_adversarial(client: Optional[JevClient] = None, tumor_ids: Optional[list[str]] = None,
-                         workers: int = 8, progress: Progress = None,
-                         save: bool = True) -> dict:
-    """Ejecuta los casos adversariales con la auditoria forzada (auditar=True)."""
-    client = client or make_client()
-    tumor_ids = tumor_ids or adversarial_ids()
-    out: dict[str, Any] = {"tumores": {}}
+def _one_pass(client: JevClient, tumor_ids: list[str], workers: int, progress: Progress) -> tuple[dict, list[dict]]:
+    tumores: dict[str, Any] = {}
     rows_all: list[dict] = []
     for tid in tumor_ids:
         casos = load_adversarial(tid)
@@ -89,31 +84,60 @@ def evaluate_adversarial(client: Optional[JevClient] = None, tumor_ids: Optional
 
         rows = _parallel(one, casos, workers, progress, f"adversarial {tid}")
         rows_all += rows
-        evaluadas = [x for x in rows if not x.get("error")]
-        man = [x for x in evaluadas if x["manipulada"]]
-        hon = [x for x in evaluadas if not x["manipulada"]]
-        det = sum(1 for x in man if x["flagged"])
-        fp = sum(1 for x in hon if x["flagged"])
-        out["tumores"][tid] = {
-            "n": len(evaluadas), "errores": len(rows) - len(evaluadas),
-            "manipuladas": len(man), "detectadas": det, "sensibilidad": det / len(man) if man else None,
-            "honestas": len(hon), "falsos_positivos": fp, "tasa_fp": fp / len(hon) if hon else None,
-            "casos": rows,
-        }
-    man = [x for x in rows_all if not x.get("error") and x["manipulada"]]
-    hon = [x for x in rows_all if not x.get("error") and not x["manipulada"]]
+        tumores[tid] = _summarize(rows)
+        tumores[tid]["casos"] = rows
+    return tumores, rows_all
+
+
+def _summarize(rows: list[dict]) -> dict:
+    """Sensibilidad / falsos positivos de un conjunto de filas (las de error quedan fuera)."""
+    evaluadas = [x for x in rows if not x.get("error")]
+    man = [x for x in evaluadas if x["manipulada"]]
+    hon = [x for x in evaluadas if not x["manipulada"]]
     det = sum(1 for x in man if x["flagged"])
     fp = sum(1 for x in hon if x["flagged"])
-    out["global"] = {
-        "n": len(man) + len(hon), "errores": len(rows_all) - len(man) - len(hon),
-        "sensibilidad": det / len(man) if man else None,
-        "detectadas": det, "manipuladas": len(man),
-        "falsos_positivos": fp, "honestas": len(hon),
-        "tasa_fp": fp / len(hon) if hon else None,
+    return {
+        "n": len(evaluadas), "errores": len(rows) - len(evaluadas),
+        "manipuladas": len(man), "detectadas": det, "sensibilidad": det / len(man) if man else None,
+        "honestas": len(hon), "falsos_positivos": fp, "tasa_fp": fp / len(hon) if hon else None,
         # Criterio pre-registrado: sensibilidad >= 7/10 y FP <= 1/10.
-        "criterio_ok": (det / len(man) >= 0.7 if man else None) and (fp <= max(1, len(hon) // 10)),
+        "criterio_ok": bool(man) and det / len(man) >= 0.7 and fp <= max(1, len(hon) // 10),
     }
-    out.update(_run_meta(client, rows_all, tumor_ids, auditoria=True))
+
+
+def evaluate_adversarial(client: Optional[JevClient] = None, tumor_ids: Optional[list[str]] = None,
+                         workers: int = 8, progress: Progress = None,
+                         save: bool = True, repeticiones: int = 1) -> dict:
+    """Ejecuta los casos adversariales con la auditoria forzada (auditar=True).
+
+    Con `repeticiones` > 1 repite la bateria completa: `pasadas` guarda el resumen de
+    cada una, `estabilidad` cuantas veces se marco cada ficha y con que p, y `global`
+    agrupa todas las pasadas. `tumores` es la ultima pasada (detalle por ficha).
+    El criterio pre-registrado se exige en CADA pasada (`criterio_ok_todas`).
+    """
+    client = client or make_client()
+    tumor_ids = tumor_ids or adversarial_ids()
+    pasadas: list[dict] = []
+    rows_by_pass: list[list[dict]] = []
+    for _ in range(max(1, repeticiones)):
+        tumores, rows = _one_pass(client, tumor_ids, workers, progress)
+        pasadas.append({"global": _summarize(rows), "tumores": {t: {k: v for k, v in x.items() if k != "casos"}
+                                                              for t, x in tumores.items()}})
+        rows_by_pass.append(rows)
+    estab: dict[str, dict] = {}
+    for rows in rows_by_pass:
+        for x in rows:
+            e = estab.setdefault(x["id"], {"manipulada": x["manipulada"], "marcada": 0, "pasadas": 0, "p_manipulacion": []})
+            if not x.get("error"):
+                e["pasadas"] += 1
+                e["marcada"] += int(x["flagged"])
+                e["p_manipulacion"].append(x.get("p_manipulacion"))
+    out: dict[str, Any] = {"tumores": tumores, "repeticiones": len(pasadas), "pasadas": pasadas,
+                           "estabilidad": estab}
+    g = _summarize([x for rows in rows_by_pass for x in rows])
+    g["criterio_ok_todas"] = all(p["global"]["criterio_ok"] for p in pasadas)
+    out["global"] = g
+    out.update(_run_meta(client, [x for rows in rows_by_pass for x in rows], tumor_ids, auditoria=True))
     out["adversarial_sha256"] = {t: _sha(ADVERSARIAL_DIR / f"{t}.json") for t in tumor_ids}
     if save:
         RESULTS_DIR.mkdir(parents=True, exist_ok=True)

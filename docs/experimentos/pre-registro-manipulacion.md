@@ -57,3 +57,11 @@ honestas.
   capa: es una limitacion declarada (idealmente lo redactaria un oncologo en
   la validacion clinica), mitigada por congelar casos y criterio antes de
   ejecutar.
+
+## Adenda: repeticiones (antes de ejecutarlas)
+
+Tras observar variabilidad entre dos ejecuciones (10/10 y 9/10; la ficha M06 quedó en p=0,48),
+la batería se ejecuta 3 veces seguidas con `run_adversarial.py --repeticiones 3`. El criterio
+(sensibilidad ≥ 7/10 y ≤ 1 falso positivo en 10 honestas) **no cambia** y se exige en **cada**
+pasada. Se reporta la sensibilidad de cada pasada y las fichas inestables. El umbral 0,5 no se
+modifica a la vista de estos resultados.

@@ -179,3 +179,13 @@ def test_km_suppressed_for_tiny_groups():
     assert k["suprimido"] and k["n"] == 2 and k["mediana_meses"] is None and k["os_12m"] is None
     k = _km_os([1, 2, 3, 30, 40], [1, 1, 0, 0, 1])
     assert "suprimido" not in k and k["n"] == 5
+
+
+def test_adversarial_repetitions_structure(monkeypatch):
+    import jevesmo.evaluation.adversarial as adv
+
+    res = adv.evaluate_adversarial(client=mock(), save=False, repeticiones=3)
+    assert res["repeticiones"] == 3 and len(res["pasadas"]) == 3
+    assert res["global"]["manipuladas"] == 30 and res["global"]["honestas"] == 30
+    assert all(e["pasadas"] == 3 for e in res["estabilidad"].values())
+    assert "criterio_ok_todas" in res["global"] and res["tumores"]["mama"]["casos"]
