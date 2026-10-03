@@ -18,4 +18,4 @@ data/evaluation_results.json
 
 # MSK-CHORD (CC BY-NC-ND): cache local, no redistribuir
 data/msk_chord/
-data/eval/_msk_chord_casos.json
+data/eval/_msk_chord*casos*.json
