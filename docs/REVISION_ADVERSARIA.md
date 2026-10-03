@@ -34,7 +34,7 @@ se hizo con él.
   la FEVI antes de recomendar anti-HER2.
 - Capa 4.5 (auditoría Jev→Jev, posterior a esta revisión): en MSK-CHORD pareado
   el acierto agregado no cambia y la revisión sube de 18,7% a 26,7% (McNemar
-  p=1,2e-04), marcando 14/42 discordancias reales frente a 11/42 sin auditoría. Alerta de manipulación:
+  p=0,00012), marcando 14/42 discordancias reales frente a 11/42 sin auditoría. Alerta de manipulación:
   10/10 detectadas, 0 FP en el conjunto congelado.
 - `tests/test_engine.py`: 73 pruebas de regresión: bloqueo duro por FEVI, fallo
   cerrado, datos fuera de rango, lógica trivalente, modo simulado, auditoría

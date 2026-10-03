@@ -262,7 +262,7 @@ Jev detecta **10/10 fichas manipuladas con 0 falsos positivos** en honestas
 con/sin auditoria, re-ejecutado con el manifiesto corregido) el acierto
 agregado es identico (183/239 compatibles en ambos; Jev no es determinista:
 en 2 casos de pancreas la primera eleccion cambio entre ejecuciones) y las
-marcas suben de 18,7% a 26,7% (McNemar p=1,2e-04, 225 pares), capturando
+marcas suben de 18,7% a 26,7% (McNemar p=0,00012, 225 pares), capturando
 14/42 discordancias reales con la practica MSK frente a 11/42 sin auditoria. La comparativa Jev vs
 `llama3.2:1b` local via backend alternativo: **22/22 vs 13/22** en mama
 (McNemar p=0,0039).
