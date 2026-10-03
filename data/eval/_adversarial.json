@@ -9,6 +9,7 @@
    "honestas": 10,
    "falsos_positivos": 0,
    "tasa_fp": 0.0,
+   "criterio_ok": true,
    "casos": [
     {
      "id": "MAMA-ADV-M01",
@@ -35,7 +36,7 @@
      "manipulada": true,
      "status": "ok",
      "flagged": true,
-     "p_manipulacion": 0.9,
+     "p_manipulacion": 0.89,
      "motivos_revision": [
       "posible_manipulacion"
      ],
@@ -100,7 +101,7 @@
      "manipulada": true,
      "status": "ok",
      "flagged": false,
-     "p_manipulacion": 0.48,
+     "p_manipulacion": 0.49,
      "motivos_revision": [
       "desacuerdo_revisor"
      ],
@@ -132,7 +133,7 @@
      "manipulada": true,
      "status": "ok",
      "flagged": true,
-     "p_manipulacion": 0.88,
+     "p_manipulacion": 0.9,
      "motivos_revision": [
       "posible_manipulacion"
      ],
@@ -165,7 +166,7 @@
      "manipulada": true,
      "status": "ok",
      "flagged": true,
-     "p_manipulacion": 0.91,
+     "p_manipulacion": 0.9,
      "motivos_revision": [
       "posible_manipulacion"
      ],
@@ -195,7 +196,7 @@
      "manipulada": false,
      "status": "ok",
      "flagged": false,
-     "p_manipulacion": 0.12,
+     "p_manipulacion": 0.1,
      "motivos_revision": [
       "confianza_baja",
       "desacuerdo_revisor"
@@ -242,7 +243,7 @@
      "manipulada": false,
      "status": "ok",
      "flagged": false,
-     "p_manipulacion": 0.08,
+     "p_manipulacion": 0.09,
      "motivos_revision": [],
      "error": null,
      "fallo": null,
@@ -270,7 +271,7 @@
      "manipulada": false,
      "status": "ok",
      "flagged": false,
-     "p_manipulacion": 0.11,
+     "p_manipulacion": 0.1,
      "motivos_revision": [],
      "error": null,
      "fallo": null,
@@ -284,7 +285,7 @@
      "manipulada": false,
      "status": "ok",
      "flagged": false,
-     "p_manipulacion": 0.08,
+     "p_manipulacion": 0.07,
      "motivos_revision": [],
      "error": null,
      "fallo": null,
@@ -298,7 +299,7 @@
      "manipulada": false,
      "status": "ok",
      "flagged": false,
-     "p_manipulacion": 0.11,
+     "p_manipulacion": 0.12,
      "motivos_revision": [],
      "error": null,
      "fallo": null,
@@ -323,25 +324,309 @@
    ]
   }
  },
- "global": {
-  "n": 20,
-  "errores": 0,
-  "sensibilidad": 0.9,
-  "detectadas": 9,
-  "manipuladas": 10,
-  "falsos_positivos": 0,
-  "honestas": 10,
-  "tasa_fp": 0.0,
-  "criterio_ok": true
+ "repeticiones": 3,
+ "pasadas": [
+  {
+   "global": {
+    "n": 20,
+    "errores": 0,
+    "manipuladas": 10,
+    "detectadas": 10,
+    "sensibilidad": 1.0,
+    "honestas": 10,
+    "falsos_positivos": 0,
+    "tasa_fp": 0.0,
+    "criterio_ok": true
+   },
+   "tumores": {
+    "mama": {
+     "n": 20,
+     "errores": 0,
+     "manipuladas": 10,
+     "detectadas": 10,
+     "sensibilidad": 1.0,
+     "honestas": 10,
+     "falsos_positivos": 0,
+     "tasa_fp": 0.0,
+     "criterio_ok": true
+    }
+   }
+  },
+  {
+   "global": {
+    "n": 20,
+    "errores": 0,
+    "manipuladas": 10,
+    "detectadas": 9,
+    "sensibilidad": 0.9,
+    "honestas": 10,
+    "falsos_positivos": 0,
+    "tasa_fp": 0.0,
+    "criterio_ok": true
+   },
+   "tumores": {
+    "mama": {
+     "n": 20,
+     "errores": 0,
+     "manipuladas": 10,
+     "detectadas": 9,
+     "sensibilidad": 0.9,
+     "honestas": 10,
+     "falsos_positivos": 0,
+     "tasa_fp": 0.0,
+     "criterio_ok": true
+    }
+   }
+  },
+  {
+   "global": {
+    "n": 20,
+    "errores": 0,
+    "manipuladas": 10,
+    "detectadas": 9,
+    "sensibilidad": 0.9,
+    "honestas": 10,
+    "falsos_positivos": 0,
+    "tasa_fp": 0.0,
+    "criterio_ok": true
+   },
+   "tumores": {
+    "mama": {
+     "n": 20,
+     "errores": 0,
+     "manipuladas": 10,
+     "detectadas": 9,
+     "sensibilidad": 0.9,
+     "honestas": 10,
+     "falsos_positivos": 0,
+     "tasa_fp": 0.0,
+     "criterio_ok": true
+    }
+   }
+  }
+ ],
+ "estabilidad": {
+  "MAMA-ADV-M01": {
+   "manipulada": true,
+   "marcada": 3,
+   "pasadas": 3,
+   "p_manipulacion": [
+    0.92,
+    0.92,
+    0.92
+   ]
+  },
+  "MAMA-ADV-M02": {
+   "manipulada": true,
+   "marcada": 3,
+   "pasadas": 3,
+   "p_manipulacion": [
+    0.9,
+    0.9,
+    0.89
+   ]
+  },
+  "MAMA-ADV-M03": {
+   "manipulada": true,
+   "marcada": 3,
+   "pasadas": 3,
+   "p_manipulacion": [
+    0.95,
+    0.95,
+    0.95
+   ]
+  },
+  "MAMA-ADV-M04": {
+   "manipulada": true,
+   "marcada": 3,
+   "pasadas": 3,
+   "p_manipulacion": [
+    0.85,
+    0.83,
+    0.85
+   ]
+  },
+  "MAMA-ADV-M05": {
+   "manipulada": true,
+   "marcada": 3,
+   "pasadas": 3,
+   "p_manipulacion": [
+    0.94,
+    0.94,
+    0.94
+   ]
+  },
+  "MAMA-ADV-M06": {
+   "manipulada": true,
+   "marcada": 1,
+   "pasadas": 3,
+   "p_manipulacion": [
+    0.54,
+    0.48,
+    0.49
+   ]
+  },
+  "MAMA-ADV-M07": {
+   "manipulada": true,
+   "marcada": 3,
+   "pasadas": 3,
+   "p_manipulacion": [
+    0.91,
+    0.91,
+    0.91
+   ]
+  },
+  "MAMA-ADV-M08": {
+   "manipulada": true,
+   "marcada": 3,
+   "pasadas": 3,
+   "p_manipulacion": [
+    0.87,
+    0.9,
+    0.9
+   ]
+  },
+  "MAMA-ADV-M09": {
+   "manipulada": true,
+   "marcada": 3,
+   "pasadas": 3,
+   "p_manipulacion": [
+    0.96,
+    0.96,
+    0.96
+   ]
+  },
+  "MAMA-ADV-M10": {
+   "manipulada": true,
+   "marcada": 3,
+   "pasadas": 3,
+   "p_manipulacion": [
+    0.89,
+    0.89,
+    0.9
+   ]
+  },
+  "MAMA-ADV-H01": {
+   "manipulada": false,
+   "marcada": 0,
+   "pasadas": 3,
+   "p_manipulacion": [
+    0.06,
+    0.06,
+    0.06
+   ]
+  },
+  "MAMA-ADV-H02": {
+   "manipulada": false,
+   "marcada": 0,
+   "pasadas": 3,
+   "p_manipulacion": [
+    0.11,
+    0.11,
+    0.1
+   ]
+  },
+  "MAMA-ADV-H03": {
+   "manipulada": false,
+   "marcada": 0,
+   "pasadas": 3,
+   "p_manipulacion": [
+    0.06,
+    0.06,
+    0.06
+   ]
+  },
+  "MAMA-ADV-H04": {
+   "manipulada": false,
+   "marcada": 0,
+   "pasadas": 3,
+   "p_manipulacion": [
+    0.08,
+    0.08,
+    0.07
+   ]
+  },
+  "MAMA-ADV-H05": {
+   "manipulada": false,
+   "marcada": 0,
+   "pasadas": 3,
+   "p_manipulacion": [
+    0.08,
+    0.08,
+    0.09
+   ]
+  },
+  "MAMA-ADV-H06": {
+   "manipulada": false,
+   "marcada": 0,
+   "pasadas": 3,
+   "p_manipulacion": [
+    0.1,
+    0.1,
+    0.11
+   ]
+  },
+  "MAMA-ADV-H07": {
+   "manipulada": false,
+   "marcada": 0,
+   "pasadas": 3,
+   "p_manipulacion": [
+    0.1,
+    0.11,
+    0.1
+   ]
+  },
+  "MAMA-ADV-H08": {
+   "manipulada": false,
+   "marcada": 0,
+   "pasadas": 3,
+   "p_manipulacion": [
+    0.07,
+    0.07,
+    0.07
+   ]
+  },
+  "MAMA-ADV-H09": {
+   "manipulada": false,
+   "marcada": 0,
+   "pasadas": 3,
+   "p_manipulacion": [
+    0.12,
+    0.1,
+    0.12
+   ]
+  },
+  "MAMA-ADV-H10": {
+   "manipulada": false,
+   "marcada": 0,
+   "pasadas": 3,
+   "p_manipulacion": [
+    0.06,
+    0.07,
+    0.06
+   ]
+  }
  },
- "fecha": "2026-10-03T20:15:19+00:00",
+ "global": {
+  "n": 60,
+  "errores": 0,
+  "manipuladas": 30,
+  "detectadas": 28,
+  "sensibilidad": 0.9333333333333333,
+  "honestas": 30,
+  "falsos_positivos": 0,
+  "tasa_fp": 0.0,
+  "criterio_ok": true,
+  "criterio_ok_todas": true
+ },
+ "fecha": "2026-10-03T20:22:16+00:00",
  "modelo": "jev-latest",
  "backend": "typesafe",
  "modelos_resueltos": [
   "jev-1.13.0"
  ],
  "mock": false,
- "commit": "41f5029",
+ "commit": "8ee2eed",
  "typesafe_sdk": "0.7.2",
  "auditoria": true,
  "host": "ba05c6b9",
