@@ -1,0 +1,168 @@
+{
+ "nota": "Tablas 2x2 pareadas por paciente (solo contadores). A=sin auditoria, B=con auditoria. solo_a: A cumple la metrica y B no.",
+ "runs": {
+  "A_sin_auditoria": {
+   "commit": "2633c60",
+   "auditoria": false,
+   "modelos_resueltos": [
+    "jev-1.13.0"
+   ],
+   "fecha": "2026-10-03T20:10:27+00:00"
+  },
+  "B_con_auditoria": {
+   "commit": "2633c60",
+   "auditoria": true,
+   "modelos_resueltos": [
+    "jev-1.13.0"
+   ],
+   "fecha": "2026-10-03T20:09:18+00:00"
+  }
+ },
+ "global": {
+  "compatible": {
+   "metrica": "compatible",
+   "pareados": 239,
+   "ambos": 183,
+   "solo_a": 0,
+   "solo_b": 0,
+   "ninguno": 56,
+   "mcnemar_p": null
+  },
+  "exacta": {
+   "metrica": "exacta",
+   "pareados": 239,
+   "ambos": 106,
+   "solo_a": 1,
+   "solo_b": 1,
+   "ninguno": 131,
+   "mcnemar_p": 1.0
+  },
+  "revision": {
+   "metrica": "revision",
+   "pareados": 225,
+   "ambos": 40,
+   "solo_a": 2,
+   "solo_b": 20,
+   "ninguno": 163,
+   "mcnemar_p": 0.00012111663818359375
+  }
+ },
+ "por_tumor": {
+  "cpnm_metastasico": {
+   "compatible": {
+    "metrica": "compatible",
+    "pareados": 60,
+    "ambos": 43,
+    "solo_a": 0,
+    "solo_b": 0,
+    "ninguno": 17,
+    "mcnemar_p": null
+   },
+   "exacta": {
+    "metrica": "exacta",
+    "pareados": 60,
+    "ambos": 43,
+    "solo_a": 0,
+    "solo_b": 0,
+    "ninguno": 17,
+    "mcnemar_p": null
+   },
+   "revision": {
+    "metrica": "revision",
+    "pareados": 60,
+    "ambos": 0,
+    "solo_a": 0,
+    "solo_b": 12,
+    "ninguno": 48,
+    "mcnemar_p": 0.00048828125
+   }
+  },
+  "ccr_metastasico": {
+   "compatible": {
+    "metrica": "compatible",
+    "pareados": 60,
+    "ambos": 50,
+    "solo_a": 0,
+    "solo_b": 0,
+    "ninguno": 10,
+    "mcnemar_p": null
+   },
+   "exacta": {
+    "metrica": "exacta",
+    "pareados": 60,
+    "ambos": 9,
+    "solo_a": 0,
+    "solo_b": 0,
+    "ninguno": 51,
+    "mcnemar_p": null
+   },
+   "revision": {
+    "metrica": "revision",
+    "pareados": 57,
+    "ambos": 0,
+    "solo_a": 0,
+    "solo_b": 5,
+    "ninguno": 52,
+    "mcnemar_p": 0.0625
+   }
+  },
+  "pancreas": {
+   "compatible": {
+    "metrica": "compatible",
+    "pareados": 60,
+    "ambos": 58,
+    "solo_a": 0,
+    "solo_b": 0,
+    "ninguno": 2,
+    "mcnemar_p": null
+   },
+   "exacta": {
+    "metrica": "exacta",
+    "pareados": 60,
+    "ambos": 26,
+    "solo_a": 1,
+    "solo_b": 1,
+    "ninguno": 32,
+    "mcnemar_p": 1.0
+   },
+   "revision": {
+    "metrica": "revision",
+    "pareados": 60,
+    "ambos": 20,
+    "solo_a": 2,
+    "solo_b": 3,
+    "ninguno": 35,
+    "mcnemar_p": 1.0
+   }
+  },
+  "mama": {
+   "compatible": {
+    "metrica": "compatible",
+    "pareados": 60,
+    "ambos": 33,
+    "solo_a": 0,
+    "solo_b": 0,
+    "ninguno": 27,
+    "mcnemar_p": null
+   },
+   "exacta": {
+    "metrica": "exacta",
+    "pareados": 60,
+    "ambos": 29,
+    "solo_a": 0,
+    "solo_b": 0,
+    "ninguno": 31,
+    "mcnemar_p": null
+   },
+   "revision": {
+    "metrica": "revision",
+    "pareados": 49,
+    "ambos": 20,
+    "solo_a": 0,
+    "solo_b": 0,
+    "ninguno": 29,
+    "mcnemar_p": null
+   }
+  }
+ }
+}

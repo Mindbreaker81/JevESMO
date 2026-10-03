@@ -92,3 +92,22 @@ def compare_rows(rows_a: list[dict], rows_b: list[dict], *, key: Optional[str] =
         "solo_acierta_b": solo_b,
         "mcnemar_p": mcnemar_exact_p(solo_a, solo_b),
     }
+
+
+def contingency(rows_a: list[dict], rows_b: list[dict], *, key: str = "patient_id",
+                metric: str = "acierto") -> dict[str, Any]:
+    """Tabla 2x2 pareada (solo contadores, sin ids de paciente) y McNemar exacto.
+
+    A y B son dos runs sobre los mismos casos. Permite verificar el McNemar sin
+    redistribuir datos a nivel paciente (MSK-CHORD es CC BY-NC-ND).
+    """
+    ia = {x[key]: x for x in rows_a if x.get(key) is not None and not x.get("error")}
+    ib = {x[key]: x for x in rows_b if x.get(key) is not None and not x.get("error")}
+    t = {"ambos": 0, "solo_a": 0, "solo_b": 0, "ninguno": 0}
+    for k in set(ia) & set(ib):
+        a, b = metric_value(ia[k], metric), metric_value(ib[k], metric)
+        if a is None or b is None:
+            continue
+        t["ambos" if a and b else "solo_a" if a else "solo_b" if b else "ninguno"] += 1
+    n = sum(t.values())
+    return {"metrica": metric, "pareados": n, **t, "mcnemar_p": mcnemar_exact_p(t["solo_a"], t["solo_b"])}

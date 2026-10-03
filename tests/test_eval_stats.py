@@ -189,3 +189,15 @@ def test_adversarial_repetitions_structure(monkeypatch):
     assert res["global"]["manipuladas"] == 30 and res["global"]["honestas"] == 30
     assert all(e["pasadas"] == 3 for e in res["estabilidad"].values())
     assert "criterio_ok_todas" in res["global"] and res["tumores"]["mama"]["casos"]
+
+
+def test_contingency_counts_only():
+    from jevesmo.evaluation.compare import contingency
+
+    a = [{"patient_id": "1", "revision": False}, {"patient_id": "2", "revision": False},
+         {"patient_id": "3", "revision": True}, {"patient_id": "4", "revision": False, "error": "x"}]
+    b = [{"patient_id": "1", "revision": True}, {"patient_id": "2", "revision": False},
+         {"patient_id": "3", "revision": True}, {"patient_id": "4", "revision": True}]
+    c = contingency(a, b, metric="revision")
+    assert (c["ambos"], c["solo_a"], c["solo_b"], c["ninguno"], c["pareados"]) == (1, 0, 1, 1, 3)
+    assert not any("patient" in k for k in c)
