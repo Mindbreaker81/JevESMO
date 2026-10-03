@@ -546,6 +546,8 @@ def render_evaluation(client: JevClient) -> None:
 def _os_txt(o: dict | None) -> str:
     if not o or not o.get("n"):
         return "—"
+    if o.get("suprimido"):
+        return f"n={o['n']} (suprimida)"
     med = o.get("mediana_meses")
     return f"{'no alcanzada' if med is None else f'{med:.1f} m'}"
 

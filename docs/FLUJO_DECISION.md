@@ -25,10 +25,11 @@ flowchart TD
     R -->|0 candidatas| OUT[Fuera del árbol → revisión obligatoria]
     R --> L3[Capa 3 · Jev: elige entre las candidatas<br/>+ estima el beneficio]
     L3 --> L4[Capa 4 · Seguridad<br/>reglas + Jev bloquean opciones]
-    L4 --> L45[Capa 4.5 · Auditoría<br/>Jev relee la elección + alerta de manipulación]
-    L45 --> G{Gate de confianza<br/>≥ 0,6 y opción no bloqueada}
-    G -->|sí| OK[Recomendación + explicabilidad]
-    G -->|no| HR[Recomendación + REVISIÓN OBLIGATORIA POR ONCÓLOGO]
+    L4 --> G{Gate de confianza<br/>≥ 0,6 y opción no bloqueada}
+    G --> L45[Capa 4.5 · Auditoría<br/>Jev relee la elección + alerta de manipulación<br/>solo añade motivos de revisión]
+    L45 --> F{¿Algún motivo de revisión?}
+    F -->|no| OK[Recomendación + explicabilidad]
+    F -->|sí| HR[Recomendación + REVISIÓN OBLIGATORIA POR ONCÓLOGO]
 ```
 
 El motor (`src/jevesmo/engine/pipeline.py`) es **el mismo para los 43 tumores**.
@@ -222,7 +223,7 @@ Si la opción que eligió Jev queda bloqueada, se ofrece la siguiente no bloquea
 
 ### Capa 4.5 · Auditoría (segunda lectura)
 
-Capa opcional tras la seguridad (`JEVESMO_AUDITORIA=0` la desactiva). Un segundo
+Capa tras la seguridad, **activada por defecto** (`JEVESMO_AUDITORIA=0` la desactiva; un valor no reconocido lanza error). Un segundo
 paso de Jev revisa el resultado completo — ficha, opción elegida, opciones
 descartadas por seguridad — con dos o tres preguntas:
 
@@ -239,7 +240,20 @@ Reglas estrictas:
   recomendación, nunca quita una revisión ni desbloquea una opción.
 - Discrepancia → se muestran **ambas opciones** (elegida y propuesta del
   revisor) y decide el oncólogo.
-- Sin respuesta → falla cerrado, igual que las reglas de seguridad.
+- Sin respuesta → falla cerrado, igual que las reglas de seguridad. «Sin
+  respuesta» es una respuesta ausente o no numérica; si la llamada a Jev lanza
+  una excepción, el caso falla de forma ruidosa (no genera recomendación).
+- **No es una segunda opinión ciega**: es el mismo modelo, con el mismo estado
+  y viendo la primera elección y su confianza, así que puede quedar anclado a
+  ella. Un auditor ciego sería un experimento aparte.
+- **La alerta de manipulación no depende de `JEVESMO_AUDITORIA`**: con texto
+  libre se pregunta `manipulacion_ficha` aunque la auditoría esté desactivada,
+  porque ese texto entra en el estado de todas las capas. Sin auditoría solo
+  se hace esa pregunta (sin el contexto de la primera valoración).
+- La propiedad «solo añade» (misma recomendación, candidatos y confianza;
+  motivos previos conservados) se comprueba con un test sobre las 404 viñetas.
+  La única salvedad es el veredicto de manipulación, que es una llamada con
+  prompt propio y puede variar entre modos.
 - El mecanismo se tomó del banco de pruebas de Jev, donde una segunda
   lectura mejoraba los casos adversariales, y aquí está medido:
   en MSK-CHORD eleva la revisión de 19,6% a 28,4% y marca un tercio de las

@@ -344,6 +344,9 @@ def _mean(v: list) -> Optional[float]:
 
 
 # ---------------------------------------------------------------- MSK-CHORD
+KM_MIN_N = 5  # n minimo para publicar una curva de supervivencia
+
+
 def _km_os(times: list, events: list) -> dict:
     data = sorted((t, e) for t, e in zip(times, events) if t is not None)
     s, at_risk, i, curve = 1.0, len(data), 0, [(0.0, 1.0)]
@@ -363,6 +366,10 @@ def _km_os(times: list, events: list) -> dict:
             return None
         return [sv for t, sv in curve if t <= h][-1]
     med = next((t for t, sv in curve if sv <= 0.5), None)
+    if len(data) < KM_MIN_N:
+        # Con n muy pequeño la "mediana" es la supervivencia de un paciente concreto
+        # (MSK-CHORD es CC BY-NC-ND: solo agregados): se suprime.
+        return {"n": len(data), "os_12m": None, "os_24m": None, "mediana_meses": None, "suprimido": True}
     return {"n": len(data), "os_12m": at(12), "os_24m": at(24), "mediana_meses": med}
 
 

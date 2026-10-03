@@ -38,7 +38,7 @@ Capa 3 Jev: eleccion entre las opciones validas + beneficio esperado
    ▼
 Capa 4 Jev: seguridad / contraindicaciones (bloquean opciones)    ← spec.seguridad (+ reglas comunes)
    ▼
-Capa 4.5 Jev: auditoria (2ª lectura; desactivable, JEVESMO_AUDITORIA=0)
+Capa 4.5 Jev: auditoria (2ª lectura; activa por defecto, JEVESMO_AUDITORIA=0 la desactiva)
    · solo puede ANADIR revisiones: desacuerdo del revisor o posible
      manipulacion del texto libre — nunca cambia la recomendacion
    ▼
@@ -201,10 +201,15 @@ La pestaña **📊 Evaluacion** muestra (y permite relanzar) tres pruebas:
 .\.venv\Scripts\python.exe scripts\run_adversarial.py            # bateria de manipulacion
 ```
 
-Los fallos de API o de red no cuentan como aciertos ni como fallos: se
-reportan aparte en `errores` y se repiten con `--retry-errors`, que conserva
-las filas sanas del run guardado. Cada run guarda un manifiesto: alias y
-versiones resueltas de Jev, commit, SDK, host y hash SHA-256 de cada spec.
+Solo los fallos de transporte o de API (timeouts, conexion, rate limit, 5xx)
+no cuentan como aciertos ni como fallos: se reportan aparte en `errores` y se
+repiten con `--retry-errors`, que conserva las filas sanas del run guardado.
+Cualquier otra excepcion (spec roto, bug del pipeline) **si cuenta como
+fallo** (`fallos_pipeline`). `--retry-errors` aborta si el run guardado no
+coincide con la configuracion actual (auditoria, backend, modelo, specs). Cada
+run guarda un manifiesto: alias y versiones resueltas de Jev, si la capa 4.5
+estaba activa, commit, SDK, host (hash) y hash SHA-256 de cada spec. Las
+curvas de supervivencia con n<5 se suprimen (licencia de MSK-CHORD).
 
 **Viñetas held-out** (`src/jevesmo/heldout/<tumor>.json`): un conjunto nuevo
 que no se usa para iterar los arboles, congelado por commit antes de la
@@ -220,7 +225,9 @@ spec): McNemar pareado + IC95 de Wilson sobre las filas por caso:
 ```
 
 Ultimos resultados (Jev real, tras la revision adversaria; las viñetas de
-mama re-evaluadas ya con la capa 4.5 activa): viñetas **404/404**,
+mama re-evaluadas ya con la capa 4.5 activa; el resto de tumores se
+evaluaron antes de la capa 4.5 — ver `auditoria` en el manifiesto de cada
+fichero): viñetas **404/404**,
 opcion preferida 95,6%, 130 casos con eleccion real entre 2 o mas opciones: 100%,
 seguridad robusta (escala por un motivo de seguridad/datos, no solo baja confianza)
 100%. **El 48% de los casos de tratamiento acertados se marcan igualmente para

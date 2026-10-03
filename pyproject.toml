@@ -16,7 +16,7 @@ dev = [
     "pytest>=8.0",
 ]
 llm = [
-    # Backend LLM alternativo (JES-4, opt-in). El extra [openai] del adaptador
+    # Backend LLM alternativo (opt-in). El extra [openai] del adaptador
     # trae el SDK de OpenAI; anthropic/gemini tienen extras homologos.
     "system-one-adapter[openai]>=0.2.1",
 ]

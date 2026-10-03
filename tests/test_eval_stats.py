@@ -5,7 +5,7 @@ import json
 import pytest
 
 from jevesmo.evaluation.compare import compare_rows, metric_value
-from jevesmo.evaluation.runner import _kept_rows, _run_meta, _summary, evaluate_tumor
+from jevesmo.evaluation.runner import _km_os, _kept_rows, _run_meta, _summary, evaluate_tumor
 from jevesmo.evaluation.stats import (
     brier_score, expected_calibration_error, mcnemar_exact_p, wilson_ci,
 )
@@ -172,3 +172,10 @@ def test_stats_edges():
     # p == 1.0 cae en el ultimo cubo
     assert expected_calibration_error([(1.0, True)]) == pytest.approx(0.0)
     assert expected_calibration_error([(0.1, True)]) == pytest.approx(0.9)  # limite inferior de cubo
+
+
+def test_km_suppressed_for_tiny_groups():
+    k = _km_os([0.5, 3.0], [1, 1])
+    assert k["suprimido"] and k["n"] == 2 and k["mediana_meses"] is None and k["os_12m"] is None
+    k = _km_os([1, 2, 3, 30, 40], [1, 1, 0, 0, 1])
+    assert "suprimido" not in k and k["n"] == 5
