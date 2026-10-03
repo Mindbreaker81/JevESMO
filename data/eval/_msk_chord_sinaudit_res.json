@@ -8,6 +8,7 @@
    "n": 60,
    "errores": 0,
    "evaluables": 60,
+   "fallos_pipeline": 0,
    "necesita_datos": 0,
    "sin_opcion": 0,
    "exacta": 0.7166666666666667,
@@ -16,9 +17,9 @@
    "compatible_itt": 0.7166666666666667,
    "compatible_nota": "sin compatibilidades parciales",
    "revision_pct": 0.0,
-   "confianza_media": 0.9938333333333333,
-   "brier_confianza": 0.28257166666666667,
-   "ece_confianza": 0.2771666666666667,
+   "confianza_media": 0.9945,
+   "brier_confianza": 0.2825283333333333,
+   "ece_confianza": 0.2778333333333334,
    "por_subgrupo": {
     "Con driver accionable": {
      "n": 22,
@@ -85,6 +86,7 @@
    "n": 60,
    "errores": 0,
    "evaluables": 57,
+   "fallos_pipeline": 0,
    "necesita_datos": 3,
    "sin_opcion": 0,
    "exacta": 0.15789473684210525,
@@ -177,22 +179,23 @@
    "n": 60,
    "errores": 0,
    "evaluables": 60,
+   "fallos_pipeline": 0,
    "necesita_datos": 0,
    "sin_opcion": 0,
-   "exacta": 0.4666666666666667,
+   "exacta": 0.45,
    "compatible": 0.9666666666666667,
    "cobertura": 1.0,
    "compatible_itt": 0.9666666666666667,
    "compatible_nota": "FOLFIRINOX y gemcitabina-nab-paclitaxel son ambas opciones ESMO en ECOG 0-1",
-   "revision_pct": 0.4,
-   "confianza_media": 0.6433333333333333,
-   "brier_confianza": 0.18623666666666666,
-   "ece_confianza": 0.3233333333333333,
+   "revision_pct": 0.36666666666666664,
+   "confianza_media": 0.6248333333333334,
+   "brier_confianza": 0.20446499999999998,
+   "ece_confianza": 0.3418333333333333,
    "por_subgrupo": {
     "ECOG 0": {
      "n": 16,
      "evaluables": 16,
-     "exacta": 0.8125,
+     "exacta": 0.75,
      "compatible": 1.0
     },
     "ECOG 1": {
@@ -210,14 +213,14 @@
    },
    "matriz": {
     "gem_nab": {
-     "gem_nab": 16,
+     "gem_nab": 15,
      "folfirinox": 28,
      "otra_quimio": 2,
      "gemcitabina_sola": 1
     },
     "folfirinox": {
      "folfirinox": 12,
-     "gem_nab": 1
+     "gem_nab": 2
     }
    },
    "os_concordante": {
@@ -228,9 +231,10 @@
    },
    "os_discordante": {
     "n": 2,
-    "os_12m": 0.5,
+    "os_12m": null,
     "os_24m": null,
-    "mediana_meses": 0.526026821
+    "mediana_meses": null,
+    "suprimido": true
    },
    "preguntas_frecuentes": []
   },
@@ -240,6 +244,7 @@
    "n": 60,
    "errores": 0,
    "evaluables": 49,
+   "fallos_pipeline": 0,
    "necesita_datos": 11,
    "sin_opcion": 0,
    "exacta": 0.5918367346938775,
@@ -248,9 +253,9 @@
    "compatible_itt": 0.55,
    "compatible_nota": "endocrino sin iCDK4/6 (mismo eje terapeutico)",
    "revision_pct": 0.40816326530612246,
-   "confianza_media": 0.9957142857142857,
-   "brier_confianza": 0.31853265306122447,
-   "ece_confianza": 0.3222448979591837,
+   "confianza_media": 0.9944897959183673,
+   "brier_confianza": 0.31648367346938777,
+   "ece_confianza": 0.32102040816326527,
    "por_subgrupo": {
     "HER2+": {
      "n": 3,
@@ -315,13 +320,14 @@
  "global": {
   "n": 240,
   "errores": 0,
+  "fallos_pipeline": 0,
   "evaluables": 226,
-  "exacta": 0.4823008849557522,
+  "exacta": 0.4778761061946903,
   "compatible": 0.8141592920353983,
   "cobertura": 0.9416666666666667,
   "compatible_itt": 0.7666666666666667,
-  "brier_confianza": 0.2244982300884956,
-  "ece_confianza": 0.2522123893805309,
+  "brier_confianza": 0.22888185840707964,
+  "ece_confianza": 0.25367256637168145,
   "os_concordante": {
    "n": 184,
    "os_12m": 0.6594288437937272,
@@ -335,15 +341,17 @@
    "mediana_meses": 33.13968971
   }
  },
- "fecha": "2026-10-03T18:11:05+00:00",
+ "fecha": "2026-10-03T20:10:27+00:00",
  "modelo": "jev-latest",
+ "backend": "typesafe",
  "modelos_resueltos": [
   "jev-1.13.0"
  ],
  "mock": false,
- "commit": "8bf53f1-dirty",
+ "commit": "2633c60",
  "typesafe_sdk": "0.7.2",
- "host": "devserver",
+ "auditoria": false,
+ "host": "ba05c6b9",
  "specs": {
   "cpnm_metastasico": {
    "version": "CPNM_METASTASICO-ESMO-2025.1",

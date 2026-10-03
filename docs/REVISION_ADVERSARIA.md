@@ -33,8 +33,8 @@ se hizo con él.
 - MSK-CHORD: cobertura 94%, compatible 81% (77% ITT). Los casos de mama HER2+ piden
   la FEVI antes de recomendar anti-HER2.
 - Capa 4.5 (auditoría Jev→Jev, posterior a esta revisión): en MSK-CHORD pareado
-  el acierto no cambia y la revisión sube de 19,6% a 28,4% (McNemar p=3,6e-05),
-  marcando un tercio de las discordancias reales. Alerta de manipulación:
+  el acierto agregado no cambia y la revisión sube de 18,7% a 26,7% (McNemar
+  p=1,2e-04), marcando 14/42 discordancias reales frente a 11/42 sin auditoría. Alerta de manipulación:
   10/10 detectadas, 0 FP en el conjunto congelado.
 - `tests/test_engine.py`: 73 pruebas de regresión: bloqueo duro por FEVI, fallo
   cerrado, datos fuera de rango, lógica trivalente, modo simulado, auditoría

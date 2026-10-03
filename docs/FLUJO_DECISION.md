@@ -256,8 +256,8 @@ Reglas estrictas:
   prompt propio y puede variar entre modos.
 - El mecanismo se tomó del banco de pruebas de Jev, donde una segunda
   lectura mejoraba los casos adversariales, y aquí está medido:
-  en MSK-CHORD eleva la revisión de 19,6% a 28,4% y marca un tercio de las
-  discordancias reales; en la batería adversarial detecta 10/10 manipulaciones
+  en MSK-CHORD eleva la revisión de 18,7% a 26,7% y marca 14/42 de las
+  discordancias reales (11/42 sin auditoría); en la batería adversarial detecta 10/10 manipulaciones
   con 0 falsos positivos (pre-registro en `docs/experimentos/`).
 
 ### Paso 5 · Motivos de revisión humana
