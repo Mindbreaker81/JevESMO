@@ -52,9 +52,11 @@ class SystemOneResponse:
 class JevClient:
     """Envuelve la llamada a Jev: `system_one(state, questions) -> respuestas tipadas`."""
 
-    def __init__(self, api_key: Optional[str] = None, model: str = "jev-latest") -> None:
+    def __init__(self, api_key: Optional[str] = None, model: Optional[str] = None) -> None:
         self.api_key = api_key or os.environ.get("TYPESAFE_API_KEY")
-        self.model = model
+        # Modelo solicitado (puede ser un alias flotante como "jev-latest"). La version que
+        # realmente responde viene en SystemOneResponse.model y se registra en la traza.
+        self.model = model or os.environ.get("JEV_MODEL") or "jev-latest"
         self._mock_mode = not bool(self.api_key)
         self._sdk_client = None
         if not self._mock_mode:

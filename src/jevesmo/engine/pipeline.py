@@ -51,6 +51,7 @@ class LayerTrace:
     name: str
     questions: dict[str, Question]
     answers: dict[str, Answer]
+    model: Optional[str] = None  # version de Jev que respondio (resuelta, no el alias)
 
 
 # ------------------------------------------------------------------ entrada
@@ -134,8 +135,11 @@ def build_state(spec: TumorSpec, data: dict[str, Any], derived: dict[str, Any], 
 
 
 # ------------------------------------------------------------------ helpers
-def _ask(client: JevClient, state: str, questions: dict[str, Question]) -> dict[str, Answer]:
-    return client.system_one(state, questions).answers if questions else {}
+def _ask(client: JevClient, state: str, questions: dict[str, Question]) -> tuple[dict[str, Answer], Optional[str]]:
+    if not questions:
+        return {}, None
+    resp = client.system_one(state, questions)
+    return resp.answers, resp.model
 
 
 def _value(a: Answer) -> Any:
@@ -250,11 +254,11 @@ def run(tumor_id: str, raw: dict[str, Any], client: Optional[JevClient] = None) 
             q.key: Question(q.key, q.tipo, q.instrucciones, q.criterios)
             for q in spec.preguntas if q.capa == capa and evaluate(q.cuando, ctx)
         }
-        ans = _ask(client, build_state(spec, data, derived, interp), qs)
+        ans, model = _ask(client, build_state(spec, data, derived, interp), qs)
         for k, a in ans.items():
             ctx[f"jev.{k}"] = _value(a)
             interp[k] = _value(a) if a.type != "noul" else f"{_value(a):.2f} (probabilidad)"
-        traces.append(LayerTrace(name, qs, ans))
+        traces.append(LayerTrace(name, qs, ans, model))
         derived = _derive(spec, ctx)  # los derivados pueden depender de jev.*
         ctx.update(derived)
 
@@ -283,8 +287,8 @@ def run(tumor_id: str, raw: dict[str, Any], client: Optional[JevClient] = None) 
                 ["Bajo", "Moderado", "Alto"],
             ),
         }
-    ans3 = _ask(client, state, qs3)
-    traces.append(LayerTrace("Capa 3 - Elección de tratamiento (ESMO)", qs3, ans3))
+    ans3, model3 = _ask(client, state, qs3)
+    traces.append(LayerTrace("Capa 3 - Elección de tratamiento (ESMO)", qs3, ans3, model3))
 
     # Capa 4: seguridad
     cand_comp = {c for o in candidatos for c in o.componentes}
@@ -307,8 +311,8 @@ def run(tumor_id: str, raw: dict[str, Any], client: Optional[JevClient] = None) 
             "Con este estado funcional, comorbilidades y situación oncológica, ¿es el paciente candidato a "
             "tratamiento oncológico activo (frente a tratamiento de soporte exclusivo)?",
         )
-    ans4 = _ask(client, state, qs4)
-    traces.append(LayerTrace("Capa 4 - Seguridad y contraindicaciones", qs4, ans4))
+    ans4, model4 = _ask(client, state, qs4)
+    traces.append(LayerTrace("Capa 4 - Seguridad y contraindicaciones", qs4, ans4, model4))
 
     def _noul(key: str) -> Optional[float]:
         a = ans4.get(key)
@@ -396,6 +400,7 @@ def run(tumor_id: str, raw: dict[str, Any], client: Optional[JevClient] = None) 
     explicabilidad = [
         {
             "capa": t.name,
+            "modelo": t.model,
             "preguntas": {
                 k: {"tipo": q.type, "instrucciones": q.instructions,
                     "uso": ("regla" if k in used_in_rules else "contexto")
@@ -423,4 +428,6 @@ def run(tumor_id: str, raw: dict[str, Any], client: Optional[JevClient] = None) 
         "seguridad": seguridad_log,
         "avisos_datos_faltantes": avisos,
         "explicabilidad": explicabilidad,
+        "modelo_solicitado": client.model,
+        "modelo_jev": sorted({t.model for t in traces if t.model}),
     }

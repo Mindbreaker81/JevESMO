@@ -106,3 +106,28 @@ def test_vignettes_preferred_option_is_candidate(spec):
             continue
         ids = {c["id"] for c in res["candidatos"]}
         assert v.esperado.preferida in ids, f"{spec.id}/{v.id}"
+
+
+def test_jev_model_env_is_honoured(monkeypatch):
+    monkeypatch.setenv("JEV_MODEL", "jev-1.13-20260917")
+    assert JevClient(api_key=None).model == "jev-1.13-20260917"
+    assert JevClient(api_key=None, model="otro").model == "otro"
+    monkeypatch.delenv("JEV_MODEL")
+    assert JevClient(api_key=None).model == "jev-latest"
+
+
+class ResolvingClient(FakeClient):
+    """Simula la API: se pide un alias y responde una version concreta."""
+
+    def system_one(self, state, questions):
+        resp = super().system_one(state, questions)
+        resp.model = "jev-1.13-20260917"
+        return resp
+
+
+def test_resolved_model_recorded_in_trace():
+    res = run("mama", HER2_IV, client=ResolvingClient())
+    assert res["modelo_solicitado"] == "jev-latest"
+    assert res["modelo_jev"] == ["jev-1.13-20260917"]
+    con_preguntas = [c for c in res["explicabilidad"] if c["preguntas"]]
+    assert con_preguntas and all(c["modelo"] == "jev-1.13-20260917" for c in con_preguntas)

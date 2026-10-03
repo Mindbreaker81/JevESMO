@@ -18,6 +18,8 @@ from __future__ import annotations
 
 import json
 import random
+import subprocess
+from importlib import metadata
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 from pathlib import Path
@@ -49,6 +51,34 @@ def _parallel(fn, items: list, workers: int, progress: Progress, label: str) -> 
             if progress:
                 progress(done, len(items), label)
     return out
+
+
+def _commit() -> Optional[str]:
+    try:
+        root = Path(__file__).resolve().parents[3]
+        out = subprocess.run(["git", "-C", str(root), "rev-parse", "--short", "HEAD"],
+                             capture_output=True, text=True, timeout=5)
+        dirty = subprocess.run(["git", "-C", str(root), "status", "--porcelain"],
+                               capture_output=True, text=True, timeout=5).stdout.strip()
+        if out.returncode != 0 or not out.stdout.strip():
+            return None
+        return out.stdout.strip() + ("-dirty" if dirty else "")
+    except (OSError, subprocess.SubprocessError):
+        return None
+
+
+def _run_meta(client: JevClient, rows: list[dict]) -> dict:
+    """Manifiesto del run: alias pedido, versiones de Jev que respondieron de verdad, commit y SDK."""
+    try:
+        sdk = metadata.version("typesafe-sdk")
+    except metadata.PackageNotFoundError:
+        sdk = None
+    return {
+        "fecha": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "modelo": client.model + ("-mock" if client.is_mock else ""),
+        "modelos_resueltos": sorted({m for x in rows for m in x.get("modelo_jev") or []}),
+        "mock": client.is_mock, "commit": _commit(), "typesafe_sdk": sdk,
+    }
 
 
 # ---------------------------------------------------------------- metricas
@@ -159,6 +189,7 @@ def evaluate_metabric(client: JevClient, strata=None, seed: int = 42, workers: i
             "real_endocrino": t["endocrino"],
             "rfs_months": t["rfs_months"],
             "rfs_event": t["rfs_event"],
+            "modelo_jev": r.get("modelo_jev"),
         }
 
     rows = _parallel(one, sample, workers, progress, "METABRIC")
@@ -267,6 +298,7 @@ def evaluate_msk_chord(client: JevClient, n_per_tumor: int = 60, seed: int = 42,
                 "compatible": jc is not None and (jc == t["clase_recibida"] or t["clase_recibida"] in compat.get(jc, set())),
                 "confianza": r.get("confianza"), "revision": r.get("requiere_revision_humana"),
                 "os_months": t["os_months"], "os_event": t["os_event"], "imputaciones": t["imputaciones"],
+                "modelo_jev": r.get("modelo_jev"),
             }
 
         rows = _parallel(one, cases, workers, progress, f"MSK-CHORD {tumor}")
@@ -320,8 +352,7 @@ def evaluate_msk_chord(client: JevClient, n_per_tumor: int = 60, seed: int = 42,
         "os_concordante": _km_os([x["os_months"] for x in ev_all if x["compatible"]], [x["os_event"] for x in ev_all if x["compatible"]]),
         "os_discordante": _km_os([x["os_months"] for x in ev_all if not x["compatible"]], [x["os_event"] for x in ev_all if not x["compatible"]]),
     }
-    out.update({"fecha": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-                "modelo": client.model + ("-mock" if client.is_mock else ""), "mock": client.is_mock})
+    out.update(_run_meta(client, [x for v in all_cases.values() for x in v]))
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
     MSK_RESULTS.write_text(json.dumps(out, ensure_ascii=False, indent=1, default=str), encoding="utf-8")
     MSK_CASES.write_text(json.dumps(all_cases, ensure_ascii=False, indent=1, default=str), encoding="utf-8")
@@ -369,6 +400,7 @@ def _score_vignette(tumor_id: str, v, client: JevClient) -> dict:
         "preguntas": r.get("preguntas", []),
         "n_candidatos": len(r.get("candidatos") or []),
         "error": r.get("error"),
+        "modelo_jev": r.get("modelo_jev"),
     }
 
 
@@ -405,9 +437,7 @@ def evaluate_tumor(tumor_id: str, client: Optional[JevClient] = None, workers: i
     rows.sort(key=lambda x: x["id"])
     res = {
         "tumor": spec.id, "nombre": spec.nombre, "grupo": spec.grupo, "version": spec.version,
-        "fecha": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-        "modelo": client.model + ("-mock" if client.is_mock else ""),
-        "mock": client.is_mock, "umbral_confianza": CONFIDENCE_THRESHOLD,
+        **_run_meta(client, rows), "umbral_confianza": CONFIDENCE_THRESHOLD,
         **_summary(rows), "casos": rows,
     }
     if save:
@@ -423,8 +453,7 @@ def run_all(client: Optional[JevClient] = None, tumors: Optional[list[str]] = No
     out = {t: evaluate_tumor(t, client, progress=progress) for t in tumors}
     if metabric_too:
         m = evaluate_metabric(client, strata=strata, seed=seed, progress=progress)
-        m.update({"fecha": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-                  "modelo": client.model + ("-mock" if client.is_mock else ""), "mock": client.is_mock})
+        m.update(_run_meta(client, m.get("casos") or []))
         RESULTS_DIR.mkdir(parents=True, exist_ok=True)
         METABRIC_RESULTS.write_text(json.dumps(m, ensure_ascii=False, indent=1, default=str), encoding="utf-8")
     if msk_too:

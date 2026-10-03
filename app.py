@@ -195,6 +195,7 @@ def render_results(resultado: dict) -> None:
         f'<span class="nb-tag yellow">{e(resultado.get("grupo"))} · {e(resultado.get("tumor_nombre"))}</span>'
         + "".join(f'<span class="nb-tag lilac">{e(k)} · {e(v)}</span>' for k, v in (resultado.get("derivados") or {}).items() if v)
         + f'<span class="nb-tag">Árbol · {e(resultado["esmo_tree_version"])}</span>'
+        + "".join(f'<span class="nb-tag">Jev · {e(m)}</span>' for m in resultado.get("modelo_jev") or [])
     )
 
     if resultado["requiere_revision_humana"]:
@@ -380,7 +381,8 @@ def render_evaluation(client: JevClient) -> None:
     tum = res["tumores"]
     if tum:
         g = res["global"]
-        modelos = sorted({x["modelo"] for x in tum.values()})
+        # Versiones de Jev que respondieron (resueltas); los runs antiguos solo guardaban el alias.
+        modelos = sorted({m for x in tum.values() for m in (x.get("modelos_resueltos") or [x["modelo"]])})
         fechas = sorted(x["fecha"] for x in tum.values())
         mock = any(x["mock"] for x in tum.values())
         nb(
@@ -547,7 +549,7 @@ def _render_msk(r: dict | None) -> None:
     casos = r.get("casos") or {}
     nb('<div class="nb-section right">C · Cohorte real MSK-CHORD · otros tumores</div>')
     nb(
-        f'<span class="nb-tag {"red" if r.get("mock") else "green"}">Modelo · {e(r.get("modelo", ""))}</span>'
+        f'<span class="nb-tag {"red" if r.get("mock") else "green"}">Modelo · {e(", ".join(r.get("modelos_resueltos") or [r.get("modelo", "")]))}</span>'
         f'<span class="nb-tag">Ejecución · {e(str(r.get("fecha", ""))[:16].replace("T", " "))} UTC</span>'
         f'<span class="nb-tag yellow">MSK-CHORD · CC BY-NC-ND 4.0 · solo métricas agregadas</span>'
     )
