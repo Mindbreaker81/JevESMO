@@ -29,7 +29,7 @@ from typing import Any, Callable, Iterable, Optional
 
 from ..engine.pipeline import CONFIDENCE_THRESHOLD, run
 from ..engine.spec import HELDOUT_DIR, TUMORS_DIR, get_spec, heldout_ids, load_all, load_heldout
-from ..jev_client import JevClient
+from ..jev_client import JevClient, make_client
 from . import metabric, msk_chord
 from .stats import brier_score, expected_calibration_error
 
@@ -96,6 +96,7 @@ def _run_meta(client: JevClient, rows: list[dict], tumor_ids: Iterable[str] = ()
     return {
         "fecha": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "modelo": client.model + ("-mock" if client.is_mock else ""),
+        "backend": getattr(client, "backend", "typesafe"),
         "modelos_resueltos": sorted({m for x in rows for m in x.get("modelo_jev") or []}),
         "mock": client.is_mock, "commit": _commit(), "typesafe_sdk": sdk,
         "host": socket.gethostname(),
@@ -524,7 +525,7 @@ def _vignette_rows(tumor_id: str, vinetas: list, client: JevClient, keep: dict[s
 
 def evaluate_tumor(tumor_id: str, client: Optional[JevClient] = None, workers: int = 8,
                    progress: Progress = None, save: bool = True, retry_errors: bool = False) -> dict:
-    client = client or JevClient()
+    client = client or make_client()
     spec = get_spec(tumor_id)
     keep = _kept_rows(RESULTS_DIR / f"{tumor_id}.json", "id") if retry_errors else {}
     rows = _vignette_rows(tumor_id, spec.vinetas, client, keep, workers, progress, spec.nombre)
@@ -547,7 +548,7 @@ def evaluate_heldout(tumor_id: str, client: Optional[JevClient] = None, workers:
     mezcla con las viñetas de desarrollo). Estas viñetas no se usan para
     iterar los arboles: el resultado es la estimacion honesta del acierto.
     """
-    client = client or JevClient()
+    client = client or make_client()
     spec = get_spec(tumor_id)
     vinetas = load_heldout(tumor_id)
     out_file = RESULTS_DIR / f"_heldout_{tumor_id}.json"
@@ -567,7 +568,7 @@ def evaluate_heldout(tumor_id: str, client: Optional[JevClient] = None, workers:
 
 def evaluate_all_heldout(client: Optional[JevClient] = None, workers: int = 8,
                          progress: Progress = None, retry_errors: bool = False) -> dict:
-    client = client or JevClient()
+    client = client or make_client()
     return {t: evaluate_heldout(t, client, workers=workers, progress=progress,
                                 retry_errors=retry_errors) for t in heldout_ids()}
 
@@ -575,7 +576,7 @@ def evaluate_all_heldout(client: Optional[JevClient] = None, workers: int = 8,
 def run_all(client: Optional[JevClient] = None, tumors: Optional[list[str]] = None, metabric_too: bool = True,
             strata=None, seed: int = 42, progress: Progress = None, msk_too: bool = False,
             msk_n: int = 60, retry_errors: bool = False) -> dict:
-    client = client or JevClient()
+    client = client or make_client()
     tumors = tumors or list(load_all())
     out = {t: evaluate_tumor(t, client, progress=progress, retry_errors=retry_errors) for t in tumors}
     if metabric_too:

@@ -33,8 +33,9 @@ if __name__ == "__main__":
     if "--solo-msk" in args:
         from jevesmo.evaluation.runner import evaluate_msk_chord, load_results  # noqa: E402
 
-        evaluate_msk_chord(__import__("jevesmo.jev_client", fromlist=["JevClient"]).JevClient(),
-                           retry_errors=retry)
+        from jevesmo.jev_client import make_client  # noqa: E402
+
+        evaluate_msk_chord(make_client(), retry_errors=retry)
         r = load_results()
     else:
         r = run_all(metabric_too="--no-metabric" not in args, msk_too="--no-msk" not in args,

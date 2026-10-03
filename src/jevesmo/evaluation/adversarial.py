@@ -22,7 +22,7 @@ from typing import Any, Optional
 
 from ..engine.pipeline import run
 from ..engine.spec import get_spec
-from ..jev_client import JevClient
+from ..jev_client import JevClient, make_client
 from .runner import RESULTS_DIR, _parallel, _run_meta, Progress
 
 ADVERSARIAL_DIR = Path(__file__).resolve().parents[1] / "adversarial"
@@ -65,7 +65,7 @@ def evaluate_adversarial(client: Optional[JevClient] = None, tumor_ids: Optional
                          workers: int = 8, progress: Progress = None,
                          save: bool = True) -> dict:
     """Ejecuta los casos adversariales con la auditoria forzada (auditar=True)."""
-    client = client or JevClient()
+    client = client or make_client()
     tumor_ids = tumor_ids or adversarial_ids()
     out: dict[str, Any] = {"tumores": {}}
     rows_all: list[dict] = []

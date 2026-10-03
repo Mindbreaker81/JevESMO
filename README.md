@@ -105,6 +105,30 @@ respuestas simuladas deterministas para poder probar todo el flujo, y las
 marca explicitamente en la UI y en la traza (`"simulado": true`) para que
 nunca se confundan con una respuesta real de Jev.
 
+### Backend LLM alternativo (opcional, no validado)
+
+Con `pip install -e ".[llm]"` (`system-one-adapter` + SDK del proveedor) se
+puede evaluar con un LLM generico en vez de Jev — util como baseline
+comparativo o para un
+despliegue que no pueda enviar datos a la API externa. Es **opt-in
+explicito**: nunca se selecciona como fallback silencioso, y todo caso
+evaluado con el lleva el motivo permanente `backend_alternativo` (revision
+humana obligatoria).
+
+```
+JEVESMO_BACKEND=llm
+JEVESMO_LLM_PROVIDER=openai      # openai|anthropic|gemini
+JEVESMO_LLM_MODEL=llama3.2:1b
+JEVESMO_LLM_BASE_URL=http://localhost:11434/v1   # OpenAI-compatible (Ollama, vLLM...)
+JEVESMO_LLM_ANSWER_MODE=probabilities            # probabilities|discrete
+```
+
+Para comparar backend alternativo vs Jev sobre las mismas viñetas:
+`run_vignettes.py` en cada configuracion y `compare_eval_runs.py` (McNemar
+pareado). Aviso del banco: un decisor no-Jev **no** hereda la deteccion de
+manipulacion de Jev — la capa 4.5 corre igualmente, pero su calidad hay que
+medirla con la bateria adversarial propia (`run_adversarial.py`).
+
 ## Instalacion y ejecucion
 
 ```powershell

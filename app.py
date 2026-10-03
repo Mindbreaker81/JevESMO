@@ -28,7 +28,7 @@ load_dotenv(ROOT / ".env")
 
 from jevesmo.engine.pipeline import CONFIDENCE_THRESHOLD, run  # noqa: E402
 from jevesmo.engine.spec import Campo, TumorSpec, load_all  # noqa: E402
-from jevesmo.jev_client import JevClient  # noqa: E402
+from jevesmo.jev_client import JevClient, make_client  # noqa: E402
 
 st.set_page_config(page_title="JevESMO — Guías ESMO + Jev", layout="wide")
 UNK = "desconocido"
@@ -49,7 +49,7 @@ def nb(markup: str) -> None:
 
 @st.cache_resource
 def get_client() -> JevClient:
-    return JevClient()
+    return make_client()
 
 
 def specs_by_group() -> dict[str, list[TumorSpec]]:

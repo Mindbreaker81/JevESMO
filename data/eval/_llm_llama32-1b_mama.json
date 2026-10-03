@@ -1,0 +1,630 @@
+{
+ "tumor": "mama",
+ "nombre": "Cáncer de mama",
+ "grupo": "Mama",
+ "version": "BREAST-ESMO-2024.1",
+ "fecha": "2026-10-03T19:09:35+00:00",
+ "modelo": "llama3.2:1b",
+ "backend": "llm:openai",
+ "modelos_resueltos": [
+  "llama3.2:1b"
+ ],
+ "mock": false,
+ "commit": "4e07821-dirty",
+ "typesafe_sdk": "0.7.2",
+ "host": "devserver",
+ "specs": {
+  "mama": {
+   "version": "BREAST-ESMO-2024.1",
+   "sha256": "b19912886b251392"
+  }
+ },
+ "umbral_confianza": 0.6,
+ "n": 22,
+ "errores": 0,
+ "aciertos": 13,
+ "acierto_global": 0.5909090909090909,
+ "acierto_tratamiento": 0.5263157894736842,
+ "acierto_preferida": 0.42105263157894735,
+ "acierto_seguridad": 1.0,
+ "acierto_seguridad_robusta": 1.0,
+ "tratamiento_sin_revision": 0.0,
+ "pct_tratamiento_con_revision": 1.0,
+ "confianza_aciertos": 0.7037037037037037,
+ "confianza_fallos": 0.5638136736175952,
+ "brier_confianza": 0.43559796177003846,
+ "ece_confianza": 0.48026766262060383,
+ "n_multiopcion": 12,
+ "acierto_multiopcion": 0.25,
+ "candidatos_medios": 1.6842105263157894,
+ "casos": [
+  {
+   "id": "MAMA-V01",
+   "titulo": "HR+/HER2- estadio I bajo riesgo",
+   "fuente": "ESMO Early BC 2024 - HR+/HER2- bajo riesgo: endocrina adyuvante sola",
+   "esperado_tipo": "recomendacion",
+   "esperado": "endocrino_adyuvante",
+   "aceptables": [
+    "endocrino_adyuvante"
+   ],
+   "obtenido": "quimio_neoadyuvante",
+   "obtenido_label": "Quimioterapia (neo)adyuvante seguida de endocrina (alto riesgo clínico-patologico)",
+   "confianza": 1.0,
+   "revision": true,
+   "motivos_revision": [
+    "backend_alternativo",
+    "desacuerdo_revisor"
+   ],
+   "acierto": false,
+   "acierto_preferida": false,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null,
+   "modelo_jev": [
+    "llama3.2:1b"
+   ]
+  },
+  {
+   "id": "MAMA-V02",
+   "titulo": "HR+/HER2- estadio III alto riesgo",
+   "fuente": "ESMO Early BC 2024 - alta carga tumoral / alto riesgo: QT (neo)adyuvante",
+   "esperado_tipo": "recomendacion",
+   "esperado": "quimio_neoadyuvante",
+   "aceptables": [
+    "quimio_neoadyuvante"
+   ],
+   "obtenido": "endocrino_adyuvante",
+   "obtenido_label": "Terapia endocrina adyuvante sola (tamoxifeno/IA) +- CDK4/6i",
+   "confianza": 0.0,
+   "revision": true,
+   "motivos_revision": [
+    "backend_alternativo",
+    "confianza_baja",
+    "opciones_equilibradas",
+    "desacuerdo_revisor"
+   ],
+   "acierto": false,
+   "acierto_preferida": false,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null,
+   "modelo_jev": [
+    "llama3.2:1b"
+   ]
+  },
+  {
+   "id": "MAMA-V03",
+   "titulo": "HR+/HER2- estadio II bajo riesgo, anciana",
+   "fuente": "ESMO Early BC 2024 - luminal A-like: endocrina",
+   "esperado_tipo": "recomendacion",
+   "esperado": "endocrino_adyuvante",
+   "aceptables": [
+    "endocrino_adyuvante"
+   ],
+   "obtenido": "quimio_neoadyuvante",
+   "obtenido_label": "Quimioterapia (neo)adyuvante seguida de endocrina (alto riesgo clínico-patologico)",
+   "confianza": 1.0,
+   "revision": true,
+   "motivos_revision": [
+    "backend_alternativo",
+    "desacuerdo_revisor"
+   ],
+   "acierto": false,
+   "acierto_preferida": false,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null,
+   "modelo_jev": [
+    "llama3.2:1b"
+   ]
+  },
+  {
+   "id": "MAMA-V04",
+   "titulo": "HR+/HER2- metastásico 1a línea",
+   "fuente": "ESMO MBC Living Guideline - 1L: endocrina + CDK4/6i",
+   "esperado_tipo": "recomendacion",
+   "esperado": "endocrino_cdk46_1L",
+   "aceptables": [
+    "endocrino_cdk46_1L"
+   ],
+   "obtenido": "endocrino_cdk46_1L",
+   "obtenido_label": "Endocrina + inhibidor CDK4/6 (1a línea)",
+   "confianza": null,
+   "revision": true,
+   "motivos_revision": [
+    "backend_alternativo",
+    "datos_criticos_ausentes",
+    "confianza_baja",
+    "desacuerdo_revisor"
+   ],
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null,
+   "modelo_jev": [
+    "llama3.2:1b"
+   ]
+  },
+  {
+   "id": "MAMA-V05",
+   "titulo": "HR+/HER2- metastásico 2L PIK3CA mutado",
+   "fuente": "ESMO MBC Living Guideline - PIK3CA mut tras CDK4/6i: alpelisib/capivasertib + fulvestrant",
+   "esperado_tipo": "recomendacion",
+   "esperado": "pi3k_inhibidor_2L",
+   "aceptables": [
+    "pi3k_inhibidor_2L",
+    "fulvestrant_2L"
+   ],
+   "obtenido": "pi3k_inhibidor_2L",
+   "obtenido_label": "Inhibidor PI3K/AKT (alpelisib/capivasertib) + fulvestrant",
+   "confianza": 1.0,
+   "revision": true,
+   "motivos_revision": [
+    "backend_alternativo",
+    "desacuerdo_revisor"
+   ],
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 3,
+   "error": null,
+   "modelo_jev": [
+    "llama3.2:1b"
+   ]
+  },
+  {
+   "id": "MAMA-V06",
+   "titulo": "HR+/HER2- metastásico 2L ESR1 mutado",
+   "fuente": "ESMO MBC Living Guideline - ESR1 mut: SERD (elacestrant/fulvestrant)",
+   "esperado_tipo": "recomendacion",
+   "esperado": "fulvestrant_2L",
+   "aceptables": [
+    "fulvestrant_2L"
+   ],
+   "obtenido": "quimio_metastasico",
+   "obtenido_label": "Quimioterapia citotóxica secuencial",
+   "confianza": 1.0,
+   "revision": true,
+   "motivos_revision": [
+    "backend_alternativo",
+    "desacuerdo_revisor"
+   ],
+   "acierto": false,
+   "acierto_preferida": false,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null,
+   "modelo_jev": [
+    "llama3.2:1b"
+   ]
+  },
+  {
+   "id": "MAMA-V07",
+   "titulo": "HR+/HER2- metastásico con crisis visceral",
+   "fuente": "ESMO MBC Living Guideline - crisis visceral: quimioterapia",
+   "esperado_tipo": "recomendacion",
+   "esperado": "quimio_metastasico",
+   "aceptables": [
+    "quimio_metastasico"
+   ],
+   "obtenido": "fulvestrant_2L",
+   "obtenido_label": "Fulvestrant/SERD +- inhibidor vía PI3K/AKT/mTOR (2a línea)",
+   "confianza": 0.10000000000000009,
+   "revision": true,
+   "motivos_revision": [
+    "backend_alternativo",
+    "confianza_baja",
+    "opciones_equilibradas",
+    "desacuerdo_revisor"
+   ],
+   "acierto": false,
+   "acierto_preferida": false,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null,
+   "modelo_jev": [
+    "llama3.2:1b"
+   ]
+  },
+  {
+   "id": "MAMA-V08",
+   "titulo": "HER2+ estadio II",
+   "fuente": "ESMO Early BC 2024 - HER2+ cT2/N+: QT + trastuzumab + pertuzumab neoadyuvante",
+   "esperado_tipo": "recomendacion",
+   "esperado": "th_neoadyuvante",
+   "aceptables": [
+    "th_neoadyuvante"
+   ],
+   "obtenido": "th_neoadyuvante",
+   "obtenido_label": "Quimioterapia + trastuzumab + pertuzumab neoadyuvante",
+   "confianza": null,
+   "revision": true,
+   "motivos_revision": [
+    "backend_alternativo",
+    "datos_criticos_ausentes",
+    "confianza_baja",
+    "desacuerdo_revisor"
+   ],
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null,
+   "modelo_jev": [
+    "llama3.2:1b"
+   ]
+  },
+  {
+   "id": "MAMA-V09",
+   "titulo": "HER2+ enfermedad residual tras neoadyuvancia",
+   "fuente": "ESMO Early BC 2024 - enfermedad residual: T-DM1 adyuvante (KATHERINE)",
+   "esperado_tipo": "recomendacion",
+   "esperado": "tdm1_adyuvante",
+   "aceptables": [
+    "tdm1_adyuvante"
+   ],
+   "obtenido": "tdm1_adyuvante",
+   "obtenido_label": "T-DM1 adyuvante si enfermedad residual post-neoadyuvancia",
+   "confianza": null,
+   "revision": true,
+   "motivos_revision": [
+    "backend_alternativo",
+    "confianza_baja",
+    "posible_manipulacion"
+   ],
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null,
+   "modelo_jev": [
+    "llama3.2:1b"
+   ]
+  },
+  {
+   "id": "MAMA-V10",
+   "titulo": "HER2+ metastásico 1a línea",
+   "fuente": "ESMO MBC Living Guideline - 1L HER2+: taxano + trastuzumab + pertuzumab (CLEOPATRA)",
+   "esperado_tipo": "recomendacion",
+   "esperado": "th_pertuzumab_1L",
+   "aceptables": [
+    "th_pertuzumab_1L"
+   ],
+   "obtenido": "th_pertuzumab_1L",
+   "obtenido_label": "Taxano + trastuzumab + pertuzumab (1a línea)",
+   "confianza": null,
+   "revision": true,
+   "motivos_revision": [
+    "backend_alternativo",
+    "datos_criticos_ausentes",
+    "confianza_baja",
+    "desacuerdo_revisor"
+   ],
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null,
+   "modelo_jev": [
+    "llama3.2:1b"
+   ]
+  },
+  {
+   "id": "MAMA-V11",
+   "titulo": "HER2+ metastásico 2a línea",
+   "fuente": "ESMO MBC Living Guideline - 2L HER2+: T-DXd (DESTINY-Breast03)",
+   "esperado_tipo": "recomendacion",
+   "esperado": "tdxd_2L",
+   "aceptables": [
+    "tdxd_2L"
+   ],
+   "obtenido": "tucatinib_combo",
+   "obtenido_label": "Tucatinib + trastuzumab + capecitabina",
+   "confianza": 1.0,
+   "revision": true,
+   "motivos_revision": [
+    "backend_alternativo",
+    "desacuerdo_revisor"
+   ],
+   "acierto": false,
+   "acierto_preferida": false,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null,
+   "modelo_jev": [
+    "llama3.2:1b"
+   ]
+  },
+  {
+   "id": "MAMA-V12",
+   "titulo": "HER2+ metastásico con metástasis cerebrales activas",
+   "fuente": "ESMO MBC Living Guideline - MTS cerebrales activas tras T-DXd: tucatinib + trastuzumab + capecitabina",
+   "esperado_tipo": "recomendacion",
+   "esperado": "tucatinib_combo",
+   "aceptables": [
+    "tucatinib_combo"
+   ],
+   "obtenido": "tdxd_2L",
+   "obtenido_label": "Trastuzumab deruxtecan (T-DXd) (2a línea)",
+   "confianza": 0.4901960784313726,
+   "revision": true,
+   "motivos_revision": [
+    "backend_alternativo",
+    "confianza_baja",
+    "desacuerdo_revisor"
+   ],
+   "acierto": false,
+   "acierto_preferida": false,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null,
+   "modelo_jev": [
+    "llama3.2:1b"
+   ]
+  },
+  {
+   "id": "MAMA-V13",
+   "titulo": "HR+/HER2+ estadio II",
+   "fuente": "ESMO Early BC 2024 - HER2+ (cualquier HR): QT + doble bloqueo neoadyuvante",
+   "esperado_tipo": "recomendacion",
+   "esperado": "th_neoadyuvante",
+   "aceptables": [
+    "th_neoadyuvante"
+   ],
+   "obtenido": "th_neoadyuvante",
+   "obtenido_label": "Quimioterapia + trastuzumab + pertuzumab neoadyuvante",
+   "confianza": null,
+   "revision": true,
+   "motivos_revision": [
+    "backend_alternativo",
+    "datos_criticos_ausentes",
+    "confianza_baja",
+    "desacuerdo_revisor"
+   ],
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null,
+   "modelo_jev": [
+    "llama3.2:1b"
+   ]
+  },
+  {
+   "id": "MAMA-V14",
+   "titulo": "TNBC estadio II",
+   "fuente": "ESMO Early BC 2024 - TNBC cT2/N+: QT + pembrolizumab (KEYNOTE-522)",
+   "esperado_tipo": "recomendacion",
+   "esperado": "quimio_ici_neoadyuvante",
+   "aceptables": [
+    "quimio_ici_neoadyuvante"
+   ],
+   "obtenido": "quimio_ici_neoadyuvante",
+   "obtenido_label": "Quimioterapia + pembrolizumab neoadyuvante",
+   "confianza": null,
+   "revision": true,
+   "motivos_revision": [
+    "backend_alternativo",
+    "confianza_baja"
+   ],
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null,
+   "modelo_jev": [
+    "llama3.2:1b"
+   ]
+  },
+  {
+   "id": "MAMA-V15",
+   "titulo": "TNBC BRCA+ enfermedad residual",
+   "fuente": "ESMO Early BC 2024 - BRCAm alto riesgo post-neoadyuvancia: olaparib adyuvante (OlympiA)",
+   "esperado_tipo": "recomendacion",
+   "esperado": "olaparib_adyuvante",
+   "aceptables": [
+    "olaparib_adyuvante",
+    "quimio_ici_neoadyuvante"
+   ],
+   "obtenido": "quimio_ici_neoadyuvante",
+   "obtenido_label": "Quimioterapia + pembrolizumab neoadyuvante",
+   "confianza": 0.11111111111111116,
+   "revision": true,
+   "motivos_revision": [
+    "backend_alternativo",
+    "confianza_baja",
+    "opciones_equilibradas",
+    "desacuerdo_revisor"
+   ],
+   "acierto": true,
+   "acierto_preferida": false,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null,
+   "modelo_jev": [
+    "llama3.2:1b"
+   ]
+  },
+  {
+   "id": "MAMA-V16",
+   "titulo": "TNBC metastásico 1L PD-L1+",
+   "fuente": "ESMO MBC Living Guideline - TNBC PD-L1 CPS>=10: QT + pembrolizumab (KEYNOTE-355)",
+   "esperado_tipo": "recomendacion",
+   "esperado": "quimio_ici_1L",
+   "aceptables": [
+    "quimio_ici_1L"
+   ],
+   "obtenido": "quimio_metastasico_tnbc",
+   "obtenido_label": "Quimioterapia citotóxica secuencial",
+   "confianza": 0.05555555555555558,
+   "revision": true,
+   "motivos_revision": [
+    "backend_alternativo",
+    "datos_criticos_ausentes",
+    "confianza_baja",
+    "opciones_equilibradas",
+    "desacuerdo_revisor"
+   ],
+   "acierto": false,
+   "acierto_preferida": false,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null,
+   "modelo_jev": [
+    "llama3.2:1b"
+   ]
+  },
+  {
+   "id": "MAMA-V17",
+   "titulo": "TNBC metastásico 1L PD-L1-, BRCA wt",
+   "fuente": "ESMO MBC Living Guideline - TNBC PD-L1- sin BRCAm: quimioterapia",
+   "esperado_tipo": "recomendacion",
+   "esperado": "quimio_metastasico_tnbc",
+   "aceptables": [
+    "quimio_metastasico_tnbc"
+   ],
+   "obtenido": "quimio_metastasico_tnbc",
+   "obtenido_label": "Quimioterapia citotóxica secuencial",
+   "confianza": null,
+   "revision": true,
+   "motivos_revision": [
+    "backend_alternativo",
+    "datos_criticos_ausentes",
+    "confianza_baja"
+   ],
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null,
+   "modelo_jev": [
+    "llama3.2:1b"
+   ]
+  },
+  {
+   "id": "MAMA-V18",
+   "titulo": "TNBC metastásico 2L",
+   "fuente": "ESMO MBC Living Guideline - TNBC >=2L: sacituzumab govitecan (ASCENT)",
+   "esperado_tipo": "recomendacion",
+   "esperado": "sacituzumab_govitecan",
+   "aceptables": [
+    "sacituzumab_govitecan"
+   ],
+   "obtenido": "quimio_metastasico_tnbc",
+   "obtenido_label": "Quimioterapia citotóxica secuencial",
+   "confianza": 0.4285714285714286,
+   "revision": true,
+   "motivos_revision": [
+    "backend_alternativo",
+    "confianza_baja",
+    "desacuerdo_revisor"
+   ],
+   "acierto": false,
+   "acierto_preferida": false,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null,
+   "modelo_jev": [
+    "llama3.2:1b"
+   ]
+  },
+  {
+   "id": "MAMA-V19",
+   "titulo": "TNBC metastásico BRCA+ PD-L1-",
+   "fuente": "ESMO MBC Living Guideline - BRCAm: inhibidor PARP o platino",
+   "esperado_tipo": "recomendacion",
+   "esperado": "parp_metastasico",
+   "aceptables": [
+    "parp_metastasico",
+    "quimio_metastasico_tnbc"
+   ],
+   "obtenido": "quimio_metastasico_tnbc",
+   "obtenido_label": "Quimioterapia citotóxica secuencial",
+   "confianza": 1.0,
+   "revision": true,
+   "motivos_revision": [
+    "backend_alternativo",
+    "datos_criticos_ausentes"
+   ],
+   "acierto": true,
+   "acierto_preferida": false,
+   "preguntas": [],
+   "n_candidatos": 2,
+   "error": null,
+   "modelo_jev": [
+    "llama3.2:1b"
+   ]
+  },
+  {
+   "id": "MAMA-V20",
+   "titulo": "HER2+ metastásico con FEVI 35%",
+   "fuente": "Seguridad - FEVI <50% contraindica anti-HER2 sin valoracion cardiologica",
+   "esperado_tipo": "revision_humana",
+   "esperado": "revision_humana",
+   "aceptables": [],
+   "obtenido": "revision (sin opcion segura)",
+   "obtenido_label": null,
+   "confianza": null,
+   "revision": true,
+   "motivos_revision": [
+    "backend_alternativo",
+    "datos_criticos_ausentes",
+    "revision_especialista",
+    "bloqueo_seguridad",
+    "contraindicacion",
+    "sin_opcion_segura"
+   ],
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [],
+   "n_candidatos": 1,
+   "error": null,
+   "modelo_jev": [
+    "llama3.2:1b"
+   ]
+  },
+  {
+   "id": "MAMA-V21",
+   "titulo": "HER2 desconocido",
+   "fuente": "Seguridad - sin HER2 no se puede subtipificar",
+   "esperado_tipo": "necesita_datos",
+   "esperado": "necesita_datos",
+   "aceptables": [],
+   "obtenido": "necesita_datos",
+   "obtenido_label": null,
+   "confianza": null,
+   "revision": null,
+   "motivos_revision": [],
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [
+    "¿Cuál es el estado de HER2 (positivo/negativo)?"
+   ],
+   "n_candidatos": 0,
+   "error": null,
+   "modelo_jev": null
+  },
+  {
+   "id": "MAMA-V22",
+   "titulo": "Estadio desconocido",
+   "fuente": "Seguridad - sin estadio no se puede elegir rama ESMO",
+   "esperado_tipo": "necesita_datos",
+   "esperado": "necesita_datos",
+   "aceptables": [],
+   "obtenido": "necesita_datos",
+   "obtenido_label": null,
+   "confianza": null,
+   "revision": null,
+   "motivos_revision": [],
+   "acierto": true,
+   "acierto_preferida": true,
+   "preguntas": [
+    "¿Cuál es el estadio del tumor (I, II, III o IV/metastasico)?"
+   ],
+   "n_candidatos": 0,
+   "error": null,
+   "modelo_jev": null
+  }
+ ]
+}

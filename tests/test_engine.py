@@ -4,7 +4,7 @@ import pytest
 from jevesmo.engine.conditions import evaluate
 from jevesmo.engine.pipeline import run
 from jevesmo.engine.spec import load_all
-from jevesmo.jev_client import JevClient
+from jevesmo.jev_client import JevClient, make_client
 
 
 class FakeClient(JevClient):
@@ -237,3 +237,31 @@ def test_audit_env_toggle(monkeypatch):
     res = run("mama", HER2_IV, client=FakeClient())
     assert not _audit_questions(res)
     monkeypatch.delenv("JEVESMO_AUDITORIA")
+
+
+# ---------------------------------------------------------------- JES-4
+class AltBackendClient(FakeClient):
+    """Backend LLM alternativo (no Jev) simulado: mismo comportamiento pero
+    is_mock=False y backend != typesafe."""
+    is_mock = False
+
+    def __init__(self):
+        super().__init__()
+        self.backend = "llm:test"
+
+
+def test_alternative_backend_marks_every_case():
+    res = run("mama", HR_EARLY, client=AltBackendClient(), auditar=False)
+    assert "backend_alternativo" in codes(res)
+    assert res["backend"] == "llm:test"
+    assert res["requiere_revision_humana"]
+
+
+def test_jev_backend_no_motivo():
+    res = run("mama", HR_EARLY, client=FakeClient(), auditar=False)
+    assert "backend_alternativo" not in codes(res)  # mock marca modo_simulado, no backend_alternativo
+
+
+def test_make_client_defaults_to_jev(monkeypatch):
+    monkeypatch.delenv("JEVESMO_BACKEND", raising=False)
+    assert type(make_client()).__name__ == "JevClient"

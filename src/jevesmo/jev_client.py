@@ -57,6 +57,7 @@ class JevClient:
         # Modelo solicitado (puede ser un alias flotante como "jev-latest"). La version que
         # realmente responde viene en SystemOneResponse.model y se registra en la traza.
         self.model = model or os.environ.get("JEV_MODEL") or "jev-latest"
+        self.backend = "typesafe"
         self._mock_mode = not bool(self.api_key)
         self._sdk_client = None
         if not self._mock_mode:
@@ -147,3 +148,19 @@ class JevClient:
                     mock=True,
                 )
         return SystemOneResponse(model=f"{self.model}-mock", answers=answers)
+
+
+def make_client(api_key: Optional[str] = None, model: Optional[str] = None):
+    """Cliente segun JEVESMO_BACKEND:
+
+    - "jev" (default) -> JevClient (real si hay TYPESAFE_API_KEY, mock si no).
+    - "llm" o un proveedor ("openai"|"anthropic"|"gemini") -> LlmClient via
+      system-one-adapter. NUNCA es un fallback silencioso: exige opt-in
+      explicito y cada caso queda marcado con el motivo `backend_alternativo`.
+    """
+    backend = os.environ.get("JEVESMO_BACKEND", "jev").strip().lower()
+    if backend == "jev":
+        return JevClient(api_key=api_key, model=model)
+    from .llm_client import LlmClient  # import perezoso: dependencia opcional
+    provider = backend if backend != "llm" else None
+    return LlmClient(provider=provider, model=model)

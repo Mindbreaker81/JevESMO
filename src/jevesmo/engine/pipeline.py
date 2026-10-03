@@ -25,7 +25,7 @@ import os
 from dataclasses import dataclass
 from typing import Any, Optional
 
-from ..jev_client import Answer, JevClient, Question
+from ..jev_client import Answer, JevClient, Question, make_client
 from .conditions import evaluate, is_missing, referenced_fields
 from .spec import Campo, TumorSpec, get_spec
 
@@ -52,6 +52,7 @@ MOTIVOS = {
     "desacuerdo_revisor": "El revisor-auditor discrepa con la recomendación de la primera pasada.",
     "posible_manipulacion": "Las notas de texto libre podrían contener contenido dirigido a sesgar la evaluación (posible manipulación).",
     "auditoria_sin_respuesta": "La capa de auditoría no obtuvo respuesta válida de Jev (falla cerrado).",
+    "backend_alternativo": "La decisión la tomó un LLM alternativo (no Jev, no validado clínicamente).",
 }
 
 
@@ -238,13 +239,14 @@ def run(tumor_id: str, raw: dict[str, Any], client: Optional[JevClient] = None,
         auditar = os.environ.get("JEVESMO_AUDITORIA", "1").strip().lower() not in ("0", "no", "false")
     spec = get_spec(tumor_id)
     data = normalize(spec, raw)
-    base = {"tumor": spec.id, "tumor_nombre": spec.nombre, "grupo": spec.grupo, "esmo_tree_version": spec.version}
+    client = client or make_client()
+    base = {"tumor": spec.id, "tumor_nombre": spec.nombre, "grupo": spec.grupo, "esmo_tree_version": spec.version,
+            "backend": getattr(client, "backend", "typesafe")}
 
     faltan = invalid_values(spec, raw, data) + missing_required(spec, data)
     if faltan:
         return {**base, "status": "necesita_datos", "preguntas": faltan}
 
-    client = client or JevClient()
     motivos: list[str] = []
 
     def motivo(code: str) -> None:
@@ -253,6 +255,10 @@ def run(tumor_id: str, raw: dict[str, Any], client: Optional[JevClient] = None,
 
     if client.is_mock:
         motivo("modo_simulado")
+    # Backend LLM alternativo (opt-in, JES-4): no es Jev y no esta validado
+    # clinicamente -> revision obligatoria permanente. Nunca sustitucion silenciosa.
+    if not client.is_mock and getattr(client, "backend", "typesafe") != "typesafe":
+        motivo("backend_alternativo")
 
     ctx: dict[str, Any] = dict(data)
     derived = _derive(spec, ctx)
