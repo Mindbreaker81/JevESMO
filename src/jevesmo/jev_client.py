@@ -161,6 +161,11 @@ def make_client(api_key: Optional[str] = None, model: Optional[str] = None):
     backend = os.environ.get("JEVESMO_BACKEND", "jev").strip().lower()
     if backend == "jev":
         return JevClient(api_key=api_key, model=model)
+    # Lista blanca estricta: un valor vacio o mal escrito no puede activar el backend LLM.
+    if backend not in ("llm", "openai", "anthropic", "gemini"):
+        raise RuntimeError(
+            f"JEVESMO_BACKEND={backend!r} no valido: usa 'jev' (default) o 'llm'|'openai'|'anthropic'|'gemini'. "
+            "Si no quieres el backend alternativo, borra la variable.")
     from .llm_client import LlmClient  # import perezoso: dependencia opcional
     provider = backend if backend != "llm" else None
     return LlmClient(provider=provider, model=model)

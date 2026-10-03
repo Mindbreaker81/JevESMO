@@ -94,7 +94,7 @@ class LlmClient:
         # El adaptador exige >=2 criterios en choice/score (Jev tolera 1). Las
         # preguntas degeneradas no se envian al modelo:
         # - choice con 1 criterio: la respuesta es forzosa -> se resuelve en
-        #   local con confianza ausente (no es una decision del modelo).
+        #   local sin confianza ni probabilidades (no es una decision del modelo).
         # - choice/score con <2 criterios: sin respuesta (confianza ausente ->
         #   revision), mejor que fabricar un numero que el modelo no dio.
         mapped: dict[str, Any] = {}
@@ -106,7 +106,7 @@ class LlmClient:
                     mapped[key] = Choice(type="choice", instructions=q.instructions, criteria=crit)
                 elif len(crit) == 1:
                     only = next(iter(crit))
-                    answers[key] = Answer(type="choice", choice=only, probabilities={only: 1.0})
+                    answers[key] = Answer(type="choice", choice=only, mock=False)
             elif q.type == "score":
                 if q.criteria and len(q.criteria) >= 2:
                     mapped[key] = Score(type="score", instructions=q.instructions, criteria=q.criteria)
@@ -117,8 +117,19 @@ class LlmClient:
             resp = self._adapter.system_one(state, mapped)
             model = resp.model or self.model
             for key, a in (resp.answers or {}).items():
+                qtype = questions[key].type if key in questions else getattr(a, "type", "noul")
+                if self.answer_mode == "discrete":
+                    # El adaptador convierte una respuesta discreta en one-hot (confianza 1.0,
+                    # noul 0/1): esa certeza no la dio el modelo. Se descarta; choice/score
+                    # conservan solo la eleccion y los noul binarios quedan sin respuesta
+                    # (las reglas de seguridad fallan cerrado).
+                    if qtype == "noul":
+                        continue
+                    answers[key] = Answer(type=qtype, choice=getattr(a, "choice", None),
+                                          score=getattr(a, "score", None), mock=False)
+                    continue
                 answers[key] = Answer(
-                    type=questions[key].type if key in questions else getattr(a, "type", "noul"),
+                    type=qtype,
                     choice=getattr(a, "choice", None),
                     score=getattr(a, "score", None),
                     noul=getattr(a, "noul", None),
