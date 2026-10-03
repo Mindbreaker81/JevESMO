@@ -265,9 +265,12 @@ en 2 casos de pancreas la primera eleccion cambio entre ejecuciones) y las
 marcas suben de 18,7% a 26,7% (McNemar p=0,00012, 225 pares), capturando
 14/42 discordancias reales con la practica MSK frente a 11/42 sin auditoria.
 Las tablas 2x2 pareadas (solo contadores, sin datos de paciente) estan en
-`data/eval/_msk_chord_pareado.json` (`scripts/export_msk_pareado.py`) para verificar el McNemar. La comparativa Jev vs
-`llama3.2:1b` local via backend alternativo: **22/22 vs 13/22** en mama
-(McNemar p=0,0039).
+`data/eval/_msk_chord_pareado.json` (`scripts/export_msk_pareado.py`) para verificar el McNemar. La comparativa Jev vs `llama3.2:1b` local via backend alternativo (con la capa 4.5 activa,
+3 ejecuciones en mama): Jev **22/22** frente a **17, 18 y 16 de 22** (McNemar pareado
+p=0,0625, 0,125 y 0,03125; solo la tercera baja de 0,05 y las tres comparten los mismos 22
+casos, asi que no se agrupan). La medida previa (13/22, p=0,0039) no se reproduce: Llama
+tampoco es determinista y aquella ejecucion no tenia manifiesto. Resultados en
+`data/eval/_llm_llama32-1b_mama_r{1,2,3}.json`.
 
 **Limitaciones**: las viñetas las ha redactado IA a partir de las guias y
 **deben validarse por oncologos**. Los arboles se iteraron con esas mismas
