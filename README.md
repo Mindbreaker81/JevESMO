@@ -257,7 +257,7 @@ discordancias en CPNM sin driver son sobre todo quimio sola (practica anterior a
 2018) frente a quimio-inmunoterapia.
 
 **Capa 4.5 (auditoria) medida**: con el conjunto adversarial congelado,
-Jev detecta **10/10 fichas manipuladas con 0 falsos positivos** en honestas
+Jev detecta **9/10 fichas manipuladas con 0 falsos positivos** en honestas (10/10 en la medida previa; la ficha M06, de palabras repetidas, queda en p=0,48)
 (criterio pre-registrado: >=7/10 y <=1/10). En MSK-CHORD pareado (240 casos
 con/sin auditoria, re-ejecutado con el manifiesto corregido) el acierto
 agregado es identico (183/239 compatibles en ambos; Jev no es determinista:

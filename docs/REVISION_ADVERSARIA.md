@@ -14,7 +14,7 @@ se hizo con él.
 | 5 | Alta | Los datos ausentes cambiaban la elegibilidad en silencio (`lineas_previas` vacío = 1ª línea; FEVI opcional) | ✅ Corregido | Comprobación contrafactual `datos_criticos_ausentes`. FEVI obligatoria si HER2+. |
 | 6 | Alta | El modo simulado producía "recomendaciones", y la app degradaba en silencio si faltaba el SDK | ✅ Corregido | El modo simulado siempre añade `modo_simulado` (revisión obligatoria) y la UI lo advierte. Con clave pero sin SDK, la app da error. |
 | 7 | Alta | El umbral de confianza de 0,6 no está calibrado | ⚠️ Parcial | Se añade el motivo `opciones_equilibradas` (margen < 0,15) y se documenta que el umbral no está calibrado. La calibración por tumor requiere datos clínicos etiquetados. |
-| 8 | Alta | El texto libre puede influir en Jev pero no activa reglas de seguridad; riesgo de inyección | ⚠️ Parcial | El texto se envía delimitado como datos, no instrucciones. La capa 4.5 pregunta `manipulacion_ficha` (noul) cuando hay texto libre: p ≥ 0,5 → revisión obligatoria. En la batería congelada detecta 10/10 fichas manipuladas con 0 FP en honestas (pre-registro en `docs/experimentos/`). Pendiente: extracción estructurada de hechos de seguridad y ampliar la batería a más tumores. |
+| 8 | Alta | El texto libre puede influir en Jev pero no activa reglas de seguridad; riesgo de inyección | ⚠️ Parcial | El texto se envía delimitado como datos, no instrucciones. La capa 4.5 pregunta `manipulacion_ficha` (noul) cuando hay texto libre: p ≥ 0,5 → revisión obligatoria. En la batería congelada detecta 9/10 fichas manipuladas (la de palabras repetidas queda en p=0,48, justo bajo el umbral) con 0 FP en honestas; la medida previa fue 10/10, así que hay variabilidad entre ejecuciones (pre-registro en `docs/experimentos/`). Pendiente: extracción estructurada de hechos de seguridad y ampliar la batería a más tumores. |
 | 9 | Alta | Las 116 preguntas de las capas 1-2 no las usa ninguna regla, aunque la documentación decía que sí | ✅ Corregido (transparencia) | La documentación y la UI dicen la verdad: son contexto para la capa 3 ("solo contexto"). |
 | 10 | Alta | La métrica de seguridad de las viñetas daba por buena cualquier revisión, incluso por baja confianza | ✅ Corregido | Nueva métrica `acierto_seguridad_robusta`: exige un motivo de seguridad o de datos. |
 | 11 | Alta | La concordancia "exacta" de MSK era en realidad por clase, y la cobertura se excluía | ✅ Corregido | Renombrada a "misma clase terapéutica". Se añaden la cobertura y la concordancia compatible ITT. |
@@ -35,7 +35,7 @@ se hizo con él.
 - Capa 4.5 (auditoría Jev→Jev, posterior a esta revisión): en MSK-CHORD pareado
   el acierto agregado no cambia y la revisión sube de 18,7% a 26,7% (McNemar
   p=0,00012), marcando 14/42 discordancias reales frente a 11/42 sin auditoría. Alerta de manipulación:
-  10/10 detectadas, 0 FP en el conjunto congelado.
+  9/10 detectadas (10/10 en la medida previa), 0 FP en el conjunto congelado.
 - `tests/test_engine.py`: 73 pruebas de regresión: bloqueo duro por FEVI, fallo
   cerrado, datos fuera de rango, lógica trivalente, modo simulado, auditoría
   (desacuerdo, manipulación, sin respuesta, desactivada), backend alternativo y

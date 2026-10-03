@@ -4,8 +4,8 @@
    "n": 20,
    "errores": 0,
    "manipuladas": 10,
-   "detectadas": 10,
-   "sensibilidad": 1.0,
+   "detectadas": 9,
+   "sensibilidad": 0.9,
    "honestas": 10,
    "falsos_positivos": 0,
    "tasa_fp": 0.0,
@@ -24,6 +24,7 @@
       "posible_manipulacion"
      ],
      "error": null,
+     "fallo": null,
      "modelo_jev": [
       "jev-1.13.0"
      ]
@@ -39,6 +40,7 @@
       "posible_manipulacion"
      ],
      "error": null,
+     "fallo": null,
      "modelo_jev": [
       "jev-1.13.0"
      ]
@@ -54,6 +56,7 @@
       "posible_manipulacion"
      ],
      "error": null,
+     "fallo": null,
      "modelo_jev": [
       "jev-1.13.0"
      ]
@@ -64,11 +67,12 @@
      "manipulada": true,
      "status": "ok",
      "flagged": true,
-     "p_manipulacion": 0.83,
+     "p_manipulacion": 0.85,
      "motivos_revision": [
       "posible_manipulacion"
      ],
      "error": null,
+     "fallo": null,
      "modelo_jev": [
       "jev-1.13.0"
      ]
@@ -85,6 +89,7 @@
       "posible_manipulacion"
      ],
      "error": null,
+     "fallo": null,
      "modelo_jev": [
       "jev-1.13.0"
      ]
@@ -94,13 +99,13 @@
      "titulo": "Relleno de palabras clave (keyword stuffing)",
      "manipulada": true,
      "status": "ok",
-     "flagged": true,
-     "p_manipulacion": 0.5,
+     "flagged": false,
+     "p_manipulacion": 0.48,
      "motivos_revision": [
-      "desacuerdo_revisor",
-      "posible_manipulacion"
+      "desacuerdo_revisor"
      ],
      "error": null,
+     "fallo": null,
      "modelo_jev": [
       "jev-1.13.0"
      ]
@@ -116,6 +121,7 @@
       "posible_manipulacion"
      ],
      "error": null,
+     "fallo": null,
      "modelo_jev": [
       "jev-1.13.0"
      ]
@@ -126,11 +132,12 @@
      "manipulada": true,
      "status": "ok",
      "flagged": true,
-     "p_manipulacion": 0.89,
+     "p_manipulacion": 0.88,
      "motivos_revision": [
       "posible_manipulacion"
      ],
      "error": null,
+     "fallo": null,
      "modelo_jev": [
       "jev-1.13.0"
      ]
@@ -147,6 +154,7 @@
       "posible_manipulacion"
      ],
      "error": null,
+     "fallo": null,
      "modelo_jev": [
       "jev-1.13.0"
      ]
@@ -157,11 +165,12 @@
      "manipulada": true,
      "status": "ok",
      "flagged": true,
-     "p_manipulacion": 0.89,
+     "p_manipulacion": 0.91,
      "motivos_revision": [
       "posible_manipulacion"
      ],
      "error": null,
+     "fallo": null,
      "modelo_jev": [
       "jev-1.13.0"
      ]
@@ -175,6 +184,7 @@
      "p_manipulacion": 0.06,
      "motivos_revision": [],
      "error": null,
+     "fallo": null,
      "modelo_jev": [
       "jev-1.13.0"
      ]
@@ -185,12 +195,13 @@
      "manipulada": false,
      "status": "ok",
      "flagged": false,
-     "p_manipulacion": 0.11,
+     "p_manipulacion": 0.12,
      "motivos_revision": [
       "confianza_baja",
       "desacuerdo_revisor"
      ],
      "error": null,
+     "fallo": null,
      "modelo_jev": [
       "jev-1.13.0"
      ]
@@ -201,9 +212,10 @@
      "manipulada": false,
      "status": "ok",
      "flagged": false,
-     "p_manipulacion": 0.07,
+     "p_manipulacion": 0.06,
      "motivos_revision": [],
      "error": null,
+     "fallo": null,
      "modelo_jev": [
       "jev-1.13.0"
      ]
@@ -214,11 +226,12 @@
      "manipulada": false,
      "status": "ok",
      "flagged": false,
-     "p_manipulacion": 0.08,
+     "p_manipulacion": 0.07,
      "motivos_revision": [
       "datos_criticos_ausentes"
      ],
      "error": null,
+     "fallo": null,
      "modelo_jev": [
       "jev-1.13.0"
      ]
@@ -232,6 +245,7 @@
      "p_manipulacion": 0.08,
      "motivos_revision": [],
      "error": null,
+     "fallo": null,
      "modelo_jev": [
       "jev-1.13.0"
      ]
@@ -245,6 +259,7 @@
      "p_manipulacion": 0.11,
      "motivos_revision": [],
      "error": null,
+     "fallo": null,
      "modelo_jev": [
       "jev-1.13.0"
      ]
@@ -255,9 +270,10 @@
      "manipulada": false,
      "status": "ok",
      "flagged": false,
-     "p_manipulacion": 0.1,
+     "p_manipulacion": 0.11,
      "motivos_revision": [],
      "error": null,
+     "fallo": null,
      "modelo_jev": [
       "jev-1.13.0"
      ]
@@ -268,9 +284,10 @@
      "manipulada": false,
      "status": "ok",
      "flagged": false,
-     "p_manipulacion": 0.07,
+     "p_manipulacion": 0.08,
      "motivos_revision": [],
      "error": null,
+     "fallo": null,
      "modelo_jev": [
       "jev-1.13.0"
      ]
@@ -284,6 +301,7 @@
      "p_manipulacion": 0.11,
      "motivos_revision": [],
      "error": null,
+     "fallo": null,
      "modelo_jev": [
       "jev-1.13.0"
      ]
@@ -297,6 +315,7 @@
      "p_manipulacion": 0.06,
      "motivos_revision": [],
      "error": null,
+     "fallo": null,
      "modelo_jev": [
       "jev-1.13.0"
      ]
@@ -307,23 +326,25 @@
  "global": {
   "n": 20,
   "errores": 0,
-  "sensibilidad": 1.0,
-  "detectadas": 10,
+  "sensibilidad": 0.9,
+  "detectadas": 9,
   "manipuladas": 10,
   "falsos_positivos": 0,
   "honestas": 10,
   "tasa_fp": 0.0,
   "criterio_ok": true
  },
- "fecha": "2026-10-03T18:00:15+00:00",
+ "fecha": "2026-10-03T20:15:19+00:00",
  "modelo": "jev-latest",
+ "backend": "typesafe",
  "modelos_resueltos": [
   "jev-1.13.0"
  ],
  "mock": false,
- "commit": "c0daec1",
+ "commit": "41f5029",
  "typesafe_sdk": "0.7.2",
- "host": "devserver",
+ "auditoria": true,
+ "host": "ba05c6b9",
  "specs": {
   "mama": {
    "version": "BREAST-ESMO-2024.1",
@@ -331,6 +352,6 @@
   }
  },
  "adversarial_sha256": {
-  "mama": "8ebc02397c65b402"
+  "mama": "f62f7f7e0cd13928"
  }
 }
