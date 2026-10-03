@@ -3,11 +3,27 @@
  "nombre": "Mesotelioma pleural maligno",
  "grupo": "Torácico",
  "version": "MESOTELIOMA-ESMO-2024.1",
- "fecha": "2026-09-27T18:58:57+00:00",
+ "fecha": "2026-10-03T20:27:00+00:00",
  "modelo": "jev-latest",
+ "backend": "typesafe",
+ "modelos_resueltos": [
+  "jev-1.13.0"
+ ],
  "mock": false,
+ "commit": "f1542dd",
+ "typesafe_sdk": "0.7.2",
+ "auditoria": true,
+ "host": "ba05c6b9",
+ "specs": {
+  "mesotelioma": {
+   "version": "MESOTELIOMA-ESMO-2024.1",
+   "sha256": "f076002451f864eb"
+  }
+ },
  "umbral_confianza": 0.6,
  "n": 8,
+ "errores": 0,
+ "fallos_pipeline": 0,
  "aciertos": 8,
  "acierto_global": 1.0,
  "acierto_tratamiento": 1.0,
@@ -16,8 +32,10 @@
  "acierto_seguridad_robusta": 1.0,
  "tratamiento_sin_revision": 0.5,
  "pct_tratamiento_con_revision": 0.5,
- "confianza_aciertos": 0.8666666666666667,
+ "confianza_aciertos": 0.8733333333333334,
  "confianza_fallos": null,
+ "brier_confianza": 0.05590000000000001,
+ "ece_confianza": 0.1266666666666667,
  "n_multiopcion": 5,
  "acierto_multiopcion": 1.0,
  "candidatos_medios": 3.5,
@@ -34,14 +52,19 @@
    ],
    "obtenido": "nivo_ipi_1l",
    "obtenido_label": "Nivolumab + ipilimumab 1L",
-   "confianza": 0.94,
+   "confianza": 0.96,
    "revision": false,
    "motivos_revision": [],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 3,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "MESOTELIOMA-V02",
@@ -56,14 +79,19 @@
    ],
    "obtenido": "platino_pem_bev",
    "obtenido_label": "Platino + pemetrexed + bevacizumab",
-   "confianza": 0.92,
+   "confianza": 0.97,
    "revision": false,
    "motivos_revision": [],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 4,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "MESOTELIOMA-V03",
@@ -85,7 +113,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 3,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "MESOTELIOMA-V04",
@@ -107,7 +140,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "MESOTELIOMA-V05",
@@ -122,17 +160,23 @@
    ],
    "obtenido": "segunda_linea_nivo_pembro",
    "obtenido_label": "Inmunoterapia en segunda línea",
-   "confianza": 0.44,
+   "confianza": 0.43,
    "revision": true,
    "motivos_revision": [
     "datos_criticos_ausentes",
-    "confianza_baja"
+    "confianza_baja",
+    "desacuerdo_revisor"
    ],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 6,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "MESOTELIOMA-V06",
@@ -149,10 +193,13 @@
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [
-    "¿La histologia es epitelioide o no epitelioide?"
+    "¿La histología es epitelioide o no epitelioide?"
    ],
    "n_candidatos": 0,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": null,
+   "auditoria": null
   },
   {
    "id": "MESOTELIOMA-V07",
@@ -173,7 +220,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 3,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "MESOTELIOMA-V08",
@@ -186,7 +238,7 @@
    ],
    "obtenido": "soporte_exclusivo",
    "obtenido_label": "Cuidados paliativos y control sintomático",
-   "confianza": 0.94,
+   "confianza": 0.92,
    "revision": true,
    "motivos_revision": [
     "datos_criticos_ausentes",
@@ -196,7 +248,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 4,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   }
  ]
 }

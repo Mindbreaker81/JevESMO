@@ -3,11 +3,27 @@
  "nombre": "Cáncer de endometrio",
  "grupo": "Ginecológico",
  "version": "ENDOMETRIO-ESMO-2025.1",
- "fecha": "2026-09-27T18:58:46+00:00",
+ "fecha": "2026-10-03T20:26:43+00:00",
  "modelo": "jev-latest",
+ "backend": "typesafe",
+ "modelos_resueltos": [
+  "jev-1.13.0"
+ ],
  "mock": false,
+ "commit": "f1542dd",
+ "typesafe_sdk": "0.7.2",
+ "auditoria": true,
+ "host": "ba05c6b9",
+ "specs": {
+  "endometrio": {
+   "version": "ENDOMETRIO-ESMO-2025.1",
+   "sha256": "6d7121c19bf24193"
+  }
+ },
  "umbral_confianza": 0.6,
  "n": 9,
+ "errores": 0,
+ "fallos_pipeline": 0,
  "aciertos": 9,
  "acierto_global": 1.0,
  "acierto_tratamiento": 1.0,
@@ -18,6 +34,8 @@
  "pct_tratamiento_con_revision": 0.2857142857142857,
  "confianza_aciertos": 0.9985714285714286,
  "confianza_fallos": null,
+ "brier_confianza": 1.428571428571431e-05,
+ "ece_confianza": 0.0014285714285714457,
  "n_multiopcion": 2,
  "acierto_multiopcion": 1.0,
  "candidatos_medios": 1.2857142857142858,
@@ -40,7 +58,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "ENDOMETRIO-V02",
@@ -60,7 +83,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "ENDOMETRIO-V03",
@@ -81,7 +109,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 2,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "ENDOMETRIO-V04",
@@ -103,7 +136,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "ENDOMETRIO-V05",
@@ -124,7 +162,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "ENDOMETRIO-V06",
@@ -146,7 +189,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "ENDOMETRIO-V07",
@@ -168,7 +216,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 2,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "ENDOMETRIO-V08",
@@ -185,10 +238,13 @@
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [
-    "¿Cual es el subtipo molecular integrado?"
+    "¿Cuál es el subtipo molecular integrado?"
    ],
    "n_candidatos": 0,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": null,
+   "auditoria": null
   },
   {
    "id": "ENDOMETRIO-V09",
@@ -208,7 +264,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 2,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   }
  ]
 }

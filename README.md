@@ -224,13 +224,13 @@ spec): McNemar pareado + IC95 de Wilson sobre las filas por caso:
 .\.venv\Scripts\python.exe scripts\compare_eval_runs.py data\eval\mama.json data\eval\_heldout_mama.json --metric acierto
 ```
 
-Ultimos resultados (Jev real, tras la revision adversaria; las viñetas de
-mama re-evaluadas ya con la capa 4.5 activa; el resto de tumores se
-evaluaron antes de la capa 4.5 — ver `auditoria` en el manifiesto de cada
-fichero): viñetas **404/404**,
-opcion preferida 95,6%, 130 casos con eleccion real entre 2 o mas opciones: 100%,
+Ultimos resultados (Jev real, tras la revision adversaria;
+todas las viñetas re-evaluadas con la capa 4.5 activa, ver `auditoria` en el
+manifiesto de cada fichero): viñetas **404/404** (la auditoria marca ademas
+34 con `desacuerdo_revisor`),
+opcion preferida 96,5%, 130 casos con eleccion real entre 2 o mas opciones: 100%,
 seguridad robusta (escala por un motivo de seguridad/datos, no solo baja confianza)
-100%. **El 48% de los casos de tratamiento acertados se marcan igualmente para
+100%. **El 52% de los casos de tratamiento acertados se marcan igualmente para
 revision** (sobre todo por datos opcionales ausentes que podrian cambiar la opcion):
 es el precio de fallar en modo seguro. METABRIC luminal precoz: AUC 0,92,
 sensibilidad 93%.

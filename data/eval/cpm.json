@@ -3,21 +3,39 @@
  "nombre": "Cáncer de pulmón microcítico",
  "grupo": "Torácico",
  "version": "CPM-ESMO-2025.1",
- "fecha": "2026-09-27T18:58:41+00:00",
+ "fecha": "2026-10-03T20:26:35+00:00",
  "modelo": "jev-latest",
+ "backend": "typesafe",
+ "modelos_resueltos": [
+  "jev-1.13.0"
+ ],
  "mock": false,
+ "commit": "f1542dd",
+ "typesafe_sdk": "0.7.2",
+ "auditoria": true,
+ "host": "ba05c6b9",
+ "specs": {
+  "cpm": {
+   "version": "CPM-ESMO-2025.1",
+   "sha256": "447677a49d24f3e0"
+  }
+ },
  "umbral_confianza": 0.6,
  "n": 8,
+ "errores": 0,
+ "fallos_pipeline": 0,
  "aciertos": 8,
  "acierto_global": 1.0,
  "acierto_tratamiento": 1.0,
  "acierto_preferida": 1.0,
  "acierto_seguridad": 1.0,
  "acierto_seguridad_robusta": 1.0,
- "tratamiento_sin_revision": 0.3333333333333333,
- "pct_tratamiento_con_revision": 0.6666666666666666,
- "confianza_aciertos": 0.7116666666666668,
+ "tratamiento_sin_revision": 0.16666666666666666,
+ "pct_tratamiento_con_revision": 0.8333333333333334,
+ "confianza_aciertos": 0.725,
  "confianza_fallos": null,
+ "brier_confianza": 0.11171666666666667,
+ "ece_confianza": 0.275,
  "n_multiopcion": 5,
  "acierto_multiopcion": 1.0,
  "candidatos_medios": 2.8333333333333335,
@@ -42,7 +60,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "CPM-V02",
@@ -56,16 +79,22 @@
    ],
    "obtenido": "durvalumab_adriatic",
    "obtenido_label": "Durvalumab consolidación tras QRT",
-   "confianza": 0.79,
+   "confianza": 0.75,
    "revision": true,
    "motivos_revision": [
-    "datos_criticos_ausentes"
+    "datos_criticos_ausentes",
+    "desacuerdo_revisor"
    ],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 3,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "CPM-V03",
@@ -79,14 +108,19 @@
    ],
    "obtenido": "platino_etoposido_ici_extenso",
    "obtenido_label": "Platino-etoposido + atezolizumab/durvalumab",
-   "confianza": 0.9,
+   "confianza": 0.88,
    "revision": false,
    "motivos_revision": [],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 3,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "CPM-V04",
@@ -100,7 +134,7 @@
    ],
    "obtenido": "reinduccion_platino",
    "obtenido_label": "Reinducción con platino-etoposido",
-   "confianza": 0.55,
+   "confianza": 0.5,
    "revision": true,
    "motivos_revision": [
     "confianza_baja"
@@ -109,7 +143,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 4,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "CPM-V05",
@@ -123,17 +162,21 @@
    ],
    "obtenido": "lurbinectedina_topotecan",
    "obtenido_label": "Lurbinectedina o topotecan",
-   "confianza": 0.31,
+   "confianza": 0.47,
    "revision": true,
    "motivos_revision": [
-    "confianza_baja",
-    "opciones_equilibradas"
+    "confianza_baja"
    ],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 3,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "CPM-V06",
@@ -147,14 +190,21 @@
    ],
    "obtenido": "tarlatamab",
    "obtenido_label": "Tarlatamab (DLL3) tras platino",
-   "confianza": 0.72,
-   "revision": false,
-   "motivos_revision": [],
+   "confianza": 0.75,
+   "revision": true,
+   "motivos_revision": [
+    "desacuerdo_revisor"
+   ],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 3,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "CPM-V07",
@@ -174,7 +224,10 @@
     "¿Es enfermedad limitada o extensa?"
    ],
    "n_candidatos": 0,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": null,
+   "auditoria": null
   },
   {
    "id": "CPM-V08",
@@ -195,7 +248,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 3,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   }
  ]
 }

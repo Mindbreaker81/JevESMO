@@ -3,21 +3,39 @@
  "nombre": "Sarcoma de partes blandas",
  "grupo": "Sarcomas",
  "version": "SARCOMA_PARTES_BLANDAS-ESMO-2021.1",
- "fecha": "2026-09-27T18:59:08+00:00",
+ "fecha": "2026-10-03T20:27:16+00:00",
  "modelo": "jev-latest",
+ "backend": "typesafe",
+ "modelos_resueltos": [
+  "jev-1.13.0"
+ ],
  "mock": false,
+ "commit": "f1542dd",
+ "typesafe_sdk": "0.7.2",
+ "auditoria": true,
+ "host": "ba05c6b9",
+ "specs": {
+  "sarcoma_partes_blandas": {
+   "version": "SARCOMA_PARTES_BLANDAS-ESMO-2021.1",
+   "sha256": "b24e7a473626bbce"
+  }
+ },
  "umbral_confianza": 0.6,
  "n": 10,
+ "errores": 0,
+ "fallos_pipeline": 0,
  "aciertos": 10,
  "acierto_global": 1.0,
  "acierto_tratamiento": 1.0,
- "acierto_preferida": 0.75,
+ "acierto_preferida": 1.0,
  "acierto_seguridad": 1.0,
  "acierto_seguridad_robusta": 1.0,
  "tratamiento_sin_revision": 0.375,
  "pct_tratamiento_con_revision": 0.625,
- "confianza_aciertos": 0.72875,
+ "confianza_aciertos": 0.76125,
  "confianza_fallos": null,
+ "brier_confianza": 0.16371249999999998,
+ "ece_confianza": 0.23875,
  "n_multiopcion": 5,
  "acierto_multiopcion": 1.0,
  "candidatos_medios": 1.625,
@@ -40,7 +58,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "SARCOMA_PARTES_BLANDAS-V02",
@@ -52,19 +75,23 @@
     "cirugia_rt_preop",
     "quimio_neoadyuvante_alto_riesgo"
    ],
-   "obtenido": "quimio_neoadyuvante_alto_riesgo",
-   "obtenido_label": "Quimioterapia perioperatoria con doxorrubicina + ifosfamida",
-   "confianza": 0.09,
+   "obtenido": "cirugia_rt_preop",
+   "obtenido_label": "Radioterapia preoperatoria seguida de cirugía",
+   "confianza": 0.46,
    "revision": true,
    "motivos_revision": [
-    "confianza_baja",
-    "opciones_equilibradas"
+    "confianza_baja"
    ],
    "acierto": true,
-   "acierto_preferida": false,
+   "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 2,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "SARCOMA_PARTES_BLANDAS-V03",
@@ -84,7 +111,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "SARCOMA_PARTES_BLANDAS-V04",
@@ -98,7 +130,7 @@
    ],
    "obtenido": "doxorrubicina_1l",
    "obtenido_label": "Doxorrubicina 1L",
-   "confianza": 0.95,
+   "confianza": 0.93,
    "revision": true,
    "motivos_revision": [
     "datos_criticos_ausentes"
@@ -107,7 +139,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 2,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "SARCOMA_PARTES_BLANDAS-V05",
@@ -120,7 +157,7 @@
    ],
    "obtenido": "trabectedina_lipo_lms",
    "obtenido_label": "Trabectedina (liposarcoma/leiomiosarcoma)",
-   "confianza": 0.69,
+   "confianza": 0.64,
    "revision": true,
    "motivos_revision": [
     "datos_criticos_ausentes"
@@ -129,7 +166,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 2,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "SARCOMA_PARTES_BLANDAS-V06",
@@ -141,9 +183,9 @@
     "eribulina_liposarcoma",
     "trabectedina_lipo_lms"
    ],
-   "obtenido": "trabectedina_lipo_lms",
-   "obtenido_label": "Trabectedina (liposarcoma/leiomiosarcoma)",
-   "confianza": 0.1,
+   "obtenido": "eribulina_liposarcoma",
+   "obtenido_label": "Eribulina (liposarcoma)",
+   "confianza": 0.06,
    "revision": true,
    "motivos_revision": [
     "datos_criticos_ausentes",
@@ -151,10 +193,15 @@
     "opciones_equilibradas"
    ],
    "acierto": true,
-   "acierto_preferida": false,
+   "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 2,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "SARCOMA_PARTES_BLANDAS-V07",
@@ -176,7 +223,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "SARCOMA_PARTES_BLANDAS-V08",
@@ -196,7 +248,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 2,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "SARCOMA_PARTES_BLANDAS-V09",
@@ -213,10 +270,13 @@
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [
-    "¿Cual es el histotipo?"
+    "¿Cuál es el histotipo?"
    ],
    "n_candidatos": 0,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": null,
+   "auditoria": null
   },
   {
    "id": "SARCOMA_PARTES_BLANDAS-V10",
@@ -238,7 +298,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 3,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   }
  ]
 }

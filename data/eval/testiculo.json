@@ -3,21 +3,39 @@
  "nombre": "Tumores germinales testiculares",
  "grupo": "Genitourinario",
  "version": "TESTICULO-ESMO-2023.1",
- "fecha": "2026-09-27T18:59:08+00:00",
+ "fecha": "2026-10-03T20:27:17+00:00",
  "modelo": "jev-latest",
+ "backend": "typesafe",
+ "modelos_resueltos": [
+  "jev-1.13.0"
+ ],
  "mock": false,
+ "commit": "f1542dd",
+ "typesafe_sdk": "0.7.2",
+ "auditoria": true,
+ "host": "ba05c6b9",
+ "specs": {
+  "testiculo": {
+   "version": "TESTICULO-ESMO-2023.1",
+   "sha256": "95f4a2b3e9d96665"
+  }
+ },
  "umbral_confianza": 0.6,
  "n": 10,
+ "errores": 0,
+ "fallos_pipeline": 0,
  "aciertos": 10,
  "acierto_global": 1.0,
  "acierto_tratamiento": 1.0,
  "acierto_preferida": 1.0,
  "acierto_seguridad": 1.0,
  "acierto_seguridad_robusta": 1.0,
- "tratamiento_sin_revision": 1.0,
- "pct_tratamiento_con_revision": 0.0,
+ "tratamiento_sin_revision": 0.875,
+ "pct_tratamiento_con_revision": 0.125,
  "confianza_aciertos": 1.0,
  "confianza_fallos": null,
+ "brier_confianza": 0.0,
+ "ece_confianza": 0.0,
  "n_multiopcion": 0,
  "acierto_multiopcion": null,
  "candidatos_medios": 1.0,
@@ -40,7 +58,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "TESTICULO-V02",
@@ -60,7 +83,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "TESTICULO-V03",
@@ -74,13 +102,20 @@
    "obtenido": "nsgct_I_bep1",
    "obtenido_label": "No seminoma I alto riesgo: BEP x1",
    "confianza": 1.0,
-   "revision": false,
-   "motivos_revision": [],
+   "revision": true,
+   "motivos_revision": [
+    "desacuerdo_revisor"
+   ],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "TESTICULO-V04",
@@ -100,7 +135,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "TESTICULO-V05",
@@ -120,7 +160,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "TESTICULO-V06",
@@ -140,7 +185,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "TESTICULO-V07",
@@ -160,7 +210,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "TESTICULO-V08",
@@ -180,7 +235,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "TESTICULO-V09",
@@ -197,10 +257,13 @@
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [
-    "¿La histologia es seminoma, no seminoma o mixta?"
+    "¿La histología es seminoma, no seminoma o mixta?"
    ],
    "n_candidatos": 0,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": null,
+   "auditoria": null
   },
   {
    "id": "TESTICULO-V10",
@@ -222,7 +285,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   }
  ]
 }

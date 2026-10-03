@@ -3,11 +3,27 @@
  "nombre": "Leucemia linfocítica crónica",
  "grupo": "Hematología",
  "version": "CLL-ESMO-2024.1",
- "fecha": "2026-09-27T18:58:52+00:00",
+ "fecha": "2026-10-03T20:26:54+00:00",
  "modelo": "jev-latest",
+ "backend": "typesafe",
+ "modelos_resueltos": [
+  "jev-1.13.0"
+ ],
  "mock": false,
+ "commit": "f1542dd",
+ "typesafe_sdk": "0.7.2",
+ "auditoria": true,
+ "host": "ba05c6b9",
+ "specs": {
+  "llc": {
+   "version": "CLL-ESMO-2024.1",
+   "sha256": "8f410398a5a66b5f"
+  }
+ },
  "umbral_confianza": 0.6,
  "n": 9,
+ "errores": 0,
+ "fallos_pipeline": 0,
  "aciertos": 9,
  "acierto_global": 1.0,
  "acierto_tratamiento": 1.0,
@@ -16,8 +32,10 @@
  "acierto_seguridad_robusta": 1.0,
  "tratamiento_sin_revision": 0.42857142857142855,
  "pct_tratamiento_con_revision": 0.5714285714285714,
- "confianza_aciertos": 0.9642857142857143,
+ "confianza_aciertos": 0.9628571428571429,
  "confianza_fallos": null,
+ "brier_confianza": 0.004714285714285718,
+ "ece_confianza": 0.03714285714285716,
  "n_multiopcion": 3,
  "acierto_multiopcion": 1.0,
  "candidatos_medios": 1.8571428571428572,
@@ -40,7 +58,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "LLC-V02",
@@ -62,7 +85,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "LLC-V03",
@@ -77,7 +105,7 @@
    ],
    "obtenido": "ven_obinu_1l",
    "obtenido_label": "Venetoclax + obinutuzumab tiempo fijo",
-   "confianza": 0.9,
+   "confianza": 0.83,
    "revision": true,
    "motivos_revision": [
     "datos_criticos_ausentes"
@@ -86,7 +114,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 3,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "LLC-V04",
@@ -101,7 +134,7 @@
    ],
    "obtenido": "ven_obinu_1l",
    "obtenido_label": "Venetoclax + obinutuzumab tiempo fijo",
-   "confianza": 0.93,
+   "confianza": 0.96,
    "revision": true,
    "motivos_revision": [
     "datos_criticos_ausentes"
@@ -110,7 +143,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 3,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "LLC-V05",
@@ -126,13 +164,19 @@
    "confianza": 1.0,
    "revision": true,
    "motivos_revision": [
-    "datos_criticos_ausentes"
+    "datos_criticos_ausentes",
+    "desacuerdo_revisor"
    ],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "LLC-V06",
@@ -152,7 +196,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "LLC-V07",
@@ -167,14 +216,19 @@
    ],
    "obtenido": "pirtobrutinib_ensayo",
    "obtenido_label": "Pirtobrutinib/ensayo clínico en doble expuesto",
-   "confianza": 0.92,
+   "confianza": 0.95,
    "revision": false,
    "motivos_revision": [],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 3,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "LLC-V08",
@@ -191,10 +245,13 @@
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [
-    "¿Hay mutacion TP53 o delecion 17p?"
+    "¿Hay mutación TP53 o deleción 17p?"
    ],
    "n_candidatos": 0,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": null,
+   "auditoria": null
   },
   {
    "id": "LLC-V09",
@@ -211,13 +268,19 @@
     "datos_criticos_ausentes",
     "seguridad_dudosa",
     "funcion_organica",
-    "no_candidato_activo"
+    "no_candidato_activo",
+    "desacuerdo_revisor"
    ],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   }
  ]
 }

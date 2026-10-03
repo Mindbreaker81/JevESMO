@@ -3,11 +3,27 @@
  "nombre": "Cáncer de recto localizado",
  "grupo": "Digestivo",
  "version": "recto-ESMO-2024.1",
- "fecha": "2026-09-27T18:59:03+00:00",
+ "fecha": "2026-10-03T20:27:11+00:00",
  "modelo": "jev-latest",
+ "backend": "typesafe",
+ "modelos_resueltos": [
+  "jev-1.13.0"
+ ],
  "mock": false,
+ "commit": "f1542dd",
+ "typesafe_sdk": "0.7.2",
+ "auditoria": true,
+ "host": "ba05c6b9",
+ "specs": {
+  "recto": {
+   "version": "recto-ESMO-2024.1",
+   "sha256": "9f7c23d14f0e73cd"
+  }
+ },
  "umbral_confianza": 0.6,
  "n": 9,
+ "errores": 0,
+ "fallos_pipeline": 0,
  "aciertos": 9,
  "acierto_global": 1.0,
  "acierto_tratamiento": 1.0,
@@ -16,8 +32,10 @@
  "acierto_seguridad_robusta": 1.0,
  "tratamiento_sin_revision": 0.2857142857142857,
  "pct_tratamiento_con_revision": 0.7142857142857143,
- "confianza_aciertos": 0.8785714285714287,
+ "confianza_aciertos": 0.87,
  "confianza_fallos": null,
+ "brier_confianza": 0.04021428571428572,
+ "ece_confianza": 0.13000000000000006,
  "n_multiopcion": 4,
  "acierto_multiopcion": 1.0,
  "candidatos_medios": 1.8571428571428572,
@@ -40,7 +58,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "RECTO-V02",
@@ -63,7 +86,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 2,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "RECTO-V03",
@@ -77,7 +105,7 @@
    ],
    "obtenido": "rt_corta_intermedio",
    "obtenido_label": "Radioterapia corta 5x5 Gy seguida de TME",
-   "confianza": 0.89,
+   "confianza": 0.82,
    "revision": true,
    "motivos_revision": [
     "datos_criticos_ausentes"
@@ -86,7 +114,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 2,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "RECTO-V04",
@@ -101,7 +134,7 @@
    ],
    "obtenido": "tnt_alto",
    "obtenido_label": "Tratamiento neoadyuvante total (TNT)",
-   "confianza": 0.66,
+   "confianza": 0.61,
    "revision": true,
    "motivos_revision": [
     "datos_criticos_ausentes"
@@ -110,7 +143,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 3,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "RECTO-V05",
@@ -125,7 +163,7 @@
    ],
    "obtenido": "tnt_alto",
    "obtenido_label": "Tratamiento neoadyuvante total (TNT)",
-   "confianza": 0.63,
+   "confianza": 0.69,
    "revision": true,
    "motivos_revision": [
     "datos_criticos_ausentes"
@@ -134,7 +172,12 @@
    "acierto_preferida": false,
    "preguntas": [],
    "n_candidatos": 3,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "RECTO-V06",
@@ -156,7 +199,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "RECTO-V07",
@@ -176,7 +224,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "RECTO-V08",
@@ -193,10 +246,13 @@
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [
-    "¿Cual es el grupo de riesgo local por RM o respuesta completa?"
+    "¿Cuál es el grupo de riesgo local por RM o respuesta completa?"
    ],
    "n_candidatos": 0,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": null,
+   "auditoria": null
   },
   {
    "id": "RECTO-V09",
@@ -219,7 +275,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   }
  ]
 }

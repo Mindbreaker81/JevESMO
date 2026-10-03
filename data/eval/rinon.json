@@ -3,11 +3,27 @@
  "nombre": "Carcinoma renal",
  "grupo": "Genitourinario",
  "version": "RINON-ESMO-2024.1",
- "fecha": "2026-09-27T18:59:05+00:00",
+ "fecha": "2026-10-03T20:27:12+00:00",
  "modelo": "jev-latest",
+ "backend": "typesafe",
+ "modelos_resueltos": [
+  "jev-1.13.0"
+ ],
  "mock": false,
+ "commit": "f1542dd",
+ "typesafe_sdk": "0.7.2",
+ "auditoria": true,
+ "host": "ba05c6b9",
+ "specs": {
+  "rinon": {
+   "version": "RINON-ESMO-2024.1",
+   "sha256": "75ec93508bc4f75d"
+  }
+ },
  "umbral_confianza": 0.6,
  "n": 9,
+ "errores": 0,
+ "fallos_pipeline": 0,
  "aciertos": 9,
  "acierto_global": 1.0,
  "acierto_tratamiento": 1.0,
@@ -18,6 +34,8 @@
  "pct_tratamiento_con_revision": 0.0,
  "confianza_aciertos": 1.0,
  "confianza_fallos": null,
+ "brier_confianza": 0.0,
+ "ece_confianza": 0.0,
  "n_multiopcion": 0,
  "acierto_multiopcion": null,
  "candidatos_medios": 1.0,
@@ -40,7 +58,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "RINON-V02",
@@ -60,7 +83,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "RINON-V03",
@@ -80,7 +108,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "RINON-V04",
@@ -100,7 +133,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "RINON-V05",
@@ -120,7 +158,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "RINON-V06",
@@ -140,7 +183,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "RINON-V07",
@@ -160,7 +208,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "RINON-V08",
@@ -177,10 +230,13 @@
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [
-    "En enfermedad avanzada, ¿cual es el riesgo IMDC?"
+    "En enfermedad avanzada, ¿cuál es el riesgo IMDC?"
    ],
    "n_candidatos": 0,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": null,
+   "auditoria": null
   },
   {
    "id": "RINON-V09",
@@ -200,7 +256,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 0,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   }
  ]
 }

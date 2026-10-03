@@ -3,11 +3,27 @@
  "nombre": "Mieloma multiple",
  "grupo": "Hematología",
  "version": "MYELOMA-ESMO-2025.1",
- "fecha": "2026-09-27T18:58:58+00:00",
+ "fecha": "2026-10-03T20:27:02+00:00",
  "modelo": "jev-latest",
+ "backend": "typesafe",
+ "modelos_resueltos": [
+  "jev-1.13.0"
+ ],
  "mock": false,
+ "commit": "f1542dd",
+ "typesafe_sdk": "0.7.2",
+ "auditoria": true,
+ "host": "ba05c6b9",
+ "specs": {
+  "mieloma": {
+   "version": "MYELOMA-ESMO-2025.1",
+   "sha256": "bae0a9499a4cb7e0"
+  }
+ },
  "umbral_confianza": 0.6,
  "n": 9,
+ "errores": 0,
+ "fallos_pipeline": 0,
  "aciertos": 9,
  "acierto_global": 1.0,
  "acierto_tratamiento": 1.0,
@@ -16,8 +32,10 @@
  "acierto_seguridad_robusta": 1.0,
  "tratamiento_sin_revision": 0.42857142857142855,
  "pct_tratamiento_con_revision": 0.5714285714285714,
- "confianza_aciertos": 0.7685714285714286,
+ "confianza_aciertos": 0.7728571428571429,
  "confianza_fallos": null,
+ "brier_confianza": 0.09541428571428572,
+ "ece_confianza": 0.22714285714285712,
  "n_multiopcion": 5,
  "acierto_multiopcion": 1.0,
  "candidatos_medios": 1.7142857142857142,
@@ -34,7 +52,7 @@
    ],
    "obtenido": "d_vrd_taph",
    "obtenido_label": "D-VRd inducción + TAPH + consolidación/mantenimiento lenalidomida",
-   "confianza": 0.69,
+   "confianza": 0.77,
    "revision": true,
    "motivos_revision": [
     "datos_criticos_ausentes"
@@ -43,7 +61,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 2,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "MIELOMA-V02",
@@ -57,7 +80,7 @@
    ],
    "obtenido": "d_vrd_taph",
    "obtenido_label": "D-VRd inducción + TAPH + consolidación/mantenimiento lenalidomida",
-   "confianza": 0.75,
+   "confianza": 0.76,
    "revision": true,
    "motivos_revision": [
     "datos_criticos_ausentes"
@@ -66,7 +89,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 2,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "MIELOMA-V03",
@@ -80,7 +108,7 @@
    ],
    "obtenido": "drd_no_taph",
    "obtenido_label": "Daratumumab-lenalidomida-dexametasona (DRd)",
-   "confianza": 0.58,
+   "confianza": 0.5,
    "revision": true,
    "motivos_revision": [
     "datos_criticos_ausentes",
@@ -90,7 +118,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 2,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "MIELOMA-V04",
@@ -104,18 +137,24 @@
    ],
    "obtenido": "d_vmp_no_taph",
    "obtenido_label": "Daratumumab-VMP",
-   "confianza": 0.42,
+   "confianza": 0.45,
    "revision": true,
    "motivos_revision": [
     "datos_criticos_ausentes",
     "funcion_organica",
-    "confianza_baja"
+    "confianza_baja",
+    "desacuerdo_revisor"
    ],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 2,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "MIELOMA-V05",
@@ -135,7 +174,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "MIELOMA-V06",
@@ -155,7 +199,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "MIELOMA-V07",
@@ -169,14 +218,19 @@
    ],
    "obtenido": "car_t_bcma",
    "obtenido_label": "CAR-T BCMA (cilta-cel o ide-cel)",
-   "confianza": 0.94,
+   "confianza": 0.93,
    "revision": false,
    "motivos_revision": [],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 2,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "MIELOMA-V08",
@@ -193,10 +247,13 @@
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [
-    "¿Es candidato a trasplante autologo?"
+    "¿Es candidato a trasplante autólogo?"
    ],
    "n_candidatos": 0,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": null,
+   "auditoria": null
   },
   {
    "id": "MIELOMA-V09",
@@ -218,7 +275,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 3,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   }
  ]
 }

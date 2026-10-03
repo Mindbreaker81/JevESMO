@@ -3,21 +3,39 @@
  "nombre": "Carcinoma basocelular",
  "grupo": "Piel",
  "version": "CARCINOMA_BASOCELULAR-ESMO-2024.1",
- "fecha": "2026-09-27T18:58:35+00:00",
+ "fecha": "2026-10-03T20:26:24+00:00",
  "modelo": "jev-latest",
+ "backend": "typesafe",
+ "modelos_resueltos": [
+  "jev-1.13.0"
+ ],
  "mock": false,
+ "commit": "f1542dd",
+ "typesafe_sdk": "0.7.2",
+ "auditoria": true,
+ "host": "ba05c6b9",
+ "specs": {
+  "carcinoma_basocelular": {
+   "version": "CARCINOMA_BASOCELULAR-ESMO-2024.1",
+   "sha256": "620cf0a1da5fdf61"
+  }
+ },
  "umbral_confianza": 0.6,
  "n": 9,
+ "errores": 0,
+ "fallos_pipeline": 0,
  "aciertos": 9,
  "acierto_global": 1.0,
  "acierto_tratamiento": 1.0,
  "acierto_preferida": 1.0,
  "acierto_seguridad": 1.0,
  "acierto_seguridad_robusta": 1.0,
- "tratamiento_sin_revision": 1.0,
- "pct_tratamiento_con_revision": 0.0,
+ "tratamiento_sin_revision": 0.8571428571428571,
+ "pct_tratamiento_con_revision": 0.14285714285714285,
  "confianza_aciertos": 0.9957142857142857,
  "confianza_fallos": null,
+ "brier_confianza": 0.0001285714285714288,
+ "ece_confianza": 0.004285714285714337,
  "n_multiopcion": 1,
  "acierto_multiopcion": 1.0,
  "candidatos_medios": 1.1428571428571428,
@@ -40,7 +58,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "CARCINOMA_BASOCELULAR-V02",
@@ -60,7 +83,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "CARCINOMA_BASOCELULAR-V03",
@@ -80,7 +108,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 2,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "CARCINOMA_BASOCELULAR-V04",
@@ -100,7 +133,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "CARCINOMA_BASOCELULAR-V05",
@@ -114,13 +152,20 @@
    "obtenido": "vismo_soni_bcc",
    "obtenido_label": "Vismodegib o sonidegib",
    "confianza": 1.0,
-   "revision": false,
-   "motivos_revision": [],
+   "revision": true,
+   "motivos_revision": [
+    "seguridad_dudosa"
+   ],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "CARCINOMA_BASOCELULAR-V06",
@@ -140,7 +185,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "CARCINOMA_BASOCELULAR-V07",
@@ -160,7 +210,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "CARCINOMA_BASOCELULAR-V08",
@@ -177,10 +232,13 @@
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [
-    "¿Cual es la situacion del carcinoma basocelular?"
+    "¿Cuál es la situación del carcinoma basocelular?"
    ],
    "n_candidatos": 0,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": null,
+   "auditoria": null
   },
   {
    "id": "CARCINOMA_BASOCELULAR-V09",
@@ -202,7 +260,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   }
  ]
 }

@@ -3,21 +3,39 @@
  "nombre": "Cáncer de colon localizado",
  "grupo": "Digestivo",
  "version": "colon_localizado-ESMO-2023.1",
- "fecha": "2026-09-27T18:58:40+00:00",
+ "fecha": "2026-10-03T20:26:33+00:00",
  "modelo": "jev-latest",
+ "backend": "typesafe",
+ "modelos_resueltos": [
+  "jev-1.13.0"
+ ],
  "mock": false,
+ "commit": "f1542dd",
+ "typesafe_sdk": "0.7.2",
+ "auditoria": true,
+ "host": "ba05c6b9",
+ "specs": {
+  "colon_localizado": {
+   "version": "colon_localizado-ESMO-2023.1",
+   "sha256": "3feb31e61d4ff11d"
+  }
+ },
  "umbral_confianza": 0.6,
  "n": 9,
+ "errores": 0,
+ "fallos_pipeline": 0,
  "aciertos": 9,
  "acierto_global": 1.0,
  "acierto_tratamiento": 1.0,
- "acierto_preferida": 0.8571428571428571,
+ "acierto_preferida": 1.0,
  "acierto_seguridad": 1.0,
  "acierto_seguridad_robusta": 1.0,
  "tratamiento_sin_revision": 0.2857142857142857,
  "pct_tratamiento_con_revision": 0.7142857142857143,
- "confianza_aciertos": 0.9014285714285714,
+ "confianza_aciertos": 0.8942857142857142,
  "confianza_fallos": null,
+ "brier_confianza": 0.07822857142857143,
+ "ece_confianza": 0.1057142857142857,
  "n_multiopcion": 1,
  "acierto_multiopcion": 1.0,
  "candidatos_medios": 1.2857142857142858,
@@ -40,7 +58,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "COLON_LOCALIZADO-V02",
@@ -56,13 +79,19 @@
    "confianza": 1.0,
    "revision": true,
    "motivos_revision": [
-    "datos_criticos_ausentes"
+    "datos_criticos_ausentes",
+    "desacuerdo_revisor"
    ],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "COLON_LOCALIZADO-V03",
@@ -85,7 +114,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "COLON_LOCALIZADO-V04",
@@ -107,7 +141,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "COLON_LOCALIZADO-V05",
@@ -129,7 +168,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "COLON_LOCALIZADO-V06",
@@ -141,19 +185,24 @@
     "fluoropirimidina_sola_no_apto",
     "capox_3m_iii_alto_no_apto"
    ],
-   "obtenido": "capox_3m_iii_alto_no_apto",
-   "obtenido_label": "CAPOX 3 meses si toxicidad impide 6 meses",
-   "confianza": 0.31,
+   "obtenido": "fluoropirimidina_sola_no_apto",
+   "obtenido_label": "Fluoropirimidina sola si no apto a oxaliplatino",
+   "confianza": 0.26,
    "revision": true,
    "motivos_revision": [
     "confianza_baja",
     "opciones_equilibradas"
    ],
    "acierto": true,
-   "acierto_preferida": false,
+   "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 3,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "COLON_LOCALIZADO-V07",
@@ -173,7 +222,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "COLON_LOCALIZADO-V08",
@@ -190,10 +244,13 @@
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [
-    "¿Cual es el estadio/riesgo (II bajo/alto, III bajo/alto o localmente avanzado)?"
+    "¿Cuál es el estadio/riesgo (II bajo/alto, III bajo/alto o localmente avanzado)?"
    ],
    "n_candidatos": 0,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": null,
+   "auditoria": null
   },
   {
    "id": "COLON_LOCALIZADO-V09",
@@ -216,7 +273,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   }
  ]
 }

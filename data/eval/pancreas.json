@@ -3,11 +3,27 @@
  "nombre": "Adenocarcinoma de páncreas",
  "grupo": "Digestivo",
  "version": "PANCREAS-ESMO-2023.1",
- "fecha": "2026-09-27T18:59:00+00:00",
+ "fecha": "2026-10-03T20:27:06+00:00",
  "modelo": "jev-latest",
+ "backend": "typesafe",
+ "modelos_resueltos": [
+  "jev-1.13.0"
+ ],
  "mock": false,
+ "commit": "f1542dd",
+ "typesafe_sdk": "0.7.2",
+ "auditoria": true,
+ "host": "ba05c6b9",
+ "specs": {
+  "pancreas": {
+   "version": "PANCREAS-ESMO-2023.1",
+   "sha256": "9b21ab976d32b2c2"
+  }
+ },
  "umbral_confianza": 0.6,
  "n": 9,
+ "errores": 0,
+ "fallos_pipeline": 0,
  "aciertos": 9,
  "acierto_global": 1.0,
  "acierto_tratamiento": 1.0,
@@ -16,8 +32,10 @@
  "acierto_seguridad_robusta": 1.0,
  "tratamiento_sin_revision": 0.5714285714285714,
  "pct_tratamiento_con_revision": 0.42857142857142855,
- "confianza_aciertos": 0.7728571428571429,
+ "confianza_aciertos": 0.7828571428571429,
  "confianza_fallos": null,
+ "brier_confianza": 0.0955142857142857,
+ "ece_confianza": 0.21714285714285714,
  "n_multiopcion": 5,
  "acierto_multiopcion": 1.0,
  "candidatos_medios": 1.8571428571428572,
@@ -33,14 +51,19 @@
    ],
    "obtenido": "cirugia_ady_mfolfirinox",
    "obtenido_label": "Cirugía seguida de mFOLFIRINOX adyuvante",
-   "confianza": 0.8,
+   "confianza": 0.76,
    "revision": false,
    "motivos_revision": [],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 2,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "PANCREAS-V02",
@@ -60,7 +83,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "PANCREAS-V03",
@@ -74,14 +102,19 @@
    ],
    "obtenido": "neoady_mfolfirinox_borderline",
    "obtenido_label": "mFOLFIRINOX neoadyuvante en borderline",
-   "confianza": 0.78,
+   "confianza": 0.75,
    "revision": false,
    "motivos_revision": [],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 2,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "PANCREAS-V04",
@@ -101,7 +134,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "PANCREAS-V05",
@@ -116,7 +154,7 @@
    ],
    "obtenido": "mfolfirinox_1l",
    "obtenido_label": "mFOLFIRINOX 1a línea metastásico",
-   "confianza": 0.33,
+   "confianza": 0.39,
    "revision": true,
    "motivos_revision": [
     "datos_criticos_ausentes",
@@ -126,7 +164,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 3,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "PANCREAS-V06",
@@ -139,7 +182,7 @@
    ],
    "obtenido": "olaparib_mantenimiento",
    "obtenido_label": "Olaparib mantenimiento",
-   "confianza": 0.99,
+   "confianza": 1.0,
    "revision": true,
    "motivos_revision": [
     "datos_criticos_ausentes"
@@ -148,7 +191,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 2,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "PANCREAS-V07",
@@ -162,7 +210,7 @@
    ],
    "obtenido": "naliri_5fu_2l",
    "obtenido_label": "Nal-IRI + 5-FU/LV 2a línea",
-   "confianza": 0.51,
+   "confianza": 0.58,
    "revision": true,
    "motivos_revision": [
     "datos_criticos_ausentes",
@@ -172,7 +220,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 2,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "PANCREAS-V08",
@@ -189,10 +242,13 @@
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [
-    "¿El adenocarcinoma pancreatico es resecable, borderline, localmente avanzado o metastasico?"
+    "¿El adenocarcinoma pancreático es resecable, borderline, localmente avanzado o metastásico?"
    ],
    "n_candidatos": 0,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": null,
+   "auditoria": null
   },
   {
    "id": "PANCREAS-V09",
@@ -207,13 +263,19 @@
    "revision": true,
    "motivos_revision": [
     "datos_criticos_ausentes",
-    "no_candidato_activo"
+    "no_candidato_activo",
+    "desacuerdo_revisor"
    ],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   }
  ]
 }

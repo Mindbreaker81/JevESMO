@@ -3,11 +3,27 @@
  "nombre": "Carcinoma escamoso de vulva",
  "grupo": "Ginecológico",
  "version": "VULVA-ESMO-2023.1",
- "fecha": "2026-09-27T18:59:19+00:00",
+ "fecha": "2026-10-03T20:27:26+00:00",
  "modelo": "jev-latest",
+ "backend": "typesafe",
+ "modelos_resueltos": [
+  "jev-1.13.0"
+ ],
  "mock": false,
+ "commit": "f1542dd",
+ "typesafe_sdk": "0.7.2",
+ "auditoria": true,
+ "host": "ba05c6b9",
+ "specs": {
+  "vulva": {
+   "version": "VULVA-ESMO-2023.1",
+   "sha256": "5a80cc39db6213a1"
+  }
+ },
  "umbral_confianza": 0.6,
  "n": 10,
+ "errores": 0,
+ "fallos_pipeline": 0,
  "aciertos": 10,
  "acierto_global": 1.0,
  "acierto_tratamiento": 1.0,
@@ -18,6 +34,8 @@
  "pct_tratamiento_con_revision": 1.0,
  "confianza_aciertos": 0.7525,
  "confianza_fallos": null,
+ "brier_confianza": 0.16817500000000002,
+ "ece_confianza": 0.24750000000000003,
  "n_multiopcion": 3,
  "acierto_multiopcion": 1.0,
  "candidatos_medios": 1.375,
@@ -42,7 +60,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "VULVA-V02",
@@ -64,7 +87,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "VULVA-V03",
@@ -86,7 +114,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "VULVA-V04",
@@ -100,17 +133,23 @@
    ],
    "obtenido": "escision_ganglio_centinela",
    "obtenido_label": "Escisión radical local + ganglio centinela",
-   "confianza": 0.48,
+   "confianza": 0.41,
    "revision": true,
    "motivos_revision": [
     "datos_criticos_ausentes",
-    "confianza_baja"
+    "confianza_baja",
+    "desacuerdo_revisor"
    ],
    "acierto": true,
    "acierto_preferida": false,
    "preguntas": [],
    "n_candidatos": 2,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "VULVA-V05",
@@ -133,7 +172,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 2,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "VULVA-V06",
@@ -146,7 +190,7 @@
    ],
    "obtenido": "qrt_adyuvante_extranodal",
    "obtenido_label": "Quimiorradioterapia adyuvante",
-   "confianza": 0.36,
+   "confianza": 0.43,
    "revision": true,
    "motivos_revision": [
     "confianza_baja"
@@ -155,7 +199,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 2,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "VULVA-V07",
@@ -177,7 +226,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "VULVA-V08",
@@ -199,7 +253,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "VULVA-V09",
@@ -216,10 +275,13 @@
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [
-    "¿Cual es el estadio FIGO?"
+    "¿Cuál es el estadio FIGO?"
    ],
    "n_candidatos": 0,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": null,
+   "auditoria": null
   },
   {
    "id": "VULVA-V10",
@@ -240,7 +302,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 2,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   }
  ]
 }

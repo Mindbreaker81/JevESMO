@@ -3,11 +3,27 @@
  "nombre": "Cáncer de próstata",
  "grupo": "Genitourinario",
  "version": "PROSTATA-ESMO-2026.1",
- "fecha": "2026-09-27T18:59:02+00:00",
+ "fecha": "2026-10-03T20:27:09+00:00",
  "modelo": "jev-latest",
+ "backend": "typesafe",
+ "modelos_resueltos": [
+  "jev-1.13.0"
+ ],
  "mock": false,
+ "commit": "f1542dd",
+ "typesafe_sdk": "0.7.2",
+ "auditoria": true,
+ "host": "ba05c6b9",
+ "specs": {
+  "prostata": {
+   "version": "PROSTATA-ESMO-2026.1",
+   "sha256": "cc9c1a46b7ce7bef"
+  }
+ },
  "umbral_confianza": 0.6,
  "n": 9,
+ "errores": 0,
+ "fallos_pipeline": 0,
  "aciertos": 9,
  "acierto_global": 1.0,
  "acierto_tratamiento": 1.0,
@@ -16,8 +32,10 @@
  "acierto_seguridad_robusta": 1.0,
  "tratamiento_sin_revision": 1.0,
  "pct_tratamiento_con_revision": 0.0,
- "confianza_aciertos": 0.96,
+ "confianza_aciertos": 0.9542857142857143,
  "confianza_fallos": null,
+ "brier_confianza": 0.014628571428571423,
+ "ece_confianza": 0.04571428571428571,
  "n_multiopcion": 1,
  "acierto_multiopcion": 1.0,
  "candidatos_medios": 1.1428571428571428,
@@ -40,7 +58,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "PROSTATA-V02",
@@ -60,7 +83,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "PROSTATA-V03",
@@ -80,7 +108,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "PROSTATA-V04",
@@ -100,7 +133,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "PROSTATA-V05",
@@ -120,7 +158,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "PROSTATA-V06",
@@ -140,7 +183,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "PROSTATA-V07",
@@ -154,14 +202,19 @@
    ],
    "obtenido": "lu_psma_mcrpc",
    "obtenido_label": "177Lu-PSMA-617",
-   "confianza": 0.72,
+   "confianza": 0.68,
    "revision": false,
    "motivos_revision": [],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 2,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "PROSTATA-V08",
@@ -178,10 +231,13 @@
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [
-    "¿Cual es el escenario clinico (localizado, recidiva bioquimica, mHSPC, nmCRPC o mCRPC)?"
+    "¿Cuál es el escenario clínico (localizado, recidiva bioquímica, mHSPC, nmCRPC o mCRPC)?"
    ],
    "n_candidatos": 0,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": null,
+   "auditoria": null
   },
   {
    "id": "PROSTATA-V09",
@@ -192,7 +248,7 @@
    "aceptables": [],
    "obtenido": "revision (soporte_prostata)",
    "obtenido_label": "Soporte exclusivo/cuidados paliativos",
-   "confianza": 0.69,
+   "confianza": 0.82,
    "revision": true,
    "motivos_revision": [
     "no_candidato_activo"
@@ -201,7 +257,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 2,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   }
  ]
 }

@@ -3,11 +3,27 @@
  "nombre": "Cáncer de vías biliares",
  "grupo": "Digestivo",
  "version": "BILIAR-ESMO-2024.1",
- "fecha": "2026-09-27T18:58:34+00:00",
+ "fecha": "2026-10-03T20:26:23+00:00",
  "modelo": "jev-latest",
+ "backend": "typesafe",
+ "modelos_resueltos": [
+  "jev-1.13.0"
+ ],
  "mock": false,
+ "commit": "f1542dd",
+ "typesafe_sdk": "0.7.2",
+ "auditoria": true,
+ "host": "ba05c6b9",
+ "specs": {
+  "biliar": {
+   "version": "BILIAR-ESMO-2024.1",
+   "sha256": "b2aa994c1ff01631"
+  }
+ },
  "umbral_confianza": 0.6,
  "n": 9,
+ "errores": 0,
+ "fallos_pipeline": 0,
  "aciertos": 9,
  "acierto_global": 1.0,
  "acierto_tratamiento": 1.0,
@@ -16,8 +32,10 @@
  "acierto_seguridad_robusta": 1.0,
  "tratamiento_sin_revision": 0.14285714285714285,
  "pct_tratamiento_con_revision": 0.8571428571428571,
- "confianza_aciertos": 0.9728571428571428,
+ "confianza_aciertos": 0.9685714285714286,
  "confianza_fallos": null,
+ "brier_confianza": 0.0031714285714285724,
+ "ece_confianza": 0.0314285714285714,
  "n_multiopcion": 4,
  "acierto_multiopcion": 1.0,
  "candidatos_medios": 1.5714285714285714,
@@ -40,7 +58,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "BILIAR-V02",
@@ -63,7 +86,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 2,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "BILIAR-V03",
@@ -86,7 +114,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "BILIAR-V04",
@@ -108,7 +141,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 2,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "BILIAR-V05",
@@ -122,7 +160,7 @@
    ],
    "obtenido": "ivosidenib_idh1",
    "obtenido_label": "Ivosidenib para IDH1",
-   "confianza": 0.87,
+   "confianza": 0.86,
    "revision": true,
    "motivos_revision": [
     "datos_criticos_ausentes"
@@ -131,7 +169,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 2,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "BILIAR-V06",
@@ -145,7 +188,7 @@
    ],
    "obtenido": "antiher2_biliar",
    "obtenido_label": "Terapia anti-HER2",
-   "confianza": 0.98,
+   "confianza": 0.96,
    "revision": true,
    "motivos_revision": [
     "datos_criticos_ausentes"
@@ -154,7 +197,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 2,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "BILIAR-V07",
@@ -170,13 +218,19 @@
    "confianza": 1.0,
    "revision": true,
    "motivos_revision": [
-    "datos_criticos_ausentes"
+    "datos_criticos_ausentes",
+    "desacuerdo_revisor"
    ],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "BILIAR-V08",
@@ -193,10 +247,13 @@
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [
-    "¿Es colangiocarcinoma intrahepatico, extrahepatico o cancer de vesicula?"
+    "¿Es colangiocarcinoma intrahepático, extrahepático o cáncer de vesícula?"
    ],
    "n_candidatos": 0,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": null,
+   "auditoria": null
   },
   {
    "id": "BILIAR-V09",
@@ -219,7 +276,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 2,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   }
  ]
 }

@@ -3,11 +3,27 @@
  "nombre": "Carcinoma escamoso cutáneo",
  "grupo": "Piel",
  "version": "CARCINOMA_ESCAMOSO_CUTANEO-ESMO-2024.1",
- "fecha": "2026-09-27T18:58:36+00:00",
+ "fecha": "2026-10-03T20:26:26+00:00",
  "modelo": "jev-latest",
+ "backend": "typesafe",
+ "modelos_resueltos": [
+  "jev-1.13.0"
+ ],
  "mock": false,
+ "commit": "f1542dd",
+ "typesafe_sdk": "0.7.2",
+ "auditoria": true,
+ "host": "ba05c6b9",
+ "specs": {
+  "carcinoma_escamoso_cutaneo": {
+   "version": "CARCINOMA_ESCAMOSO_CUTANEO-ESMO-2024.1",
+   "sha256": "15459f2ff7e3e226"
+  }
+ },
  "umbral_confianza": 0.6,
  "n": 9,
+ "errores": 0,
+ "fallos_pipeline": 0,
  "aciertos": 9,
  "acierto_global": 1.0,
  "acierto_tratamiento": 1.0,
@@ -16,8 +32,10 @@
  "acierto_seguridad_robusta": 1.0,
  "tratamiento_sin_revision": 0.7142857142857143,
  "pct_tratamiento_con_revision": 0.2857142857142857,
- "confianza_aciertos": 0.8585714285714285,
+ "confianza_aciertos": 0.8614285714285714,
  "confianza_fallos": null,
+ "brier_confianza": 0.05541428571428573,
+ "ece_confianza": 0.13857142857142854,
  "n_multiopcion": 4,
  "acierto_multiopcion": 1.0,
  "candidatos_medios": 1.5714285714285714,
@@ -40,7 +58,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "CARCINOMA_ESCAMOSO_CUTANEO-V02",
@@ -60,7 +83,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "CARCINOMA_ESCAMOSO_CUTANEO-V03",
@@ -74,7 +102,7 @@
    ],
    "obtenido": "rt_adyuvante_cscc",
    "obtenido_label": "Radioterapia adyuvante",
-   "confianza": 0.37,
+   "confianza": 0.47,
    "revision": true,
    "motivos_revision": [
     "confianza_baja"
@@ -83,7 +111,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 2,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "CARCINOMA_ESCAMOSO_CUTANEO-V04",
@@ -105,7 +138,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 2,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "CARCINOMA_ESCAMOSO_CUTANEO-V05",
@@ -119,14 +157,19 @@
    ],
    "obtenido": "cemiplimab_cscc",
    "obtenido_label": "Cemiplimab anti-PD-1",
-   "confianza": 0.91,
+   "confianza": 0.87,
    "revision": false,
    "motivos_revision": [],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 2,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "CARCINOMA_ESCAMOSO_CUTANEO-V06",
@@ -140,14 +183,19 @@
    ],
    "obtenido": "cemiplimab_cscc",
    "obtenido_label": "Cemiplimab anti-PD-1",
-   "confianza": 0.74,
+   "confianza": 0.7,
    "revision": false,
    "motivos_revision": [],
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 2,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "CARCINOMA_ESCAMOSO_CUTANEO-V07",
@@ -167,7 +215,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 1,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   },
   {
    "id": "CARCINOMA_ESCAMOSO_CUTANEO-V08",
@@ -184,10 +237,13 @@
    "acierto": true,
    "acierto_preferida": true,
    "preguntas": [
-    "¿Cual es la situacion del carcinoma escamoso cutaneo?"
+    "¿Cuál es la situación del carcinoma escamoso cutáneo?"
    ],
    "n_candidatos": 0,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": null,
+   "auditoria": null
   },
   {
    "id": "CARCINOMA_ESCAMOSO_CUTANEO-V09",
@@ -209,7 +265,12 @@
    "acierto_preferida": true,
    "preguntas": [],
    "n_candidatos": 2,
-   "error": null
+   "error": null,
+   "fallo": null,
+   "modelo_jev": [
+    "jev-1.13.0"
+   ],
+   "auditoria": true
   }
  ]
 }

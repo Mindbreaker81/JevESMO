@@ -26,8 +26,8 @@ se hizo con él.
 
 ## Efecto medido (Jev real)
 
-- Viñetas: 404/404; opción preferida 95,6%; seguridad robusta 100%.
-- **El 48% de los casos de tratamiento acertados quedan marcados para revisión**. Los
+- Viñetas: 404/404; opción preferida 96,5%; seguridad robusta 100% (re-evaluadas con la capa 4.5 activa).
+- **El 52% de los casos de tratamiento acertados quedan marcados para revisión** (48% antes de la capa 4.5). Los
   motivos principales son datos opcionales ausentes que podrían cambiar la opción. El
   sistema es ahora más conservador: prefiere escalar a un oncólogo antes que suponer.
 - MSK-CHORD: cobertura 94%, compatible 81% (77% ITT). Los casos de mama HER2+ piden
