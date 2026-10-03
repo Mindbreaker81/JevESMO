@@ -27,7 +27,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Callable, Iterable, Optional
 
-from ..engine.pipeline import CONFIDENCE_THRESHOLD, run
+from ..engine.pipeline import CONFIDENCE_THRESHOLD, auditoria_activa, run
 from ..engine.spec import HELDOUT_DIR, TUMORS_DIR, get_spec, heldout_ids, load_all, load_heldout
 from ..jev_client import JevClient, make_client
 from . import metabric, msk_chord
@@ -86,9 +86,10 @@ def _specs_meta(tumor_ids: Iterable[str]) -> dict[str, dict]:
     return out
 
 
-def _run_meta(client: JevClient, rows: list[dict], tumor_ids: Iterable[str] = ()) -> dict:
+def _run_meta(client: JevClient, rows: list[dict], tumor_ids: Iterable[str] = (),
+              auditoria: Optional[bool] = None) -> dict:
     """Manifiesto del run: alias pedido, versiones de Jev que respondieron de verdad,
-    commit, SDK, host y hash de los specs evaluados."""
+    si la capa 4.5 estaba activa, commit, SDK, host (hash) y hash de los specs evaluados."""
     try:
         sdk = metadata.version("typesafe-sdk")
     except metadata.PackageNotFoundError:
@@ -99,9 +100,46 @@ def _run_meta(client: JevClient, rows: list[dict], tumor_ids: Iterable[str] = ()
         "backend": getattr(client, "backend", "typesafe"),
         "modelos_resueltos": sorted({m for x in rows for m in x.get("modelo_jev") or []}),
         "mock": client.is_mock, "commit": _commit(), "typesafe_sdk": sdk,
-        "host": socket.gethostname(),
+        "auditoria": auditoria_activa() if auditoria is None else auditoria,
+        "host": hashlib.sha256(socket.gethostname().encode()).hexdigest()[:8],
         "specs": _specs_meta(tumor_ids),
     }
+
+
+_TRANSIENT = ("Timeout", "Connection", "RateLimit", "InternalServer", "ServiceUnavailable", "Overloaded")
+
+
+def _is_transient(exc: BaseException) -> bool:
+    """Fallo de transporte/API (reintentable): no es una decision clinica del sistema.
+    Cualquier otra excepcion (spec roto, bug del pipeline) NO se excluye de los denominadores."""
+    return any(t in c.__name__ for c in type(exc).__mro__ for t in _TRANSIENT)
+
+
+def _failure(exc: Exception) -> dict:
+    """Fila de fallo: 'error' (reintentable) solo si es transitorio; si no, 'fallo_pipeline'
+    cuenta como fallo del sistema en los denominadores."""
+    if _is_transient(exc):
+        return {"status": "error", "error": str(exc)}
+    return {"status": "fallo_pipeline", "fallo": f"{type(exc).__name__}: {exc}"}
+
+
+def _assert_same_run(path: Path, client: JevClient, tumor_ids: Iterable[str],
+                     auditoria: Optional[bool] = None) -> None:
+    """--retry-errors solo fusiona filas del MISMO run: misma auditoria, backend, modelo
+    pedido, specs y modo mock. Si no coincide, hay que repetir el run completo."""
+    try:
+        saved = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return
+    if not isinstance(saved, dict):
+        return
+    cur = _run_meta(client, [], tumor_ids, auditoria)
+    diffs = [k for k in ("auditoria", "backend", "modelo", "mock") if saved.get(k) != cur[k]]
+    old, new = saved.get("specs") or {}, cur["specs"]
+    diffs += [f"specs.{t}" for t in new if (old.get(t) or {}).get("sha256") != new[t]["sha256"]]
+    if diffs:
+        raise RuntimeError(f"--retry-errors: {path.name} no coincide con la configuracion actual "
+                           f"({', '.join(diffs)}). Repite el run completo.")
 
 
 def _kept_rows(path: Path, key: str) -> dict[str, dict]:
@@ -197,6 +235,8 @@ def evaluate_metabric(client: JevClient, strata=None, seed: int = 42, workers: i
                       progress: Progress = None, retry_errors: bool = False) -> dict:
     strata = strata or DEFAULT_STRATA
     sample = _sample_metabric(strata, seed)
+    if retry_errors:
+        _assert_same_run(METABRIC_RESULTS, client, ["mama"])
     keep = _kept_rows(METABRIC_RESULTS, "patient_id") if retry_errors else {}
 
     def one(case: dict) -> dict:
@@ -205,7 +245,10 @@ def evaluate_metabric(client: JevClient, strata=None, seed: int = 42, workers: i
             return keep[pid]
         try:
             r = run("mama", case["payload"], client=client)
-        except Exception as exc:  # fallo de API/red: reintentable con --retry-errors
+        except Exception as exc:
+            if not _is_transient(exc):
+                raise  # spec roto/bug: abortar, no producir metricas con huecos
+            # fallo de API/red: reintentable con --retry-errors
             return {"patient_id": pid, "status": "error", "error": str(exc)}
         rec = r.get("recomendacion_principal") or {}
         rec_id = rec.get("id")
@@ -235,6 +278,7 @@ def evaluate_metabric(client: JevClient, strata=None, seed: int = 42, workers: i
             "rfs_months": t["rfs_months"],
             "rfs_event": t["rfs_event"],
             "modelo_jev": r.get("modelo_jev"),
+            "auditoria": (r.get("auditoria") or {}).get("activada"),
         }
 
     rows = _parallel(one, sample, workers, progress, "METABRIC")
@@ -328,6 +372,7 @@ def evaluate_msk_chord(client: JevClient, n_per_tumor: int = 60, seed: int = 42,
     all_cases: dict[str, list] = {}
     saved_cases: dict[str, Any] = {}
     if retry_errors and MSK_CASES.exists():
+        _assert_same_run(MSK_RESULTS, client, list(msk_chord.CANCER_TYPES))
         try:
             saved_cases = json.loads(MSK_CASES.read_text(encoding="utf-8"))
         except (OSError, json.JSONDecodeError):
@@ -346,7 +391,7 @@ def evaluate_msk_chord(client: JevClient, n_per_tumor: int = 60, seed: int = 42,
             try:
                 r = run(tumor, case["payload"], client=client)
             except Exception as exc:
-                r = {"status": "error", "error": str(exc)}
+                r = _failure(exc)
             rec = (r.get("recomendacion_principal") or {}) if r.get("status") == "ok" else {}
             jc = cmap.get(rec.get("id")) if rec else None
             t = case["truth"]
@@ -359,7 +404,8 @@ def evaluate_msk_chord(client: JevClient, n_per_tumor: int = 60, seed: int = 42,
                 "compatible": jc is not None and (jc == t["clase_recibida"] or t["clase_recibida"] in compat.get(jc, set())),
                 "confianza": r.get("confianza"), "revision": r.get("requiere_revision_humana"),
                 "os_months": t["os_months"], "os_event": t["os_event"], "imputaciones": t["imputaciones"],
-                "modelo_jev": r.get("modelo_jev"), "error": r.get("error"),
+                "modelo_jev": r.get("modelo_jev"), "error": r.get("error"), "fallo": r.get("fallo"),
+                "auditoria": (r.get("auditoria") or {}).get("activada"),
             }
 
         rows = _parallel(one, cases, workers, progress, f"MSK-CHORD {tumor}")
@@ -382,6 +428,7 @@ def evaluate_msk_chord(client: JevClient, n_per_tumor: int = 60, seed: int = 42,
         res = {
             "tumor": tumor, "nombre": load_all()[tumor].nombre, "n": len(rows_ok),
             "errores": len(rows) - len(rows_ok), "evaluables": len(ev),
+            "fallos_pipeline": sum(x["status"] == "fallo_pipeline" for x in rows_ok),
             "necesita_datos": sum(x["status"] == "necesita_datos" for x in rows_ok),
             "sin_opcion": sum(x["status"] == "ok" and not x["clase_jev"] for x in rows_ok),
             "exacta": frac(ev, "exacta"), "compatible": frac(ev, "compatible"),
@@ -411,6 +458,7 @@ def evaluate_msk_chord(client: JevClient, n_per_tumor: int = 60, seed: int = 42,
     n_ok = sum(1 for rows in all_cases.values() for x in rows if x["status"] != "error")
     out["global"] = {
         "n": n_ok, "errores": sum(len(v) for v in all_cases.values()) - n_ok,
+        "fallos_pipeline": sum(x["status"] == "fallo_pipeline" for v in all_cases.values() for x in v),
         "evaluables": len(ev_all),
         "exacta": sum(x["exacta"] for x in ev_all) / len(ev_all) if ev_all else None,
         "compatible": sum(x["compatible"] for x in ev_all) / len(ev_all) if ev_all else None,
@@ -440,7 +488,7 @@ def _score_vignette(tumor_id: str, v, client: JevClient) -> dict:
     try:
         r = run(tumor_id, v.payload, client=client)
     except Exception as exc:  # un spec roto no debe tumbar la evaluacion completa
-        r = {"status": "error", "error": str(exc)}
+        r = _failure(exc)
     exp = v.esperado
     rec = (r.get("recomendacion_principal") or {}) if r["status"] == "ok" else {}
     motivos = [m["codigo"] for m in r.get("motivos_revision") or []]
@@ -471,7 +519,9 @@ def _score_vignette(tumor_id: str, v, client: JevClient) -> dict:
         "preguntas": r.get("preguntas", []),
         "n_candidatos": len(r.get("candidatos") or []),
         "error": r.get("error"),
+        "fallo": r.get("fallo"),
         "modelo_jev": r.get("modelo_jev"),
+        "auditoria": (r.get("auditoria") or {}).get("activada"),
     }
 
 
@@ -485,6 +535,7 @@ def _summary(rows: list[dict]) -> dict:
     return {
         "n": len(evaluadas),
         "errores": len(rows) - len(evaluadas),
+        "fallos_pipeline": sum(bool(x.get("fallo")) for x in evaluadas),
         "aciertos": sum(bool(x["acierto"]) for x in evaluadas),
         "acierto_global": frac(evaluadas),
         "acierto_tratamiento": frac(tto),
@@ -527,6 +578,8 @@ def evaluate_tumor(tumor_id: str, client: Optional[JevClient] = None, workers: i
                    progress: Progress = None, save: bool = True, retry_errors: bool = False) -> dict:
     client = client or make_client()
     spec = get_spec(tumor_id)
+    if retry_errors:
+        _assert_same_run(RESULTS_DIR / f"{tumor_id}.json", client, [tumor_id])
     keep = _kept_rows(RESULTS_DIR / f"{tumor_id}.json", "id") if retry_errors else {}
     rows = _vignette_rows(tumor_id, spec.vinetas, client, keep, workers, progress, spec.nombre)
     res = {
@@ -552,6 +605,8 @@ def evaluate_heldout(tumor_id: str, client: Optional[JevClient] = None, workers:
     spec = get_spec(tumor_id)
     vinetas = load_heldout(tumor_id)
     out_file = RESULTS_DIR / f"_heldout_{tumor_id}.json"
+    if retry_errors:
+        _assert_same_run(out_file, client, [tumor_id])
     keep = _kept_rows(out_file, "id") if retry_errors else {}
     rows = _vignette_rows(tumor_id, vinetas, client, keep, workers, progress, spec.nombre)
     res = {

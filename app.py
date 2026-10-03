@@ -407,6 +407,10 @@ def render_evaluation(client: JevClient) -> None:
             nb(f'<div class="nb-card red"><h3>Errores de API</h3><div class="note">{g["errores"]} casos no '
                "pudieron evaluarse por errores de la API o de red (no cuentan como aciertos ni fallos). "
                "Repetir solo esos casos con <code>--retry-errors</code>.</div></div>")
+        if g.get("fallos_pipeline"):
+            nb(f'<div class="nb-card red"><h3>Fallos del pipeline</h3><div class="note">{g["fallos_pipeline"]} casos '
+               "provocaron una excepcion del propio sistema (no de la red): cuentan como fallos, no se excluyen. "
+               "Revisar el campo <code>fallo</code> de cada caso.</div></div>")
         if g.get("n_multiopcion") is not None:
             nb(
                 '<div class="nb-card yellow"><h3>Dificultad real de la decisión</h3>'

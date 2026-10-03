@@ -97,7 +97,7 @@ def test_retry_errors_keeps_good_rows(tmp_path, monkeypatch):
                  "revision": False, "confianza": None, "n_candidatos": 0,
                  "error": "Timeout"}
     (tmp_path / "mama.json").write_text(
-        json.dumps({"casos": [keep_row, error_row]}), encoding="utf-8")
+        json.dumps({**_run_meta(mock(), [], ["mama"]), "casos": [keep_row, error_row]}), encoding="utf-8")
 
     res = evaluate_tumor("mama", client=mock(), save=False, retry_errors=True)
     by_id = {x["id"]: x for x in res["casos"]}
@@ -106,3 +106,69 @@ def test_retry_errors_keeps_good_rows(tmp_path, monkeypatch):
     assert len(res["casos"]) == 22                           # todas las vinetas del spec
     kept = _kept_rows(tmp_path / "mama.json", "id")
     assert list(kept) == ["MAMA-V01"]
+
+
+def test_compare_rows_excludes_error_rows():
+    a = [{"id": "1", "acierto": True}, {"id": "2", "acierto": True}]
+    b = [{"id": "1", "acierto": True}, {"id": "2", "acierto": False, "error": "Timeout"}]
+    res = compare_rows(a, b, key="id")
+    assert res["pareados"] == 1 and res["solo_acierta_a"] == 0
+
+
+def test_retry_errors_refuses_mismatched_run(tmp_path, monkeypatch):
+    import jevesmo.evaluation.runner as runner
+
+    monkeypatch.setattr(runner, "RESULTS_DIR", tmp_path)
+    meta = _run_meta(mock(), [], ["mama"], auditoria=not runner.auditoria_activa())
+    (tmp_path / "mama.json").write_text(json.dumps({**meta, "casos": []}), encoding="utf-8")
+    with pytest.raises(RuntimeError, match="auditoria"):
+        evaluate_tumor("mama", client=mock(), save=False, retry_errors=True)
+    # un run guardado sin manifiesto de auditoria tampoco se fusiona
+    (tmp_path / "mama.json").write_text(json.dumps({"modelo": "x", "casos": []}), encoding="utf-8")
+    with pytest.raises(RuntimeError):
+        evaluate_tumor("mama", client=mock(), save=False, retry_errors=True)
+
+
+def test_manifest_records_audit_flag_and_hashes_host():
+    assert _run_meta(mock(), [], ["mama"], auditoria=False)["auditoria"] is False
+    assert _run_meta(mock(), [], ["mama"], auditoria=True)["auditoria"] is True
+    import socket
+    assert socket.gethostname() not in _run_meta(mock(), [], ["mama"])["host"]
+
+
+def test_only_transient_failures_are_errors():
+    import jevesmo.evaluation.runner as runner
+
+    class TypeSafeAPITimeoutError(Exception):
+        pass
+
+    assert runner._failure(TypeSafeAPITimeoutError("t"))["status"] == "error"
+    assert runner._failure(TimeoutError("t"))["status"] == "error"
+    f = runner._failure(KeyError("spec roto"))
+    assert f["status"] == "fallo_pipeline" and "error" not in f and "KeyError" in f["fallo"]
+
+
+def test_pipeline_failure_counts_as_failure_not_excluded(monkeypatch):
+    import jevesmo.evaluation.runner as runner
+
+    def boom(*a, **k):
+        raise KeyError("spec roto")
+
+    monkeypatch.setattr(runner, "run", boom)
+    res = evaluate_tumor("mama", client=mock(), save=False)
+    assert res["errores"] == 0 and res["n"] == 22
+    assert res["fallos_pipeline"] == 22 and res["aciertos"] == 0
+
+
+def test_stats_edges():
+    assert mcnemar_exact_p(10, 0) == pytest.approx(2 / 1024)
+    assert mcnemar_exact_p(3, 0) == pytest.approx(0.25)
+    ci0, ci1 = wilson_ci(0, 10), wilson_ci(10, 10)
+    assert ci0["lo"] == 0.0 and ci0["hi"] == pytest.approx(0.2775, abs=1e-3)
+    assert ci1["hi"] == 1.0 and ci1["lo"] == pytest.approx(0.7225, abs=1e-3)
+    # p fuera de [0,1] o NaN: no se calibra
+    assert expected_calibration_error([(1.5, True), (float("nan"), False)]) is None
+    assert brier_score([(2.0, True)]) is None
+    # p == 1.0 cae en el ultimo cubo
+    assert expected_calibration_error([(1.0, True)]) == pytest.approx(0.0)
+    assert expected_calibration_error([(0.1, True)]) == pytest.approx(0.9)  # limite inferior de cubo

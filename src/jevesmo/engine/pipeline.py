@@ -233,10 +233,21 @@ def _referenced_jev_keys(spec: TumorSpec) -> set[str]:
 
 
 # ------------------------------------------------------------------ pipeline
+def auditoria_activa() -> bool:
+    """JEVESMO_AUDITORIA: activada por defecto. Un valor no reconocido lanza error
+    (mejor que interpretar mal un interruptor de seguridad)."""
+    v = os.environ.get("JEVESMO_AUDITORIA", "1").strip().lower()
+    if v in ("", "1", "si", "true", "on"):
+        return True
+    if v in ("0", "no", "false", "off"):
+        return False
+    raise ValueError(f"JEVESMO_AUDITORIA={v!r} no valido: usa 1/0 (si/no, true/false, on/off).")
+
+
 def run(tumor_id: str, raw: dict[str, Any], client: Optional[JevClient] = None,
         auditar: Optional[bool] = None) -> dict[str, Any]:
     if auditar is None:
-        auditar = os.environ.get("JEVESMO_AUDITORIA", "1").strip().lower() not in ("0", "no", "false")
+        auditar = auditoria_activa()
     spec = get_spec(tumor_id)
     data = normalize(spec, raw)
     client = client or make_client()
@@ -413,14 +424,16 @@ def run(tumor_id: str, raw: dict[str, Any], client: Optional[JevClient] = None,
         if len(validas) >= 2 and validas[0] - validas[1] < MARGIN_THRESHOLD:
             motivo("opciones_equilibradas")
 
-    # Capa 4.5: auditoria. Una segunda lectura de Jev revisa la
-    # recomendacion y, si hay texto libre, estima si esta manipulado. Solo puede
-    # ANADIR motivos de revision: nunca cambia la recomendacion, nunca quita
-    # revisiones y no puede saltarse los bloqueos deterministas de la capa 4.
+    # Capa 4.5: auditoria. Una segunda lectura de Jev revisa la recomendacion
+    # (solo con auditar=True). Solo puede ANADIR motivos de revision: nunca cambia
+    # la recomendacion, nunca quita revisiones y no puede saltarse los bloqueos
+    # deterministas de la capa 4. La alerta de manipulacion del texto libre se
+    # pregunta SIEMPRE que haya texto libre, incluso con la auditoria desactivada:
+    # el texto libre entra en el estado de todas las capas.
     auditoria: dict[str, Any] = {"activada": auditar}
-    if auditar:
+    if auditar or data.get("descripcion_libre"):
         qs5: dict[str, Question] = {}
-        if rec is not None:
+        if auditar and rec is not None:
             validos = [c for c in lista if not c["contraindicado"]]
             if len(validos) >= 2:
                 qs5["auditoria_opcion"] = Question(
@@ -442,14 +455,14 @@ def run(tumor_id: str, raw: dict[str, Any], client: Optional[JevClient] = None,
             )
         if qs5:
             partes = []
-            if rec is not None:
+            if auditar and rec is not None:
                 partes.append(f"Primera valoración: opción elegida '{rec['label']}'"
                               + (f" (confianza {confianza:.2f})" if confianza is not None else ""))
-            if bloqueos:
+            if auditar and bloqueos:
                 partes.append("Opciones descartadas por seguridad: " + "; ".join(
                     f"{o.label}: {bloqueos[o.id]}" for o in candidatos if o.id in bloqueos))
-            ans5, model5 = _ask(client, state + "\nAuditoría — segunda lectura independiente. "
-                                      + " | ".join(partes), qs5)
+            ans5, model5 = _ask(client, state + ("\nAuditoría — segunda lectura independiente. "
+                                                 + " | ".join(partes) if auditar else ""), qs5)
             traces.append(LayerTrace("Capa 4.5 - Auditoría", qs5, ans5, model5))
             if "auditoria_ok" in qs5:
                 a_op, a_ok = ans5.get("auditoria_opcion"), ans5.get("auditoria_ok")
@@ -461,10 +474,14 @@ def run(tumor_id: str, raw: dict[str, Any], client: Optional[JevClient] = None,
                     motivo("auditoria_sin_respuesta")
                 elif v_ok < AUDIT_OK_THRESHOLD or (piden_opcion and v_op != rec["id"]):
                     motivo("desacuerdo_revisor")
-                    otra = next((c["label"] for c in lista if c["id"] == v_op), v_op)
-                    avisos.append(
-                        f"Auditoría: el revisor propone '{otra}' (adecuación {v_ok:.2f}) frente a "
-                        f"'{rec['label']}'. La recomendación no cambia; decide el oncólogo.")
+                    detalle = []
+                    if piden_opcion and v_op != rec["id"]:
+                        otra = next((c["label"] for c in lista if c["id"] == v_op), v_op)
+                        detalle.append(f"propone '{otra}' frente a '{rec['label']}'")
+                    if v_ok < AUDIT_OK_THRESHOLD:
+                        detalle.append(f"valora como poco adecuada '{rec['label']}' (adecuación {v_ok:.2f})")
+                    avisos.append("Auditoría: el revisor " + " y ".join(detalle)
+                                  + ". La recomendación no cambia; decide el oncólogo.")
             if "manipulacion_ficha" in qs5:
                 a_m = ans5.get("manipulacion_ficha")
                 pm = a_m.noul if a_m and isinstance(a_m.noul, (int, float)) else None

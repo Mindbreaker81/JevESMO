@@ -65,8 +65,9 @@ def compare_rows(rows_a: list[dict], rows_b: list[dict], *, key: Optional[str] =
     de la fila). Las filas con error o sin la metrica no entran en los pares.
     """
     key = key or ("patient_id" if any("patient_id" in x for x in rows_a) else "id")
-    ia = {x[key]: x for x in rows_a if x.get(key) is not None}
-    ib = {x[key]: x for x in rows_b if x.get(key) is not None}
+    # Una fila con error (fallo de API/red) no es acierto ni fallo: queda fuera de los pares.
+    ia = {x[key]: x for x in rows_a if x.get(key) is not None and not x.get("error")}
+    ib = {x[key]: x for x in rows_b if x.get(key) is not None and not x.get("error")}
     pairs = []
     for k in sorted(set(ia) & set(ib)):
         a, b = metric_value(ia[k], metric), metric_value(ib[k], metric)

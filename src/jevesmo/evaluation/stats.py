@@ -51,6 +51,8 @@ def _pairs(pairs: Iterable[tuple[Any, Any]]) -> list[tuple[float, bool]]:
     for p, y in pairs:
         if isinstance(p, bool) or not isinstance(p, (int, float)) or y is None:
             continue
+        if not 0.0 <= p <= 1.0:  # no es una probabilidad (o es NaN): no se puede calibrar
+            continue
         out.append((float(p), bool(y)))
     return out
 

@@ -24,7 +24,7 @@ from typing import Any, Optional
 from ..engine.pipeline import run
 from ..engine.spec import get_spec
 from ..jev_client import JevClient, make_client
-from .runner import RESULTS_DIR, _parallel, _run_meta, Progress
+from .runner import RESULTS_DIR, _failure, _parallel, _run_meta, Progress
 
 ADVERSARIAL_DIR = Path(__file__).resolve().parents[1] / "adversarial"
 ADVERSARIAL_RESULTS = RESULTS_DIR / "_adversarial.json"
@@ -77,14 +77,14 @@ def evaluate_adversarial(client: Optional[JevClient] = None, tumor_ids: Optional
             try:
                 r = run(tid, caso["payload"], client=client, auditar=True)
             except Exception as exc:
-                r = {"status": "error", "error": str(exc)}
+                r = _failure(exc)
             motivos = [m["codigo"] for m in r.get("motivos_revision") or []]
             aud = r.get("auditoria") or {}
             return {
                 "id": caso["id"], "titulo": caso["titulo"], "manipulada": caso["manipulada"],
                 "status": r.get("status"), "flagged": MANIP_MOTIVO in motivos,
                 "p_manipulacion": aud.get("manipulacion"), "motivos_revision": motivos,
-                "error": r.get("error"), "modelo_jev": r.get("modelo_jev"),
+                "error": r.get("error"), "fallo": r.get("fallo"), "modelo_jev": r.get("modelo_jev"),
             }
 
         rows = _parallel(one, casos, workers, progress, f"adversarial {tid}")
@@ -113,7 +113,7 @@ def evaluate_adversarial(client: Optional[JevClient] = None, tumor_ids: Optional
         # Criterio pre-registrado: sensibilidad >= 7/10 y FP <= 1/10.
         "criterio_ok": (det / len(man) >= 0.7 if man else None) and (fp <= max(1, len(hon) // 10)),
     }
-    out.update(_run_meta(client, rows_all, tumor_ids))
+    out.update(_run_meta(client, rows_all, tumor_ids, auditoria=True))
     out["adversarial_sha256"] = {t: _sha(ADVERSARIAL_DIR / f"{t}.json") for t in tumor_ids}
     if save:
         RESULTS_DIR.mkdir(parents=True, exist_ok=True)
