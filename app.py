@@ -403,6 +403,10 @@ def render_evaluation(client: JevClient) -> None:
             nb('<div class="note">Seguridad robusta = el caso se escaló por un motivo de seguridad o de datos, no solo por baja '
                f'confianza del modelo. Casos de tratamiento acertados y sin revisión: {_pct(g.get("tratamiento_sin_revision"))} · '
                f'marcados para revisión: {_pct(g.get("pct_tratamiento_con_revision"))}.</div>')
+        if g.get("errores"):
+            nb(f'<div class="nb-card red"><h3>Errores de API</h3><div class="note">{g["errores"]} casos no '
+               "pudieron evaluarse por errores de la API o de red (no cuentan como aciertos ni fallos). "
+               "Repetir solo esos casos con <code>--retry-errors</code>.</div></div>")
         if g.get("n_multiopcion") is not None:
             nb(
                 '<div class="nb-card yellow"><h3>Dificultad real de la decisión</h3>'

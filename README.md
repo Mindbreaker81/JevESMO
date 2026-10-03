@@ -158,6 +158,26 @@ La pestaña **📊 Evaluacion** muestra (y permite relanzar) tres pruebas:
 .\.venv\Scripts\python.exe scripts\run_evaluation.py            # todo
 .\.venv\Scripts\python.exe scripts\run_evaluation.py --no-metabric
 .\.venv\Scripts\python.exe scripts\run_evaluation.py --solo-msk    # solo MSK-CHORD
+.\.venv\Scripts\python.exe scripts\run_evaluation.py --retry-errors # repite solo las filas con error de API
+.\.venv\Scripts\python.exe scripts\run_evaluation.py --heldout     # vinetas held-out
+```
+
+Los fallos de API o de red no cuentan como aciertos ni como fallos: se
+reportan aparte en `errores` y se repiten con `--retry-errors`, que conserva
+las filas sanas del run guardado. Cada run guarda un manifiesto: alias y
+versiones resueltas de Jev, commit, SDK, host y hash SHA-256 de cada spec.
+
+**Viñetas held-out** (`src/jevesmo/heldout/<tumor>.json`): un conjunto nuevo
+que no se usa para iterar los arboles, congelado por commit antes de la
+primera ejecucion. Es la estimacion honesta del acierto (las viñetas del spec
+sirvieron para iterar). Protocolo y criterio de lectura:
+[docs/experimentos/pre-registro-heldout-vinetas.md](docs/experimentos/pre-registro-heldout-vinetas.md).
+
+**Comparar dos runs** (cascada, backend alternativo, dos versiones de un
+spec): McNemar pareado + IC95 de Wilson sobre las filas por caso:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\compare_eval_runs.py data\eval\mama.json data\eval\_heldout_mama.json --metric acierto
 ```
 
 Ultimos resultados (Jev real, tras la revision adversaria): viñetas **404/404**,

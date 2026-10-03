@@ -238,26 +238,36 @@ def validate_spec(spec: TumorSpec) -> list[str]:
                 for r in refs):
             errs.append(f"opción {o.id}: la etiqueta indica línea >=2 pero 'cuando' no comprueba lineas_previas/tratamientos_previos")
 
-    vids = [v.id for v in spec.vinetas]
+    errs += check_vinetas(spec, spec.vinetas)
+    return errs
+
+
+def check_vinetas(spec: TumorSpec, vinetas: list[Vineta], conjunto: str = "viñeta") -> list[str]:
+    """Las comprobaciones de coherencia de viñetas frente al spec. Se reutiliza
+    para las viñetas held-out (src/jevesmo/heldout/)."""
+    errs: list[str] = []
+    ids = [c.id for c in spec.campos]
+    opt_ids = [o.id for o in spec.opciones]
+    vids = [v.id for v in vinetas]
     if dup := {i for i in vids if vids.count(i) > 1}:
-        errs.append(f"viñetas duplicadas: {dup}")
+        errs.append(f"viñetas duplicadas ({conjunto}): {dup}")
     field_ids = COMMON_IDS | set(ids)
-    for v in spec.vinetas:
+    for v in vinetas:
         if extra := set(v.payload) - field_ids:
-            errs.append(f"viñeta {v.id}: campos desconocidos {extra}")
+            errs.append(f"{conjunto} {v.id}: campos desconocidos {extra}")
         for f, val in v.payload.items():
             c = spec.campo(f)
             if c and c.tipo == "choice" and val is not None and val not in {o.id for o in c.opciones}:
-                errs.append(f"viñeta {v.id}: valor '{val}' no válido para {f}")
+                errs.append(f"{conjunto} {v.id}: valor '{val}' no válido para {f}")
         e = v.esperado
         if e.tipo == "recomendacion":
             if not e.preferida or e.preferida not in opt_ids:
-                errs.append(f"viñeta {v.id}: preferida '{e.preferida}' no es una opción")
+                errs.append(f"{conjunto} {v.id}: preferida '{e.preferida}' no es una opción")
             for a in e.aceptables:
                 if a not in opt_ids:
-                    errs.append(f"viñeta {v.id}: aceptable '{a}' no es una opción")
+                    errs.append(f"{conjunto} {v.id}: aceptable '{a}' no es una opción")
             if e.preferida and e.preferida not in e.aceptables:
-                errs.append(f"viñeta {v.id}: la preferida debe estar en aceptables")
+                errs.append(f"{conjunto} {v.id}: la preferida debe estar en aceptables")
     return errs
 
 
@@ -276,3 +286,36 @@ def load_all() -> dict[str, TumorSpec]:
 
 def get_spec(tumor_id: str) -> TumorSpec:
     return load_all()[tumor_id]
+
+
+# ---------------------------------------------------------------- held-out
+# Vinetas held-out: NO se usan para iterar los arboles. Viven versionadas junto
+# a los specs pero fuera de tumors/ para que ningun recorrido las trate como
+# parte del arbol. Ver docs/experimentos/pre-registro-heldout-vinetas.md.
+HELDOUT_DIR = Path(__file__).resolve().parents[1] / "heldout"
+
+
+def load_heldout(tumor_id: str) -> list[Vineta]:
+    """Vinetas held-out de un tumor (src/jevesmo/heldout/<id>.json).
+
+    Formato del archivo: {"tumor": "<id>", "vinetas": [<vineta>, ...]}.
+    Devuelve [] cuando el tumor no tiene conjunto held-out. Lanza ValueError
+    si el archivo no pasa las mismas comprobaciones que las viñetas del spec:
+    una viñeta held-out rota debe descubrirse antes de gastar llamadas a Jev.
+    """
+    f = HELDOUT_DIR / f"{tumor_id}.json"
+    if not f.exists():
+        return []
+    data = json.loads(f.read_text(encoding="utf-8"))
+    vinetas = [Vineta.model_validate(v) for v in data.get("vinetas", [])]
+    errs = check_vinetas(get_spec(tumor_id), vinetas, conjunto="held-out")
+    if errs:
+        raise ValueError(f"heldout {tumor_id}: " + "; ".join(errs))
+    return vinetas
+
+
+def heldout_ids() -> list[str]:
+    """Ids de tumor con conjunto held-out (ordenados)."""
+    if not HELDOUT_DIR.exists():
+        return []
+    return sorted(p.stem for p in HELDOUT_DIR.glob("*.json"))

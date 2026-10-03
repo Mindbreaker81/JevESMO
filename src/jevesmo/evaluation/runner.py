@@ -16,19 +16,22 @@ Dos evaluaciones complementarias:
 
 from __future__ import annotations
 
+import hashlib
 import json
 import random
+import socket
 import subprocess
 from importlib import metadata
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Callable, Optional
+from typing import Any, Callable, Iterable, Optional
 
 from ..engine.pipeline import CONFIDENCE_THRESHOLD, run
-from ..engine.spec import get_spec, load_all
+from ..engine.spec import HELDOUT_DIR, TUMORS_DIR, get_spec, heldout_ids, load_all, load_heldout
 from ..jev_client import JevClient
 from . import metabric, msk_chord
+from .stats import brier_score, expected_calibration_error
 
 RESULTS_DIR = metabric.DATA_DIR / "eval"
 METABRIC_RESULTS = RESULTS_DIR / "_metabric.json"
@@ -67,8 +70,25 @@ def _commit() -> Optional[str]:
         return None
 
 
-def _run_meta(client: JevClient, rows: list[dict]) -> dict:
-    """Manifiesto del run: alias pedido, versiones de Jev que respondieron de verdad, commit y SDK."""
+def _file_sha(path: Path) -> Optional[str]:
+    try:
+        return hashlib.sha256(path.read_bytes()).hexdigest()[:16]
+    except OSError:
+        return None
+
+
+def _specs_meta(tumor_ids: Iterable[str]) -> dict[str, dict]:
+    """Version y hash del archivo de spec de cada tumor evaluado (GT congelado)."""
+    out: dict[str, dict] = {}
+    for tid in tumor_ids:
+        out[tid] = {"version": load_all()[tid].version if tid in load_all() else None,
+                    "sha256": _file_sha(TUMORS_DIR / f"{tid}.json")}
+    return out
+
+
+def _run_meta(client: JevClient, rows: list[dict], tumor_ids: Iterable[str] = ()) -> dict:
+    """Manifiesto del run: alias pedido, versiones de Jev que respondieron de verdad,
+    commit, SDK, host y hash de los specs evaluados."""
     try:
         sdk = metadata.version("typesafe-sdk")
     except metadata.PackageNotFoundError:
@@ -78,7 +98,23 @@ def _run_meta(client: JevClient, rows: list[dict]) -> dict:
         "modelo": client.model + ("-mock" if client.is_mock else ""),
         "modelos_resueltos": sorted({m for x in rows for m in x.get("modelo_jev") or []}),
         "mock": client.is_mock, "commit": _commit(), "typesafe_sdk": sdk,
+        "host": socket.gethostname(),
+        "specs": _specs_meta(tumor_ids),
     }
+
+
+def _kept_rows(path: Path, key: str) -> dict[str, dict]:
+    """Filas guardadas sin error. Con --retry-errors se conservan y solo se
+    repiten las filas que quedaron con error (fallos de API, no de decision)."""
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return {}
+    casos = data.get("casos") if isinstance(data, dict) else data
+    if not isinstance(casos, list):
+        return {}
+    return {x[key]: x for x in casos
+            if isinstance(x, dict) and x.get(key) is not None and not x.get("error")}
 
 
 # ---------------------------------------------------------------- metricas
@@ -156,12 +192,20 @@ def _sample_metabric(strata: dict[str, int], seed: int) -> list[dict]:
     return sample
 
 
-def evaluate_metabric(client: JevClient, strata=None, seed: int = 42, workers: int = 8, progress: Progress = None) -> dict:
+def evaluate_metabric(client: JevClient, strata=None, seed: int = 42, workers: int = 8,
+                      progress: Progress = None, retry_errors: bool = False) -> dict:
     strata = strata or DEFAULT_STRATA
     sample = _sample_metabric(strata, seed)
+    keep = _kept_rows(METABRIC_RESULTS, "patient_id") if retry_errors else {}
 
     def one(case: dict) -> dict:
-        r = run("mama", case["payload"], client=client)
+        pid = case["truth"]["patient_id"]
+        if pid in keep:
+            return keep[pid]
+        try:
+            r = run("mama", case["payload"], client=client)
+        except Exception as exc:  # fallo de API/red: reintentable con --retry-errors
+            return {"patient_id": pid, "status": "error", "error": str(exc)}
         rec = r.get("recomendacion_principal") or {}
         rec_id = rec.get("id")
         probs = {}
@@ -193,10 +237,12 @@ def evaluate_metabric(client: JevClient, strata=None, seed: int = 42, workers: i
         }
 
     rows = _parallel(one, sample, workers, progress, "METABRIC")
+    # Las filas con error (API) no son aciertos ni fallos: se cuentan aparte.
+    rows_ok = [x for x in rows if not x.get("error")]
 
     by_sub: dict[str, Any] = {}
     for sub in strata:
-        rs = [x for x in rows if x["subtipo"] == sub]
+        rs = [x for x in rows_ok if x["subtipo"] == sub]
         by_sub[sub] = {
             "n": len(rs),
             "quimio": _binary([(x["pred_quimio"], x["real_quimio"]) for x in rs]),
@@ -205,7 +251,7 @@ def evaluate_metabric(client: JevClient, strata=None, seed: int = 42, workers: i
         }
 
     # Decision real de Jev: quimio si/no en HR+/HER2- precoz.
-    lum = [x for x in rows if x["subtipo"] == "HR+/HER2-" and x["estadio"] != "IV"]
+    lum = [x for x in rows_ok if x["subtipo"] == "HR+/HER2-" and x["estadio"] != "IV"]
     buckets = []
     for lo, hi in ((0.0, 0.6), (0.6, 0.8), (0.8, 0.9), (0.9, 1.01)):
         b = [x for x in lum if x["confianza"] is not None and lo <= x["confianza"] < hi]
@@ -223,20 +269,23 @@ def evaluate_metabric(client: JevClient, strata=None, seed: int = 42, workers: i
     }
 
     return {
-        "n": len(rows),
+        "n": len(rows_ok),
+        "errores": len(rows) - len(rows_ok),
         "strata": strata,
         "seed": seed,
         "global": {
-            "quimio": _binary([(x["pred_quimio"], x["real_quimio"]) for x in rows]),
-            "endocrino": _binary([(x["pred_endocrino"], x["real_endocrino"]) for x in rows]),
-            "revision_pct": sum(bool(x["revision"]) for x in rows) / len(rows) if rows else None,
-            "confianza_media": _mean([x["confianza"] for x in rows]),
+            "quimio": _binary([(x["pred_quimio"], x["real_quimio"]) for x in rows_ok]),
+            "endocrino": _binary([(x["pred_endocrino"], x["real_endocrino"]) for x in rows_ok]),
+            "revision_pct": sum(bool(x["revision"]) for x in rows_ok) / len(rows_ok) if rows_ok else None,
+            "confianza_media": _mean([x["confianza"] for x in rows_ok]),
         },
         "por_subtipo": by_sub,
         "luminal_precoz": {
             "n": len(lum),
             "quimio": _binary([(x["pred_quimio"], x["real_quimio"]) for x in lum]),
             "auc_p_quimio": _auc([x["p_quimio"] for x in lum], [x["real_quimio"] for x in lum]),
+            "brier_p_quimio": brier_score((x["p_quimio"], x["real_quimio"]) for x in lum),
+            "ece_p_quimio": expected_calibration_error((x["p_quimio"], x["real_quimio"]) for x in lum),
             "calibracion": buckets,
             "pronostico_sin_quimio": pronostico,
         },
@@ -273,15 +322,26 @@ def _km_os(times: list, events: list) -> dict:
 
 
 def evaluate_msk_chord(client: JevClient, n_per_tumor: int = 60, seed: int = 42, workers: int = 8,
-                       progress: Progress = None) -> dict:
+                       progress: Progress = None, retry_errors: bool = False) -> dict:
     out: dict[str, Any] = {"n_por_tumor": n_per_tumor, "seed": seed, "tumores": {}}
     all_cases: dict[str, list] = {}
+    saved_cases: dict[str, Any] = {}
+    if retry_errors and MSK_CASES.exists():
+        try:
+            saved_cases = json.loads(MSK_CASES.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            saved_cases = {}
     for tumor in msk_chord.CANCER_TYPES:
+        keep = {x["patient_id"]: x for x in saved_cases.get(tumor) or []
+                if x.get("status") != "error" and not x.get("error")}
         cases = msk_chord.build_cases(tumor, n=n_per_tumor, seed=seed, workers=workers)
         cmap = msk_chord.OPTION_CLASS[tumor]
         compat = msk_chord.COMPATIBLE[tumor]
 
-        def one(case: dict, tumor=tumor, cmap=cmap, compat=compat) -> dict:
+        def one(case: dict, tumor=tumor, cmap=cmap, compat=compat, keep=keep) -> dict:
+            pid = case["truth"]["patient_id"]
+            if pid in keep:
+                return keep[pid]
             try:
                 r = run(tumor, case["payload"], client=client)
             except Exception as exc:
@@ -298,17 +358,19 @@ def evaluate_msk_chord(client: JevClient, n_per_tumor: int = 60, seed: int = 42,
                 "compatible": jc is not None and (jc == t["clase_recibida"] or t["clase_recibida"] in compat.get(jc, set())),
                 "confianza": r.get("confianza"), "revision": r.get("requiere_revision_humana"),
                 "os_months": t["os_months"], "os_event": t["os_event"], "imputaciones": t["imputaciones"],
-                "modelo_jev": r.get("modelo_jev"),
+                "modelo_jev": r.get("modelo_jev"), "error": r.get("error"),
             }
 
         rows = _parallel(one, cases, workers, progress, f"MSK-CHORD {tumor}")
         all_cases[tumor] = rows
-        ev = [x for x in rows if x["clase_jev"]]
+        # Filas con error (API): no son aciertos ni fallos; se cuentan aparte.
+        rows_ok = [x for x in rows if x["status"] != "error"]
+        ev = [x for x in rows_ok if x["clase_jev"]]
         frac = lambda xs, k: (sum(bool(x[k]) for x in xs) / len(xs)) if xs else None  # noqa: E731
         sub: dict[str, Any] = {}
-        for g in sorted({x["subgrupo"] for x in rows}):
+        for g in sorted({x["subgrupo"] for x in rows_ok}):
             xs = [x for x in ev if x["subgrupo"] == g]
-            sub[g] = {"n": len([x for x in rows if x["subgrupo"] == g]), "evaluables": len(xs),
+            sub[g] = {"n": len([x for x in rows_ok if x["subgrupo"] == g]), "evaluables": len(xs),
                       "exacta": frac(xs, "exacta"), "compatible": frac(xs, "compatible")}
         matriz: dict[str, dict[str, int]] = {}
         for x in ev:
@@ -317,19 +379,22 @@ def evaluate_msk_chord(client: JevClient, n_per_tumor: int = 60, seed: int = 42,
         conc = [x for x in ev if x["compatible"]]
         disc = [x for x in ev if not x["compatible"]]
         res = {
-            "tumor": tumor, "nombre": load_all()[tumor].nombre, "n": len(rows), "evaluables": len(ev),
-            "necesita_datos": sum(x["status"] == "necesita_datos" for x in rows),
-            "sin_opcion": sum(x["status"] == "ok" and not x["clase_jev"] for x in rows),
+            "tumor": tumor, "nombre": load_all()[tumor].nombre, "n": len(rows_ok),
+            "errores": len(rows) - len(rows_ok), "evaluables": len(ev),
+            "necesita_datos": sum(x["status"] == "necesita_datos" for x in rows_ok),
+            "sin_opcion": sum(x["status"] == "ok" and not x["clase_jev"] for x in rows_ok),
             "exacta": frac(ev, "exacta"), "compatible": frac(ev, "compatible"),
-            "cobertura": len(ev) / len(rows) if rows else None,
-            "compatible_itt": sum(bool(x["compatible"]) for x in rows) / len(rows) if rows else None,
+            "cobertura": len(ev) / len(rows_ok) if rows_ok else None,
+            "compatible_itt": sum(bool(x["compatible"]) for x in rows_ok) / len(rows_ok) if rows_ok else None,
             "compatible_nota": msk_chord.COMPATIBLE_NOTE[tumor],
-            "revision_pct": frac([x for x in rows if x["status"] == "ok"], "revision"),
+            "revision_pct": frac([x for x in rows_ok if x["status"] == "ok"], "revision"),
             "confianza_media": _mean([x["confianza"] for x in ev]),
+            "brier_confianza": brier_score((x["confianza"], x["compatible"]) for x in ev),
+            "ece_confianza": expected_calibration_error((x["confianza"], x["compatible"]) for x in ev),
             "por_subgrupo": sub, "matriz": matriz,
             "os_concordante": _km_os([x["os_months"] for x in conc], [x["os_event"] for x in conc]),
             "os_discordante": _km_os([x["os_months"] for x in disc], [x["os_event"] for x in disc]),
-            "preguntas_frecuentes": sorted({q for x in rows for q in x["preguntas"]})[:5],
+            "preguntas_frecuentes": sorted({q for x in rows_ok for q in x["preguntas"]})[:5],
         }
         if tumor == "cpnm_metastasico":
             drv = [x for x in ev if x["subgrupo"] == "Con driver accionable"]
@@ -341,18 +406,23 @@ def evaluate_msk_chord(client: JevClient, n_per_tumor: int = 60, seed: int = 42,
                 "os_no_recibio_dirigida": _km_os([x["os_months"] for x in nogot], [x["os_event"] for x in nogot]),
             }
         out["tumores"][tumor] = res
-    ev_all = [x for rows in all_cases.values() for x in rows if x["clase_jev"]]
+    ev_all = [x for rows in all_cases.values() for x in rows if x["status"] != "error" and x["clase_jev"]]
+    n_ok = sum(1 for rows in all_cases.values() for x in rows if x["status"] != "error")
     out["global"] = {
-        "n": sum(len(v) for v in all_cases.values()), "evaluables": len(ev_all),
+        "n": n_ok, "errores": sum(len(v) for v in all_cases.values()) - n_ok,
+        "evaluables": len(ev_all),
         "exacta": sum(x["exacta"] for x in ev_all) / len(ev_all) if ev_all else None,
         "compatible": sum(x["compatible"] for x in ev_all) / len(ev_all) if ev_all else None,
-        "cobertura": len(ev_all) / max(1, sum(len(v) for v in all_cases.values())),
-        "compatible_itt": sum(bool(x["compatible"]) for v in all_cases.values() for x in v)
-        / max(1, sum(len(v) for v in all_cases.values())),
+        "cobertura": len(ev_all) / n_ok if n_ok else None,
+        "compatible_itt": sum(bool(x["compatible"]) for v in all_cases.values() for x in v if x["status"] != "error")
+        / n_ok if n_ok else None,
+        "brier_confianza": brier_score((x["confianza"], x["compatible"]) for x in ev_all),
+        "ece_confianza": expected_calibration_error((x["confianza"], x["compatible"]) for x in ev_all),
         "os_concordante": _km_os([x["os_months"] for x in ev_all if x["compatible"]], [x["os_event"] for x in ev_all if x["compatible"]]),
         "os_discordante": _km_os([x["os_months"] for x in ev_all if not x["compatible"]], [x["os_event"] for x in ev_all if not x["compatible"]]),
     }
-    out.update(_run_meta(client, [x for v in all_cases.values() for x in v]))
+    out.update(_run_meta(client, [x for v in all_cases.values() for x in v],
+                       list(msk_chord.CANCER_TYPES)))
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
     MSK_RESULTS.write_text(json.dumps(out, ensure_ascii=False, indent=1, default=str), encoding="utf-8")
     MSK_CASES.write_text(json.dumps(all_cases, ensure_ascii=False, indent=1, default=str), encoding="utf-8")
@@ -405,13 +475,17 @@ def _score_vignette(tumor_id: str, v, client: JevClient) -> dict:
 
 
 def _summary(rows: list[dict]) -> dict:
-    tto = [x for x in rows if x["esperado_tipo"] == "recomendacion"]
-    seg = [x for x in rows if x["esperado_tipo"] != "recomendacion"]
+    # Las filas con error (API) no son aciertos ni fallos: se cuentan aparte y
+    # quedan fuera de todos los denominadores. Se repiten con --retry-errors.
+    evaluadas = [x for x in rows if not x.get("error")]
+    tto = [x for x in evaluadas if x["esperado_tipo"] == "recomendacion"]
+    seg = [x for x in evaluadas if x["esperado_tipo"] != "recomendacion"]
     frac = lambda xs, k="acierto": (sum(bool(x[k]) for x in xs) / len(xs)) if xs else None  # noqa: E731
     return {
-        "n": len(rows),
-        "aciertos": sum(bool(x["acierto"]) for x in rows),
-        "acierto_global": frac(rows),
+        "n": len(evaluadas),
+        "errores": len(rows) - len(evaluadas),
+        "aciertos": sum(bool(x["acierto"]) for x in evaluadas),
+        "acierto_global": frac(evaluadas),
         "acierto_tratamiento": frac(tto),
         "acierto_preferida": frac(tto, "acierto_preferida"),
         "acierto_seguridad": frac(seg),
@@ -422,6 +496,8 @@ def _summary(rows: list[dict]) -> dict:
         "pct_tratamiento_con_revision": frac(tto, "revision"),
         "confianza_aciertos": _mean([x["confianza"] for x in tto if x["acierto"]]),
         "confianza_fallos": _mean([x["confianza"] for x in tto if not x["acierto"]]),
+        "brier_confianza": brier_score((x["confianza"], x["acierto"]) for x in tto),
+        "ece_confianza": expected_calibration_error((x["confianza"], x["acierto"]) for x in tto),
         # Dificultad: casos de tratamiento en los que Jev tuvo que elegir entre >=2 opciones ESMO.
         "n_multiopcion": len(multi := [x for x in tto if (x.get("n_candidatos") or 0) >= 2]),
         "acierto_multiopcion": frac(multi),
@@ -429,15 +505,32 @@ def _summary(rows: list[dict]) -> dict:
     }
 
 
+def _vignette_rows(tumor_id: str, vinetas: list, client: JevClient, keep: dict[str, dict],
+                   workers: int, progress: Progress, label: str) -> list[dict]:
+    """Puntua las viñetas pendientes y las fusiona con las filas conservadas.
+
+    `keep` (solo con --retry-errors) conserva las filas ya acertadas del run
+    guardado; las que quedaron con error se repiten. El orden lo marcan las
+    viñetas del spec/fichero, no el archivo guardado: una viñeta eliminada del
+    conjunto desaparece del resultado aunque exista en el archivo previo.
+    """
+    todo = [v for v in vinetas if v.id not in keep]
+    fresh = _parallel(lambda v: _score_vignette(tumor_id, v, client), todo, workers, progress, label)
+    merged = {**keep, **{x["id"]: x for x in fresh}}
+    rows = [merged[v.id] for v in vinetas if v.id in merged]
+    rows.sort(key=lambda x: x["id"])
+    return rows
+
+
 def evaluate_tumor(tumor_id: str, client: Optional[JevClient] = None, workers: int = 8,
-                   progress: Progress = None, save: bool = True) -> dict:
+                   progress: Progress = None, save: bool = True, retry_errors: bool = False) -> dict:
     client = client or JevClient()
     spec = get_spec(tumor_id)
-    rows = _parallel(lambda v: _score_vignette(tumor_id, v, client), spec.vinetas, workers, progress, spec.nombre)
-    rows.sort(key=lambda x: x["id"])
+    keep = _kept_rows(RESULTS_DIR / f"{tumor_id}.json", "id") if retry_errors else {}
+    rows = _vignette_rows(tumor_id, spec.vinetas, client, keep, workers, progress, spec.nombre)
     res = {
         "tumor": spec.id, "nombre": spec.nombre, "grupo": spec.grupo, "version": spec.version,
-        **_run_meta(client, rows), "umbral_confianza": CONFIDENCE_THRESHOLD,
+        **_run_meta(client, rows, [spec.id]), "umbral_confianza": CONFIDENCE_THRESHOLD,
         **_summary(rows), "casos": rows,
     }
     if save:
@@ -446,31 +539,68 @@ def evaluate_tumor(tumor_id: str, client: Optional[JevClient] = None, workers: i
     return res
 
 
+def evaluate_heldout(tumor_id: str, client: Optional[JevClient] = None, workers: int = 8,
+                     progress: Progress = None, save: bool = True, retry_errors: bool = False) -> dict:
+    """Puntua las viñetas HELD-OUT (src/jevesmo/heldout/<tumor>.json).
+
+    Guarda en data/eval/_heldout_<tumor>.json (prefijo _: load_results no las
+    mezcla con las viñetas de desarrollo). Estas viñetas no se usan para
+    iterar los arboles: el resultado es la estimacion honesta del acierto.
+    """
+    client = client or JevClient()
+    spec = get_spec(tumor_id)
+    vinetas = load_heldout(tumor_id)
+    out_file = RESULTS_DIR / f"_heldout_{tumor_id}.json"
+    keep = _kept_rows(out_file, "id") if retry_errors else {}
+    rows = _vignette_rows(tumor_id, vinetas, client, keep, workers, progress, spec.nombre)
+    res = {
+        "tumor": spec.id, "nombre": spec.nombre, "grupo": spec.grupo, "version": spec.version,
+        "conjunto": "heldout", "heldout_sha256": _file_sha(HELDOUT_DIR / f"{tumor_id}.json"),
+        **_run_meta(client, rows, [spec.id]), "umbral_confianza": CONFIDENCE_THRESHOLD,
+        **_summary(rows), "casos": rows,
+    }
+    if save:
+        RESULTS_DIR.mkdir(parents=True, exist_ok=True)
+        out_file.write_text(json.dumps(res, ensure_ascii=False, indent=1, default=str), encoding="utf-8")
+    return res
+
+
+def evaluate_all_heldout(client: Optional[JevClient] = None, workers: int = 8,
+                         progress: Progress = None, retry_errors: bool = False) -> dict:
+    client = client or JevClient()
+    return {t: evaluate_heldout(t, client, workers=workers, progress=progress,
+                                retry_errors=retry_errors) for t in heldout_ids()}
+
+
 def run_all(client: Optional[JevClient] = None, tumors: Optional[list[str]] = None, metabric_too: bool = True,
-            strata=None, seed: int = 42, progress: Progress = None, msk_too: bool = False, msk_n: int = 60) -> dict:
+            strata=None, seed: int = 42, progress: Progress = None, msk_too: bool = False,
+            msk_n: int = 60, retry_errors: bool = False) -> dict:
     client = client or JevClient()
     tumors = tumors or list(load_all())
-    out = {t: evaluate_tumor(t, client, progress=progress) for t in tumors}
+    out = {t: evaluate_tumor(t, client, progress=progress, retry_errors=retry_errors) for t in tumors}
     if metabric_too:
-        m = evaluate_metabric(client, strata=strata, seed=seed, progress=progress)
-        m.update(_run_meta(client, m.get("casos") or []))
+        m = evaluate_metabric(client, strata=strata, seed=seed, progress=progress, retry_errors=retry_errors)
+        m.update(_run_meta(client, m.get("casos") or [], ["mama"]))
         RESULTS_DIR.mkdir(parents=True, exist_ok=True)
         METABRIC_RESULTS.write_text(json.dumps(m, ensure_ascii=False, indent=1, default=str), encoding="utf-8")
     if msk_too:
-        evaluate_msk_chord(client, n_per_tumor=msk_n, seed=seed, progress=progress)
+        evaluate_msk_chord(client, n_per_tumor=msk_n, seed=seed, progress=progress, retry_errors=retry_errors)
     return load_results()
 
 
 def load_results() -> dict:
-    """{"tumores": {id: resultado}, "metabric": resultado|None, "global": resumen}"""
-    tum = {}
+    """{"tumores": {id: resultado}, "heldout": {id: resultado}, "metabric": ..., "global": resumen}"""
+    tum, held = {}, {}
     if RESULTS_DIR.exists():
         for f in sorted(RESULTS_DIR.glob("*.json")):
-            if not f.name.startswith("_"):
+            if f.name.startswith("_heldout_"):
+                held[f.stem.removeprefix("_heldout_")] = json.loads(f.read_text(encoding="utf-8"))
+            elif not f.name.startswith("_"):
                 tum[f.stem] = json.loads(f.read_text(encoding="utf-8"))
     met = json.loads(METABRIC_RESULTS.read_text(encoding="utf-8")) if METABRIC_RESULTS.exists() else None
     rows = [c for r in tum.values() for c in r["casos"]]
     msk = json.loads(MSK_RESULTS.read_text(encoding="utf-8")) if MSK_RESULTS.exists() else None
     if msk and MSK_CASES.exists():
         msk["casos"] = json.loads(MSK_CASES.read_text(encoding="utf-8"))
-    return {"tumores": tum, "metabric": met, "msk_chord": msk, "global": _summary(rows) if rows else None}
+    return {"tumores": tum, "heldout": held, "metabric": met, "msk_chord": msk,
+            "global": _summary(rows) if rows else None}
