@@ -1,4 +1,4 @@
-"""Estadistica de evaluacion (JES-5): Wilson, McNemar, Brier/ECE, comparador
+"""Estadistica de evaluacion: Wilson, McNemar, Brier/ECE, comparador
 pareado y reintento de filas con error."""
 import json
 

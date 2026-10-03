@@ -7,9 +7,9 @@ Uso: python scripts\compare_eval_runs.py <a.json> <b.json> [--metric acierto]
   --metric: acierto (defecto), acierto_preferida, exacta, compatible, revision,
   quimio, endocrino o cualquier campo booleano de la fila.
 
-Pensado para comparar configuraciones sobre los mismos casos (cascada
-revisor-auditor JES-2, backends alternativos JES-4): solo las filas presentes
-y con la metrica en ambos runs entran en los pares.
+Pensado para comparar configuraciones sobre los mismos casos (con/sin la
+segunda lectura de auditoria, Jev frente a un backend alternativo): solo las
+filas presentes y con la metrica en ambos runs entran en los pares.
 """
 import sys
 from pathlib import Path

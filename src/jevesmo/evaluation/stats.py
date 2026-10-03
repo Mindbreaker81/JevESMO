@@ -1,4 +1,4 @@
-"""Estadistica pareada y de calibracion para la evaluacion (nivel jevbench).
+"""Estadistica pareada y de calibracion para la evaluacion.
 
 - wilson_ci: intervalo de confianza de una proporcion.
 - mcnemar_exact_p: comparacion pareada de dos evaluaciones sobre los mismos

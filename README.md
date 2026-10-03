@@ -282,7 +282,7 @@ diseño encontrados, lo corregido y lo que sigue siendo una limitacion.
 - **Viñetas held-out**: pendiente un redactor distinto del iterador de los
   arboles (maquinaria, pre-registro y congelado por commit listos).
 - **Validacion clinica** de cada spec y viñeta por especialistas de cada area,
-  con doble anotacion y adjudicacion (JES-7).
+  con doble anotacion y adjudicacion.
 - Cohortes reales de otros tumores (p.ej. MSK-CHORD en cBioPortal).
 - Persistencia/auditoria de cada decision — parcialmente hecho: cada run y
   cada caso registran alias + version resuelta de Jev, commit, host, SDK y

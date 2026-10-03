@@ -1,9 +1,9 @@
 """Comparacion pareada de dos runs de evaluacion guardados (McNemar + IC95 Wilson).
 
-Pensado para comparar configuraciones sobre los mismos casos: la cascada
-revisor-auditor (JES-2), backends alternativos (JES-4) o dos versiones de un
-spec. El McNemar solo usa pares presentes en ambos runs con la metrica
-disponible en ambos.
+Pensado para comparar configuraciones sobre los mismos casos: la segunda
+lectura de la capa de auditoria activada o no, un backend alternativo frente
+a Jev, o dos versiones de un spec. El McNemar solo usa pares presentes en
+ambos runs con la metrica disponible en ambos.
 """
 
 from __future__ import annotations

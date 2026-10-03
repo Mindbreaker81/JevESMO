@@ -1,8 +1,8 @@
 # Pre-registro: conjunto de viñetas held-out
 
-Fecha: 2026-10-03. Issue: JES-5. Origen del metodo: jevbench (`docs/experimentos/`
-de system-one-bench), donde cada evaluacion nueva se pre-registra y el GT se
-congela por commit antes de ejecutar.
+Fecha: 2026-10-03. Objetivo: una estimacion honesta del acierto. Metodo tomado
+del banco de pruebas de Jev, donde cada evaluacion nueva se pre-registra y el
+conjunto de referencia se congela por commit antes de ejecutar.
 
 ## Problema que resuelve
 
@@ -48,7 +48,7 @@ servido para ajustar specs.
 - No se publica un numero unico como "el acierto del sistema": el held-out es
   una muestra por tumor, no una prevalencia real.
 - El resultado no valida clinicamente las viñetas: la validacion por
-  oncologos sigue el flujo de JES-7 (segunda anotacion + adjudicacion).
+  oncologos requiere su propio flujo (segunda anotacion + adjudicacion).
 
 ## Estado
 

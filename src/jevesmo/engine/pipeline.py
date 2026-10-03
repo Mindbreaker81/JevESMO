@@ -10,7 +10,7 @@ Flujo (idéntico para todos los tumores, lo que cambia es el spec JSON):
    adecuada (Choice) y estima el beneficio (Score).
 4. Seguridad: bloqueos deterministas ("duro"), contraindicaciones relativas
    juzgadas por Jev ("jev", falla cerrado) y avisos de revisión ("revisión").
-4.5. Auditoría (opcional, JES-2/JES-3): segunda lectura de Jev que revisa la
+4.5. Auditoría (opcional): segunda lectura de Jev que revisa la
    elección y, si hay texto libre, estima si esta manipulado. Solo puede
    AÑADIR motivos de revision; nunca cambia la recomendacion.
 5. Revisión humana obligatoria si se cumple CUALQUIER motivo estructurado
@@ -32,8 +32,8 @@ from .spec import Campo, TumorSpec, get_spec
 CONFIDENCE_THRESHOLD = 0.6
 MARGIN_THRESHOLD = 0.15      # diferencia minima de probabilidad entre las 2 primeras opciones
 SAFETY_DOUBT_BAND = 0.2      # noul en [umbral - banda, umbral) -> contraindicacion dudosa -> revision
-MANIPULATION_THRESHOLD = 0.5  # noul manipulacion_ficha >= umbral -> revision obligatoria (JES-3)
-AUDIT_OK_THRESHOLD = 0.5      # noul auditoria_ok < umbral -> desacuerdo del revisor (JES-2)
+MANIPULATION_THRESHOLD = 0.5  # noul manipulacion_ficha >= umbral -> revision obligatoria
+AUDIT_OK_THRESHOLD = 0.5      # noul auditoria_ok < umbral -> desacuerdo del revisor
 
 MOTIVOS = {
     "modo_simulado": "Jev no está conectado (modo simulado): las respuestas NO son reales.",
@@ -255,7 +255,7 @@ def run(tumor_id: str, raw: dict[str, Any], client: Optional[JevClient] = None,
 
     if client.is_mock:
         motivo("modo_simulado")
-    # Backend LLM alternativo (opt-in, JES-4): no es Jev y no esta validado
+    # Backend LLM alternativo (opt-in): no es Jev y no esta validado
     # clinicamente -> revision obligatoria permanente. Nunca sustitucion silenciosa.
     if not client.is_mock and getattr(client, "backend", "typesafe") != "typesafe":
         motivo("backend_alternativo")
@@ -413,7 +413,7 @@ def run(tumor_id: str, raw: dict[str, Any], client: Optional[JevClient] = None,
         if len(validas) >= 2 and validas[0] - validas[1] < MARGIN_THRESHOLD:
             motivo("opciones_equilibradas")
 
-    # Capa 4.5: auditoria (JES-2/JES-3). Una segunda lectura de Jev revisa la
+    # Capa 4.5: auditoria. Una segunda lectura de Jev revisa la
     # recomendacion y, si hay texto libre, estima si esta manipulado. Solo puede
     # ANADIR motivos de revision: nunca cambia la recomendacion, nunca quita
     # revisiones y no puede saltarse los bloqueos deterministas de la capa 4.

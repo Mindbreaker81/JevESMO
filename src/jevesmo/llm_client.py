@@ -1,4 +1,4 @@
-"""Backend LLM alternativo (opt-in) via system-one-adapter (JES-4).
+"""Backend LLM alternativo (opt-in) via system-one-adapter.
 
 Implementa la misma frontera que `JevClient` (`system_one(state, questions)`)
 traduciendo las preguntas al formato del adaptador, que a su vez llama a
@@ -20,9 +20,10 @@ Configuracion por entorno:
     JEVESMO_LLM_ANSWER_MODE    (probabilities|discrete; default probabilities)
     JEVESMO_LLM_STRUCTURED     (0|1; default 1 = salida estructurada nativa)
 
-Nota del banco (JEV-32): un revisor no-Jev NO hereda la alerta de manipulacion
-de Jev — si se usa este backend, la capa 4.5 la ejecuta tambien el LLM
-alternativo y su calidad debe medirse con la bateria adversarial propia.
+Nota: un decisor que no es Jev NO hereda la capacidad de Jev para detectar
+manipulacion en el texto libre — si se usa este backend, la capa 4.5 la
+ejecuta tambien el LLM alternativo y su calidad debe medirse con la bateria
+adversarial propia (scripts/run_adversarial.py).
 """
 
 from __future__ import annotations

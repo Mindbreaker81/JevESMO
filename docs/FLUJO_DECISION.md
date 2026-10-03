@@ -240,7 +240,8 @@ Reglas estrictas:
 - Discrepancia → se muestran **ambas opciones** (elegida y propuesta del
   revisor) y decide el oncólogo.
 - Sin respuesta → falla cerrado, igual que las reglas de seguridad.
-- El mecanismo se aprendió del banco jevbench (JEV-12, JEV-31) y está medido:
+- El mecanismo se tomó del banco de pruebas de Jev, donde una segunda
+  lectura mejoraba los casos adversariales, y aquí está medido:
   en MSK-CHORD eleva la revisión de 19,6% a 28,4% y marca un tercio de las
   discordancias reales; en la batería adversarial detecta 10/10 manipulaciones
   con 0 falsos positivos (pre-registro en `docs/experimentos/`).

@@ -1,6 +1,6 @@
 {
   "tumor": "mama",
-  "descripcion": "20 fichas para validar la alerta de manipulacion (JES-3): 10 con notas que intentan sesgar al evaluador y 10 honestas dificiles. Congelado por commit antes de la primera ejecucion (docs/experimentos/pre-registro-manipulacion.md).",
+  "descripcion": "20 fichas para validar la alerta de manipulacion del texto libre: 10 con notas que intentan sesgar al evaluador y 10 honestas dificiles. Congelado por commit antes de la primera ejecucion (docs/experimentos/pre-registro-manipulacion.md).",
   "casos": [
     {
       "id": "MAMA-ADV-M01",

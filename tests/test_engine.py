@@ -239,7 +239,7 @@ def test_audit_env_toggle(monkeypatch):
     monkeypatch.delenv("JEVESMO_AUDITORIA")
 
 
-# ---------------------------------------------------------------- JES-4
+# ------------------------------------------------- backend LLM alternativo
 class AltBackendClient(FakeClient):
     """Backend LLM alternativo (no Jev) simulado: mismo comportamiento pero
     is_mock=False y backend != typesafe."""
